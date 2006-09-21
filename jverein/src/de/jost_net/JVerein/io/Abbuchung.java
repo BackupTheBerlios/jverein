@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:24 $
+ * $Revision: 1.2 $
+ * $Date: 2006/09/21 18:49:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.2  2006/09/21 18:49:00  jost
+ * überflüssiges Import-Statement entfernt.
+ *
  * Revision 1.1  2006/09/20 15:39:24  jost
  * *** empty log message ***
  *
@@ -17,7 +20,6 @@ package de.jost_net.JVerein.io;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.Date;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
