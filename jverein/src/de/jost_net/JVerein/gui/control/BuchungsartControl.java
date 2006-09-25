@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:38:30 $
+ * $Revision: 1.2 $
+ * $Date: 2006/09/25 19:04:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.2  2006/09/25 19:04:02  jost
+ * Vorbereitung Splitbuchungen
+ *
  * Revision 1.1  2006/09/20 15:38:30  jost
  * *** empty log message ***
  *
@@ -114,6 +117,7 @@ public class BuchungsartControl extends AbstractControl
   {
     DBService service = Einstellungen.getDBService();
     DBIterator buchungsarten = service.createList(Buchungsart.class);
+    buchungsarten.addFilter("nummer >= 0");
     buchungsarten.setOrder("ORDER BY nummer");
 
     buchungsartList = new TablePart(buchungsarten, new BuchungsartAction());
