@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:38:30 $
+ * $Revision: 1.2 $
+ * $Date: 2006/09/25 19:04:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.2  2006/09/25 19:04:27  jost
+ * Bugfix Datumvon und Datumbis
+ *
  * Revision 1.1  2006/09/20 15:38:30  jost
  * *** empty log message ***
  *
@@ -197,6 +200,7 @@ public class BuchungsControl extends AbstractControl
         }
       }
     });
+    datum.setEnabled(false);
     return datum;
   }
 
@@ -278,6 +282,8 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
+        settings
+            .setAttribute("vondatum", Einstellungen.DATEFORMAT.format(date));
       }
     });
     return vondatum;
@@ -311,6 +317,8 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
+        settings
+            .setAttribute("bisdatum", Einstellungen.DATEFORMAT.format(date));
       }
     });
     return bisdatum;
