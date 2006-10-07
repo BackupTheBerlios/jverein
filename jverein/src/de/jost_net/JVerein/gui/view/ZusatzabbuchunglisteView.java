@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ZusatzabbuchunglisteView.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:10 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/07 14:47:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: ZusatzabbuchunglisteView.java,v $
+ * Revision 1.2  2006/10/07 14:47:25  jost
+ * Alten Code entfernt
+ *
  * Revision 1.1  2006/09/20 15:39:10  jost
  * *** empty log message ***
  *
@@ -35,22 +38,6 @@ public class ZusatzabbuchunglisteView extends AbstractView
     group.addLabelPair("Ausführungstag", control.getAusführungSuch());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
-    // Button button = new Button("suchen", new Action()
-    // {
-    // public void handleAction(Object context) throws ApplicationException
-    // {
-    // try
-    // {
-    // control.getBuchungsList();
-    // }
-    // catch (RemoteException e)
-    // {
-    // e.printStackTrace();
-    // }
-    // }
-    // }, null, true);
-    //
-    // buttons.addButton(button);
     buttons.addButton("<< Zurück", new BackAction());
 
     control.getZusatzabbuchungsList().paint(this.getParent());
