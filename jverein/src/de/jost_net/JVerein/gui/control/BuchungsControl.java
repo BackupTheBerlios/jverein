@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2006/10/14 06:02:30 $
+ * $Revision: 1.4 $
+ * $Date: 2006/10/14 16:11:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.4  2006/10/14 16:11:22  jost
+ * Buchungen löschen eingeführt
+ *
  * Revision 1.3  2006/10/14 06:02:30  jost
  * Erweiterung um Buchungsauswertung
  *
@@ -33,6 +36,7 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BuchungAction;
+import de.jost_net.JVerein.gui.menu.BuchungMenu;
 import de.jost_net.JVerein.io.BuchungAuswertungPDF;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Buchungsart;
@@ -419,6 +423,7 @@ public class BuchungsControl extends AbstractControl
       });
       buchungsList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
           Einstellungen.DECIMALFORMAT));
+      buchungsList.setContextMenu(new BuchungMenu());
       buchungsList.setRememberColWidths(true);
       buchungsList.setRememberOrder(true);
       buchungsList.setSummary(true);
