@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/BuchungAuswertungPDF.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/10/14 06:03:00 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/14 16:11:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BuchungAuswertungPDF.java,v $
+ * Revision 1.2  2006/10/14 16:11:56  jost
+ * Pagesize und Ränder gesetzt.
+ *
  * Revision 1.1  2006/10/14 06:03:00  jost
  * Erweiterung um Buchungsauswertung
  *
@@ -33,6 +36,7 @@ import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.HeaderFooter;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
@@ -67,7 +71,7 @@ public class BuchungAuswertungPDF
     {
       // ////////////////////////////////////////////////////////////////////////
       // Header erzeugen
-      rpt = new Document();
+      rpt = new Document(PageSize.A4, 80, 60, 60, 60);
 
       FileOutputStream fos = new FileOutputStream(file);
       PdfWriter.getInstance(rpt, fos);

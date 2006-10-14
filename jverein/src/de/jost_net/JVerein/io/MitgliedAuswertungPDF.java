@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:24 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/14 16:12:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: MitgliedAuswertungPDF.java,v $
+ * Revision 1.2  2006/10/14 16:12:33  jost
+ * Pagesize und Ränder gesetzt.
+ *
  * Revision 1.1  2006/09/20 15:39:24  jost
  * *** empty log message ***
  *
@@ -30,6 +33,7 @@ import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.HeaderFooter;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
@@ -61,7 +65,7 @@ public class MitgliedAuswertungPDF
     {
       // ////////////////////////////////////////////////////////////////////////
       // Header erzeugen
-      rpt = new Document();
+      rpt = new Document(PageSize.A4, 80, 60, 60, 60);
 
       FileOutputStream fos = new FileOutputStream(file);
       PdfWriter.getInstance(rpt, fos);
