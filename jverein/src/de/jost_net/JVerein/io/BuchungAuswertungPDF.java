@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/BuchungAuswertungPDF.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/10/14 16:11:56 $
+ * $Revision: 1.3 $
+ * $Date: 2006/10/16 17:40:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BuchungAuswertungPDF.java,v $
+ * Revision 1.3  2006/10/16 17:40:02  jost
+ * Korrekte Subtitle-Ausgabe
+ *
  * Revision 1.2  2006/10/14 16:11:56  jost
  * Pagesize und Ränder gesetzt.
  *
@@ -80,8 +83,9 @@ public class BuchungAuswertungPDF
       AbstractPlugin plugin = Application.getPluginLoader().getPlugin(
           JVereinPlugin.class);
       rpt.addAuthor("JVerein - Version " + plugin.getManifest().getVersion());
-
-      rpt.addTitle("hier kommt noch ein Subtitle rein");
+      String subtitle = "vom " + Einstellungen.DATEFORMAT.format(dVon)
+          + " bis " + Einstellungen.DATEFORMAT.format(dBis);
+      rpt.addTitle(subtitle);
       // ////////////////////////////////////////////////////////////////////////
 
       // ////////////////////////////////////////////////////////////////////////
@@ -100,7 +104,7 @@ public class BuchungAuswertungPDF
           FontFactory.HELVETICA_BOLD, 13));
       pTitle.setAlignment(Element.ALIGN_CENTER);
       rpt.add(pTitle);
-      Paragraph psubTitle = new Paragraph("subtitle", FontFactory.getFont(
+      Paragraph psubTitle = new Paragraph(subtitle, FontFactory.getFont(
           FontFactory.HELVETICA_BOLD, 10));
       psubTitle.setAlignment(Element.ALIGN_CENTER);
       rpt.add(psubTitle);
@@ -114,7 +118,6 @@ public class BuchungAuswertungPDF
       }
       createTableContent(rpt, null, table, dVon, dBis);
 
-      System.out.println("Gesamtsumme: " + summe);
       monitor.setStatusText("Auswertung fertig. " + list.size() + " Sätze.");
 
       if (rpt != null)
@@ -285,7 +288,6 @@ public class BuchungAuswertungPDF
       table.addCell(getDetailCell("Summe ohne Zuordnung", Element.ALIGN_LEFT));
     }
     summe += buchungsartSumme;
-    System.out.println(summe);
     table.addCell(getDetailCell("", Element.ALIGN_LEFT));
     table.addCell(getDetailCell("", Element.ALIGN_LEFT));
     table.addCell(getDetailCell(Einstellungen.DECIMALFORMAT
