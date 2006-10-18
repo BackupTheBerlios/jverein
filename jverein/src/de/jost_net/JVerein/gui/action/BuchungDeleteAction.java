@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/10/14 16:10:44 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/18 06:01:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BuchungDeleteAction.java,v $
+ * Revision 1.2  2006/10/18 06:01:26  jost
+ * Überflüssige Import-Statements entfernt.
+ *
  * Revision 1.1  2006/10/14 16:10:44  jost
  * Buchungen löschen eingeführt
  *
@@ -18,7 +21,6 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.rmi.Buchung;
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
