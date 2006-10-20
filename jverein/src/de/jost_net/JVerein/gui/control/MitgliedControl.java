@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:38:30 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/20 07:36:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.2  2006/10/20 07:36:14  jost
+ * Fehlermeldung ausgeben, wenn keine Beitragsgruppe ausgewählt wurde.
+ *
  * Revision 1.1  2006/09/20 15:38:30  jost
  * *** empty log message ***
  *
@@ -640,7 +643,14 @@ public class MitgliedControl extends AbstractControl
       m.setAustritt((Date) getAustritt().getValue());
       m.setAnrede((String) getAnrede().getValue());
       GenericObject o = (GenericObject) getBeitragsgruppe().getValue();
-      m.setBeitragsgruppe(new Integer(o.getID()));
+      try
+      {
+        m.setBeitragsgruppe(new Integer(o.getID()));
+      }
+      catch (NullPointerException e)
+      {
+        throw new ApplicationException("Beitragsgruppe fehlt");
+      }
       m.setBlz((String) getBlz().getValue());
       m.setEintritt((Date) getEintritt().getValue());
       m.setEmail((String) getEmail().getValue());
@@ -661,15 +671,12 @@ public class MitgliedControl extends AbstractControl
       {
         m.setEingabedatum();
       }
-      try
-      {
-        m.store();
-        GUI.getStatusBar().setSuccessText("Mitglied gespeichert");
-      }
-      catch (ApplicationException e)
-      {
-        GUI.getView().setErrorText(e.getMessage());
-      }
+      m.store();
+      GUI.getStatusBar().setSuccessText("Mitglied gespeichert");
+    }
+    catch (ApplicationException e)
+    {
+      GUI.getView().setErrorText(e.getMessage());
     }
     catch (RemoteException e)
     {
