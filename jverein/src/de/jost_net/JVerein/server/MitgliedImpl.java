@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:48 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/21 09:19:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.2  2006/10/21 09:19:48  jost
+ * Zusätzliche Plausis
+ *
  * Revision 1.1  2006/09/20 15:39:48  jost
  * *** empty log message ***
  *
@@ -83,6 +86,24 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     if (getOrt() == null || getOrt().length() == 0)
     {
       throw new ApplicationException("Bitte Ort eingeben");
+    }
+    if (getGeburtsdatum() == null)
+    {
+      throw new ApplicationException("Bitte Geburtsdatum eingeben");
+    }
+    if (getGeschlecht() == null)
+    {
+      throw new ApplicationException("Bitte Geschlecht auswählen");
+    }
+    if (getEintritt() == null)
+    {
+      throw new ApplicationException("Bitte Eintrittsdatum eingeben");
+    }
+    if (getBeitragsgruppe().getBetrag() > 0
+        && (getBlz() == null || getBlz().length() == 0 || getKonto() == null || getKonto()
+            .length() == 0))
+    {
+      throw new ApplicationException("Bitte Bankverbindung eingeben");
     }
     if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
       throw new ApplicationException(
