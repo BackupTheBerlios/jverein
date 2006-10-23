@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:10 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/23 19:08:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: ImportView.java,v $
+ * Revision 1.2  2006/10/23 19:08:54  jost
+ * Import optimiert
+ *
  * Revision 1.1  2006/09/20 15:39:10  jost
  * *** empty log message ***
  *
@@ -109,7 +112,7 @@ public class ImportView extends AbstractView
       {
         try
         {
-          new Import(file.getParent(), monitor);
+          new Import(file.getParent(), file.getName(), monitor);
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
           GUI.getStatusBar().setSuccessText("Daten importiert aus " + s);
