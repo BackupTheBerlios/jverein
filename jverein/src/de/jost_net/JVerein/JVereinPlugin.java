@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:37:43 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/29 07:46:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.2  2006/10/29 07:46:50  jost
+ * Updatefunktion für die Datenbank implementiert
+ *
  * Revision 1.1  2006/09/20 15:37:43  jost
  * *** empty log message ***
  *
@@ -16,11 +19,14 @@
 package de.jost_net.JVerein;
 
 import java.io.File;
+import java.text.DecimalFormat;
+import java.util.Locale;
 
 import de.willuhn.datasource.db.EmbeddedDatabase;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.jameica.plugin.PluginResources;
 import de.willuhn.jameica.system.Application;
+import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
@@ -30,6 +36,7 @@ import de.willuhn.util.ApplicationException;
  */
 public class JVereinPlugin extends AbstractPlugin
 {
+  private EmbeddedDatabase db = null;
 
   /**
    * constructor.
@@ -75,8 +82,7 @@ public class JVereinPlugin extends AbstractPlugin
       // Let's create an embedded Database
       PluginResources res = Application.getPluginLoader().getPlugin(
           JVereinPlugin.class).getResources();
-      EmbeddedDatabase db = new EmbeddedDatabase(res.getWorkPath() + "/db",
-          "exampleuser", "examplepassword");
+      db = getDatabase();
 
       // create the sql tables.
       db.executeSQLScript(new File(res.getPath() + "/sql/create.sql"));
@@ -96,6 +102,46 @@ public class JVereinPlugin extends AbstractPlugin
    */
   public void update(double oldVersion) throws ApplicationException
   {
+    if (Application.inClientMode())
+    {
+      return;
+    }
+    Logger.info("starting update process for jverein");
+
+    DecimalFormat df = (DecimalFormat) DecimalFormat
+        .getInstance(Locale.ENGLISH);
+    df.setMaximumFractionDigits(1);
+    df.setMinimumFractionDigits(1);
+    df.setGroupingUsed(false);
+
+    double newVersion = oldVersion + 0.1d;
+
+    try
+    {
+      File f = new File(getResources().getPath() + "/sql/update_"
+          + df.format(oldVersion) + "-" + df.format(newVersion) + ".sql");
+
+      Logger.info("checking sql file " + f.getAbsolutePath());
+      while (f.exists())
+      {
+        Logger.info("  file exists, executing");
+        getDatabase().executeSQLScript(f);
+        oldVersion = newVersion;
+        newVersion = oldVersion + 0.1d;
+        f = new File(getResources().getPath() + "/sql/update_"
+            + df.format(oldVersion) + "-" + df.format(newVersion) + ".sql");
+      }
+      Logger.info("Update completed");
+    }
+    catch (ApplicationException ae)
+    {
+      throw ae;
+    }
+    catch (Exception e)
+    {
+      throw new ApplicationException(getResources().getI18N().tr(
+          "Fehler beim Update der Datenbank"), e);
+    }
   }
 
   /**
@@ -107,4 +153,25 @@ public class JVereinPlugin extends AbstractPlugin
   public void shutDown()
   {
   }
+
+  /**
+   * Liefert die Datenbank des Plugins. Lauft die Anwendung im Client-Mode, wird
+   * immer <code>null</code> zurueckgegeben.
+   * 
+   * @return die Embedded Datenbank.
+   * @throws Exception
+   */
+  private EmbeddedDatabase getDatabase() throws Exception
+  {
+    if (Application.inClientMode())
+      return null;
+    if (db != null)
+      return db;
+    PluginResources res = Application.getPluginLoader().getPlugin(
+        JVereinPlugin.class).getResources();
+    db = new EmbeddedDatabase(res.getWorkPath() + "/db", "exampleuser",
+        "examplepassword");
+    return db;
+  }
+
 }
