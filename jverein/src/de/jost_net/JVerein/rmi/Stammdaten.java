@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Attic/Stammdaten.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:35 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/29 07:50:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: Stammdaten.java,v $
+ * Revision 1.2  2006/10/29 07:50:22  jost
+ * Neu: Mitgliederstatistik
+ *
  * Revision 1.1  2006/09/20 15:39:35  jost
  * *** empty log message ***
  *
@@ -32,4 +35,8 @@ public interface Stammdaten extends DBObject
   public String getKonto() throws RemoteException;
 
   public void setKonto(String konto) throws RemoteException;
+
+  public String getAltersgruppen() throws RemoteException;
+
+  public void setAltersgruppen(String altersgruppen) throws RemoteException;
 }

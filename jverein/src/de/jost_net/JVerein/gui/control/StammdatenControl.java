@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:38:30 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/29 07:48:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.2  2006/10/29 07:48:48  jost
+ * Neu: Mitgliederstatistik
+ *
  * Revision 1.1  2006/09/20 15:38:30  jost
  * *** empty log message ***
  *
@@ -37,6 +40,8 @@ public class StammdatenControl extends AbstractControl
   private Input blz;
 
   private Input konto;
+
+  private Input altersgruppen;
 
   private Stammdaten stamm;
 
@@ -89,6 +94,16 @@ public class StammdatenControl extends AbstractControl
     return konto;
   }
 
+  public Input getAltersgruppen() throws RemoteException
+  {
+    if (altersgruppen != null)
+    {
+      return altersgruppen;
+    }
+    altersgruppen = new TextInput(getStammdaten().getAltersgruppen(), 50);
+    return altersgruppen;
+  }
+
   public void handleStore()
   {
     try
@@ -97,15 +112,13 @@ public class StammdatenControl extends AbstractControl
       s.setName((String) getName().getValue());
       s.setBlz((String) getBlz().getValue());
       s.setKonto((String) getKonto().getValue());
-      try
-      {
-        s.store();
-        GUI.getStatusBar().setSuccessText("Stammdaten gespeichert");
-      }
-      catch (ApplicationException e)
-      {
-        GUI.getView().setErrorText(e.getMessage());
-      }
+      s.setAltersgruppen((String) getAltersgruppen().getValue());
+      s.store();
+      GUI.getStatusBar().setSuccessText("Stammdaten gespeichert");
+    }
+    catch (ApplicationException e)
+    {
+      GUI.getView().setErrorText(e.getMessage());
     }
     catch (RemoteException e)
     {

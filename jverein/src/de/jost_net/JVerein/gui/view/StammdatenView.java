@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/StammdatenView.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:10 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/29 07:49:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: StammdatenView.java,v $
+ * Revision 1.2  2006/10/29 07:49:29  jost
+ * Neu: Mitgliederstatistik
+ *
  * Revision 1.1  2006/09/20 15:39:10  jost
  * *** empty log message ***
  *
@@ -36,6 +39,7 @@ public class StammdatenView extends AbstractView
     group.addLabelPair("Name", control.getName());
     group.addLabelPair("Bankleitzahl", control.getBlz());
     group.addLabelPair("Konto", control.getKonto());
+    group.addLabelPair("Altersgruppen", control.getAltersgruppen());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton("<< Zurück", new BackAction());
