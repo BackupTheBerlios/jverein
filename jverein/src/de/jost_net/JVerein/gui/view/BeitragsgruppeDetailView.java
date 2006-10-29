@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeDetailView.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:10 $
+ * $Revision: 1.2 $
+ * $Date: 2006/10/29 07:49:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BeitragsgruppeDetailView.java,v $
+ * Revision 1.2  2006/10/29 07:49:11  jost
+ * Redaktionelle Änderung
+ *
  * Revision 1.1  2006/09/20 15:39:10  jost
  * *** empty log message ***
  *
@@ -35,7 +38,7 @@ public class BeitragsgruppeDetailView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), "Beitrag");
     group.addLabelPair("Bezeichnung", control.getBezeichnung());
-    group.addLabelPair("Betag", control.getBetrag());
+    group.addLabelPair("Betrag", control.getBetrag());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton("<< Zurück", new BackAction());
