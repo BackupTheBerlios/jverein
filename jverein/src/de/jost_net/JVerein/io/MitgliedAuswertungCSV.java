@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:24 $
+ * $Revision: 1.2 $
+ * $Date: 2006/11/12 07:53:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.2  2006/11/12 07:53:40  jost
+ * Bugfix Anzahl Spalten
+ *
  * Revision 1.1  2006/09/20 15:39:24  jost
  * *** empty log message ***
  *
@@ -75,7 +78,7 @@ public class MitgliedAuswertungCSV
         out.print(formatDate(m.getEintritt()) + ";");
         out.print(m.getBeitragsgruppe().getID() + ";");
         out.print(formatDate(m.getAustritt()) + ";");
-        out.println(formatDate(m.getKuendigung()) + ";");
+        out.println(formatDate(m.getKuendigung()));
       }
       monitor.setStatusText("Auswertung fertig. " + list.size() + " Sätze.");
       out.close();
