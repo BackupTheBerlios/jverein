@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ZusatzabbuchunglisteView.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/10/07 14:47:25 $
+ * $Revision: 1.3 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: ZusatzabbuchunglisteView.java,v $
+ * Revision 1.3  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.2  2006/10/07 14:47:25  jost
  * Alten Code entfernt
  *
@@ -35,7 +38,7 @@ public class ZusatzabbuchunglisteView extends AbstractView
     final ZusatzabbuchungControl control = new ZusatzabbuchungControl(this);
 
     LabelGroup group = new LabelGroup(getParent(), "Ausführungstag");
-    group.addLabelPair("Ausführungstag", control.getAusführungSuch());
+    group.addLabelPair("Ausführungstag", control.getAusfuehrungSuch());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton("<< Zurück", new BackAction());

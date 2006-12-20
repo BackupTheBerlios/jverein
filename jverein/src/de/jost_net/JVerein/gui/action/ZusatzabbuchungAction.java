@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/ZusatzabbuchungAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:38:12 $
+ * $Revision: 1.2 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: ZusatzabbuchungAction.java,v $
+ * Revision 1.2  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.1  2006/09/20 15:38:12  jost
  * *** empty log message ***
  *
@@ -51,7 +54,7 @@ public class ZusatzabbuchungAction implements Action
             Zusatzabbuchung.class, null);
         if (m != null)
         {
-          z.setMitglied(new Integer(m.getID()));
+          z.setMitglied(new Integer(m.getID()).intValue());
         }
       }
       catch (RemoteException e)

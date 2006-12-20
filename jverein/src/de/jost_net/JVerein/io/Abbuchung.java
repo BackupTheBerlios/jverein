@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/09/21 18:49:00 $
+ * $Revision: 1.3 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.3  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.2  2006/09/21 18:49:00  jost
  * überflüssiges Import-Statement entfernt.
  *
@@ -21,8 +24,7 @@ package de.jost_net.JVerein.io;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
-
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+import java.util.Hashtable;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
@@ -96,7 +98,7 @@ public class Abbuchung
       while (list.hasNext())
       {
         Beitragsgruppe b = (Beitragsgruppe) list.next();
-        beitr.put(b.getID(), b.getBetrag());
+        beitr.put(b.getID(), new Double(b.getBetrag()));
       }
 
       // Hier beginnt die eigentliche Abbuchung
@@ -135,7 +137,7 @@ public class Abbuchung
       {
         Zusatzabbuchung z = (Zusatzabbuchung) list.next();
         Mitglied m = z.getMitglied();
-        writeCSatz(dtaus, m, z.getBuchungstext(), z.getBetrag());
+        writeCSatz(dtaus, m, z.getBuchungstext(), new Double(z.getBetrag()));
         z.setAusfuehrung(new Date());
         z.store();
       }
@@ -173,7 +175,7 @@ public class Abbuchung
       String verwendungszweck, Double betr) throws DtausException,
       NumberFormatException, IOException
   {
-    dtaus.setCBetragInEuro(betr);
+    dtaus.setCBetragInEuro(betr.doubleValue());
     dtaus.setCBLZEndbeguenstigt(Integer.parseInt(m.getBlz()));
     dtaus.setCInterneKundennummer(Integer.parseInt(m.getID()));
     dtaus.setCKonto(Long.parseLong(m.getKonto()));

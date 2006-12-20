@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2006/10/29 07:48:29 $
+ * $Revision: 1.4 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.4  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.3  2006/10/29 07:48:29  jost
  * Neu: Mitgliederstatistik
  *
@@ -763,7 +766,7 @@ public class MitgliedControl extends AbstractControl
       {
         Beitragsgruppe bg = (Beitragsgruppe) beitragsgruppe.getValue();
         subtitle += "nur Beitragsgruppe " + bg.getBezeichnung();
-        list.addFilter("beitragsgruppe = ?", new Object[] { Integer.parseInt(bg
+        list.addFilter("beitragsgruppe = ?", new Object[] { new Integer(bg
             .getID()) });
       }
 

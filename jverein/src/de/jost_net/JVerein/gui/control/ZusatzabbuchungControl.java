@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:38:30 $
+ * $Revision: 1.2 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: ZusatzabbuchungControl.java,v $
+ * Revision 1.2  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.1  2006/09/20 15:38:30  jost
  * *** empty log message ***
  *
@@ -154,7 +157,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     return ausfuehrung;
   }
 
-  public SelectInput getAusführungSuch() throws RemoteException
+  public SelectInput getAusfuehrungSuch() throws RemoteException
   {
     if (ausfuehrungSuch != null)
     {
@@ -209,7 +212,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       z.setFaelligkeit((Date) getFaelligkeit().getValue());
       z.setBuchungstext((String) getBuchungstext().getValue());
       Double d = (Double) getBetrag().getValue();
-      z.setBetrag(d);
+      z.setBetrag(d.doubleValue());
       try
       {
         z.store();

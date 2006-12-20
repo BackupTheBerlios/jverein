@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ZusatzabbuchungImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:48 $
+ * $Revision: 1.2 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: ZusatzabbuchungImpl.java,v $
+ * Revision 1.2  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.1  2006/09/20 15:39:48  jost
  * *** empty log message ***
  *
@@ -94,7 +97,7 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
 
   public void setMitglied(int mitglied) throws RemoteException
   {
-    setAttribute("mitglied", mitglied);
+    setAttribute("mitglied", new Integer(mitglied));
   }
 
   public Date getFaelligkeit() throws RemoteException

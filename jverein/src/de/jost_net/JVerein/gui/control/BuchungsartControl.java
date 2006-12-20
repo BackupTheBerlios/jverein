@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/09/25 19:04:02 $
+ * $Revision: 1.3 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.3  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.2  2006/09/25 19:04:02  jost
  * Vorbereitung Splitbuchungen
  *
@@ -93,7 +96,7 @@ public class BuchungsartControl extends AbstractControl
     try
     {
       Buchungsart b = getBuchungsart();
-      b.setNummer((Integer) getNummer().getValue());
+      b.setNummer(((Integer) getNummer().getValue()).intValue());
       b.setBezeichnung((String) getBezeichnung().getValue());
       try
       {

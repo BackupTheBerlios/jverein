@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Buchungsuebernahme.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/10/14 16:12:20 $
+ * $Revision: 1.3 $
+ * $Date: 2006/12/20 20:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: Buchungsuebernahme.java,v $
+ * Revision 1.3  2006/12/20 20:25:44  jost
+ * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
+ *
  * Revision 1.2  2006/10/14 16:12:20  jost
  * Bugfix bei der Übernahme der Buchungen aus Hibiscus
  *
@@ -58,7 +61,7 @@ public class Buchungsuebernahme
       DBService hibservice = (DBService) Application.getServiceFactory()
           .lookup(HBCI.class, "database");
       DBIterator list = hibservice.createList(Umsatz.class);
-      if (maximum > 0)
+      if (maximum.intValue() > 0)
       {
         list.addFilter("id >" + maximum);
       }
