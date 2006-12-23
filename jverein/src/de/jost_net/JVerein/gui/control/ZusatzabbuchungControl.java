@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/12/20 20:25:44 $
+ * $Revision: 1.3 $
+ * $Date: 2006/12/23 16:46:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: ZusatzabbuchungControl.java,v $
+ * Revision 1.3  2006/12/23 16:46:58  jost
+ * Java 1.5 Kompatibilität
+ *
  * Revision 1.2  2006/12/20 20:25:44  jost
  * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
  *
@@ -164,7 +167,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       return ausfuehrungSuch;
     }
 
-    final Vector werte = new Vector();
+    final Vector<String> werte = new Vector<String>();
     werte.addElement("Alle");
     werte.addElement("Noch nicht ausgeführt");
 
