@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.3 $
- * $Date: 2006/12/20 20:25:44 $
+ * $Revision: 1.4 $
+ * $Date: 2007/01/14 12:42:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.4  2007/01/14 12:42:29  jost
+ * Java 1.5-KompatibilitÃ¤t
+ *
  * Revision 1.3  2006/12/20 20:25:44  jost
  * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
  *
@@ -94,7 +97,7 @@ public class Abbuchung
       // Beitragsgruppen-Tabelle lesen und cachen
       list = Einstellungen.getDBService().createList(Beitragsgruppe.class);
       list.addFilter("betrag > 0");
-      Hashtable beitr = new Hashtable();
+      Hashtable<String, Double> beitr = new Hashtable<String, Double>();
       while (list.hasNext())
       {
         Beitragsgruppe b = (Beitragsgruppe) list.next();

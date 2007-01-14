@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/10/23 19:09:06 $
+ * $Revision: 1.3 $
+ * $Date: 2007/01/14 12:42:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: Import.java,v $
+ * Revision 1.3  2007/01/14 12:42:42  jost
+ * Java 1.5-Kompatibilität
+ *
  * Revision 1.2  2006/10/23 19:09:06  jost
  * Import optimiert
  *
@@ -63,25 +66,26 @@ public class Import
       ResultSet results = stmt.executeQuery("SELECT * FROM "
           + file.substring(0, pos));
 
-      HashMap beitragsgruppen = new HashMap();
+      HashMap<String, Double> beitragsgruppen1 = new HashMap<String, Double>();
 
       while (results.next())
       {
-        beitragsgruppen.put(results.getString("Beitragsart_1"), new Double(
+        beitragsgruppen1.put(results.getString("Beitragsart_1"), new Double(
             results.getString("Beitrag_1").replace(',', '.')));
       }
-      Set keys = beitragsgruppen.keySet();
+      Set keys = beitragsgruppen1.keySet();
       Iterator it = keys.iterator();
+      HashMap<String, String> beitragsgruppen2 = new HashMap<String, String>();
       while (it.hasNext())
       {
         Beitragsgruppe b = (Beitragsgruppe) Einstellungen.getDBService()
             .createObject(Beitragsgruppe.class, null);
         String key = (String) it.next();
         b.setBezeichnung(key);
-        Double betr = (Double) beitragsgruppen.get(key);
+        Double betr = beitragsgruppen1.get(key);
         b.setBetrag(betr.doubleValue());
         b.store();
-        beitragsgruppen.put(key, b.getID());
+        beitragsgruppen2.put(key, b.getID());
       }
 
       results = stmt.executeQuery("SELECT * FROM spg");
@@ -114,7 +118,7 @@ public class Import
         m.setTelefondienstlich(results.getString("Telefon_dienstlich"));
         m.setEmail(results.getString("Email"));
         m.setEintritt(results.getString("Eintritt"));
-        Integer bg = new Integer((String) beitragsgruppen.get(results
+        Integer bg = new Integer(beitragsgruppen2.get(results
             .getString("Beitragsart_1")));
         m.setBeitragsgruppe(bg);
         // beitragsart.setValue(results.getString("Beitragsart_1"));
