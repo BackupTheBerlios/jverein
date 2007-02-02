@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliederStatistik.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/10/29 07:50:08 $
+ * $Revision: 1.2 $
+ * $Date: 2007/02/02 19:40:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * jost@berlios.de
  * jverein.berlios.de
  * $Log: MitgliederStatistik.java,v $
+ * Revision 1.2  2007/02/02 19:40:51  jost
+ * Bugfix: Nur aktive Mitglieder
+ *
  * Revision 1.1  2006/10/29 07:50:08  jost
  * Neu: Mitgliederstatistik
  *
@@ -322,6 +325,7 @@ public class MitgliederStatistik
     list = Einstellungen.getDBService().createList(Mitglied.class);
     list.addFilter("geburtsdatum >= ?", new Object[] { vd });
     list.addFilter("geburtsdatum <= ?", new Object[] { bd });
+    list.addFilter("austritt is null");
 
     if (geschlecht != null)
     {
@@ -335,6 +339,7 @@ public class MitgliederStatistik
       throws RemoteException
   {
     DBIterator list = Einstellungen.getDBService().createList(Mitglied.class);
+    list.addFilter("austritt is null");
     if (bg != null)
     {
       list.addFilter("beitragsgruppe = ?", new Object[] { new Integer(bg
