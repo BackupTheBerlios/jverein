@@ -1,14 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:36:55 $
+ * $Revision: 1.2 $
+ * $Date: 2007/02/23 20:24:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
- * jost@berlios.de
- * jverein.berlios.de
+ * heiner@jverein.de
+ * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.2  2007/02/23 20:24:57  jost
+ * Mail- und Webadresse im Header korrigiert.
+ *
  * Revision 1.1  2006/09/20 15:36:55  jost
  * *** empty log message ***
  *

@@ -1,14 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/StatistikMitgliedView.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/10/29 07:49:43 $
+ * $Revision: 1.2 $
+ * $Date: 2007/02/23 20:27:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
- * jost@berlios.de
- * jverein.berlios.de
+ * heiner@jverein.de
+ * www.jverein.de
  * $Log: StatistikMitgliedView.java,v $
+ * Revision 1.2  2007/02/23 20:27:42  jost
+ * Mail- und Webadresse im Header korrigiert.
+ *
  * Revision 1.1  2006/10/29 07:49:43  jost
  * Neu: Mitgliederstatistik
  *
@@ -32,7 +35,7 @@ public class StatistikMitgliedView extends AbstractView
     GUI.getView().setTitle("Mitgliederstatistik");
 
     final MitgliedControl control = new MitgliedControl(this);
-    
+
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 
     buttons.addButton("<< Zurück", new BackAction());

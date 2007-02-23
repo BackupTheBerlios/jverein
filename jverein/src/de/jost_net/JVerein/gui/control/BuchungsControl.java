@@ -1,14 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2006/10/14 16:11:22 $
+ * $Revision: 1.5 $
+ * $Date: 2007/02/23 20:26:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
- * jost@berlios.de
- * jverein.berlios.de
+ * heiner@jverein.de
+ * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.5  2007/02/23 20:26:22  jost
+ * Mail- und Webadresse im Header korrigiert.
+ *
  * Revision 1.4  2006/10/14 16:11:22  jost
  * Buchungen löschen eingeführt
  *

@@ -1,14 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/02 19:40:15 $
+ * $Revision: 1.4 $
+ * $Date: 2007/02/23 20:28:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
- * jost@berlios.de
- * jverein.berlios.de
+ * heiner@jverein.de
+ * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
+ * Revision 1.4  2007/02/23 20:28:04  jost
+ * Mail- und Webadresse im Header korrigiert.
+ *
  * Revision 1.3  2007/02/02 19:40:15  jost
  * Ränder korrigiert.
  *

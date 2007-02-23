@@ -1,14 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2006/12/23 16:46:58 $
+ * $Revision: 1.4 $
+ * $Date: 2007/02/23 20:26:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
- * jost@berlios.de
- * jverein.berlios.de
+ * heiner@jverein.de
+ * www.jverein.de
  * $Log: ZusatzabbuchungControl.java,v $
+ * Revision 1.4  2007/02/23 20:26:38  jost
+ * Mail- und Webadresse im Header korrigiert.
+ *
  * Revision 1.3  2006/12/23 16:46:58  jost
  * Java 1.5 Kompatibilität
  *

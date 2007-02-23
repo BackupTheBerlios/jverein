@@ -1,14 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2006/09/20 15:39:48 $
+ * $Revision: 1.2 $
+ * $Date: 2007/02/23 20:28:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
- * jost@berlios.de
- * jverein.berlios.de
+ * heiner@jverein.de
+ * www.jverein.de
  * $Log: BuchungImpl.java,v $
+ * Revision 1.2  2007/02/23 20:28:41  jost
+ * Mail- und Webadresse im Header korrigiert.
+ *
  * Revision 1.1  2006/09/20 15:39:48  jost
  * *** empty log message ***
  *

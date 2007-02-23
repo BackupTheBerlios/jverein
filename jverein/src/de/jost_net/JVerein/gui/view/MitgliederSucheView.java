@@ -1,14 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.2 $
- * $Date: 2006/10/21 09:19:30 $
+ * $Revision: 1.3 $
+ * $Date: 2007/02/23 20:27:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
- * jost@berlios.de
- * jverein.berlios.de
+ * heiner@jverein.de
+ * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.3  2007/02/23 20:27:42  jost
+ * Mail- und Webadresse im Header korrigiert.
+ *
  * Revision 1.2  2006/10/21 09:19:30  jost
  * Korrekter Ablauf bei leerer Datenbank
  *
