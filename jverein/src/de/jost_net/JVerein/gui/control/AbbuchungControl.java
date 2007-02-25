@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:26:22 $
+ * $Revision: 1.3 $
+ * $Date: 2007/02/25 19:12:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.3  2007/02/25 19:12:11  jost
+ * Neu: Kursteilnehmer
+ *
  * Revision 1.2  2007/02/23 20:26:22  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -55,6 +58,8 @@ public class AbbuchungControl extends AbstractControl
   private TextInput zahlungsgrund;
 
   private CheckboxInput zusatzabbuchung;
+
+  private CheckboxInput kursteilnehmer;
 
   private Settings settings = null;
 
@@ -136,6 +141,16 @@ public class AbbuchungControl extends AbstractControl
     }
     zusatzabbuchung = new CheckboxInput(false);
     return zusatzabbuchung;
+  }
+
+  public CheckboxInput getKursteilnehmer() throws RemoteException
+  {
+    if (kursteilnehmer != null)
+    {
+      return kursteilnehmer;
+    }
+    kursteilnehmer = new CheckboxInput(false);
+    return kursteilnehmer;
   }
 
   public Button getStartButton()

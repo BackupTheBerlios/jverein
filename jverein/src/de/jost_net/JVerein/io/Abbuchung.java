@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/02/23 20:28:04 $
+ * $Revision: 1.6 $
+ * $Date: 2007/02/25 19:14:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.6  2007/02/25 19:14:22  jost
+ * Neu: Kursteilnehmer
+ *
  * Revision 1.5  2007/02/23 20:28:04  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -34,6 +37,7 @@ import java.util.Hashtable;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
+import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Stammdaten;
 import de.jost_net.JVerein.rmi.Zusatzabbuchung;
@@ -148,6 +152,24 @@ public class Abbuchung
         z.store();
       }
       // Ende von Schritt 2
+
+      // Schritt 3: Kursteilnehmer verarbeiten
+      list = Einstellungen.getDBService().createList(Kursteilnehmer.class);
+      list.addFilter("abbudatum is null");
+      while (list.hasNext())
+      {
+        Kursteilnehmer kt = (Kursteilnehmer) list.next();
+        dtaus.setCBetragInEuro(kt.getBetrag());
+        dtaus.setCBLZEndbeguenstigt(Integer.parseInt(kt.getBlz()));
+        dtaus.setCInterneKundennummer(Integer.parseInt(kt.getID() + 100000));
+        dtaus.setCKonto(Long.parseLong(kt.getKonto()));
+        dtaus.setCName(kt.getName());
+        dtaus
+            .setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
+        dtaus.addCVerwendungszweck(kt.getVZweck1());
+        dtaus.addCVerwendungszweck(kt.getVZweck2());
+        dtaus.writeCSatz();
+      }
 
       // Ende der Abbuchung. Jetzt wird noch der E-Satz geschrieben. Die Werte
       // wurden beim Schreiben der C-Sätze ermittelt.

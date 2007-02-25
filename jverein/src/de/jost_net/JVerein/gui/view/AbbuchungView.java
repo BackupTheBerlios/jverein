@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:27:28 $
+ * $Revision: 1.4 $
+ * $Date: 2007/02/25 19:13:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.4  2007/02/25 19:13:05  jost
+ * Neu: Kursteilnehmer
+ *
  * Revision 1.3  2007/02/23 20:27:28  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -65,6 +68,7 @@ public class AbbuchungView extends AbstractView
     group.addLabelPair("Von Eingabedatum", control.getVondatum());
     group.addLabelPair("Zahlungsgrund", control.getZahlungsgrund());
     group.addLabelPair("Zusatzabbuchung", control.getZusatzabbuchung());
+    group.addLabelPair("Kursteilnehmer", control.getKursteilnehmer());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(control.getStartButton());
