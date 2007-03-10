@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:27:42 $
+ * $Revision: 1.4 $
+ * $Date: 2007/03/10 13:43:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.4  2007/03/10 13:43:44  jost
+ * Vermerke eingeführt.
+ *
  * Revision 1.3  2007/02/23 20:27:42  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -82,6 +85,10 @@ public class MitgliedDetailView extends AbstractView
     control.getZusatzabbuchungenTable().paint(tab4.getComposite());
     ButtonArea buttonszus = new ButtonArea(tab4.getComposite(), 1);
     buttonszus.addButton(control.getZusatzabbuchungNeu());
+
+    TabGroup tab5 = new TabGroup(folder, "Vermerke");
+    tab5.addLabelPair("Vermerk 1", control.getVermerk1());
+    tab5.addLabelPair("Vermerk 2", control.getVermerk2());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 

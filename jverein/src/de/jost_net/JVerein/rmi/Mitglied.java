@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:28:24 $
+ * $Revision: 1.3 $
+ * $Date: 2007/03/10 13:44:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.3  2007/03/10 13:44:56  jost
+ * Vermerke eingeführt.
+ *
  * Revision 1.2  2007/02/23 20:28:24  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -114,6 +117,14 @@ public interface Mitglied extends DBObject
   public void setKuendigung(Date kuendigung) throws RemoteException;
 
   public void setKuendigung(String kuendigung) throws RemoteException;
+
+  public String getVermerk1() throws RemoteException;
+
+  public void setVermerk1(String vermerk1) throws RemoteException;
+
+  public String getVermerk2() throws RemoteException;
+
+  public void setVermerk2(String vermerk2) throws RemoteException;
 
   public void insert() throws RemoteException, ApplicationException;
 
