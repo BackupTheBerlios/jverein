@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/02/25 19:12:29 $
+ * $Revision: 1.2 $
+ * $Date: 2007/03/10 13:41:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.2  2007/03/10 13:41:08  jost
+ * Redaktionelle Änderung
+ *
  * Revision 1.1  2007/02/25 19:12:29  jost
  * Neu: Kursteilnehmer
  *
@@ -193,8 +196,8 @@ public class KursteilnehmerControl extends AbstractControl
       return part;
     }
     DBService service = Einstellungen.getDBService();
-    DBIterator einmalabbu = service.createList(Kursteilnehmer.class);
-    part = new TablePart(einmalabbu, new KursteilnehmerDetailAction());
+    DBIterator kursteilnehmer = service.createList(Kursteilnehmer.class);
+    part = new TablePart(kursteilnehmer, new KursteilnehmerDetailAction());
 
     part.addColumn("Name", "name");
     part.addColumn("VZweck 1", "vzweck1");
