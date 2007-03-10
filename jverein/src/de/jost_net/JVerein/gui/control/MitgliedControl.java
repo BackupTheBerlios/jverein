@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/03/10 13:41:34 $
+ * $Revision: 1.7 $
+ * $Date: 2007/03/10 20:28:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.7  2007/03/10 20:28:01  jost
+ * Neu: Zahlungsweg
+ *
  * Revision 1.6  2007/03/10 13:41:34  jost
  * Vermerke eingef√ºhrt.
  *
@@ -43,6 +46,7 @@ import org.kapott.hbci.manager.HBCIUtils;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungAction;
+import de.jost_net.JVerein.gui.input.ZahlungswegInput;
 import de.jost_net.JVerein.io.MitgliedAuswertungCSV;
 import de.jost_net.JVerein.io.MitgliedAuswertungPDF;
 import de.jost_net.JVerein.io.MitgliederStatistik;
@@ -92,6 +96,8 @@ public class MitgliedControl extends AbstractControl
   private DateInput geburtsdatum = null;
 
   private SelectInput geschlecht;
+
+  private ZahlungswegInput zahlungsweg;
 
   private Input blz;
 
@@ -259,6 +265,17 @@ public class MitgliedControl extends AbstractControl
         .getGeschlecht());
     geschlecht.setPleaseChoose("Bitte ausw‰hlen");
     return geschlecht;
+  }
+
+  public ZahlungswegInput getZahlungsweg() throws RemoteException
+  {
+    if (zahlungsweg != null)
+    {
+      return zahlungsweg;
+    }
+    zahlungsweg = new ZahlungswegInput(getMitglied().getZahlungsweg()
+        .intValue());
+    return zahlungsweg;
   }
 
   public Input getBlz() throws RemoteException
@@ -701,6 +718,7 @@ public class MitgliedControl extends AbstractControl
       {
         throw new ApplicationException("Beitragsgruppe fehlt");
       }
+      m.setZahlungsweg((Integer) getZahlungsweg().getValue());
       m.setBlz((String) getBlz().getValue());
       m.setEintritt((Date) getEintritt().getValue());
       m.setEmail((String) getEmail().getValue());

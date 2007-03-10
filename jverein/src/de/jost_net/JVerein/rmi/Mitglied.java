@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/03/10 13:44:56 $
+ * $Revision: 1.4 $
+ * $Date: 2007/03/10 20:28:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.4  2007/03/10 20:28:58  jost
+ * Neu: Zahlungsweg
+ *
  * Revision 1.3  2007/03/10 13:44:56  jost
  * Vermerke eingeführt.
  *
@@ -58,6 +61,10 @@ public interface Mitglied extends DBObject
   public String getOrt() throws RemoteException;
 
   public void setOrt(String ort) throws RemoteException;
+
+  public Integer getZahlungsweg() throws RemoteException;
+
+  public void setZahlungsweg(Integer zahlungsweg) throws RemoteException;
 
   public String getBlz() throws RemoteException;
 

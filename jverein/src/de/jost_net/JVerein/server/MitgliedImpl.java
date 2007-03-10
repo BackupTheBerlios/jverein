@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/03/10 13:45:38 $
+ * $Revision: 1.5 $
+ * $Date: 2007/03/10 20:29:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.5  2007/03/10 20:29:16  jost
+ * Neu: Zahlungsweg
+ *
  * Revision 1.4  2007/03/10 13:45:38  jost
  * Vermerke eingeführt.
  *
@@ -207,6 +210,16 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public void setOrt(String ort) throws RemoteException
   {
     setAttribute("ort", ort);
+  }
+
+  public Integer getZahlungsweg() throws RemoteException
+  {
+    return (Integer) getAttribute("zahlungsweg");
+  }
+
+  public void setZahlungsweg(Integer zahlungsweg) throws RemoteException
+  {
+    setAttribute("zahlungsweg", zahlungsweg);
   }
 
   public String getBlz() throws RemoteException
