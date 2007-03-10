@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/03/10 19:42:36 $
+ * $Revision: 1.8 $
+ * $Date: 2007/03/10 20:37:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.8  2007/03/10 20:37:06  jost
+ * Neu: Zahlungsweg
+ *
  * Revision 1.7  2007/03/10 19:42:36  jost
  * Bugfix: Abbuchungsdatum wird jetzt gesetzt.
  *
@@ -39,6 +42,7 @@ import java.util.Date;
 import java.util.Hashtable;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.gui.input.ZahlungswegInput;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.rmi.Mitglied;
@@ -122,6 +126,9 @@ public class Abbuchung
       list.addFilter("austritt is null");
       // Beitragsfreie Mitglieder können auch unberücksichtigt bleiben.
       list.addFilter(beitragsfrei);
+      // Zahlungsweg Abbuchung
+      list.addFilter("zahlungsweg = ?", new Object[] { new Integer(
+          ZahlungswegInput.ABBUCHUNG) });
       // Bei Abbuchungen im laufe des Jahres werden nur die Mitglieder
       // berücksichtigt, die ab einem bestimmten Zeitpunkt eingetreten sind.
       if (vondatum != null)
