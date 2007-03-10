@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/02/25 19:14:22 $
+ * $Revision: 1.7 $
+ * $Date: 2007/03/10 19:42:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.7  2007/03/10 19:42:36  jost
+ * Bugfix: Abbuchungsdatum wird jetzt gesetzt.
+ *
  * Revision 1.6  2007/02/25 19:14:22  jost
  * Neu: Kursteilnehmer
  *
@@ -159,6 +162,8 @@ public class Abbuchung
       while (list.hasNext())
       {
         Kursteilnehmer kt = (Kursteilnehmer) list.next();
+        kt.setAbbudatum();
+        kt.store();
         dtaus.setCBetragInEuro(kt.getBetrag());
         dtaus.setCBLZEndbeguenstigt(Integer.parseInt(kt.getBlz()));
         dtaus.setCInterneKundennummer(Integer.parseInt(kt.getID() + 100000));
