@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:26:22 $
+ * $Revision: 1.4 $
+ * $Date: 2007/03/18 08:38:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.4  2007/03/18 08:38:24  jost
+ * Pflichtfelder gekennzeichnet
+ *
  * Revision 1.3  2007/02/23 20:26:22  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -68,6 +71,7 @@ public class BeitragsgruppeControl extends AbstractControl
     if (bezeichnung != null)
       return bezeichnung;
     bezeichnung = new TextInput(getBeitragsgruppe().getBezeichnung(), 30);
+    bezeichnung.setMandatory(true);
     return bezeichnung;
   }
 
@@ -79,6 +83,7 @@ public class BeitragsgruppeControl extends AbstractControl
     }
     betrag = new DecimalInput(getBeitragsgruppe().getBetrag(),
         Einstellungen.DECIMALFORMAT);
+    betrag.setMandatory(true);
     return betrag;
   }
 
