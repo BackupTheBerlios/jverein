@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/03/10 20:28:01 $
+ * $Revision: 1.8 $
+ * $Date: 2007/03/18 08:38:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.8  2007/03/18 08:38:49  jost
+ * Pflichtfelder gekennzeichnet
+ * Bugfix Zahlungsweg
+ *
  * Revision 1.7  2007/03/10 20:28:01  jost
  * Neu: Zahlungsweg
  *
@@ -188,6 +192,7 @@ public class MitgliedControl extends AbstractControl
       return name;
     }
     name = new TextInput(getMitglied().getName(), 40);
+    name.setMandatory(true);
     return name;
   }
 
@@ -198,6 +203,7 @@ public class MitgliedControl extends AbstractControl
       return vorname;
     }
     vorname = new TextInput(getMitglied().getVorname(), 40);
+    vorname.setMandatory(true);
     return vorname;
   }
 
@@ -241,6 +247,7 @@ public class MitgliedControl extends AbstractControl
     this.geburtsdatum = new DateInput(d, Einstellungen.DATEFORMAT);
     this.geburtsdatum.setTitle("Geburtsdatum");
     this.geburtsdatum.setText("Bitte Geburtsdatum wählen");
+    this.geburtsdatum.setMandatory(true);
     this.geburtsdatum.addListener(new Listener()
     {
       public void handleEvent(Event event)
@@ -264,6 +271,7 @@ public class MitgliedControl extends AbstractControl
     geschlecht = new SelectInput(new String[] { "m", "w" }, getMitglied()
         .getGeschlecht());
     geschlecht.setPleaseChoose("Bitte auswählen");
+    geschlecht.setMandatory(true);
     return geschlecht;
   }
 
@@ -273,8 +281,15 @@ public class MitgliedControl extends AbstractControl
     {
       return zahlungsweg;
     }
-    zahlungsweg = new ZahlungswegInput(getMitglied().getZahlungsweg()
-        .intValue());
+    if (getMitglied().getZahlungsweg() != null)
+    {
+      zahlungsweg = new ZahlungswegInput(getMitglied().getZahlungsweg()
+          .intValue());
+    }
+    else
+    {
+      zahlungsweg = new ZahlungswegInput(ZahlungswegInput.ABBUCHUNG);
+    }
     return zahlungsweg;
   }
 
@@ -353,6 +368,7 @@ public class MitgliedControl extends AbstractControl
     this.eintritt = new DateInput(d, Einstellungen.DATEFORMAT);
     this.eintritt.setTitle("Eintrittsdatum");
     this.eintritt.setText("Bitte Eintrittsdatum wählen");
+    this.eintritt.setMandatory(true);
     this.eintritt.addListener(new Listener()
     {
       public void handleEvent(Event event)
@@ -376,6 +392,7 @@ public class MitgliedControl extends AbstractControl
     beitragsgruppe = new SelectInput(Einstellungen.getDBService().createList(
         Beitragsgruppe.class), getMitglied().getBeitragsgruppe());
     beitragsgruppe.setValue(getMitglied().getBeitragsgruppe());
+    beitragsgruppe.setMandatory(true);
     beitragsgruppe.setAttribute("bezeichnung");
     beitragsgruppe.setPleaseChoose("Bitte auswählen");
     return beitragsgruppe;

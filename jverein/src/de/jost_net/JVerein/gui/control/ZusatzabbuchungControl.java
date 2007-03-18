@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/02/23 20:26:38 $
+ * $Revision: 1.5 $
+ * $Date: 2007/03/18 08:39:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungControl.java,v $
+ * Revision 1.5  2007/03/18 08:39:27  jost
+ * Pflichtfelder gekennzeichnet
+ * Bugfix Zahlungsweg
+ *
  * Revision 1.4  2007/02/23 20:26:38  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -122,6 +126,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       return buchungstext;
     }
     buchungstext = new TextInput(getZusatzabbuchung().getBuchungstext(), 27);
+    buchungstext.setMandatory(true);
     return buchungstext;
   }
 
@@ -133,6 +138,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     }
     betrag = new DecimalInput(getZusatzabbuchung().getBetrag(),
         Einstellungen.DECIMALFORMAT);
+    betrag.setMandatory(true);
     return betrag;
   }
 

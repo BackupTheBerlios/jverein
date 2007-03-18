@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:26:38 $
+ * $Revision: 1.4 $
+ * $Date: 2007/03/18 08:39:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.4  2007/03/18 08:39:13  jost
+ * Pflichtfelder gekennzeichnet
+ * Bugfix Zahlungsweg
+ *
  * Revision 1.3  2007/02/23 20:26:38  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -70,6 +74,7 @@ public class StammdatenControl extends AbstractControl
       return name;
     }
     name = new TextInput(getStammdaten().getName(), 30);
+    name.setMandatory(true);
     return name;
   }
 
@@ -80,6 +85,7 @@ public class StammdatenControl extends AbstractControl
       return blz;
     }
     blz = new TextInput(getStammdaten().getBlz(), 8);
+    blz.setMandatory(true);
     BLZListener l = new BLZListener();
     blz.addListener(l);
     l.handleEvent(null);
@@ -93,6 +99,7 @@ public class StammdatenControl extends AbstractControl
       return konto;
     }
     konto = new TextInput(getStammdaten().getKonto(), 10);
+    konto.setMandatory(true);
     konto.setComment("für die Abbuchung");
     return konto;
   }
