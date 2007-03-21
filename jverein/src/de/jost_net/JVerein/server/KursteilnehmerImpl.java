@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KursteilnehmerImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/02/25 19:14:53 $
+ * $Revision: 1.2 $
+ * $Date: 2007/03/21 12:10:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerImpl.java,v $
+ * Revision 1.2  2007/03/21 12:10:43  jost
+ * Neu: Abbuchungsdatum beim Kursteilnehmer kann zurückgesetzt werden.
+ *
  * Revision 1.1  2007/02/25 19:14:53  jost
  * Neu: Kursteilnehmer
  *
@@ -24,7 +27,8 @@ import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
-public class KursteilnehmerImpl extends AbstractDBObject implements Kursteilnehmer
+public class KursteilnehmerImpl extends AbstractDBObject implements
+    Kursteilnehmer
 {
   private static final long serialVersionUID = 1L;
 
@@ -201,6 +205,11 @@ public class KursteilnehmerImpl extends AbstractDBObject implements Kursteilnehm
   public void setAbbudatum() throws RemoteException
   {
     setAttribute("abbudatum", new Date());
+  }
+
+  public void resetAbbudatum() throws RemoteException
+  {
+    setAttribute("abbudatum", null);
   }
 
   public Date getAbbudatum() throws RemoteException

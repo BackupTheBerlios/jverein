@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Kursteilnehmer.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/02/25 19:14:37 $
+ * $Revision: 1.2 $
+ * $Date: 2007/03/21 12:10:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Kursteilnehmer.java,v $
+ * Revision 1.2  2007/03/21 12:10:57  jost
+ * Neu: Abbuchungsdatum beim Kursteilnehmer kann zurückgesetzt werden.
+ *
  * Revision 1.1  2007/02/25 19:14:37  jost
  * Neu: Kursteilnehmer
  *
@@ -65,6 +68,8 @@ public interface Kursteilnehmer extends DBObject
   public Date getEingabedatum() throws RemoteException;
 
   public void setAbbudatum() throws RemoteException;
+
+  public void resetAbbudatum() throws RemoteException;
 
   public Date getAbbudatum() throws RemoteException;
 
