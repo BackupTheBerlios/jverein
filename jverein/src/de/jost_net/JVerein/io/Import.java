@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/02/23 20:28:04 $
+ * $Revision: 1.5 $
+ * $Date: 2007/03/24 20:22:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.5  2007/03/24 20:22:19  jost
+ * Bugfix. Jetzt kÃ¶nnen, wie dokumentiert, beliebige Dateinamen verwendet werden.
+ *
  * Revision 1.4  2007/02/23 20:28:04  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -91,7 +94,7 @@ public class Import
         beitragsgruppen2.put(key, b.getID());
       }
 
-      results = stmt.executeQuery("SELECT * FROM spg");
+      results = stmt.executeQuery("SELECT * FROM " + file.substring(0, pos));
 
       // dump out the results
       while (results.next())
@@ -109,7 +112,16 @@ public class Import
         m.setTitel(results.getString("Titel"));
         m.setName(results.getString("Nachname"));
         m.setVorname(results.getString("Vorname"));
-        m.setStrasse(results.getString("Straße"));
+        try
+        {
+          m.setStrasse(results.getString("Straße"));
+
+        }
+        catch (Exception e)
+        {
+          m.setStrasse(results.getString("Strasse"));
+        }
+
         m.setPlz(results.getString("Plz"));
         m.setOrt(results.getString("Ort"));
         m.setGeburtsdatum(results.getString("Geburtsdatum"));
@@ -131,7 +143,16 @@ public class Import
           austritt = null;
         }
         m.setAustritt(austritt);
-        String kuendigung = results.getString("Kündigung");
+        String kuendigung;
+
+        try
+        {
+          kuendigung = results.getString("Kündigung");
+        }
+        catch (Exception e)
+        {
+          kuendigung = results.getString("Kuendigung");
+        }
         if (kuendigung.equals("00.00.0000"))
         {
           kuendigung = null;
