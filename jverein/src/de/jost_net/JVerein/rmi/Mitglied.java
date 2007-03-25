@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/03/10 20:28:58 $
+ * $Revision: 1.5 $
+ * $Date: 2007/03/25 17:04:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.5  2007/03/25 17:04:34  jost
+ * Herstellung des Familienverbandes
+ *
  * Revision 1.4  2007/03/10 20:28:58  jost
  * Neu: Zahlungsweg
  *
@@ -112,6 +115,10 @@ public interface Mitglied extends DBObject
   public int getBeitragsgruppeId() throws RemoteException;
 
   public void setBeitragsgruppe(Integer beitragsgruppe) throws RemoteException;
+  
+  public Integer getZahlerID() throws RemoteException;
+  
+  public void setZahlerID(Integer id) throws RemoteException;
 
   public Date getAustritt() throws RemoteException;
 
