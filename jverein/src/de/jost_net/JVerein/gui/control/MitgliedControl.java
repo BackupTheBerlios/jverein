@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2007/03/18 08:38:49 $
+ * $Revision: 1.9 $
+ * $Date: 2007/03/25 16:57:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.9  2007/03/25 16:57:40  jost
+ * 1. Famlienverband herstellen
+ * 2. Tab mit allen Mitgliedern
+ *
  * Revision 1.8  2007/03/18 08:38:49  jost
  * Pflichtfelder gekennzeichnet
  * Bugfix Zahlungsweg
@@ -118,6 +122,8 @@ public class MitgliedControl extends AbstractControl
   private DateInput eintritt = null;
 
   private SelectInput beitragsgruppe;
+
+  private SelectInput zahler;
 
   private DateInput austritt = null;
 
@@ -395,7 +401,113 @@ public class MitgliedControl extends AbstractControl
     beitragsgruppe.setMandatory(true);
     beitragsgruppe.setAttribute("bezeichnung");
     beitragsgruppe.setPleaseChoose("Bitte auswählen");
+    beitragsgruppe.addListener(new Listener()
+    {
+
+      public void handleEvent(Event event)
+      {
+        if (event.type != SWT.Selection)
+        {
+          return;
+        }
+        try
+        {
+          Beitragsgruppe bg = (Beitragsgruppe) beitragsgruppe.getValue();
+          if (bg.getBeitragsArt() == 2)
+          {
+            zahler.setEnabled(true);
+          }
+          else
+          {
+            zahler.setValue((Mitglied) Einstellungen.getDBService()
+                .createObject(Mitglied.class, ""));
+            getMitglied().setZahlerID(null);
+            zahler.setEnabled(false);
+          }
+        }
+        catch (RemoteException e)
+        {
+          e.printStackTrace();
+        }
+      }
+    });
     return beitragsgruppe;
+  }
+
+  public Input getZahler() throws RemoteException
+  {
+    if (zahler != null)
+    {
+      return zahler;
+    }
+
+    String cond = "";
+
+    // Beitragsgruppen ermitteln, die Zahler für andere Mitglieder sind
+    DBIterator bg = Einstellungen.getDBService().createList(
+        Beitragsgruppe.class);
+    bg.addFilter("beitragsart = 1");
+    while (bg.hasNext())
+    {
+      if (cond.length() > 0)
+      {
+        cond += " OR ";
+      }
+      Beitragsgruppe beitragsgruppe = (Beitragsgruppe) bg.next();
+      cond += "beitragsgruppe = " + beitragsgruppe.getID();
+    }
+    DBIterator zhl = Einstellungen.getDBService().createList(Mitglied.class);
+    zhl.addFilter(cond);
+    zhl.setOrder("ORDER BY name, vorname");
+
+    String suche = "";
+    if (getMitglied().getZahlerID() != null)
+    {
+      suche = getMitglied().getZahlerID().toString();
+    }
+    Mitglied zahlmitglied = (Mitglied) Einstellungen.getDBService()
+        .createObject(Mitglied.class, suche);
+
+    zahler = new SelectInput(zhl, zahlmitglied);
+    zahler.setAttribute("namevorname");
+    zahler.setPleaseChoose("Bitte auswählen");
+    zahler.addListener(new Listener()
+    {
+      public void handleEvent(Event event)
+      {
+        if (event.type != SWT.Selection)
+        {
+          return;
+        }
+        try
+        {
+          Mitglied m = (Mitglied) zahler.getValue();
+          if (m.getID() != null)
+          {
+            getMitglied().setZahlerID(new Integer(m.getID()));
+          }
+          else
+          {
+            getMitglied().setZahlerID(null);
+          }
+        }
+        catch (RemoteException e)
+        {
+          e.printStackTrace();
+        }
+      }
+    });
+
+    if (getMitglied().getBeitragsgruppe() != null
+        && getMitglied().getBeitragsgruppe().getBeitragsArt() == 2)
+    {
+      zahler.setEnabled(true);
+    }
+    else
+    {
+      zahler.setEnabled(false);
+    }
+    return zahler;
   }
 
   public DateInput getAustritt() throws RemoteException
@@ -694,17 +806,17 @@ public class MitgliedControl extends AbstractControl
     return new Button("Neu", new ZusatzabbuchungAction(getMitglied()));
   }
 
-  public Part getMitgliedTable(TablePart part, String anfangsbuchstabe)
+  public TablePart getMitgliedTable(String anfangsbuchstabe)
       throws RemoteException
   {
-    if (part != null)
-    {
-      return part;
-    }
+    TablePart part;
     DBService service = Einstellungen.getDBService();
     DBIterator mitglieder = service.createList(Mitglied.class);
-    mitglieder.addFilter("name like '" + anfangsbuchstabe + "%' OR "
-        + "name like '" + anfangsbuchstabe.toLowerCase() + "%'");
+    if (!anfangsbuchstabe.equals("*"))
+    {
+      mitglieder.addFilter("name like '" + anfangsbuchstabe + "%' OR "
+          + "name like '" + anfangsbuchstabe.toLowerCase() + "%'");
+    }
     part = new TablePart(mitglieder, new MitgliedDetailAction());
 
     part.addColumn("Name", "name");
@@ -712,6 +824,8 @@ public class MitgliedControl extends AbstractControl
     part.addColumn("Strasse", "strasse");
     part.addColumn("Ort", "ort");
     part.addColumn("Telefon", "telefonprivat");
+    part.addColumn("Geburtsdatum", "geburtsdatum", new DateFormatter(
+        Einstellungen.DATEFORMAT));
     part.addColumn("Eintritt", "eintritt", new DateFormatter(
         Einstellungen.DATEFORMAT));
     part.addColumn("Austritt", "austritt", new DateFormatter(
