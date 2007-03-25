@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/03/24 20:22:19 $
+ * $Revision: 1.6 $
+ * $Date: 2007/03/25 17:03:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.6  2007/03/25 17:03:44  jost
+ * 1. Zusätzliche Plausibilitäten
+ * 2. Import des Zahlungsweges
+ *
  * Revision 1.5  2007/03/24 20:22:19  jost
  * Bugfix. Jetzt kÃ¶nnen, wie dokumentiert, beliebige Dateinamen verwendet werden.
  *
@@ -27,6 +31,9 @@
  **********************************************************************/
 package de.jost_net.JVerein.io;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,6 +45,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.gui.input.ZahlungswegInput;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -50,11 +58,31 @@ public class Import
   {
     try
     {
+      BufferedReader rea = new BufferedReader(new InputStreamReader(
+          new FileInputStream(path + "/" + file), "ISO-8859-1"));
+      String line = "";
+      boolean abbruch = false;
+      while ((line = rea.readLine()) != null)
+      {
+        int pos = line.indexOf("\"");
+        if (pos >= 0)
+        {
+          monitor.log("Zeile enthält Anführungszeichen: " + line);
+          abbruch = true;
+        }
+      }
+      rea.close();
+      if (abbruch)
+      {
+        monitor.log("Abbruch");
+        return;
+      }
       loescheBestand();
       int anz = 0;
       Properties props = new java.util.Properties();
       props.put("separator", ";"); // separator is a bar
       props.put("suppressHeaders", "false"); // first line contains data
+      props.put("charset", "ISO-8859-1");
       int pos = file.lastIndexOf('.');
       props.put("fileExtension", file.substring(pos));
 
@@ -71,6 +99,26 @@ public class Import
 
       ResultSet results = stmt.executeQuery("SELECT * FROM "
           + file.substring(0, pos));
+      while (results.next())
+      {
+        String ba = results.getString("Beitragsart_1");
+        String btr = results.getString("Beitrag_1");
+        if (ba == null || ba.length() == 0 || btr == null || btr.length() == 0)
+        {
+          monitor
+              .log(results.getString("Nachname") + ", "
+                  + results.getString("Vorname")
+                  + " keine Angaben zur Beitragsart");
+          abbruch = true;
+        }
+      }
+      if (abbruch)
+      {
+        monitor.log("Abbruch");
+        return;
+      }
+
+      results = stmt.executeQuery("SELECT * FROM " + file.substring(0, pos));
 
       HashMap<String, Double> beitragsgruppen1 = new HashMap<String, Double>();
 
@@ -96,12 +144,11 @@ public class Import
 
       results = stmt.executeQuery("SELECT * FROM " + file.substring(0, pos));
 
-      // dump out the results
       while (results.next())
       {
         anz++;
         monitor.setStatus(anz);
-        monitor.log("ID= " + results.getString("Mitglieds_Nr") + "   NAME= "
+        monitor.log("ID= " + results.getString("Mitglieds_Nr") + " NAME= "
             + results.getString("Nachname"));
 
         Mitglied m = (Mitglied) Einstellungen.getDBService().createObject(
@@ -126,13 +173,33 @@ public class Import
         m.setOrt(results.getString("Ort"));
         m.setGeburtsdatum(results.getString("Geburtsdatum"));
         m.setGeschlecht(results.getString("Geschlecht"));
-        m.setBlz(results.getString("Bankleitzahl"));
-        m.setKonto(results.getString("Kontonummer"));
+        if (results.getString("Zahlungsart").equals("l"))
+        {
+          m.setZahlungsweg(ZahlungswegInput.ABBUCHUNG);
+          m.setBlz(results.getString("Bankleitzahl"));
+          m.setKonto(results.getString("Kontonummer"));
+        }
+        else if (results.getString("Zahlungsart").equals("b"))
+        {
+          m.setZahlungsweg(ZahlungswegInput.BARZAHLUNG);
+        }
+        else
+        {
+          monitor.log(m.getNameVorname()
+              + " ungültige Zahlungsart. Bar wird angenommen.");
+          m.setZahlungsweg(ZahlungswegInput.BARZAHLUNG);
+        }
         m.setKontoinhaber(results.getString("Zahler"));
         m.setTelefonprivat(results.getString("Telefon_privat"));
         m.setTelefondienstlich(results.getString("Telefon_dienstlich"));
         m.setEmail(results.getString("Email"));
-        m.setEintritt(results.getString("Eintritt"));
+        String eintritt = results.getString("Eintritt");
+        if (eintritt == null || eintritt.length() == 0
+            || eintritt.equals("00.00.0000"))
+        {
+          eintritt = "01.01.1900";
+        }
+        m.setEintritt(eintritt);
         Integer bg = new Integer(beitragsgruppen2.get(results
             .getString("Beitragsart_1")));
         m.setBeitragsgruppe(bg);
@@ -158,7 +225,15 @@ public class Import
           kuendigung = null;
         }
         m.setKuendigung(kuendigung);
-        m.insert();
+        try
+        {
+          m.insert();
+        }
+        catch (ApplicationException e)
+        {
+          monitor.log(m.getNameVorname() + " nicht importiert: "
+              + e.getMessage());
+        }
       }
 
       // clean up
