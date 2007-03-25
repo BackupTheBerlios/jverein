@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/Attic/ZahlungswegInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/03/10 20:28:15 $
+ * $Revision: 1.2 $
+ * $Date: 2007/03/25 16:59:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZahlungswegInput.java,v $
+ * Revision 1.2  2007/03/25 16:59:37  jost
+ * Redaktionelle Änderung
+ *
  * Revision 1.1  2007/03/10 20:28:15  jost
  * Neu: Zahlungsweg
  *
@@ -24,11 +27,6 @@ import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.pseudo.PseudoIterator;
 import de.willuhn.jameica.gui.input.SelectInput;
-import de.willuhn.jameica.hbci.HBCI;
-import de.willuhn.jameica.hbci.HBCIProperties;
-import de.willuhn.jameica.system.Application;
-import de.willuhn.jameica.system.Settings;
-import de.willuhn.util.I18N;
 
 /**
  * Combo-Box, fuer die Auswahl des Zahlungsweges.
@@ -81,8 +79,6 @@ public class ZahlungswegInput extends SelectInput
 
   /**
    * Hilfs-Objekt zur Anzeige der Labels.
-   * 
-   * @author willuhn
    */
   private static class ZahlungswegObject implements GenericObject
   {
@@ -139,10 +135,3 @@ public class ZahlungswegInput extends SelectInput
 
   }
 }
-
-/*******************************************************************************
- * $Log: ZahlungswegInput.java,v $
- * Revision 1.1  2007/03/10 20:28:15  jost
- * Neu: Zahlungsweg
- *
- ******************************************************************************/
