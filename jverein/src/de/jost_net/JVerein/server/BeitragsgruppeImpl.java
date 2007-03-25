@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BeitragsgruppeImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:28:41 $
+ * $Revision: 1.3 $
+ * $Date: 2007/03/25 17:04:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeImpl.java,v $
+ * Revision 1.3  2007/03/25 17:04:58  jost
+ * Beitragsart aufgenommen.
+ *
  * Revision 1.2  2007/02/23 20:28:41  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -103,6 +106,21 @@ public class BeitragsgruppeImpl extends AbstractDBObject implements
   public void setBetrag(double d) throws RemoteException
   {
     setAttribute("betrag", new Double(d));
+  }
+
+  public int getBeitragsArt() throws RemoteException
+  {
+    Integer i = (Integer) getAttribute("beitragsart");
+    if (i == null)
+    {
+      return 0;
+    }
+    return i.intValue();
+  }
+
+  public void setBeitragsArt(int art) throws RemoteException
+  {
+    setAttribute("beitragsart", art);
   }
 
   public Object getAttribute(String fieldName) throws RemoteException

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/03/10 20:28:32 $
+ * $Revision: 1.6 $
+ * $Date: 2007/03/25 17:01:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.6  2007/03/25 17:01:14  jost
+ * Beitragsart aufgenommen.
+ *
  * Revision 1.5  2007/03/10 20:28:32  jost
  * Neu: Zahlungsweg
  *
@@ -82,6 +85,7 @@ public class MitgliedDetailView extends AbstractView
     TabGroup tab3 = new TabGroup(folder, "Mitgliedschaft");
     tab3.addLabelPair("Eintritt", control.getEintritt());
     tab3.addLabelPair("Betragsgruppe", control.getBeitragsgruppe());
+    tab3.addLabelPair("Zahler",control.getZahler());
     tab3.addLabelPair("Austritt", control.getAustritt());
     tab3.addLabelPair("Kündigung", control.getKuendigung());
 

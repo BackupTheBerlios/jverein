@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Beitragsgruppe.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:28:24 $
+ * $Revision: 1.3 $
+ * $Date: 2007/03/25 17:04:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Beitragsgruppe.java,v $
+ * Revision 1.3  2007/03/25 17:04:01  jost
+ * Beitragsart aufgenommen.
+ *
  * Revision 1.2  2007/02/23 20:28:24  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -31,4 +34,8 @@ public interface Beitragsgruppe extends DBObject
   public double getBetrag() throws RemoteException;
 
   public void setBetrag(double betrag) throws RemoteException;
+
+  public int getBeitragsArt() throws RemoteException;
+
+  public void setBeitragsArt(int art) throws RemoteException;
 }
