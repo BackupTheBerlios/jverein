@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/25 19:12:11 $
+ * $Revision: 1.4 $
+ * $Date: 2007/03/27 19:20:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.4  2007/03/27 19:20:16  jost
+ * Zusätzliche Plausi
+ *
  * Revision 1.3  2007/02/25 19:12:11  jost
  * Neu: Kursteilnehmer
  *
@@ -169,6 +172,16 @@ public class AbbuchungControl extends AbstractControl
   {
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
 
+    boolean jahr = (Boolean) jahresabbuchung.getValue();
+
+    final Date vond = (Date) vondatum.getValue();
+
+    if (!jahr && vond == null)
+    {
+      GUI.getStatusBar().setErrorText(
+          "Jahresabbuchung oder Datum auswählen");
+      return;
+    }
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
 
@@ -191,8 +204,6 @@ public class AbbuchungControl extends AbstractControl
       final FileOutputStream fos = new FileOutputStream(file);
       // Wir merken uns noch das Verzeichnis vom letzten mal
       settings.setAttribute("lastdir", file.getParent());
-
-      final Date vond = (Date) vondatum.getValue();
       final Boolean zusatzab = (Boolean) zusatzabbuchung.getValue();
       BackgroundTask t = new BackgroundTask()
       {
