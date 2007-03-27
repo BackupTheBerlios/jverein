@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/03/25 17:01:14 $
+ * $Revision: 1.7 $
+ * $Date: 2007/03/27 19:23:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.7  2007/03/27 19:23:24  jost
+ * Familienangehörige anzeigen
+ *
  * Revision 1.6  2007/03/25 17:01:14  jost
  * Beitragsart aufgenommen.
  *
@@ -49,6 +52,7 @@ import de.willuhn.util.ApplicationException;
 
 public class MitgliedDetailView extends AbstractView
 {
+
   public void bind() throws Exception
   {
     GUI.getView().setTitle("Daten des Mitgliedes");
@@ -85,9 +89,9 @@ public class MitgliedDetailView extends AbstractView
     TabGroup tab3 = new TabGroup(folder, "Mitgliedschaft");
     tab3.addLabelPair("Eintritt", control.getEintritt());
     tab3.addLabelPair("Betragsgruppe", control.getBeitragsgruppe());
-    tab3.addLabelPair("Zahler",control.getZahler());
     tab3.addLabelPair("Austritt", control.getAustritt());
     tab3.addLabelPair("Kündigung", control.getKuendigung());
+    tab3.addPart(control.getFamilienverband());
 
     TabGroup tab4 = new TabGroup(folder, "Zusatzabbuchung");
     control.getZusatzabbuchungenTable().paint(tab4.getComposite());
