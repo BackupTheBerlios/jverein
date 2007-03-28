@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/Attic/BeitragsArtInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/03/25 16:58:14 $
+ * $Revision: 1.2 $
+ * $Date: 2007/03/28 13:23:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsArtInput.java,v $
+ * Revision 1.2  2007/03/28 13:23:13  jost
+ * Java 1.5-Kompatibilität
+ *
  * Revision 1.1  2007/03/25 16:58:14  jost
  * Neu
  *
@@ -53,7 +56,7 @@ public class BeitragsArtInput extends SelectInput
   private static GenericIterator init() throws RemoteException
   {
 
-    ArrayList l = new ArrayList();
+    ArrayList<BeitragsArtObject> l = new ArrayList<BeitragsArtObject>();
     l.add(new BeitragsArtObject(NORMAL));
     l.add(new BeitragsArtObject(FAMILIE_ZAHLER));
     l.add(new BeitragsArtObject(FAMILIE_ANGEHOERIGER));

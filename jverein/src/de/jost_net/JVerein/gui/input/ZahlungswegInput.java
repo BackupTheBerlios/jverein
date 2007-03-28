@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/Attic/ZahlungswegInput.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/03/25 16:59:37 $
+ * $Revision: 1.3 $
+ * $Date: 2007/03/28 13:23:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZahlungswegInput.java,v $
+ * Revision 1.3  2007/03/28 13:23:13  jost
+ * Java 1.5-Kompatibilität
+ *
  * Revision 1.2  2007/03/25 16:59:37  jost
  * Redaktionelle Änderung
  *
@@ -56,7 +59,7 @@ public class ZahlungswegInput extends SelectInput
   private static GenericIterator init() throws RemoteException
   {
 
-    ArrayList l = new ArrayList();
+    ArrayList<ZahlungswegObject> l = new ArrayList<ZahlungswegObject>();
     l.add(new ZahlungswegObject(ABBUCHUNG));
     l.add(new ZahlungswegObject(ÜBERWEISUNG));
     l.add(new ZahlungswegObject(BARZAHLUNG));
