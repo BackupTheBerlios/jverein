@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:25:16 $
+ * $Revision: 1.4 $
+ * $Date: 2007/03/28 12:26:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.4  2007/03/28 12:26:37  jost
+ * Überprüfung der Datenbankstruktur beim Startup
+ *
  * Revision 1.3  2007/02/23 20:25:16  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -23,9 +26,11 @@ package de.jost_net.JVerein;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.Locale;
 
 import de.willuhn.datasource.db.EmbeddedDatabase;
+import de.willuhn.jameica.hbci.Settings;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.jameica.plugin.PluginResources;
 import de.willuhn.jameica.system.Application;
@@ -40,6 +45,9 @@ import de.willuhn.util.ApplicationException;
 public class JVereinPlugin extends AbstractPlugin
 {
   private EmbeddedDatabase db = null;
+
+  // Mapper von Datenbank-Hash zu Versionsnummer
+  private static HashMap DBMAPPING = new HashMap();
 
   /**
    * constructor.
@@ -61,7 +69,52 @@ public class JVereinPlugin extends AbstractPlugin
    */
   public void init() throws ApplicationException
   {
-    //
+    Logger.info("starting init process for hibiscus");
+
+    DBMAPPING.put("p9XzkIUJkzcvEgnLD+YeIA==", new Double(0.7));
+    try
+    {
+      Application.getCallback().getStartupMonitor().setStatusText(
+          "jverein: checking database integrity");
+
+      // //////////////////////////////////////////////////////////////////////////
+      // Damit wir die Updates nicht immer haendisch nachziehen muessen, rufen
+      // wir bei einem Fehler das letzte Update-Script nochmal auf.
+      if (!Application.inClientMode())
+      {
+        try
+        {
+          de.willuhn.jameica.system.Settings s = getResources().getSettings();
+          double size = s.getDouble("sql-update-size", -1);
+ 
+          File f = new File(getResources().getPath()
+              + "/sql/update_0.6-0.7.sql");
+
+          if (f.exists())
+          {
+            long length = f.length();
+            if (length != size)
+            {
+              s.setAttribute("sql-update-size", (double) f.length());
+              // getDatabase().executeSQLScript(f);
+            }
+          }
+        }
+        catch (Exception e2)
+        {
+          Logger.error("unable to execute sql update script", e2);
+        }
+      }
+      checkConsistency();
+    }
+    catch (Exception e)
+    {
+      throw new ApplicationException(
+          "Fehler beim Prüfung der Datenbank-Integrität, "
+              + "Plugin wird aus Sicherheitsgründen deaktiviert", e);
+    }
+
+    Application.getCallback().getStartupMonitor().addPercentComplete(5);
   }
 
   /**
@@ -96,6 +149,27 @@ public class JVereinPlugin extends AbstractPlugin
     {
       throw new ApplicationException("error while installing plugin", e);
     }
+  }
+
+  /**
+   * Prueft, ob sich die Datenbank der Anwendung im erwarteten Zustand befindet
+   * (via MD5-Checksum). Entlarvt Manipulationen des DB-Schemas durch Dritte.
+   * 
+   * @throws Exception
+   */
+  private void checkConsistency() throws Exception
+  {
+    if (Application.inClientMode() || !Settings.getCheckDatabase())
+    {
+      // Wenn wir als Client laufen, muessen wir uns
+      // nicht um die Datenbank kuemmern. Das macht
+      // der Server schon
+      return;
+    }
+    String checkSum = getDatabase().getMD5Sum();
+    if (DBMAPPING.get(checkSum) == null)
+      throw new Exception(
+          "database checksum does not match any known version: " + checkSum);
   }
 
   /**
