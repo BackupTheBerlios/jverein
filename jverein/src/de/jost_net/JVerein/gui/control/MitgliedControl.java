@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2007/03/30 13:22:57 $
+ * $Revision: 1.12 $
+ * $Date: 2007/03/30 18:42:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.12  2007/03/30 18:42:53  jost
+ * Bei der Neuerfassung von Mitgliedern wird nach der Eingabe der PLZ automatisch der Ort eingetragen, sofern die PLZ bereits im Mitgliederbestand gespeichert ist.
+ *
  * Revision 1.11  2007/03/30 13:22:57  jost
  * Wiederkehrende Zusatzabbuchungen.
  *
@@ -242,6 +245,30 @@ public class MitgliedControl extends AbstractControl
       return plz;
     }
     plz = new TextInput(getMitglied().getPlz(), 5);
+    plz.addListener(new Listener()
+    {
+      public void handleEvent(Event event)
+      {
+        if (event.type == SWT.FocusOut)
+        {
+          try
+          {
+            DBIterator it = Einstellungen.getDBService().createList(
+                Mitglied.class);
+            it.addFilter("plz='" + (String) plz.getValue() + "'");
+            if (it.hasNext())
+            {
+              Mitglied mplz = (Mitglied) it.next();
+              ort.setValue(mplz.getOrt());
+            }
+          }
+          catch (RemoteException e)
+          {
+            e.printStackTrace();
+          }
+        }
+      }
+    });
     return plz;
   }
 
