@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/03/30 13:18:23 $
+ * $Revision: 1.7 $
+ * $Date: 2007/04/03 16:02:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.7  2007/04/03 16:02:58  jost
+ * *** empty log message ***
+ *
  * Revision 1.6  2007/03/30 13:18:23  jost
  * Erweiterung für die Version 0.8
  *
@@ -77,7 +80,7 @@ public class JVereinPlugin extends AbstractPlugin
   {
     Logger.info("starting init process for hibiscus");
     DBMAPPING.put("p9XzkIUJkzcvEgnLD+YeIA==", new Double(0.7));
-    DBMAPPING.put("Q9kAiUaKXmAwYWCFDjM15A==", new Double(0.8));
+    DBMAPPING.put("/L+dtSgsG/njGQb4wM49lA==", new Double(0.8));
     try
     {
       Application.getCallback().getStartupMonitor().setStatusText(
