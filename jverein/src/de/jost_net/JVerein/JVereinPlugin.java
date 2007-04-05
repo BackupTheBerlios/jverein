@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/04/03 16:02:58 $
+ * $Revision: 1.8 $
+ * $Date: 2007/04/05 18:53:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.8  2007/04/05 18:53:40  jost
+ * Vermeidung von ClassNotFoundException
+ *
  * Revision 1.7  2007/04/03 16:02:58  jost
  * *** empty log message ***
  *
@@ -39,10 +42,10 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import de.willuhn.datasource.db.EmbeddedDatabase;
-import de.willuhn.jameica.hbci.Settings;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.jameica.plugin.PluginResources;
 import de.willuhn.jameica.system.Application;
+import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
@@ -54,6 +57,8 @@ import de.willuhn.util.ApplicationException;
 public class JVereinPlugin extends AbstractPlugin
 {
   private EmbeddedDatabase db = null;
+
+  private Settings settings;
 
   // Mapper von Datenbank-Hash zu Versionsnummer
   private static HashMap<String, Double> DBMAPPING = new HashMap<String, Double>();
@@ -67,6 +72,8 @@ public class JVereinPlugin extends AbstractPlugin
   public JVereinPlugin(File file)
   {
     super(file);
+    settings = new Settings(this.getClass());
+    settings.setStoreWhenRead(true);
   }
 
   /**
@@ -92,9 +99,7 @@ public class JVereinPlugin extends AbstractPlugin
       {
         try
         {
-          de.willuhn.jameica.system.Settings s = getResources().getSettings();
-          double size = s.getDouble("sql-update-size", -1);
-
+          double size = settings.getDouble("sql-update-size", -1);
           File f = new File(getResources().getPath()
               + "/sql/update_0.6-0.7.sql");
 
@@ -103,7 +108,7 @@ public class JVereinPlugin extends AbstractPlugin
             long length = f.length();
             if (length != size)
             {
-              s.setAttribute("sql-update-size", (double) f.length());
+              settings.setAttribute("sql-update-size", (double) f.length());
               getDatabase().executeSQLScript(f);
             }
           }
@@ -167,7 +172,7 @@ public class JVereinPlugin extends AbstractPlugin
    */
   private void checkConsistency() throws Exception
   {
-    if (Application.inClientMode() || !Settings.getCheckDatabase())
+    if (Application.inClientMode() || !getCheckDatabase())
     {
       // Wenn wir als Client laufen, muessen wir uns
       // nicht um die Datenbank kuemmern. Das macht
@@ -258,4 +263,15 @@ public class JVereinPlugin extends AbstractPlugin
         "examplepassword");
     return db;
   }
+
+  /**
+   * Prueft, ob die MD5-Checksumme der Datenbank geprueft werden soll.
+   * 
+   * @return true, wenn die Checksumme geprueft werden soll.
+   */
+  public boolean getCheckDatabase()
+  {
+    return settings.getBoolean("checkdatabase", true);
+  }
+
 }
