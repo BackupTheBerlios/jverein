@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.10 $
- * $Date: 2007/03/30 13:25:40 $
+ * $Revision: 1.11 $
+ * $Date: 2007/04/20 12:17:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.11  2007/04/20 12:17:46  jost
+ * Bugfix: Mehr als eine Beitragsgruppe beitragsfrei
+ *
  * Revision 1.10  2007/03/30 13:25:40  jost
  * Wiederkehrende Zusatzabbuchungen.
  *
@@ -115,7 +118,7 @@ public class Abbuchung
         {
           beitragsfrei += " AND ";
         }
-        beitragsfrei = " beitragsgruppe <> " + b.getID();
+        beitragsfrei += " beitragsgruppe <> " + b.getID();
       }
 
       // Beitragsgruppen-Tabelle lesen und cachen
