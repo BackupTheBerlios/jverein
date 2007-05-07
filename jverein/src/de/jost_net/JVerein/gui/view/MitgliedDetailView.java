@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/03/27 19:23:24 $
+ * $Revision: 1.8 $
+ * $Date: 2007/05/07 19:26:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.8  2007/05/07 19:26:01  jost
+ * Neu: Wiedervorlage
+ *
  * Revision 1.7  2007/03/27 19:23:24  jost
  * Familienangehörige anzeigen
  *
@@ -101,6 +104,11 @@ public class MitgliedDetailView extends AbstractView
     TabGroup tab5 = new TabGroup(folder, "Vermerke");
     tab5.addLabelPair("Vermerk 1", control.getVermerk1());
     tab5.addLabelPair("Vermerk 2", control.getVermerk2());
+
+    TabGroup tab6 = new TabGroup(folder, "Wiedervorlage");
+    control.getWiedervorlageTable().paint(tab6.getComposite());
+    ButtonArea buttonswvl = new ButtonArea(tab6.getComposite(), 1);
+    buttonswvl.addButton(control.getWiedervorlageNeu());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 

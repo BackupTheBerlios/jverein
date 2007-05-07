@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2007/03/30 18:42:53 $
+ * $Revision: 1.13 $
+ * $Date: 2007/05/07 19:25:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.13  2007/05/07 19:25:03  jost
+ * Neu: Wiedervorlage
+ *
  * Revision 1.12  2007/03/30 18:42:53  jost
  * Bei der Neuerfassung von Mitgliedern wird nach der Eingabe der PLZ automatisch der Ort eingetragen, sofern die PLZ bereits im Mitgliederbestand gespeichert ist.
  *
@@ -62,8 +65,10 @@ import org.kapott.hbci.manager.HBCIUtils;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
+import de.jost_net.JVerein.gui.action.WiedervorlageAction;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungAction;
 import de.jost_net.JVerein.gui.input.ZahlungswegInput;
+import de.jost_net.JVerein.gui.menu.WiedervorlageMenu;
 import de.jost_net.JVerein.gui.menu.ZusatzabbuchungMenu;
 import de.jost_net.JVerein.gui.parts.Familienverband;
 import de.jost_net.JVerein.io.MitgliedAuswertungCSV;
@@ -71,6 +76,7 @@ import de.jost_net.JVerein.io.MitgliedAuswertungPDF;
 import de.jost_net.JVerein.io.MitgliederStatistik;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.jost_net.JVerein.rmi.Zusatzabbuchung;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -168,6 +174,9 @@ public class MitgliedControl extends AbstractControl
 
   // Liste aller Zusatzabbuchungen
   private TablePart zusatzabbuchungenList;
+
+  // Liste der Wiedervorlagen
+  private TablePart wiedervorlageList;
 
   private TablePart familienangehoerige;
 
@@ -682,6 +691,29 @@ public class MitgliedControl extends AbstractControl
     return zusatzabbuchungenList;
   }
 
+  public Part getWiedervorlageTable() throws RemoteException
+  {
+    if (wiedervorlageList != null)
+    {
+      return wiedervorlageList;
+    }
+    DBService service = Einstellungen.getDBService();
+    DBIterator wiedervorlagen = service.createList(Wiedervorlage.class);
+    wiedervorlagen.addFilter("mitglied = " + getMitglied().getID());
+    wiedervorlageList = new TablePart(wiedervorlagen,
+        new ZusatzabbuchungAction(getMitglied()));
+    wiedervorlageList.setRememberColWidths(true);
+    wiedervorlageList.setRememberOrder(true);
+
+    wiedervorlageList.addColumn("Datum", "datum", new DateFormatter(
+        Einstellungen.DATEFORMAT));
+    wiedervorlageList.addColumn("Vermerk", "vermerk");
+    wiedervorlageList.addColumn("Erledigung", "erledigung", new DateFormatter(
+        Einstellungen.DATEFORMAT));
+    wiedervorlageList.setContextMenu(new WiedervorlageMenu(wiedervorlageList));
+    return wiedervorlageList;
+  }
+
   public DateInput getGeburtsdatumvon() throws RemoteException
   {
     if (geburtsdatumvon != null)
@@ -881,6 +913,11 @@ public class MitgliedControl extends AbstractControl
   public Button getZusatzabbuchungNeu()
   {
     return new Button("Neu", new ZusatzabbuchungAction(getMitglied()));
+  }
+
+  public Button getWiedervorlageNeu()
+  {
+    return new Button("Neu", new WiedervorlageAction(getMitglied()));
   }
 
   public TablePart getMitgliedTable(String anfangsbuchstabe)
