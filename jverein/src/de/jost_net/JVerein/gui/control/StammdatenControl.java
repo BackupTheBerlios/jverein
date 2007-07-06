@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/03/18 08:39:13 $
+ * $Revision: 1.5 $
+ * $Date: 2007/07/06 11:36:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.5  2007/07/06 11:36:40  jost
+ * Bugfix Speicherung Stammdaten
+ *
  * Revision 1.4  2007/03/18 08:39:13  jost
  * Pflichtfelder gekennzeichnet
  * Bugfix Zahlungsweg
@@ -31,7 +34,9 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.kapott.hbci.manager.HBCIUtils;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Stammdaten;
+import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -55,6 +60,15 @@ public class StammdatenControl extends AbstractControl
   public StammdatenControl(AbstractView view)
   {
     super(view);
+    try
+    {
+      stamm = (Stammdaten) Einstellungen.getDBService().createObject(
+          Stammdaten.class, "1");
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   private Stammdaten getStammdaten()
