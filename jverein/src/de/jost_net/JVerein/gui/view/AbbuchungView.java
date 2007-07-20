@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/07/06 11:37:18 $
+ * $Revision: 1.6 $
+ * $Date: 2007/07/20 20:15:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.6  2007/07/20 20:15:40  jost
+ * Bessere Fehlermeldung
+ *
  * Revision 1.5  2007/07/06 11:37:18  jost
  * Zur Kompatibilität: Änderung der Plausi.
  *
@@ -59,7 +62,8 @@ public class AbbuchungView extends AbstractView
     Long anzahl = (Long) service.execute(sql, new Object[] {}, rs);
     if (anzahl.longValue() == 0)
     {
-      throw new ApplicationException("Stammdaten fehlen. Bitte erfassen.");
+      throw new ApplicationException("Stammdaten fehlen. "
+          + " Bitte unter Plugins|JVerein|Stammdaten erfassen.");
     }
 
     GUI.getView().setTitle("Abbuchung");

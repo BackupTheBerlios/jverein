@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/04/03 16:03:24 $
+ * $Revision: 1.6 $
+ * $Date: 2007/07/20 20:15:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.6  2007/07/20 20:15:52  jost
+ * Bessere Fehlermeldung
+ *
  * Revision 1.5  2007/04/03 16:03:24  jost
  * Meldung, wenn keine Beitragsgruppe erfaﬂt ist.
  *
@@ -79,7 +82,8 @@ public class MitgliederSucheView extends AbstractView
         .execute(sql, new Object[] {}, rs);
     if (anzahlbeitragsgruppe.longValue() == 0)
     {
-      new LabelInput("Noch keine Beitragsgruppe erfaﬂt.").paint(getParent());
+      new LabelInput("Noch keine Beitragsgruppe erfaﬂt. Bitte unter "
+          + "Plugins|JVerein|Beitragsgruppe erfassen.").paint(getParent());
     }
 
     rs = new ResultSetExtractor()
