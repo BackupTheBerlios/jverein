@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/07/06 11:36:40 $
+ * $Revision: 1.6 $
+ * $Date: 2007/08/14 19:20:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.6  2007/08/14 19:20:16  jost
+ * Vereinsnamen maximal 27 Stellen
+ *
  * Revision 1.5  2007/07/06 11:36:40  jost
  * Bugfix Speicherung Stammdaten
  *
@@ -87,7 +90,7 @@ public class StammdatenControl extends AbstractControl
     {
       return name;
     }
-    name = new TextInput(getStammdaten().getName(), 30);
+    name = new TextInput(getStammdaten().getName(), 27);
     name.setMandatory(true);
     return name;
   }
