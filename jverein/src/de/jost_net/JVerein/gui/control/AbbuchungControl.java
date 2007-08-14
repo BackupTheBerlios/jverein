@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/03/27 19:20:16 $
+ * $Revision: 1.5 $
+ * $Date: 2007/08/14 19:19:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.5  2007/08/14 19:19:28  jost
+ * Refactoring
+ *
  * Revision 1.4  2007/03/27 19:20:16  jost
  * Zusätzliche Plausi
  *
@@ -162,13 +165,13 @@ public class AbbuchungControl extends AbstractControl
     {
       public void handleAction(Object context) throws ApplicationException
       {
-        doImport();
+        doAbbuchung();
       }
     }, null, true);
     return button;
   }
 
-  public void doImport() throws ApplicationException
+  private void doAbbuchung() throws ApplicationException
   {
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
 
