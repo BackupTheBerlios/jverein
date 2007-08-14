@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.11 $
- * $Date: 2007/04/20 12:17:46 $
+ * $Revision: 1.12 $
+ * $Date: 2007/08/14 19:20:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.12  2007/08/14 19:20:57  jost
+ * Bugfix wenn keine Beitragsgruppe mit 0 ? existiert.
+ *
  * Revision 1.11  2007/04/20 12:17:46  jost
  * Bugfix: Mehr als eine Beitragsgruppe beitragsfrei
  *
@@ -138,7 +141,10 @@ public class Abbuchung
       // Die bereits ausgetretenen werden ignoriert.
       list.addFilter("austritt is null");
       // Beitragsfreie Mitglieder können auch unberücksichtigt bleiben.
-      list.addFilter(beitragsfrei);
+      if (beitragsfrei.length() > 0)
+      {
+        list.addFilter(beitragsfrei);
+      }
       // Zahlungsweg Abbuchung
       // list.addFilter("zahlungsweg = ?", new Object[] { new Integer(
       // ZahlungswegInput.ABBUCHUNG) });
