@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:24:57 $
+ * $Revision: 1.3 $
+ * $Date: 2007/08/22 20:42:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.3  2007/08/22 20:42:07  jost
+ * Bug #011762
+ *
  * Revision 1.2  2007/02/23 20:24:57  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -28,6 +31,7 @@ import org.kapott.hbci.manager.HBCIUtils;
 
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.system.Application;
+import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
 
 /**
@@ -39,6 +43,22 @@ public class Einstellungen
 {
 
   private static DBService db;
+
+  private static Settings settings = new Settings(Einstellungen.class);
+
+  private static Boolean geburtsdatumPflicht;
+
+  private static Boolean eintrittsdatumPflicht;
+
+  private static Boolean kommunikationsdaten;
+
+  private static Boolean zusatzabbuchung;
+
+  private static Boolean vermerke;
+
+  private static Boolean wiedervorlage;
+
+  private static Boolean kursteilnehmer;
 
   /**
    * Datums-Format dd.MM.yyyy.
@@ -117,6 +137,166 @@ public class Einstellungen
           .warn("HBCI4Java subsystem seems to be not initialized for this thread group, adding thread group");
       return HBCIUtils.checkAccountCRC(blz, kontonummer);
     }
+  }
+
+  /**
+   * Ist das Geburtsdatum ein Pflichtfeld?
+   */
+  public static boolean isGeburtsdatumPflicht()
+  {
+    if (geburtsdatumPflicht != null)
+    {
+      return geburtsdatumPflicht.booleanValue();
+    }
+    geburtsdatumPflicht = new Boolean(settings.getBoolean(
+        "geburtsdatum.pflicht", true));
+    return geburtsdatumPflicht;
+  }
+
+  /**
+   * Speichert, ob das Geburtsdatum ein Pflichtfeld ist.
+   */
+  public static void setGeburtsdatumPflicht(boolean value)
+  {
+    settings.setAttribute("geburtsdatum.pflicht", value);
+    geburtsdatumPflicht = null;
+  }
+
+  /**
+   * Ist das Eintrittsdatum ein Pflichtfeld?
+   */
+  public static boolean isEintrittsdatumPflicht()
+  {
+    if (eintrittsdatumPflicht != null)
+    {
+      return eintrittsdatumPflicht.booleanValue();
+    }
+    eintrittsdatumPflicht = new Boolean(settings.getBoolean(
+        "eintrittsdatum.pflicht", true));
+    return eintrittsdatumPflicht;
+  }
+
+  /**
+   * Speichert, ob das Eintrittsdatum ein Pflichtfeld ist.
+   */
+  public static void setEintrittsdatumPflicht(boolean value)
+  {
+    settings.setAttribute("eintrittsdatum.pflicht", value);
+    eintrittsdatumPflicht = null;
+  }
+
+  /**
+   * Kommunikationsdaten einblenden?
+   */
+  public static boolean isKommunikationsdaten()
+  {
+    if (kommunikationsdaten != null)
+    {
+      return kommunikationsdaten.booleanValue();
+    }
+    kommunikationsdaten = new Boolean(settings.getBoolean(
+        "kommunikationsdaten.einblenden", true));
+    return kommunikationsdaten;
+  }
+
+  /**
+   * Speichert, ob Kommunikationsdaten eingeblendet werden sollen.
+   */
+  public static void setKommunikationsdaten(boolean value)
+  {
+    settings.setAttribute("kommunikationsdaten.einblenden", value);
+    kommunikationsdaten = null;
+  }
+
+  /**
+   * Zusatzabbuchung einblenden?
+   */
+  public static boolean isZusatzabbuchung()
+  {
+    if (zusatzabbuchung != null)
+    {
+      return zusatzabbuchung.booleanValue();
+    }
+    zusatzabbuchung = new Boolean(settings.getBoolean(
+        "zusatzabbuchung.einblenden", true));
+    return zusatzabbuchung;
+  }
+
+  /**
+   * Speichert, ob Zusatzabbuchungen eingeblendet werden sollen.
+   */
+  public static void setZusatzabbuchungen(boolean value)
+  {
+    settings.setAttribute("zusatzabbuchung.einblenden", value);
+    zusatzabbuchung = null;
+  }
+
+  /**
+   * Vermerke einblenden?
+   */
+  public static boolean isVermerke()
+  {
+    if (vermerke != null)
+    {
+      return vermerke.booleanValue();
+    }
+    vermerke = new Boolean(settings.getBoolean("vermerke.einblenden", true));
+    return vermerke;
+  }
+
+  /**
+   * Speichert, ob Vermerke eingeblendet werden sollen.
+   */
+  public static void setVermerke(boolean value)
+  {
+    settings.setAttribute("vermerke.einblenden", value);
+    vermerke = null;
+  }
+
+  /**
+   * Wiedervorlage einblenden?
+   */
+  public static boolean isWiedervorlage()
+  {
+    if (wiedervorlage != null)
+    {
+      return wiedervorlage.booleanValue();
+    }
+    wiedervorlage = new Boolean(settings.getBoolean("wiedervorlage.einblenden",
+        true));
+    return wiedervorlage;
+  }
+
+  /**
+   * Speichert, ob die Wiedervorlage eingeblendet werden sollen.
+   */
+  public static void setWiedervorlage(boolean value)
+  {
+    settings.setAttribute("wiedervorlage.einblenden", value);
+    wiedervorlage = null;
+  }
+
+  /**
+   * Kursteilnehmer einblenden?
+   */
+  public static boolean isKursteilnehmer()
+  {
+    if (kursteilnehmer != null)
+    {
+      return kursteilnehmer.booleanValue();
+    }
+    kursteilnehmer = new Boolean(settings.getBoolean(
+        "kursteilnehmer.einblenden", true));
+    return kursteilnehmer;
+  }
+
+  /**
+   * Speichert, ob Kursteilnehmer eingeblendet werden sollen.
+   */
+  public static void setKursteilnehmer(boolean value)
+  {
+    settings.setAttribute("kursteilnehmer.einblenden", value);
+    kursteilnehmer = null;
   }
 
 }

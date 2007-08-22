@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2007/05/07 19:25:03 $
+ * $Revision: 1.14 $
+ * $Date: 2007/08/22 20:43:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.14  2007/08/22 20:43:17  jost
+ * Bug #011762
+ *
  * Revision 1.13  2007/05/07 19:25:03  jost
  * Neu: Wiedervorlage
  *
@@ -301,7 +304,7 @@ public class MitgliedControl extends AbstractControl
     this.geburtsdatum = new DateInput(d, Einstellungen.DATEFORMAT);
     this.geburtsdatum.setTitle("Geburtsdatum");
     this.geburtsdatum.setText("Bitte Geburtsdatum wählen");
-    this.geburtsdatum.setMandatory(true);
+    this.geburtsdatum.setMandatory(Einstellungen.isGeburtsdatumPflicht());
     this.geburtsdatum.addListener(new Listener()
     {
       public void handleEvent(Event event)
@@ -422,7 +425,10 @@ public class MitgliedControl extends AbstractControl
     this.eintritt = new DateInput(d, Einstellungen.DATEFORMAT);
     this.eintritt.setTitle("Eintrittsdatum");
     this.eintritt.setText("Bitte Eintrittsdatum wählen");
-    this.eintritt.setMandatory(true);
+    if (Einstellungen.isGeburtsdatumPflicht())
+    {
+      this.eintritt.setMandatory(true);
+    }
     this.eintritt.addListener(new Listener()
     {
       public void handleEvent(Event event)
