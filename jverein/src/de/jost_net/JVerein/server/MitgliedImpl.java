@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/03/25 17:06:02 $
+ * $Revision: 1.7 $
+ * $Date: 2007/08/22 20:44:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.7  2007/08/22 20:44:55  jost
+ * Bug #011762
+ *
  * Revision 1.6  2007/03/25 17:06:02  jost
  * Plausibilitätsprüfung der Bankverbindung bei Barzahlung abgeschaltet
  * Herstellung des Famlienverbandes.
@@ -90,7 +93,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       throw new ApplicationException("Bitte Vornamen eingeben");
     }
-    if (getGeburtsdatum() == null)
+    if (getGeburtsdatum() == null && Einstellungen.isGeburtsdatumPflicht())
     {
       throw new ApplicationException("Bitte Geburtsdatum eingeben");
     }
@@ -98,7 +101,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       throw new ApplicationException("Bitte Geschlecht auswählen");
     }
-    if (getEintritt() == null)
+    if (getEintritt() == null && Einstellungen.isEintrittsdatumPflicht())
     {
       throw new ApplicationException("Bitte Eintrittsdatum eingeben");
     }

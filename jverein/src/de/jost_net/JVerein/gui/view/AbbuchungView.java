@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/07/20 20:15:40 $
+ * $Revision: 1.7 $
+ * $Date: 2007/08/22 20:44:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.7  2007/08/22 20:44:10  jost
+ * Bug #011762
+ *
  * Revision 1.6  2007/07/20 20:15:40  jost
  * Bessere Fehlermeldung
  *
@@ -75,8 +78,15 @@ public class AbbuchungView extends AbstractView
     group.addLabelPair("Von Eingabedatum", control.getVondatum());
     group.addLabelPair("Zahlungsgrund", control.getZahlungsgrund());
     group.addLabelPair("Zusatzabbuchung", control.getZusatzabbuchung());
+    if (!Einstellungen.isZusatzabbuchung())
+    {
+      control.getZusatzabbuchung().setEnabled(false);
+    }
     group.addLabelPair("Kursteilnehmer", control.getKursteilnehmer());
-
+    if (!Einstellungen.isKursteilnehmer())
+    {
+      control.getKursteilnehmer().setEnabled(false);
+    }
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(control.getStartButton());
     buttons.addButton("<< Zurück", new BackAction());
