@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/08/22 20:42:07 $
+ * $Revision: 1.4 $
+ * $Date: 2007/08/23 18:42:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.4  2007/08/23 18:42:27  jost
+ * Standard-Tab fÃ¼r die Mitglieder-Suche
+ *
  * Revision 1.3  2007/08/22 20:42:07  jost
  * Bug #011762
  *
@@ -59,6 +62,8 @@ public class Einstellungen
   private static Boolean wiedervorlage;
 
   private static Boolean kursteilnehmer;
+
+  private static String mitgliederstandardtab;
 
   /**
    * Datums-Format dd.MM.yyyy.
@@ -297,6 +302,28 @@ public class Einstellungen
   {
     settings.setAttribute("kursteilnehmer.einblenden", value);
     kursteilnehmer = null;
+  }
+
+  /**
+   * Standardtab für die Mitgliedersuche
+   */
+  public static String getMitgliederStandardTab()
+  {
+    if (mitgliederstandardtab != null)
+    {
+      return mitgliederstandardtab;
+    }
+    mitgliederstandardtab = settings.getString("mitglieder.standardtab", "A");
+    return mitgliederstandardtab;
+  }
+
+  /**
+   * Speichert den Standardtab für die Mitgliedersuche.
+   */
+  public static void setMitgliederStandardTab(String value)
+  {
+    settings.setAttribute("mitglieder.standardtab", value);
+    mitgliederstandardtab = null;
   }
 
 }
