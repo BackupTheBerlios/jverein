@@ -1,9 +1,22 @@
-package de.jost_net.JVerein.gui.navigation;
-
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyItem.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/08/22 20:43:54 $
+ * $Revision: 1.2 $
+ * $Date: 2007/08/23 19:25:23 $
+ * $Author: jost $
+ *
+ * Copyright (c) by Heiner Jostkleigrewe
+ * All rights reserved
+ * heiner@jverein.de
+ * www.jverein.de
+ * $Log: MyItem.java,v $
+ * Revision 1.2  2007/08/23 19:25:23  jost
+ * Header korrigiert.
+ *
+ **********************************************************************/package de.jost_net.JVerein.gui.navigation;
+
+/**********************************************************************
+  * $Revision: 1.2 $
+ * $Date: 2007/08/23 19:25:23 $
  * $Author: jost $
  * $Locker:  $
  * $State: Exp $
@@ -246,6 +259,9 @@ public class MyItem implements NavigationItem
 
 /*******************************************************************************
  * $Log: MyItem.java,v $
+ * Revision 1.2  2007/08/23 19:25:23  jost
+ * Header korrigiert.
+ *
  * Revision 1.1  2007/08/22 20:43:54  jost
  * *** empty log message ***
  *

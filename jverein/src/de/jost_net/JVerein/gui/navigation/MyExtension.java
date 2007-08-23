@@ -1,3 +1,18 @@
+/**********************************************************************
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
+ * $Revision: 1.2 $
+ * $Date: 2007/08/23 19:25:05 $
+ * $Author: jost $
+ *
+ * Copyright (c) by Heiner Jostkleigrewe
+ * All rights reserved
+ * heiner@jverein.de
+ * www.jverein.de
+ * $Log: MyExtension.java,v $
+ * Revision 1.2  2007/08/23 19:25:05  jost
+ * Header korrigiert.
+ *
+ **********************************************************************/
 package de.jost_net.JVerein.gui.navigation;
 
 import de.jost_net.JVerein.Einstellungen;
@@ -15,21 +30,6 @@ import de.willuhn.jameica.gui.extension.Extendable;
 import de.willuhn.jameica.gui.extension.Extension;
 import de.willuhn.logging.Logger;
 
-/**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/08/22 20:43:40 $
- * $Author: jost $
- * $Locker:  $
- * $State: Exp $
- *
- * Copyright (c) by willuhn software & services
- * All rights reserved
- *
- **********************************************************************/
-
-/**
- */
 public class MyExtension implements Extension
 {
 
@@ -82,6 +82,9 @@ public class MyExtension implements Extension
 
 /*******************************************************************************
  * $Log: MyExtension.java,v $
+ * Revision 1.2  2007/08/23 19:25:05  jost
+ * Header korrigiert.
+ *
  * Revision 1.1  2007/08/22 20:43:40  jost
  * Bug #011762
  *
