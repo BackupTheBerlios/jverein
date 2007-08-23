@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/03/25 16:56:48 $
+ * $Revision: 1.6 $
+ * $Date: 2007/08/23 19:24:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.6  2007/08/23 19:24:23  jost
+ * Bug #11819 - Beitragsgruppen können jetzt gelöscht werden
+ *
  * Revision 1.5  2007/03/25 16:56:48  jost
  * Beitragsart aufgenommen.
  *
@@ -32,6 +35,7 @@ import java.rmi.RemoteException;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
 import de.jost_net.JVerein.gui.input.BeitragsArtInput;
+import de.jost_net.JVerein.gui.menu.BeitragsgruppeMenu;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -111,7 +115,7 @@ public class BeitragsgruppeControl extends AbstractControl
       b.setBezeichnung((String) getBezeichnung().getValue());
       Double d = (Double) getBetrag().getValue();
       b.setBetrag(d.doubleValue());
-      Integer ba = (Integer)getBeitragsArt().getValue();
+      Integer ba = (Integer) getBeitragsArt().getValue();
       b.setBeitragsArt(ba.intValue());
       b.store();
       GUI.getStatusBar().setSuccessText("Beitragsgruppe gespeichert");
@@ -141,6 +145,7 @@ public class BeitragsgruppeControl extends AbstractControl
     beitragsgruppeList.addColumn("Bezeichnung", "bezeichnung");
     beitragsgruppeList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
+    beitragsgruppeList.setContextMenu(new BeitragsgruppeMenu());
     return beitragsgruppeList;
   }
 }
