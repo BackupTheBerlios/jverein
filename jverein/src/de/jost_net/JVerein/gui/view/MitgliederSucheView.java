@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/08/23 18:45:25 $
+ * $Revision: 1.8 $
+ * $Date: 2007/08/23 19:26:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.8  2007/08/23 19:26:09  jost
+ * Bugfix
+ *
  * Revision 1.7  2007/08/23 18:45:25  jost
  * Standard-Tab für die Mitglieder-Suche
  * und Bug #011764
@@ -62,7 +65,7 @@ import de.willuhn.util.ApplicationException;
 
 public class MitgliederSucheView extends AbstractView
 {
-  private static String lasttab = "A";
+  private static String lasttab = null;
 
   public void bind() throws Exception
   {
