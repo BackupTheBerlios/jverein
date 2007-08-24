@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2007/08/22 20:43:17 $
+ * $Revision: 1.15 $
+ * $Date: 2007/08/24 13:33:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.15  2007/08/24 13:33:53  jost
+ * Bugfix
+ *
  * Revision 1.14  2007/08/22 20:43:17  jost
  * Bug #011762
  *
@@ -425,10 +428,7 @@ public class MitgliedControl extends AbstractControl
     this.eintritt = new DateInput(d, Einstellungen.DATEFORMAT);
     this.eintritt.setTitle("Eintrittsdatum");
     this.eintritt.setText("Bitte Eintrittsdatum wählen");
-    if (Einstellungen.isGeburtsdatumPflicht())
-    {
-      this.eintritt.setMandatory(true);
-    }
+    this.eintritt.setMandatory(Einstellungen.isEintrittsdatumPflicht());
     this.eintritt.addListener(new Listener()
     {
       public void handleEvent(Event event)
