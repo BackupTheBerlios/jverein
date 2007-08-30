@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/08/23 19:24:23 $
+ * $Revision: 1.7 $
+ * $Date: 2007/08/30 19:47:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.7  2007/08/30 19:47:45  jost
+ * Part -> TablePart
+ *
  * Revision 1.6  2007/08/23 19:24:23  jost
  * Bug #11819 - Beitragsgruppen können jetzt gelöscht werden
  *
@@ -42,7 +45,6 @@ import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.formatter.CurrencyFormatter;
 import de.willuhn.jameica.gui.input.DecimalInput;
 import de.willuhn.jameica.gui.input.Input;
@@ -132,7 +134,7 @@ public class BeitragsgruppeControl extends AbstractControl
     }
   }
 
-  public Part getBeitragsgruppeTable() throws RemoteException
+  public TablePart getBeitragsgruppeTable() throws RemoteException
   {
     if (beitragsgruppeList != null)
     {
