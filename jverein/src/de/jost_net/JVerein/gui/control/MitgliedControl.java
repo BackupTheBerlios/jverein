@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2007/08/24 13:33:53 $
+ * $Revision: 1.16 $
+ * $Date: 2007/08/30 19:48:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.16  2007/08/30 19:48:29  jost
+ * 1. Korrekte Darstellung von Pflichtfeldern
+ * 2. Neues Kontext-Menü
+ *
  * Revision 1.15  2007/08/24 13:33:53  jost
  * Bugfix
  *
@@ -74,6 +78,7 @@ import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungAction;
 import de.jost_net.JVerein.gui.input.ZahlungswegInput;
+import de.jost_net.JVerein.gui.menu.MitgliedMenu;
 import de.jost_net.JVerein.gui.menu.WiedervorlageMenu;
 import de.jost_net.JVerein.gui.menu.ZusatzabbuchungMenu;
 import de.jost_net.JVerein.gui.parts.Familienverband;
@@ -350,6 +355,15 @@ public class MitgliedControl extends AbstractControl
     {
       zahlungsweg = new ZahlungswegInput(ZahlungswegInput.ABBUCHUNG);
     }
+    zahlungsweg.addListener(new Listener()
+    {
+      public void handleEvent(Event event)
+      {
+        Integer z = (Integer) zahlungsweg.getValue();
+        blz.setMandatory(z.intValue() == ZahlungswegInput.ABBUCHUNG);
+        konto.setMandatory(z.intValue() == ZahlungswegInput.ABBUCHUNG);
+      }
+    });
     return zahlungsweg;
   }
 
@@ -360,6 +374,9 @@ public class MitgliedControl extends AbstractControl
       return blz;
     }
     blz = new TextInput(getMitglied().getBlz(), 8);
+    blz
+        .setMandatory(getMitglied().getZahlungsweg() == null
+            || getMitglied().getZahlungsweg().intValue() == ZahlungswegInput.ABBUCHUNG);
     BLZListener l = new BLZListener();
     blz.addListener(l);
     l.handleEvent(null); // Einmal initial ausfuehren
@@ -373,6 +390,9 @@ public class MitgliedControl extends AbstractControl
       return konto;
     }
     konto = new TextInput(getMitglied().getKonto(), 10);
+    konto
+        .setMandatory(getMitglied().getZahlungsweg() == null
+            || getMitglied().getZahlungsweg().intValue() == ZahlungswegInput.ABBUCHUNG);
     return konto;
   }
 
@@ -950,6 +970,7 @@ public class MitgliedControl extends AbstractControl
         Einstellungen.DATEFORMAT));
     part.addColumn("Austritt", "austritt", new DateFormatter(
         Einstellungen.DATEFORMAT));
+    part.setContextMenu(new MitgliedMenu());
     return part;
   }
 
