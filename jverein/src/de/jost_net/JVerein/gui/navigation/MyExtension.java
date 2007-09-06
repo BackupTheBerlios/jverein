@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/08/23 19:25:05 $
+ * $Revision: 1.3 $
+ * $Date: 2007/09/06 17:16:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.3  2007/09/06 17:16:36  jost
+ * Korrekte Behandlung des Menüpunktes Auswertung | Kursteilnehmer
+ *
  * Revision 1.2  2007/08/23 19:25:05  jost
  * Header korrigiert.
  *
@@ -65,8 +68,11 @@ public class MyExtension implements Extension
       auswertung = new MyItem(auswertung, "Auswertungen", null);
       auswertung.addChild(new MyItem(auswertung, "Mitglieder",
           new AuswertungMitgliedAction()));
-      auswertung.addChild(new MyItem(auswertung, "Kursteilnehmer",
-          new AuswertungKursteilnehmerAction()));
+      if (Einstellungen.isKursteilnehmer())
+      {
+        auswertung.addChild(new MyItem(auswertung, "Kursteilnehmer",
+            new AuswertungKursteilnehmerAction()));
+      }
       auswertung.addChild(new MyItem(auswertung, "Statistik",
           new StatistikMitgliedAction()));
       jverein.addChild(auswertung);
@@ -82,10 +88,11 @@ public class MyExtension implements Extension
 
 /*******************************************************************************
  * $Log: MyExtension.java,v $
- * Revision 1.2  2007/08/23 19:25:05  jost
- * Header korrigiert.
- *
- * Revision 1.1  2007/08/22 20:43:40  jost
- * Bug #011762
- *
+ * Revision 1.3  2007/09/06 17:16:36  jost
+ * Korrekte Behandlung des Menüpunktes Auswertung | Kursteilnehmer
+ * Revision 1.2 2007/08/23 19:25:05 jost Header
+ * korrigiert.
+ * 
+ * Revision 1.1 2007/08/22 20:43:40 jost Bug #011762
+ * 
  ******************************************************************************/
