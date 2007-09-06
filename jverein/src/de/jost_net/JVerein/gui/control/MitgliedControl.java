@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.17 $
- * $Date: 2007/08/31 05:35:32 $
+ * $Revision: 1.18 $
+ * $Date: 2007/09/06 17:15:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.18  2007/09/06 17:15:46  jost
+ * Mitgliederstatistik: *.PDF als Standardvorgabe im Datei-Speichern-Dialog
+ *
  * Revision 1.17  2007/08/31 05:35:32  jost
  * Automatische Erg√§nzung der Dateiendung.
  *
@@ -1151,6 +1154,7 @@ public class MitgliedControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei w‰hlen.");
+    fd.setFilterExtensions(new String[] { "*.PDF" });
 
     Settings settings = new Settings(this.getClass());
 
