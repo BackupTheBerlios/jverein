@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/08/23 18:42:27 $
+ * $Revision: 1.5 $
+ * $Date: 2007/10/18 18:18:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.5  2007/10/18 18:18:04  jost
+ * Vorbereitung H2-DB
+ *
  * Revision 1.4  2007/08/23 18:42:27  jost
  * Standard-Tab für die Mitglieder-Suche
  *
@@ -324,6 +327,16 @@ public class Einstellungen
   {
     settings.setAttribute("mitglieder.standardtab", value);
     mitgliederstandardtab = null;
+  }
+
+  /**
+   * Prueft, ob die MD5-Checksumme der Datenbank geprueft werden soll.
+   * 
+   * @return true, wenn die Checksumme geprueft werden soll.
+   */
+  public static boolean getCheckDatabase()
+  {
+    return settings.getBoolean("checkdatabase", true);
   }
 
 }
