@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/08/23 19:25:50 $
+ * $Revision: 1.4 $
+ * $Date: 2007/12/01 17:46:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.4  2007/12/01 17:46:46  jost
+ * Wegfall Standardtab fÃ¼r die Suche
+ *
  * Revision 1.3  2007/08/23 19:25:50  jost
  * Header korrigiert.
  *
@@ -33,7 +36,7 @@ public class EinstellungenView extends AbstractView
 
     final EinstellungControl control = new EinstellungControl(this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Einstellungen");
+    LabelGroup group = new LabelGroup(getParent(), "Anzeige");
     group.addLabelPair("Geburtsdatum Pflichtfeld", control
         .getGeburtsdatumPflicht());
     group.addLabelPair("Eintrittsdatum Pflichtfeld", control
@@ -46,8 +49,6 @@ public class EinstellungenView extends AbstractView
     group.addLabelPair("Wiedervorlage anzeigen *", control.getWiedervorlage());
     group
         .addLabelPair("Kursteilnehmer anzeigen *", control.getKursteilnehmer());
-    group.addLabelPair("Mitglieder-Suche Standardtab", control
-        .getMitgliederStanardTab());
     new Headline(getParent(), "* Änderung erfordert Neustart");
     ButtonArea buttons = new ButtonArea(getParent(), 2);
     buttons.addButton("<< Zurück", new BackAction());
