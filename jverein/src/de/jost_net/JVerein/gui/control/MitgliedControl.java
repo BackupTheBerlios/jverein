@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.19 $
- * $Date: 2007/09/16 17:52:04 $
+ * $Revision: 1.20 $
+ * $Date: 2007/12/01 10:05:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.20  2007/12/01 10:05:49  jost
+ * Änderung wg. neuem Classloader in Jameica
+ *
  * Revision 1.19  2007/09/16 17:52:04  jost
  * Selektion nach Mitgliedsstatus
  *
@@ -80,7 +83,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
-import org.kapott.hbci.manager.HBCIUtils;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
@@ -1317,8 +1319,8 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        String name = HBCIUtils.getNameForBLZ((String) getBlz().getValue());
-        getBlz().setComment(name);
+        String blz = (String) getBlz().getValue();
+        getBlz().setComment(Einstellungen.getNameForBLZ(blz));
       }
       catch (RemoteException e)
       {

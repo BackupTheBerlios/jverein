@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/05/26 16:26:09 $
+ * $Revision: 1.5 $
+ * $Date: 2007/12/01 10:05:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.5  2007/12/01 10:05:34  jost
+ * Änderung wg. neuem Classloader in Jameica
+ *
  * Revision 1.4  2007/05/26 16:26:09  jost
  * Neu: Auswertung Kursteilnehmer
  *
@@ -34,7 +37,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
-import org.kapott.hbci.manager.HBCIUtils;
 
 import com.lowagie.text.Element;
 
@@ -343,8 +345,8 @@ public class KursteilnehmerControl extends AbstractControl
     {
       try
       {
-        String name = HBCIUtils.getNameForBLZ((String) getBlz().getValue());
-        getBlz().setComment(name);
+        String blz = (String) getBlz().getValue();
+        getBlz().setComment(Einstellungen.getNameForBLZ(blz));
       }
       catch (RemoteException e)
       {

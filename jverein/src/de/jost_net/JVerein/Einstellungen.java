@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/10/18 18:18:04 $
+ * $Revision: 1.6 $
+ * $Date: 2007/12/01 10:04:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.6  2007/12/01 10:04:44  jost
+ * Ã„nderung wg. neuem Classloader in Jameica
+ *
  * Revision 1.5  2007/10/18 18:18:04  jost
  * Vorbereitung H2-DB
  *
@@ -33,12 +36,10 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
-import org.kapott.hbci.manager.HBCIUtils;
-
 import de.willuhn.datasource.rmi.DBService;
+import de.willuhn.jameica.messaging.QueryMessage;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.Settings;
-import de.willuhn.logging.Logger;
 
 /**
  * Diese Klasse speichert einige Einstellungen für dieses Plugin.
@@ -132,19 +133,34 @@ public class Einstellungen
    * @param kontonummer
    * @return true, wenn die Kombi ok ist.
    */
-
   public final static boolean checkAccountCRC(String blz, String kontonummer)
   {
-    try
-    {
-      return HBCIUtils.checkAccountCRC(blz, kontonummer);
-    }
-    catch (Exception e)
-    {
-      Logger
-          .warn("HBCI4Java subsystem seems to be not initialized for this thread group, adding thread group");
-      return HBCIUtils.checkAccountCRC(blz, kontonummer);
-    }
+    QueryMessage q = new QueryMessage(blz + ":" + kontonummer);
+    Application.getMessagingFactory().getMessagingQueue("hibiscus.query.accountcrc").sendSyncMessage(q);
+    Object data = q.getData();
+    
+    // Wenn wir keine oder eine ungueltige Antwort erhalten haben,
+    // ist Hibiscus vermutlich nicht installiert. In dem Fall
+    // lassen wir die Konto/BLZ-Kombination mangels besserer
+    // Informationen zu
+    return (data == null || !(data instanceof Boolean)) ? true : ((Boolean)data).booleanValue();
+  }
+  
+  /**
+   * Liefert den Namen der Bank zu einer BLZ.
+   * @param blz BLZ.
+   * @return Name der Bank oder Leerstring.
+   */
+  public final static String getNameForBLZ(String blz)
+  {
+    QueryMessage q = new QueryMessage(blz);
+    Application.getMessagingFactory().getMessagingQueue("hibiscus.query.bankname").sendSyncMessage(q);
+    Object data = q.getData();
+    
+    // wenn wir nicht zurueckerhalten haben oder die Nachricht
+    // noch unveraendert die BLZ enthaelt, liefern wir einen
+    // Leerstring zurueck
+    return (data == null || data.equals(blz)) ? "" : data.toString();
   }
 
   /**

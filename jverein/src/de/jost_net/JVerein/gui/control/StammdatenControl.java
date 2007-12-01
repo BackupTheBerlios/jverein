@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/08/14 19:20:16 $
+ * $Revision: 1.7 $
+ * $Date: 2007/12/01 10:06:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.7  2007/12/01 10:06:12  jost
+ * Änderung wg. neuem Classloader in Jameica
+ *
  * Revision 1.6  2007/08/14 19:20:16  jost
  * Vereinsnamen maximal 27 Stellen
  *
@@ -35,11 +38,9 @@ import java.rmi.RemoteException;
 
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.kapott.hbci.manager.HBCIUtils;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Stammdaten;
-import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -164,8 +165,8 @@ public class StammdatenControl extends AbstractControl
     {
       try
       {
-        String name = HBCIUtils.getNameForBLZ((String) getBlz().getValue());
-        getBlz().setComment(name);
+        String blz = (String) getBlz().getValue();
+        getBlz().setComment(Einstellungen.getNameForBLZ(blz));
       }
       catch (RemoteException e)
       {

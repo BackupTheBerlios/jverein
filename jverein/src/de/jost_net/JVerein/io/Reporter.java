@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/05/26 16:26:41 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/01 10:06:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.2  2007/12/01 10:06:38  jost
+ * Änderung wg. neuem Classloader in Jameica
+ *
  * Revision 1.1  2007/05/26 16:26:41  jost
  * Neu
  *
@@ -36,7 +39,8 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import de.willuhn.jameica.hbci.HBCI;
+import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.util.I18N;
@@ -78,7 +82,7 @@ public class Reporter
   public Reporter(OutputStream out, ProgressMonitor monitor, String title,
       String subtitle, int maxRecords) throws DocumentException
   {
-    this.i18n = Application.getPluginLoader().getPlugin(HBCI.class)
+    this.i18n = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
         .getResources().getI18N();
     this.out = out;
     this.monitor = monitor;
@@ -90,14 +94,14 @@ public class Reporter
       this.monitor.setStatusText(i18n.tr("Erzeuge Liste"));
       this.monitor.addPercentComplete(1);
     }
-    AbstractPlugin plugin = Application.getPluginLoader().getPlugin(HBCI.class);
+    AbstractPlugin plugin = Application.getPluginLoader().getPlugin(JVereinPlugin.class);
     rpt.addAuthor(i18n.tr("{0} - Version {1}",
         new String[] { plugin.getManifest().getName(),
             "" + plugin.getManifest().getVersion() }));
     rpt.addTitle(subtitle);
 
     Chunk fuss = new Chunk(i18n.tr(title + " | " + subtitle
-        + " | erstellt am {0}              Seite:  ", HBCI.LONGDATEFORMAT
+        + " | erstellt am {0}              Seite:  ", Einstellungen.DATEFORMAT
         .format(new Date())), FontFactory.getFont(FontFactory.HELVETICA, 8,
         Font.BOLD));
     HeaderFooter hf = new HeaderFooter(new Phrase(fuss), true);
@@ -281,7 +285,7 @@ public class Reporter
     else
       f = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL, Color.RED);
     PdfPCell cell = new PdfPCell(
-        new Phrase(HBCI.DECIMALFORMAT.format(value), f));
+        new Phrase(Einstellungen.DECIMALFORMAT.format(value), f));
     cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
     return cell;
   }
