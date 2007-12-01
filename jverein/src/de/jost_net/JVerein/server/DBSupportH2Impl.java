@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/10/18 18:20:23 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/01 10:07:33 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.2  2007/12/01 10:07:33  jost
+ * H2-Support
+ *
  * Revision 1.1  2007/10/18 18:20:23  jost
  * Vorbereitung H2-DB
  *
@@ -30,10 +33,7 @@ import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.willuhn.jameica.plugin.PluginResources;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
-import de.willuhn.sql.CheckSum;
 import de.willuhn.util.ApplicationException;
-import de.willuhn.util.I18N;
-import de.willuhn.util.ProgressMonitor;
 
 /**
  * Implementierung des Datenbank-Supports fuer H2-Database
@@ -129,11 +129,11 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
         + Application.getPluginLoader().getPlugin(JVereinPlugin.class)
             .getResources().getWorkPath() + "/h2db/jverein";
 
-    if (JVereinDBService.SETTINGS.getBoolean("database.driver.h2.encryption",
-        true))
-      url += ";CIPHER="
-          + JVereinDBService.SETTINGS.getString(
-              "database.driver.h2.encryption.algorithm", "XTEA");
+    // if (JVereinDBService.SETTINGS.getBoolean("database.driver.h2.encryption",
+    // true))
+    // url += ";CIPHER="
+    // + JVereinDBService.SETTINGS.getString(
+    // "database.driver.h2.encryption.algorithm", "XTEA");
     return url;
   }
 
@@ -193,31 +193,33 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
     if (!Einstellungen.getCheckDatabase())
       return;
 
-    I18N i18n = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
-        .getResources().getI18N();
+    // I18N i18n = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
+    // .getResources().getI18N();
 
-    try
-    {
-      ProgressMonitor monitor = Application.getCallback().getStartupMonitor();
-      monitor.setStatusText(i18n.tr("Prüfe Datenbank-Integrität"));
-
-      String checkSum = CheckSum.md5(conn, null, null);
-      if (DBMAPPING.get(checkSum) == null)
-        throw new ApplicationException(
-            i18n
-                .tr(
-                    "Datenbank-Checksumme ungültig: {0}. Datenbank-Version nicht kompatibel zur JVerein-Version?",
-                    checkSum));
-      monitor.setStatusText(i18n.tr("Datenbank-Checksumme korrekt"));
-    }
-    catch (ApplicationException ae)
-    {
-      throw ae;
-    }
-    catch (Exception e)
-    {
-      throw new RemoteException(i18n.tr("Fehler beim Prüfen der Datenbank"), e);
-    }
+    // try
+    // {
+    // ProgressMonitor monitor = Application.getCallback().getStartupMonitor();
+    // monitor.setStatusText(i18n.tr("Prüfe Datenbank-Integrität"));
+    //
+    // String checkSum = CheckSum.md5(conn, null, null);
+    // if (DBMAPPING.get(checkSum) == null)
+    // throw new ApplicationException(
+    // i18n
+    // .tr(
+    // "Datenbank-Checksumme ungültig: {0}. Datenbank-Version nicht kompatibel
+    // zur JVerein-Version?",
+    // checkSum));
+    // monitor.setStatusText(i18n.tr("Datenbank-Checksumme korrekt"));
+    // }
+    // catch (ApplicationException ae)
+    // {
+    // throw ae;
+    // }
+    // catch (Exception e)
+    // {
+    // throw new RemoteException(i18n.tr("Fehler beim Prüfen der Datenbank"),
+    // e);
+    // }
   }
 
   /**

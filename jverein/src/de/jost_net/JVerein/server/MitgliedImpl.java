@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/08/22 20:44:55 $
+ * $Revision: 1.8 $
+ * $Date: 2007/12/01 10:07:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.8  2007/12/01 10:07:45  jost
+ * H2-Support
+ *
  * Revision 1.7  2007/08/22 20:44:55  jost
  * Bug #011762
  *
@@ -105,18 +108,18 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       throw new ApplicationException("Bitte Eintrittsdatum eingeben");
     }
-    if (getZahlungsweg() == ZahlungswegInput.ABBUCHUNG)
+    if (getZahlungsweg() == ZahlungswegInput.ABBUCHUNG
+        && getBeitragsgruppe().getBetrag() > 0)
     {
-      if (getBeitragsgruppe().getBetrag() > 0
-          && (getBlz() == null || getBlz().length() == 0 || getKonto() == null || getKonto()
-              .length() == 0))
+      if (getBlz() == null || getBlz().length() == 0 || getKonto() == null
+          || getKonto().length() == 0)
       {
         throw new ApplicationException("Bitte Bankverbindung eingeben");
       }
       if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
       {
-        throw new ApplicationException(
-            "Ungültige BLZ/Kontonummer. Bitte prüfen Sie Ihre Eingaben.");
+        throw new ApplicationException("BLZ/Kontonummer (" + getBlz() + "/"
+            + getKonto() + ") ungültig. Bitte prüfen Sie Ihre Eingaben.");
       }
     }
     if (getAustritt() != null || getKuendigung() != null)
