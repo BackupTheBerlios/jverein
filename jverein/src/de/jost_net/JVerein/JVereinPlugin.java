@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.13 $
- * $Date: 2007/10/18 18:18:33 $
+ * $Revision: 1.14 $
+ * $Date: 2007/12/01 17:45:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.14  2007/12/01 17:45:32  jost
+ * Formatierung
+ *
  * Revision 1.13  2007/10/18 18:18:33  jost
  * Vorbereitung H2-DB
  *
@@ -120,7 +123,6 @@ public class JVereinPlugin extends AbstractPlugin
   {
     call(new ServiceCall()
     {
-
       public void call(JVereinDBService service) throws ApplicationException,
           RemoteException
       {
@@ -136,7 +138,6 @@ public class JVereinPlugin extends AbstractPlugin
   {
     call(new ServiceCall()
     {
-
       public void call(JVereinDBService service) throws ApplicationException,
           RemoteException
       {
