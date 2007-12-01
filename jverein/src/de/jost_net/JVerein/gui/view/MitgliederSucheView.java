@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.9 $
- * $Date: 2007/09/16 17:52:37 $
+ * $Revision: 1.10 $
+ * $Date: 2007/12/01 19:08:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.10  2007/12/01 19:08:54  jost
+ * Wegfall Standardtab für die Suche
+ *
  * Revision 1.9  2007/09/16 17:52:37  jost
  * Selektion nach Mitgliedsstatus
  *
@@ -153,10 +156,6 @@ public class MitgliederSucheView extends AbstractView
         tab[i] = new TabGroup(folder, b[i]);
       }
       int si = 0;
-      if (Einstellungen.getMitgliederStandardTab().equals("*"))
-      {
-        si = b.length - 1;
-      }
       for (int i = 0; i < b.length; i++)
       {
         if (b[i].equals(settings.getString("lasttab", "A")))

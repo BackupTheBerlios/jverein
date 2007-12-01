@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/12/01 10:04:44 $
+ * $Revision: 1.7 $
+ * $Date: 2007/12/01 19:05:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.7  2007/12/01 19:05:25  jost
+ * Wegfall Standardtab für die Suche
+ *
  * Revision 1.6  2007/12/01 10:04:44  jost
  * Änderung wg. neuem Classloader in Jameica
  *
@@ -321,19 +324,6 @@ public class Einstellungen
   {
     settings.setAttribute("kursteilnehmer.einblenden", value);
     kursteilnehmer = null;
-  }
-
-  /**
-   * Standardtab f�r die Mitgliedersuche
-   */
-  public static String getMitgliederStandardTab()
-  {
-    if (mitgliederstandardtab != null)
-    {
-      return mitgliederstandardtab;
-    }
-    mitgliederstandardtab = settings.getString("mitglieder.standardtab", "A");
-    return mitgliederstandardtab;
   }
 
   /**
