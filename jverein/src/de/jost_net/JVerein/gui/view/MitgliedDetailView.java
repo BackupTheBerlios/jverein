@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.9 $
- * $Date: 2007/08/22 20:44:35 $
+ * $Revision: 1.10 $
+ * $Date: 2007/12/02 13:43:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.10  2007/12/02 13:43:29  jost
+ * Neu: Beitragsmodelle
+ *
  * Revision 1.9  2007/08/22 20:44:35  jost
  * Bug #011762
  *
@@ -48,6 +51,7 @@ import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.MitgliedDeleteAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
+import de.jost_net.JVerein.gui.input.BeitragsmodelInput;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -84,6 +88,10 @@ public class MitgliedDetailView extends AbstractView
 
     TabGroup tab1 = new TabGroup(folder, "Bankverbindung");
     tab1.addLabelPair("Zahlungsweg", control.getZahlungsweg());
+    if (Einstellungen.getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
+    {
+      tab1.addLabelPair("Zahlungsrhytmus", control.getZahlungsrhytmus());
+    }
     tab1.addLabelPair("BLZ", control.getBlz());
     tab1.addLabelPair("Konto", control.getKonto());
     tab1.addLabelPair("Kontoinhaber", control.getKontoinhaber());

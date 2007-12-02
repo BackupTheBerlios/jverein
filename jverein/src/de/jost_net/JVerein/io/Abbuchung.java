@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.12 $
- * $Date: 2007/08/14 19:20:57 $
+ * $Revision: 1.13 $
+ * $Date: 2007/12/02 13:43:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.13  2007/12/02 13:43:43  jost
+ * Neu: Beitragsmodelle
+ *
  * Revision 1.12  2007/08/14 19:20:57  jost
  * Bugfix wenn keine Beitragsgruppe mit 0 ? existiert.
  *
@@ -55,7 +58,10 @@ import java.util.Date;
 import java.util.Hashtable;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.gui.input.AbbuchungsmodusInput;
+import de.jost_net.JVerein.gui.input.BeitragsmodelInput;
 import de.jost_net.JVerein.gui.input.IntervallInput;
+import de.jost_net.JVerein.gui.input.ZahlungsrhytmusInput;
 import de.jost_net.JVerein.gui.input.ZahlungswegInput;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
@@ -73,19 +79,10 @@ import de.willuhn.util.ProgressMonitor;
 
 public class Abbuchung
 {
-  public Abbuchung(FileOutputStream out, String verwendungszweck,
+  public Abbuchung(FileOutputStream out, int modus, String verwendungszweck,
       Date vondatum, Boolean zusatzabbuchung, ProgressMonitor monitor)
       throws ApplicationException
   {
-    if (vondatum == null)
-    {
-      monitor.log("Jahresabbuchung");
-    }
-    else
-    {
-      monitor.log("Abbuchung für die Mitglieder, die ab "
-          + Einstellungen.DATEFORMAT.format(vondatum) + " eingegeben wurden.");
-    }
     try
     {
       // Stammdatensatz ermitteln.
@@ -156,6 +153,31 @@ public class Abbuchung
             vondatum.getTime()) });
         // list.addFilter("tonumber(eingabedatum) >= " + vondatum.getTime());
       }
+      if (Einstellungen.getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
+      {
+        if (modus == AbbuchungsmodusInput.HAVIMO)
+        {
+          list
+              .addFilter(
+                  "zahlungsrhytmus = ? or zahlungsrhytmus = ? or zahlungsrhytmus = ?",
+                  new Object[] {
+                      new Integer(ZahlungsrhytmusInput.HALBJAEHRLICH),
+                      new Integer(ZahlungsrhytmusInput.VIERTELJAEHRLICH),
+                      new Integer(ZahlungsrhytmusInput.MONATLICH) });
+        }
+        if (modus == AbbuchungsmodusInput.VIMO)
+        {
+          list.addFilter("zahlungsrhytmus = ? or zahlungsrhytmus = ?",
+              new Object[] {
+                  new Integer(ZahlungsrhytmusInput.VIERTELJAEHRLICH),
+                  new Integer(ZahlungsrhytmusInput.MONATLICH) });
+        }
+        if (modus == AbbuchungsmodusInput.MO)
+        {
+          list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
+              ZahlungsrhytmusInput.MONATLICH) });
+        }
+      }
       // Sätze im Resultset
       monitor.log("Anzahl Sätze: " + list.size());
 
@@ -166,7 +188,16 @@ public class Abbuchung
       {
         monitor.setStatus((int) ((double) count / (double) list.size() * 100d));
         Mitglied m = (Mitglied) list.next();
-        Double betr = (Double) beitr.get(m.getBeitragsgruppeId() + "");
+        Double betr;
+        if (Einstellungen.getBeitragsmodel() != BeitragsmodelInput.MONATLICH12631)
+        {
+          betr = (Double) beitr.get(m.getBeitragsgruppeId() + "");
+        }
+        else
+        {
+          betr = (Double) beitr.get(m.getBeitragsgruppeId() + "")
+              * m.getZahlungsrhytmus();
+        }
         if (m.getZahlungsweg() == ZahlungswegInput.ABBUCHUNG)
         {
           writeCSatz(dtaus, m, verwendungszweck, betr);

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/12/01 17:46:46 $
+ * $Revision: 1.5 $
+ * $Date: 2007/12/02 13:43:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.5  2007/12/02 13:43:16  jost
+ * Neu: Beitragsmodelle
+ *
  * Revision 1.4  2007/12/01 17:46:46  jost
  * Wegfall Standardtab fÃ¼r die Suche
  *
@@ -49,6 +52,10 @@ public class EinstellungenView extends AbstractView
     group.addLabelPair("Wiedervorlage anzeigen *", control.getWiedervorlage());
     group
         .addLabelPair("Kursteilnehmer anzeigen *", control.getKursteilnehmer());
+
+    LabelGroup groupAbu = new LabelGroup(getParent(), "Beiträge");
+    groupAbu.addLabelPair("Beitragsmodel", control.getBeitragsmodel());
+
     new Headline(getParent(), "* Änderung erfordert Neustart");
     ButtonArea buttons = new ButtonArea(getParent(), 2);
     buttons.addButton("<< Zurück", new BackAction());

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2007/12/01 10:07:45 $
+ * $Revision: 1.9 $
+ * $Date: 2007/12/02 13:44:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.9  2007/12/02 13:44:14  jost
+ * Neu: Beitragsmodelle
+ *
  * Revision 1.8  2007/12/01 10:07:45  jost
  * H2-Support
  *
@@ -242,6 +245,17 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public void setZahlungsweg(Integer zahlungsweg) throws RemoteException
   {
     setAttribute("zahlungsweg", zahlungsweg);
+  }
+
+  public Integer getZahlungsrhytmus() throws RemoteException
+  {
+    return (Integer) getAttribute("zahlungsrhytmus");
+  }
+
+  public void setZahlungsrhytmus(Integer zahlungsrhytmus)
+      throws RemoteException
+  {
+    setAttribute("zahlungsrhytmus", zahlungsrhytmus);
   }
 
   public String getBlz() throws RemoteException
