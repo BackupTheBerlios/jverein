@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/12/02 13:39:10 $
+ * $Revision: 1.7 $
+ * $Date: 2007/12/02 14:14:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.7  2007/12/02 14:14:33  jost
+ * √úberfl√ºssige Plausi entfernt.
+ *
  * Revision 1.6  2007/12/02 13:39:10  jost
  * Neu: Beitragsmodelle
  *
@@ -180,14 +183,6 @@ public class AbbuchungControl extends AbstractControl
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
 
     final Date vond = (Date) vondatum.getValue();
-
-    Integer m = (Integer) modus.getValue();
-    if (m.intValue() == AbbuchungsmodusInput.EINGETRETENEMITGLIEDER
-        && vond == null)
-    {
-      GUI.getStatusBar().setErrorText("Jahresabbuchung oder Datum ausw‰hlen");
-      return;
-    }
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei w‰hlen.");
 
