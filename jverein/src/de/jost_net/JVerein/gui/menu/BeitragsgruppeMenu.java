@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BeitragsgruppeMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/08/23 19:24:45 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/02 13:41:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeMenu.java,v $
+ * Revision 1.2  2007/12/02 13:41:04  jost
+ * überflüssiges Import-Statement entfernt.
+ *
  * Revision 1.1  2007/08/23 19:24:45  jost
  * Bug #11819 - Beitragsgruppen können jetzt gelöscht werden
  *
@@ -18,7 +21,6 @@ package de.jost_net.JVerein.gui.menu;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDeleteAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
-import de.willuhn.jameica.gui.parts.TablePart;
 
 /**
  * Kontext-Menu zu den Beitragsgruppen.

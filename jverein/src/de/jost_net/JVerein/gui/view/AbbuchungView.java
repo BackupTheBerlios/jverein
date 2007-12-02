@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/08/22 20:44:10 $
+ * $Revision: 1.8 $
+ * $Date: 2007/12/02 13:41:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.8  2007/12/02 13:41:18  jost
+ * überflüssiges Import-Statement entfernt.
+ *
  * Revision 1.7  2007/08/22 20:44:10  jost
  * Bug #011762
  *
@@ -74,7 +77,7 @@ public class AbbuchungView extends AbstractView
     final AbbuchungControl control = new AbbuchungControl(this);
 
     LabelGroup group = new LabelGroup(getParent(), "Parameter");
-    group.addLabelPair("Jahresabbuchung", control.getJahresabbuchung());
+    group.addLabelPair("Modus", control.getAbbuchungsmodus());
     group.addLabelPair("Von Eingabedatum", control.getVondatum());
     group.addLabelPair("Zahlungsgrund", control.getZahlungsgrund());
     group.addLabelPair("Zusatzabbuchung", control.getZusatzabbuchung());
