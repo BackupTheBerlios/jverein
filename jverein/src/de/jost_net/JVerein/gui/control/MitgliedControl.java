@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.22 $
- * $Date: 2007/12/02 13:39:47 $
+ * $Revision: 1.23 $
+ * $Date: 2007/12/16 20:25:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.23  2007/12/16 20:25:21  jost
+ * Mitgliederstatistik l√§uft jetzt in einem eigenen Thread
+ *
  * Revision 1.22  2007/12/02 13:39:47  jost
  * Neu: Beitragsmodelle
  *
@@ -91,6 +94,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungAction;
@@ -1222,7 +1226,6 @@ public class MitgliedControl extends AbstractControl
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei w‰hlen.");
     fd.setFilterExtensions(new String[] { "*.PDF" });
-
     Settings settings = new Settings(this.getClass());
 
     String path = settings
@@ -1243,18 +1246,35 @@ public class MitgliedControl extends AbstractControl
 
     final File file = new File(s);
 
-    try
+    BackgroundTask t = new BackgroundTask()
     {
-      new MitgliederStatistik(file);
-    }
-    catch (RemoteException e)
-    {
-      e.printStackTrace();
-    }
-    catch (ApplicationException e)
-    {
-      e.printStackTrace();
-    }
+      public void run(ProgressMonitor monitor) throws ApplicationException
+      {
+        try
+        {
+          new MitgliederStatistik(file, monitor);
+        }
+        catch (RemoteException e)
+        {
+          e.printStackTrace();
+        }
+        catch (ApplicationException e)
+        {
+          e.printStackTrace();
+        }
+      }
+
+      public void interrupt()
+      {
+      }
+
+      public boolean isInterrupted()
+      {
+        return false;
+      }
+    };
+    Application.getController().start(t);
+
   }
 
   private void auswertungMitgliedPDF(final DBIterator list, final File file,
