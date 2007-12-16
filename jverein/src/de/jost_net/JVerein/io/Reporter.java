@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/01 10:06:38 $
+ * $Revision: 1.3 $
+ * $Date: 2007/12/16 20:26:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.3  2007/12/16 20:26:29  jost
+ * neue Methode
+ *
  * Revision 1.2  2007/12/01 10:06:38  jost
  * Änderung wg. neuem Classloader in Jameica
  *
@@ -94,7 +97,8 @@ public class Reporter
       this.monitor.setStatusText(i18n.tr("Erzeuge Liste"));
       this.monitor.addPercentComplete(1);
     }
-    AbstractPlugin plugin = Application.getPluginLoader().getPlugin(JVereinPlugin.class);
+    AbstractPlugin plugin = Application.getPluginLoader().getPlugin(
+        JVereinPlugin.class);
     rpt.addAuthor(i18n.tr("{0} - Version {1}",
         new String[] { plugin.getManifest().getName(),
             "" + plugin.getManifest().getVersion() }));
@@ -198,6 +202,14 @@ public class Reporter
     table.setHeaderRows(1);
   }
 
+  public void closeTable() throws DocumentException
+  {
+    rpt.add(table);
+    table = null;
+    headers = new ArrayList();
+    widths = new ArrayList();
+  }
+
   /**
    * Schliesst den Report.
    * 
@@ -213,7 +225,10 @@ public class Reporter
         monitor.setPercentComplete(100);
         monitor.setStatusText("PDF-Export beendet");
       }
-      rpt.add(table);
+      if (table != null)
+      {
+        rpt.add(table);
+      }
       rpt.close();
     }
     finally
@@ -284,8 +299,8 @@ public class Reporter
           Color.BLACK);
     else
       f = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL, Color.RED);
-    PdfPCell cell = new PdfPCell(
-        new Phrase(Einstellungen.DECIMALFORMAT.format(value), f));
+    PdfPCell cell = new PdfPCell(new Phrase(Einstellungen.DECIMALFORMAT
+        .format(value), f));
     cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
     return cell;
   }
