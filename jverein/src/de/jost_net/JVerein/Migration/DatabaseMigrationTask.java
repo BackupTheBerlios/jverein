@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/DatabaseMigrationTask.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/12/01 10:06:56 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/16 20:26:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DatabaseMigrationTask.java,v $
+ * Revision 1.2  2007/12/16 20:26:56  jost
+ * Versions-Tabelle wird mitmigriert.
+ *
  * Revision 1.1  2007/12/01 10:06:56  jost
  * H2-Support
  *
@@ -24,6 +27,7 @@ import de.jost_net.JVerein.server.KursteilnehmerImpl;
 import de.jost_net.JVerein.server.ManuellerZahlungseingangImpl;
 import de.jost_net.JVerein.server.MitgliedImpl;
 import de.jost_net.JVerein.server.StammdatenImpl;
+import de.jost_net.JVerein.server.VersionImpl;
 import de.jost_net.JVerein.server.WiedervorlageImpl;
 import de.jost_net.JVerein.server.ZusatzabbuchungImpl;
 import de.willuhn.datasource.BeanUtil;
@@ -93,6 +97,7 @@ public class DatabaseMigrationTask implements BackgroundTask
       copy(MitgliedImpl.class, monitor);
       copy(KursteilnehmerImpl.class, monitor);
       copy(ManuellerZahlungseingangImpl.class, monitor);
+      copy(VersionImpl.class, monitor);
       copy(WiedervorlageImpl.class, monitor);
       copy(ZusatzabbuchungImpl.class, monitor);
 
@@ -200,4 +205,3 @@ public class DatabaseMigrationTask implements BackgroundTask
     monitor.addPercentComplete(5);
   }
 }
-
