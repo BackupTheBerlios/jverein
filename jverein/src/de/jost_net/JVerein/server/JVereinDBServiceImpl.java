@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/12/01 19:09:16 $
+ * $Revision: 1.5 $
+ * $Date: 2007/12/16 20:27:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
+ * Revision 1.5  2007/12/16 20:27:48  jost
+ * Standardwert zurück auf McKoi
+ *
  * Revision 1.4  2007/12/01 19:09:16  jost
  * H2-Support
  *
@@ -54,7 +57,7 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
    */
   public JVereinDBServiceImpl() throws RemoteException
   {
-    this(SETTINGS.getString("database.driver", DBSupportH2Impl.class
+    this(SETTINGS.getString("database.driver", DBSupportMcKoiImpl.class
         .getName()));
   }
 
