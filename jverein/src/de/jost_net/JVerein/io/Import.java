@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/03/25 17:03:44 $
+ * $Revision: 1.7 $
+ * $Date: 2007/12/18 17:25:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.7  2007/12/18 17:25:21  jost
+ * Neu: Zahlungsrhytmus importieren
+ *
  * Revision 1.6  2007/03/25 17:03:44  jost
  * 1. Zusätzliche Plausibilitäten
  * 2. Import des Zahlungsweges
@@ -189,6 +192,12 @@ public class Import
               + " ungültige Zahlungsart. Bar wird angenommen.");
           m.setZahlungsweg(ZahlungswegInput.BARZAHLUNG);
         }
+        String zahlungsrhytmus = results.getString("Zahlungsrhytmus");
+        if (zahlungsrhytmus == null)
+        {
+          zahlungsrhytmus = "12";
+        }
+        m.setZahlungsrhytmus(Integer.parseInt(zahlungsrhytmus));
         m.setKontoinhaber(results.getString("Zahler"));
         m.setTelefonprivat(results.getString("Telefon_privat"));
         m.setTelefondienstlich(results.getString("Telefon_dienstlich"));
@@ -211,7 +220,7 @@ public class Import
         }
         m.setAustritt(austritt);
         String kuendigung;
-
+        
         try
         {
           kuendigung = results.getString("Kündigung");

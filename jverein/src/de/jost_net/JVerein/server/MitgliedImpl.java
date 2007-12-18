@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.9 $
- * $Date: 2007/12/02 13:44:14 $
+ * $Revision: 1.10 $
+ * $Date: 2007/12/18 17:25:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.10  2007/12/18 17:25:42  jost
+ * Neu: Zahlungsrhytmus importieren
+ *
  * Revision 1.9  2007/12/02 13:44:14  jost
  * Neu: Beitragsmodelle
  *
@@ -125,6 +128,13 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
             + getKonto() + ") ungültig. Bitte prüfen Sie Ihre Eingaben.");
       }
     }
+    if (getZahlungsrhytmus() != 12 && getZahlungsrhytmus() != 6
+        && getZahlungsrhytmus() != 3 && getZahlungsrhytmus() != 1)
+    {
+      throw new ApplicationException("Ungültiger Zahlungsrhytmus: "
+          + getZahlungsrhytmus());
+    }
+
     if (getAustritt() != null || getKuendigung() != null)
     {
       // Person ist ausgetreten
