@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.14 $
- * $Date: 2007/12/01 17:45:32 $
+ * $Revision: 1.15 $
+ * $Date: 2007/12/20 20:31:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.15  2007/12/20 20:31:58  jost
+ * Anpassung an Jameica-Standard
+ *
  * Revision 1.14  2007/12/01 17:45:32  jost
  * Formatierung
  *
@@ -54,7 +57,6 @@
  **********************************************************************/
 package de.jost_net.JVerein;
 
-import java.io.File;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.gui.navigation.MyExtension;
@@ -82,9 +84,9 @@ public class JVereinPlugin extends AbstractPlugin
    * @param file
    *          the plugin file (your jar or the plugin directory).
    */
-  public JVereinPlugin(File file)
+  public JVereinPlugin()
   {
-    super(file);
+    super();
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
   }
