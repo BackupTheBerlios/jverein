@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.14 $
- * $Date: 2007/12/02 14:15:25 $
+ * $Revision: 1.15 $
+ * $Date: 2007/12/21 13:36:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.15  2007/12/21 13:36:10  jost
+ * Ausgabe der DTAUS-Datei im PDF-Format
+ *
  * Revision 1.14  2007/12/02 14:15:25  jost
  * Neu: Beitragsmodelle
  *
@@ -183,6 +186,7 @@ public class Abbuchung
                 ZahlungsrhytmusInput.MONATLICH) });
           }
         }
+        list.setOrder("ORDER BY name, vorname");
         // Sätze im Resultset
         monitor.log("Anzahl Sätze: " + list.size());
 

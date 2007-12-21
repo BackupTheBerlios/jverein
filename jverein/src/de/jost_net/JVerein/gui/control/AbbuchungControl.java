@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/12/02 14:14:33 $
+ * $Revision: 1.8 $
+ * $Date: 2007/12/21 13:35:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.8  2007/12/21 13:35:44  jost
+ * Ausgabe der DTAUS-Datei im PDF-Format
+ *
  * Revision 1.7  2007/12/02 14:14:33  jost
  * ÃœberflÃ¼ssige Plausi entfernt.
  *
@@ -47,6 +50,7 @@ import org.eclipse.swt.widgets.Listener;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.input.AbbuchungsmodusInput;
 import de.jost_net.JVerein.io.Abbuchung;
+import de.jost_net.OBanToo.Dtaus.Dtaus2Pdf;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -54,7 +58,9 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.CheckboxInput;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.TextInput;
+import de.willuhn.jameica.gui.internal.action.Program;
 import de.willuhn.jameica.gui.parts.Button;
+import de.willuhn.jameica.messaging.StatusBarMessage;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.BackgroundTask;
 import de.willuhn.jameica.system.Settings;
@@ -73,6 +79,8 @@ public class AbbuchungControl extends AbstractControl
   private CheckboxInput zusatzabbuchung;
 
   private CheckboxInput kursteilnehmer;
+
+  private CheckboxInput dtausprint;
 
   private Settings settings = null;
 
@@ -166,6 +174,16 @@ public class AbbuchungControl extends AbstractControl
     return kursteilnehmer;
   }
 
+  public CheckboxInput getDtausPrint() throws RemoteException
+  {
+    if (dtausprint != null)
+    {
+      return dtausprint;
+    }
+    dtausprint = new CheckboxInput(false);
+    return dtausprint;
+  }
+
   public Button getStartButton()
   {
     Button button = new Button("starten", new Action()
@@ -181,10 +199,11 @@ public class AbbuchungControl extends AbstractControl
   private void doAbbuchung() throws ApplicationException
   {
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
-
     final Date vond = (Date) vondatum.getValue();
+
+    // Abbuchungsdatei
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
-    fd.setText("Ausgabedatei wählen.");
+    fd.setText("DTAUS-Ausgabedatei wählen.");
 
     String path = settings
         .getString("lastdir", System.getProperty("user.home"));
@@ -198,8 +217,22 @@ public class AbbuchungControl extends AbstractControl
       // close();
       return;
     }
-
     final File file = new File(s);
+
+    // PDF-Datei für Dtaus2PDF
+    String _pdf = "";
+    final Boolean pdfprintb = (Boolean) dtausprint.getValue();
+    if (pdfprintb)
+    {
+      fd = new FileDialog(GUI.getShell(), SWT.SAVE);
+      fd.setText("PDF-Ausgabedatei wählen");
+      if (path != null && path.length() > 0)
+      {
+        fd.setFilterPath(path);
+      }
+      _pdf = fd.open();
+    }
+
     try
     {
       final FileOutputStream fos = new FileOutputStream(file);
@@ -207,6 +240,7 @@ public class AbbuchungControl extends AbstractControl
       settings.setAttribute("lastdir", file.getParent());
       final Boolean zusatzab = (Boolean) zusatzabbuchung.getValue();
       final Integer mo = (Integer) modus.getValue();
+      final String spdf = _pdf;
       BackgroundTask t = new BackgroundTask()
       {
         public void run(ProgressMonitor monitor) throws ApplicationException
@@ -220,6 +254,27 @@ public class AbbuchungControl extends AbstractControl
             monitor.setStatus(ProgressMonitor.STATUS_DONE);
             GUI.getStatusBar().setSuccessText(
                 "Abbuchungsdatei geschrieben: " + s);
+            if (pdfprintb)
+            {
+              new Dtaus2Pdf(s, spdf);
+              GUI.getDisplay().asyncExec(new Runnable()
+              {
+                public void run()
+                {
+                  try
+                  {
+                    new Program().handleAction(new File(spdf));
+                  }
+                  catch (ApplicationException ae)
+                  {
+                    Application.getMessagingFactory().sendMessage(
+                        new StatusBarMessage(ae.getLocalizedMessage(),
+                            StatusBarMessage.TYPE_ERROR));
+                  }
+                }
+              });
+
+            }
             GUI.getCurrentView().reload();
           }
           catch (ApplicationException ae)
@@ -258,5 +313,6 @@ public class AbbuchungControl extends AbstractControl
       throw new ApplicationException(
           "Abbuchungsdatei kann nicht geschrieben werden");
     }
+
   }
 }

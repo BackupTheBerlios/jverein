@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.8 $
- * $Date: 2007/12/02 13:41:18 $
+ * $Revision: 1.9 $
+ * $Date: 2007/12/21 13:35:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.9  2007/12/21 13:35:58  jost
+ * Ausgabe der DTAUS-Datei im PDF-Format
+ *
  * Revision 1.8  2007/12/02 13:41:18  jost
  * überflüssiges Import-Statement entfernt.
  *
@@ -86,6 +89,7 @@ public class AbbuchungView extends AbstractView
       control.getZusatzabbuchung().setEnabled(false);
     }
     group.addLabelPair("Kursteilnehmer", control.getKursteilnehmer());
+    group.addLabelPair("Dtaus-Datei drucken", control.getDtausPrint());
     if (!Einstellungen.isKursteilnehmer())
     {
       control.getKursteilnehmer().setEnabled(false);
