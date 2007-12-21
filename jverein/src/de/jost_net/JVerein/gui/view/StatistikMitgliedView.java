@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/StatistikMitgliedView.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:27:42 $
+ * $Revision: 1.3 $
+ * $Date: 2007/12/21 11:28:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StatistikMitgliedView.java,v $
+ * Revision 1.3  2007/12/21 11:28:06  jost
+ * Mitgliederstatistik jetzt Stichtagsbezogen
+ *
  * Revision 1.2  2007/02/23 20:27:42  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -26,6 +29,7 @@ import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
+import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
 
 public class StatistikMitgliedView extends AbstractView
@@ -35,6 +39,9 @@ public class StatistikMitgliedView extends AbstractView
     GUI.getView().setTitle("Mitgliederstatistik");
 
     final MitgliedControl control = new MitgliedControl(this);
+
+    LabelGroup group = new LabelGroup(getParent(), "Parameter");
+    group.addLabelPair("Stichtag", control.getStichtag());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 
