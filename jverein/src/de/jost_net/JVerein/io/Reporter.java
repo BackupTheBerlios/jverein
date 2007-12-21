@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/12/16 20:26:29 $
+ * $Revision: 1.4 $
+ * $Date: 2007/12/21 11:28:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.4  2007/12/21 11:28:46  jost
+ * Breite von Tabellen einstellbar gemacht.
+ *
  * Revision 1.3  2007/12/16 20:26:29  jost
  * neue Methode
  *
@@ -177,13 +180,30 @@ public class Reporter
   }
 
   /**
-   * Erzeugt den Tabellen-Header.
+   * Erzeugt den Tabellen-Header mit 100 % Breite.
    * 
    * @throws DocumentException
    */
   public void createHeader() throws DocumentException
   {
+    createHeader(100f, Element.ALIGN_LEFT);
+  }
+
+  /**
+   * Erzeugt den Tabellen-Header.
+   * 
+   * @param tabellenbreiteinprozent
+   *          Breite der Tabelle in Prozent
+   * @param alignment
+   *          Horizontale Ausrichtung der Tabelle (siehe com.lowagie.Element.)
+   * @throws DocumentException
+   */
+  public void createHeader(float tabellenbreiteinprozent, int alignment)
+      throws DocumentException
+  {
     table = new PdfPTable(headers.size());
+    table.setWidthPercentage(tabellenbreiteinprozent);
+    table.setHorizontalAlignment(alignment);
     float[] w = new float[headers.size()];
     for (int i = 0; i < headers.size(); i++)
     {
@@ -191,7 +211,6 @@ public class Reporter
       w[i] = breite.intValue();
     }
     table.setWidths(w);
-    table.setWidthPercentage(100);
     table.setSpacingBefore(10);
     table.setSpacingAfter(0);
     for (int i = 0; i < headers.size(); i++)
