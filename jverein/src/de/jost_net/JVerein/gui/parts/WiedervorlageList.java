@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/WiedervorlageList.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/12/20 20:33:09 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/22 08:26:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageList.java,v $
+ * Revision 1.2  2007/12/22 08:26:07  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.1  2007/12/20 20:33:09  jost
  * Neu: Wiedervorlage-Übersicht in der Jameica-Startseite
  *
@@ -46,7 +49,6 @@ public class WiedervorlageList extends TablePart implements Part
     DBService service = Einstellungen.getDBService();
     DBIterator wiedervorlagen = service.createList(Wiedervorlage.class);
     wiedervorlagen.setOrder("ORDER BY datum DESC");
-    System.out.println("bla");
 
     if (wiedervorlageList == null)
     {
