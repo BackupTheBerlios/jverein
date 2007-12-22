@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/StammdatenImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:28:41 $
+ * $Revision: 1.4 $
+ * $Date: 2007/12/22 08:27:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenImpl.java,v $
+ * Revision 1.4  2007/12/22 08:27:30  jost
+ * Neu: Jubiläenliste
+ *
  * Revision 1.3  2007/02/23 20:28:41  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -25,6 +28,7 @@ import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.io.AltersgruppenParser;
+import de.jost_net.JVerein.io.JubilaeenParser;
 import de.jost_net.JVerein.rmi.Stammdaten;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
@@ -79,6 +83,14 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
       try
       {
         new AltersgruppenParser(getAltersgruppen());
+      }
+      catch (RuntimeException e)
+      {
+        throw new ApplicationException(e.getMessage());
+      }
+      try
+      {
+        new JubilaeenParser(getJubilaeen());
       }
       catch (RuntimeException e)
       {
@@ -141,6 +153,21 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
   public void setAltersgruppen(String altersgruppen) throws RemoteException
   {
     setAttribute("altersgruppen", altersgruppen);
+  }
+
+  public String getJubilaeen() throws RemoteException
+  {
+    String ag = (String) getAttribute("jubilaeen");
+    if (ag == null || ag.length() == 0)
+    {
+      ag = "10,25,40,50";
+    }
+    return ag;
+  }
+
+  public void setJubilaeen(String jubilaeen) throws RemoteException
+  {
+    setAttribute("jubilaeen", jubilaeen);
   }
 
   public Object getAttribute(String fieldName) throws RemoteException
