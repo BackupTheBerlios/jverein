@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.9 $
- * $Date: 2007/12/21 13:35:58 $
+ * $Revision: 1.10 $
+ * $Date: 2007/12/26 18:13:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.10  2007/12/26 18:13:19  jost
+ * Lastschriften k√∂nnen jetzt als Einzellastschriften oder Sammellastschriften direkt in Hibuscus verbucht werden.
+ *
  * Revision 1.9  2007/12/21 13:35:58  jost
  * Ausgabe der DTAUS-Datei im PDF-Format
  *
@@ -94,10 +97,11 @@ public class AbbuchungView extends AbstractView
     {
       control.getKursteilnehmer().setEnabled(false);
     }
-    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
-    buttons.addButton(control.getStartButton());
-    buttons.addButton("<< Zur¸ck", new BackAction());
+    group.addLabelPair("Ausgabe", control.getAbbuchungsausgabe());
 
+    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
+    buttons.addButton("<< Zur¸ck", new BackAction());
+    buttons.addButton(control.getStartButton());
   }
 
   public void unbind() throws ApplicationException
