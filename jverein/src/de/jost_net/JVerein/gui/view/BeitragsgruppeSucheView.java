@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeSucheView.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/08/30 19:49:18 $
+ * $Revision: 1.4 $
+ * $Date: 2007/12/28 15:55:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeSucheView.java,v $
+ * Revision 1.4  2007/12/28 15:55:00  jost
+ * Button-Leiste Ã¼berarbeitet.
+ *
  * Revision 1.3  2007/08/30 19:49:18  jost
  * LÃ¶schung Ã¼ber Knopf
  *
@@ -41,10 +44,10 @@ public class BeitragsgruppeSucheView extends AbstractView
     control.getBeitragsgruppeTable().paint(this.getParent());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
+    buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Löschen", new BeitragsgruppeDeleteAction(), control
         .getBeitragsgruppeTable());
     buttons.addButton("Neu", new BeitragsgruppeDetailAction());
-    buttons.addButton("<< Zurück", new BackAction());
   }
 
   public void unbind() throws ApplicationException
