@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Jubilaeenliste.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/12/22 08:26:51 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/28 13:14:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Jubilaeenliste.java,v $
+ * Revision 1.2  2007/12/28 13:14:50  jost
+ * Bugfix beim erzeugen eines Stammdaten-Objektes
+ *
  * Revision 1.1  2007/12/22 08:26:51  jost
  * Neu: JubilÃ¤enliste
  *
@@ -52,8 +55,26 @@ public class Jubilaeenliste
       Reporter reporter = new Reporter(fos, monitor, "Jubiläumsliste " + jahr,
           "", 3);
 
-      Stammdaten stamm = (Stammdaten) Einstellungen.getDBService()
-          .createObject(Stammdaten.class, "0");
+      Stammdaten stamm = null;
+      try
+      {
+        DBIterator list = Einstellungen.getDBService().createList(
+            Stammdaten.class);
+        if (list.size() > 0)
+        {
+          stamm = (Stammdaten) list.next();
+        }
+        else
+        {
+          throw new RemoteException("keine Stammdaten gespeichert");
+        }
+      }
+      catch (RemoteException e)
+      {
+        throw new ApplicationException(
+            "Keine Stammdaten gespeichert. Bitte erfassen.");
+      }
+      
       JubilaeenParser jp = new JubilaeenParser(stamm.getJubilaeen());
       while (jp.hasNext())
       {

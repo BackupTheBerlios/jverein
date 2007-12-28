@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/StammdatenAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:26:00 $
+ * $Revision: 1.3 $
+ * $Date: 2007/12/28 13:09:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenAction.java,v $
+ * Revision 1.3  2007/12/28 13:09:23  jost
+ * Bugfix beim erzeugen eines Stammdaten-Objektes
+ *
  * Revision 1.2  2007/02/23 20:26:00  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -23,6 +26,7 @@ import java.rmi.RemoteException;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.view.StammdatenView;
 import de.jost_net.JVerein.rmi.Stammdaten;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.util.ApplicationException;
@@ -31,24 +35,25 @@ public class StammdatenAction implements Action
 {
   public void handleAction(Object context) throws ApplicationException
   {
-    Stammdaten s = null;
+    Stammdaten stamm = null;
 
     if (context != null && (context instanceof Stammdaten))
     {
-      s = (Stammdaten) context;
+      stamm = (Stammdaten) context;
     }
     else
     {
       try
       {
-        try
+        DBIterator list = Einstellungen.getDBService().createList(
+            Stammdaten.class);
+        if (list.size() > 0)
         {
-          s = (Stammdaten) Einstellungen.getDBService().createObject(
-              Stammdaten.class, "0");
+          stamm = (Stammdaten) list.next();
         }
-        catch (RemoteException e)
+        else
         {
-          s = (Stammdaten) Einstellungen.getDBService().createObject(
+          stamm = (Stammdaten) Einstellungen.getDBService().createObject(
               Stammdaten.class, null);
         }
       }
@@ -58,7 +63,7 @@ public class StammdatenAction implements Action
             "Fehler bei der Erzeugung eines Stammdatenobjektes aus der DB", e);
       }
     }
-    GUI.startView(StammdatenView.class.getName(), s);
+    GUI.startView(StammdatenView.class.getName(), stamm);
   }
 
 }

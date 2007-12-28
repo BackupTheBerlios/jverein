@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2007/12/22 08:25:28 $
+ * $Revision: 1.9 $
+ * $Date: 2007/12/28 13:14:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.9  2007/12/28 13:14:03  jost
+ * Bugfix beim erzeugen eines Stammdaten-Objektes
+ *
  * Revision 1.8  2007/12/22 08:25:28  jost
  * Neu: Jubiläenliste
  *
@@ -44,6 +47,7 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Stammdaten;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -71,8 +75,17 @@ public class StammdatenControl extends AbstractControl
     super(view);
     try
     {
-      stamm = (Stammdaten) Einstellungen.getDBService().createObject(
-          Stammdaten.class, "0");
+      DBIterator list = Einstellungen.getDBService().createList(
+          Stammdaten.class);
+      if (list.size() > 0)
+      {
+        stamm = (Stammdaten) list.next();
+      }
+      else
+      {
+        stamm = (Stammdaten) Einstellungen.getDBService().createObject(
+            Stammdaten.class, null);
+      }
     }
     catch (RemoteException e)
     {
