@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/FirstStart.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/12/28 13:09:38 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/28 15:54:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FirstStart.java,v $
+ * Revision 1.2  2007/12/28 15:54:36  jost
+ * Button-Leiste vervollständigt.
+ *
  * Revision 1.1  2007/12/28 13:09:38  jost
  * Neue FirstStart-Box
  *
@@ -20,7 +23,8 @@ import java.rmi.RemoteException;
 import org.eclipse.swt.widgets.Composite;
 
 import de.jost_net.JVerein.Einstellungen;
-import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
+import de.jost_net.JVerein.gui.action.BeitragsgruppeSucheAction;
+import de.jost_net.JVerein.gui.action.EinstellungenAction;
 import de.jost_net.JVerein.gui.action.StammdatenAction;
 import de.willuhn.jameica.gui.boxes.AbstractBox;
 import de.willuhn.jameica.gui.parts.FormTextPart;
@@ -76,9 +80,9 @@ public class FirstStart extends AbstractBox
 
     text.paint(parent);
 
-    ButtonArea buttons = new ButtonArea(parent, 2);
+    ButtonArea buttons = new ButtonArea(parent, 3);
     buttons.addButton("Stammdaten", new StammdatenAction(), null, true);
-    buttons
-        .addButton("Beitragsgruppen", new BeitragsgruppeDetailAction(), null);
+    buttons.addButton("Beitragsgruppen", new BeitragsgruppeSucheAction(), null);
+    buttons.addButton("Einstellungen", new EinstellungenAction(), null);
   }
 }
