@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.8 $
- * $Date: 2007/12/02 13:38:46 $
+ * $Revision: 1.9 $
+ * $Date: 2007/12/28 13:08:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.9  2007/12/28 13:08:44  jost
+ * Neue FirstStart-Box
+ *
  * Revision 1.8  2007/12/02 13:38:46  jost
  * Neu: Beitragsmodelle
  *
@@ -43,6 +46,8 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 import de.jost_net.JVerein.gui.input.BeitragsmodelInput;
+import de.jost_net.JVerein.rmi.Stammdaten;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.messaging.QueryMessage;
 import de.willuhn.jameica.system.Application;
@@ -340,7 +345,8 @@ public class Einstellungen
    */
   public static int getBeitragsmodel()
   {
-    beitragsmodel = settings.getInt("beitragsmodel", BeitragsmodelInput.JAEHRLICH);
+    beitragsmodel = settings.getInt("beitragsmodel",
+        BeitragsmodelInput.JAEHRLICH);
     return beitragsmodel;
   }
 
@@ -360,6 +366,30 @@ public class Einstellungen
   public static boolean getCheckDatabase()
   {
     return settings.getBoolean("checkdatabase", true);
+  }
+
+  public static boolean isFirstStart()
+  {
+    boolean bstamm = false;
+    boolean bbeitragsgruppe = false;
+    try
+    {
+      DBIterator st = getDBService().createList(Stammdaten.class);
+      if (st.size() > 0)
+      {
+        bstamm = true;
+      }
+      DBIterator bg = getDBService().createList(Stammdaten.class);
+      if (bg.size() > 0)
+      {
+        bbeitragsgruppe = true;
+      }
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return !bstamm || !bbeitragsgruppe;
   }
 
 }
