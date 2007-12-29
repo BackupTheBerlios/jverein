@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/Attic/Wiedervorlage.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/28 13:10:22 $
+ * $Revision: 1.3 $
+ * $Date: 2007/12/29 19:09:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Wiedervorlage.java,v $
+ * Revision 1.3  2007/12/29 19:09:41  jost
+ * Explizite Höhe der Box vorgegeben.
+ *
  * Revision 1.2  2007/12/28 13:10:22  jost
  * Kommentare entfernt und hinzugefügt.
  *
@@ -55,6 +58,11 @@ public class Wiedervorlage extends AbstractBox implements Box
   public boolean isActive()
   {
     return super.isActive();
+  }
+
+  public int getHeight()
+  {
+    return 130;
   }
 
 }

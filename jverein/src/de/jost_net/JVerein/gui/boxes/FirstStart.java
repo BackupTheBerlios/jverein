@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/FirstStart.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/28 15:54:36 $
+ * $Revision: 1.3 $
+ * $Date: 2007/12/29 19:09:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FirstStart.java,v $
+ * Revision 1.3  2007/12/29 19:09:22  jost
+ * Explizite Höhe der Box vorgegeben.
+ *
  * Revision 1.2  2007/12/28 15:54:36  jost
  * Button-Leiste vervollständigt.
  *
@@ -84,5 +87,10 @@ public class FirstStart extends AbstractBox
     buttons.addButton("Stammdaten", new StammdatenAction(), null, true);
     buttons.addButton("Beitragsgruppen", new BeitragsgruppeSucheAction(), null);
     buttons.addButton("Einstellungen", new EinstellungenAction(), null);
+  }
+
+  public int getHeight()
+  {
+    return 140;
   }
 }
