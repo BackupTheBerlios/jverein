@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.16 $
- * $Date: 2007/12/26 18:13:33 $
+ * $Revision: 1.17 $
+ * $Date: 2007/12/30 10:10:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.17  2007/12/30 10:10:07  jost
+ * Neuer Rhytmus: Jahr, Vierteljahr und Monat
+ *
  * Revision 1.16  2007/12/26 18:13:33  jost
  * Lastschriften können jetzt als Einzellastschriften oder Sammellastschriften direkt in Hibuscus verbucht werden.
  *
@@ -221,6 +224,15 @@ public class Abbuchung
                   "zahlungsrhytmus = ? or zahlungsrhytmus = ? or zahlungsrhytmus = ?",
                   new Object[] {
                       new Integer(ZahlungsrhytmusInput.HALBJAEHRLICH),
+                      new Integer(ZahlungsrhytmusInput.VIERTELJAEHRLICH),
+                      new Integer(ZahlungsrhytmusInput.MONATLICH) });
+        }
+        if (modus == AbbuchungsmodusInput.JAVIMO)
+        {
+          list
+              .addFilter(
+                  "zahlungsrhytmus = ? or zahlungsrhytmus = ? or zahlungsrhytmus = ?",
+                  new Object[] { new Integer(ZahlungsrhytmusInput.JAEHRLICH),
                       new Integer(ZahlungsrhytmusInput.VIERTELJAEHRLICH),
                       new Integer(ZahlungsrhytmusInput.MONATLICH) });
         }

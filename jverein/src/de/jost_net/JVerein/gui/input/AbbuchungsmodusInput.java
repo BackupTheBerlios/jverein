@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/AbbuchungsmodusInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/12/02 13:40:04 $
+ * $Revision: 1.2 $
+ * $Date: 2007/12/30 10:09:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungsmodusInput.java,v $
+ * Revision 1.2  2007/12/30 10:09:48  jost
+ * Neuer Rhytmus: Jahr, Vierteljahr und Monat
+ *
  * Revision 1.1  2007/12/02 13:40:04  jost
  * Neu: Beitragsmodelle
  *
@@ -42,11 +45,13 @@ public class AbbuchungsmodusInput extends SelectInput
 
   public static final int JAHAVIMO = 5;
 
-  public static final int HAVIMO = 6;
+  public static final int JAVIMO = 6;
 
-  public static final int VIMO = 7;
+  public static final int HAVIMO = 7;
 
-  public static final int MO = 8;
+  public static final int VIMO = 8;
+
+  public static final int MO = 9;
 
   public static final int EINGETRETENEMITGLIEDER = 99;
 
@@ -86,6 +91,7 @@ public class AbbuchungsmodusInput extends SelectInput
     if (Einstellungen.getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
     {
       l.add(new AbbuchungsmodusObject(JAHAVIMO));
+      l.add(new AbbuchungsmodusObject(JAVIMO));
       l.add(new AbbuchungsmodusObject(HAVIMO));
       l.add(new AbbuchungsmodusObject(VIMO));
       l.add(new AbbuchungsmodusObject(MO));
@@ -140,6 +146,9 @@ public class AbbuchungsmodusInput extends SelectInput
           break;
         case AbbuchungsmodusInput.JAHAVIMO:
           this.label = "Jahres-, Halbjahres-, Vierteljahres- und Monatsbeiträge";
+          break;
+        case AbbuchungsmodusInput.JAVIMO:
+          this.label = "Jahres-, Vierteljahres- und Monatsbeiträge";
           break;
         case AbbuchungsmodusInput.HAVIMO:
           this.label = "Halbjahres-, Vierteljahres- und Monatsbeiträge";
