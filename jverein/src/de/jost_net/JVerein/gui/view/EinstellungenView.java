@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/12/02 13:43:16 $
+ * $Revision: 1.6 $
+ * $Date: 2008/01/01 13:14:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.6  2008/01/01 13:14:15  jost
+ * Neu: Dateinamenmuster
+ *
  * Revision 1.5  2007/12/02 13:43:16  jost
  * Neu: Beitragsmodelle
  *
@@ -55,6 +58,11 @@ public class EinstellungenView extends AbstractView
 
     LabelGroup groupAbu = new LabelGroup(getParent(), "Beiträge");
     groupAbu.addLabelPair("Beitragsmodel", control.getBeitragsmodel());
+
+    LabelGroup groupDatei = new LabelGroup(getParent(), "Dateinamen");
+    groupDatei.addLabelPair("Muster", control.getDateinamenmuster());
+    groupDatei.addText("a$ = Aufgabe, d$ = Datum, s$ = Sortierung, z$ = Zeit",
+        true);
 
     new Headline(getParent(), "* Änderung erfordert Neustart");
     ButtonArea buttons = new ButtonArea(getParent(), 2);

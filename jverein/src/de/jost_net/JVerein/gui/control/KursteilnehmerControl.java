@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/12/01 10:05:34 $
+ * $Revision: 1.6 $
+ * $Date: 2008/01/01 13:13:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.6  2008/01/01 13:13:37  jost
+ * Neu: Dateinamenmuster
+ *
  * Revision 1.5  2007/12/01 10:05:34  jost
  * Änderung wg. neuem Classloader in Jameica
  *
@@ -45,6 +48,7 @@ import de.jost_net.JVerein.gui.action.KursteilnehmerDetailAction;
 import de.jost_net.JVerein.gui.menu.KursteilnehmerMenu;
 import de.jost_net.JVerein.io.Reporter;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
+import de.jost_net.JVerein.util.Dateiname;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -374,8 +378,7 @@ public class KursteilnehmerControl extends AbstractControl
       if (abbuchungsdatumbis.getValue() != null)
       {
         Date d = (Date) abbuchungsdatumbis.getValue();
-        subtitle += " bis " + Einstellungen.DATEFORMAT.format(d)
-            + "  ";
+        subtitle += " bis " + Einstellungen.DATEFORMAT.format(d) + "  ";
         list.addFilter("abbudatum <= ?", new Object[] { new java.sql.Date(d
             .getTime()) });
       }
@@ -387,7 +390,11 @@ public class KursteilnehmerControl extends AbstractControl
       String path = settings.getString("lastdir", System
           .getProperty("user.home"));
       if (path != null && path.length() > 0)
+      {
         fd.setFilterPath(path);
+      }
+      fd.setFileName(new Dateiname("kursteilnehmer", Einstellungen
+          .getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 

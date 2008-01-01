@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/01/01 12:35:25 $
+ * $Revision: 1.11 $
+ * $Date: 2008/01/01 13:12:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.11  2008/01/01 13:12:26  jost
+ * Neu: Dateinamenmuster
+ *
  * Revision 1.10  2008/01/01 12:35:25  jost
  * Javadoc korrigiert
  *
@@ -83,6 +86,8 @@ public class Einstellungen
   private static Boolean kursteilnehmer;
 
   private static int beitragsmodel;
+
+  private static String dateinamenmuster;
 
   /**
    * Datums-Format dd.MM.yyyy.
@@ -358,6 +363,17 @@ public class Einstellungen
   public static void setBeitragsmodel(int value)
   {
     settings.setAttribute("beitragsmodel", value);
+  }
+
+  public static String getDateinamenmuster()
+  {
+    dateinamenmuster = settings.getString("dateinamenmuster", "a$s$-d$-z$");
+    return dateinamenmuster;
+  }
+
+  public static void setDateinamenmuster(String value)
+  {
+    settings.setAttribute("dateinamenmuster", value);
   }
 
   /**
