@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungKursteilnehmerView.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/05/26 16:26:30 $
+ * $Revision: 1.2 $
+ * $Date: 2008/01/01 19:47:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungKursteilnehmerView.java,v $
+ * Revision 1.2  2008/01/01 19:47:45  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.1  2007/05/26 16:26:30  jost
  * Neu: Auswertung Kursteilnehmer
  *
@@ -16,6 +19,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.KursteilnehmerControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -35,9 +39,11 @@ public class AuswertungKursteilnehmerView extends AbstractView
     grAbu.addLabelPair("von", control.getAbbuchungsdatumvon());
     grAbu.addLabelPair("bis", control.getAbbuchungsdatumbis());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 4);
+    ButtonArea buttons = new ButtonArea(getParent(), 3);
 
     buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.auswertungkursteilnehmer);
     buttons.addButton(control.getStartAuswertungButton());
 
   }

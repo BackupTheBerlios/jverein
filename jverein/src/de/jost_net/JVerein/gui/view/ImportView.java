@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:27:42 $
+ * $Revision: 1.4 $
+ * $Date: 2008/01/01 19:51:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportView.java,v $
+ * Revision 1.4  2008/01/01 19:51:20  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.3  2007/02/23 20:27:42  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -27,6 +30,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.io.Import;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -47,9 +51,12 @@ public class ImportView extends AbstractView
   public void bind() throws Exception
   {
 
-    GUI.getView().setTitle("Import Sparkassen Vereins Daten");
+    GUI.getView().setTitle("Daten-Import");
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
+    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
+    buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.importa);
     Button button = new Button("Import starten", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
@@ -58,7 +65,6 @@ public class ImportView extends AbstractView
       }
     }, null, true);
     buttons.addButton(button);
-    buttons.addButton("<< Zurück", new BackAction());
   }
 
   /**

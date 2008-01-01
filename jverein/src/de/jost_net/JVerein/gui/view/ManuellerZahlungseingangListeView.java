@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ManuellerZahlungseingangListeView.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/03/13 19:57:17 $
+ * $Revision: 1.2 $
+ * $Date: 2008/01/01 19:52:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangListeView.java,v $
+ * Revision 1.2  2008/01/01 19:52:17  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.1  2007/03/13 19:57:17  jost
  * Neu: Manueller Zahlungseingang.
  *
@@ -16,6 +19,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.ManuellerZahlungseingangControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -35,6 +39,8 @@ public class ManuellerZahlungseingangListeView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.manuellezahlungseingaenge);
   }
 
   public void unbind() throws ApplicationException

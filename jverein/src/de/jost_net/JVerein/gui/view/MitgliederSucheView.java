@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.10 $
- * $Date: 2007/12/01 19:08:54 $
+ * $Revision: 1.11 $
+ * $Date: 2008/01/01 19:52:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.11  2008/01/01 19:52:45  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.10  2007/12/01 19:08:54  jost
  * Wegfall Standardtab f√ºr die Suche
  *
@@ -59,6 +62,7 @@ import org.eclipse.swt.widgets.TabFolder;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.willuhn.datasource.rmi.DBService;
@@ -181,12 +185,13 @@ public class MitgliederSucheView extends AbstractView
         }
       });
     }
-    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
+    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
+    buttons.addButton("<< Zur¸ck", new BackAction());
+    buttons.addButton("Hilfe",new DokumentationAction(), DokumentationUtil.mitglied);
     if (anzahlbeitragsgruppe > 0)
     {
       buttons.addButton("Neu", new MitgliedDetailAction());
     }
-    buttons.addButton("<< Zur¸ck", new BackAction());
   }
 
   public void unbind() throws ApplicationException

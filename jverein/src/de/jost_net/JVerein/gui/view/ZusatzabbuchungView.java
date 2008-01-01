@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ZusatzabbuchungView.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/03/30 13:25:23 $
+ * $Revision: 1.4 $
+ * $Date: 2008/01/01 19:53:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungView.java,v $
+ * Revision 1.4  2008/01/01 19:53:57  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.3  2007/03/30 13:25:23  jost
  * Wiederkehrende Zusatzabbuchungen.
  *
@@ -22,6 +25,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungDeleteAction;
 import de.jost_net.JVerein.gui.control.ZusatzabbuchungControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -40,14 +44,16 @@ public class ZusatzabbuchungView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), "Zusatzabbuchung");
     group.addLabelPair("Startdatum", control.getStartdatum());
-    group.addLabelPair("nächste Fälligkeit",control.getFaelligkeit());
+    group.addLabelPair("nächste Fälligkeit", control.getFaelligkeit());
     group.addLabelPair("Intervall", control.getIntervall());
     group.addLabelPair("Endedatum", control.getEndedatum());
     group.addLabelPair("Buchungstext", control.getBuchungstext());
     group.addLabelPair("Betrag", control.getBetrag());
- 
+
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.zusatzabbuchungen);
     buttons.addButton("Löschen", new ZusatzabbuchungDeleteAction(), control
         .getZusatzabbuchung());
     buttons.addButton("Speichern", new Action()

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:27:28 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/01 19:48:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
+ * Revision 1.3  2008/01/01 19:48:12  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.2  2007/02/23 20:27:28  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -19,6 +22,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -54,9 +58,11 @@ public class AuswertungMitgliedView extends AbstractView
     grAusgabe.addLabelPair("Ausgabe", control.getAusgabe());
     grAusgabe.addLabelPair("Sortierung", control.getSortierung());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 4);
+    ButtonArea buttons = new ButtonArea(getParent(), 3);
 
     buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.auswertungmitglieder);
     buttons.addButton(control.getStartAuswertungButton());
 
   }

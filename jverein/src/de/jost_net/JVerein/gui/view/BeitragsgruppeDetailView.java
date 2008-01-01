@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeDetailView.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/03/25 17:00:12 $
+ * $Revision: 1.5 $
+ * $Date: 2008/01/01 19:48:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDetailView.java,v $
+ * Revision 1.5  2008/01/01 19:48:33  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.4  2007/03/25 17:00:12  jost
  * Beitragsart aufgenommen.
  *
@@ -26,6 +29,7 @@ package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeSucheAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BeitragsgruppeControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -49,6 +53,8 @@ public class BeitragsgruppeDetailView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.beitragsgruppen);
     buttons.addButton("Suche", new BeitragsgruppeSucheAction());
     buttons.addButton("Speichern", new Action()
     {

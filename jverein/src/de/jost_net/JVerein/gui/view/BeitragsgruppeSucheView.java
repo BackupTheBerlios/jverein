@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeSucheView.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/12/28 15:55:00 $
+ * $Revision: 1.5 $
+ * $Date: 2008/01/01 19:49:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeSucheView.java,v $
+ * Revision 1.5  2008/01/01 19:49:05  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.4  2007/12/28 15:55:00  jost
  * Button-Leiste Ã¼berarbeitet.
  *
@@ -27,6 +30,7 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDeleteAction;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BeitragsgruppeControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -43,8 +47,10 @@ public class BeitragsgruppeSucheView extends AbstractView
 
     control.getBeitragsgruppeTable().paint(this.getParent());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
+    ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.beitragsgruppen);
     buttons.addButton("Löschen", new BeitragsgruppeDeleteAction(), control
         .getBeitragsgruppeTable());
     buttons.addButton("Neu", new BeitragsgruppeDetailAction());

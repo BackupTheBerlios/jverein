@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ZusatzabbuchunglisteView.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/02/23 20:27:42 $
+ * $Revision: 1.5 $
+ * $Date: 2008/01/01 19:53:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchunglisteView.java,v $
+ * Revision 1.5  2008/01/01 19:53:45  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.4  2007/02/23 20:27:42  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -25,6 +28,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.ZusatzabbuchungControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -45,7 +49,8 @@ public class ZusatzabbuchunglisteView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton("<< Zurück", new BackAction());
-
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.zusatzabbuchungen);
     control.getZusatzabbuchungsList().paint(this.getParent());
   }
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/WiedervorlagelisteView.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/20 20:33:30 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/01 19:53:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlagelisteView.java,v $
+ * Revision 1.3  2008/01/01 19:53:22  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.2  2007/12/20 20:33:30  jost
  * Neu: Wiedervorlage-Ãœbersicht in der Jameica-Startseite
  *
@@ -19,6 +22,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageListeAction;
 import de.jost_net.JVerein.gui.parts.WiedervorlageList;
 import de.willuhn.jameica.gui.AbstractView;
@@ -31,10 +35,12 @@ public class WiedervorlagelisteView extends AbstractView
   public void bind() throws Exception
   {
     GUI.getView().setTitle("Wiedervorlagen");
-    new WiedervorlageList(new WiedervorlageListeAction()).getWiedervorlageList().paint(this
-        .getParent());
+    new WiedervorlageList(new WiedervorlageListeAction())
+        .getWiedervorlageList().paint(this.getParent());
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.wiedervorlage);
 
   }
 

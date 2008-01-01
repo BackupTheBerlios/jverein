@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/StammdatenView.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/12/22 08:26:35 $
+ * $Revision: 1.5 $
+ * $Date: 2008/01/01 19:52:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenView.java,v $
+ * Revision 1.5  2008/01/01 19:52:59  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.4  2007/12/22 08:26:35  jost
  * Neu: Jubil√§enliste
  *
@@ -25,6 +28,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.StammdatenControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -48,8 +52,10 @@ public class StammdatenView extends AbstractView
     group.addLabelPair("Altersgruppen", control.getAltersgruppen());
     group.addLabelPair("Jubil‰en", control.getJubilaeen());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 4);
+    ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton("<< Zur¸ck", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.stammdaten);
     buttons.addButton("Speichern", new Action()
     {
       public void handleAction(Object context) throws ApplicationException

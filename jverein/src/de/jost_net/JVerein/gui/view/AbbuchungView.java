@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.10 $
- * $Date: 2007/12/26 18:13:19 $
+ * $Revision: 1.11 $
+ * $Date: 2008/01/01 19:47:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.11  2008/01/01 19:47:16  jost
+ * Erweiterung um Hilfe-Funktion
+ *
  * Revision 1.10  2007/12/26 18:13:19  jost
  * Lastschriften k√∂nnen jetzt als Einzellastschriften oder Sammellastschriften direkt in Hibuscus verbucht werden.
  *
@@ -48,6 +51,7 @@ import java.sql.SQLException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BackAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.AbbuchungControl;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
@@ -99,8 +103,10 @@ public class AbbuchungView extends AbstractView
     }
     group.addLabelPair("Ausgabe", control.getAbbuchungsausgabe());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
+    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton("<< Zur¸ck", new BackAction());
+    buttons.addButton("Hilfe", new DokumentationAction(),
+        DokumentationUtil.abbuchung);
     buttons.addButton(control.getStartButton());
   }
 
