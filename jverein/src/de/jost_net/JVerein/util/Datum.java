@@ -1,3 +1,18 @@
+/**********************************************************************
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Datum.java,v $
+ * $Revision: 1.4 $
+ * $Date: 2008/01/01 12:36:50 $
+ * $Author: jost $
+ *
+ * Copyright (c) by Heiner Jostkleigrewe
+ * All rights reserved
+ * heiner@jverein.de
+ * www.jverein.de
+ * $Log: Datum.java,v $
+ * Revision 1.4  2008/01/01 12:36:50  jost
+ * Javadoc korrigiert
+ *
+ **********************************************************************/
 package de.jost_net.JVerein.util;
 
 import java.text.ParseException;

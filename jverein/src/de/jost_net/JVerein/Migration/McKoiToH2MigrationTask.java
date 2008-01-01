@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationTask.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/12/01 10:07:19 $
+ * $Revision: 1.2 $
+ * $Date: 2008/01/01 12:36:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationTask.java,v $
+ * Revision 1.2  2008/01/01 12:36:16  jost
+ * Javadoc korrigiert
+ *
  * Revision 1.1  2007/12/01 10:07:19  jost
  * H2-Support
  *
@@ -35,9 +38,6 @@ import de.willuhn.util.ProgressMonitor;
  */
 public class McKoiToH2MigrationTask extends DatabaseMigrationTask
 {
-  /**
-   * @see de.willuhn.jameica.hbci.migration.DatabaseMigrationTask#run(de.willuhn.util.ProgressMonitor)
-   */
   public void run(ProgressMonitor monitor) throws ApplicationException
   {
     // Checken, ob die Migration schon lief

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.15 $
- * $Date: 2007/12/20 20:31:58 $
+ * $Revision: 1.16 $
+ * $Date: 2008/01/01 12:35:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.16  2008/01/01 12:35:40  jost
+ * Javadoc korrigiert
+ *
  * Revision 1.15  2007/12/20 20:31:58  jost
  * Anpassung an Jameica-Standard
  *
@@ -81,8 +84,6 @@ public class JVereinPlugin extends AbstractPlugin
   /**
    * constructor.
    * 
-   * @param file
-   *          the plugin file (your jar or the plugin directory).
    */
   public JVereinPlugin()
   {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/12/01 17:47:22 $
+ * $Revision: 1.4 $
+ * $Date: 2008/01/01 12:36:30 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.4  2008/01/01 12:36:30  jost
+ * Javadoc korrigiert
+ *
  * Revision 1.3  2007/12/01 17:47:22  jost
  * Neue DB-Update-Mimik
  *
@@ -173,8 +176,6 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
    * Das soll der Admin sicherheitshalber manuell durchfuehren. Wir hinterlassen
    * stattdessen nur einen Hinweistext mit den auszufuehrenden SQL-Scripts.
    * 
-   * @see de.willuhn.jameica.hbci.server.AbstractDBSupportImpl#execute(java.sql.Connection,
-   *      java.io.File)
    */
   public void execute(Connection conn, File sqlScript) throws RemoteException
   {

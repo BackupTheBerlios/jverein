@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/02/23 20:28:04 $
+ * $Revision: 1.4 $
+ * $Date: 2008/01/01 12:36:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.4  2008/01/01 12:36:01  jost
+ * Javadoc korrigiert
+ *
  * Revision 1.3  2007/02/23 20:28:04  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -118,9 +121,6 @@ public class MitgliedAuswertungCSV
 
   /**
    * Gibt einen Leerstring aus, falls der Text null ist.
-   * 
-   * @param text
-   *          der Text.
    * @return der Text oder Leerstring - niemals null.
    */
   private String formatDate(Date d)

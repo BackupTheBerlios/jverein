@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.9 $
- * $Date: 2007/12/28 13:08:44 $
+ * $Revision: 1.10 $
+ * $Date: 2008/01/01 12:35:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.10  2008/01/01 12:35:25  jost
+ * Javadoc korrigiert
+ *
  * Revision 1.9  2007/12/28 13:08:44  jost
  * Neue FirstStart-Box
  *
@@ -140,7 +143,6 @@ public class Einstellungen
   /**
    * Prueft die Gueltigkeit der BLZ/Kontonummer-Kombi anhand von Pruefziffern.
    * 
-   * @see HBCIUtils#checkAccountCRC(java.lang.String, java.lang.String)
    * @param blz
    * @param kontonummer
    * @return true, wenn die Kombi ok ist.
