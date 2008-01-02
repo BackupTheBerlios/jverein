@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/DatabaseMigrationTask.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/16 20:26:56 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/02 10:59:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DatabaseMigrationTask.java,v $
+ * Revision 1.3  2008/01/02 10:59:17  jost
+ * Bugfix Migration nach Neuinstallation
+ *
  * Revision 1.2  2007/12/16 20:26:56  jost
  * Versions-Tabelle wird mitmigriert.
  *
@@ -22,6 +25,7 @@ package de.jost_net.JVerein.Migration;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.Version;
 import de.jost_net.JVerein.server.BeitragsgruppeImpl;
 import de.jost_net.JVerein.server.KursteilnehmerImpl;
 import de.jost_net.JVerein.server.ManuellerZahlungseingangImpl;
@@ -97,7 +101,11 @@ public class DatabaseMigrationTask implements BackgroundTask
       copy(MitgliedImpl.class, monitor);
       copy(KursteilnehmerImpl.class, monitor);
       copy(ManuellerZahlungseingangImpl.class, monitor);
-      copy(VersionImpl.class, monitor);
+      DBIterator v = target.createList(Version.class);
+      if (v.size() == 0)
+      {
+        copy(VersionImpl.class, monitor);
+      }
       copy(WiedervorlageImpl.class, monitor);
       copy(ZusatzabbuchungImpl.class, monitor);
 
