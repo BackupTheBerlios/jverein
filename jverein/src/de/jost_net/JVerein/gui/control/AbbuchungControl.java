@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/01/01 13:12:53 $
+ * $Revision: 1.11 $
+ * $Date: 2008/01/07 20:28:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.11  2008/01/07 20:28:55  jost
+ * Dateinamensvorgabe für die PDF-Datei
+ *
  * Revision 1.10  2008/01/01 13:12:53  jost
  * Neu: Dateinamenmuster
  *
@@ -273,7 +276,11 @@ public class AbbuchungControl extends AbstractControl
       String path = settings.getString("lastdir", System
           .getProperty("user.home"));
       if (path != null && path.length() > 0)
+      {
         fd.setFilterPath(path);
+      }
+      fd.setFileName(new Dateiname("abbuchung", Einstellungen
+          .getDateinamenmuster(), "PDF").get());
       pdffile = fd.open();
     }
 
