@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedSucheAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:26:00 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/25 16:01:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSucheAction.java,v $
+ * Revision 1.3  2008/01/25 16:01:23  jost
+ * Neu: Eigenschaften des Mitgliedes
+ *
  * Revision 1.2  2007/02/23 20:26:00  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -18,6 +21,10 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
+import java.rmi.RemoteException;
+
+import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.util.ApplicationException;
@@ -27,8 +34,26 @@ public class MitgliedSucheAction implements Action
 
   public void handleAction(Object context) throws ApplicationException
   {
+    Mitglied m = null;
+    if (context != null && context instanceof Mitglied)
+    {
+      m = (Mitglied) context;
+    }
+    else
+    {
+      try
+      {
+        m = (Mitglied) Einstellungen.getDBService().createObject(
+            Mitglied.class, null);
+      }
+      catch (RemoteException e)
+      {
+        throw new ApplicationException(
+            "kann kein Objekt vom Typ Mitglied erzeugen");
+      }
+    }
     GUI.startView(de.jost_net.JVerein.gui.view.MitgliederSucheView.class
-        .getName(), null);
+        .getName(), m);
   }
 
 }
