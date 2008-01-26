@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BeitragsgruppeDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/08/30 19:47:17 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/26 16:21:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDeleteAction.java,v $
+ * Revision 1.3  2008/01/26 16:21:03  jost
+ * Debug-Message entfernt.
+ *
  * Revision 1.2  2007/08/30 19:47:17  jost
  * Jetzt auch über einen Button auslösbar.
  *
@@ -39,7 +42,6 @@ public class BeitragsgruppeDeleteAction implements Action
     {
       TablePart tp = (TablePart) context;
       context = tp.getSelection();
-      System.out.println("##>" + context);
     }
     if (context == null || !(context instanceof Beitragsgruppe))
     {
