@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.27 $
- * $Date: 2008/01/25 16:02:32 $
+ * $Revision: 1.28 $
+ * $Date: 2008/01/26 16:21:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.28  2008/01/26 16:21:58  jost
+ * Sortierung der Beitragsgruppen eingefÃ¼hrt
+ * Bugfix Filter.
+ *
  * Revision 1.27  2008/01/25 16:02:32  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -98,6 +102,7 @@ package de.jost_net.JVerein.gui.control;
 
 import java.io.File;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -247,7 +252,6 @@ public class MitgliedControl extends AbstractControl
   public MitgliedControl(AbstractView view)
   {
     super(view);
-    System.out.println("Konstruktor MitgliedControl" + view);
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
   }
@@ -543,8 +547,10 @@ public class MitgliedControl extends AbstractControl
     {
       return beitragsgruppe;
     }
-    beitragsgruppe = new SelectInput(Einstellungen.getDBService().createList(
-        Beitragsgruppe.class), getMitglied().getBeitragsgruppe());
+    DBIterator list = Einstellungen.getDBService().createList(
+        Beitragsgruppe.class);
+    list.setOrder("ORDER BY bezeichnung");
+    beitragsgruppe = new SelectInput(list, getMitglied().getBeitragsgruppe());
     beitragsgruppe.setValue(getMitglied().getBeitragsgruppe());
     beitragsgruppe.setMandatory(true);
     beitragsgruppe.setAttribute("bezeichnung");
@@ -589,9 +595,17 @@ public class MitgliedControl extends AbstractControl
     {
       return beitragsgruppeausw;
     }
-    beitragsgruppeausw = new SelectInput(Einstellungen.getDBService()
-        .createList(Beitragsgruppe.class), getMitglied().getBeitragsgruppe());
-    // beitragsgruppeausw.setValue(getMitglied().getBeitragsgruppe());
+    Beitragsgruppe bg = null;
+    String beitragsgru = settings.getString("mitglied.beitragsgruppe", "");
+    if (beitragsgru.length() > 0)
+    {
+      bg = (Beitragsgruppe) Einstellungen.getDBService().createObject(
+          Beitragsgruppe.class, beitragsgru);
+    }
+    DBIterator list = Einstellungen.getDBService().createList(
+        Beitragsgruppe.class);
+    list.setOrder("ORDER BY bezeichnung");
+    beitragsgruppeausw = new SelectInput(list, bg);
     beitragsgruppeausw.setAttribute("bezeichnung");
     beitragsgruppeausw.setPleaseChoose("Bitte auswählen");
     return beitragsgruppeausw;
@@ -835,6 +849,18 @@ public class MitgliedControl extends AbstractControl
       return geburtsdatumvon;
     }
     Date d = null;
+    String tmp = settings.getString("mitglied.geburtsdatumvon", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
     this.geburtsdatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
     this.geburtsdatumvon.setTitle("Geburtsdatum");
     this.geburtsdatumvon.setText("Beginn des Geburtszeitraumes");
@@ -859,7 +885,18 @@ public class MitgliedControl extends AbstractControl
       return geburtsdatumbis;
     }
     Date d = null;
-
+    String tmp = settings.getString("mitglied.geburtsdatumbis", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
     this.geburtsdatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
     this.geburtsdatumbis.setTitle("Geburtsdatum");
     this.geburtsdatumbis.setText("Ende des Geburtszeitraumes");
@@ -1029,7 +1066,9 @@ public class MitgliedControl extends AbstractControl
     }
     EigenschaftenAuswahlDialog d = new EigenschaftenAuswahlDialog();
     d.addCloseListener(new EigenschaftenListener());
-    eigenschaftenabfrage = new DialogInput("", d);
+    String tmp = settings.getString("mitglied.eigenschaften", "");
+    eigenschaftenabfrage = new DialogInput(tmp, d);
+
     return eigenschaftenabfrage;
   }
 
@@ -1117,10 +1156,8 @@ public class MitgliedControl extends AbstractControl
   public TablePart getMitgliedTable(String anfangsbuchstabe)
       throws RemoteException
   {
-    settings.setAttribute("status.mitglied", (String) getMitgliedStatus()
-        .getValue());
-
     TablePart part;
+    saveDefaults();
     part = new TablePart(new MitgliedQuery(this).getQuery(anfangsbuchstabe),
         new MitgliedDetailAction());
 
@@ -1139,6 +1176,46 @@ public class MitgliedControl extends AbstractControl
     part.setRememberColWidths(true);
     part.setRememberOrder(true);
     return part;
+  }
+
+  /**
+   * Default-Werte für die MitgliederSuchView speichern.
+   * 
+   * @throws RemoteException
+   */
+  public void saveDefaults() throws RemoteException
+  {
+    settings.setAttribute("status.mitglied", (String) getMitgliedStatus()
+        .getValue());
+    Date tmp = (Date) getGeburtsdatumvon().getValue();
+    if (tmp != null)
+    {
+      settings.setAttribute("mitglied.geburtsdatumvon",
+          Einstellungen.DATEFORMAT.format(tmp));
+    }
+    else
+    {
+      settings.setAttribute("mitglied.geburtsdatumvon", "");
+    }
+    tmp = (Date) getGeburtsdatumbis().getValue();
+    if (tmp != null)
+    {
+      settings.setAttribute("mitglied.geburtsdatumbis",
+          Einstellungen.DATEFORMAT.format(tmp));
+    }
+    else
+    {
+      settings.setAttribute("mitglied.geburtsdatumbis", "");
+    }
+    settings.setAttribute("mitglied.eigenschaften", getEigenschaftenAuswahl()
+        .getText());
+
+    Beitragsgruppe tmpbg = (Beitragsgruppe) getBeitragsgruppeAusw().getValue();
+    if (tmpbg != null)
+    {
+      settings.setAttribute("mitglied.beitragsgruppe", tmpbg.getID());
+    }
+
   }
 
   public void handleStore()
