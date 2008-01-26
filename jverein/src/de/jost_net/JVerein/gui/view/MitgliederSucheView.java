@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/01/25 16:04:24 $
+ * $Revision: 1.13 $
+ * $Date: 2008/01/26 16:22:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.13  2008/01/26 16:22:34  jost
+ * Überflüssigen Knopf entfernt.
+ * Speicherung der Default-Werte
+ *
  * Revision 1.12  2008/01/25 16:04:24  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -74,7 +78,6 @@ import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
 import de.willuhn.jameica.gui.AbstractView;
-import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.DialogInput;
@@ -157,18 +160,6 @@ public class MitgliederSucheView extends AbstractView
     SelectInput mitglbeitragsgruppe = control.getBeitragsgruppeAusw();
     mitglbeitragsgruppe.addListener(new FilterListener(control));
     group.addLabelPair("Beitragsgruppe", mitglbeitragsgruppe);
-    ButtonArea barea = new ButtonArea(getParent(), 1);
-    final MitgliedControl c = control;
-    Action a = new Action()
-    {
-      public void handleAction(Object context) throws ApplicationException
-      {
-        int si = folder.getSelectionIndex();
-        settings.setAttribute("lasttab", b[si]);
-        TabRefresh(c, si);
-      }
-    };
-    barea.addButton("anwenden", a);
 
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
@@ -230,6 +221,7 @@ public class MitgliederSucheView extends AbstractView
   {
     try
     {
+      control.saveDefaults();
       if (p[index] != null)
       {
         Control[] c = tab[index].getComposite().getChildren();
