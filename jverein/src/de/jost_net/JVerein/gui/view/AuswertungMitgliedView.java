@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/01/01 19:48:12 $
+ * $Revision: 1.4 $
+ * $Date: 2008/01/27 09:42:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
+ * Revision 1.4  2008/01/27 09:42:22  jost
+ * Erweiterung der Auswertung um Eigenschaften
+ *
  * Revision 1.3  2008/01/01 19:48:12  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -24,6 +27,9 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
+import de.jost_net.JVerein.rmi.JVereinDBService;
+import de.jost_net.JVerein.server.DBSupportH2Impl;
+import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -38,6 +44,15 @@ public class AuswertungMitgliedView extends AbstractView
 
     final MitgliedControl control = new MitgliedControl(this);
 
+    if (!JVereinDBService.SETTINGS.getString("database.driver",
+        DBSupportH2Impl.class.getName()).equals(
+        DBSupportMcKoiImpl.class.getName()))
+    {
+      LabelGroup grEigenschaften = new LabelGroup(getParent(), "Eigenschaften");
+      grEigenschaften.addLabelPair("Eigenschaften", control
+          .getEigenschaftenAuswahl());
+    }
+
     LabelGroup grGeburt = new LabelGroup(getParent(), "Geburtsdatum");
     grGeburt.addLabelPair("von", control.getGeburtsdatumvon());
     grGeburt.addLabelPair("bis", control.getGeburtsdatumbis());
@@ -51,8 +66,8 @@ public class AuswertungMitgliedView extends AbstractView
     grAustritt.addLabelPair("bis", control.getAustrittbis());
 
     LabelGroup grBeitragsgruppe = new LabelGroup(getParent(), "Beitragsgruppe");
-    grBeitragsgruppe
-        .addLabelPair("Beitragsgruppe", control.getBeitragsgruppe());
+    grBeitragsgruppe.addLabelPair("Beitragsgruppe", control
+        .getBeitragsgruppeAusw());
 
     LabelGroup grAusgabe = new LabelGroup(getParent(), "Ausgabe");
     grAusgabe.addLabelPair("Ausgabe", control.getAusgabe());
