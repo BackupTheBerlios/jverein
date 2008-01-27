@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/01/27 09:43:59 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/27 10:17:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.3  2008/01/27 10:17:41  jost
+ * Vereinheitlichung der Mitgliedersuche durch die Klasse MitgliedQuery
+ *
  * Revision 1.2  2008/01/27 09:43:59  jost
  * Vereinheitlichung der Mitgliedersuche durch die Klasse MitgliedQuery
  *
@@ -31,6 +34,7 @@ import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
+import de.willuhn.logging.Logger;
 
 public class MitgliedQuery
 {
@@ -55,7 +59,6 @@ public class MitgliedQuery
     final DBService service = Einstellungen.getDBService();
 
     sql = "select distinct mitglied.* " + "from mitglied ";
-    sql += "where ";
     if (control.isMitgliedStatusAktiv())
     {
       if (control.getMitgliedStatus().getValue().equals("Angemeldet"))
@@ -110,17 +113,20 @@ public class MitgliedQuery
     {
       addCondition("eintritt <= ?");
     }
-    if (control.getAustrittvon().getValue() != null)
+    if (control.isAustrittbisAktiv())
     {
-      addCondition("austritt >= ?");
-    }
-    if (control.getAustrittbis().getValue() != null)
-    {
-      addCondition("austritt <= ?");
-    }
-    if (control.getAustrittvon() == null && control.getAustrittbis() == null)
-    {
-      addCondition("austritt is null");
+      if (control.getAustrittvon().getValue() != null)
+      {
+        addCondition("austritt >= ?");
+      }
+      if (control.getAustrittbis().getValue() != null)
+      {
+        addCondition("austritt <= ?");
+      }
+      if (control.getAustrittvon() == null && control.getAustrittbis() == null)
+      {
+        addCondition("austritt is null");
+      }
     }
     Beitragsgruppe bg = (Beitragsgruppe) control.getBeitragsgruppeAusw()
         .getValue();
@@ -149,6 +155,7 @@ public class MitgliedQuery
     {
       sql += " ORDER BY name, vorname";
     }
+    Logger.debug(sql);
 
     ResultSetExtractor rs = new ResultSetExtractor()
     {
@@ -185,25 +192,34 @@ public class MitgliedQuery
       Date d = (Date) control.getGeburtsdatumbis().getValue();
       bedingungen.add(new java.sql.Date(d.getTime()));
     }
-    if (control.getEintrittvon().getValue() != null)
+    if (control.isEintrittvonAktiv())
     {
-      Date d = (Date) control.getEintrittvon().getValue();
-      bedingungen.add(new java.sql.Date(d.getTime()));
+      if (control.getEintrittvon().getValue() != null)
+      {
+        Date d = (Date) control.getEintrittvon().getValue();
+        bedingungen.add(new java.sql.Date(d.getTime()));
+      }
     }
-    if (control.getEintrittbis().getValue() != null)
+    if (control.isEintrittbisAktiv())
     {
-      Date d = (Date) control.getEintrittbis().getValue();
-      bedingungen.add(new java.sql.Date(d.getTime()));
+      if (control.getEintrittbis().getValue() != null)
+      {
+        Date d = (Date) control.getEintrittbis().getValue();
+        bedingungen.add(new java.sql.Date(d.getTime()));
+      }
     }
-    if (control.getAustrittvon().getValue() != null)
+    if (control.isAustrittbisAktiv())
     {
-      Date d = (Date) control.getAustrittvon().getValue();
-      bedingungen.add(new java.sql.Date(d.getTime()));
-    }
-    if (control.getAustrittbis().getValue() != null)
-    {
-      Date d = (Date) control.getAustrittbis().getValue();
-      bedingungen.add(new java.sql.Date(d.getTime()));
+      if (control.getAustrittvon().getValue() != null)
+      {
+        Date d = (Date) control.getAustrittvon().getValue();
+        bedingungen.add(new java.sql.Date(d.getTime()));
+      }
+      if (control.getAustrittbis().getValue() != null)
+      {
+        Date d = (Date) control.getAustrittbis().getValue();
+        bedingungen.add(new java.sql.Date(d.getTime()));
+      }
     }
     if (bg != null)
     {
@@ -217,6 +233,10 @@ public class MitgliedQuery
     if (and)
     {
       sql += " AND ";
+    }
+    else
+    {
+      sql += "where ";
     }
     and = true;
     sql += condition;
