@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/02/23 20:28:04 $
+ * $Revision: 1.5 $
+ * $Date: 2008/01/27 09:43:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
+ * Revision 1.5  2008/01/27 09:43:42  jost
+ * Vereinheitlichung der Mitgliedersuche durch die Klasse MitgliedQuery
+ *
  * Revision 1.4  2007/02/23 20:28:04  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -30,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.lowagie.text.Chunk;
@@ -49,7 +53,6 @@ import com.lowagie.text.pdf.PdfWriter;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Mitglied;
-import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
 import de.willuhn.jameica.messaging.StatusBarMessage;
@@ -61,7 +64,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class MitgliedAuswertungPDF
 {
-  public MitgliedAuswertungPDF(DBIterator list, final File file,
+  public MitgliedAuswertungPDF(ArrayList list, final File file,
       ProgressMonitor monitor, String subtitle) throws ApplicationException,
       RemoteException
   {
@@ -129,11 +132,11 @@ public class MitgliedAuswertungPDF
 
       int faelle = 0;
 
-      while (list.hasNext())
+      for (int i = 0; i < list.size(); i++)
       {
         faelle++;
         monitor.setStatus(faelle);
-        Mitglied m = (Mitglied) list.next();
+        Mitglied m = (Mitglied) list.get(i);
         table.addCell(getDetailCell(m.getNameVorname(), Element.ALIGN_LEFT));
         table.addCell(getDetailCell(m.getAnschrift(), Element.ALIGN_LEFT));
         table.addCell(getDetailCell(notNull(Einstellungen.DATEFORMAT.format(m
@@ -148,8 +151,17 @@ public class MitgliedAuswertungPDF
           zelle += "\n" + Einstellungen.DATEFORMAT.format(m.getKuendigung());
         }
         table.addCell(getDetailCell(zelle, Element.ALIGN_LEFT));
-        table.addCell(getDetailCell(m.getBeitragsgruppe().getBezeichnung(),
-            Element.ALIGN_LEFT));
+        String beitragsgruppebemerkung = m.getBeitragsgruppe().getBezeichnung();
+        if (m.getVermerk1() != null)
+        {
+          beitragsgruppebemerkung += "\n" + m.getVermerk1();
+        }
+        if (m.getVermerk2() != null)
+        {
+          beitragsgruppebemerkung += "\n" + m.getVermerk2();
+        }
+        table
+            .addCell(getDetailCell(beitragsgruppebemerkung, Element.ALIGN_LEFT));
       }
       monitor.setStatusText("Auswertung fertig. " + list.size() + " Sätze.");
       rpt.add(table);

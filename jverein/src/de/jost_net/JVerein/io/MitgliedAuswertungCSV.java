@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/01/01 12:36:01 $
+ * $Revision: 1.5 $
+ * $Date: 2008/01/27 09:42:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.5  2008/01/27 09:42:37  jost
+ * Vereinheitlichung der Mitgliedersuche durch die Klasse MitgliedQuery
+ *
  * Revision 1.4  2008/01/01 12:36:01  jost
  * Javadoc korrigiert
  *
@@ -30,11 +33,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Mitglied;
-import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
 import de.willuhn.jameica.messaging.StatusBarMessage;
@@ -45,7 +48,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class MitgliedAuswertungCSV
 {
-  public MitgliedAuswertungCSV(DBIterator list, final File file,
+  public MitgliedAuswertungCSV(ArrayList list, final File file,
       ProgressMonitor monitor) throws ApplicationException, RemoteException
   {
 
@@ -60,11 +63,11 @@ public class MitgliedAuswertungCSV
       out.println("eintritt;beitragsgruppe;austritt;kuendigung");
       int faelle = 0;
 
-      while (list.hasNext())
+      for (int i = 0; i < list.size(); i++)
       {
         faelle++;
         monitor.setStatus(faelle);
-        Mitglied m = (Mitglied) list.next();
+        Mitglied m = (Mitglied) list.get(i);
         out.print(m.getID() + ";");
         out.print(m.getAnrede() + ";");
         out.print(m.getTitel() + ";");
@@ -121,6 +124,7 @@ public class MitgliedAuswertungCSV
 
   /**
    * Gibt einen Leerstring aus, falls der Text null ist.
+   * 
    * @return der Text oder Leerstring - niemals null.
    */
   private String formatDate(Date d)
