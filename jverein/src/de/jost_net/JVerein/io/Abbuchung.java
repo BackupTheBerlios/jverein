@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.18 $
- * $Date: 2008/01/07 20:28:21 $
+ * $Revision: 1.19 $
+ * $Date: 2008/01/31 19:40:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.19  2008/01/31 19:40:57  jost
+ * Jährliche, Halbjährliche und Vierteljährliche Abbuchungen können jetzt separat ausgeführt werden.
+ * Berücksichtigung eines Stichtages für die Abbuchung
+ *
  * Revision 1.18  2008/01/07 20:28:21  jost
  * Bugfix Rundungsproblem
  *
@@ -123,8 +127,8 @@ public class Abbuchung
       dtaus.setAKundenname(param.stamm.getName());
       dtaus.writeASatz();
 
-      abbuchenMitglieder(dtaus, param.abbuchungsmodus, param.vondatum, monitor,
-          param.verwendungszweck);
+      abbuchenMitglieder(dtaus, param.abbuchungsmodus, param.stichtag,
+          param.vondatum, monitor, param.verwendungszweck);
       abbuchenZusatzabbuchungen(dtaus);
       abbuchenKursteilnehmer(dtaus);
       // Ende der Abbuchung. Jetzt wird noch der E-Satz geschrieben. Die Werte
@@ -166,9 +170,9 @@ public class Abbuchung
   }
 
   private void abbuchenMitglieder(DtausDateiWriter dtaus, int modus,
-      Date vondatum, ProgressMonitor monitor, String verwendungszweck)
-      throws NumberFormatException, DtausException, IOException,
-      ApplicationException
+      Date stichtag, Date vondatum, ProgressMonitor monitor,
+      String verwendungszweck) throws NumberFormatException, DtausException,
+      IOException, ApplicationException
   {
     // Ermittlung der beitragsfreien Beitragsgruppen
     String beitragsfrei = "";
@@ -201,8 +205,10 @@ public class Abbuchung
     {
       // Alle Mitglieder lesen
       list = Einstellungen.getDBService().createList(Mitglied.class);
-      // Die bereits ausgetretenen werden ignoriert.
-      list.addFilter("austritt is null");
+      // Das Mitglied ist entweder noch angemeldet oder das Abmeldedatum liegt
+      // nach dem Stichtag.
+      list.addFilter("(austritt is null or austritt > ?)",
+          new Object[] { new java.sql.Date(stichtag.getTime()) });
       // Beitragsfreie Mitglieder k�nnen auch unber�cksichtigt bleiben.
       if (beitragsfrei.length() > 0)
       {
@@ -251,6 +257,21 @@ public class Abbuchung
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
               ZahlungsrhytmusInput.MONATLICH) });
+        }
+        if (modus == AbbuchungsmodusInput.VI)
+        {
+          list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
+              ZahlungsrhytmusInput.VIERTELJAEHRLICH) });
+        }
+        if (modus == AbbuchungsmodusInput.HA)
+        {
+          list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
+              ZahlungsrhytmusInput.HALBJAEHRLICH) });
+        }
+        if (modus == AbbuchungsmodusInput.JA)
+        {
+          list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
+              ZahlungsrhytmusInput.JAEHRLICH) });
         }
       }
       list.setOrder("ORDER BY name, vorname");
