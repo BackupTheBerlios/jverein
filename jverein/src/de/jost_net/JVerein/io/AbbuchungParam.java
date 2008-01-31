@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/AbbuchungParam.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/28 13:14:25 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/31 19:41:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungParam.java,v $
+ * Revision 1.3  2008/01/31 19:41:18  jost
+ * Berücksichtigung eines Stichtages für die Abbuchung
+ *
  * Revision 1.2  2007/12/28 13:14:25  jost
  * Bugfix beim erzeugen eines Stammdaten-Objektes
  *
@@ -39,6 +42,8 @@ public class AbbuchungParam
 {
   public final int abbuchungsmodus;
 
+  public final Date stichtag;
+
   public final int abbuchungsausgabe;
 
   public final Date vondatum;
@@ -61,6 +66,7 @@ public class AbbuchungParam
       throws ApplicationException, RemoteException
   {
     abbuchungsmodus = (Integer) ac.getAbbuchungsmodus().getValue();
+    stichtag = (Date) ac.getStichtag().getValue();
     abbuchungsausgabe = (Integer) ac.getAbbuchungsausgabe().getValue();
     vondatum = (Date) ac.getVondatum().getValue();
     verwendungszweck = (String) ac.getZahlungsgrund().getValue();

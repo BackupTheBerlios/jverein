@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/01/01 19:47:16 $
+ * $Revision: 1.12 $
+ * $Date: 2008/01/31 19:39:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.12  2008/01/31 19:39:37  jost
+ * Berücksichtigung eines Stichtages für die Abbuchung
+ *
  * Revision 1.11  2008/01/01 19:47:16  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -88,6 +91,7 @@ public class AbbuchungView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), "Parameter");
     group.addLabelPair("Modus", control.getAbbuchungsmodus());
+    group.addLabelPair("Stichtag", control.getStichtag());
     group.addLabelPair("Von Eingabedatum", control.getVondatum());
     group.addLabelPair("Zahlungsgrund", control.getZahlungsgrund());
     group.addLabelPair("Zusatzabbuchung", control.getZusatzabbuchung());

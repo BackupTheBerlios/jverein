@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/01/07 20:28:55 $
+ * $Revision: 1.12 $
+ * $Date: 2008/01/31 19:36:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.12  2008/01/31 19:36:05  jost
+ * BerÃ¼cksichtigung eines Stichtages fÃ¼r die Abbuchung
+ *
  * Revision 1.11  2008/01/07 20:28:55  jost
  * Dateinamensvorgabe fÃ¼r die PDF-Datei
  *
@@ -80,6 +83,8 @@ public class AbbuchungControl extends AbstractControl
 {
   private AbbuchungsmodusInput modus;
 
+  private DateInput stichtag = null;
+
   private DateInput vondatum = null;
 
   private TextInput zahlungsgrund;
@@ -125,6 +130,30 @@ public class AbbuchungControl extends AbstractControl
       }
     });
     return modus;
+  }
+
+  public DateInput getStichtag() throws RemoteException
+  {
+    if (stichtag != null)
+    {
+      return stichtag;
+    }
+    Date d = null;
+    this.stichtag = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.stichtag.setTitle("Stichtag für die Abbuchung");
+    this.stichtag.setText("Bitte Stichtag für die Abbuchung wählen");
+    this.stichtag.addListener(new Listener()
+    {
+      public void handleEvent(Event event)
+      {
+        Date date = (Date) stichtag.getValue();
+        if (date == null)
+        {
+          return;
+        }
+      }
+    });
+    return stichtag;
   }
 
   public DateInput getVondatum() throws RemoteException
@@ -208,9 +237,17 @@ public class AbbuchungControl extends AbstractControl
   {
     Button button = new Button("starten", new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+      public void handleAction(Object context)
       {
-        doAbbuchung();
+
+        try
+        {
+          doAbbuchung();
+        }
+        catch (ApplicationException e)
+        {
+          GUI.getStatusBar().setErrorText(e.getMessage());
+        }
       }
     }, null, true);
     return button;
@@ -220,6 +257,11 @@ public class AbbuchungControl extends AbstractControl
   {
     File dtausfile;
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
+
+    if (stichtag.getValue() == null)
+    {
+      throw new ApplicationException("Stichtag fehlt");
+    }
 
     Integer ausgabe;
     try
