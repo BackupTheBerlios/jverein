@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationListener.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/16 20:27:15 $
+ * $Revision: 1.3 $
+ * $Date: 2008/01/31 20:35:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationListener.java,v $
+ * Revision 1.3  2008/01/31 20:35:45  jost
+ * Hinweis auf ErlÃ¤uterungen im Wiki
+ *
  * Revision 1.2  2007/12/16 20:27:15  jost
  * Standardwert fÃ¼r die Migration geÃ¤ndert.
  *
@@ -75,7 +78,10 @@ public class McKoiToH2MigrationListener implements MessageConsumer
         .getResources().getI18N();
 
     String text = i18n
-        .tr("Das Datenbank-Format von JVerein wurde umgestellt.\nMöchten Sie jetzt die Übernahme der Daten in das neue Format durchführen?");
+        .tr("Das Datenbank-Format von JVerein wurde umgestellt.\n"
+            + "Weitere Informationen zu diesem Thema unter\n\n"
+            + "http://www.jverein.de/index.php5?title=Migration_der_Datenbank_ins_H2-Format\n\n"
+            + "Möchten Sie jetzt die Übernahme der Daten in das neue Format durchführen?");
     if (!Application.getCallback().askUser(text))
       return;
 
