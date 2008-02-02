@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/01/27 10:17:41 $
+ * $Revision: 1.4 $
+ * $Date: 2008/02/02 17:50:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.4  2008/02/02 17:50:43  jost
+ * Bugfix Austrittsdatum
+ *
  * Revision 1.3  2008/01/27 10:17:41  jost
  * Vereinheitlichung der Mitgliedersuche durch die Klasse MitgliedQuery
  *
@@ -123,7 +126,8 @@ public class MitgliedQuery
       {
         addCondition("austritt <= ?");
       }
-      if (control.getAustrittvon() == null && control.getAustrittbis() == null)
+      if (control.getAustrittvon().getValue() == null
+          && control.getAustrittbis().getValue() == null)
       {
         addCondition("austritt is null");
       }
