@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/01/31 19:36:05 $
+ * $Revision: 1.13 $
+ * $Date: 2008/02/09 14:34:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.13  2008/02/09 14:34:50  jost
+ * Plausibilitätsprüfung verbessert
+ *
  * Revision 1.12  2008/01/31 19:36:05  jost
  * Berücksichtigung eines Stichtages für die Abbuchung
  *
@@ -258,11 +261,39 @@ public class AbbuchungControl extends AbstractControl
     File dtausfile;
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
 
-    if (stichtag.getValue() == null)
+    Integer modus = null;
+    try
     {
-      throw new ApplicationException("Stichtag fehlt");
+      modus = (Integer) getAbbuchungsmodus().getValue();
     }
+    catch (RemoteException e)
+    {
+      throw new ApplicationException(
+          "Interner Fehler - kann Abbuchungsmodus nicht auslesen");
+    }
+    Date vondatum = null;
+    if (modus != AbbuchungsmodusInput.KEINBEITRAG)
+    {
+      try
+      {
+        vondatum = (Date) getVondatum().getValue();
+      }
+      catch (RemoteException e)
+      {
+        // nichts tun
+      }
 
+      if (modus == AbbuchungsmodusInput.EINGETRETENEMITGLIEDER
+          && vondatum == null)
+      {
+        throw new ApplicationException("von-Datum fehlt");
+      }
+
+      if (stichtag.getValue() == null)
+      {
+        throw new ApplicationException("Stichtag fehlt");
+      }
+    }
     Integer ausgabe;
     try
     {
