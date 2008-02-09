@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.19 $
- * $Date: 2008/01/31 19:40:57 $
+ * $Revision: 1.20 $
+ * $Date: 2008/02/09 14:35:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.20  2008/02/09 14:35:32  jost
+ * Bugfix. Zusatzabbuchungen und Kursteilnehmer nur abbuchen, wenn das Häkchen gesetzt ist.
+ *
  * Revision 1.19  2008/01/31 19:40:57  jost
  * Jährliche, Halbjährliche und Vierteljährliche Abbuchungen können jetzt separat ausgeführt werden.
  * Berücksichtigung eines Stichtages für die Abbuchung
@@ -129,8 +132,14 @@ public class Abbuchung
 
       abbuchenMitglieder(dtaus, param.abbuchungsmodus, param.stichtag,
           param.vondatum, monitor, param.verwendungszweck);
-      abbuchenZusatzabbuchungen(dtaus);
-      abbuchenKursteilnehmer(dtaus);
+      if (param.zusatzabbuchung)
+      {
+        abbuchenZusatzabbuchungen(dtaus);
+      }
+      if (param.kursteilnehmer)
+      {
+        abbuchenKursteilnehmer(dtaus);
+      }
       // Ende der Abbuchung. Jetzt wird noch der E-Satz geschrieben. Die Werte
       // wurden beim Schreiben der C-S�tze ermittelt.
       dtaus.writeESatz();
