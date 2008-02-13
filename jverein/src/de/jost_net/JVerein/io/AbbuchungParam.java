@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/AbbuchungParam.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/02/09 14:35:51 $
+ * $Revision: 1.5 $
+ * $Date: 2008/02/13 18:18:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungParam.java,v $
+ * Revision 1.5  2008/02/13 18:18:16  jost
+ * Überflüssigen Import entfernt.
+ *
  * Revision 1.4  2008/02/09 14:35:51  jost
  * Bugfix. Zusatzabbuchungen und Kursteilnehmer nur abbuchen, wenn das Häkchen gesetzt ist.
  *
@@ -32,7 +35,6 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.control.AbbuchungControl;
 import de.jost_net.JVerein.gui.input.AbbuchungsausgabeInput;
 import de.jost_net.JVerein.rmi.Stammdaten;
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.hbci.HBCI;

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Temporaer/Attic/DateRepair.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/19 10:05:14 $
+ * $Revision: 1.2 $
+ * $Date: 2008/02/13 18:18:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DateRepair.java,v $
+ * Revision 1.2  2008/02/13 18:18:45  jost
+ * Überflüssigen Import entfernt.
+ *
  * Revision 1.1  2008/01/19 10:05:14  jost
  * *** empty log message ***
  *
@@ -32,7 +35,6 @@ import de.willuhn.jameica.messaging.MessageConsumer;
 import de.willuhn.jameica.messaging.SystemMessage;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
-import de.willuhn.util.ApplicationException;
 
 /**
  * Bei der Migration von McKoi zu H2 gab es auf meinem Rechner Probleme mit der
