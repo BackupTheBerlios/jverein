@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/12/18 17:25:21 $
+ * $Revision: 1.8 $
+ * $Date: 2008/02/17 08:29:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.8  2008/02/17 08:29:02  jost
+ * Bugfix beim Import des Zahlungsrhytmusses
+ *
  * Revision 1.7  2007/12/18 17:25:21  jost
  * Neu: Zahlungsrhytmus importieren
  *
@@ -41,6 +44,7 @@ import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -192,10 +196,14 @@ public class Import
               + " ungültige Zahlungsart. Bar wird angenommen.");
           m.setZahlungsweg(ZahlungswegInput.BARZAHLUNG);
         }
-        String zahlungsrhytmus = results.getString("Zahlungsrhytmus");
-        if (zahlungsrhytmus == null)
+        String zahlungsrhytmus = "12";
+        try
         {
-          zahlungsrhytmus = "12";
+        results.getString("Zahlungsrhytmus");
+        }
+        catch (SQLException e)
+        {
+          // Nichts tun
         }
         m.setZahlungsrhytmus(Integer.parseInt(zahlungsrhytmus));
         m.setKontoinhaber(results.getString("Zahler"));
@@ -238,7 +246,7 @@ public class Import
         {
           m.insert();
         }
-        catch (ApplicationException e)
+        catch (Exception e)
         {
           monitor.log(m.getNameVorname() + " nicht importiert: "
               + e.getMessage());
