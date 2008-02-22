@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/02/17 08:29:02 $
+ * $Revision: 1.9 $
+ * $Date: 2008/02/22 17:31:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.9  2008/02/22 17:31:29  jost
+ * Fehlermeldung sauber ausgeben.
+ *
  * Revision 1.8  2008/02/17 08:29:02  jost
  * Bugfix beim Import des Zahlungsrhytmusses
  *
@@ -199,7 +202,7 @@ public class Import
         String zahlungsrhytmus = "12";
         try
         {
-        results.getString("Zahlungsrhytmus");
+          results.getString("Zahlungsrhytmus");
         }
         catch (SQLException e)
         {
@@ -228,7 +231,7 @@ public class Import
         }
         m.setAustritt(austritt);
         String kuendigung;
-        
+
         try
         {
           kuendigung = results.getString("Kündigung");
@@ -242,15 +245,7 @@ public class Import
           kuendigung = null;
         }
         m.setKuendigung(kuendigung);
-        try
-        {
-          m.insert();
-        }
-        catch (Exception e)
-        {
-          monitor.log(m.getNameVorname() + " nicht importiert: "
-              + e.getMessage());
-        }
+        m.insert();
       }
 
       // clean up
@@ -260,7 +255,7 @@ public class Import
     }
     catch (Exception e)
     {
-      e.printStackTrace();
+      monitor.log(" nicht importiert: " + e.getMessage());
     }
   }
 
