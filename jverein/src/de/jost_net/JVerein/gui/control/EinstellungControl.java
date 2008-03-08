@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/01/01 13:13:12 $
+ * $Revision: 1.6 $
+ * $Date: 2008/03/08 19:28:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.6  2008/03/08 19:28:49  jost
+ * Neu: Externe Mitgliedsnummer
+ *
  * Revision 1.5  2008/01/01 13:13:12  jost
  * Neu: Dateinamenmuster
  *
@@ -54,6 +57,8 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput wiedervorlage;
 
   private CheckboxInput kursteilnehmer;
+
+  private CheckboxInput externemitgliedsnummer;
 
   private SelectInput beitragsmodel;
 
@@ -137,6 +142,17 @@ public class EinstellungControl extends AbstractControl
     return kursteilnehmer;
   }
 
+  public CheckboxInput getExterneMitgliedsnummer() throws RemoteException
+  {
+    if (externemitgliedsnummer != null)
+    {
+      return externemitgliedsnummer;
+    }
+    externemitgliedsnummer = new CheckboxInput(Einstellungen
+        .isExterneMitgliedsnummer());
+    return externemitgliedsnummer;
+  }
+
   public SelectInput getBeitragsmodel() throws RemoteException
   {
     if (beitragsmodel != null)
@@ -166,6 +182,8 @@ public class EinstellungControl extends AbstractControl
     Boolean _vermerke = (Boolean) vermerke.getValue();
     Boolean _wiedervorlage = (Boolean) wiedervorlage.getValue();
     Boolean _kursteilnehmer = (Boolean) kursteilnehmer.getValue();
+    Boolean _externemitgliedsnummer = (Boolean) externemitgliedsnummer
+        .getValue();
     Integer _beitragsmodel = (Integer) beitragsmodel.getValue();
     Einstellungen.setGeburtsdatumPflicht(_geburtsdatumpflicht.booleanValue());
     Einstellungen.setEintrittsdatumPflicht(_eintrittsdatumpflicht
@@ -175,6 +193,8 @@ public class EinstellungControl extends AbstractControl
     Einstellungen.setVermerke(_vermerke.booleanValue());
     Einstellungen.setWiedervorlage(_wiedervorlage.booleanValue());
     Einstellungen.setKursteilnehmer(_kursteilnehmer.booleanValue());
+    Einstellungen.setExterneMitgliedsnummern(_externemitgliedsnummer
+        .booleanValue());
     Einstellungen.setBeitragsmodel(_beitragsmodel.intValue());
     Einstellungen.setDateinamenmuster((String) dateinamenmuster.getValue());
     GUI.getStatusBar().setSuccessText("Einstellungen gespeichert");

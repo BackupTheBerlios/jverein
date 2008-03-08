@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.6 $
- * $Date: 2007/12/02 13:44:00 $
+ * $Revision: 1.7 $
+ * $Date: 2008/03/08 19:30:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.7  2008/03/08 19:30:47  jost
+ * Neu: Externe Mitgliedsnummer
+ *
  * Revision 1.6  2007/12/02 13:44:00  jost
  * Neu: Beitragsmodelle
  *
@@ -38,6 +41,10 @@ import de.willuhn.util.ApplicationException;
 
 public interface Mitglied extends DBObject
 {
+  public void setExterneMitgliedsnummer(Integer extnr) throws RemoteException;
+
+  public Integer getExterneMitgliedsnummer() throws RemoteException;
+
   public void setID(String id) throws RemoteException;
 
   public String getAnrede() throws RemoteException;

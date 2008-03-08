@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/02/02 17:50:43 $
+ * $Revision: 1.5 $
+ * $Date: 2008/03/08 19:31:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.5  2008/03/08 19:31:00  jost
+ * Neu: Externe Mitgliedsnummer
+ *
  * Revision 1.4  2008/02/02 17:50:43  jost
  * Bugfix Austrittsdatum
  *
@@ -132,6 +135,13 @@ public class MitgliedQuery
         addCondition("austritt is null");
       }
     }
+    if (Einstellungen.isExterneMitgliedsnummer())
+    {
+      if (control.getSuchExterneMitgliedsnummer().getValue() != null)
+      {
+        addCondition("externemitgliedsnummer = ?");
+      }
+    }
     Beitragsgruppe bg = (Beitragsgruppe) control.getBeitragsgruppeAusw()
         .getValue();
     if (bg != null)
@@ -224,6 +234,12 @@ public class MitgliedQuery
         Date d = (Date) control.getAustrittbis().getValue();
         bedingungen.add(new java.sql.Date(d.getTime()));
       }
+    }
+    if (Einstellungen.isExterneMitgliedsnummer()
+        && control.getSuchExterneMitgliedsnummer().getValue() != null)
+    {
+      bedingungen.add((Integer) control.getSuchExterneMitgliedsnummer()
+          .getValue());
     }
     if (bg != null)
     {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/01/25 16:04:08 $
+ * $Revision: 1.13 $
+ * $Date: 2008/03/08 19:29:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.13  2008/03/08 19:29:58  jost
+ * Neu: Externe Mitgliedsnummer
+ *
  * Revision 1.12  2008/01/25 16:04:08  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -116,6 +119,11 @@ public class MitgliedDetailView extends AbstractView
       tab2.addLabelPair("eMail", control.getEmail());
     }
     TabGroup tab3 = new TabGroup(folder, "Mitgliedschaft");
+    if (Einstellungen.isExterneMitgliedsnummer())
+    {
+      tab3.addLabelPair("Ext. Mitgliedsnummer", control
+          .getExterneMitgliedsnummer());
+    }
     tab3.addLabelPair("Eintritt", control.getEintritt());
     tab3.addLabelPair("Betragsgruppe", control.getBeitragsgruppe());
     tab3.addLabelPair("Austritt", control.getAustritt());

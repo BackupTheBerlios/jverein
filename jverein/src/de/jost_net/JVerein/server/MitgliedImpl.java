@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.10 $
- * $Date: 2007/12/18 17:25:42 $
+ * $Revision: 1.11 $
+ * $Date: 2008/03/08 19:31:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.11  2008/03/08 19:31:17  jost
+ * Neu: Externe Mitgliedsnummer
+ *
  * Revision 1.10  2007/12/18 17:25:42  jost
  * Neu: Zahlungsrhytmus importieren
  *
@@ -94,6 +97,13 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
 
   private void plausi() throws RemoteException, ApplicationException
   {
+    if (Einstellungen.isExterneMitgliedsnummer())
+    {
+      if (getExterneMitgliedsnummer() == null)
+      {
+        throw new ApplicationException("Externe Mitgliedsnummer fehlt");
+      }
+    }
     if (getName() == null || getName().length() == 0)
     {
       throw new ApplicationException("Bitte Namen eingeben");
@@ -175,6 +185,16 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       return Beitragsgruppe.class;
     }
     return null;
+  }
+
+  public void setExterneMitgliedsnummer(Integer extnr) throws RemoteException
+  {
+    setAttribute("externemitgliedsnummer", extnr);
+  }
+
+  public Integer getExterneMitgliedsnummer() throws RemoteException
+  {
+    return (Integer) getAttribute("externemitgliedsnummer");
   }
 
   public String getAnrede() throws RemoteException

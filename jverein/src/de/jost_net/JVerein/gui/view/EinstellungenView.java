@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/01/01 19:50:58 $
+ * $Revision: 1.8 $
+ * $Date: 2008/03/08 19:29:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.8  2008/03/08 19:29:22  jost
+ * Neu: Externe Mitgliedsnummer
+ *
  * Revision 1.7  2008/01/01 19:50:58  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -59,6 +62,8 @@ public class EinstellungenView extends AbstractView
     group.addLabelPair("Wiedervorlage anzeigen *", control.getWiedervorlage());
     group
         .addLabelPair("Kursteilnehmer anzeigen *", control.getKursteilnehmer());
+    group.addLabelPair("externe Mitgliedsnummer", control
+        .getExterneMitgliedsnummer());
 
     LabelGroup groupAbu = new LabelGroup(getParent(), "Beiträge");
     groupAbu.addLabelPair("Beitragsmodel", control.getBeitragsmodel());

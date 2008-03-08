@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/01/01 13:12:26 $
+ * $Revision: 1.12 $
+ * $Date: 2008/03/08 19:28:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.12  2008/03/08 19:28:35  jost
+ * Neu: Externe Mitgliedsnummer
+ *
  * Revision 1.11  2008/01/01 13:12:26  jost
  * Neu: Dateinamenmuster
  *
@@ -84,6 +87,8 @@ public class Einstellungen
   private static Boolean wiedervorlage;
 
   private static Boolean kursteilnehmer;
+
+  private static Boolean externemitgliedsnummer;
 
   private static int beitragsmodel;
 
@@ -345,6 +350,29 @@ public class Einstellungen
   {
     settings.setAttribute("kursteilnehmer.einblenden", value);
     kursteilnehmer = null;
+  }
+
+  /**
+   * Externe Mitgliedsnummer verwenden?
+   */
+  public static boolean isExterneMitgliedsnummer()
+  {
+    if (externemitgliedsnummer != null)
+    {
+      return externemitgliedsnummer.booleanValue();
+    }
+    externemitgliedsnummer = new Boolean(settings.getBoolean(
+        "externemitgliedsnummer.verwenden", false));
+    return externemitgliedsnummer;
+  }
+
+  /**
+   * Speichert, ob externe Mitgliedsnummern verwendet werden sollen.
+   */
+  public static void setExterneMitgliedsnummern(boolean value)
+  {
+    settings.setAttribute("externemitgliedsnummer.verwenden", value);
+    externemitgliedsnummer = null;
   }
 
   /**
