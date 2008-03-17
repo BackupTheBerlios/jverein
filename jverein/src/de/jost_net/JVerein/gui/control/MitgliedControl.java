@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.31 $
- * $Date: 2008/03/08 19:29:07 $
+ * $Revision: 1.32 $
+ * $Date: 2008/03/17 20:22:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.32  2008/03/17 20:22:12  jost
+ * Bugfix Eintritts- und Austrittsdatum aus dem Bereich Auswertung wurden auch im Dialog berücksichtigt.
+ *
  * Revision 1.31  2008/03/08 19:29:07  jost
  * Neu: Externe Mitgliedsnummer
  *
@@ -944,11 +947,6 @@ public class MitgliedControl extends AbstractControl
     return geburtsdatumbis;
   }
 
-  public boolean isEintrittvonAktiv()
-  {
-    return eintrittvon != null;
-  }
-
   public DateInput getEintrittvon() throws RemoteException
   {
     if (eintrittvon != null)
@@ -1024,11 +1022,6 @@ public class MitgliedControl extends AbstractControl
       }
     });
     return eintrittbis;
-  }
-
-  public boolean isAustrittvonAktiv()
-  {
-    return austrittvon != null;
   }
 
   public DateInput getAustrittvon() throws RemoteException
@@ -1276,8 +1269,8 @@ public class MitgliedControl extends AbstractControl
   {
     TablePart part;
     saveDefaults();
-    part = new TablePart(new MitgliedQuery(this).getQuery(anfangsbuchstabe),
-        new MitgliedDetailAction());
+    part = new TablePart(new MitgliedQuery(this, true)
+        .getQuery(anfangsbuchstabe), new MitgliedDetailAction());
 
     part.addColumn("Name", "name");
     part.addColumn("Vorname", "vorname");
@@ -1392,7 +1385,7 @@ public class MitgliedControl extends AbstractControl
         settings.setAttribute("mitglied.austrittbis", "");
       }
     }
- 
+
     if (eigenschaftenabfrage != null)
     {
       settings.setAttribute("mitglied.eigenschaften", getEigenschaftenAuswahl()
@@ -1485,7 +1478,7 @@ public class MitgliedControl extends AbstractControl
   private void starteAuswertung() throws RemoteException
   {
     saveDefaults();
-    ArrayList list = new MitgliedQuery(this).getQuery();
+    ArrayList list = new MitgliedQuery(this, false).getQuery();
     try
     {
       String subtitle = "";
