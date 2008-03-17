@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/01/27 09:42:37 $
+ * $Revision: 1.6 $
+ * $Date: 2008/03/17 20:22:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.6  2008/03/17 20:22:46  jost
+ * Bezeichnung der Beitragsart wird ausgegeben.
+ *
  * Revision 1.5  2008/01/27 09:42:37  jost
  * Vereinheitlichung der Mitgliedersuche durch die Klasse MitgliedQuery
  *
@@ -60,7 +63,7 @@ public class MitgliedAuswertungCSV
           .print("id;anrede;titel;name;vorname;strasse;plz;ort;blz;konto;kontoinhaber;");
       out
           .print("geburtsdatum;geschlecht;telefonprivat;telefondienstlich;email;");
-      out.println("eintritt;beitragsgruppe;austritt;kuendigung");
+      out.println("eintritt;beitragsgruppe;beitragsgruppetext;austritt;kuendigung");
       int faelle = 0;
 
       for (int i = 0; i < list.size(); i++)
@@ -86,6 +89,7 @@ public class MitgliedAuswertungCSV
         out.print(m.getEmail() + ";");
         out.print(formatDate(m.getEintritt()) + ";");
         out.print(m.getBeitragsgruppe().getID() + ";");
+        out.print(m.getBeitragsgruppe().getBezeichnung() + ";");
         out.print(formatDate(m.getAustritt()) + ";");
         out.println(formatDate(m.getKuendigung()));
       }
