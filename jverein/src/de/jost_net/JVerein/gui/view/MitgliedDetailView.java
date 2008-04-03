@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/03/16 07:37:18 $
+ * $Revision: 1.15 $
+ * $Date: 2008/04/03 17:29:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.15  2008/04/03 17:29:06  jost
+ * ScrolledPane von Olaf übernommen.
+ *
  * Revision 1.14  2008/03/16 07:37:18  jost
  * Layout verändert.
  * Ausgabe der Familiendaten nur, wenn auch entsprechende Beitragsgruppen existieren.
@@ -79,6 +82,7 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
 import de.willuhn.jameica.gui.util.ColumnLayout;
+import de.willuhn.jameica.gui.util.ScrolledContainer;
 import de.willuhn.jameica.gui.util.SimpleContainer;
 import de.willuhn.jameica.gui.util.TabGroup;
 import de.willuhn.util.ApplicationException;
@@ -92,7 +96,9 @@ public class MitgliedDetailView extends AbstractView
 
     final MitgliedControl control = new MitgliedControl(this);
 
-    ColumnLayout cols1 = new ColumnLayout(getParent(), 2);
+    ScrolledContainer scrolled = new ScrolledContainer(getParent());
+    
+    ColumnLayout cols1 = new ColumnLayout(scrolled.getComposite(), 2);
     SimpleContainer left = new SimpleContainer(cols1.getComposite());
     left.addHeadline("Grunddaten");
     left.addLabelPair("Anrede", control.getAnrede());
@@ -110,7 +116,7 @@ public class MitgliedDetailView extends AbstractView
 
     if (Einstellungen.isKommunikationsdaten())
     {
-      ColumnLayout cols2 = new ColumnLayout(getParent(), 2);
+      ColumnLayout cols2 = new ColumnLayout(scrolled.getComposite(), 2);
       SimpleContainer left2 = new SimpleContainer(cols2.getComposite());
       left2.addHeadline("Kommunikation");
       left2.addLabelPair("Telefon priv.", control.getTelefonprivat());
@@ -120,7 +126,7 @@ public class MitgliedDetailView extends AbstractView
       right2.addLabelPair("eMail", control.getEmail());
     }
 
-    ColumnLayout cols3 = new ColumnLayout(getParent(), 2);
+    ColumnLayout cols3 = new ColumnLayout(scrolled.getComposite(), 2);
     SimpleContainer left3 = new SimpleContainer(cols3.getComposite());
     left3.addHeadline("Bankverbindung");
     left3.addLabelPair("Zahlungsweg", control.getZahlungsweg());
@@ -134,7 +140,7 @@ public class MitgliedDetailView extends AbstractView
     right3.addLabelPair("BLZ", control.getBlz());
     right3.addLabelPair("Konto", control.getKonto());
 
-    TabFolder folder = new TabFolder(getParent(), SWT.NONE);
+    TabFolder folder = new TabFolder(scrolled.getComposite(), SWT.NONE);
     folder.setLayoutData(new GridData(GridData.FILL_BOTH));
     folder.setBackground(Color.BACKGROUND.getSWTColor());
 
