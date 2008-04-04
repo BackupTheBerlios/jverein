@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.32 $
- * $Date: 2008/03/17 20:22:12 $
+ * $Revision: 1.33 $
+ * $Date: 2008/04/04 15:14:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.33  2008/04/04 15:14:12  jost
+ * Felder Titel und PLZ verlängert.
+ *
  * Revision 1.32  2008/03/17 20:22:12  jost
  * Bugfix Eintritts- und Austrittsdatum aus dem Bereich Auswertung wurden auch im Dialog berücksichtigt.
  *
@@ -305,7 +308,7 @@ public class MitgliedControl extends AbstractControl
     {
       return anrede;
     }
-    anrede = new TextInput(getMitglied().getAnrede());
+    anrede = new TextInput(getMitglied().getAnrede(),10);
     return anrede;
   }
 
@@ -315,7 +318,7 @@ public class MitgliedControl extends AbstractControl
     {
       return titel;
     }
-    titel = new TextInput(getMitglied().getTitel(), 15);
+    titel = new TextInput(getMitglied().getTitel(), 20);
     return titel;
   }
 
@@ -357,7 +360,7 @@ public class MitgliedControl extends AbstractControl
     {
       return plz;
     }
-    plz = new TextInput(getMitglied().getPlz(), 5);
+    plz = new TextInput(getMitglied().getPlz(), 10);
     plz.addListener(new Listener()
     {
       public void handleEvent(Event event)
