@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/DokumentationAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/01/01 19:46:53 $
+ * $Revision: 1.3 $
+ * $Date: 2008/04/05 16:07:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationAction.java,v $
+ * Revision 1.3  2008/04/05 16:07:36  jost
+ * Bugfix Aufruf unter Windows
+ *
  * Revision 1.2  2008/01/01 19:46:53  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -20,8 +23,6 @@
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
-
-import java.io.File;
 
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -43,12 +44,12 @@ public class DokumentationAction implements Action
         {
           if (cont instanceof String)
           {
-            new Program().handleAction(new File((String) cont));
+            new Program().handleAction((String) cont);
           }
           else
           {
-            new Program().handleAction(new File(
-                "http://www.jverein.de/index.php5?title=Dokumentation"));
+            new Program()
+                .handleAction("http://www.jverein.de/index.php5?title=Dokumentation");
           }
         }
         catch (ApplicationException ae)
