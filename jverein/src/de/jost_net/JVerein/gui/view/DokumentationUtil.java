@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/01 19:50:45 $
+ * $Revision: 1.2 $
+ * $Date: 2008/04/10 18:59:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.2  2008/04/10 18:59:25  jost
+ * Neu: Benutzerdefinierte Datenfelder
+ *
  * Revision 1.1  2008/01/01 19:50:45  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -29,6 +32,8 @@ public class DokumentationUtil
   public static final String auswertungmitglieder = "http://www.jverein.de/index.php5?title=Auswertung#Auswertung_der_Mitglieder";
 
   public static final String beitragsgruppen = "http://www.jverein.de/index.php5?title=Administration#Beitragsgruppen";
+
+  public static final String felddefinitionen = "http://www.jverein.de/index.php5?title=Administration#Felddefinitionen";
 
   public static final String einstellungen = "http://www.jverein.de/index.php5?title=Administration#Einstellungen";
 
