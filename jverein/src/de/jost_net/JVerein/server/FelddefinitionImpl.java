@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FelddefinitionImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/04/10 19:03:24 $
+ * $Revision: 1.2 $
+ * $Date: 2008/04/11 12:36:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionImpl.java,v $
+ * Revision 1.2  2008/04/11 12:36:32  jost
+ * Mini-Bugfix
+ *
  * Revision 1.1  2008/04/10 19:03:24  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -57,7 +60,7 @@ public class FelddefinitionImpl extends AbstractDBObject implements
         throw new ApplicationException("Bitte Namen des Feldes eingeben");
       }
       setName(getName().toLowerCase());
-      String validChars = "abcdefghijklmnopqrstuvwxyz01234567890_";
+      String validChars = "abcdefghijklmnopqrstuvwxyz0123456789_";
       String testString = getName();
       for (int i = 0; i < testString.length(); i++)
       {
