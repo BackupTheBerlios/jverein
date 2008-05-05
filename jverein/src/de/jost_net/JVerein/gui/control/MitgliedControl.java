@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.34 $
- * $Date: 2008/04/10 18:58:30 $
+ * $Revision: 1.35 $
+ * $Date: 2008/05/05 18:21:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.35  2008/05/05 18:21:49  jost
+ * Bugfix NPE bei Zusatzfeldern
+ *
  * Revision 1.34  2008/04/10 18:58:30  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -610,12 +613,15 @@ public class MitgliedControl extends AbstractControl
         try
         {
           Beitragsgruppe bg = (Beitragsgruppe) beitragsgruppe.getValue();
-          famverb.setBeitragsgruppe(bg);
+          if (famverb != null)
+          {
+            famverb.setBeitragsgruppe(bg);
+          }
           if (bg.getBeitragsArt() == 2)
           {
             zahler.setEnabled(true);
           }
-          else
+          else if (bg.getBeitragsArt() == 1)
           {
             zahler.setValue((Mitglied) Einstellungen.getDBService()
                 .createObject(Mitglied.class, ""));
@@ -830,6 +836,11 @@ public class MitgliedControl extends AbstractControl
       Felddefinition fd = (Felddefinition) it.next();
       zusatzfelder[i] = new TextInput("", fd.getLaenge());
       zusatzfelder[i].setName(fd.getLabel());
+      if (fd.getLabel()== null)
+        
+      {
+        zusatzfelder[i].setName(fd.getName());
+      }
       if (getMitglied().getID() != null)
       {
         DBIterator it2 = Einstellungen.getDBService().createList(
@@ -841,7 +852,7 @@ public class MitgliedControl extends AbstractControl
           Zusatzfelder zf = (Zusatzfelder) it2.next();
           zusatzfelder[i].setValue(zf.getFeld());
         }
-      }
+       }
     }
     return zusatzfelder;
   }

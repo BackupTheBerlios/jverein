@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/04/10 19:00:17 $
+ * $Revision: 1.17 $
+ * $Date: 2008/05/05 18:22:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.17  2008/05/05 18:22:28  jost
+ * Bugfix NPE bei Zusatzfeldern
+ *
  * Revision 1.16  2008/04/10 19:00:17  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -197,11 +200,11 @@ public class MitgliedDetailView extends AbstractView
       econtrol.getEigenschaftenTable().paint(tab7.getComposite());
       tab7.addText("Rechter Mausklick für Funktionen", false);
     }
-    TabGroup tab8 = new TabGroup(folder, "Zusatzfelder");
-    ScrolledContainer cont = new ScrolledContainer(tab8.getComposite());
     TextInput[] zusatzfelder = control.getZusatzfelder();
     if (zusatzfelder != null)
     {
+      TabGroup tab8 = new TabGroup(folder, "Zusatzfelder");
+      ScrolledContainer cont = new ScrolledContainer(tab8.getComposite());
       for (TextInput inp : zusatzfelder)
       {
         cont.addInput(inp);
