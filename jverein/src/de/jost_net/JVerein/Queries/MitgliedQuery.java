@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/03/17 20:25:21 $
+ * $Revision: 1.7 $
+ * $Date: 2008/05/05 18:23:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.7  2008/05/05 18:23:46  jost
+ * Bugfix Geburtstagsliste
+ *
  * Revision 1.6  2008/03/17 20:25:21  jost
  * Workaround f. Bug in Jameica
  *
@@ -74,7 +77,13 @@ public class MitgliedQuery
   {
     final DBService service = Einstellungen.getDBService();
 
-    sql = "select distinct mitglied.* " + "from mitglied ";
+    sql = "select distinct mitglied.* ";
+    String sort = (String) control.getSortierung().getValue();
+    if (sort.equals("Geburtstagsliste"))
+    {
+      sql += ", month(geburtsdatum), day(geburtsdatum) ";
+    }
+    sql += "from mitglied ";
     if (control.isMitgliedStatusAktiv())
     {
       if (control.getMitgliedStatus().getValue().equals("Angemeldet"))
@@ -168,7 +177,6 @@ public class MitgliedQuery
     {
       addCondition("beitragsgruppe = ? ");
     }
-    String sort = (String) control.getSortierung().getValue();
     if (sort.equals("Name, Vorname"))
     {
       sql += " ORDER BY name, vorname";
@@ -204,14 +212,14 @@ public class MitgliedQuery
         return list;
       }
     };
-    ArrayList bedingungen = new ArrayList();
+    ArrayList<Object> bedingungen = new ArrayList<Object>();
     if (eigenschaften != null && eigenschaften.length() > 0)
     {
       StringTokenizer st = new StringTokenizer(eigenschaften, "[]");
       int tokcount = 0;
       while (st.hasMoreTokens())
       {
-        bedingungen.add(st.nextToken());
+        bedingungen.add((Object) st.nextToken());
         tokcount++;
       }
       bedingungen.add(new Integer(tokcount));
