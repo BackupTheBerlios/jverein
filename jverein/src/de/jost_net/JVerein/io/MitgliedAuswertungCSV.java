@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/04/10 19:02:29 $
+ * $Revision: 1.8 $
+ * $Date: 2008/05/05 18:23:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.8  2008/05/05 18:23:18  jost
+ * *** empty log message ***
+ *
  * Revision 1.7  2008/04/10 19:02:29  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -41,7 +44,6 @@ import java.io.PrintWriter;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Felddefinition;
@@ -65,7 +67,6 @@ public class MitgliedAuswertungCSV
     try
     {
       PrintWriter out = new PrintWriter(new FileOutputStream(file));
-      List<String> zusatzfelder = new ArrayList<String>();
       out
           .print("id;anrede;titel;name;vorname;strasse;plz;ort;blz;konto;kontoinhaber;");
       out
