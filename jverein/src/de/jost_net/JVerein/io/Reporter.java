@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/12/21 11:28:46 $
+ * $Revision: 1.5 $
+ * $Date: 2008/05/06 19:40:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.5  2008/05/06 19:40:45  jost
+ * Warnings beseitigt
+ *
  * Revision 1.4  2007/12/21 11:28:46  jost
  * Breite von Tabellen einstellbar gemacht.
  *
@@ -59,9 +62,9 @@ public class Reporter
 {
   private I18N i18n = null;
 
-  private ArrayList headers;
+  private ArrayList<PdfPCell> headers;
 
-  private ArrayList widths;
+  private ArrayList<Integer> widths;
 
   private OutputStream out;
 
@@ -127,8 +130,8 @@ public class Reporter
     psubTitle.setAlignment(Element.ALIGN_CENTER);
     rpt.add(psubTitle);
 
-    headers = new ArrayList();
-    widths = new ArrayList();
+    headers = new ArrayList<PdfPCell>();
+    widths = new ArrayList<Integer>();
 
     monitor.setPercentComplete(0);
     this.maxRecords = maxRecords;
@@ -225,8 +228,8 @@ public class Reporter
   {
     rpt.add(table);
     table = null;
-    headers = new ArrayList();
-    widths = new ArrayList();
+    headers = new ArrayList<PdfPCell>();
+    widths = new ArrayList<Integer>();
   }
 
   /**
