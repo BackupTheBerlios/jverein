@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/03/08 19:30:16 $
+ * $Revision: 1.15 $
+ * $Date: 2008/05/22 06:54:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.15  2008/05/22 06:54:31  jost
+ * Redaktionelle Änderung
+ *
  * Revision 1.14  2008/03/08 19:30:16  jost
  * Neu: Externe Mitgliedsnummer
  *
@@ -231,7 +234,6 @@ public class MitgliederSucheView extends AbstractView
 
   private void TabRefresh(MitgliedControl control, int index)
   {
-    System.out.println("Tabrefresh");
     try
     {
       control.saveDefaults();

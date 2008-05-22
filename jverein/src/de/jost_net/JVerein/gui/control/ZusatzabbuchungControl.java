@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/04/12 05:53:15 $
+ * $Revision: 1.8 $
+ * $Date: 2008/05/22 06:49:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungControl.java,v $
+ * Revision 1.8  2008/05/22 06:49:33  jost
+ * Redaktionelle Änderung
+ *
  * Revision 1.7  2007/04/12 05:53:15  jost
  * Anpassung an aktuelles Jameica-Nightly-Build
  *
@@ -366,7 +369,9 @@ public class ZusatzabbuchungControl extends AbstractControl
         {
           Mitglied m = (Mitglied) o;
           if (m == null)
+          {
             return null;
+          }
           String name = null;
           try
           {
