@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/03/16 07:35:49 $
+ * $Revision: 1.8 $
+ * $Date: 2008/05/22 06:47:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.8  2008/05/22 06:47:48  jost
+ * Buchführung
+ *
  * Revision 1.7  2008/03/16 07:35:49  jost
  * Reaktivierung Buchführung
  *
@@ -42,10 +45,12 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BuchungAction;
+import de.jost_net.JVerein.gui.input.KontoauswahlInput;
 import de.jost_net.JVerein.gui.menu.BuchungMenu;
 import de.jost_net.JVerein.io.BuchungAuswertungPDF;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Buchungsart;
+import de.jost_net.JVerein.rmi.Konto;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -59,7 +64,9 @@ import de.willuhn.jameica.gui.formatter.DateFormatter;
 import de.willuhn.jameica.gui.formatter.Formatter;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.DecimalInput;
+import de.willuhn.jameica.gui.input.DialogInput;
 import de.willuhn.jameica.gui.input.Input;
+import de.willuhn.jameica.gui.input.IntegerInput;
 import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.Button;
@@ -81,7 +88,7 @@ public class BuchungsControl extends AbstractControl
 
   private Input umsatzid;
 
-  private Input konto;
+  private DialogInput konto;
 
   private Input name;
 
@@ -141,19 +148,23 @@ public class BuchungsControl extends AbstractControl
     {
       return umsatzid;
     }
-    umsatzid = new TextInput(getBuchung().getUmsatzid(), 10);
+    Integer ui = getBuchung().getUmsatzid();
+    if (ui == null)
+    {
+      ui = new Integer(0);
+    }
+    umsatzid = new IntegerInput(ui);
     umsatzid.setEnabled(false);
     return umsatzid;
   }
 
-  public Input getKonto() throws RemoteException
+  public DialogInput getKonto() throws RemoteException
   {
     if (konto != null)
     {
       return konto;
     }
-    konto = new TextInput(getBuchung().getKonto(), 10);
-    konto.setEnabled(false);
+    konto = new KontoauswahlInput(getBuchung().getKonto()).getKontoAuswahl();
     return konto;
   }
 
@@ -164,7 +175,6 @@ public class BuchungsControl extends AbstractControl
       return name;
     }
     name = new TextInput(getBuchung().getName(), 100);
-    name.setEnabled(false);
     return name;
   }
 
@@ -176,7 +186,6 @@ public class BuchungsControl extends AbstractControl
     }
     betrag = new DecimalInput(getBuchung().getBetrag(),
         Einstellungen.DECIMALFORMAT);
-    betrag.setEnabled(false);
     return betrag;
   }
 
@@ -187,7 +196,6 @@ public class BuchungsControl extends AbstractControl
       return zweck;
     }
     zweck = new TextInput(getBuchung().getZweck(), 35);
-    zweck.setEnabled(false);
     return zweck;
   }
 
@@ -198,7 +206,6 @@ public class BuchungsControl extends AbstractControl
       return zweck2;
     }
     zweck2 = new TextInput(getBuchung().getZweck2(), 35);
-    zweck2.setEnabled(false);
     return zweck2;
   }
 
@@ -223,7 +230,6 @@ public class BuchungsControl extends AbstractControl
         }
       }
     });
-    datum.setEnabled(false);
     return datum;
   }
 
@@ -235,7 +241,6 @@ public class BuchungsControl extends AbstractControl
     }
     saldo = new DecimalInput(getBuchung().getSaldo(),
         Einstellungen.DECIMALFORMAT);
-    saldo.setEnabled(false);
     return saldo;
   }
 
@@ -246,7 +251,6 @@ public class BuchungsControl extends AbstractControl
       return art;
     }
     art = new TextInput(getBuchung().getArt(), 100);
-    art.setEnabled(false);
     return art;
   }
 
@@ -257,7 +261,6 @@ public class BuchungsControl extends AbstractControl
       return kommentar;
     }
     kommentar = new TextInput(getBuchung().getKommentar(), 1024);
-    kommentar.setEnabled(false);
     return kommentar;
   }
 
@@ -401,6 +404,26 @@ public class BuchungsControl extends AbstractControl
     {
       buchungsList = new TablePart(buchungen, new BuchungAction());
       buchungsList.addColumn("Nr", "id");
+      buchungsList.addColumn("Konto", "konto", new Formatter()
+      {
+
+        public String format(Object o)
+        {
+          Konto k = (Konto) o;
+          if (k != null)
+          {
+            try
+            {
+              return k.getBezeichnung();
+            }
+            catch (RemoteException e)
+            {
+              e.printStackTrace();
+            }
+          }
+          return "";
+        }
+      });
       buchungsList.addColumn("Datum", "datum", new DateFormatter(
           Einstellungen.DATEFORMAT));
       buchungsList.addColumn("Name", "name");

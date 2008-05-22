@@ -1,15 +1,15 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungMenu.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:50:44 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungsartMenu.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/05/22 06:50:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungMenu.java,v $
- * Revision 1.5  2008/05/22 06:50:44  jost
+ * $Log: BuchungsartMenu.java,v $
+ * Revision 1.1  2008/05/22 06:50:55  jost
  * BuchfÃ¼hrung
  *
  * Revision 1.4  2008/03/16 07:36:10  jost
@@ -24,24 +24,22 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
-import de.jost_net.JVerein.gui.action.BuchungDeleteAction;
-import de.jost_net.JVerein.gui.action.BuchungNeuAction;
+import de.jost_net.JVerein.gui.action.BuchungsartDeleteAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
-import de.willuhn.jameica.gui.parts.ContextMenuItem;
 
 /**
  * Kontext-Menu zu den Zusatzabbuchungen.
  */
-public class BuchungMenu extends ContextMenu
+public class BuchungsartMenu extends ContextMenu
 {
 
   /**
    * Erzeugt ein Kontext-Menu fuer die Liste der Zusatzabbuchungen.
    */
-  public BuchungMenu()
+  public BuchungsartMenu()
   {
-    addItem(new ContextMenuItem("Neu", new BuchungNeuAction()));
-    addItem(new CheckedContextMenuItem("Löschen...", new BuchungDeleteAction()));
+    addItem(new CheckedContextMenuItem("Löschen...",
+        new BuchungsartDeleteAction()));
   }
 }

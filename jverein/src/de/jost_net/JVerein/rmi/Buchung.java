@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/03/16 07:37:55 $
+ * $Revision: 1.5 $
+ * $Date: 2008/05/22 06:55:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchung.java,v $
+ * Revision 1.5  2008/05/22 06:55:11  jost
+ * Buchführung
+ *
  * Revision 1.4  2008/03/16 07:37:55  jost
  * Reaktivierung Buchführung
  *
@@ -28,13 +31,13 @@ import de.willuhn.datasource.rmi.DBObject;
 
 public interface Buchung extends DBObject
 {
-  public String getUmsatzid() throws RemoteException;
+  public Integer getUmsatzid() throws RemoteException;
 
-  public void setUmsatzid(String umsatzid) throws RemoteException;
+  public void setUmsatzid(Integer umsatzid) throws RemoteException;
 
-  public String getKonto() throws RemoteException;
+  public Konto getKonto() throws RemoteException;
 
-  public void setKonto(String konto) throws RemoteException;
+  public void setKonto(Konto konto) throws RemoteException;
 
   public String getName() throws RemoteException;
 

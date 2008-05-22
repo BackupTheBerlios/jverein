@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/03/16 07:38:12 $
+ * $Revision: 1.5 $
+ * $Date: 2008/05/22 06:56:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
+ * Revision 1.5  2008/05/22 06:56:05  jost
+ * Buchführung
+ *
  * Revision 1.4  2008/03/16 07:38:12  jost
  * Reaktivierung Buchführung
  *
@@ -27,6 +30,7 @@ import java.util.Date;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Buchungsart;
+import de.jost_net.JVerein.rmi.Konto;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
@@ -70,7 +74,7 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
 
   private void plausi() throws RemoteException, ApplicationException
   {
-    if (getKonto() == null || getKonto().length() == 0)
+    if (getKonto() == null)
     {
       throw new ApplicationException("Bitte Konto eingeben");
     }
@@ -100,25 +104,30 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
     {
       return Buchungsart.class;
     }
+    else if ("konto".equals(field))
+    {
+      return Konto.class;
+    }
     return null;
   }
 
-  public String getUmsatzid() throws RemoteException
+  public Integer getUmsatzid() throws RemoteException
   {
-    return (String) getAttribute("umsatzid");
+
+    return (Integer) getAttribute("umsatzid");
   }
 
-  public void setUmsatzid(String umsatzid) throws RemoteException
+  public void setUmsatzid(Integer umsatzid) throws RemoteException
   {
     setAttribute("umsatzid", umsatzid);
   }
 
-  public String getKonto() throws RemoteException
+  public Konto getKonto() throws RemoteException
   {
-    return (String) getAttribute("konto");
+    return (Konto) getAttribute("konto");
   }
 
-  public void setKonto(String konto) throws RemoteException
+  public void setKonto(Konto konto) throws RemoteException
   {
     setAttribute("konto", konto);
   }

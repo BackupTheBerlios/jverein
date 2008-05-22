@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/04/10 18:59:25 $
+ * $Revision: 1.3 $
+ * $Date: 2008/05/22 06:53:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.3  2008/05/22 06:53:26  jost
+ * BuchfÃ¼hrung
+ *
  * Revision 1.2  2008/04/10 18:59:25  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -25,34 +28,51 @@ public class DokumentationUtil
 
   }
 
-  public static final String abbuchung = "http://www.jverein.de/index.php5?title=Abbuchung";
+  private static final String pre = "http://www.jverein.de/index.php5?title=";
 
-  public static final String auswertungkursteilnehmer = "http://www.jverein.de/index.php5?title=Auswertung#Auswertung_der_Kursteilnehmer";
+  public static final String abbuchung = pre + "Abbuchung";
 
-  public static final String auswertungmitglieder = "http://www.jverein.de/index.php5?title=Auswertung#Auswertung_der_Mitglieder";
+  public static final String auswertungkursteilnehmer = pre
+      + "Auswertung#Auswertung_der_Kursteilnehmer";
 
-  public static final String beitragsgruppen = "http://www.jverein.de/index.php5?title=Administration#Beitragsgruppen";
+  public static final String auswertungmitglieder = pre
+      + "Auswertung#Auswertung_der_Mitglieder";
 
-  public static final String felddefinitionen = "http://www.jverein.de/index.php5?title=Administration#Felddefinitionen";
+  public static final String beitragsgruppen = pre
+      + "Administration#Beitragsgruppen";
 
-  public static final String einstellungen = "http://www.jverein.de/index.php5?title=Administration#Einstellungen";
+  public static final String felddefinitionen = pre
+      + "Administration#Felddefinitionen";
 
-  public static final String importa = "http://www.jverein.de/index.php5?title=Administration#Import";
+  public static final String einstellungen = pre
+      + "Administration#Einstellungen";
 
-  public static final String jubilaeen = "http://www.jverein.de/index.php5?title=Auswertung#Jubil.C3.A4en";
+  public static final String importa = pre + "Administration#Import";
 
-  public static final String mitglied = "http://www.jverein.de/index.php5?title=Mitglieder";
+  public static final String jubilaeen = pre + "Auswertung#Jubil.C3.A4en";
 
-  public static final String kursteilnehmer = "http://www.jverein.de/index.php5?title=Kursteilnehmer";
+  public static final String mitglied = pre + "Mitglieder";
 
-  public static final String manuellezahlungseingaenge = "http://www.jverein.de/index.php5?title=Manuelle_Zahlungseing%C3%A4nge";
+  public static final String kursteilnehmer = pre + "Kursteilnehmer";
 
-  public static final String stammdaten = "http://www.jverein.de/index.php5?title=Administration#Stammdaten_des_Vereins";
+  public static final String manuellezahlungseingaenge = pre
+      + "Manuelle_Zahlungseing%C3%A4nge";
 
-  public static final String statistikmitglieder = "http://www.jverein.de/index.php5?title=Auswertung#Statistik";
+  public static final String stammdaten = pre
+      + "Administration#Stammdaten_des_Vereins";
 
-  public static final String wiedervorlage = "http://www.jverein.de/index.php5?title=Wiedervorlage";
+  public static final String statistikmitglieder = pre + "Auswertung#Statistik";
 
-  public static final String zusatzabbuchungen = "http://www.jverein.de/index.php5?title=Zusatzabbuchungen";
+  public static final String wiedervorlage = pre + "Wiedervorlage";
 
+  public static final String zusatzabbuchungen = pre + "Zusatzabbuchungen";
+
+  public static final String konten = pre + "Konten";
+
+  public static final String anfangsbestaende = pre + "Anfangsbestände";
+
+  public static final String buchungenaushibiscus = pre
+      + "Buchungen_aus_Hibiscus_übernehmen";
+
+  public static final String buchungen = pre + "Buchungen";
 }

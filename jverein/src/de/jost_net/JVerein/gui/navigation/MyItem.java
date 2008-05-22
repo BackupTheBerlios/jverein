@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyItem.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/08/23 19:25:23 $
+ * $Revision: 1.3 $
+ * $Date: 2008/05/22 06:51:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,22 +9,22 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyItem.java,v $
+ * Revision 1.3  2008/05/22 06:51:47  jost
+ * Buchführung
+ *
  * Revision 1.2  2007/08/23 19:25:23  jost
  * Header korrigiert.
  *
- **********************************************************************/package de.jost_net.JVerein.gui.navigation;
-
-/**********************************************************************
-  * $Revision: 1.2 $
- * $Date: 2007/08/23 19:25:23 $
- * $Author: jost $
- * $Locker:  $
- * $State: Exp $
- *
- * Copyright (c) by willuhn software & services
- * All rights reserved
- *
  **********************************************************************/
+package de.jost_net.JVerein.gui.navigation;
+
+/*******************************************************************************
+ * $Revision: 1.3 $ $Date: 2008/05/22 06:51:47 $ $Author: jost $ $Locker:  $
+ * $State: Exp $
+ * 
+ * Copyright (c) by willuhn software & services All rights reserved
+ * 
+ ******************************************************************************/
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -259,10 +259,11 @@ public class MyItem implements NavigationItem
 
 /*******************************************************************************
  * $Log: MyItem.java,v $
- * Revision 1.2  2007/08/23 19:25:23  jost
- * Header korrigiert.
- *
- * Revision 1.1  2007/08/22 20:43:54  jost
- * *** empty log message ***
- *
+ * Revision 1.3  2008/05/22 06:51:47  jost
+ * Buchführung
+ * Revision 1.2 2007/08/23 19:25:23 jost Header
+ * korrigiert.
+ * 
+ * Revision 1.1 2007/08/22 20:43:54 jost *** empty log message ***
+ * 
  ******************************************************************************/

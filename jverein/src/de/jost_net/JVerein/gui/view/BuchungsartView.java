@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartView.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/03/16 07:36:29 $
+ * $Revision: 1.5 $
+ * $Date: 2008/05/22 06:52:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartView.java,v $
+ * Revision 1.5  2008/05/22 06:52:37  jost
+ * Buchführung
+ *
  * Revision 1.4  2008/03/16 07:36:29  jost
  * Reaktivierung Buchführung
  *
@@ -41,6 +44,7 @@ public class BuchungsartView extends AbstractView
     LabelGroup group = new LabelGroup(getParent(), "Buchungsart");
     group.addLabelPair("Nummer", control.getNummer());
     group.addLabelPair("Bezeichnung", control.getBezeichnung());
+    group.addLabelPair("Art", control.getArt());
 
     ButtonArea buttons = new ButtonArea(getParent(), 2);
 
