@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/03/08 19:29:22 $
+ * $Revision: 1.9 $
+ * $Date: 2008/05/22 06:53:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.9  2008/05/22 06:53:43  jost
+ * BuchfÃ¼hrung: Beginn des GeschÃ¤ftsjahres
+ *
  * Revision 1.8  2008/03/08 19:29:22  jost
  * Neu: Externe Mitgliedsnummer
  *
@@ -72,6 +75,10 @@ public class EinstellungenView extends AbstractView
     groupDatei.addLabelPair("Muster", control.getDateinamenmuster());
     groupDatei.addText("a$ = Aufgabe, d$ = Datum, s$ = Sortierung, z$ = Zeit",
         true);
+
+    LabelGroup groupBuchfuehrung = new LabelGroup(getParent(), "Buchführung");
+    groupBuchfuehrung.addLabelPair("Beginn Geschäftsjahr (TT.MM.)", control
+        .getBeginnGeschaeftsjahr());
 
     new Headline(getParent(), "* Änderung erfordert Neustart");
     ButtonArea buttons = new ButtonArea(getParent(), 3);
