@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:48:07 $
+ * $Revision: 1.6 $
+ * $Date: 2008/05/24 16:39:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
+ * Revision 1.6  2008/05/24 16:39:17  jost
+ * Wegfall der Spalte Saldo
+ *
  * Revision 1.5  2008/05/22 06:48:07  jost
  * Buchführung
  *
@@ -120,7 +123,6 @@ public class BuchungsuebernahmeControl extends AbstractControl
             b.setZweck(u.getZweck());
             b.setZweck2(u.getZweck2());
             b.setDatum(u.getDatum());
-            b.setSaldo(u.getSaldo());
             b.setArt(u.getArt());
             b.setKommentar(u.getKommentar());
             b.store();

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:55:11 $
+ * $Revision: 1.6 $
+ * $Date: 2008/05/24 16:40:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchung.java,v $
+ * Revision 1.6  2008/05/24 16:40:20  jost
+ * Wegfall der Spalte Saldo
+ *
  * Revision 1.5  2008/05/22 06:55:11  jost
  * Buchführung
  *
@@ -58,10 +61,6 @@ public interface Buchung extends DBObject
   public Date getDatum() throws RemoteException;
 
   public void setDatum(Date datum) throws RemoteException;
-
-  public double getSaldo() throws RemoteException;
-
-  public void setSaldo(double saldo) throws RemoteException;
 
   public String getArt() throws RemoteException;
 

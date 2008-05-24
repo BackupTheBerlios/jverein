@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.7 $
+ * $Date: 2008/05/24 16:40:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
+ * Revision 1.7  2008/05/24 16:40:05  jost
+ * Wegfall der Spalte Saldo
+ *
  * Revision 1.6  2008/05/24 14:04:08  jost
  * Redatkionelle Änderung
  *
@@ -54,7 +57,6 @@ public class BuchungView extends AbstractView
     grKontoauszug.addLabelPair("Verwendungszweck", control.getZweck());
     grKontoauszug.addLabelPair("Verwendungszweck 2", control.getZweck2());
     grKontoauszug.addLabelPair("Datum", control.getDatum());
-    grKontoauszug.addLabelPair("Saldo", control.getSaldo());
     grKontoauszug.addLabelPair("Art", control.getArt());
     grKontoauszug.addLabelPair("Kommentar", control.getKommentar());
 
