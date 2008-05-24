@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungslisteView.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.8 $
+ * $Date: 2008/05/24 16:39:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungslisteView.java,v $
+ * Revision 1.8  2008/05/24 16:39:48  jost
+ * Zusätzliche Selektionskriterien
+ *
  * Revision 1.7  2008/05/24 14:04:08  jost
  * Redatkionelle Änderung
  *
@@ -53,6 +56,8 @@ public class BuchungslisteView extends AbstractView
     final BuchungsControl control = new BuchungsControl(this);
 
     LabelGroup group = new LabelGroup(getParent(), "Suche Buchungen");
+    group.addLabelPair("Konto", control.getSuchKonto());
+    group.addLabelPair("Buchungsart", control.getSuchBuchungsart());
     group.addLabelPair("von Datum", control.getVondatum());
     group.addLabelPair("bis Datum", control.getBisdatum());
 
