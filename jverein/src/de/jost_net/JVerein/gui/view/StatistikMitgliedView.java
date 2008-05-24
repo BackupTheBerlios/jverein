@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/StatistikMitgliedView.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/01/01 19:53:10 $
+ * $Revision: 1.5 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StatistikMitgliedView.java,v $
+ * Revision 1.5  2008/05/24 14:04:08  jost
+ * Redatkionelle Ã„nderung
+ *
  * Revision 1.4  2008/01/01 19:53:10  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -51,7 +54,7 @@ public class StatistikMitgliedView extends AbstractView
 
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.statistikmitglieder);
+        DokumentationUtil.STATISTIKMITGLIEDER);
     buttons.addButton(control.getStartStatistikButton());
   }
 

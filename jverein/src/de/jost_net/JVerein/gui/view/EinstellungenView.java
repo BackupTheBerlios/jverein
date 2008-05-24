@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/05/22 06:53:43 $
+ * $Revision: 1.10 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.10  2008/05/24 14:04:08  jost
+ * Redatkionelle Änderung
+ *
  * Revision 1.9  2008/05/22 06:53:43  jost
  * Buchführung: Beginn des Geschäftsjahres
  *
@@ -84,7 +87,7 @@ public class EinstellungenView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton("<< Zur�ck", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.einstellungen);
+        DokumentationUtil.EINSTELLUNGEN);
     buttons.addButton("Speichern", new Action()
     {
       public void handleAction(Object context) throws ApplicationException

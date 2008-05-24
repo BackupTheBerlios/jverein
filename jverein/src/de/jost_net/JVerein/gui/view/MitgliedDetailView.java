@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.17 $
- * $Date: 2008/05/05 18:22:28 $
+ * $Revision: 1.18 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.18  2008/05/24 14:04:08  jost
+ * Redatkionelle Ã„nderung
+ *
  * Revision 1.17  2008/05/05 18:22:28  jost
  * Bugfix NPE bei Zusatzfeldern
  *
@@ -214,7 +217,7 @@ public class MitgliedDetailView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 5);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.mitglied);
+        DokumentationUtil.MITGLIED);
     buttons.addButton("Neu", new MitgliedDetailAction());
     buttons.addButton("Löschen", new MitgliedDeleteAction(), control
         .getCurrentObject());

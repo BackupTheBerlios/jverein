@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KursteilnehmerDetailView.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/01/01 19:51:47 $
+ * $Revision: 1.3 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerDetailView.java,v $
+ * Revision 1.3  2008/05/24 14:04:08  jost
+ * Redatkionelle Ã„nderung
+ *
  * Revision 1.2  2008/01/01 19:51:47  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -59,7 +62,7 @@ public class KursteilnehmerDetailView extends AbstractView
 
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.kursteilnehmer);
+        DokumentationUtil.KURSTEILNEHMER);
     buttons.addButton("Neu", new KursteilnehmerDetailAction());
     buttons.addButton("Löschen", new KursteilnehmerDeleteAction(), control
         .getCurrentObject());

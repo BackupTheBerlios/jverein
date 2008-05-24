@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FelddefinitionenUebersichtView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/04/10 19:00:05 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionenUebersichtView.java,v $
+ * Revision 1.2  2008/05/24 14:04:08  jost
+ * Redatkionelle Ã„nderung
+ *
  * Revision 1.1  2008/04/10 19:00:05  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -37,7 +40,7 @@ public class FelddefinitionenUebersichtView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.felddefinitionen);
+        DokumentationUtil.FELDDEFINITIONEN);
     // buttons.addButton("Löschen", new BeitragsgruppeDeleteAction(), control
     // .getBeitragsgruppeTable());
     buttons.addButton("Neu", new FelddefinitionDetailAction());

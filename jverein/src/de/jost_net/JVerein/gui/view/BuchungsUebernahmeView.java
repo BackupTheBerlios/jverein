@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsUebernahmeView.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:53:03 $
+ * $Revision: 1.6 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsUebernahmeView.java,v $
+ * Revision 1.6  2008/05/24 14:04:08  jost
+ * Redatkionelle Änderung
+ *
  * Revision 1.5  2008/05/22 06:53:03  jost
  * Buchführung
  *
@@ -52,7 +55,7 @@ public class BuchungsUebernahmeView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton("<< Zur�ck", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.buchungenaushibiscus);
+        DokumentationUtil.BUCHUNGENAUSHIBISCUS);
     buttons.addButton(control.getUebernahmeButton());
   }
 

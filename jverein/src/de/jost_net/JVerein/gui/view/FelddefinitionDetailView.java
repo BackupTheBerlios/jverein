@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FelddefinitionDetailView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/04/10 18:59:44 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -38,7 +38,7 @@ public class FelddefinitionDetailView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.felddefinitionen);
+        DokumentationUtil.FELDDEFINITIONEN);
     buttons.addButton("Übersicht", new FelddefinitionenAction());
     buttons.addButton("Speichern", new Action()
     {

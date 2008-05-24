@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/StammdatenView.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/01/01 19:52:59 $
+ * $Revision: 1.6 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenView.java,v $
+ * Revision 1.6  2008/05/24 14:04:08  jost
+ * Redatkionelle Ã„nderung
+ *
  * Revision 1.5  2008/01/01 19:52:59  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -55,7 +58,7 @@ public class StammdatenView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.stammdaten);
+        DokumentationUtil.STAMMDATEN);
     buttons.addButton("Speichern", new Action()
     {
       public void handleAction(Object context) throws ApplicationException

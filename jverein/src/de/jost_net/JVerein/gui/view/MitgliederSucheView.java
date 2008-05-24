@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.15 $
- * $Date: 2008/05/22 06:54:31 $
+ * $Revision: 1.16 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.16  2008/05/24 14:04:08  jost
+ * Redatkionelle Änderung
+ *
  * Revision 1.15  2008/05/22 06:54:31  jost
  * Redaktionelle Änderung
  *
@@ -221,7 +224,7 @@ public class MitgliederSucheView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton("<< Zur�ck", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.mitglied);
+        DokumentationUtil.MITGLIED);
     if (anzahlbeitragsgruppe > 0)
     {
       buttons.addButton("Neu", new MitgliedDetailAction());

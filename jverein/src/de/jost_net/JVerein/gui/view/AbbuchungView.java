@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/01/31 19:39:37 $
+ * $Revision: 1.13 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.13  2008/05/24 14:04:08  jost
+ * Redatkionelle Änderung
+ *
  * Revision 1.12  2008/01/31 19:39:37  jost
  * Berücksichtigung eines Stichtages für die Abbuchung
  *
@@ -110,7 +113,7 @@ public class AbbuchungView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton("<< Zur�ck", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.abbuchung);
+        DokumentationUtil.ABBUCHUNG);
     buttons.addButton(control.getStartButton());
   }
 

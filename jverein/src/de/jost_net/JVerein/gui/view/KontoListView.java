@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KontoListView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:53:57 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoListView.java,v $
+ * Revision 1.2  2008/05/24 14:04:08  jost
+ * Redatkionelle Änderung
+ *
  * Revision 1.1  2008/05/22 06:53:57  jost
  * Buchführung: Beginn des Geschäftsjahres
  *
@@ -38,7 +41,7 @@ public class KontoListView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton("<< Zur�ck", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.konten);
+        DokumentationUtil.KONTEN);
 
     buttons.addButton("Hibiscus-Import",
         new HibiscusKontenImportAction(control));

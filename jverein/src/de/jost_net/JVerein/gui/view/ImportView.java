@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/01/01 19:51:20 $
+ * $Revision: 1.5 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportView.java,v $
+ * Revision 1.5  2008/05/24 14:04:08  jost
+ * Redatkionelle Ã„nderung
+ *
  * Revision 1.4  2008/01/01 19:51:20  jost
  * Erweiterung um Hilfe-Funktion
  *
@@ -56,7 +59,7 @@ public class ImportView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.importa);
+        DokumentationUtil.IMPORT);
     Button button = new Button("Import starten", new Action()
     {
       public void handleAction(Object context) throws ApplicationException

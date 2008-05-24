@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungslisteView.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/05/22 06:52:50 $
+ * $Revision: 1.7 $
+ * $Date: 2008/05/24 14:04:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungslisteView.java,v $
+ * Revision 1.7  2008/05/24 14:04:08  jost
+ * Redatkionelle Änderung
+ *
  * Revision 1.6  2008/05/22 06:52:50  jost
  * Buchführung
  *
@@ -76,7 +79,7 @@ public class BuchungslisteView extends AbstractView
     ButtonArea buttons2 = new ButtonArea(this.getParent(), 3);
     buttons2.addButton("<< Zur�ck", new BackAction());
     buttons2.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.buchungen);
+        DokumentationUtil.BUCHUNGEN);
     buttons2.addButton("neu", new BuchungNeuAction());
 
   }
