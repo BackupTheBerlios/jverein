@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Dateiname.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/01 13:14:28 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/24 14:20:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Dateiname.java,v $
+ * Revision 1.2  2008/05/24 14:20:07  jost
+ * Debug-Infos entfernt.
+ *
  * Revision 1.1  2008/01/01 13:14:28  jost
  * Neu: Dateinamenmuster
  *
@@ -103,6 +106,5 @@ public class Dateiname
   public static final void main(String[] args)
   {
     Dateiname d = new Dateiname("auswertung", "name", "a$s$-d$-z$", "pdf");
-    System.out.println(d.get());
   }
 }

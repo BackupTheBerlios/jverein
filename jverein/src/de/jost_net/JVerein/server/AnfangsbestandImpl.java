@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AnfangsbestandImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:55:50 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/24 14:19:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandImpl.java,v $
+ * Revision 1.2  2008/05/24 14:19:52  jost
+ * Debug-Infos entfernt.
+ *
  * Revision 1.1  2008/05/22 06:55:50  jost
  * Buchführung
  *
@@ -147,9 +150,6 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
 
   public Konto getKonto() throws RemoteException
   {
-    Object o = getAttribute("konto");
-    System.out.println(o == null ? "<NULL>" : o.getClass());
-
     return (Konto) getAttribute("konto");
   }
 
