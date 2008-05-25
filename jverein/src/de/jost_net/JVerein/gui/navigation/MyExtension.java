@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:51:20 $
+ * $Revision: 1.6 $
+ * $Date: 2008/05/25 19:36:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.6  2008/05/25 19:36:26  jost
+ * Neu: Jahressaldo
+ *
  * Revision 1.5  2008/05/22 06:51:20  jost
  * Buchführung
  *
@@ -31,6 +34,7 @@ import de.jost_net.JVerein.gui.action.AuswertungKursteilnehmerAction;
 import de.jost_net.JVerein.gui.action.AuswertungMitgliedAction;
 import de.jost_net.JVerein.gui.action.BuchungsListeAction;
 import de.jost_net.JVerein.gui.action.BuchungsuebernahmeAction;
+import de.jost_net.JVerein.gui.action.JahressaldoAction;
 import de.jost_net.JVerein.gui.action.JubilaeenAction;
 import de.jost_net.JVerein.gui.action.KontoListAction;
 import de.jost_net.JVerein.gui.action.KursteilnehmerSucheAction;
@@ -101,6 +105,8 @@ public class MyExtension implements Extension
           new BuchungsuebernahmeAction()));
       buchfuehrung.addChild(new MyItem(buchfuehrung, "Buchungen",
           new BuchungsListeAction()));
+      buchfuehrung.addChild(new MyItem(buchfuehrung, "Jahressaldo",
+          new JahressaldoAction()));
       jverein.addChild(buchfuehrung);
 
     }
@@ -115,12 +121,12 @@ public class MyExtension implements Extension
 
 /*******************************************************************************
  * $Log: MyExtension.java,v $
- * Revision 1.5  2008/05/22 06:51:20  jost
- * Buchführung
- * Revision 1.4 2007/12/22 08:25:43 jost Neu:
- * Jubiläenliste Revision 1.3 2007/09/06 17:16:36 jost Korrekte Behandlung des
- * Menüpunktes Auswertung | Kursteilnehmer Revision 1.2 2007/08/23 19:25:05
- * jost Header korrigiert.
+ * Revision 1.6  2008/05/25 19:36:26  jost
+ * Neu: Jahressaldo
+ * Revision 1.5 2008/05/22 06:51:20 jost Buchführung
+ * Revision 1.4 2007/12/22 08:25:43 jost Neu: Jubiläenliste Revision 1.3
+ * 2007/09/06 17:16:36 jost Korrekte Behandlung des Menüpunktes Auswertung |
+ * Kursteilnehmer Revision 1.2 2007/08/23 19:25:05 jost Header korrigiert.
  * 
  * Revision 1.1 2007/08/22 20:43:40 jost Bug #011762
  * 
