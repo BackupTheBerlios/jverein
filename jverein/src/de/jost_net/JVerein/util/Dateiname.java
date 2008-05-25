@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Dateiname.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/05/24 14:20:07 $
+ * $Revision: 1.3 $
+ * $Date: 2008/05/25 19:37:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Dateiname.java,v $
+ * Revision 1.3  2008/05/25 19:37:29  jost
+ * Testcode entfernt.
+ *
  * Revision 1.2  2008/05/24 14:20:07  jost
  * Debug-Infos entfernt.
  *
@@ -95,16 +98,5 @@ public class Dateiname
     ret = ret.replace("z$", new SimpleDateFormat("HHmmss").format(new Date()));
     ret = ret.replace("s$", sortierung);
     return ret + "." + extension;
-  }
-
-  /**
-   * Nur zu Testzwecken.
-   * 
-   * @param args
-   */
-  // todo Nach Abschluss des Tests entfernen
-  public static final void main(String[] args)
-  {
-    Dateiname d = new Dateiname("auswertung", "name", "a$s$-d$-z$", "pdf");
   }
 }
