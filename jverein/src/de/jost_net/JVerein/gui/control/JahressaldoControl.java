@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/25 19:36:13 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/26 18:58:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
+ * Revision 1.2  2008/05/26 18:58:19  jost
+ * Spaltenausrichtung
+ * Berücksichtigung von Eröffnungs- und ggfls. Auflösungsdatum
+ *
  * Revision 1.1  2008/05/25 19:36:13  jost
  * Neu: Jahressaldo
  *
@@ -44,6 +48,7 @@ import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.formatter.CurrencyFormatter;
 import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.parts.Button;
+import de.willuhn.jameica.gui.parts.Column;
 import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.BackgroundTask;
@@ -128,18 +133,21 @@ public class JahressaldoControl extends AbstractControl
             .toArray(new GenericObject[zeile.size()]));
 
         saldoList = new TablePart(gi, null);
-        saldoList.addColumn("Kontonummer", "kontonummer");
+        saldoList.addColumn("Kontonummer", "kontonummer", null, false,
+            Column.ALIGN_RIGHT);
         saldoList.addColumn("Bezeichnung", "kontobezeichnung");
         saldoList.addColumn("Anfangsbestand", "anfangsbestand",
-            new CurrencyFormatter("", Einstellungen.DECIMALFORMAT));
+            new CurrencyFormatter("", Einstellungen.DECIMALFORMAT), false,
+            Column.ALIGN_RIGHT);
         saldoList.addColumn("Einnahmen", "einnahmen", new CurrencyFormatter("",
-            Einstellungen.DECIMALFORMAT));
+            Einstellungen.DECIMALFORMAT), false, Column.ALIGN_RIGHT);
         saldoList.addColumn("Ausgaben", "ausgaben", new CurrencyFormatter("",
-            Einstellungen.DECIMALFORMAT));
+            Einstellungen.DECIMALFORMAT), false, Column.ALIGN_RIGHT);
         saldoList.addColumn("Umbuchungen", "umbuchungen",
-            new CurrencyFormatter("", Einstellungen.DECIMALFORMAT));
+            new CurrencyFormatter("", Einstellungen.DECIMALFORMAT), false,
+            Column.ALIGN_RIGHT);
         saldoList.addColumn("Endbestand", "endbestand", new CurrencyFormatter(
-            "", Einstellungen.DECIMALFORMAT));
+            "", Einstellungen.DECIMALFORMAT), false, Column.ALIGN_RIGHT);
         saldoList.addColumn("Bemerkung", "bemerkung");
         saldoList.setRememberColWidths(true);
         saldoList.setSummary(false);
@@ -165,6 +173,24 @@ public class JahressaldoControl extends AbstractControl
     DBService service = Einstellungen.getDBService();
     ArrayList<SaldoZeile> zeile = new ArrayList<SaldoZeile>();
     DBIterator konten = service.createList(Konto.class);
+    Geschaeftsjahr gj = null;
+    try
+    {
+      gj = new Geschaeftsjahr(Einstellungen.getBeginnGeschaeftsjahr(),
+          (Integer) getSuchJahr().getValue());
+    }
+    catch (ParseException e)
+    {
+      throw new RemoteException(e.getMessage());
+    }
+    // (eroeffnung is null or eroeffnung <= '2007-12-31')
+    // and (aufloesung is null or year(aufloesung) = 2007 or aufloesung >=
+    // '2007-12-31')
+    konten.addFilter("(eroeffnung is null or eroeffnung <= ?)",
+        new Object[] { gj.getEndeGeschaeftsjahr() });
+    konten.addFilter("(aufloesung is null or year(aufloesung) = ? or "
+        + "aufloesung >= ? )", new Object[] { gj.getBeginnGeschaeftsjahrjahr(),
+        gj.getEndeGeschaeftsjahr() });
     konten.setOrder("order by bezeichnung");
     double anfangsbestand = 0;
     double einnahmen = 0;
