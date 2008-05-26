@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Geschaeftsjahr.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/25 19:37:40 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/26 18:59:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Geschaeftsjahr.java,v $
+ * Revision 1.2  2008/05/26 18:59:31  jost
+ * neue Methode
+ *
  * Revision 1.1  2008/05/25 19:37:40  jost
  * Neu
  *
@@ -25,6 +28,8 @@ public class Geschaeftsjahr
 {
   private Date beginnGeschaeftsjahr;
 
+  private int beginnGeschaeftsjahrjahr;
+
   private Date endeGeschaeftsjahr;
 
   public Geschaeftsjahr(String tagmonat, int jahr) throws ParseException
@@ -33,6 +38,7 @@ public class Geschaeftsjahr
         + jahr);
     Calendar cal = Calendar.getInstance();
     cal.setTime(beginnGeschaeftsjahr);
+    beginnGeschaeftsjahrjahr = cal.get(Calendar.YEAR);
     cal.add(Calendar.YEAR, 1);
     cal.add(Calendar.DAY_OF_MONTH, -1);
     endeGeschaeftsjahr = cal.getTime();
@@ -41,6 +47,11 @@ public class Geschaeftsjahr
   public Date getBeginnGeschaeftsjahr()
   {
     return beginnGeschaeftsjahr;
+  }
+
+  public int getBeginnGeschaeftsjahrjahr()
+  {
+    return beginnGeschaeftsjahrjahr;
   }
 
   public Date getEndeGeschaeftsjahr()
