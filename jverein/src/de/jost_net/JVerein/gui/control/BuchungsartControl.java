@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/05/22 06:47:31 $
+ * $Revision: 1.8 $
+ * $Date: 2008/05/26 18:57:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.8  2008/05/26 18:57:34  jost
+ * Spaltenausrichtung
+ *
  * Revision 1.7  2008/05/22 06:47:31  jost
  * BuchfÃ¼hrung
  *
@@ -48,6 +51,7 @@ import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.input.IntegerInput;
 import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.input.TextInput;
+import de.willuhn.jameica.gui.parts.Column;
 import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
@@ -162,7 +166,7 @@ public class BuchungsartControl extends AbstractControl
         }
         if (o instanceof Integer)
         {
-          Integer art = (Integer)o;
+          Integer art = (Integer) o;
           switch (art.intValue())
           {
             case 0:
@@ -175,7 +179,7 @@ public class BuchungsartControl extends AbstractControl
         }
         return "ungültig";
       }
-    });
+    }, false, Column.ALIGN_LEFT);
     buchungsartList.setContextMenu(new BuchungsartMenu());
     buchungsartList.setRememberColWidths(true);
     buchungsartList.setRememberOrder(true);
