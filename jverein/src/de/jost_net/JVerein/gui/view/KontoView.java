@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KontoView.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.3 $
+ * $Date: 2008/05/26 18:58:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoView.java,v $
+ * Revision 1.3  2008/05/26 18:58:52  jost
+ * Neu: ErÃ¶ffnungsdatum
+ *
  * Revision 1.2  2008/05/24 14:04:08  jost
  * Redatkionelle Ã„nderung
  *
@@ -39,6 +42,7 @@ public class KontoView extends AbstractView
     LabelGroup group = new LabelGroup(getParent(), "Konto");
     group.addLabelPair("Nummer", control.getNummer());
     group.addLabelPair("Bezeichnung", control.getBezeichnung());
+    group.addLabelPair("Konto-Eröffnung", control.getEroeffnung());
     group.addLabelPair("Konto-Auflösung", control.getAufloesung());
     group.addLabelPair("Hibiscus-ID", control.getHibiscusId());
 

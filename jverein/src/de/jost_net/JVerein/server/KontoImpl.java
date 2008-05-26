@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:56:28 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/26 18:59:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoImpl.java,v $
+ * Revision 1.2  2008/05/26 18:59:17  jost
+ * Neu: Eröffnungsdatum
+ *
  * Revision 1.1  2008/05/22 06:56:28  jost
  * Buchführung
  *
@@ -95,6 +98,16 @@ public class KontoImpl extends AbstractDBObject implements Konto
   public void setBezeichnung(String bezeichnung) throws RemoteException
   {
     setAttribute("bezeichnung", bezeichnung);
+  }
+
+  public Date getEroeffnung() throws RemoteException
+  {
+    return (Date) getAttribute("eroeffnung");
+  }
+
+  public void setEroeffnung(Date eroeffnungdatum) throws RemoteException
+  {
+    setAttribute("eroeffnung", eroeffnungdatum);
   }
 
   public Date getAufloesung() throws RemoteException

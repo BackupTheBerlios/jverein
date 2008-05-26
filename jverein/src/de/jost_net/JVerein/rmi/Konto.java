@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Konto.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:55:38 $
+ * $Revision: 1.2 $
+ * $Date: 2008/05/26 18:59:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Konto.java,v $
+ * Revision 1.2  2008/05/26 18:59:04  jost
+ * Neu: Eröffnungsdatum
+ *
  * Revision 1.1  2008/05/22 06:55:38  jost
  * Buchführung
  *
@@ -31,6 +34,10 @@ public interface Konto extends DBObject
   public String getBezeichnung() throws RemoteException;
 
   public void setBezeichnung(String bezeichnung) throws RemoteException;
+
+  public Date getEroeffnung() throws RemoteException;
+
+  public void setEroeffnung(Date eroeffnung) throws RemoteException;
 
   public Date getAufloesung() throws RemoteException;
 
