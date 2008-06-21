@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/02/09 14:34:50 $
+ * $Revision: 1.14 $
+ * $Date: 2008/06/21 08:45:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.14  2008/06/21 08:45:51  jost
+ * Bugfix "von-Datum"
+ *
  * Revision 1.13  2008/02/09 14:34:50  jost
  * Plausibilitätsprüfung verbessert
  *
@@ -123,12 +126,13 @@ public class AbbuchungControl extends AbstractControl
         Integer m = ((Integer) modus.getValue());
         if (m.intValue() != AbbuchungsmodusInput.EINGETRETENEMITGLIEDER)
         {
-          vondatum.setText("");
+          vondatum.setValue(null);
           vondatum.setEnabled(false);
         }
         else
         {
           vondatum.setEnabled(true);
+          vondatum.setValue(new Date());
         }
       }
     });
