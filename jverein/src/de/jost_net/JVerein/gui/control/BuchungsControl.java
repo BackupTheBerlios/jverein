@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/05/24 19:31:47 $
+ * $Revision: 1.11 $
+ * $Date: 2008/06/28 16:56:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.11  2008/06/28 16:56:35  jost
+ * Bugfix: Buchungsart kann auch gelöscht werden.
+ *
  * Revision 1.10  2008/05/24 19:31:47  jost
  * PDF-Ausgabe
  *
@@ -414,7 +417,14 @@ public class BuchungsControl extends AbstractControl
       GenericObject o = (GenericObject) getBuchungsart().getValue();
       try
       {
-        b.setBuchungsart(new Integer(o.getID()));
+        if (o != null)
+        {
+          b.setBuchungsart(new Integer(o.getID()));
+        }
+        else
+        {
+          b.setBuchungsart(null);
+        }
         b.setKonto((Konto) getKonto().getValue());
         b.setName((String) getName().getValue());
         b.setBetrag((Double) getBetrag().getValue());
