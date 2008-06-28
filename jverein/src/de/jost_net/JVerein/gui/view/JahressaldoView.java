@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/JahressaldoView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/25 19:36:55 $
+ * $Revision: 1.2 $
+ * $Date: 2008/06/28 16:59:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoView.java,v $
+ * Revision 1.2  2008/06/28 16:59:57  jost
+ * Vereinheitlichung des Jahressaldos
+ *
  * Revision 1.1  2008/05/25 19:36:55  jost
  * Neu: Jahressaldo
  *
@@ -47,7 +50,8 @@ public class JahressaldoView extends AbstractView
     }, null, true);
     buttons.addButton(button);
 
-    control.getSaldoList().paint(this.getParent());
+    LabelGroup group2 = new LabelGroup(getParent(), "Saldo");
+    group2.addPart(control.getSaldoList());
 
     ButtonArea buttons2 = new ButtonArea(this.getParent(), 3);
     buttons2.addButton("<< Zurück", new BackAction());
