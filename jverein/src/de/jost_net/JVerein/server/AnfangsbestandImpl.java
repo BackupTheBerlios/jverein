@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AnfangsbestandImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/05/24 14:19:52 $
+ * $Revision: 1.3 $
+ * $Date: 2008/06/28 17:06:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandImpl.java,v $
+ * Revision 1.3  2008/06/28 17:06:45  jost
+ * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
+ *
  * Revision 1.2  2008/05/24 14:19:52  jost
  * Debug-Infos entfernt.
  *
@@ -25,6 +28,7 @@ import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Anfangsbestand;
+import de.jost_net.JVerein.rmi.Jahresabschluss;
 import de.jost_net.JVerein.rmi.Konto;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -93,6 +97,11 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
     if (getDatum().after(new Date()))
     {
       throw new ApplicationException("Keine Anfangsbestände in der Zukunft");
+    }
+    Jahresabschluss ja = getJahresabschluss();
+    if (ja != null)
+    {
+      throw new ApplicationException("Der Zeitraum ist bereits abgeschlossen.");
     }
   }
 
@@ -199,4 +208,19 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
       return super.getAttribute(fieldName);
     }
   }
+
+  public Jahresabschluss getJahresabschluss() throws RemoteException
+  {
+    DBIterator it = Einstellungen.getDBService().createList(
+        Jahresabschluss.class);
+    it.addFilter("von <= ?", new Object[] { (Date) getDatum() });
+    it.addFilter("bis >= ?", new Object[] { (Date) getDatum() });
+    if (it.hasNext())
+    {
+      Jahresabschluss ja = (Jahresabschluss) it.next();
+      return ja;
+    }
+    return null;
+  }
+
 }
