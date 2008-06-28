@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/05/25 19:36:26 $
+ * $Revision: 1.7 $
+ * $Date: 2008/06/28 16:58:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.7  2008/06/28 16:58:42  jost
+ * Neu: Jahresabschluss
+ *
  * Revision 1.6  2008/05/25 19:36:26  jost
  * Neu: Jahressaldo
  *
@@ -34,6 +37,7 @@ import de.jost_net.JVerein.gui.action.AuswertungKursteilnehmerAction;
 import de.jost_net.JVerein.gui.action.AuswertungMitgliedAction;
 import de.jost_net.JVerein.gui.action.BuchungsListeAction;
 import de.jost_net.JVerein.gui.action.BuchungsuebernahmeAction;
+import de.jost_net.JVerein.gui.action.JahresabschlussListAction;
 import de.jost_net.JVerein.gui.action.JahressaldoAction;
 import de.jost_net.JVerein.gui.action.JubilaeenAction;
 import de.jost_net.JVerein.gui.action.KontoListAction;
@@ -107,6 +111,8 @@ public class MyExtension implements Extension
           new BuchungsListeAction()));
       buchfuehrung.addChild(new MyItem(buchfuehrung, "Jahressaldo",
           new JahressaldoAction()));
+      buchfuehrung.addChild(new MyItem(buchfuehrung, "Jahresabschluss",
+          new JahresabschlussListAction()));
       jverein.addChild(buchfuehrung);
 
     }
@@ -121,6 +127,9 @@ public class MyExtension implements Extension
 
 /*******************************************************************************
  * $Log: MyExtension.java,v $
+ * Revision 1.7  2008/06/28 16:58:42  jost
+ * Neu: Jahresabschluss
+ *
  * Revision 1.6  2008/05/25 19:36:26  jost
  * Neu: Jahressaldo
  * Revision 1.5 2008/05/22 06:51:20 jost Buchführung
