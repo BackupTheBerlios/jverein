@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/05/26 18:59:17 $
+ * $Revision: 1.3 $
+ * $Date: 2008/06/28 17:07:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoImpl.java,v $
+ * Revision 1.3  2008/06/28 17:07:46  jost
+ * Neu: Jahresabschluss
+ *
  * Revision 1.2  2008/05/26 18:59:17  jost
  * Neu: Eröffnungsdatum
  *
@@ -21,8 +24,11 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Konto;
+import de.jost_net.JVerein.util.Geschaeftsjahr;
 import de.willuhn.datasource.db.AbstractDBObject;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
@@ -134,4 +140,18 @@ public class KontoImpl extends AbstractDBObject implements Konto
   {
     return super.getAttribute(fieldName);
   }
+
+  public DBIterator getKontenEinesJahres(Geschaeftsjahr gj)
+      throws RemoteException
+  {
+    DBIterator konten = Einstellungen.getDBService().createList(Konto.class);
+    konten.addFilter("(eroeffnung is null or eroeffnung <= ?)",
+        new Object[] { gj.getEndeGeschaeftsjahr() });
+    konten.addFilter("(aufloesung is null or year(aufloesung) = ? or "
+        + "aufloesung >= ? )", new Object[] { gj.getBeginnGeschaeftsjahrjahr(),
+        gj.getEndeGeschaeftsjahr() });
+    konten.setOrder("order by bezeichnung");
+    return konten;
+  }
+
 }
