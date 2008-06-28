@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AnfangsbestandDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:44:49 $
+ * $Revision: 1.2 $
+ * $Date: 2008/06/28 16:54:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandDeleteAction.java,v $
+ * Revision 1.2  2008/06/28 16:54:26  jost
+ * LÃ¶schung nur, wenn kein Jahresabschluss vorliegt.
+ *
  * Revision 1.1  2008/05/22 06:44:49  jost
  * BuchfÃ¼hrung
  *
@@ -18,6 +21,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.rmi.Anfangsbestand;
+import de.jost_net.JVerein.rmi.Jahresabschluss;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
@@ -48,6 +52,20 @@ public class AnfangsbestandDeleteAction implements Action
       {
         return;
       }
+      try
+      {
+        Jahresabschluss ja = a.getJahresabschluss();
+        if (ja != null)
+        {
+          throw new ApplicationException(
+              "Anfangsbestand ist bereits abgeschlossen.");
+        }
+      }
+      catch (RemoteException e)
+      {
+        throw new ApplicationException(e.getMessage());
+      }
+
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
       d.setTitle("Anfangsbestand löschen");
       d.setText("Wollen Sie diesen Anfangsbestand wirklich löschen?");
