@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Anfangsbestand.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:54:59 $
+ * $Revision: 1.2 $
+ * $Date: 2008/06/28 17:00:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Anfangsbestand.java,v $
+ * Revision 1.2  2008/06/28 17:00:48  jost
+ * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
+ *
  * Revision 1.1  2008/05/22 06:54:59  jost
  * Buchführung
  *
@@ -37,5 +40,7 @@ public interface Anfangsbestand extends DBObject
   public void setBetrag(double betrag) throws RemoteException;
 
   public double getBetrag() throws RemoteException;
+
+  public Jahresabschluss getJahresabschluss() throws RemoteException;
 
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/05/24 16:40:20 $
+ * $Revision: 1.7 $
+ * $Date: 2008/06/28 17:01:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchung.java,v $
+ * Revision 1.7  2008/06/28 17:01:03  jost
+ * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
+ *
  * Revision 1.6  2008/05/24 16:40:20  jost
  * Wegfall der Spalte Saldo
  *
@@ -75,5 +78,7 @@ public interface Buchung extends DBObject
   public int getBuchungsartId() throws RemoteException;
 
   public void setBuchungsart(Integer buchungsart) throws RemoteException;
+
+  public Jahresabschluss getJahresabschluss() throws RemoteException;
 
 }
