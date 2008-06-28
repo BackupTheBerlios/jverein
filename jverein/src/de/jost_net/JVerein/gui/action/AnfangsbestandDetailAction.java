@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AnfangsbestandDetailAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:45:04 $
+ * $Revision: 1.2 $
+ * $Date: 2008/06/28 16:55:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandDetailAction.java,v $
+ * Revision 1.2  2008/06/28 16:55:00  jost
+ * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
+ *
  * Revision 1.1  2008/05/22 06:45:04  jost
  * Buchführung
  *
@@ -26,6 +29,7 @@ import java.rmi.RemoteException;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.view.AnfangsbestandView;
 import de.jost_net.JVerein.rmi.Anfangsbestand;
+import de.jost_net.JVerein.rmi.Jahresabschluss;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.util.ApplicationException;
@@ -39,6 +43,19 @@ public class AnfangsbestandDetailAction implements Action
     if (context != null && (context instanceof Anfangsbestand))
     {
       a = (Anfangsbestand) context;
+      try
+      {
+        Jahresabschluss ja = a.getJahresabschluss();
+        if (ja != null)
+        {
+          throw new ApplicationException(
+              "Anfangsbestand ist bereits abgeschlossen.");
+        }
+      }
+      catch (RemoteException e)
+      {
+        throw new ApplicationException(e.getMessage());
+      }
     }
     else
     {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/03/16 07:34:30 $
+ * $Revision: 1.5 $
+ * $Date: 2008/06/28 16:55:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungAction.java,v $
+ * Revision 1.5  2008/06/28 16:55:24  jost
+ * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
+ *
  * Revision 1.4  2008/03/16 07:34:30  jost
  * Reaktivierung Buchführung
  *
@@ -22,10 +25,13 @@
 package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.view.BuchungView;
 import de.jost_net.JVerein.rmi.Buchung;
+import de.jost_net.JVerein.rmi.Jahresabschluss;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.util.ApplicationException;
@@ -39,6 +45,20 @@ public class BuchungAction implements Action
     if (context != null && (context instanceof Buchung))
     {
       b = (Buchung) context;
+      try
+      {
+        Jahresabschluss ja = b.getJahresabschluss();
+        if (ja != null)
+        {
+          throw new ApplicationException("Buchung wurde bereits am "
+              + Einstellungen.DATEFORMAT.format(ja.getDatum()) + " von "
+              + ja.getName() + " abgeschlossen.");
+        }
+      }
+      catch (RemoteException e)
+      {
+        throw new ApplicationException(e.getMessage());
+      }
     }
     else
     {
