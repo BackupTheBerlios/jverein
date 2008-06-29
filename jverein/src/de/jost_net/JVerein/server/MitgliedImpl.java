@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/03/08 19:31:17 $
+ * $Revision: 1.12 $
+ * $Date: 2008/06/29 07:58:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.12  2008/06/29 07:58:58  jost
+ * Neu: Handy
+ *
  * Revision 1.11  2008/03/08 19:31:17  jost
  * Neu: Externe Mitgliedsnummer
  *
@@ -362,6 +365,16 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       throws RemoteException
   {
     setAttribute("telefondienstlich", telefondienstlich);
+  }
+
+  public String getHandy() throws RemoteException
+  {
+    return (String) getAttribute("handy");
+  }
+
+  public void setHandy(String handy) throws RemoteException
+  {
+    setAttribute("handy", handy);
   }
 
   public String getEmail() throws RemoteException

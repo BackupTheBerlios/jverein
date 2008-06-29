@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.18 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.19 $
+ * $Date: 2008/06/29 07:58:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.19  2008/06/29 07:58:15  jost
+ * Neu: Handy
+ *
  * Revision 1.18  2008/05/24 14:04:08  jost
  * Redatkionelle Änderung
  *
@@ -130,6 +133,7 @@ public class MitgliedDetailView extends AbstractView
       SimpleContainer left2 = new SimpleContainer(cols2.getComposite());
       left2.addHeadline("Kommunikation");
       left2.addLabelPair("Telefon priv.", control.getTelefonprivat());
+      left2.addLabelPair("Handy", control.getHandy());
       SimpleContainer right2 = new SimpleContainer(cols2.getComposite());
       right2.addHeadline("");
       right2.addLabelPair("Telefon dienstl.", control.getTelefondienstlich());

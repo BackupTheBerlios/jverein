@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/05/07 05:48:54 $
+ * $Revision: 1.13 $
+ * $Date: 2008/06/29 07:58:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.13  2008/06/29 07:58:31  jost
+ * Neu: Handy
+ *
  * Revision 1.12  2008/05/07 05:48:54  jost
  * Löschung zusätzlicher Tabellen bei wiederholtem Import
  *
@@ -207,6 +210,14 @@ public class Import
         m.setKontoinhaber(results.getString("Zahler"));
         m.setTelefonprivat(results.getString("Telefon_privat"));
         m.setTelefondienstlich(results.getString("Telefon_dienstlich"));
+        try
+        {
+          m.setHandy(results.getString("Handy"));
+        }
+        catch (SQLException e)
+        {
+          // Nichts tun
+        }
         m.setEmail(results.getString("Email"));
         String eintritt = results.getString("Eintritt");
         if (eintritt == null || eintritt.length() == 0

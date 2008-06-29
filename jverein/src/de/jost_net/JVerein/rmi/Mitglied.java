@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/03/08 19:30:47 $
+ * $Revision: 1.8 $
+ * $Date: 2008/06/29 07:58:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.8  2008/06/29 07:58:45  jost
+ * Neu: Handy
+ *
  * Revision 1.7  2008/03/08 19:30:47  jost
  * Neu: Externe Mitgliedsnummer
  *
@@ -114,6 +117,10 @@ public interface Mitglied extends DBObject
 
   public void setTelefondienstlich(String telefondienstlich)
       throws RemoteException;
+
+  public String getHandy() throws RemoteException;
+
+  public void setHandy(String handy) throws RemoteException;
 
   public String getEmail() throws RemoteException;
 

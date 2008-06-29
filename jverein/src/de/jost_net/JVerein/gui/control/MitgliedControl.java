@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.36 $
- * $Date: 2008/05/22 06:49:00 $
+ * $Revision: 1.37 $
+ * $Date: 2008/06/29 07:58:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.37  2008/06/29 07:58:01  jost
+ * Neu: Handy
+ *
  * Revision 1.36  2008/05/22 06:49:00  jost
  * Vermeiund NPE
  *
@@ -220,6 +223,8 @@ public class MitgliedControl extends AbstractControl
   private Input telefonprivat;
 
   private Input telefondienstlich;
+
+  private Input handy;
 
   private Input email;
 
@@ -551,6 +556,16 @@ public class MitgliedControl extends AbstractControl
     }
     telefondienstlich = new TextInput(getMitglied().getTelefondienstlich(), 15);
     return telefondienstlich;
+  }
+
+  public Input getHandy() throws RemoteException
+  {
+    if (handy != null)
+    {
+      return handy;
+    }
+    handy = new TextInput(getMitglied().getHandy(), 15);
+    return handy;
   }
 
   public Input getEmail() throws RemoteException
@@ -1511,6 +1526,7 @@ public class MitgliedControl extends AbstractControl
       m.setStrasse((String) getStrasse().getValue());
       m.setTelefondienstlich((String) getTelefondienstlich().getValue());
       m.setTelefonprivat((String) getTelefonprivat().getValue());
+      m.setHandy((String) getHandy().getValue());
       m.setTitel((String) getTitel().getValue());
       m.setVermerk1((String) getVermerk1().getValue());
       m.setVermerk2((String) getVermerk2().getValue());
