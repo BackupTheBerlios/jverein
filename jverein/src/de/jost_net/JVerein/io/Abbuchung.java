@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.20 $
- * $Date: 2008/02/09 14:35:32 $
+ * $Revision: 1.21 $
+ * $Date: 2008/07/09 13:01:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.21  2008/07/09 13:01:16  jost
+ * OBanToo-Fehlermeldung an die Oberfläche bringen
+ *
  * Revision 1.20  2008/02/09 14:35:32  jost
  * Bugfix. Zusatzabbuchungen und Kursteilnehmer nur abbuchen, wenn das Häkchen gesetzt ist.
  *
@@ -180,8 +183,8 @@ public class Abbuchung
 
   private void abbuchenMitglieder(DtausDateiWriter dtaus, int modus,
       Date stichtag, Date vondatum, ProgressMonitor monitor,
-      String verwendungszweck) throws NumberFormatException, DtausException,
-      IOException, ApplicationException
+      String verwendungszweck) throws NumberFormatException, IOException,
+      ApplicationException
   {
     // Ermittlung der beitragsfreien Beitragsgruppen
     String beitragsfrei = "";
@@ -312,7 +315,15 @@ public class Abbuchung
         }
         if (m.getZahlungsweg() == ZahlungswegInput.ABBUCHUNG)
         {
-          writeCSatz(dtaus, m, verwendungszweck, betr);
+          try
+          {
+            writeCSatz(dtaus, m, verwendungszweck, betr);
+          }
+          catch (DtausException e)
+          {
+            throw new ApplicationException(m.getNameVorname() + ": "
+                + e.getMessage());
+          }
         }
         else
         {
