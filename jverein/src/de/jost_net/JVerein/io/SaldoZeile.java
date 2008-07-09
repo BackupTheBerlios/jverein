@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/SaldoZeile.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/06/28 17:00:17 $
+ * $Revision: 1.3 $
+ * $Date: 2008/07/09 13:18:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SaldoZeile.java,v $
+ * Revision 1.3  2008/07/09 13:18:18  jost
+ * Überflüssige Imports entfernt.
+ *
  * Revision 1.2  2008/06/28 17:00:17  jost
  * Vereinheitlichung des Jahressaldos
  *
@@ -22,7 +25,6 @@ package de.jost_net.JVerein.io;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Anfangsbestand;

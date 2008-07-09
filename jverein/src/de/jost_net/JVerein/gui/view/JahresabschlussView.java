@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/JahresabschlussView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/06/28 16:59:41 $
+ * $Revision: 1.2 $
+ * $Date: 2008/07/09 13:18:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussView.java,v $
+ * Revision 1.2  2008/07/09 13:18:03  jost
+ * Überflüssige Imports entfernt.
+ *
  * Revision 1.1  2008/06/28 16:59:41  jost
  * Neu: Jahresabschluss
  *
@@ -24,7 +27,6 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.JahresabschlussControl;
-import de.jost_net.JVerein.gui.parts.JahressaldoList;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
