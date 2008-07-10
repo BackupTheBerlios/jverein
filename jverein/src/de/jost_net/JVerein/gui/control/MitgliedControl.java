@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.37 $
- * $Date: 2008/06/29 07:58:01 $
+ * $Revision: 1.38 $
+ * $Date: 2008/07/10 09:20:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.38  2008/07/10 09:20:24  jost
+ * redaktionelle Änderung
+ *
  * Revision 1.37  2008/06/29 07:58:01  jost
  * Neu: Handy
  *
@@ -1622,7 +1625,7 @@ public class MitgliedControl extends AbstractControl
       }
       if (austrittvon.getValue() == null && austrittbis.getValue() == null)
       {
-        subtitle += "ohne Ausgetretene  ";
+        subtitle += "nur Angemeldete, keine Ausgetretenen  ";
       }
       if (beitragsgruppeausw.getValue() != null)
       {
