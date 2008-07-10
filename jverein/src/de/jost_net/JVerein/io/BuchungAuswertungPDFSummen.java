@@ -1,34 +1,16 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/BuchungAuswertungPDF.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/05/24 19:32:42 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungAuswertungPDFSummen.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/07/10 07:58:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungAuswertungPDF.java,v $
- * Revision 1.7  2008/05/24 19:32:42  jost
- * Auswertung Ã¼berarbeitet.
- *
- * Revision 1.6  2008/03/16 07:37:37  jost
- * Reaktivierung BuchfÃ¼hrung
- *
- * Revision 1.4  2007/02/23 20:28:04  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.3  2006/10/16 17:40:02  jost
- * Korrekte Subtitle-Ausgabe
- *
- * Revision 1.2  2006/10/14 16:11:56  jost
- * Pagesize und Ränder gesetzt.
- *
- * Revision 1.1  2006/10/14 06:03:00  jost
- * Erweiterung um Buchungsauswertung
- *
- * Revision 1.1  2006/09/20 15:39:24  jost
- * *** empty log message ***
+ * $Log: BuchungAuswertungPDFSummen.java,v $
+ * Revision 1.1  2008/07/10 07:58:31  jost
+ * PDF-Export der Buchungen jetzt mit Einzelbuchungen und als Summen
  *
  **********************************************************************/
 package de.jost_net.JVerein.io;
@@ -43,8 +25,6 @@ import java.util.Date;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.Paragraph;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Buchung;
@@ -59,11 +39,11 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 import de.willuhn.util.ProgressMonitor;
 
-public class BuchungAuswertungPDF
+public class BuchungAuswertungPDFSummen
 {
   private double summe = 0;
 
-  public BuchungAuswertungPDF(DBIterator list, final File file,
+  public BuchungAuswertungPDFSummen(DBIterator list, final File file,
       ProgressMonitor monitor, Konto konto, Buchungsart buchungsart, Date dVon,
       Date dBis) throws ApplicationException, RemoteException
   {
@@ -77,9 +57,10 @@ public class BuchungAuswertungPDF
         subtitle += " für Konto " + konto.getNummer() + " - "
             + konto.getBezeichnung();
       }
-      Reporter reporter = new Reporter(fos, monitor, "Buchungsliste", subtitle,
+      Reporter reporter = new Reporter(fos, monitor, "Summenliste", subtitle,
           list.size());
 
+      createTableHeader(reporter);
       while (list.hasNext())
       {
         createTableContent(reporter, list, konto, dVon, dBis);
@@ -89,6 +70,8 @@ public class BuchungAuswertungPDF
         createTableContent(reporter, null, konto, dVon, dBis);
       }
       monitor.setStatusText("Auswertung fertig. " + list.size() + " Sätze.");
+      reporter.addColumn("Saldo", Element.ALIGN_LEFT);
+      reporter.addColumn(summe);
 
       reporter.close();
       fos.close();
@@ -130,13 +113,7 @@ public class BuchungAuswertungPDF
 
   private void createTableHeader(Reporter reporter) throws DocumentException
   {
-    reporter.addHeaderColumn("Datum", Element.ALIGN_CENTER, 40,
-        Color.LIGHT_GRAY);
-    reporter.addHeaderColumn("Name", Element.ALIGN_CENTER, 100,
-        Color.LIGHT_GRAY);
-    reporter.addHeaderColumn("Zahlungsgrund", Element.ALIGN_CENTER, 100,
-        Color.LIGHT_GRAY);
-    reporter.addHeaderColumn("Zahlungsgrund2", Element.ALIGN_CENTER, 100,
+    reporter.addHeaderColumn("Buchungsart", Element.ALIGN_CENTER, 200,
         Color.LIGHT_GRAY);
     reporter.addHeaderColumn("Betrag", Element.ALIGN_CENTER, 60,
         Color.LIGHT_GRAY);
@@ -149,20 +126,19 @@ public class BuchungAuswertungPDF
       DocumentException
   {
     Buchungsart ba = null;
-    Paragraph pBuchungsart = null;
     if (list != null)
     {
       ba = (Buchungsart) list.next();
-      pBuchungsart = new Paragraph(ba.getBezeichnung(), FontFactory.getFont(
-          FontFactory.HELVETICA_BOLD, 10));
+      System.out.println(ba.getBezeichnung());
+      reporter.addColumn(ba.getBezeichnung(),
+          Element.ALIGN_LEFT);
     }
     else
     {
-      pBuchungsart = new Paragraph("ohne Zuordnung", FontFactory.getFont(
-          FontFactory.HELVETICA_BOLD, 10));
+      reporter.addColumn("ohne Zuordnung",
+          Element.ALIGN_LEFT);
     }
 
-    reporter.add(pBuchungsart);
     DBIterator listb = Einstellungen.getDBService().createList(Buchung.class);
     listb.addFilter("datum >= ?", new Object[] { new java.sql.Date(dVon
         .getTime()) });
@@ -181,41 +157,14 @@ public class BuchungAuswertungPDF
     {
       listb.addFilter("buchungsart is null");
     }
-    listb.setOrder("ORDER BY datum");
     double buchungsartSumme = 0;
-    createTableHeader(reporter);
     while (listb.hasNext())
     {
       Buchung b = (Buchung) listb.next();
-      reporter.addColumn(reporter.getDetailCell(Einstellungen.DATEFORMAT
-          .format(b.getDatum()), Element.ALIGN_LEFT));
-      reporter.addColumn(reporter
-          .getDetailCell(b.getName(), Element.ALIGN_LEFT));
-      reporter.addColumn(reporter.getDetailCell(b.getZweck(),
-          Element.ALIGN_LEFT));
-      reporter.addColumn(reporter.getDetailCell(b.getZweck2(),
-          Element.ALIGN_LEFT));
-      reporter.addColumn(reporter.getDetailCell(Einstellungen.DECIMALFORMAT
-          .format(b.getBetrag()), Element.ALIGN_RIGHT));
       buchungsartSumme += b.getBetrag();
     }
-    reporter.addColumn(reporter.getDetailCell("", Element.ALIGN_LEFT));
-    if (list != null)
-    {
-      reporter.addColumn(reporter.getDetailCell("Summe " + ba.getBezeichnung(),
-          Element.ALIGN_LEFT));
-    }
-    else
-    {
-      reporter.addColumn(reporter.getDetailCell("Summe ohne Zuordnung",
-          Element.ALIGN_LEFT));
-    }
     summe += buchungsartSumme;
-    reporter.addColumn(reporter.getDetailCell("", Element.ALIGN_LEFT));
-    reporter.addColumn(reporter.getDetailCell("", Element.ALIGN_LEFT));
-    reporter.addColumn(reporter.getDetailCell(Einstellungen.DECIMALFORMAT
-        .format(buchungsartSumme), Element.ALIGN_RIGHT));
-    reporter.closeTable();
+    reporter.addColumn(buchungsartSumme);
   }
 
 }
