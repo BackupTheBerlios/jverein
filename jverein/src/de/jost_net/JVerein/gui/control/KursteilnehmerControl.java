@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/01/01 13:13:37 $
+ * $Revision: 1.7 $
+ * $Date: 2008/07/10 07:57:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.7  2008/07/10 07:57:05  jost
+ * Optimierung der internen Reporter-Klasse
+ *
  * Revision 1.6  2008/01/01 13:13:37  jost
  * Neu: Dateinamenmuster
  *
@@ -433,14 +436,11 @@ public class KursteilnehmerControl extends AbstractControl
             while (list.hasNext())
             {
               Kursteilnehmer kt = (Kursteilnehmer) list.next();
-              rpt.addColumn(rpt.getDetailCell(kt.getAbbudatum(),
-                  Element.ALIGN_LEFT));
-              rpt
-                  .addColumn(rpt
-                      .getDetailCell(kt.getName(), Element.ALIGN_LEFT));
-              rpt.addColumn(rpt.getDetailCell(kt.getVZweck1() + "\n"
-                  + kt.getVZweck2(), Element.ALIGN_LEFT));
-              rpt.addColumn(rpt.getDetailCell(kt.getBetrag()));
+              rpt.addColumn(kt.getAbbudatum(), Element.ALIGN_LEFT);
+              rpt.addColumn(kt.getName(), Element.ALIGN_LEFT);
+              rpt.addColumn(kt.getVZweck1() + "\n" + kt.getVZweck2(),
+                  Element.ALIGN_LEFT);
+              rpt.addColumn(kt.getBetrag());
               rpt.setNextRecord();
             }
             rpt.close();

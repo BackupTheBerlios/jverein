@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/JahressaldoPDF.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/25 19:37:08 $
+ * $Revision: 1.2 $
+ * $Date: 2008/07/10 07:59:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoPDF.java,v $
+ * Revision 1.2  2008/07/10 07:59:21  jost
+ * Optimierung der internen Reporter-Klasse
+ *
  * Revision 1.1  2008/05/25 19:37:08  jost
  * Neu: Jahressaldo
  *
@@ -68,22 +71,17 @@ public class JahressaldoPDF
 
       for (SaldoZeile sz : zeile)
       {
-        reporter.addColumn(reporter.getDetailCell((String) sz
-            .getAttribute("kontonummer"), Element.ALIGN_LEFT));
-        reporter.addColumn(reporter.getDetailCell((String) sz
-            .getAttribute("kontobezeichnung"), Element.ALIGN_LEFT));
-        reporter.addColumn(reporter.getDetailCell((Double) sz
-            .getAttribute("anfangsbestand")));
-        reporter.addColumn(reporter.getDetailCell((Double) sz
-            .getAttribute("einnahmen")));
-        reporter.addColumn(reporter.getDetailCell((Double) sz
-            .getAttribute("ausgaben")));
-        reporter.addColumn(reporter.getDetailCell((Double) sz
-            .getAttribute("umbuchungen")));
-        reporter.addColumn(reporter.getDetailCell((Double) sz
-            .getAttribute("endbestand")));
-        reporter.addColumn(reporter.getDetailCell((String) sz
-            .getAttribute("bemerkung"), Element.ALIGN_LEFT));
+        reporter.addColumn((String) sz.getAttribute("kontonummer"),
+            Element.ALIGN_LEFT);
+        reporter.addColumn((String) sz.getAttribute("kontobezeichnung"),
+            Element.ALIGN_LEFT);
+        reporter.addColumn((Double) sz.getAttribute("anfangsbestand"));
+        reporter.addColumn((Double) sz.getAttribute("einnahmen"));
+        reporter.addColumn((Double) sz.getAttribute("ausgaben"));
+        reporter.addColumn((Double) sz.getAttribute("umbuchungen"));
+        reporter.addColumn((Double) sz.getAttribute("endbestand"));
+        reporter.addColumn((String) sz.getAttribute("bemerkung"),
+            Element.ALIGN_LEFT);
       }
       reporter.closeTable();
       monitor.setStatusText("Auswertung fertig.");
