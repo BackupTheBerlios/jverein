@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/06/28 16:57:29 $
+ * $Revision: 1.4 $
+ * $Date: 2008/07/11 07:33:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
+ * Revision 1.4  2008/07/11 07:33:02  jost
+ * Ausgabeverzeichnis für den nächsten Aufruf merken.
+ *
  * Revision 1.3  2008/06/28 16:57:29  jost
  * Vereinheitlichung des Jahressaldos
  *
@@ -213,6 +216,7 @@ public class JahressaldoControl extends AbstractControl
       }
 
       final File file = new File(s);
+      settings.setAttribute("lastdir", file.getParent());
       Integer jahr = (Integer) suchjahr.getValue();
 
       Geschaeftsjahr gj = new Geschaeftsjahr(jahr.intValue());

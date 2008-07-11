@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.38 $
- * $Date: 2008/07/10 09:20:24 $
+ * $Revision: 1.39 $
+ * $Date: 2008/07/11 07:34:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.39  2008/07/11 07:34:00  jost
+ * Ausgabeverzeichnis für den nächsten Aufruf merken.
+ *
  * Revision 1.38  2008/07/10 09:20:24  jost
  * redaktionelle Änderung
  *
@@ -1778,6 +1781,7 @@ public class MitgliedControl extends AbstractControl
     }
 
     final File file = new File(s);
+    settings.setAttribute("lastdir", file.getParent());
     final Integer jahr = (Integer) jubeljahr.getValue();
 
     BackgroundTask t = new BackgroundTask()

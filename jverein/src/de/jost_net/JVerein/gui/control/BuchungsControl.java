@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/07/10 07:56:43 $
+ * $Revision: 1.13 $
+ * $Date: 2008/07/11 07:34:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.13  2008/07/11 07:34:22  jost
+ * Ausgabeverzeichnis für den nächsten Aufruf merken.
+ *
  * Revision 1.12  2008/07/10 07:56:43  jost
  * PDF-Export der Buchungen jetzt mit Einzelbuchungen und als Summen
  *
@@ -627,6 +630,7 @@ public class BuchungsControl extends AbstractControl
       }
 
       final File file = new File(s);
+      settings.setAttribute("lastdir", file.getParent());
 
       auswertungBuchungPDF(list, file, k, ba, dVon, dBis, einzelbuchungen);
     }
