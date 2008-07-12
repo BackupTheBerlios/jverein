@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/05/05 18:23:18 $
+ * $Revision: 1.9 $
+ * $Date: 2008/07/12 19:09:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.9  2008/07/12 19:09:06  jost
+ * Bugfix bei leeren Zusatzfeldern
+ *
  * Revision 1.8  2008/05/05 18:23:18  jost
  * *** empty log message ***
  *
@@ -117,8 +120,15 @@ public class MitgliedAuswertungCSV
               Zusatzfelder.class);
           it2.addFilter("mitglied = ?", new Object[] { m.getID() });
           it2.addFilter("felddefinition = ?", new Object[] { fd.getID() });
-          Zusatzfelder zf = (Zusatzfelder) it2.next();
-          out.print(";" + zf.getFeld());
+          if (it2.size() > 0)
+          {
+            Zusatzfelder zf = (Zusatzfelder) it2.next();
+            out.print(";" + zf.getFeld());
+          }
+          else
+          {
+            out.print(";");
+          }
         }
         out.println("");
       }
