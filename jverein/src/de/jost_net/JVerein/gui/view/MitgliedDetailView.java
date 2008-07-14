@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.19 $
- * $Date: 2008/06/29 07:58:15 $
+ * $Revision: 1.20 $
+ * $Date: 2008/07/14 07:58:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.20  2008/07/14 07:58:57  jost
+ * Redakt. Ã„nderung
+ *
  * Revision 1.19  2008/06/29 07:58:15  jost
  * Neu: Handy
  *
@@ -165,7 +168,7 @@ public class MitgliedDetailView extends AbstractView
           .getExterneMitgliedsnummer());
     }
     tab3.addLabelPair("Eintritt", control.getEintritt());
-    tab3.addLabelPair("Betragsgruppe", control.getBeitragsgruppe());
+    tab3.addLabelPair("Beitragsgruppe", control.getBeitragsgruppe());
     tab3.addLabelPair("Austritt", control.getAustritt());
     tab3.addLabelPair("Kündigung", control.getKuendigung());
     DBIterator it = Einstellungen.getDBService().createList(
