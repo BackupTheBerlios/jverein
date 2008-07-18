@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/06/29 07:58:58 $
+ * $Revision: 1.13 $
+ * $Date: 2008/07/18 20:18:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.13  2008/07/18 20:18:29  jost
+ * Neue Methode
+ *
  * Revision 1.12  2008/06/29 07:58:58  jost
  * Neu: Handy
  *
@@ -499,6 +502,20 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       ret += getTitel() + " ";
     }
     ret += getVorname();
+    return ret;
+  }
+
+  /**
+   * Gibt den Namen aufbereitet zurück: Dr. Willi Meier
+   */
+  public String getVornameName() throws RemoteException
+  {
+    String ret = getTitel();
+    if (ret.length() > 0)
+    {
+      ret += " ";
+    }
+    ret += getVorname() + " " + getName();
     return ret;
   }
 

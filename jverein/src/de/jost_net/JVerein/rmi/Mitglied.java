@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/06/29 07:58:45 $
+ * $Revision: 1.9 $
+ * $Date: 2008/07/18 20:16:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.9  2008/07/18 20:16:53  jost
+ * Neue Methode
+ *
  * Revision 1.8  2008/06/29 07:58:45  jost
  * Neu: Handy
  *
@@ -169,6 +172,8 @@ public interface Mitglied extends DBObject
   public Date getEingabedatum() throws RemoteException;
 
   public String getNameVorname() throws RemoteException;
+  
+  public String getVornameName() throws RemoteException;
 
   public String getAnschrift() throws RemoteException;
 
