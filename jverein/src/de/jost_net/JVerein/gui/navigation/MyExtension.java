@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/06/28 16:58:42 $
+ * $Revision: 1.8 $
+ * $Date: 2008/07/18 20:11:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.8  2008/07/18 20:11:53  jost
+ * Neu: Spendenbescheinigung
+ *
  * Revision 1.7  2008/06/28 16:58:42  jost
  * Neu: Jahresabschluss
  *
@@ -44,6 +47,8 @@ import de.jost_net.JVerein.gui.action.KontoListAction;
 import de.jost_net.JVerein.gui.action.KursteilnehmerSucheAction;
 import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangListeAction;
 import de.jost_net.JVerein.gui.action.MitgliedSucheAction;
+import de.jost_net.JVerein.gui.action.SpendenbescheinigungAction;
+import de.jost_net.JVerein.gui.action.SpendenbescheinigungListeAction;
 import de.jost_net.JVerein.gui.action.StatistikMitgliedAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageListeAction;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungListeAction;
@@ -83,6 +88,8 @@ public class MyExtension implements Extension
         jverein.addChild(new MyItem(jverein, "Wiedervorlage",
             new WiedervorlageListeAction()));
       }
+      jverein.addChild(new MyItem(jverein, "Spendenbescheinigung",
+          new SpendenbescheinigungListeAction()));
 
       NavigationItem auswertung = null;
       auswertung = new MyItem(auswertung, "Auswertungen", null);
@@ -127,15 +134,16 @@ public class MyExtension implements Extension
 
 /*******************************************************************************
  * $Log: MyExtension.java,v $
- * Revision 1.7  2008/06/28 16:58:42  jost
- * Neu: Jahresabschluss
- *
- * Revision 1.6  2008/05/25 19:36:26  jost
- * Neu: Jahressaldo
- * Revision 1.5 2008/05/22 06:51:20 jost Buchführung
- * Revision 1.4 2007/12/22 08:25:43 jost Neu: Jubiläenliste Revision 1.3
- * 2007/09/06 17:16:36 jost Korrekte Behandlung des Menüpunktes Auswertung |
- * Kursteilnehmer Revision 1.2 2007/08/23 19:25:05 jost Header korrigiert.
+ * Revision 1.8  2008/07/18 20:11:53  jost
+ * Neu: Spendenbescheinigung
+ * Revision 1.7 2008/06/28 16:58:42 jost Neu:
+ * Jahresabschluss
+ * 
+ * Revision 1.6 2008/05/25 19:36:26 jost Neu: Jahressaldo Revision 1.5
+ * 2008/05/22 06:51:20 jost Buchführung Revision 1.4 2007/12/22 08:25:43 jost
+ * Neu: Jubiläenliste Revision 1.3 2007/09/06 17:16:36 jost Korrekte Behandlung
+ * des Menüpunktes Auswertung | Kursteilnehmer Revision 1.2 2007/08/23 19:25:05
+ * jost Header korrigiert.
  * 
  * Revision 1.1 2007/08/22 20:43:40 jost Bug #011762
  * 
