@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/07/19 19:24:44 $
+ * $Revision: 1.3 $
+ * $Date: 2008/07/23 19:40:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
+ * Revision 1.3  2008/07/23 19:40:30  jost
+ * Bugfix ..PDF
+ *
  * Revision 1.2  2008/07/19 19:24:44  jost
  * Korrektes Kontextmenü
  *
@@ -287,7 +290,7 @@ public class SpendenbescheinigungControl extends AbstractControl
       fd.setFilterPath(path);
     }
     fd.setFileName(new Dateiname("spendenbescheinigung", "", Einstellungen
-        .getDateinamenmuster(), ".PDF").get());
+        .getDateinamenmuster(), "PDF").get());
     fd.setFilterExtensions(new String[] { "*.PDF" });
 
     String s = fd.open();
