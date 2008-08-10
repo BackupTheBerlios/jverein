@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.14 $
+ * $Date: 2008/08/10 12:36:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.14  2008/08/10 12:36:02  jost
+ * Abbuchung -> Abrechnung
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.13  2008/05/24 14:04:08  jost
  * Redatkionelle Ã„nderung
  *
@@ -88,7 +92,7 @@ public class AbbuchungView extends AbstractView
           + " Bitte unter Plugins|JVerein|Stammdaten erfassen.");
     }
 
-    GUI.getView().setTitle("Abbuchung");
+    GUI.getView().setTitle("Abrechnung");
 
     final AbbuchungControl control = new AbbuchungControl(this);
 
@@ -96,7 +100,7 @@ public class AbbuchungView extends AbstractView
     group.addLabelPair("Modus", control.getAbbuchungsmodus());
     group.addLabelPair("Stichtag", control.getStichtag());
     group.addLabelPair("Von Eingabedatum", control.getVondatum());
-    group.addLabelPair("Zahlungsgrund", control.getZahlungsgrund());
+    group.addLabelPair("Zahlungsgrund für Beiträge", control.getZahlungsgrund());
     group.addLabelPair("Zusatzabbuchung", control.getZusatzabbuchung());
     if (!Einstellungen.isZusatzabbuchung())
     {
@@ -104,16 +108,22 @@ public class AbbuchungView extends AbstractView
     }
     group.addLabelPair("Kursteilnehmer", control.getKursteilnehmer());
     group.addLabelPair("Dtaus-Datei drucken", control.getDtausPrint());
+
     if (!Einstellungen.isKursteilnehmer())
     {
       control.getKursteilnehmer().setEnabled(false);
     }
-    group.addLabelPair("Ausgabe", control.getAbbuchungsausgabe());
+    group.addLabelPair("Abbuchungsausgabe", control.getAbbuchungsausgabe());
+    group.addSeparator();
+    group
+        .addText(
+            "*) für die Berechnung, ob ein Mitglied bereits eingetreten oder ausgetreten ist. "
+                + "Üblicherweise 1.1. des Jahres.", true);
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.ABBUCHUNG);
+        DokumentationUtil.ABRECHNUNG);
     buttons.addButton(control.getStartButton());
   }
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/AbbuchungsmodusInput.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/01/31 19:36:46 $
+ * $Revision: 1.4 $
+ * $Date: 2008/08/10 12:35:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungsmodusInput.java,v $
+ * Revision 1.4  2008/08/10 12:35:19  jost
+ * Abbuchung -> Abrechnung
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.3  2008/01/31 19:36:46  jost
  * Jährliche, Halbjährliche und Vierteljährliche Abbuchungen können jetzt separat ausgeführt werden.
  *
@@ -141,7 +145,7 @@ public class AbbuchungsmodusInput extends SelectInput
       switch (abbuchungsmodus)
       {
         case AbbuchungsmodusInput.KEINBEITRAG:
-          this.label = "keine Beitragsabbuchung";
+          this.label = "keine Beitragsabrechnung";
           break;
         case AbbuchungsmodusInput.JAEHRLICH:
           this.label = "Jahresbeitr�ge";

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/07/18 20:12:14 $
+ * $Revision: 1.8 $
+ * $Date: 2008/08/10 12:36:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.8  2008/08/10 12:36:12  jost
+ * Abbuchung -> Abrechnung
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.7  2008/07/18 20:12:14  jost
  * Neu: Formulare und Spendenbescheinigung
  *
@@ -43,6 +47,8 @@ public class DokumentationUtil
   private static final String PRE = "http://www.jverein.de/index.php5?title=";
 
   public static final String ABBUCHUNG = PRE + "Abbuchung";
+
+  public static final String ABRECHNUNG = PRE + "Abrechnung";
 
   public static final String AUSWERTUNGKURSTEILNEHMER = PRE
       + "Auswertung#Auswertung_der_Kursteilnehmer";

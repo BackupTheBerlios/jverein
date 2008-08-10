@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.11 $
+ * $Date: 2008/08/10 12:36:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.11  2008/08/10 12:36:22  jost
+ * Abbuchung -> Abrechnung
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.10  2008/05/24 14:04:08  jost
  * Redatkionelle Ã„nderung
  *
@@ -82,6 +86,14 @@ public class EinstellungenView extends AbstractView
     LabelGroup groupBuchfuehrung = new LabelGroup(getParent(), "Buchführung");
     groupBuchfuehrung.addLabelPair("Beginn Geschäftsjahr (TT.MM.)", control
         .getBeginnGeschaeftsjahr());
+
+    LabelGroup groupRechnungen = new LabelGroup(getParent(), "Rechnungen");
+    groupRechnungen.addLabelPair("für Zahlungsweg Abbuchung", control
+        .getRechnungFuerAbbuchung());
+    groupRechnungen.addLabelPair("für Zahlungsweg Überweisung", control
+        .getRechnungFuerUeberweisung());
+    groupRechnungen.addLabelPair("für Zahlungsweg Barzahlung", control
+        .getRechnungFuerBarzahlung());
 
     new Headline(getParent(), "* Änderung erfordert Neustart");
     ButtonArea buttons = new ButtonArea(getParent(), 3);

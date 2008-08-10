@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.21 $
- * $Date: 2008/07/09 13:01:16 $
+ * $Revision: 1.22 $
+ * $Date: 2008/08/10 12:37:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.22  2008/08/10 12:37:25  jost
+ * Abbuchung -> Abrechnung
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.21  2008/07/09 13:01:16  jost
  * OBanToo-Fehlermeldung an die OberflÃ¤che bringen
  *
@@ -93,6 +97,7 @@ import de.jost_net.JVerein.gui.input.BeitragsmodelInput;
 import de.jost_net.JVerein.gui.input.IntervallInput;
 import de.jost_net.JVerein.gui.input.ZahlungsrhytmusInput;
 import de.jost_net.JVerein.gui.input.ZahlungswegInput;
+import de.jost_net.JVerein.rmi.Abrechnung;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
@@ -152,7 +157,7 @@ public class Abbuchung
         buchenHibiscus(param);
       }
 
-      monitor.log("Anzahl Abbuchungen: " + dtaus.getAnzahlSaetze());
+      monitor.log("Anzahl Abrechnungen: " + dtaus.getAnzahlSaetze());
       monitor.log("Gesamtsumme: "
           + de.jost_net.JVerein.Einstellungen.DECIMALFORMAT.format(dtaus
               .getSummeBetraegeDecimal()) + " ¤");
@@ -226,16 +231,12 @@ public class Abbuchung
       {
         list.addFilter(beitragsfrei);
       }
-      // Zahlungsweg Abbuchung
-      // list.addFilter("zahlungsweg = ?", new Object[] { new Integer(
-      // ZahlungswegInput.ABBUCHUNG) });
       // Bei Abbuchungen im laufe des Jahres werden nur die Mitglieder
       // berücksichtigt, die ab einem bestimmten Zeitpunkt eingetreten sind.
       if (vondatum != null)
       {
         list.addFilter("eingabedatum >= ?", new Object[] { new java.sql.Date(
             vondatum.getTime()) });
-        // list.addFilter("tonumber(eingabedatum) >= " + vondatum.getTime());
       }
       if (Einstellungen.getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
       {
@@ -302,8 +303,6 @@ public class Abbuchung
         }
         else
         {
-          // betr = (Double) beitr.get(m.getBeitragsgruppeId() + "")
-          // * m.getZahlungsrhytmus();
           // Zur Vermeidung von Rundungsdifferenzen wird mit BigDecimal
           // gerechnet.
           BigDecimal bbetr = new BigDecimal(beitr.get(m.getBeitragsgruppeId()
@@ -329,6 +328,7 @@ public class Abbuchung
         {
           writeManuellerZahlungseingang(m, verwendungszweck, betr);
         }
+        writeAbrechungsdaten(m, verwendungszweck, m.getNameVorname(), betr);
       }
     }
   }
@@ -507,5 +507,26 @@ public class Abbuchung
     mz.setVZweck1(verwendungszweck);
     mz.setVZweck2(m.getName() + "," + m.getVorname());
     mz.store();
+  }
+
+  private void writeAbrechungsdaten(Mitglied m, String zweck1, String zweck2,
+      double betrag) throws RemoteException, ApplicationException
+  {
+    if ((m.getZahlungsweg() == ZahlungswegInput.ABBUCHUNG && Einstellungen
+        .isRechnungFuerAbbuchung())
+        || (m.getZahlungsweg() == ZahlungswegInput.ÜBERWEISUNG && Einstellungen
+            .isRechnungFuerUeberweisung())
+        || (m.getZahlungsweg() == ZahlungswegInput.BARZAHLUNG && Einstellungen
+            .isRechnungFuerBarzahlung()))
+    {
+      Abrechnung abr = (Abrechnung) Einstellungen.getDBService().createObject(
+          Abrechnung.class, null);
+      abr.setMitglied(m);
+      abr.setZweck1(zweck1);
+      abr.setZweck2(zweck2);
+      abr.setDatum(new Date());
+      abr.setBetrag(betrag);
+      abr.store();
+    }
   }
 }

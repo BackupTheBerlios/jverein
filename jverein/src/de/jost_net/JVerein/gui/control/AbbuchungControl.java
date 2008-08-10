@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/06/21 08:45:51 $
+ * $Revision: 1.15 $
+ * $Date: 2008/08/10 12:34:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.15  2008/08/10 12:34:49  jost
+ * Abbuchung -> Abrechnung
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.14  2008/06/21 08:45:51  jost
  * Bugfix "von-Datum"
  *
@@ -147,8 +151,8 @@ public class AbbuchungControl extends AbstractControl
     }
     Date d = null;
     this.stichtag = new DateInput(d, Einstellungen.DATEFORMAT);
-    this.stichtag.setTitle("Stichtag für die Abbuchung");
-    this.stichtag.setText("Bitte Stichtag für die Abbuchung wählen");
+    this.stichtag.setTitle("Stichtag für die Abrechnung");
+    this.stichtag.setText("Bitte Stichtag für die Abrechnung wählen");
     this.stichtag.addListener(new Listener()
     {
       public void handleEvent(Event event)
@@ -160,6 +164,7 @@ public class AbbuchungControl extends AbstractControl
         }
       }
     });
+    this.stichtag.setComment("*)");
     return stichtag;
   }
 
@@ -171,8 +176,8 @@ public class AbbuchungControl extends AbstractControl
     }
     Date d = null;
     this.vondatum = new DateInput(d, Einstellungen.DATEFORMAT);
-    this.vondatum.setTitle("Anfangsdatum Abbuchung");
-    this.vondatum.setText("Bitte Anfangsdatum der Verarbeitung wählen");
+    this.vondatum.setTitle("Anfangsdatum Abrechung");
+    this.vondatum.setText("Bitte Anfangsdatum der Abrechnung wählen");
     this.vondatum.setEnabled(false);
     this.vondatum.addListener(new Listener()
     {
@@ -249,7 +254,7 @@ public class AbbuchungControl extends AbstractControl
 
         try
         {
-          doAbbuchung();
+          doAbrechnung();
         }
         catch (ApplicationException e)
         {
@@ -260,7 +265,7 @@ public class AbbuchungControl extends AbstractControl
     return button;
   }
 
-  private void doAbbuchung() throws ApplicationException
+  private void doAbrechnung() throws ApplicationException
   {
     File dtausfile;
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
@@ -273,7 +278,7 @@ public class AbbuchungControl extends AbstractControl
     catch (RemoteException e)
     {
       throw new ApplicationException(
-          "Interner Fehler - kann Abbuchungsmodus nicht auslesen");
+          "Interner Fehler - kann Abrechnungsmodus nicht auslesen");
     }
     Date vondatum = null;
     if (modus != AbbuchungsmodusInput.KEINBEITRAG)
