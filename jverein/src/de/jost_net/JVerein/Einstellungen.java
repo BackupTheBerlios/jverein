@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/05/22 06:44:28 $
+ * $Revision: 1.14 $
+ * $Date: 2008/08/10 12:34:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.14  2008/08/10 12:34:04  jost
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.13  2008/05/22 06:44:28  jost
  * BuchfÃ¼hrung: Beginn des GeschÃ¤ftsjahres
  *
@@ -98,6 +101,12 @@ public class Einstellungen
   private static String dateinamenmuster;
 
   private static String beginngeschaeftsjahr;
+
+  private static boolean rechnungfuerabbuchung;
+
+  private static boolean rechnungfuerueberweisung;
+
+  private static boolean rechnungfuerbarzahlung;
 
   /**
    * Datums-Format dd.MM.yyyy.
@@ -418,6 +427,63 @@ public class Einstellungen
   public static void setBeginnGeschaeftsjahr(String value)
   {
     settings.setAttribute("beginngeschaeftsjahr", value);
+  }
+
+  /**
+   * Rechnung für Zahlungsweg Abbuchung?
+   */
+  public static boolean isRechnungFuerAbbuchung()
+  {
+    rechnungfuerabbuchung = new Boolean(settings.getBoolean(
+        "rechnung.fuer.abbuchung", false));
+    return rechnungfuerabbuchung;
+  }
+
+  /**
+   * Speichert, ob eine Rechnung für den Zahlungsweg Abbuchung erstellt werden
+   * soll.
+   */
+  public static void setRechungFuerAbbuchung(boolean value)
+  {
+    settings.setAttribute("rechnung.fuer.abbuchung", value);
+  }
+
+  /**
+   * Rechnung für Zahlungsweg Überweisung?
+   */
+  public static boolean isRechnungFuerUeberweisung()
+  {
+    rechnungfuerueberweisung = new Boolean(settings.getBoolean(
+        "rechnung.fuer.ueberweisung", true));
+    return rechnungfuerueberweisung;
+  }
+
+  /**
+   * Speichert, ob eine Rechnung für den Zahlungsweg Rechnung erstellt werden
+   * soll.
+   */
+  public static void setRechungFuerRechnung(boolean value)
+  {
+    settings.setAttribute("rechnung.fuer.rechnung", value);
+  }
+
+  /**
+   * Rechnung für Zahlungsweg Barzahlung?
+   */
+  public static boolean isRechnungFuerBarzahlung()
+  {
+    rechnungfuerbarzahlung = new Boolean(settings.getBoolean(
+        "rechnung.fuer.barzahlung", false));
+    return rechnungfuerbarzahlung;
+  }
+
+  /**
+   * Speichert, ob eine Rechnung für den Zahlungsweg Barzahlung erstellt werden
+   * soll.
+   */
+  public static void setRechungFuerBarzahlung(boolean value)
+  {
+    settings.setAttribute("rechnung.fuer.barzahlung", value);
   }
 
   /**

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/05/22 06:48:19 $
+ * $Revision: 1.8 $
+ * $Date: 2008/08/10 12:35:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.8  2008/08/10 12:35:01  jost
+ * Vorbereitung der Rechnungserstellung
+ *
  * Revision 1.7  2008/05/22 06:48:19  jost
  * Buchführung
  *
@@ -70,6 +73,12 @@ public class EinstellungControl extends AbstractControl
   private TextInput dateinamenmuster;
 
   private TextInput beginngeschaeftsjahr;
+
+  private CheckboxInput rechnungfuerabbuchung;
+
+  private CheckboxInput rechnungfuerueberweisung;
+
+  private CheckboxInput rechnungfuerbarzahlung;
 
   public EinstellungControl(AbstractView view)
   {
@@ -191,6 +200,39 @@ public class EinstellungControl extends AbstractControl
     return beginngeschaeftsjahr;
   }
 
+  public CheckboxInput getRechnungFuerAbbuchung() throws RemoteException
+  {
+    if (rechnungfuerabbuchung != null)
+    {
+      return rechnungfuerabbuchung;
+    }
+    rechnungfuerabbuchung = new CheckboxInput(Einstellungen
+        .isRechnungFuerAbbuchung());
+    return rechnungfuerabbuchung;
+  }
+
+  public CheckboxInput getRechnungFuerUeberweisung() throws RemoteException
+  {
+    if (rechnungfuerueberweisung != null)
+    {
+      return rechnungfuerueberweisung;
+    }
+    rechnungfuerueberweisung = new CheckboxInput(Einstellungen
+        .isRechnungFuerUeberweisung());
+    return rechnungfuerueberweisung;
+  }
+
+  public CheckboxInput getRechnungFuerBarzahlung() throws RemoteException
+  {
+    if (rechnungfuerbarzahlung != null)
+    {
+      return rechnungfuerbarzahlung;
+    }
+    rechnungfuerbarzahlung = new CheckboxInput(Einstellungen
+        .isRechnungFuerBarzahlung());
+    return rechnungfuerbarzahlung;
+  }
+
   public void handleStore()
   {
     try
@@ -206,6 +248,12 @@ public class EinstellungControl extends AbstractControl
       Boolean _externemitgliedsnummer = (Boolean) externemitgliedsnummer
           .getValue();
       Integer _beitragsmodel = (Integer) beitragsmodel.getValue();
+      Boolean _rechnungfuerabbuchung = (Boolean) rechnungfuerabbuchung
+          .getValue();
+      Boolean _rechnungfuerueberweisung = (Boolean) rechnungfuerueberweisung
+          .getValue();
+      Boolean _rechnungfuerbarzahlung = (Boolean) rechnungfuerbarzahlung
+          .getValue();
       Einstellungen.setGeburtsdatumPflicht(_geburtsdatumpflicht.booleanValue());
       Einstellungen.setEintrittsdatumPflicht(_eintrittsdatumpflicht
           .booleanValue());
@@ -230,6 +278,9 @@ public class EinstellungControl extends AbstractControl
       }
       Einstellungen.setBeginnGeschaeftsjahr((String) beginngeschaeftsjahr
           .getValue());
+      Einstellungen.setRechungFuerAbbuchung(_rechnungfuerabbuchung);
+      Einstellungen.setRechungFuerRechnung(_rechnungfuerueberweisung);
+      Einstellungen.setRechungFuerBarzahlung(_rechnungfuerbarzahlung);
       GUI.getStatusBar().setSuccessText("Einstellungen gespeichert");
     }
     catch (ApplicationException e)
