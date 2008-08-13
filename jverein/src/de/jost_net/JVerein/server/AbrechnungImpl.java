@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/AbrechnungImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/08/10 12:37:57 $
+ * $Revision: 1.2 $
+ * $Date: 2008/08/13 19:16:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungImpl.java,v $
+ * Revision 1.2  2008/08/13 19:16:23  jost
+ * Bugfix Spalte Mitglied
+ *
  * Revision 1.1  2008/08/10 12:37:57  jost
  * Vorbereitung der Rechnungserstellung
  *
@@ -86,7 +89,7 @@ public class AbrechnungImpl extends AbstractDBObject implements Abrechnung
 
   public void setMitglied(Mitglied mitglied) throws RemoteException
   {
-    setAttribute("mitgliedsnummer", new Integer(mitglied.getID()));
+    setAttribute("mitglied", new Integer(mitglied.getID()));
   }
 
   public Date getDatum() throws RemoteException
