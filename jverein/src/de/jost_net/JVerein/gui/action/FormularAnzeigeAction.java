@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:06:19 $
+ * $Revision: 1.2 $
+ * $Date: 2008/09/16 18:26:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
+ * Revision 1.2  2008/09/16 18:26:13  jost
+ * Refactoring Formularaufbereitung
+ *
  * Revision 1.1  2008/07/18 20:06:19  jost
  * Neu: Formulare
  *
@@ -33,11 +36,11 @@ public class FormularAnzeigeAction implements Action
 {
   public void handleAction(Object context) throws ApplicationException
   {
-    Formular f = null;
+    Formular formular = null;
 
     if (context != null && (context instanceof Formular))
     {
-      f = (Formular) context;
+      formular = (Formular) context;
     }
     else
     {
@@ -53,7 +56,9 @@ public class FormularAnzeigeAction implements Action
       map.put("Betrag in Worten", GermanNumber.toString(1234));
       map.put("Spendedatum", "15.12.2008");
       map.put("Bescheinigungsdatum", "17.12.2008");
-      FormularAufbereitung fab = new FormularAufbereitung(f, file, map);
+      FormularAufbereitung fab = new FormularAufbereitung(file);
+      fab.writeForm(formular, map);
+      fab.showFormular();
     }
     catch (RemoteException e)
     {
