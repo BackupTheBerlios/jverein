@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/FormularInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:10:21 $
+ * $Revision: 1.2 $
+ * $Date: 2008/09/16 18:51:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularInput.java,v $
+ * Revision 1.2  2008/09/16 18:51:34  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2008/07/18 20:10:21  jost
  * Neu: Formulare
  *
@@ -33,6 +36,11 @@ public class FormularInput extends SelectInput
   public FormularInput(int art, String id) throws RemoteException
   {
     super(init(art), initdefault(id));
+  }
+
+  public FormularInput(int art) throws RemoteException
+  {
+    super(init(art), null);
   }
 
   /**
