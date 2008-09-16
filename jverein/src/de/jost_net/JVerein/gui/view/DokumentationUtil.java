@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/08/10 12:36:12 $
+ * $Revision: 1.9 $
+ * $Date: 2008/09/16 18:52:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.9  2008/09/16 18:52:08  jost
+ * Neu: Rechnung
+ *
  * Revision 1.8  2008/08/10 12:36:12  jost
  * Abbuchung -> Abrechnung
  * Vorbereitung der Rechnungserstellung
@@ -49,6 +52,8 @@ public class DokumentationUtil
   public static final String ABBUCHUNG = PRE + "Abbuchung";
 
   public static final String ABRECHNUNG = PRE + "Abrechnung";
+
+  public static final String RECHNUNG = PRE + "Rechnung";
 
   public static final String AUSWERTUNGKURSTEILNEHMER = PRE
       + "Auswertung#Auswertung_der_Kursteilnehmer";

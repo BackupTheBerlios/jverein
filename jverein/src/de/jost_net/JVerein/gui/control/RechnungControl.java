@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/16 18:28:15 $
+ * $Revision: 1.2 $
+ * $Date: 2008/09/16 18:50:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,7 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
- * Revision 1.1  2008/09/16 18:28:15  jost
+ * Revision 1.2  2008/09/16 18:50:27  jost
  * Neu: Rechnung
  *
  *

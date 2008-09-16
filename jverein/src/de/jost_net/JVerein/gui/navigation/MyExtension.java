@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/08/10 12:35:50 $
+ * $Revision: 1.10 $
+ * $Date: 2008/09/16 18:51:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.10  2008/09/16 18:51:56  jost
+ * Neu: Rechnung
+ *
  * Revision 1.9  2008/08/10 12:35:50  jost
  * Abbuchung -> Abrechnung
  * Vorbereitung der Rechnungserstellung
@@ -39,6 +42,7 @@ package de.jost_net.JVerein.gui.navigation;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.AbbuchungAction;
+import de.jost_net.JVerein.gui.action.RechnungListeAction;
 import de.jost_net.JVerein.gui.action.AnfangsbestandListAction;
 import de.jost_net.JVerein.gui.action.AuswertungKursteilnehmerAction;
 import de.jost_net.JVerein.gui.action.AuswertungMitgliedAction;
@@ -80,6 +84,13 @@ public class MyExtension implements Extension
       }
       jverein
           .addChild(new MyItem(jverein, "Abrechnung", new AbbuchungAction()));
+      if (Einstellungen.isRechnungFuerAbbuchung()
+          || Einstellungen.isRechnungFuerBarzahlung()
+          || Einstellungen.isRechnungFuerUeberweisung())
+      {
+        jverein.addChild(new MyItem(jverein, "Rechnung",
+            new RechnungListeAction()));
+      }
       if (Einstellungen.isZusatzabbuchung())
       {
         jverein.addChild(new MyItem(jverein, "Zusatzabbuchung",
@@ -138,12 +149,12 @@ public class MyExtension implements Extension
 
 /*******************************************************************************
  * $Log: MyExtension.java,v $
- * Revision 1.9  2008/08/10 12:35:50  jost
- * Abbuchung -> Abrechnung
- * Vorbereitung der Rechnungserstellung
- * Revision 1.8 2008/07/18 20:11:53 jost Neu:
- * Spendenbescheinigung Revision 1.7 2008/06/28 16:58:42 jost Neu:
- * Jahresabschluss
+ * Revision 1.10  2008/09/16 18:51:56  jost
+ * Neu: Rechnung
+ * Revision 1.9 2008/08/10 12:35:50 jost Abbuchung ->
+ * Abrechnung Vorbereitung der Rechnungserstellung Revision 1.8 2008/07/18
+ * 20:11:53 jost Neu: Spendenbescheinigung Revision 1.7 2008/06/28 16:58:42 jost
+ * Neu: Jahresabschluss
  * 
  * Revision 1.6 2008/05/25 19:36:26 jost Neu: Jahressaldo Revision 1.5
  * 2008/05/22 06:51:20 jost Buchführung Revision 1.4 2007/12/22 08:25:43 jost

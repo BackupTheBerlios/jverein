@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/Attic/FormularArtInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:10:05 $
+ * $Revision: 1.2 $
+ * $Date: 2008/09/16 18:51:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularArtInput.java,v $
+ * Revision 1.2  2008/09/16 18:51:16  jost
+ * Neu: Rechnung
+ *
  * Revision 1.1  2008/07/18 20:10:05  jost
  * Neu: Formulare
  *
@@ -46,7 +49,7 @@ public class FormularArtInput extends SelectInput
   {
     ArrayList<FormularArtObject> l = new ArrayList<FormularArtObject>();
     l.add(new FormularArtObject(SPENDENBESCHEINIGUNG));
-    // l.add(new FormularArtObject(RECHNUNG));
+    l.add(new FormularArtObject(RECHNUNG));
     return PseudoIterator.fromArray((FormularArtObject[]) l
         .toArray(new FormularArtObject[l.size()]));
   }
@@ -83,7 +86,7 @@ public class FormularArtInput extends SelectInput
           this.label = "Spendenbescheinigung";
           break;
         case FormularArtInput.RECHNUNG:
-          this.label = "Rechnung (in Vorbereitung - kann noch nicht genutzt werden)";
+          this.label = "Rechnung";
           break;
       }
     }
