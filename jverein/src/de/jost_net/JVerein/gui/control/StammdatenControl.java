@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2007/12/28 13:14:03 $
+ * $Revision: 1.10 $
+ * $Date: 2008/09/21 08:45:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.10  2008/09/21 08:45:37  jost
+ * Neu: Altersjubliäen
+ *
  * Revision 1.9  2007/12/28 13:14:03  jost
  * Bugfix beim erzeugen eines Stammdaten-Objektes
  *
@@ -67,6 +70,8 @@ public class StammdatenControl extends AbstractControl
   private Input altersgruppen;
 
   private Input jubilaeen;
+
+  private Input altersjubilaeen;
 
   private Stammdaten stamm;
 
@@ -160,6 +165,16 @@ public class StammdatenControl extends AbstractControl
     return jubilaeen;
   }
 
+  public Input getAltersjubilaeen() throws RemoteException
+  {
+    if (altersjubilaeen != null)
+    {
+      return altersjubilaeen;
+    }
+    altersjubilaeen = new TextInput(getStammdaten().getAltersjubilaeen(), 50);
+    return altersjubilaeen;
+  }
+
   public void handleStore()
   {
     try
@@ -170,6 +185,7 @@ public class StammdatenControl extends AbstractControl
       s.setKonto((String) getKonto().getValue());
       s.setAltersgruppen((String) getAltersgruppen().getValue());
       s.setJubilaeen((String) getJubilaeen().getValue());
+      s.setAltersjubilaeen((String) getAltersjubilaeen().getValue());
       s.store();
       GUI.getStatusBar().setSuccessText("Stammdaten gespeichert");
     }

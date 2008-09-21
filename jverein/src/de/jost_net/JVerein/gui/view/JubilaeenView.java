@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/JubilaeenView.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.4 $
+ * $Date: 2008/09/21 08:45:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JubilaeenView.java,v $
+ * Revision 1.4  2008/09/21 08:45:49  jost
+ * Neu: Altersjubliäen
+ *
  * Revision 1.3  2008/05/24 14:04:08  jost
  * Redatkionelle Änderung
  *
@@ -40,6 +43,7 @@ public class JubilaeenView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), "Parameter");
     group.addLabelPair("Jahr", control.getJubeljahr());
+    group.addLabelPair("Art", control.getJubelArt());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
 

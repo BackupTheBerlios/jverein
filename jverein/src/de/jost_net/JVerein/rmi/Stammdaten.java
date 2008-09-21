@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Attic/Stammdaten.java,v $
- * $Revision: 1.5 $
- * $Date: 2007/12/28 13:16:52 $
+ * $Revision: 1.6 $
+ * $Date: 2008/09/21 08:46:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Stammdaten.java,v $
+ * Revision 1.6  2008/09/21 08:46:20  jost
+ * Neu: Altersjubliäen
+ *
  * Revision 1.5  2007/12/28 13:16:52  jost
  * Bugfix beim erzeugen eines Stammdaten-Objektes
  *
@@ -49,4 +52,8 @@ public interface Stammdaten extends DBObject
   public String getJubilaeen() throws RemoteException;
 
   public void setJubilaeen(String jubilaeen) throws RemoteException;
+
+  public String getAltersjubilaeen() throws RemoteException;
+
+  public void setAltersjubilaeen(String altersjubilaeen) throws RemoteException;
 }

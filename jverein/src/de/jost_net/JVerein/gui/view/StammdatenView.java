@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/StammdatenView.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.7 $
+ * $Date: 2008/09/21 08:45:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenView.java,v $
+ * Revision 1.7  2008/09/21 08:45:58  jost
+ * Neu: Altersjubli√§en
+ *
  * Revision 1.6  2008/05/24 14:04:08  jost
  * Redatkionelle √Ñnderung
  *
@@ -54,6 +57,7 @@ public class StammdatenView extends AbstractView
     group.addLabelPair("Konto", control.getKonto());
     group.addLabelPair("Altersgruppen", control.getAltersgruppen());
     group.addLabelPair("Jubil‰en", control.getJubilaeen());
+    group.addLabelPair("Altersjubil‰en", control.getAltersjubilaeen());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton("<< Zur¸ck", new BackAction());

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/StammdatenImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/12/22 08:27:30 $
+ * $Revision: 1.5 $
+ * $Date: 2008/09/21 08:46:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenImpl.java,v $
+ * Revision 1.5  2008/09/21 08:46:38  jost
+ * Neu: Altersjubliäen
+ *
  * Revision 1.4  2007/12/22 08:27:30  jost
  * Neu: Jubiläenliste
  *
@@ -168,6 +171,21 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
   public void setJubilaeen(String jubilaeen) throws RemoteException
   {
     setAttribute("jubilaeen", jubilaeen);
+  }
+
+  public String getAltersjubilaeen() throws RemoteException
+  {
+    String aj = (String) getAttribute("altersjubilaeen");
+    if (aj == null || aj.length() == 0)
+    {
+      aj = "50,60,65,70,75,80,85,90,95,100";
+    }
+    return aj;
+  }
+
+  public void setAltersjubilaeen(String altersjubilaeen) throws RemoteException
+  {
+    setAttribute("altersjubilaeen", altersjubilaeen);
   }
 
   public Object getAttribute(String fieldName) throws RemoteException
