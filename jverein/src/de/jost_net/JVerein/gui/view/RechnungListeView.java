@@ -1,7 +1,7 @@
 /**********************************************************************
-* $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungListeView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/16 18:52:35 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungListeView.java,v $
+ * $Revision: 1.2 $
+ * $Date: 2008/09/21 08:06:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungListeView.java,v $
+ * Revision 1.2  2008/09/21 08:06:47  jost
+ * Redaktionelle Änderung
+ *
  * Revision 1.1  2008/09/16 18:52:35  jost
  * Neu: Rechnung
  *
@@ -28,7 +31,7 @@ public class RechnungListeView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Abrechnungen");
+    GUI.getView().setTitle("Rechnungen");
 
     final RechnungControl control = new RechnungControl(this);
 
