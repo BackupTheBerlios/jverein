@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.39 $
- * $Date: 2008/07/11 07:34:00 $
+ * $Revision: 1.40 $
+ * $Date: 2008/09/21 08:45:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.40  2008/09/21 08:45:18  jost
+ * Neu: Mitgliedschaftsjubil√§en
+ *
  * Revision 1.39  2008/07/11 07:34:00  jost
  * Ausgabeverzeichnis f√ºr den n√§chsten Aufruf merken.
  *
@@ -275,6 +278,12 @@ public class MitgliedControl extends AbstractControl
   private DateInput stichtag;
 
   private SelectInput jubeljahr;
+
+  private SelectInput jubelart;
+
+  public final static String JUBELART_MITGLIEDSCHAFT = "Mitgliedschaftsjubil‰en";
+
+  public final static String JUBELART_ALTER = "Altersjubil‰en";
 
   private SelectInput beitragsgruppeausw;
 
@@ -1225,6 +1234,17 @@ public class MitgliedControl extends AbstractControl
     return jubeljahr;
   }
 
+  public SelectInput getJubelArt() throws RemoteException
+  {
+    if (jubelart != null)
+    {
+      return jubelart;
+    }
+    String[] ja = { JUBELART_MITGLIEDSCHAFT, JUBELART_ALTER };
+    jubelart = new SelectInput(ja, JUBELART_MITGLIEDSCHAFT);
+    return jubelart;
+  }
+
   public DialogInput getEigenschaftenAuswahl() throws RemoteException
   {
     if (eigenschaftenabfrage != null)
@@ -1328,7 +1348,15 @@ public class MitgliedControl extends AbstractControl
     {
       public void handleAction(Object context) throws ApplicationException
       {
-        starteJubilaeenListe();
+        try
+        {
+          starteJubilaeenListe();
+        }
+        catch (RemoteException e)
+        {
+          Logger.error("Fehler:", e);
+          throw new ApplicationException(e);
+        }
       }
     }, null, true); // "true" defines this button as the default button
     return b;
@@ -1755,7 +1783,7 @@ public class MitgliedControl extends AbstractControl
 
   }
 
-  private void starteJubilaeenListe()
+  private void starteJubilaeenListe() throws RemoteException
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei w‰hlen.");
@@ -1767,8 +1795,8 @@ public class MitgliedControl extends AbstractControl
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("jubilaeen", Einstellungen
-        .getDateinamenmuster(), "PDF").get());
+    fd.setFileName(new Dateiname((String) getJubelArt().getValue(),
+        Einstellungen.getDateinamenmuster(), "PDF").get());
     String s = fd.open();
 
     if (s == null || s.length() == 0)
@@ -1783,6 +1811,7 @@ public class MitgliedControl extends AbstractControl
     final File file = new File(s);
     settings.setAttribute("lastdir", file.getParent());
     final Integer jahr = (Integer) jubeljahr.getValue();
+    final String art = (String)jubelart.getValue();
 
     BackgroundTask t = new BackgroundTask()
     {
@@ -1790,7 +1819,7 @@ public class MitgliedControl extends AbstractControl
       {
         try
         {
-          new Jubilaeenliste(file, monitor, jahr);
+          new Jubilaeenliste(file, monitor, jahr, art);
         }
         catch (RemoteException e)
         {
