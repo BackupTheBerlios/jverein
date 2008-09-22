@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ZusatzabbuchungImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2007/03/30 13:26:12 $
+ * $Revision: 1.5 $
+ * $Date: 2008/09/22 20:26:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungImpl.java,v $
+ * Revision 1.5  2008/09/22 20:26:03  jost
+ * Plausi korrigiert
+ *
  * Revision 1.4  2007/03/30 13:26:12  jost
  * Wiederkehrende Zusatzabbuchungen.
  *
@@ -98,7 +101,7 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
         throw new ApplicationException(
             "Nächste Fälligkeit liegt nicht im Intervall");
       }
-      if (getBetrag() < 0)
+      if (getBetrag() <= 0)
       {
         throw new ApplicationException("Betrag nicht gültig");
       }
