@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/05/05 18:23:46 $
+ * $Revision: 1.8 $
+ * $Date: 2008/09/28 12:55:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.8  2008/09/28 12:55:30  jost
+ * Bug https://developer.berlios.de/bugs/?func=detailbug&bug_id=14496&group_id=7335 gefixed
+ *
  * Revision 1.7  2008/05/05 18:23:46  jost
  * Bugfix Geburtstagsliste
  *
@@ -88,11 +91,11 @@ public class MitgliedQuery
     {
       if (control.getMitgliedStatus().getValue().equals("Angemeldet"))
       {
-        addCondition("austritt is null ");
+        addCondition("(austritt is null or austritt > current_date())");
       }
       else if (control.getMitgliedStatus().getValue().equals("Abgemeldet"))
       {
-        addCondition("austritt is not null ");
+        addCondition("austritt is not null and austritt <= current_date()");
       }
     }
     String eigenschaften = (String) control.getEigenschaftenAuswahl().getText();
