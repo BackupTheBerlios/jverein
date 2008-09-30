@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/09/30 10:20:37 $
+ * $Revision: 1.9 $
+ * $Date: 2008/09/30 12:07:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.9  2008/09/30 12:07:31  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.8  2008/09/30 10:20:37  jost
  * Kursteilnehmer können nach Namen und Eingabedatum gefiltert werden.
  *
@@ -392,7 +395,6 @@ public class KursteilnehmerControl extends AbstractControl
         kursteilnehmer.addFilter("eingabedatum >= ?",
             new Object[] { (Date) getEingabedatumvon().getValue() });
       }
-      System.out.println(getEingabedatumbis().getValue());
       if (getEingabedatumbis().getValue() != null)
       {
         kursteilnehmer.addFilter("eingabedatum <= ?",
