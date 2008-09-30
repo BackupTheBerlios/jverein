@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungListeView.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/09/21 08:06:47 $
+ * $Revision: 1.3 $
+ * $Date: 2008/09/30 12:08:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungListeView.java,v $
+ * Revision 1.3  2008/09/30 12:08:29  jost
+ * Abrechnungsinformationen können nach Datum und Verwendungszweck gefiltert werden.
+ *
  * Revision 1.2  2008/09/21 08:06:47  jost
  * Redaktionelle Änderung
  *
@@ -25,6 +28,7 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
+import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
 
 public class RechnungListeView extends AbstractView
@@ -34,6 +38,10 @@ public class RechnungListeView extends AbstractView
     GUI.getView().setTitle("Rechnungen");
 
     final RechnungControl control = new RechnungControl(this);
+    LabelGroup group = new LabelGroup(getParent(), "Filter");
+    group.addLabelPair("Verwendungszweck", control.getSuchverwendungszweck());
+    group.addLabelPair("Eingabedatum von", control.getVondatum());
+    group.addLabelPair("Eingabedatum bis", control.getBisdatum());
 
     control.getAbrechungList().paint(this.getParent());
 
