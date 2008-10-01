@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/09/30 12:08:15 $
+ * $Revision: 1.4 $
+ * $Date: 2008/10/01 07:33:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
+ * Revision 1.4  2008/10/01 07:33:22  jost
+ * Überflüssigen Formatter entfernt.
+ *
  * Revision 1.3  2008/09/30 12:08:15  jost
  * Abrechnungsinformationen können nach Datum und Verwendungszweck gefiltert werden.
  *
@@ -266,27 +269,7 @@ public class RechnungControl extends AbstractControl
     if (abrechnungsList == null)
     {
       abrechnungsList = new TablePart(abrechnungen, new RechnungDetailAction());
-      abrechnungsList.addColumn("Name", "mitglied", new Formatter()
-      {
-        public String format(Object o)
-        {
-          Mitglied m = (Mitglied) o;
-          if (m == null)
-          {
-            return null;
-          }
-          String name = null;
-          try
-          {
-            name = m.getNameVorname();
-          }
-          catch (RemoteException e)
-          {
-            e.printStackTrace();
-          }
-          return name;
-        }
-      });
+      abrechnungsList.addColumn("Name", "mitglied");
       abrechnungsList.addColumn("Datum", "datum", new DateFormatter(
           Einstellungen.DATEFORMAT));
       abrechnungsList.addColumn("Zweck1", "zweck1");
