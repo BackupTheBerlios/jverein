@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/09/30 12:07:31 $
+ * $Revision: 1.10 $
+ * $Date: 2008/10/01 14:00:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.10  2008/10/01 14:00:13  jost
+ * Codeoptimierung
+ *
  * Revision 1.9  2008/09/30 12:07:31  jost
  * Debug-Meldung entfernt.
  *
@@ -245,7 +248,7 @@ public class KursteilnehmerControl extends AbstractControl
       return suchname;
     }
     this.suchname = new TextInput("", 30);
-    suchname.addListener(new FilterListener(this));
+    suchname.addListener(new FilterListener());
     return suchname;
   }
 
@@ -271,7 +274,7 @@ public class KursteilnehmerControl extends AbstractControl
         }
       }
     });
-    eingabedatumvon.addListener(new FilterListener(this));
+    eingabedatumvon.addListener(new FilterListener());
     return eingabedatumvon;
   }
 
@@ -297,7 +300,7 @@ public class KursteilnehmerControl extends AbstractControl
         }
       }
     });
-    eingabedatumbis.addListener(new FilterListener(this));
+    eingabedatumbis.addListener(new FilterListener());
     return eingabedatumbis;
   }
 
@@ -595,12 +598,6 @@ public class KursteilnehmerControl extends AbstractControl
 
   private class FilterListener implements Listener
   {
-    private KursteilnehmerControl control;
-
-    FilterListener(KursteilnehmerControl control)
-    {
-      this.control = control;
-    }
 
     public void handleEvent(Event event)
     {
