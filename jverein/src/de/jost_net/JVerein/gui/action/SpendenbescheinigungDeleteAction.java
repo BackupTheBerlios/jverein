@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/SpendenbescheinigungDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/19 19:23:39 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/01 14:17:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungDeleteAction.java,v $
+ * Revision 1.2  2008/10/01 14:17:02  jost
+ * Warnungen entfernt
+ *
  * Revision 1.1  2008/07/19 19:23:39  jost
  * Neu: Spendenbescheinigung
  *
@@ -17,7 +20,6 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
-import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Spendenbescheinigung;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;

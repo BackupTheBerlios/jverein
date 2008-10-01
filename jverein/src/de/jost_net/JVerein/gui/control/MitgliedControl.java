@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.40 $
- * $Date: 2008/09/21 08:45:18 $
+ * $Revision: 1.41 $
+ * $Date: 2008/10/01 14:17:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.41  2008/10/01 14:17:29  jost
+ * Warnungen entfernt
+ *
  * Revision 1.40  2008/09/21 08:45:18  jost
  * Neu: Mitgliedschaftsjubiläen
  *
@@ -1844,7 +1847,7 @@ public class MitgliedControl extends AbstractControl
 
   }
 
-  private void auswertungMitgliedPDF(final ArrayList list, final File file,
+  private void auswertungMitgliedPDF(final ArrayList<Mitglied> list, final File file,
       final String subtitle)
   {
     BackgroundTask t = new BackgroundTask()
@@ -1887,7 +1890,7 @@ public class MitgliedControl extends AbstractControl
     Application.getController().start(t);
   }
 
-  private void auswertungMitgliedCSV(final ArrayList list, final File file)
+  private void auswertungMitgliedCSV(final ArrayList<Mitglied> list, final File file)
   {
     BackgroundTask t = new BackgroundTask()
     {

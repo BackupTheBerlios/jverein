@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularfeldControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/09/16 18:27:24 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/01 14:17:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldControl.java,v $
+ * Revision 1.3  2008/10/01 14:17:12  jost
+ * Warnungen entfernt
+ *
  * Revision 1.2  2008/09/16 18:27:24  jost
  * Refactoring Formularaufbereitung
  *
@@ -20,10 +23,6 @@ package de.jost_net.JVerein.gui.control;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 
 import com.lowagie.text.pdf.BaseFont;
 
@@ -39,9 +38,7 @@ import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.Part;
-import de.willuhn.jameica.gui.formatter.Formatter;
 import de.willuhn.jameica.gui.input.DecimalInput;
-import de.willuhn.jameica.gui.input.FontInput;
 import de.willuhn.jameica.gui.input.IntegerInput;
 import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.parts.TablePart;
@@ -79,7 +76,7 @@ public class FormularfeldControl extends AbstractControl
   public static final String BUCHUNGSDATUM = "Buchungsdatum";
 
   public static final String BETRAG = "Betrag";
-  
+
   public static final String ZAHLUNGSWEG = "Zahlungsweg";
 
   public FormularfeldControl(AbstractView view, Formular formular)

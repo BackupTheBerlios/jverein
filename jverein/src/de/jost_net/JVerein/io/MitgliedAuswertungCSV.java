@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/07/12 19:09:06 $
+ * $Revision: 1.10 $
+ * $Date: 2008/10/01 14:17:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.10  2008/10/01 14:17:39  jost
+ * Warnungen entfernt
+ *
  * Revision 1.9  2008/07/12 19:09:06  jost
  * Bugfix bei leeren Zusatzfeldern
  *
@@ -63,7 +66,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class MitgliedAuswertungCSV
 {
-  public MitgliedAuswertungCSV(ArrayList list, final File file,
+  public MitgliedAuswertungCSV(ArrayList<Mitglied> list, final File file,
       ProgressMonitor monitor) throws ApplicationException, RemoteException
   {
 
@@ -90,7 +93,7 @@ public class MitgliedAuswertungCSV
       {
         faelle++;
         monitor.setStatus(faelle);
-        Mitglied m = (Mitglied) list.get(i);
+        Mitglied m = list.get(i);
         out.print(m.getID() + ";");
         out.print(m.getAnrede() + ";");
         out.print(m.getTitel() + ";");

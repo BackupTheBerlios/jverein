@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/07/10 09:21:38 $
+ * $Revision: 1.7 $
+ * $Date: 2008/10/01 14:17:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
+ * Revision 1.7  2008/10/01 14:17:48  jost
+ * Warnungen entfernt
+ *
  * Revision 1.6  2008/07/10 09:21:38  jost
  * Umstellung auf den Reporter
  * Kommunikationsdaten aufgenommen
@@ -56,7 +59,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class MitgliedAuswertungPDF
 {
-  public MitgliedAuswertungPDF(ArrayList list, final File file,
+  public MitgliedAuswertungPDF(ArrayList<Mitglied> list, final File file,
       ProgressMonitor monitor, String subtitle) throws ApplicationException,
       RemoteException
   {
@@ -83,7 +86,7 @@ public class MitgliedAuswertungPDF
       for (int i = 0; i < list.size(); i++)
       {
         faelle++;
-        Mitglied m = (Mitglied) list.get(i);
+        Mitglied m = list.get(i);
         report.addColumn(m.getNameVorname(), Element.ALIGN_LEFT);
         String anschriftkommunikation = m.getAnschrift();
         if (m.getTelefonprivat().length() > 0)

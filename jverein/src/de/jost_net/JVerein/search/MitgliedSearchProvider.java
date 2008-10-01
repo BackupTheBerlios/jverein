@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/MitgliedSearchProvider.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/04 18:57:37 $
+ * $Revision: 1.2 $
+ * $Date: 2008/10/01 14:18:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSearchProvider.java,v $
+ * Revision 1.2  2008/10/01 14:18:07  jost
+ * Warnungen entfernt
+ *
  * Revision 1.1  2008/09/04 18:57:37  jost
  * SearchProvider für die neue Jameica-Suchmaschine
  *
@@ -66,6 +69,8 @@ public class MitgliedSearchProvider implements SearchProvider
    */
   private class MyResult implements Result
   {
+    private static final long serialVersionUID = -1084818772620611937L;
+
     private Mitglied m = null;
 
     private MyResult(Mitglied m)

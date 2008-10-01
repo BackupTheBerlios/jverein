@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/09/16 18:26:13 $
+ * $Revision: 1.3 $
+ * $Date: 2008/10/01 14:16:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
+ * Revision 1.3  2008/10/01 14:16:51  jost
+ * Warnungen entfernt
+ *
  * Revision 1.2  2008/09/16 18:26:13  jost
  * Refactoring Formularaufbereitung
  *
@@ -22,11 +25,8 @@ import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
 
 import jonelo.NumericalChameleon.SpokenNumbers.GermanNumber;
-
 import de.jost_net.JVerein.io.FormularAufbereitung;
 import de.jost_net.JVerein.rmi.Formular;
 import de.willuhn.jameica.gui.Action;
