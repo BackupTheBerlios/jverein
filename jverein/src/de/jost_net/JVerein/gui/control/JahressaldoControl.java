@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/07/11 07:33:02 $
+ * $Revision: 1.5 $
+ * $Date: 2008/10/13 18:57:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
+ * Revision 1.5  2008/10/13 18:57:14  jost
+ * RemoteException ->ApplicationException
+ *
  * Revision 1.4  2008/07/11 07:33:02  jost
  * Ausgabeverzeichnis für den nächsten Aufruf merken.
  *
@@ -71,7 +74,7 @@ public class JahressaldoControl extends AbstractControl
     settings.setStoreWhenRead(true);
   }
 
-  public SelectInput getSuchJahr() throws RemoteException
+  public SelectInput getSuchJahr() throws RemoteException, ApplicationException
   {
     if (suchjahr != null)
     {
@@ -88,7 +91,7 @@ public class JahressaldoControl extends AbstractControl
     }
     else
     {
-      throw new RemoteException("Abbruch! Es existiert noch keine Buchung");
+      throw new ApplicationException("Abbruch! Es existiert noch keine Buchung");
     }
     Calendar bis = Calendar.getInstance();
     ArrayList<Integer> jahre = new ArrayList<Integer>();
@@ -153,7 +156,7 @@ public class JahressaldoControl extends AbstractControl
   }
 
   private ArrayList<SaldoZeile> getInfo() throws RemoteException,
-      ParseException
+      ParseException, ApplicationException
   {
     ArrayList<SaldoZeile> zeile = new ArrayList<SaldoZeile>();
     Konto k = (Konto) Einstellungen.getDBService().createObject(Konto.class,
