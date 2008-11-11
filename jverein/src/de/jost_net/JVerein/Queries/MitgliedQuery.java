@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/09/28 12:55:30 $
+ * $Revision: 1.9 $
+ * $Date: 2008/11/11 20:48:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.9  2008/11/11 20:48:35  jost
+ * Selektion nach Geschlecht
+ *
  * Revision 1.8  2008/09/28 12:55:30  jost
  * Bug https://developer.berlios.de/bugs/?func=detailbug&bug_id=14496&group_id=7335 gefixed
  *
@@ -133,6 +136,10 @@ public class MitgliedQuery
     {
       addCondition("geburtsdatum <= ?");
     }
+    if (control.getGeschlecht().getValue() != null)
+    {
+      addCondition("geschlecht = ?");
+    }
     if (!dialog)
     {
       if (control.getEintrittvon().getValue() != null)
@@ -236,6 +243,11 @@ public class MitgliedQuery
     {
       Date d = (Date) control.getGeburtsdatumbis().getValue();
       bedingungen.add(new java.sql.Date(d.getTime()));
+    }
+    if (control.getGeschlecht().getValue() != null)
+    {
+      String g = (String)control.getGeschlecht().getValue();
+      bedingungen.add(g);
     }
     if (!dialog)
     {
