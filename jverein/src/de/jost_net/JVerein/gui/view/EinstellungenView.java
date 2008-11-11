@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/08/10 12:36:22 $
+ * $Revision: 1.12 $
+ * $Date: 2008/11/11 20:05:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.12  2008/11/11 20:05:09  jost
+ * Anzeige neu gruppiert und mit Scrollbars versehen.
+ *
  * Revision 1.11  2008/08/10 12:36:22  jost
  * Abbuchung -> Abrechnung
  * Vorbereitung der Rechnungserstellung
@@ -40,6 +43,10 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.TabFolder;
+
 import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.EinstellungControl;
@@ -47,8 +54,10 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
-import de.willuhn.jameica.gui.util.Headline;
+import de.willuhn.jameica.gui.util.Color;
 import de.willuhn.jameica.gui.util.LabelGroup;
+import de.willuhn.jameica.gui.util.ScrolledContainer;
+import de.willuhn.jameica.gui.util.TabGroup;
 import de.willuhn.util.ApplicationException;
 
 public class EinstellungenView extends AbstractView
@@ -59,7 +68,13 @@ public class EinstellungenView extends AbstractView
 
     final EinstellungControl control = new EinstellungControl(this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Anzeige");
+    ScrolledContainer cont = new ScrolledContainer(getParent());
+    TabFolder folder = new TabFolder(cont.getComposite(), SWT.NONE);
+    folder.setLayoutData(new GridData(GridData.FILL_BOTH));
+    folder.setBackground(Color.BACKGROUND.getSWTColor());
+
+    TabGroup tabAnzeige = new TabGroup(folder, "Anzeige");
+    LabelGroup group = new LabelGroup(tabAnzeige.getComposite(), "Anzeige");
     group.addLabelPair("Geburtsdatum Pflichtfeld", control
         .getGeburtsdatumPflicht());
     group.addLabelPair("Eintrittsdatum Pflichtfeld", control
@@ -74,20 +89,29 @@ public class EinstellungenView extends AbstractView
         .addLabelPair("Kursteilnehmer anzeigen *", control.getKursteilnehmer());
     group.addLabelPair("externe Mitgliedsnummer", control
         .getExterneMitgliedsnummer());
+    group.addHeadline("* Änderung erfordert Neustart");
 
-    LabelGroup groupAbu = new LabelGroup(getParent(), "Beiträge");
+    TabGroup tabBeitraege = new TabGroup(folder, "Beiträge");
+    LabelGroup groupAbu = new LabelGroup(tabBeitraege.getComposite(),
+        "Beiträge");
     groupAbu.addLabelPair("Beitragsmodel", control.getBeitragsmodel());
 
-    LabelGroup groupDatei = new LabelGroup(getParent(), "Dateinamen");
+    TabGroup tabDateinamen = new TabGroup(folder, "Dateinamen");
+    LabelGroup groupDatei = new LabelGroup(tabDateinamen.getComposite(),
+        "Dateinamen");
     groupDatei.addLabelPair("Muster", control.getDateinamenmuster());
     groupDatei.addText("a$ = Aufgabe, d$ = Datum, s$ = Sortierung, z$ = Zeit",
         true);
 
-    LabelGroup groupBuchfuehrung = new LabelGroup(getParent(), "Buchführung");
+    TabGroup tabBuchfuehrung = new TabGroup(folder, "Buchführung");
+    LabelGroup groupBuchfuehrung = new LabelGroup(tabBuchfuehrung
+        .getComposite(), "Buchführung");
     groupBuchfuehrung.addLabelPair("Beginn Geschäftsjahr (TT.MM.)", control
         .getBeginnGeschaeftsjahr());
 
-    LabelGroup groupRechnungen = new LabelGroup(getParent(), "Rechnungen");
+    TabGroup tabRechnungen = new TabGroup(folder, "Rechnungen");
+    LabelGroup groupRechnungen = new LabelGroup(tabRechnungen.getComposite(),
+        "Rechnungen");
     groupRechnungen.addLabelPair("für Zahlungsweg Abbuchung", control
         .getRechnungFuerAbbuchung());
     groupRechnungen.addLabelPair("für Zahlungsweg Überweisung", control
@@ -95,7 +119,6 @@ public class EinstellungenView extends AbstractView
     groupRechnungen.addLabelPair("für Zahlungsweg Barzahlung", control
         .getRechnungFuerBarzahlung());
 
-    new Headline(getParent(), "* Änderung erfordert Neustart");
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
