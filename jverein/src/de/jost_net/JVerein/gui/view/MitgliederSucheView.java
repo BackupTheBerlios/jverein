@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.17 $
+ * $Date: 2008/11/11 20:48:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.17  2008/11/11 20:48:06  jost
+ * 2spaltiges Layout und Selektion nach Geschlecht
+ *
  * Revision 1.16  2008/05/24 14:04:08  jost
  * Redatkionelle Änderung
  *
@@ -97,7 +100,9 @@ import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
+import de.willuhn.jameica.gui.util.ColumnLayout;
 import de.willuhn.jameica.gui.util.LabelGroup;
+import de.willuhn.jameica.gui.util.SimpleContainer;
 import de.willuhn.jameica.gui.util.TabGroup;
 import de.willuhn.jameica.system.Settings;
 import de.willuhn.util.ApplicationException;
@@ -150,14 +155,18 @@ public class MitgliederSucheView extends AbstractView
     };
 
     LabelGroup group = new LabelGroup(getParent(), "Filter");
+    ColumnLayout cl = new ColumnLayout(group.getComposite(), 2);
+
+    SimpleContainer left = new SimpleContainer(cl.getComposite());
     Input mitglstat = control.getMitgliedStatus();
     mitglstat.addListener(new FilterListener(control));
-    group.addLabelPair("Mitgliedschaft", mitglstat);
-    IntegerInput suchexternemitgliedsnummer = control.getSuchExterneMitgliedsnummer();
+    left.addLabelPair("Mitgliedschaft", mitglstat);
+    IntegerInput suchexternemitgliedsnummer = control
+        .getSuchExterneMitgliedsnummer();
     suchexternemitgliedsnummer.addListener(new FilterListener(control));
     if (Einstellungen.isExterneMitgliedsnummer())
     {
-      group.addLabelPair("Externe Mitgliedsnummer", control
+      left.addLabelPair("Externe Mitgliedsnummer", control
           .getSuchExterneMitgliedsnummer());
     }
 
@@ -167,17 +176,24 @@ public class MitgliederSucheView extends AbstractView
     {
       DialogInput mitgleigenschaften = control.getEigenschaftenAuswahl();
       mitgleigenschaften.addListener(new FilterListener(control));
-      group.addLabelPair("Eigenschaften", mitgleigenschaften);
+      left.addLabelPair("Eigenschaften", mitgleigenschaften);
     }
-    DateInput mitglgebdatvon = control.getGeburtsdatumvon();
-    mitglgebdatvon.addListener(new FilterListener(control));
-    group.addLabelPair("Geburtsdatum von", mitglgebdatvon);
-    DateInput mitglgebdatbis = control.getGeburtsdatumbis();
-    mitglgebdatbis.addListener(new FilterListener(control));
-    group.addLabelPair("Geburtsdatum bis", mitglgebdatbis);
     SelectInput mitglbeitragsgruppe = control.getBeitragsgruppeAusw();
     mitglbeitragsgruppe.addListener(new FilterListener(control));
-    group.addLabelPair("Beitragsgruppe", mitglbeitragsgruppe);
+    left.addLabelPair("Beitragsgruppe", mitglbeitragsgruppe);
+
+    SimpleContainer right = new SimpleContainer(cl.getComposite());
+
+    DateInput mitglgebdatvon = control.getGeburtsdatumvon();
+    mitglgebdatvon.addListener(new FilterListener(control));
+    right.addLabelPair("Geburtsdatum von", mitglgebdatvon);
+    DateInput mitglgebdatbis = control.getGeburtsdatumbis();
+    mitglgebdatbis.addListener(new FilterListener(control));
+    right.addLabelPair("Geburtsdatum bis", mitglgebdatbis);
+    SelectInput mitglgeschlecht = control.getGeschlecht();
+    mitglgeschlecht.setMandatory(false);
+    mitglgeschlecht.addListener(new FilterListener(control));
+    right.addLabelPair("Geschlecht", mitglgeschlecht);
 
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
