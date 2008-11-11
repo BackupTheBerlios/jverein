@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/01/01 12:35:40 $
+ * $Revision: 1.17 $
+ * $Date: 2008/11/11 18:26:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.17  2008/11/11 18:26:21  jost
+ * Vorbereitung fÃ¼r kÃ¼nftige Erweiterung
+ *
  * Revision 1.16  2008/01/01 12:35:40  jost
  * Javadoc korrigiert
  *
@@ -82,6 +85,11 @@ public class JVereinPlugin extends AbstractPlugin
   private Settings settings;
 
   /**
+   * MessageConsumer, mit dem JVerein über neu eingetroffene Umsätze aus
+   * Hibiscus informiert wird.
+   */
+  // private UmsatzMessageConsumer umc = null;
+  /**
    * constructor.
    * 
    */
@@ -114,6 +122,8 @@ public class JVereinPlugin extends AbstractPlugin
 
     Application.getCallback().getStartupMonitor().addPercentComplete(5);
     ExtensionRegistry.register(new MyExtension(), "jverein.main");
+    // this.umc = new UmsatzMessageConsumer();
+    // Application.getMessagingFactory().registerMessageConsumer(this.umc);
 
   }
 
