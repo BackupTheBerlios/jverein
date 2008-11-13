@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/06/29 07:58:31 $
+ * $Revision: 1.14 $
+ * $Date: 2008/11/13 20:18:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.14  2008/11/13 20:18:00  jost
+ * Adressierungszusatz aufgenommen.
+ *
  * Revision 1.13  2008/06/29 07:58:31  jost
  * Neu: Handy
  *
@@ -169,14 +172,21 @@ public class Import
         m.setVorname(results.getString("Vorname"));
         try
         {
-          m.setStrasse(results.getString("Straﬂe"));
+          m.setAdressierungszusatz(results.getString("Adressierungszusatz"));
+        }
+        catch (Exception e)
+        {
+          // nichts zu tun
+        }
 
+        try
+        {
+          m.setStrasse(results.getString("Straﬂe"));
         }
         catch (Exception e)
         {
           m.setStrasse(results.getString("Strasse"));
         }
-
         m.setPlz(results.getString("Plz"));
         m.setOrt(results.getString("Ort"));
         m.setGeburtsdatum(results.getString("Geburtsdatum"));

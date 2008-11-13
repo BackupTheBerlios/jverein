@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/10/01 06:58:10 $
+ * $Revision: 1.15 $
+ * $Date: 2008/11/13 20:18:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.15  2008/11/13 20:18:42  jost
+ * Adressierungszusatz aufgenommen.
+ *
  * Revision 1.14  2008/10/01 06:58:10  jost
  * Korrekte Sortierung
  *
@@ -244,6 +247,17 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public void setVorname(String vorname) throws RemoteException
   {
     setAttribute("vorname", vorname);
+  }
+
+  public String getAdressierungszusatz() throws RemoteException
+  {
+    return (String) getAttribute("adressierungszusatz");
+  }
+
+  public void setAdressierungszusatz(String adressierungszusatz)
+      throws RemoteException
+  {
+    setAttribute("adressierungszusatz", adressierungszusatz);
   }
 
   public String getStrasse() throws RemoteException
@@ -527,7 +541,9 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
    */
   public String getAnschrift() throws RemoteException
   {
-    return getStrasse() + ", " + getPlz() + " " + getOrt();
+    return (getAdressierungszusatz().length() > 0 ? getAdressierungszusatz()
+        + ", " : "")
+        + getStrasse() + ", " + getPlz() + " " + getOrt();
   }
 
   public Object getAttribute(String fieldName) throws RemoteException

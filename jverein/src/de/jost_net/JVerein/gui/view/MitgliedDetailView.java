@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.20 $
- * $Date: 2008/07/14 07:58:57 $
+ * $Revision: 1.21 $
+ * $Date: 2008/11/13 20:17:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.21  2008/11/13 20:17:46  jost
+ * Adressierungszusatz aufgenommen.
+ *
  * Revision 1.20  2008/07/14 07:58:57  jost
  * Redakt. Änderung
  *
@@ -121,6 +124,7 @@ public class MitgliedDetailView extends AbstractView
     left.addLabelPair("Titel", control.getTitel());
     left.addLabelPair("Name", control.getName());
     left.addLabelPair("Vorname", control.getVorname());
+    left.addLabelPair("Adressierungszusatz", control.getAdressierungszusatz());
 
     SimpleContainer right = new SimpleContainer(cols1.getComposite());
     right.addHeadline("");

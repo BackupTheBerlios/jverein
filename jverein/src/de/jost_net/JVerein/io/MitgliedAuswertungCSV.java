@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/10/01 14:17:39 $
+ * $Revision: 1.11 $
+ * $Date: 2008/11/13 20:18:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.11  2008/11/13 20:18:12  jost
+ * Adressierungszusatz aufgenommen.
+ *
  * Revision 1.10  2008/10/01 14:17:39  jost
  * Warnungen entfernt
  *
@@ -74,7 +77,7 @@ public class MitgliedAuswertungCSV
     {
       PrintWriter out = new PrintWriter(new FileOutputStream(file));
       out
-          .print("id;anrede;titel;name;vorname;strasse;plz;ort;blz;konto;kontoinhaber;");
+          .print("id;anrede;titel;name;vorname;adressierungszusatz;strasse;plz;ort;blz;konto;kontoinhaber;");
       out
           .print("geburtsdatum;geschlecht;telefonprivat;telefondienstlich;email;");
       out
@@ -99,6 +102,7 @@ public class MitgliedAuswertungCSV
         out.print(m.getTitel() + ";");
         out.print(m.getName() + ";");
         out.print(m.getVorname() + ";");
+        out.print(m.getAdressierungszusatz() + ";");
         out.print(m.getStrasse() + ";");
         out.print(m.getPlz() + ";");
         out.print(m.getOrt() + ";");

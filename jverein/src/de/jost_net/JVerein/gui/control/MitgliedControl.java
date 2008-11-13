@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.41 $
- * $Date: 2008/10/01 14:17:29 $
+ * $Revision: 1.42 $
+ * $Date: 2008/11/13 20:17:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.42  2008/11/13 20:17:13  jost
+ * Adressierungszusatz aufgenommen.
+ *
  * Revision 1.41  2008/10/01 14:17:29  jost
  * Warnungen entfernt
  *
@@ -211,6 +214,8 @@ public class MitgliedControl extends AbstractControl
   private Input name;
 
   private Input vorname;
+  
+  private Input adressierungszusatz;
 
   private Input strasse;
 
@@ -378,6 +383,16 @@ public class MitgliedControl extends AbstractControl
     vorname = new TextInput(getMitglied().getVorname(), 40);
     vorname.setMandatory(true);
     return vorname;
+  }
+
+  public Input getAdressierungszusatz() throws RemoteException
+  {
+    if (adressierungszusatz != null)
+    {
+      return adressierungszusatz;
+    }
+    adressierungszusatz = new TextInput(getMitglied().getAdressierungszusatz(), 40);
+    return adressierungszusatz;
   }
 
   public Input getStrasse() throws RemoteException
@@ -1523,6 +1538,7 @@ public class MitgliedControl extends AbstractControl
     try
     {
       Mitglied m = getMitglied();
+      m.setAdressierungszusatz((String)getAdressierungszusatz().getValue());
       m.setAustritt((Date) getAustritt().getValue());
       m.setAnrede((String) getAnrede().getValue());
       GenericObject o = (GenericObject) getBeitragsgruppe().getValue();

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/07/18 20:16:53 $
+ * $Revision: 1.10 $
+ * $Date: 2008/11/13 20:18:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.10  2008/11/13 20:18:28  jost
+ * Adressierungszusatz aufgenommen.
+ *
  * Revision 1.9  2008/07/18 20:16:53  jost
  * Neue Methode
  *
@@ -68,6 +71,10 @@ public interface Mitglied extends DBObject
   public String getVorname() throws RemoteException;
 
   public void setVorname(String vorname) throws RemoteException;
+
+  public String getAdressierungszusatz() throws RemoteException;
+
+  public void setAdressierungszusatz(String adressierungszusatz) throws RemoteException;
 
   public String getStrasse() throws RemoteException;
 
