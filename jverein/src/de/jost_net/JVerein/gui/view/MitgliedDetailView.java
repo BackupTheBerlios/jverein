@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.21 $
- * $Date: 2008/11/13 20:17:46 $
+ * $Revision: 1.22 $
+ * $Date: 2008/11/16 16:57:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.22  2008/11/16 16:57:58  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.21  2008/11/13 20:17:46  jost
  * Adressierungszusatz aufgenommen.
  *
@@ -134,7 +137,7 @@ public class MitgliedDetailView extends AbstractView
     right.addLabelPair("Geburtsdatum", control.getGeburtsdatum());
     right.addLabelPair("Geschlecht", control.getGeschlecht());
 
-    if (Einstellungen.isKommunikationsdaten())
+    if (Einstellungen.getEinstellung().getKommunikationsdaten())
     {
       ColumnLayout cols2 = new ColumnLayout(scrolled.getComposite(), 2);
       SimpleContainer left2 = new SimpleContainer(cols2.getComposite());
@@ -151,7 +154,7 @@ public class MitgliedDetailView extends AbstractView
     SimpleContainer left3 = new SimpleContainer(cols3.getComposite());
     left3.addHeadline("Bankverbindung");
     left3.addLabelPair("Zahlungsweg", control.getZahlungsweg());
-    if (Einstellungen.getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
     {
       left3.addLabelPair("Zahlungsrhytmus", control.getZahlungsrhytmus());
     }
@@ -166,7 +169,7 @@ public class MitgliedDetailView extends AbstractView
     folder.setBackground(Color.BACKGROUND.getSWTColor());
 
     TabGroup tab3 = new TabGroup(folder, "Mitgliedschaft");
-    if (Einstellungen.isExterneMitgliedsnummer())
+    if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
     {
       tab3.addLabelPair("Ext. Mitgliedsnummer", control
           .getExterneMitgliedsnummer());
@@ -182,7 +185,7 @@ public class MitgliedDetailView extends AbstractView
     {
       tab3.addPart(control.getFamilienverband());
     }
-    if (Einstellungen.isZusatzabbuchung())
+    if (Einstellungen.getEinstellung().getZusatzabbuchung())
     {
       TabGroup tab4 = new TabGroup(folder, "Zusatzabbuchung");
       control.getZusatzabbuchungenTable().paint(tab4.getComposite());
@@ -190,14 +193,14 @@ public class MitgliedDetailView extends AbstractView
       buttonszus.addButton(control.getZusatzabbuchungNeu());
     }
 
-    if (Einstellungen.isVermerke())
+    if (Einstellungen.getEinstellung().getVermerke())
     {
       TabGroup tab5 = new TabGroup(folder, "Vermerke");
       tab5.addLabelPair("Vermerk 1", control.getVermerk1());
       tab5.addLabelPair("Vermerk 2", control.getVermerk2());
     }
 
-    if (Einstellungen.isWiedervorlage())
+    if (Einstellungen.getEinstellung().getWiedervorlage())
     {
       TabGroup tab6 = new TabGroup(folder, "Wiedervorlage");
       control.getWiedervorlageTable().paint(tab6.getComposite());

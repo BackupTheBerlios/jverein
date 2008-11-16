@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/JahressaldoList.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/06/28 16:59:00 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/16 16:57:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoList.java,v $
+ * Revision 1.2  2008/11/16 16:57:37  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.1  2008/06/28 16:59:00  jost
  * Neu: Jahresabschluss
  *
@@ -42,7 +45,7 @@ public class JahressaldoList extends TablePart implements Part
 
   private Geschaeftsjahr gj = null;
 
-  public JahressaldoList(Action action, int jahr)
+  public JahressaldoList(Action action, int jahr) throws RemoteException
   {
     super(action);
     try

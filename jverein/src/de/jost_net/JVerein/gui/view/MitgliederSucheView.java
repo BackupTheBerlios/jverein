@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.17 $
- * $Date: 2008/11/11 20:48:06 $
+ * $Revision: 1.18 $
+ * $Date: 2008/11/16 16:58:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.18  2008/11/16 16:58:08  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.17  2008/11/11 20:48:06  jost
  * 2spaltiges Layout und Selektion nach Geschlecht
  *
@@ -164,7 +167,7 @@ public class MitgliederSucheView extends AbstractView
     IntegerInput suchexternemitgliedsnummer = control
         .getSuchExterneMitgliedsnummer();
     suchexternemitgliedsnummer.addListener(new FilterListener(control));
-    if (Einstellungen.isExterneMitgliedsnummer())
+    if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
     {
       left.addLabelPair("Externe Mitgliedsnummer", control
           .getSuchExterneMitgliedsnummer());

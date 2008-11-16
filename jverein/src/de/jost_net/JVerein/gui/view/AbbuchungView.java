@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/08/10 12:36:02 $
+ * $Revision: 1.15 $
+ * $Date: 2008/11/16 16:57:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.15  2008/11/16 16:57:51  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.14  2008/08/10 12:36:02  jost
  * Abbuchung -> Abrechnung
  * Vorbereitung der Rechnungserstellung
@@ -100,16 +103,17 @@ public class AbbuchungView extends AbstractView
     group.addLabelPair("Modus", control.getAbbuchungsmodus());
     group.addLabelPair("Stichtag", control.getStichtag());
     group.addLabelPair("Von Eingabedatum", control.getVondatum());
-    group.addLabelPair("Zahlungsgrund für Beiträge", control.getZahlungsgrund());
+    group
+        .addLabelPair("Zahlungsgrund für Beiträge", control.getZahlungsgrund());
     group.addLabelPair("Zusatzabbuchung", control.getZusatzabbuchung());
-    if (!Einstellungen.isZusatzabbuchung())
+    if (!Einstellungen.getEinstellung().getZusatzabbuchung())
     {
       control.getZusatzabbuchung().setEnabled(false);
     }
     group.addLabelPair("Kursteilnehmer", control.getKursteilnehmer());
     group.addLabelPair("Dtaus-Datei drucken", control.getDtausPrint());
 
-    if (!Einstellungen.isKursteilnehmer())
+    if (!Einstellungen.getEinstellung().getKursteilnehmer())
     {
       control.getKursteilnehmer().setEnabled(false);
     }

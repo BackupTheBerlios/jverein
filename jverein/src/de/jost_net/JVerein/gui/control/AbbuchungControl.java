@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2008/08/10 12:34:49 $
+ * $Revision: 1.16 $
+ * $Date: 2008/11/16 16:56:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.16  2008/11/16 16:56:03  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.15  2008/08/10 12:34:49  jost
  * Abbuchung -> Abrechnung
  * Vorbereitung der Rechnungserstellung
@@ -260,12 +263,16 @@ public class AbbuchungControl extends AbstractControl
         {
           GUI.getStatusBar().setErrorText(e.getMessage());
         }
+        catch (RemoteException e)
+        {
+          GUI.getStatusBar().setErrorText(e.getMessage());
+        }
       }
     }, null, true);
     return button;
   }
 
-  private void doAbrechnung() throws ApplicationException
+  private void doAbrechnung() throws ApplicationException, RemoteException
   {
     File dtausfile;
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
@@ -324,7 +331,7 @@ public class AbbuchungControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("abbuchung", Einstellungen
+      fd.setFileName(new Dateiname("abbuchung", Einstellungen.getEinstellung()
           .getDateinamenmuster(), "TXT").get());
       String file = fd.open();
 
@@ -361,7 +368,7 @@ public class AbbuchungControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("abbuchung", Einstellungen
+      fd.setFileName(new Dateiname("abbuchung", Einstellungen.getEinstellung()
           .getDateinamenmuster(), "PDF").get());
       pdffile = fd.open();
     }

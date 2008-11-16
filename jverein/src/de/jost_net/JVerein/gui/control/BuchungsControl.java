@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/07/11 07:34:22 $
+ * $Revision: 1.14 $
+ * $Date: 2008/11/16 16:56:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.14  2008/11/16 16:56:15  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.13  2008/07/11 07:34:22  jost
  * Ausgabeverzeichnis für den nächsten Aufruf merken.
  *
@@ -619,7 +622,7 @@ public class BuchungsControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("buchungen", Einstellungen
+      fd.setFileName(new Dateiname("buchungen", Einstellungen.getEinstellung()
           .getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();

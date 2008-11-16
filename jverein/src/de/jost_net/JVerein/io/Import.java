@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/11/13 20:18:00 $
+ * $Revision: 1.15 $
+ * $Date: 2008/11/16 16:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.15  2008/11/16 16:58:29  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.14  2008/11/13 20:18:00  jost
  * Adressierungszusatz aufgenommen.
  *
@@ -161,7 +164,7 @@ public class Import
             Mitglied.class, null);
 
         m.setID(results.getString("Mitglieds_Nr"));
-        if (Einstellungen.isExterneMitgliedsnummer())
+        if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
         {
           m.setExterneMitgliedsnummer(new Integer(results
               .getString("Mitglieds_Nr")));

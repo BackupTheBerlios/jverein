@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/10/01 14:00:13 $
+ * $Revision: 1.11 $
+ * $Date: 2008/11/16 16:56:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.11  2008/11/16 16:56:45  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.10  2008/10/01 14:00:13  jost
  * Codeoptimierung
  *
@@ -513,7 +516,7 @@ public class KursteilnehmerControl extends AbstractControl
         fd.setFilterPath(path);
       }
       fd.setFileName(new Dateiname("kursteilnehmer", Einstellungen
-          .getDateinamenmuster(), "PDF").get());
+          .getEinstellung().getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 

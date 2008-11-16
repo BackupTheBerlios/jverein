@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.22 $
- * $Date: 2008/08/10 12:37:25 $
+ * $Revision: 1.23 $
+ * $Date: 2008/11/16 16:58:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.23  2008/11/16 16:58:18  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.22  2008/08/10 12:37:25  jost
  * Abbuchung -> Abrechnung
  * Vorbereitung der Rechnungserstellung
@@ -238,7 +241,7 @@ public class Abbuchung
         list.addFilter("eingabedatum >= ?", new Object[] { new java.sql.Date(
             vondatum.getTime()) });
       }
-      if (Einstellungen.getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
+      if (Einstellungen.getEinstellung().getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
       {
         if (modus == AbbuchungsmodusInput.HAVIMO)
         {
@@ -297,7 +300,7 @@ public class Abbuchung
         monitor.setStatus((int) ((double) count / (double) list.size() * 100d));
         Mitglied m = (Mitglied) list.next();
         Double betr;
-        if (Einstellungen.getBeitragsmodel() != BeitragsmodelInput.MONATLICH12631)
+        if (Einstellungen.getEinstellung().getBeitragsmodel() != BeitragsmodelInput.MONATLICH12631)
         {
           betr = (Double) beitr.get(m.getBeitragsgruppeId() + "");
         }
@@ -513,11 +516,11 @@ public class Abbuchung
       double betrag) throws RemoteException, ApplicationException
   {
     if ((m.getZahlungsweg() == ZahlungswegInput.ABBUCHUNG && Einstellungen
-        .isRechnungFuerAbbuchung())
+        .getEinstellung().getRechnungFuerAbbuchung())
         || (m.getZahlungsweg() == ZahlungswegInput.ÜBERWEISUNG && Einstellungen
-            .isRechnungFuerUeberweisung())
+            .getEinstellung().getRechnungFuerUeberweisung())
         || (m.getZahlungsweg() == ZahlungswegInput.BARZAHLUNG && Einstellungen
-            .isRechnungFuerBarzahlung()))
+            .getEinstellung().getRechnungFuerBarzahlung()))
     {
       Abrechnung abr = (Abrechnung) Einstellungen.getDBService().createObject(
           Abrechnung.class, null);

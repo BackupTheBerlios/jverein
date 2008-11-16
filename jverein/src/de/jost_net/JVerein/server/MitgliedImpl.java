@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.15 $
- * $Date: 2008/11/13 20:18:42 $
+ * $Revision: 1.16 $
+ * $Date: 2008/11/16 16:59:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.16  2008/11/16 16:59:20  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.15  2008/11/13 20:18:42  jost
  * Adressierungszusatz aufgenommen.
  *
@@ -109,7 +112,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
 
   private void plausi() throws RemoteException, ApplicationException
   {
-    if (Einstellungen.isExterneMitgliedsnummer())
+    if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
     {
       if (getExterneMitgliedsnummer() == null)
       {
@@ -124,7 +127,8 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       throw new ApplicationException("Bitte Vornamen eingeben");
     }
-    if (getGeburtsdatum() == null && Einstellungen.isGeburtsdatumPflicht())
+    if (getGeburtsdatum() == null
+        && Einstellungen.getEinstellung().getGeburtsdatumPflicht())
     {
       throw new ApplicationException("Bitte Geburtsdatum eingeben");
     }
@@ -132,7 +136,8 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       throw new ApplicationException("Bitte Geschlecht auswählen");
     }
-    if (getEintritt() == null && Einstellungen.isEintrittsdatumPflicht())
+    if (getEintritt() == null
+        && Einstellungen.getEinstellung().getEintrittsdatumPflicht())
     {
       throw new ApplicationException("Bitte Eintrittsdatum eingeben");
     }

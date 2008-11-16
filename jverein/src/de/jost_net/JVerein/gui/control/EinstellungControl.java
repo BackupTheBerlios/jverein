@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/08/10 12:35:01 $
+ * $Revision: 1.9 $
+ * $Date: 2008/11/16 16:56:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.9  2008/11/16 16:56:26  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.8  2008/08/10 12:35:01  jost
  * Vorbereitung der Rechnungserstellung
  *
@@ -37,10 +40,10 @@
 package de.jost_net.JVerein.gui.control;
 
 import java.rmi.RemoteException;
-import java.text.ParseException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.input.BeitragsmodelInput;
+import de.jost_net.JVerein.rmi.Einstellung;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -91,8 +94,8 @@ public class EinstellungControl extends AbstractControl
     {
       return geburtsdatumpflicht;
     }
-    geburtsdatumpflicht = new CheckboxInput(Einstellungen
-        .isGeburtsdatumPflicht());
+    geburtsdatumpflicht = new CheckboxInput(Einstellungen.getEinstellung()
+        .getGeburtsdatumPflicht());
     return geburtsdatumpflicht;
   }
 
@@ -102,8 +105,8 @@ public class EinstellungControl extends AbstractControl
     {
       return eintrittsdatumpflicht;
     }
-    eintrittsdatumpflicht = new CheckboxInput(Einstellungen
-        .isEintrittsdatumPflicht());
+    eintrittsdatumpflicht = new CheckboxInput(Einstellungen.getEinstellung()
+        .getEintrittsdatumPflicht());
     return eintrittsdatumpflicht;
   }
 
@@ -113,8 +116,8 @@ public class EinstellungControl extends AbstractControl
     {
       return kommunikationsdaten;
     }
-    kommunikationsdaten = new CheckboxInput(Einstellungen
-        .isKommunikationsdaten());
+    kommunikationsdaten = new CheckboxInput(Einstellungen.getEinstellung()
+        .getKommunikationsdaten());
     return kommunikationsdaten;
   }
 
@@ -124,7 +127,8 @@ public class EinstellungControl extends AbstractControl
     {
       return zusatzabbuchung;
     }
-    zusatzabbuchung = new CheckboxInput(Einstellungen.isZusatzabbuchung());
+    zusatzabbuchung = new CheckboxInput(Einstellungen.getEinstellung()
+        .getZusatzabbuchung());
     return zusatzabbuchung;
   }
 
@@ -134,7 +138,7 @@ public class EinstellungControl extends AbstractControl
     {
       return vermerke;
     }
-    vermerke = new CheckboxInput(Einstellungen.isVermerke());
+    vermerke = new CheckboxInput(Einstellungen.getEinstellung().getVermerke());
     return vermerke;
   }
 
@@ -144,7 +148,8 @@ public class EinstellungControl extends AbstractControl
     {
       return wiedervorlage;
     }
-    wiedervorlage = new CheckboxInput(Einstellungen.isWiedervorlage());
+    wiedervorlage = new CheckboxInput(Einstellungen.getEinstellung()
+        .getWiedervorlage());
     return wiedervorlage;
   }
 
@@ -154,7 +159,8 @@ public class EinstellungControl extends AbstractControl
     {
       return kursteilnehmer;
     }
-    kursteilnehmer = new CheckboxInput(Einstellungen.isKursteilnehmer());
+    kursteilnehmer = new CheckboxInput(Einstellungen.getEinstellung()
+        .getKursteilnehmer());
     return kursteilnehmer;
   }
 
@@ -164,8 +170,8 @@ public class EinstellungControl extends AbstractControl
     {
       return externemitgliedsnummer;
     }
-    externemitgliedsnummer = new CheckboxInput(Einstellungen
-        .isExterneMitgliedsnummer());
+    externemitgliedsnummer = new CheckboxInput(Einstellungen.getEinstellung()
+        .getExterneMitgliedsnummer());
     return externemitgliedsnummer;
   }
 
@@ -175,7 +181,8 @@ public class EinstellungControl extends AbstractControl
     {
       return beitragsmodel;
     }
-    beitragsmodel = new BeitragsmodelInput(Einstellungen.getBeitragsmodel());
+    beitragsmodel = new BeitragsmodelInput(Einstellungen.getEinstellung()
+        .getBeitragsmodel());
     return beitragsmodel;
   }
 
@@ -185,7 +192,8 @@ public class EinstellungControl extends AbstractControl
     {
       return dateinamenmuster;
     }
-    dateinamenmuster = new TextInput(Einstellungen.getDateinamenmuster(), 30);
+    dateinamenmuster = new TextInput(Einstellungen.getEinstellung()
+        .getDateinamenmuster(), 30);
     return dateinamenmuster;
   }
 
@@ -195,7 +203,7 @@ public class EinstellungControl extends AbstractControl
     {
       return beginngeschaeftsjahr;
     }
-    beginngeschaeftsjahr = new TextInput(Einstellungen
+    beginngeschaeftsjahr = new TextInput(Einstellungen.getEinstellung()
         .getBeginnGeschaeftsjahr(), 6);
     return beginngeschaeftsjahr;
   }
@@ -206,8 +214,8 @@ public class EinstellungControl extends AbstractControl
     {
       return rechnungfuerabbuchung;
     }
-    rechnungfuerabbuchung = new CheckboxInput(Einstellungen
-        .isRechnungFuerAbbuchung());
+    rechnungfuerabbuchung = new CheckboxInput(Einstellungen.getEinstellung()
+        .getRechnungFuerAbbuchung());
     return rechnungfuerabbuchung;
   }
 
@@ -217,8 +225,8 @@ public class EinstellungControl extends AbstractControl
     {
       return rechnungfuerueberweisung;
     }
-    rechnungfuerueberweisung = new CheckboxInput(Einstellungen
-        .isRechnungFuerUeberweisung());
+    rechnungfuerueberweisung = new CheckboxInput(Einstellungen.getEinstellung()
+        .getRechnungFuerUeberweisung());
     return rechnungfuerueberweisung;
   }
 
@@ -228,8 +236,8 @@ public class EinstellungControl extends AbstractControl
     {
       return rechnungfuerbarzahlung;
     }
-    rechnungfuerbarzahlung = new CheckboxInput(Einstellungen
-        .isRechnungFuerBarzahlung());
+    rechnungfuerbarzahlung = new CheckboxInput(Einstellungen.getEinstellung()
+        .getRechnungFuerBarzahlung());
     return rechnungfuerbarzahlung;
   }
 
@@ -237,51 +245,28 @@ public class EinstellungControl extends AbstractControl
   {
     try
     {
-      Boolean _geburtsdatumpflicht = (Boolean) geburtsdatumpflicht.getValue();
-      Boolean _eintrittsdatumpflicht = (Boolean) eintrittsdatumpflicht
-          .getValue();
-      Boolean _kommunikationsdaten = (Boolean) kommunikationsdaten.getValue();
-      Boolean _zusatzabbuchung = (Boolean) zusatzabbuchung.getValue();
-      Boolean _vermerke = (Boolean) vermerke.getValue();
-      Boolean _wiedervorlage = (Boolean) wiedervorlage.getValue();
-      Boolean _kursteilnehmer = (Boolean) kursteilnehmer.getValue();
-      Boolean _externemitgliedsnummer = (Boolean) externemitgliedsnummer
-          .getValue();
-      Integer _beitragsmodel = (Integer) beitragsmodel.getValue();
-      Boolean _rechnungfuerabbuchung = (Boolean) rechnungfuerabbuchung
-          .getValue();
-      Boolean _rechnungfuerueberweisung = (Boolean) rechnungfuerueberweisung
-          .getValue();
-      Boolean _rechnungfuerbarzahlung = (Boolean) rechnungfuerbarzahlung
-          .getValue();
-      Einstellungen.setGeburtsdatumPflicht(_geburtsdatumpflicht.booleanValue());
-      Einstellungen.setEintrittsdatumPflicht(_eintrittsdatumpflicht
-          .booleanValue());
-      Einstellungen.setKommunikationsdaten(_kommunikationsdaten.booleanValue());
-      Einstellungen.setZusatzabbuchungen(_zusatzabbuchung.booleanValue());
-      Einstellungen.setVermerke(_vermerke.booleanValue());
-      Einstellungen.setWiedervorlage(_wiedervorlage.booleanValue());
-      Einstellungen.setKursteilnehmer(_kursteilnehmer.booleanValue());
-      Einstellungen.setExterneMitgliedsnummern(_externemitgliedsnummer
-          .booleanValue());
-      Einstellungen.setBeitragsmodel(_beitragsmodel.intValue());
-      Einstellungen.setDateinamenmuster((String) dateinamenmuster.getValue());
-      try
-      {
-        String bg = (String) beginngeschaeftsjahr.getValue();
-        bg += "2008";
-        Einstellungen.DATEFORMAT.parse(bg);
-      }
-      catch (ParseException e)
-      {
-        throw new ApplicationException("Beginn Geschäftsjahr ungültig");
-      }
-      Einstellungen.setBeginnGeschaeftsjahr((String) beginngeschaeftsjahr
+      Einstellung e = Einstellungen.getEinstellung();
+      e.setID();
+      e.setGeburtsdatumPflicht((Boolean) geburtsdatumpflicht.getValue());
+      e.setKommunikationsdaten((Boolean) kommunikationsdaten.getValue());
+      e.setZusatzabbuchung((Boolean) zusatzabbuchung.getValue());
+      e.setVermerke((Boolean) vermerke.getValue());
+      e.setWiedervorlage((Boolean) wiedervorlage.getValue());
+      e.setKursteilnehmer((Boolean) kursteilnehmer.getValue());
+      e.setExterneMitgliedsnummer((Boolean) externemitgliedsnummer.getValue());
+      e.setBeitragsmodel((Integer) beitragsmodel.getValue());
+      e.setRechnungFuerAbbuchung((Boolean) rechnungfuerabbuchung.getValue());
+      e.setRechnungFuerUeberweisung((Boolean) rechnungfuerueberweisung
           .getValue());
-      Einstellungen.setRechungFuerAbbuchung(_rechnungfuerabbuchung);
-      Einstellungen.setRechungFuerRechnung(_rechnungfuerueberweisung);
-      Einstellungen.setRechungFuerBarzahlung(_rechnungfuerbarzahlung);
+      e.setRechnungFuerBarzahlung((Boolean) rechnungfuerbarzahlung.getValue());
+      e.setDateinamenmuster((String) dateinamenmuster.getValue());
+      e.setBeginnGeschaeftsjahr((String) beginngeschaeftsjahr.getValue());
+      e.store();
       GUI.getStatusBar().setSuccessText("Einstellungen gespeichert");
+    }
+    catch (RemoteException e)
+    {
+      GUI.getStatusBar().setErrorText(e.getMessage());
     }
     catch (ApplicationException e)
     {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Geschaeftsjahr.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/06/28 17:08:12 $
+ * $Revision: 1.4 $
+ * $Date: 2008/11/16 16:59:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Geschaeftsjahr.java,v $
+ * Revision 1.4  2008/11/16 16:59:30  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.3  2008/06/28 17:08:12  jost
  * refactoring
  *
@@ -21,6 +24,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.util;
 
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,9 +39,10 @@ public class Geschaeftsjahr
 
   private Date endeGeschaeftsjahr;
 
-  public Geschaeftsjahr(int jahr) throws ParseException
+  public Geschaeftsjahr(int jahr) throws ParseException, RemoteException
   {
-    beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getBeginnGeschaeftsjahr()
+    beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getEinstellung()
+        .getBeginnGeschaeftsjahr()
         + jahr);
     Calendar cal = Calendar.getInstance();
     cal.setTime(beginnGeschaeftsjahr);
@@ -49,17 +54,20 @@ public class Geschaeftsjahr
 
   /**
    * Geschäftsjahr zu einem vorgegebenen Datum ermitteln
+   * 
+   * @throws RemoteException
    */
-  public Geschaeftsjahr(Date datum) throws ParseException
+  public Geschaeftsjahr(Date datum) throws ParseException, RemoteException
   {
     Calendar cal = Calendar.getInstance();
     cal.setTime(datum);
-    beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getBeginnGeschaeftsjahr()
+    beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getEinstellung()
+        .getBeginnGeschaeftsjahr()
         + cal.get(Calendar.YEAR));
     if (datum.before(beginnGeschaeftsjahr))
     {
       cal.add(Calendar.YEAR, -1);
-      beginnGeschaeftsjahr = Datum.toDate(Einstellungen
+      beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getEinstellung()
           .getBeginnGeschaeftsjahr()
           + cal.get(Calendar.YEAR));
     }

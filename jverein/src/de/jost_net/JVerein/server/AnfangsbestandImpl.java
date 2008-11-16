@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AnfangsbestandImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/06/28 17:06:45 $
+ * $Revision: 1.4 $
+ * $Date: 2008/11/16 16:58:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandImpl.java,v $
+ * Revision 1.4  2008/11/16 16:58:59  jost
+ * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
+ *
  * Revision 1.3  2008/06/28 17:06:45  jost
  * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
  *
@@ -110,7 +113,7 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
     try
     {
       Date beginngeschaeftsjahr = Einstellungen.DATEFORMAT.parse(Einstellungen
-          .getBeginnGeschaeftsjahr()
+          .getEinstellung().getBeginnGeschaeftsjahr()
           + "2009");
       DBIterator it = Einstellungen.getDBService().createList(
           Anfangsbestand.class);
