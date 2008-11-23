@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.15 $
- * $Date: 2008/11/16 16:55:52 $
+ * $Revision: 1.16 $
+ * $Date: 2008/11/23 13:03:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.16  2008/11/23 13:03:09  jost
+ * Debug-Meldungen entfernt.
+ *
  * Revision 1.15  2008/11/16 16:55:52  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -116,14 +119,12 @@ public class Einstellungen
     {
       einstellung = (Einstellung) getDBService().createObject(
           Einstellung.class, "1");
-      System.out.println("---> Objekt gefunden");
-    }
+     }
     catch (RemoteException e)
     {
       // Einstellungssatz existiert noch nicht. Deshalb neuen Satz anlegen
       try
       {
-        System.out.println("---> Objekt wird initialisiert.");
         einstellung = (Einstellung) getDBService().createObject(
             Einstellung.class, null);
         // Mit den folgenden Statements wird das Object initialisiert. Sofern
