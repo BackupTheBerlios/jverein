@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/11/16 16:59:20 $
+ * $Revision: 1.17 $
+ * $Date: 2008/11/23 13:04:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.17  2008/11/23 13:04:03  jost
+ * Weitere Plausi auf die BLZ
+ *
  * Revision 1.16  2008/11/16 16:59:20  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -148,6 +151,10 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
           || getKonto().length() == 0)
       {
         throw new ApplicationException("Bitte Bankverbindung eingeben");
+      }
+      if (getBlz() != null && getBlz().length() != 8)
+      {
+        throw new ApplicationException("Die Bankleitzahl muss 8stellig sein");
       }
       if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
       {
