@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/11/16 16:56:45 $
+ * $Revision: 1.12 $
+ * $Date: 2008/11/23 13:03:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.12  2008/11/23 13:03:46  jost
+ * Verwendungszweck 2 in die Trefferliste aufgenommen.
+ *
  * Revision 1.11  2008/11/16 16:56:45  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -369,7 +372,8 @@ public class KursteilnehmerControl extends AbstractControl
 
     part.addColumn("Name", "name");
     part.addColumn("VZweck 1", "vzweck1");
-    part.addColumn("BLZ", "blz");
+    part.addColumn("VZweck 2", "vzweck2");
+       part.addColumn("BLZ", "blz");
     part.addColumn("Konto", "konto");
     part.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
