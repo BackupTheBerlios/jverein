@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/11/24 19:21:07 $
+ * $Revision: 1.14 $
+ * $Date: 2008/11/24 19:25:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.14  2008/11/24 19:25:15  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.13  2008/11/24 19:21:07  jost
  * Defaultwerte speichern.
  *
@@ -595,7 +598,6 @@ public class KursteilnehmerControl extends AbstractControl
     try
     {
       saveDefaults();
-      System.out.println("saveDefaults gelaufen");
       String subtitle = "";
       list = Einstellungen.getDBService().createList(Kursteilnehmer.class);
       if (abbuchungsdatumvon.getValue() != null)
