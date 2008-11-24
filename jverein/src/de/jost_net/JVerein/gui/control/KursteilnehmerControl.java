@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/11/23 13:03:46 $
+ * $Revision: 1.13 $
+ * $Date: 2008/11/24 19:21:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.13  2008/11/24 19:21:07  jost
+ * Defaultwerte speichern.
+ *
  * Revision 1.12  2008/11/23 13:03:46  jost
  * Verwendungszweck 2 in die Trefferliste aufgenommen.
  *
@@ -52,6 +55,7 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.Date;
 
 import org.eclipse.swt.SWT;
@@ -68,7 +72,6 @@ import de.jost_net.JVerein.io.Reporter;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.util.Dateiname;
 import de.willuhn.datasource.rmi.DBIterator;
-import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -125,9 +128,13 @@ public class KursteilnehmerControl extends AbstractControl
 
   private TextInput suchname = null;
 
+  private Settings settings = null;
+
   public KursteilnehmerControl(AbstractView view)
   {
     super(view);
+    settings = new Settings(this.getClass());
+    settings.setStoreWhenRead(true);
   }
 
   private Kursteilnehmer getKursteilnehmer()
@@ -253,7 +260,8 @@ public class KursteilnehmerControl extends AbstractControl
     {
       return suchname;
     }
-    this.suchname = new TextInput("", 30);
+    String tmp = settings.getString("name", "");
+    this.suchname = new TextInput(tmp, 30);
     suchname.addListener(new FilterListener());
     return suchname;
   }
@@ -265,7 +273,18 @@ public class KursteilnehmerControl extends AbstractControl
       return eingabedatumvon;
     }
     Date d = null;
-
+    String tmp = settings.getString("eingabedatum.von", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
     this.eingabedatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
     this.eingabedatumvon.setTitle("Eingabedatum");
     this.eingabedatumvon.setText("Beginn des Eingabe-Zeitraumes");
@@ -291,7 +310,18 @@ public class KursteilnehmerControl extends AbstractControl
       return eingabedatumbis;
     }
     Date d = null;
-
+    String tmp = settings.getString("eingabedatum.bis", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
     this.eingabedatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
     this.eingabedatumbis.setTitle("Eingabedatum");
     this.eingabedatumbis.setText("Ende des Eingabe-Zeitraumes");
@@ -317,7 +347,18 @@ public class KursteilnehmerControl extends AbstractControl
       return abbuchungsdatumvon;
     }
     Date d = null;
-
+    String tmp = settings.getString("abbuchungsdatum.von", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
     this.abbuchungsdatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
     this.abbuchungsdatumvon.setTitle("Abbuchungsdatum");
     this.abbuchungsdatumvon.setText("Beginn des Abbuchungszeitraumes");
@@ -342,7 +383,18 @@ public class KursteilnehmerControl extends AbstractControl
       return abbuchungsdatumbis;
     }
     Date d = null;
-
+    String tmp = settings.getString("abbuchungsdatum.bis", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
     this.abbuchungsdatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
     this.abbuchungsdatumbis.setTitle("Abbuchungsdatum");
     this.abbuchungsdatumbis.setText("Ende des Abbuchungszeitraumes");
@@ -362,18 +414,15 @@ public class KursteilnehmerControl extends AbstractControl
 
   public Part getKursteilnehmerTable() throws RemoteException
   {
-    // if (part != null)
-    // {
-    // return part;
-    // }
-    DBService service = Einstellungen.getDBService();
-    DBIterator kursteilnehmer = service.createList(Kursteilnehmer.class);
+    saveDefaults();
+
+    DBIterator kursteilnehmer = getIterator();
     part = new TablePart(kursteilnehmer, new KursteilnehmerDetailAction());
 
     part.addColumn("Name", "name");
     part.addColumn("VZweck 1", "vzweck1");
     part.addColumn("VZweck 2", "vzweck2");
-       part.addColumn("BLZ", "blz");
+    part.addColumn("BLZ", "blz");
     part.addColumn("Konto", "konto");
     part.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
@@ -391,25 +440,9 @@ public class KursteilnehmerControl extends AbstractControl
 
     try
     {
+      saveDefaults();
       part.removeAll();
-      DBIterator kursteilnehmer = Einstellungen.getDBService().createList(
-          Kursteilnehmer.class);
-      String suchN = (String) getSuchname().getValue();
-      if (suchN != null && suchN.length() > 0)
-      {
-        kursteilnehmer.addFilter("name like ?", new Object[] { "%" + suchN
-            + "%" });
-      }
-      if (getEingabedatumvon().getValue() != null)
-      {
-        kursteilnehmer.addFilter("eingabedatum >= ?",
-            new Object[] { (Date) getEingabedatumvon().getValue() });
-      }
-      if (getEingabedatumbis().getValue() != null)
-      {
-        kursteilnehmer.addFilter("eingabedatum <= ?",
-            new Object[] { (Date) getEingabedatumbis().getValue() });
-      }
+      DBIterator kursteilnehmer = getIterator();
       while (kursteilnehmer.hasNext())
       {
         Kursteilnehmer kt = (Kursteilnehmer) kursteilnehmer.next();
@@ -422,16 +455,86 @@ public class KursteilnehmerControl extends AbstractControl
     }
   }
 
-  public Button getStartAuswertungButton()
+  public Button getStartAuswertungButton() throws RemoteException
   {
     Button b = new Button("Start", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
-        starteAuswertung();
+         starteAuswertung();
       }
     }, null, true); // "true" defines this button as the default button
     return b;
+  }
+
+  /**
+   * Default-Werte speichern.
+   * 
+   * @throws RemoteException
+   */
+  public void saveDefaults() throws RemoteException
+  {
+    if (this.suchname != null)
+    {
+      settings.setAttribute("name", (String) getSuchname().getValue());
+    }
+
+    if (this.eingabedatumvon != null)
+    {
+      Date tmp = (Date) getEingabedatumvon().getValue();
+      if (tmp != null)
+      {
+        settings.setAttribute("eingabedatum.von", Einstellungen.DATEFORMAT
+            .format(tmp));
+      }
+      else
+      {
+        settings.setAttribute("eingabedatum.von", "");
+      }
+    }
+
+    if (this.eingabedatumbis != null)
+    {
+      Date tmp = (Date) getEingabedatumbis().getValue();
+      if (tmp != null)
+      {
+        settings.setAttribute("eingabedatum.bis", Einstellungen.DATEFORMAT
+            .format(tmp));
+      }
+      else
+      {
+        settings.setAttribute("eingabedatum.bis", "");
+      }
+    }
+
+    if (this.abbuchungsdatumvon != null)
+    {
+      Date tmp = (Date) getAbbuchungsdatumvon().getValue();
+      if (tmp != null)
+      {
+        settings.setAttribute("abbuchungsdatum.von", Einstellungen.DATEFORMAT
+            .format(tmp));
+      }
+      else
+      {
+        settings.setAttribute("abbuchungsdatum.von", "");
+      }
+    }
+
+    if (this.abbuchungsdatumbis != null)
+    {
+      Date tmp = (Date) getAbbuchungsdatumbis().getValue();
+      if (tmp != null)
+      {
+        settings.setAttribute("abbuchungsdatum.bis", Einstellungen.DATEFORMAT
+            .format(tmp));
+      }
+      else
+      {
+        settings.setAttribute("abbuchungsdatum.bis", "");
+      }
+    }
+
   }
 
   public void handleStore()
@@ -491,6 +594,8 @@ public class KursteilnehmerControl extends AbstractControl
     final DBIterator list;
     try
     {
+      saveDefaults();
+      System.out.println("saveDefaults gelaufen");
       String subtitle = "";
       list = Einstellungen.getDBService().createList(Kursteilnehmer.class);
       if (abbuchungsdatumvon.getValue() != null)
@@ -614,6 +719,29 @@ public class KursteilnehmerControl extends AbstractControl
       }
       refresh();
     }
+  }
+
+  private DBIterator getIterator() throws RemoteException
+  {
+    DBIterator kursteilnehmer = Einstellungen.getDBService().createList(
+        Kursteilnehmer.class);
+    String suchN = (String) getSuchname().getValue();
+    if (suchN != null && suchN.length() > 0)
+    {
+      kursteilnehmer.addFilter("name like ?",
+          new Object[] { "%" + suchN + "%" });
+    }
+    if (getEingabedatumvon().getValue() != null)
+    {
+      kursteilnehmer.addFilter("eingabedatum >= ?",
+          new Object[] { (Date) getEingabedatumvon().getValue() });
+    }
+    if (getEingabedatumbis().getValue() != null)
+    {
+      kursteilnehmer.addFilter("eingabedatum <= ?",
+          new Object[] { (Date) getEingabedatumbis().getValue() });
+    }
+    return kursteilnehmer;
   }
 
 }
