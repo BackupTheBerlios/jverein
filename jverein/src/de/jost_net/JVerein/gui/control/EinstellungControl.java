@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/11/16 16:56:26 $
+ * $Revision: 1.10 $
+ * $Date: 2008/11/24 19:43:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.10  2008/11/24 19:43:03  jost
+ * Bugfix
+ *
  * Revision 1.9  2008/11/16 16:56:26  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -248,6 +251,7 @@ public class EinstellungControl extends AbstractControl
       Einstellung e = Einstellungen.getEinstellung();
       e.setID();
       e.setGeburtsdatumPflicht((Boolean) geburtsdatumpflicht.getValue());
+      e.setEintrittsdatumPflicht((Boolean)eintrittsdatumpflicht.getValue());
       e.setKommunikationsdaten((Boolean) kommunikationsdaten.getValue());
       e.setZusatzabbuchung((Boolean) zusatzabbuchung.getValue());
       e.setVermerke((Boolean) vermerke.getValue());
