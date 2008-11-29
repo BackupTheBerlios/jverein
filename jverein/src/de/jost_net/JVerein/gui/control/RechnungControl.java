@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/11/16 16:57:00 $
+ * $Revision: 1.8 $
+ * $Date: 2008/11/29 13:08:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
+ * Revision 1.8  2008/11/29 13:08:06  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.7  2008/11/16 16:57:00  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -44,11 +47,11 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.RechnungDetailAction;
-import de.jost_net.JVerein.gui.input.FormularArtInput;
 import de.jost_net.JVerein.gui.input.FormularInput;
-import de.jost_net.JVerein.gui.input.ZahlungswegInput;
 import de.jost_net.JVerein.gui.menu.RechungMenu;
 import de.jost_net.JVerein.io.FormularAufbereitung;
+import de.jost_net.JVerein.keys.Formularart;
+import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Abrechnung;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.util.Dateiname;
@@ -239,7 +242,7 @@ public class RechnungControl extends AbstractControl
     {
       return formular;
     }
-    formular = new FormularInput(FormularArtInput.RECHNUNG);
+    formular = new FormularInput(Formularart.RECHNUNG);
     return formular;
   }
 
@@ -428,18 +431,18 @@ public class RechnungControl extends AbstractControl
     String zahlungsweg = "";
     switch (abr.getMitglied().getZahlungsweg())
     {
-      case ZahlungswegInput.ABBUCHUNG:
+      case Zahlungsweg.ABBUCHUNG:
       {
         zahlungsweg = "Abbuchung von Konto " + abr.getMitglied().getKonto()
             + ", BLZ: " + abr.getMitglied().getBlz();
         break;
       }
-      case ZahlungswegInput.BARZAHLUNG:
+      case Zahlungsweg.BARZAHLUNG:
       {
         zahlungsweg = "Bar";
         break;
       }
-      case ZahlungswegInput.ÜBERWEISUNG:
+      case Zahlungsweg.ÜBERWEISUNG:
       {
         zahlungsweg = "Überweisung";
         break;

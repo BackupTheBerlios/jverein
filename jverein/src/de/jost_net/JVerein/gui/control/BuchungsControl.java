@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/11/16 16:56:15 $
+ * $Revision: 1.15 $
+ * $Date: 2008/11/29 13:06:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.15  2008/11/29 13:06:28  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.14  2008/11/16 16:56:15  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -66,6 +69,7 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BuchungAction;
+import de.jost_net.JVerein.gui.formatter.BuchungsartFormatter;
 import de.jost_net.JVerein.gui.input.KontoauswahlInput;
 import de.jost_net.JVerein.gui.menu.BuchungMenu;
 import de.jost_net.JVerein.io.BuchungAuswertungPDFEinzelbuchungen;
@@ -538,27 +542,8 @@ public class BuchungsControl extends AbstractControl
       buchungsList.addColumn("Name", "name");
       buchungsList.addColumn("Verwendungszweck", "zweck");
       buchungsList.addColumn("Verwendungszweck 2", "zweck2");
-      buchungsList.addColumn("Buchungsart", "buchungsart", new Formatter()
-      {
-        public String format(Object o)
-        {
-          Buchungsart ba = (Buchungsart) o;
-          if (ba == null)
-          {
-            return null;
-          }
-          String bez = null;
-          try
-          {
-            bez = ba.getBezeichnung();
-          }
-          catch (RemoteException e)
-          {
-            e.printStackTrace();
-          }
-          return bez;
-        }
-      });
+      buchungsList.addColumn("Buchungsart", "buchungsart",
+          new BuchungsartFormatter());
       buchungsList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
           Einstellungen.DECIMALFORMAT));
       buchungsList.setContextMenu(new BuchungMenu());

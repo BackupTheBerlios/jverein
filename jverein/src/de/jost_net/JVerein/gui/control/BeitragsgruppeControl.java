@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2007/08/30 19:47:45 $
+ * $Revision: 1.8 $
+ * $Date: 2008/11/29 13:05:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.8  2008/11/29 13:05:48  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.7  2007/08/30 19:47:45  jost
  * Part -> TablePart
  *
@@ -37,8 +40,8 @@ import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
-import de.jost_net.JVerein.gui.input.BeitragsArtInput;
 import de.jost_net.JVerein.gui.menu.BeitragsgruppeMenu;
+import de.jost_net.JVerein.keys.ArtBuchungsart;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -48,6 +51,7 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.formatter.CurrencyFormatter;
 import de.willuhn.jameica.gui.input.DecimalInput;
 import de.willuhn.jameica.gui.input.Input;
+import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.logging.Logger;
@@ -61,7 +65,7 @@ public class BeitragsgruppeControl extends AbstractControl
 
   private DecimalInput betrag;
 
-  private BeitragsArtInput beitragsart;
+  private SelectInput beitragsart;
 
   private Beitragsgruppe beitrag;
 
@@ -99,13 +103,14 @@ public class BeitragsgruppeControl extends AbstractControl
     return betrag;
   }
 
-  public BeitragsArtInput getBeitragsArt() throws RemoteException
+  public SelectInput getBeitragsArt() throws RemoteException
   {
     if (beitragsart != null)
     {
       return beitragsart;
     }
-    beitragsart = new BeitragsArtInput(getBeitragsgruppe().getBeitragsArt());
+    beitragsart = new SelectInput(ArtBuchungsart.getArray(),
+        new ArtBuchungsart(ArtBuchungsart.EINNAHME));
     return beitragsart;
   }
 

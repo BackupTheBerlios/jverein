@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/11/16 16:57:20 $
+ * $Revision: 1.6 $
+ * $Date: 2008/11/29 13:08:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
+ * Revision 1.6  2008/11/29 13:08:17  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.5  2008/11/16 16:57:20  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -40,10 +43,10 @@ import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungAction;
-import de.jost_net.JVerein.gui.input.FormularArtInput;
 import de.jost_net.JVerein.gui.input.FormularInput;
 import de.jost_net.JVerein.gui.menu.SpendenbescheinigungMenu;
 import de.jost_net.JVerein.io.FormularAufbereitung;
+import de.jost_net.JVerein.keys.Formularart;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Spendenbescheinigung;
 import de.jost_net.JVerein.util.Dateiname;
@@ -226,7 +229,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       def = getSpendenbescheinigung().getFormular().getID();
     }
-    formular = new FormularInput(FormularArtInput.SPENDENBESCHEINIGUNG, def);
+    formular = new FormularInput(Formularart.SPENDENBESCHEINIGUNG, def);
     return formular;
   }
 

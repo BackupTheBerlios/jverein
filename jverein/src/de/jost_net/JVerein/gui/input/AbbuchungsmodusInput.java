@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/AbbuchungsmodusInput.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/11/16 16:57:13 $
+ * $Revision: 1.6 $
+ * $Date: 2008/11/29 13:10:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungsmodusInput.java,v $
+ * Revision 1.6  2008/11/29 13:10:11  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.5  2008/11/16 16:57:13  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -33,6 +36,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.keys.Beitragsmodel;
 import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.pseudo.PseudoIterator;
@@ -84,27 +88,27 @@ public class AbbuchungsmodusInput extends SelectInput
   {
     ArrayList<AbbuchungsmodusObject> l = new ArrayList<AbbuchungsmodusObject>();
     l.add(new AbbuchungsmodusObject(KEINBEITRAG));
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == BeitragsmodelInput.JAEHRLICH)
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.JAEHRLICH)
     {
       l.add(new AbbuchungsmodusObject(JAEHRLICH));
       l.add(new AbbuchungsmodusObject(EINGETRETENEMITGLIEDER));
     }
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == BeitragsmodelInput.HALBJAEHRLICH)
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.HALBJAEHRLICH)
     {
       l.add(new AbbuchungsmodusObject(HALBJAEHRLICH));
       l.add(new AbbuchungsmodusObject(EINGETRETENEMITGLIEDER));
     }
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == BeitragsmodelInput.VIERTELJAEHRLICH)
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.VIERTELJAEHRLICH)
     {
       l.add(new AbbuchungsmodusObject(VIERTELJAEHRLICH));
       l.add(new AbbuchungsmodusObject(EINGETRETENEMITGLIEDER));
     }
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == BeitragsmodelInput.MONATLICH)
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH)
     {
       l.add(new AbbuchungsmodusObject(MONATLICH));
       l.add(new AbbuchungsmodusObject(EINGETRETENEMITGLIEDER));
     }
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == BeitragsmodelInput.MONATLICH12631)
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH12631)
     {
       l.add(new AbbuchungsmodusObject(JAHAVIMO));
       l.add(new AbbuchungsmodusObject(JAVIMO));

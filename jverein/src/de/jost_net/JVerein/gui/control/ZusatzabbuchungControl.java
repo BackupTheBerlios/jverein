@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/05/22 06:49:33 $
+ * $Revision: 1.9 $
+ * $Date: 2008/11/29 13:08:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungControl.java,v $
+ * Revision 1.9  2008/11/29 13:08:40  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.8  2008/05/22 06:49:33  jost
  * Redaktionelle Änderung
  *
@@ -51,8 +54,8 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungAction;
-import de.jost_net.JVerein.gui.input.IntervallInput;
 import de.jost_net.JVerein.gui.menu.ZusatzabbuchungMenu;
+import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzabbuchung;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -86,7 +89,7 @@ public class ZusatzabbuchungControl extends AbstractControl
 
   private DateInput startdatum;
 
-  private IntervallInput intervall;
+  private SelectInput intervall;
 
   private DateInput endedatum;
 
@@ -186,7 +189,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     return startdatum;
   }
 
-  public IntervallInput getIntervall() throws RemoteException
+  public SelectInput getIntervall() throws RemoteException
   {
     if (intervall != null)
     {
@@ -197,7 +200,8 @@ public class ZusatzabbuchungControl extends AbstractControl
     {
       i = new Integer(0);
     }
-    this.intervall = new IntervallInput(i);
+    this.intervall = new SelectInput(IntervallZusatzzahlung.getArray(),
+        new IntervallZusatzzahlung(i));
     return intervall;
   }
 
@@ -420,6 +424,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     return zusatzabbuchungsList;
   }
 
+  @SuppressWarnings("unchecked")
   private void nichtAktiveEliminieren(TablePart table) throws RemoteException
   {
     List li = table.getItems();

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/11/23 13:03:09 $
+ * $Revision: 1.17 $
+ * $Date: 2008/11/29 13:04:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.17  2008/11/29 13:04:15  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.16  2008/11/23 13:03:09  jost
  * Debug-Meldungen entfernt.
  *
@@ -66,7 +69,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
-import de.jost_net.JVerein.gui.input.BeitragsmodelInput;
+import de.jost_net.JVerein.keys.Beitragsmodel;
 import de.jost_net.JVerein.rmi.Einstellung;
 import de.jost_net.JVerein.rmi.Stammdaten;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -119,7 +122,7 @@ public class Einstellungen
     {
       einstellung = (Einstellung) getDBService().createObject(
           Einstellung.class, "1");
-     }
+    }
     catch (RemoteException e)
     {
       // Einstellungssatz existiert noch nicht. Deshalb neuen Satz anlegen
@@ -147,7 +150,7 @@ public class Einstellungen
         einstellung.setExterneMitgliedsnummer(settings.getBoolean(
             "externemitgliedsnummer.verwenden", false));
         einstellung.setBeitragsmodel(settings.getInt("beitragsmodel",
-            BeitragsmodelInput.JAEHRLICH));
+            Beitragsmodel.JAEHRLICH));
         einstellung.setDateinamenmuster(settings.getString("dateinamenmuster",
             "a$s$-d$-z$"));
         einstellung.setBeginnGeschaeftsjahr(settings.getString(

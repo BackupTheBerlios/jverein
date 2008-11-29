@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/AbbuchungParam.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/02/13 18:18:16 $
+ * $Revision: 1.6 $
+ * $Date: 2008/11/29 13:12:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungParam.java,v $
+ * Revision 1.6  2008/11/29 13:12:13  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.5  2008/02/13 18:18:16  jost
  * Überflüssigen Import entfernt.
  *
@@ -33,7 +36,7 @@ import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.control.AbbuchungControl;
-import de.jost_net.JVerein.gui.input.AbbuchungsausgabeInput;
+import de.jost_net.JVerein.keys.Abrechnungsausgabe;
 import de.jost_net.JVerein.rmi.Stammdaten;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -105,8 +108,8 @@ public class AbbuchungParam
           "Keine Stammdaten gespeichert. Bitte erfassen.");
     }
 
-    if (abbuchungsausgabe == AbbuchungsausgabeInput.HIBISCUS_EINZELBUCHUNGEN
-        || abbuchungsausgabe == AbbuchungsausgabeInput.HIBISCUS_SAMMELBUCHUNG)
+    if (abbuchungsausgabe == Abrechnungsausgabe.HIBISCUS_EINZELBUCHUNGEN
+        || abbuchungsausgabe == Abrechnungsausgabe.HIBISCUS_SAMMELBUCHUNG)
     {
       // DB-Service holen
       try

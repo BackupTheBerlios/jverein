@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.43 $
- * $Date: 2008/11/16 16:56:53 $
+ * $Revision: 1.44 $
+ * $Date: 2008/11/29 13:07:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.44  2008/11/29 13:07:54  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.43  2008/11/16 16:56:53  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -163,8 +166,6 @@ import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
 import de.jost_net.JVerein.gui.action.ZusatzabbuchungAction;
 import de.jost_net.JVerein.gui.dialogs.EigenschaftenAuswahlDialog;
-import de.jost_net.JVerein.gui.input.ZahlungsrhytmusInput;
-import de.jost_net.JVerein.gui.input.ZahlungswegInput;
 import de.jost_net.JVerein.gui.menu.MitgliedMenu;
 import de.jost_net.JVerein.gui.menu.WiedervorlageMenu;
 import de.jost_net.JVerein.gui.menu.ZusatzabbuchungMenu;
@@ -173,6 +174,8 @@ import de.jost_net.JVerein.io.Jubilaeenliste;
 import de.jost_net.JVerein.io.MitgliedAuswertungCSV;
 import de.jost_net.JVerein.io.MitgliedAuswertungPDF;
 import de.jost_net.JVerein.io.MitgliederStatistik;
+import de.jost_net.JVerein.keys.Zahlungsrhytmus;
+import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
@@ -180,6 +183,7 @@ import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.jost_net.JVerein.rmi.Zusatzabbuchung;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -230,9 +234,9 @@ public class MitgliedControl extends AbstractControl
 
   private SelectInput geschlecht;
 
-  private ZahlungswegInput zahlungsweg;
+  private SelectInput zahlungsweg;
 
-  private ZahlungsrhytmusInput zahlungsrhytmus;
+  private SelectInput zahlungsrhytmus;
 
   private Input blz;
 
@@ -492,7 +496,7 @@ public class MitgliedControl extends AbstractControl
     return geschlecht;
   }
 
-  public ZahlungswegInput getZahlungsweg() throws RemoteException
+  public SelectInput getZahlungsweg() throws RemoteException
   {
     if (zahlungsweg != null)
     {
@@ -500,26 +504,27 @@ public class MitgliedControl extends AbstractControl
     }
     if (getMitglied().getZahlungsweg() != null)
     {
-      zahlungsweg = new ZahlungswegInput(getMitglied().getZahlungsweg()
-          .intValue());
+      zahlungsweg = new SelectInput(Zahlungsweg.getArray(), getMitglied()
+          .getZahlungsweg().intValue());
     }
     else
     {
-      zahlungsweg = new ZahlungswegInput(ZahlungswegInput.ABBUCHUNG);
+      zahlungsweg = new SelectInput(Zahlungsweg.getArray(),
+          Zahlungsweg.ABBUCHUNG);
     }
     zahlungsweg.addListener(new Listener()
     {
       public void handleEvent(Event event)
       {
         Integer z = (Integer) zahlungsweg.getValue();
-        blz.setMandatory(z.intValue() == ZahlungswegInput.ABBUCHUNG);
-        konto.setMandatory(z.intValue() == ZahlungswegInput.ABBUCHUNG);
+        blz.setMandatory(z.intValue() == Zahlungsweg.ABBUCHUNG);
+        konto.setMandatory(z.intValue() == Zahlungsweg.ABBUCHUNG);
       }
     });
     return zahlungsweg;
   }
 
-  public ZahlungsrhytmusInput getZahlungsrhytmus() throws RemoteException
+  public SelectInput getZahlungsrhytmus() throws RemoteException
   {
     if (zahlungsrhytmus != null)
     {
@@ -527,12 +532,13 @@ public class MitgliedControl extends AbstractControl
     }
     if (getMitglied().getZahlungsrhytmus() != null)
     {
-      zahlungsrhytmus = new ZahlungsrhytmusInput(getMitglied()
-          .getZahlungsrhytmus().intValue());
+      zahlungsrhytmus = new SelectInput(Zahlungsrhytmus.getArray(),
+          getMitglied().getZahlungsrhytmus().intValue());
     }
     else
     {
-      zahlungsrhytmus = new ZahlungsrhytmusInput();
+      zahlungsrhytmus = new SelectInput(Zahlungsrhytmus.getArray(),
+          Zahlungsrhytmus.JAEHRLICH);
     }
     return zahlungsrhytmus;
   }
@@ -544,9 +550,8 @@ public class MitgliedControl extends AbstractControl
       return blz;
     }
     blz = new TextInput(getMitglied().getBlz(), 8);
-    blz
-        .setMandatory(getMitglied().getZahlungsweg() == null
-            || getMitglied().getZahlungsweg().intValue() == ZahlungswegInput.ABBUCHUNG);
+    blz.setMandatory(getMitglied().getZahlungsweg() == null
+        || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
     BLZListener l = new BLZListener();
     blz.addListener(l);
     l.handleEvent(null); // Einmal initial ausfuehren
@@ -560,9 +565,8 @@ public class MitgliedControl extends AbstractControl
       return konto;
     }
     konto = new TextInput(getMitglied().getKonto(), 10);
-    konto
-        .setMandatory(getMitglied().getZahlungsweg() == null
-            || getMitglied().getZahlungsweg().intValue() == ZahlungswegInput.ABBUCHUNG);
+    konto.setMandatory(getMitglied().getZahlungsweg() == null
+        || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
     return konto;
   }
 
@@ -1410,18 +1414,18 @@ public class MitgliedControl extends AbstractControl
     saveDefaults();
     part = new TablePart(new MitgliedQuery(this, true)
         .getQuery(anfangsbuchstabe), new MitgliedDetailAction());
-
-    part.addColumn("Name", "name");
-    part.addColumn("Vorname", "vorname");
-    part.addColumn("Strasse", "strasse");
-    part.addColumn("Ort", "ort");
-    part.addColumn("Telefon", "telefonprivat");
-    part.addColumn("Geburtsdatum", "geburtsdatum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
-    part.addColumn("Eintritt", "eintritt", new DateFormatter(
-        Einstellungen.DATEFORMAT));
-    part.addColumn("Austritt", "austritt", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+    new MitgliedSpaltenauswahl().setColumns(part);
+    // part.addColumn("Name", "name");
+    // part.addColumn("Vorname", "vorname");
+    // part.addColumn("Strasse", "strasse");
+    // part.addColumn("Ort", "ort");
+    // part.addColumn("Telefon", "telefonprivat");
+    // part.addColumn("Geburtsdatum", "geburtsdatum", new DateFormatter(
+    // Einstellungen.DATEFORMAT));
+    // part.addColumn("Eintritt", "eintritt", new DateFormatter(
+    // Einstellungen.DATEFORMAT));
+    // part.addColumn("Austritt", "austritt", new DateFormatter(
+    // Einstellungen.DATEFORMAT));
     part.setContextMenu(new MitgliedMenu());
     part.setRememberColWidths(true);
     part.setRememberOrder(true);
@@ -1647,6 +1651,7 @@ public class MitgliedControl extends AbstractControl
     }
   }
 
+  @SuppressWarnings("unchecked")
   private void starteAuswertung() throws RemoteException
   {
     saveDefaults();
