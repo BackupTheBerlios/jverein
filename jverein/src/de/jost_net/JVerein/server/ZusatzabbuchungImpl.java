@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ZusatzabbuchungImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/09/22 20:26:03 $
+ * $Revision: 1.6 $
+ * $Date: 2008/11/29 13:17:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungImpl.java,v $
+ * Revision 1.6  2008/11/29 13:17:37  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.5  2008/09/22 20:26:03  jost
  * Plausi korrigiert
  *
@@ -30,7 +33,7 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-import de.jost_net.JVerein.gui.input.IntervallInput;
+import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzabbuchung;
 import de.jost_net.JVerein.util.Datum;
@@ -119,6 +122,7 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     if ("mitglied".equals(arg0))
@@ -193,7 +197,7 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
 
   public String getIntervallText() throws RemoteException
   {
-    return IntervallInput.getText(getIntervall());
+    return IntervallZusatzzahlung.get(getIntervall());
   }
 
   public void setIntervall(Integer value) throws RemoteException
@@ -237,7 +241,7 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
       return true;
     }
     // Einmalige Ausführung
-    if (getIntervall().intValue() == IntervallInput.KEIN)
+    if (getIntervall().intValue() == IntervallZusatzzahlung.KEIN)
     {
       // Ist das Ausführungsdatum gesetzt?
       if (getAusfuehrung() == null)

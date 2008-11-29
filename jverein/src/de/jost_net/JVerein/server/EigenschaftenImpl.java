@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/25 16:07:06 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/29 13:15:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenImpl.java,v $
+ * Revision 1.2  2008/11/29 13:15:27  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.1  2008/01/25 16:07:06  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -68,6 +71,7 @@ public class EigenschaftenImpl extends AbstractDBObject implements Eigenschaften
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     if ("mitglied".equals(arg0))

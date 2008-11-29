@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzfelderImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/04/10 19:03:24 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/29 13:17:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzfelderImpl.java,v $
+ * Revision 1.2  2008/11/29 13:17:46  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.1  2008/04/10 19:03:24  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -66,6 +69,7 @@ public class ZusatzfelderImpl extends AbstractDBObject implements Zusatzfelder
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     if ("mitglied".equals(arg0))

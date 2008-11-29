@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/StammdatenImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/09/21 08:46:38 $
+ * $Revision: 1.6 $
+ * $Date: 2008/11/29 13:17:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenImpl.java,v $
+ * Revision 1.6  2008/11/29 13:17:11  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.5  2008/09/21 08:46:38  jost
  * Neu: Altersjubliäen
  *
@@ -113,6 +116,7 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     return null;

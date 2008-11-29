@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FelddefinitionImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/04/11 12:36:32 $
+ * $Revision: 1.3 $
+ * $Date: 2008/11/29 13:15:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionImpl.java,v $
+ * Revision 1.3  2008/11/29 13:15:36  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.2  2008/04/11 12:36:32  jost
  * Mini-Bugfix
  *
@@ -98,6 +101,7 @@ public class FelddefinitionImpl extends AbstractDBObject implements
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     return null;

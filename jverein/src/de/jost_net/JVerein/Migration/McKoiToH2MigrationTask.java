@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationTask.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/01/01 12:36:16 $
+ * $Revision: 1.3 $
+ * $Date: 2008/11/29 13:14:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationTask.java,v $
+ * Revision 1.3  2008/11/29 13:14:18  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.2  2008/01/01 12:36:16  jost
  * Javadoc korrigiert
  *
@@ -93,6 +96,7 @@ public class McKoiToH2MigrationTask extends DatabaseMigrationTask
     super.fixObject(object, monitor);
   }
 
+  @SuppressWarnings("unchecked")
   protected void copy(Class type, ProgressMonitor monitor) throws Exception
   {
     super.copy(type, monitor);

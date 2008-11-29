@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/DatabaseMigrationTask.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/01/02 10:59:17 $
+ * $Revision: 1.4 $
+ * $Date: 2008/11/29 13:14:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DatabaseMigrationTask.java,v $
+ * Revision 1.4  2008/11/29 13:14:01  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.3  2008/01/02 10:59:17  jost
  * Bugfix Migration nach Neuinstallation
  *
@@ -154,6 +157,7 @@ public class DatabaseMigrationTask implements BackgroundTask
    *          Monitor.
    * @throws Exception
    */
+  @SuppressWarnings("unchecked")
   protected void copy(Class type, ProgressMonitor monitor) throws Exception
   {
     monitor.setStatusText(i18n.tr("Kopiere " + type.getName()));

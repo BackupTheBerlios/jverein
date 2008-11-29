@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/01/02 10:59:37 $
+ * $Revision: 1.7 $
+ * $Date: 2008/11/29 13:16:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
+ * Revision 1.7  2008/11/29 13:16:14  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.6  2008/01/02 10:59:37  jost
  * Standardwert: H2
  *
@@ -70,6 +73,7 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
    *          der zu verwendende Treiber.
    * @throws RemoteException
    */
+  @SuppressWarnings("unchecked")
   protected JVereinDBServiceImpl(String driverClass) throws RemoteException
   {
     super();

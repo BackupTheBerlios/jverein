@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FormularfeldImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:17:55 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/29 13:15:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldImpl.java,v $
+ * Revision 1.2  2008/11/29 13:15:45  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.1  2008/07/18 20:17:55  jost
  * Neu: Formulare
  *
@@ -70,6 +73,7 @@ public class FormularfeldImpl extends AbstractDBObject implements Formularfeld
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String field) throws RemoteException
   {
     if ("formular".equals(field))

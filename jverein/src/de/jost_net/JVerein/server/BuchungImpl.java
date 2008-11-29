@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/06/28 17:07:15 $
+ * $Revision: 1.8 $
+ * $Date: 2008/11/29 13:15:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
+ * Revision 1.8  2008/11/29 13:15:09  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.7  2008/06/28 17:07:15  jost
  * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
  *
@@ -104,6 +107,7 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String field) throws RemoteException
   {
     if ("buchungsart".equals(field))

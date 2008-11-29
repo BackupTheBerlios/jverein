@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/06/28 17:07:46 $
+ * $Revision: 1.4 $
+ * $Date: 2008/11/29 13:16:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoImpl.java,v $
+ * Revision 1.4  2008/11/29 13:16:26  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.3  2008/06/28 17:07:46  jost
  * Neu: Jahresabschluss
  *
@@ -81,6 +84,7 @@ public class KontoImpl extends AbstractDBObject implements Konto
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     return null;

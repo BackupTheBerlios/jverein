@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AnfangsbestandImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/11/16 16:58:59 $
+ * $Revision: 1.5 $
+ * $Date: 2008/11/29 13:14:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandImpl.java,v $
+ * Revision 1.5  2008/11/29 13:14:48  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.4  2008/11/16 16:58:59  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -151,6 +154,7 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
     }
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String field) throws RemoteException
   {
     if ("konto".equals(field))

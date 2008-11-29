@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KursteilnehmerImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/03/21 12:10:43 $
+ * $Revision: 1.3 $
+ * $Date: 2008/11/29 13:16:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerImpl.java,v $
+ * Revision 1.3  2008/11/29 13:16:35  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.2  2007/03/21 12:10:43  jost
  * Neu: Abbuchungsdatum beim Kursteilnehmer kann zurückgesetzt werden.
  *
@@ -112,6 +115,7 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
     }
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String field) throws RemoteException
   {
     return null;

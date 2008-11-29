@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BeitragsgruppeImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/03/25 17:04:58 $
+ * $Revision: 1.4 $
+ * $Date: 2008/11/29 13:14:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeImpl.java,v $
+ * Revision 1.4  2008/11/29 13:14:58  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.3  2007/03/25 17:04:58  jost
  * Beitragsart aufgenommen.
  *
@@ -78,6 +81,7 @@ public class BeitragsgruppeImpl extends AbstractDBObject implements
     insertCheck();
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     return null;

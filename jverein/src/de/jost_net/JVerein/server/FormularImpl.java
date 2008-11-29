@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FormularImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:18:12 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/29 13:15:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularImpl.java,v $
+ * Revision 1.2  2008/11/29 13:15:55  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.1  2008/07/18 20:18:12  jost
  * Neu: Formulare
  *
@@ -78,6 +81,7 @@ public class FormularImpl extends AbstractDBObject implements Formular
     }
   }
 
+  @SuppressWarnings("unchecked")
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     return null;

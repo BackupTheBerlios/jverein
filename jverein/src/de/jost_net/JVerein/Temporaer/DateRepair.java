@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Temporaer/Attic/DateRepair.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/02/13 18:18:45 $
+ * $Revision: 1.3 $
+ * $Date: 2008/11/29 13:17:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DateRepair.java,v $
+ * Revision 1.3  2008/11/29 13:17:55  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.2  2008/02/13 18:18:45  jost
  * Überflüssigen Import entfernt.
  *
@@ -48,6 +51,7 @@ public class DateRepair implements MessageConsumer
     return false;
   }
 
+  @SuppressWarnings("unchecked")
   public Class[] getExpectedMessageTypes()
   {
     return new Class[] { SystemMessage.class };

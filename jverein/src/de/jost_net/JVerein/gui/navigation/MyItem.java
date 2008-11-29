@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyItem.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/05/22 06:51:47 $
+ * $Revision: 1.4 $
+ * $Date: 2008/11/29 13:11:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyItem.java,v $
+ * Revision 1.4  2008/11/29 13:11:27  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.3  2008/05/22 06:51:47  jost
  * Buchführung
  *
@@ -19,7 +22,7 @@
 package de.jost_net.JVerein.gui.navigation;
 
 /*******************************************************************************
- * $Revision: 1.3 $ $Date: 2008/05/22 06:51:47 $ $Author: jost $ $Locker:  $
+ * $Revision: 1.4 $ $Date: 2008/11/29 13:11:27 $ $Author: jost $ $Locker:  $
  * $State: Exp $
  * 
  * Copyright (c) by willuhn software & services All rights reserved
@@ -173,6 +176,7 @@ public class MyItem implements NavigationItem
   /**
    * @see de.willuhn.datasource.GenericObjectNode#getPath()
    */
+  @SuppressWarnings("unchecked")
   public GenericIterator getPath() throws RemoteException
   {
     List list = PseudoIterator.asList(this.parent.getPath());
@@ -259,6 +263,9 @@ public class MyItem implements NavigationItem
 
 /*******************************************************************************
  * $Log: MyItem.java,v $
+ * Revision 1.4  2008/11/29 13:11:27  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.3  2008/05/22 06:51:47  jost
  * Buchführung
  * Revision 1.2 2007/08/23 19:25:23 jost Header

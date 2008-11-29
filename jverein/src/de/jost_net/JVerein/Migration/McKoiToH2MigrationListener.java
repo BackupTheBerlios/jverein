@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationListener.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/01/31 20:35:45 $
+ * $Revision: 1.4 $
+ * $Date: 2008/11/29 13:14:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationListener.java,v $
+ * Revision 1.4  2008/11/29 13:14:10  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.3  2008/01/31 20:35:45  jost
  * Hinweis auf Erläuterungen im Wiki
  *
@@ -46,6 +49,7 @@ public class McKoiToH2MigrationListener implements MessageConsumer
     return s.getBoolean("migration.h2", true);
   }
 
+  @SuppressWarnings("unchecked")
   public Class[] getExpectedMessageTypes()
   {
     return new Class[] { SystemMessage.class };
