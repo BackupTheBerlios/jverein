@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/11/11 20:05:09 $
+ * $Revision: 1.13 $
+ * $Date: 2008/11/29 13:11:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.13  2008/11/29 13:11:38  jost
+ * Neu: Konfiguration der Spalten einer Tabelle
+ *
  * Revision 1.12  2008/11/11 20:05:09  jost
  * Anzeige neu gruppiert und mit Scrollbars versehen.
  *
@@ -119,6 +122,16 @@ public class EinstellungenView extends AbstractView
     groupRechnungen.addLabelPair("für Zahlungsweg Barzahlung", control
         .getRechnungFuerBarzahlung());
 
+    TabGroup tabTabellen = new TabGroup(folder, "Tabellen");
+
+    TabFolder folderTabellen = new TabFolder(tabTabellen.getComposite(),
+        SWT.NONE);
+
+    TabGroup tabMitglieder = new TabGroup(folderTabellen, "Mitglieder");
+    LabelGroup groupMitglieder = new LabelGroup(tabMitglieder.getComposite(),
+        "Trefferliste Mitglieder");
+    control.getSpaltendefinitionTable(groupMitglieder.getComposite());
+ 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
