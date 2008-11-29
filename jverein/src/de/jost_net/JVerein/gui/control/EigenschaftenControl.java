@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/EigenschaftenControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/25 16:01:56 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/29 13:06:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenControl.java,v $
+ * Revision 1.2  2008/11/29 13:06:56  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.1  2008/01/25 16:01:56  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -190,6 +193,7 @@ public class EigenschaftenControl extends AbstractControl
     }
   }
 
+  @SuppressWarnings("unchecked")
   private List<HilfsEigenschaft> getList(String text)
   {
     try

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/29 14:42:28 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/29 13:04:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
+ * Revision 1.2  2008/11/29 13:04:57  jost
+ * Refactoring: Warnungen beseitigt.
+ *
  * Revision 1.1  2008/09/29 14:42:28  jost
  * Neu: Backup und Restore im XML-Format
  *
@@ -260,6 +263,7 @@ public class BackupCreateAction implements Action
    * @param monitor
    * @throws Exception
    */
+  @SuppressWarnings("unchecked")
   private static void backup(Class type, Writer writer, ProgressMonitor monitor)
       throws Exception
   {
