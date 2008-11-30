@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/MitgliedSpaltenauswahl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:18:07 $
+ * $Revision: 1.2 $
+ * $Date: 2008/11/30 18:58:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,16 +9,23 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSpaltenauswahl.java,v $
+ * Revision 1.2  2008/11/30 18:58:59  jost
+ * Neu: Konfiguration der Spalten einer Tabelle
+ *
  * Revision 1.1  2008/11/29 13:18:07  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 
+import java.rmi.RemoteException;
+
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.formatter.BeitragsgruppeFormatter;
 import de.jost_net.JVerein.gui.formatter.ZahlungsrhytmusFormatter;
 import de.jost_net.JVerein.gui.formatter.ZahlungswegFormatter;
+import de.jost_net.JVerein.rmi.Felddefinition;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.formatter.DateFormatter;
 import de.willuhn.jameica.gui.parts.Column;
 
@@ -59,5 +66,21 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
         Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
     add("Eingabedatum", "eingabedatum", false, new DateFormatter(
         Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+    try
+    {
+      DBIterator it = Einstellungen.getDBService().createList(
+          Felddefinition.class);
+      while (it.hasNext())
+      {
+        Felddefinition fd = (Felddefinition) it.next();
+        add(fd.getLabel(), "zusatzfelder." + fd.getName(), false);
+      }
+    }
+    catch (RemoteException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
   }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.18 $
- * $Date: 2008/11/29 13:16:53 $
+ * $Revision: 1.19 $
+ * $Date: 2008/11/30 18:58:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.19  2008/11/30 18:58:37  jost
+ * Neu: Konfiguration der Spalten einer Tabelle
+ *
  * Revision 1.18  2008/11/29 13:16:53  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -73,7 +76,9 @@ import java.util.Date;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
+import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
@@ -567,6 +572,25 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     if (fieldName.equals("namevorname"))
     {
       return getNameVorname();
+    }
+    if (fieldName.startsWith("zusatzfelder."))
+    {
+      DBIterator it = Einstellungen.getDBService().createList(
+          Felddefinition.class);
+      it.addFilter("name = ?", new Object[] { fieldName.substring(13) });
+      Felddefinition fd = (Felddefinition) it.next();
+      it = Einstellungen.getDBService().createList(Zusatzfelder.class);
+      it.addFilter("felddefinition = ? AND mitglied = ?", new Object[] {
+          fd.getID(), getID() });
+      if (it.hasNext())
+      {
+        Zusatzfelder zf = (Zusatzfelder) it.next();
+        return zf.getFeld();
+      }
+      else
+      {
+        return "";
+      }
     }
     return super.getAttribute(fieldName);
   }

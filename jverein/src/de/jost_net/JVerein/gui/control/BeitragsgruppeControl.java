@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/11/29 13:05:48 $
+ * $Revision: 1.9 $
+ * $Date: 2008/11/30 18:56:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.9  2008/11/30 18:56:00  jost
+ * Neu: Konfiguration der Spalten einer Tabelle
+ *
  * Revision 1.8  2008/11/29 13:05:48  jost
  * Refactoring: Code-Optimierung
  *
@@ -122,8 +125,8 @@ public class BeitragsgruppeControl extends AbstractControl
       b.setBezeichnung((String) getBezeichnung().getValue());
       Double d = (Double) getBetrag().getValue();
       b.setBetrag(d.doubleValue());
-      Integer ba = (Integer) getBeitragsArt().getValue();
-      b.setBeitragsArt(ba.intValue());
+      ArtBuchungsart ba = (ArtBuchungsart) getBeitragsArt().getValue();
+      b.setBeitragsArt(ba.getKey());
       b.store();
       GUI.getStatusBar().setSuccessText("Beitragsgruppe gespeichert");
     }
