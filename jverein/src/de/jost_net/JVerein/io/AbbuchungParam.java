@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/AbbuchungParam.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/29 13:12:13 $
+ * $Revision: 1.7 $
+ * $Date: 2008/11/30 10:45:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungParam.java,v $
+ * Revision 1.7  2008/11/30 10:45:42  jost
+ * Neu: Konfiguration der Spalten einer Tabelle
+ *
  * Revision 1.6  2008/11/29 13:12:13  jost
  * Refactoring: Code-Optimierung
  *
@@ -80,7 +83,9 @@ public class AbbuchungParam
   {
     abbuchungsmodus = (Integer) ac.getAbbuchungsmodus().getValue();
     stichtag = (Date) ac.getStichtag().getValue();
-    abbuchungsausgabe = (Integer) ac.getAbbuchungsausgabe().getValue();
+    Abrechnungsausgabe aa = (Abrechnungsausgabe) ac.getAbbuchungsausgabe()
+        .getValue();
+    abbuchungsausgabe = aa.getKey();
     vondatum = (Date) ac.getVondatum().getValue();
     verwendungszweck = (String) ac.getZahlungsgrund().getValue();
     zusatzabbuchung = (Boolean) ac.getZusatzabbuchung().getValue();

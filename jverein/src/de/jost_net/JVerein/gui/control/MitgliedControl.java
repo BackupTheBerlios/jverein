@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.44 $
- * $Date: 2008/11/29 13:07:54 $
+ * $Revision: 1.45 $
+ * $Date: 2008/11/30 10:45:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.45  2008/11/30 10:45:05  jost
+ * Neu: Konfiguration der Spalten einer Tabelle
+ *
  * Revision 1.44  2008/11/29 13:07:54  jost
  * Refactoring: Code-Optimierung
  *
@@ -1567,7 +1570,8 @@ public class MitgliedControl extends AbstractControl
       {
         throw new ApplicationException("Beitragsgruppe fehlt");
       }
-      m.setZahlungsweg((Integer) getZahlungsweg().getValue());
+      Zahlungsweg zw = (Zahlungsweg) getZahlungsweg().getValue();
+      m.setZahlungsweg(zw.getKey());
       m.setZahlungsrhytmus((Integer) getZahlungsrhytmus().getValue());
       m.setBlz((String) getBlz().getValue());
       m.setEintritt((Date) getEintritt().getValue());
