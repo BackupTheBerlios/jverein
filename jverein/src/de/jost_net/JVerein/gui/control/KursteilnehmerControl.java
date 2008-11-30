@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/11/24 19:25:15 $
+ * $Revision: 1.15 $
+ * $Date: 2008/11/30 18:57:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.15  2008/11/30 18:57:42  jost
+ * Bugfix: PDF-Dokument öffnen
+ *
  * Revision 1.14  2008/11/24 19:25:15  jost
  * Debug-Meldung entfernt.
  *
@@ -87,8 +90,10 @@ import de.willuhn.jameica.gui.input.DecimalInput;
 import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.input.TextInput;
+import de.willuhn.jameica.gui.internal.action.Program;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.parts.TablePart;
+import de.willuhn.jameica.messaging.StatusBarMessage;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.BackgroundTask;
 import de.willuhn.jameica.system.Settings;
@@ -674,6 +679,22 @@ public class KursteilnehmerControl extends AbstractControl
               rpt.setNextRecord();
             }
             rpt.close();
+            GUI.getDisplay().asyncExec(new Runnable()
+            {
+              public void run()
+              {
+                try
+                {
+                  new Program().handleAction(file);
+                }
+                catch (ApplicationException ae)
+                {
+                  Application.getMessagingFactory().sendMessage(
+                      new StatusBarMessage(ae.getLocalizedMessage(),
+                          StatusBarMessage.TYPE_ERROR));
+                }
+              }
+            });
 
           }
           catch (ApplicationException ae)
