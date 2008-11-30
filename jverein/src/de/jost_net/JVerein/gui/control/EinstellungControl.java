@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/11/29 13:07:10 $
+ * $Revision: 1.12 $
+ * $Date: 2008/11/30 18:56:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.12  2008/11/30 18:56:38  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.11  2008/11/29 13:07:10  jost
  * Refactoring: Code-Optimierung
  *
@@ -291,7 +294,8 @@ public class EinstellungControl extends AbstractControl
       e.setWiedervorlage((Boolean) wiedervorlage.getValue());
       e.setKursteilnehmer((Boolean) kursteilnehmer.getValue());
       e.setExterneMitgliedsnummer((Boolean) externemitgliedsnummer.getValue());
-      e.setBeitragsmodel((Integer) beitragsmodel.getValue());
+      Beitragsmodel bm = (Beitragsmodel) beitragsmodel.getValue();
+      e.setBeitragsmodel(bm.getKey());
       e.setRechnungFuerAbbuchung((Boolean) rechnungfuerabbuchung.getValue());
       e.setRechnungFuerUeberweisung((Boolean) rechnungfuerueberweisung
           .getValue());

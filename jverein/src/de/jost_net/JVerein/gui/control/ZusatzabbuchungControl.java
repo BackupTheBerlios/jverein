@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/11/29 13:08:40 $
+ * $Revision: 1.10 $
+ * $Date: 2008/11/30 18:58:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungControl.java,v $
+ * Revision 1.10  2008/11/30 18:58:00  jost
+ * Refactoring: Code-Optimierung
+ *
  * Revision 1.9  2008/11/29 13:08:40  jost
  * Refactoring: Code-Optimierung
  *
@@ -312,7 +315,9 @@ public class ZusatzabbuchungControl extends AbstractControl
       Zusatzabbuchung z = getZusatzabbuchung();
       z.setFaelligkeit((Date) getFaelligkeit().getValue());
       z.setStartdatum((Date) getStartdatum().getValue());
-      z.setIntervall((Integer) getIntervall().getValue());
+      IntervallZusatzzahlung iz = (IntervallZusatzzahlung) getIntervall()
+          .getValue();
+      z.setIntervall(iz.getKey());
       z.setEndedatum((Date) getEndedatum().getValue());
       z.setBuchungstext((String) getBuchungstext().getValue());
       Double d = (Double) getBetrag().getValue();
