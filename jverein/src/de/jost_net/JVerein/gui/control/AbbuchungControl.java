@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.17 $
- * $Date: 2008/11/29 13:05:31 $
+ * $Revision: 1.18 $
+ * $Date: 2008/11/30 10:44:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.18  2008/11/30 10:44:45  jost
+ * Bugfix Abbuchungsmodus
+ *
  * Revision 1.17  2008/11/29 13:05:31  jost
  * Refactoring: Code-Optimierung
  *
@@ -318,7 +321,9 @@ public class AbbuchungControl extends AbstractControl
     Integer ausgabe;
     try
     {
-      ausgabe = (Integer) this.getAbbuchungsausgabe().getValue();
+      Abrechnungsausgabe aa = (Abrechnungsausgabe) this.getAbbuchungsausgabe()
+          .getValue();
+      ausgabe = aa.getKey();
     }
     catch (RemoteException e2)
     {
