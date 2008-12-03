@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/06/28 17:01:03 $
+ * $Revision: 1.8 $
+ * $Date: 2008/12/03 22:00:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchung.java,v $
+ * Revision 1.8  2008/12/03 22:00:50  jost
+ * Erweiterung um Auszugs- und Blattnummer
+ *
  * Revision 1.7  2008/06/28 17:01:03  jost
  * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
  *
@@ -44,6 +47,14 @@ public interface Buchung extends DBObject
   public Konto getKonto() throws RemoteException;
 
   public void setKonto(Konto konto) throws RemoteException;
+
+  public Integer getAuszugsnummer() throws RemoteException;
+
+  public void setAuszugsnummer(Integer auszugsnummer) throws RemoteException;
+
+  public Integer getBlattnummer() throws RemoteException;
+
+  public void setBlattnummer(Integer blattnummer) throws RemoteException;
 
   public String getName() throws RemoteException;
 

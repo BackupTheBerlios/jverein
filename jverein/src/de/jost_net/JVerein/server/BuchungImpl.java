@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/11/29 13:15:09 $
+ * $Revision: 1.9 $
+ * $Date: 2008/12/03 22:01:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
+ * Revision 1.9  2008/12/03 22:01:02  jost
+ * Erweiterung um Auszugs- und Blattnummer
+ *
  * Revision 1.8  2008/11/29 13:15:09  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -140,6 +143,28 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
   public void setKonto(Konto konto) throws RemoteException
   {
     setAttribute("konto", konto);
+  }
+
+  public Integer getAuszugsnummer() throws RemoteException
+  {
+
+    return (Integer) getAttribute("auszugsnummer");
+  }
+
+  public void setAuszugsnummer(Integer auszugsnummer) throws RemoteException
+  {
+    setAttribute("auszugsnummer", auszugsnummer);
+  }
+
+  public Integer getBlattnummer() throws RemoteException
+  {
+
+    return (Integer) getAttribute("blattnummer");
+  }
+
+  public void setBlattnummer(Integer blattnummer) throws RemoteException
+  {
+    setAttribute("blattnummer", blattnummer);
   }
 
   public String getName() throws RemoteException

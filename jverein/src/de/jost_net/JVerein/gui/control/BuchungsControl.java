@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2008/11/29 13:06:28 $
+ * $Revision: 1.16 $
+ * $Date: 2008/12/03 22:00:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.16  2008/12/03 22:00:17  jost
+ * Erweiterung um Auszugs- und Blattnummer
+ *
  * Revision 1.15  2008/11/29 13:06:28  jost
  * Refactoring: Code-Optimierung
  *
@@ -117,6 +120,10 @@ public class BuchungsControl extends AbstractControl
 
   private DialogInput konto;
 
+  private Input auszugsnummer;
+
+  private Input blattnummer;
+
   private Input name;
 
   private DecimalInput betrag;
@@ -195,6 +202,36 @@ public class BuchungsControl extends AbstractControl
     }
     konto = new KontoauswahlInput(getBuchung().getKonto()).getKontoAuswahl();
     return konto;
+  }
+
+  public Input getAuszugsnummer() throws RemoteException
+  {
+    if (auszugsnummer != null)
+    {
+      return auszugsnummer;
+    }
+    Integer i = getBuchung().getAuszugsnummer();
+    if (i == null)
+    {
+      i = new Integer(0);
+    }
+    auszugsnummer = new IntegerInput(i);
+    return auszugsnummer;
+  }
+
+  public Input getBlattnummer() throws RemoteException
+  {
+    if (blattnummer != null)
+    {
+      return blattnummer;
+    }
+    Integer i = getBuchung().getBlattnummer();
+    if (i == null)
+    {
+      i = new Integer(0);
+    }
+    blattnummer = new IntegerInput(i);
+    return blattnummer;
   }
 
   public Input getName() throws RemoteException
@@ -452,6 +489,8 @@ public class BuchungsControl extends AbstractControl
           b.setBuchungsart(null);
         }
         b.setKonto((Konto) getKonto().getValue());
+        b.setAuszugsnummer((Integer) getAuszugsnummer().getValue());
+        b.setBlattnummer((Integer) getBlattnummer().getValue());
         b.setName((String) getName().getValue());
         b.setBetrag((Double) getBetrag().getValue());
         b.setZweck((String) getZweck().getValue());
@@ -539,6 +578,8 @@ public class BuchungsControl extends AbstractControl
       });
       buchungsList.addColumn("Datum", "datum", new DateFormatter(
           Einstellungen.DATEFORMAT));
+      buchungsList.addColumn("Auszug", "auszugsnummer");
+      buchungsList.addColumn("Blatt", "blattnummer");
       buchungsList.addColumn("Name", "name");
       buchungsList.addColumn("Verwendungszweck", "zweck");
       buchungsList.addColumn("Verwendungszweck 2", "zweck2");

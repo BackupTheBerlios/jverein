@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/05/24 16:40:05 $
+ * $Revision: 1.8 $
+ * $Date: 2008/12/03 22:00:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
+ * Revision 1.8  2008/12/03 22:00:37  jost
+ * Erweiterung um Auszugs- und Blattnummer
+ *
  * Revision 1.7  2008/05/24 16:40:05  jost
  * Wegfall der Spalte Saldo
  *
@@ -60,8 +63,10 @@ public class BuchungView extends AbstractView
     grKontoauszug.addLabelPair("Art", control.getArt());
     grKontoauszug.addLabelPair("Kommentar", control.getKommentar());
 
-    LabelGroup grBuchungsart = new LabelGroup(getParent(), "Buchungsart");
-    grBuchungsart.addLabelPair("Buchungsart", control.getBuchungsart());
+    LabelGroup grBuchungsinfos = new LabelGroup(getParent(), "Buchungsinfos");
+    grBuchungsinfos.addLabelPair("Buchungsart", control.getBuchungsart());
+    grBuchungsinfos.addLabelPair("Auszugsnummer", control.getAuszugsnummer());
+    grBuchungsinfos.addLabelPair("Blattnummer", control.getBlattnummer());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton("<< Zurück", new BackAction());
