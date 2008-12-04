@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/11/13 20:18:12 $
+ * $Revision: 1.12 $
+ * $Date: 2008/12/04 20:00:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.12  2008/12/04 20:00:55  jost
+ * Handy aufgenommen
+ *
  * Revision 1.11  2008/11/13 20:18:12  jost
  * Adressierungszusatz aufgenommen.
  *
@@ -79,7 +82,7 @@ public class MitgliedAuswertungCSV
       out
           .print("id;anrede;titel;name;vorname;adressierungszusatz;strasse;plz;ort;blz;konto;kontoinhaber;");
       out
-          .print("geburtsdatum;geschlecht;telefonprivat;telefondienstlich;email;");
+          .print("geburtsdatum;geschlecht;telefonprivat;telefondienstlich;handy;email;");
       out
           .print("eintritt;beitragsgruppe;beitragsgruppetext;austritt;kuendigung");
       DBIterator it = Einstellungen.getDBService().createList(
@@ -113,6 +116,7 @@ public class MitgliedAuswertungCSV
         out.print(m.getGeschlecht() + ";");
         out.print(m.getTelefonprivat() + ";");
         out.print(m.getTelefondienstlich() + ";");
+        out.print(m.getHandy() + ";");
         out.print(m.getEmail() + ";");
         out.print(formatDate(m.getEintritt()) + ";");
         out.print(m.getBeitragsgruppe().getID() + ";");
