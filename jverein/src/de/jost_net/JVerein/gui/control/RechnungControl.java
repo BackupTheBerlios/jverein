@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/11/29 13:08:06 $
+ * $Revision: 1.9 $
+ * $Date: 2008/12/06 16:46:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
+ * Revision 1.9  2008/12/06 16:46:24  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.8  2008/11/29 13:08:06  jost
  * Refactoring: Code-Optimierung
  *
@@ -368,7 +371,6 @@ public class RechnungControl extends AbstractControl
   private void generiereRechnung(Object currentObject) throws IOException
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
-    System.out.println(currentObject);
     fd.setText("Ausgabedatei wählen.");
     String path = settings
         .getString("lastdir", System.getProperty("user.home"));

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AnfangsbestandControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/07/12 11:55:16 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/06 16:45:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandControl.java,v $
+ * Revision 1.3  2008/12/06 16:45:40  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.2  2008/07/12 11:55:16  jost
  * Bugfix beim Speichern des Anfangsbestandes.
  *
@@ -126,7 +129,6 @@ public class AnfangsbestandControl extends AbstractControl
             "Mehrere Konten mit gleicher Nummer sind nicht zulässig!");
       }
       Konto k = (Konto) konten.next();
-      System.out.println(k.getNummer());
       a.setKonto(k);
       a.setDatum((Date) getDatum().getValue());
       a.setBetrag((Double) getBetrag().getValue());

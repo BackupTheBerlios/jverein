@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Jubilaeenliste.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/09/21 08:46:10 $
+ * $Revision: 1.5 $
+ * $Date: 2008/12/06 16:46:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Jubilaeenliste.java,v $
+ * Revision 1.5  2008/12/06 16:46:57  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.4  2008/09/21 08:46:10  jost
  * Neu: Altersjubliäen
  *
@@ -214,7 +217,6 @@ public class Jubilaeenliste
         Mitglied m = (Mitglied) mitgl.next();
         addDetail(reporter, m);
       }
-      System.out.println(mitgl.size());
       if (mitgl.size() == 0)
       {
         reporter.addColumn("", Element.ALIGN_LEFT);

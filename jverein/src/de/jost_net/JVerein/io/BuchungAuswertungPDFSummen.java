@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungAuswertungPDFSummen.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/10 07:58:31 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/06 16:46:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungAuswertungPDFSummen.java,v $
+ * Revision 1.2  2008/12/06 16:46:41  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.1  2008/07/10 07:58:31  jost
  * PDF-Export der Buchungen jetzt mit Einzelbuchungen und als Summen
  *
@@ -129,14 +132,11 @@ public class BuchungAuswertungPDFSummen
     if (list != null)
     {
       ba = (Buchungsart) list.next();
-      System.out.println(ba.getBezeichnung());
-      reporter.addColumn(ba.getBezeichnung(),
-          Element.ALIGN_LEFT);
+      reporter.addColumn(ba.getBezeichnung(), Element.ALIGN_LEFT);
     }
     else
     {
-      reporter.addColumn("ohne Zuordnung",
-          Element.ALIGN_LEFT);
+      reporter.addColumn("ohne Zuordnung", Element.ALIGN_LEFT);
     }
 
     DBIterator listb = Einstellungen.getDBService().createList(Buchung.class);
