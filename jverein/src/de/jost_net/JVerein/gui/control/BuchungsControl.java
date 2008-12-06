@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/12/03 22:00:17 $
+ * $Revision: 1.17 $
+ * $Date: 2008/12/06 16:46:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.17  2008/12/06 16:46:08  jost
+ * Standardwert f√ºr die Buchungart
+ *
  * Revision 1.16  2008/12/03 22:00:17  jost
  * Erweiterung um Auszugs- und Blattnummer
  *
@@ -103,7 +106,6 @@ import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.BackgroundTask;
-import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 import de.willuhn.util.ProgressMonitor;
@@ -149,6 +151,8 @@ public class BuchungsControl extends AbstractControl
   private DateInput bisdatum = null;
 
   private Buchung buchung;
+
+  private static final String BUCHUNGSART = "buchungsart";
 
   public BuchungsControl(AbstractView view)
   {
@@ -371,7 +375,32 @@ public class BuchungsControl extends AbstractControl
     {
       liste.add((Buchungsart) list.next());
     }
-    suchbuchungsart = new SelectInput(liste, null);
+    int bwert = settings.getInt(BUCHUNGSART, -2);
+    for (int i = 0; i < liste.size(); i++)
+    {
+      if (liste.get(i).getArt() == bwert)
+      {
+        b = liste.get(i);
+        break;
+      }
+    }
+    suchbuchungsart = new SelectInput(liste, b);
+    suchbuchungsart.addListener(new Listener()
+    {
+      public void handleEvent(Event event)
+      {
+        Buchungsart ba = (Buchungsart) suchbuchungsart.getValue();
+        try
+        {
+          settings.setAttribute(BUCHUNGSART, ba.getArt());
+        }
+        catch (RemoteException e)
+        {
+          // e.printStackTrace();
+        }
+      }
+    });
+
     suchbuchungsart.setAttribute("bezeichnung");
     // suchbuchungsart.setPleaseChoose("Ohne Buchungsart");
     return suchbuchungsart;
@@ -558,7 +587,6 @@ public class BuchungsControl extends AbstractControl
       buchungsList.addColumn("Nr", "id");
       buchungsList.addColumn("Konto", "konto", new Formatter()
       {
-
         public String format(Object o)
         {
           Konto k = (Konto) o;
@@ -639,8 +667,6 @@ public class BuchungsControl extends AbstractControl
 
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("Ausgabedatei w‰hlen.");
-
-      Settings settings = new Settings(this.getClass());
 
       String path = settings.getString("lastdir", System
           .getProperty("user.home"));
