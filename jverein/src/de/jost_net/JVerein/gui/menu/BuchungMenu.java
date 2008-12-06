@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungMenu.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:50:44 $
+ * $Revision: 1.6 $
+ * $Date: 2008/12/06 10:50:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungMenu.java,v $
+ * Revision 1.6  2008/12/06 10:50:07  jost
+ * Bearbeiten aufgenommen
+ *
  * Revision 1.5  2008/05/22 06:50:44  jost
  * BuchfÃ¼hrung
  *
@@ -24,6 +27,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.gui.action.BuchungAction;
 import de.jost_net.JVerein.gui.action.BuchungDeleteAction;
 import de.jost_net.JVerein.gui.action.BuchungNeuAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
@@ -42,6 +46,7 @@ public class BuchungMenu extends ContextMenu
   public BuchungMenu()
   {
     addItem(new ContextMenuItem("Neu", new BuchungNeuAction()));
+    addItem(new CheckedContextMenuItem("Bearbeiten", new BuchungAction()));
     addItem(new CheckedContextMenuItem("Löschen...", new BuchungDeleteAction()));
   }
 }
