@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/11/30 18:56:38 $
+ * $Revision: 1.13 $
+ * $Date: 2008/12/13 16:21:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.13  2008/12/13 16:21:56  jost
+ * Bugfix Standardwert
+ *
  * Revision 1.12  2008/11/30 18:56:38  jost
  * Refactoring: Code-Optimierung
  *
@@ -202,7 +205,7 @@ public class EinstellungControl extends AbstractControl
       return beitragsmodel;
     }
     beitragsmodel = new SelectInput(Beitragsmodel.getArray(),
-        new Beitragsmodel(Beitragsmodel.JAEHRLICH));
+        new Beitragsmodel(Einstellungen.getEinstellung().getBeitragsmodel()));
     return beitragsmodel;
   }
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/11/30 18:56:20 $
+ * $Revision: 1.11 $
+ * $Date: 2008/12/13 16:21:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.11  2008/12/13 16:21:39  jost
+ * Bugfix Standardwert
+ *
  * Revision 1.10  2008/11/30 18:56:20  jost
  * Refactoring: Code-Optimierung
  *
@@ -119,8 +122,7 @@ public class BuchungsartControl extends AbstractControl
     {
       return art;
     }
-    art = new SelectInput(ArtBuchungsart.getArray(), new ArtBuchungsart(
-        ArtBuchungsart.EINNAHME));
+    art = new SelectInput(ArtBuchungsart.getArray(), getBuchungsart().getArt());
     return art;
   }
 

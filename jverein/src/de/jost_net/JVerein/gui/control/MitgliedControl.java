@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.45 $
- * $Date: 2008/11/30 10:45:05 $
+ * $Revision: 1.46 $
+ * $Date: 2008/12/13 16:22:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.46  2008/12/13 16:22:22  jost
+ * Bugfix Standardwert
+ *
  * Revision 1.45  2008/11/30 10:45:05  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
@@ -177,6 +180,7 @@ import de.jost_net.JVerein.io.Jubilaeenliste;
 import de.jost_net.JVerein.io.MitgliedAuswertungCSV;
 import de.jost_net.JVerein.io.MitgliedAuswertungPDF;
 import de.jost_net.JVerein.io.MitgliederStatistik;
+import de.jost_net.JVerein.keys.ArtBeitragsart;
 import de.jost_net.JVerein.keys.Zahlungsrhytmus;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
@@ -507,13 +511,13 @@ public class MitgliedControl extends AbstractControl
     }
     if (getMitglied().getZahlungsweg() != null)
     {
-      zahlungsweg = new SelectInput(Zahlungsweg.getArray(), getMitglied()
-          .getZahlungsweg().intValue());
+      zahlungsweg = new SelectInput(Zahlungsweg.getArray(), new Zahlungsweg(
+          getMitglied().getZahlungsweg().intValue()));
     }
     else
     {
-      zahlungsweg = new SelectInput(Zahlungsweg.getArray(),
-          Zahlungsweg.ABBUCHUNG);
+      zahlungsweg = new SelectInput(Zahlungsweg.getArray(), new Zahlungsweg(
+          Zahlungsweg.ABBUCHUNG));
     }
     zahlungsweg.addListener(new Listener()
     {
@@ -536,12 +540,12 @@ public class MitgliedControl extends AbstractControl
     if (getMitglied().getZahlungsrhytmus() != null)
     {
       zahlungsrhytmus = new SelectInput(Zahlungsrhytmus.getArray(),
-          getMitglied().getZahlungsrhytmus().intValue());
+          new Zahlungsrhytmus(getMitglied().getZahlungsrhytmus().intValue()));
     }
     else
     {
       zahlungsrhytmus = new SelectInput(Zahlungsrhytmus.getArray(),
-          Zahlungsrhytmus.JAEHRLICH);
+          new Zahlungsrhytmus(Zahlungsrhytmus.JAEHRLICH));
     }
     return zahlungsrhytmus;
   }
@@ -681,11 +685,11 @@ public class MitgliedControl extends AbstractControl
           {
             famverb.setBeitragsgruppe(bg);
           }
-          if (bg.getBeitragsArt() == 2)
+          if (bg.getBeitragsArt() == ArtBeitragsart.FAMILIE_ANGEHOERIGER)
           {
             zahler.setEnabled(true);
           }
-          else if (bg.getBeitragsArt() == 1)
+          else if (bg.getBeitragsArt() == ArtBeitragsart.FAMILIE_ZAHLER)
           {
             zahler.setValue((Mitglied) Einstellungen.getDBService()
                 .createObject(Mitglied.class, ""));
@@ -800,7 +804,7 @@ public class MitgliedControl extends AbstractControl
     });
 
     if (getMitglied().getBeitragsgruppe() != null
-        && getMitglied().getBeitragsgruppe().getBeitragsArt() == 2)
+        && getMitglied().getBeitragsgruppe().getBeitragsArt() == ArtBeitragsart.FAMILIE_ANGEHOERIGER)
     {
       zahler.setEnabled(true);
     }
@@ -1572,7 +1576,8 @@ public class MitgliedControl extends AbstractControl
       }
       Zahlungsweg zw = (Zahlungsweg) getZahlungsweg().getValue();
       m.setZahlungsweg(zw.getKey());
-      m.setZahlungsrhytmus((Integer) getZahlungsrhytmus().getValue());
+      Zahlungsrhytmus zr = (Zahlungsrhytmus) getZahlungsrhytmus().getValue();
+      m.setZahlungsrhytmus(zr.getKey());
       m.setBlz((String) getBlz().getValue());
       m.setEintritt((Date) getEintritt().getValue());
       m.setEmail((String) getEmail().getValue());
