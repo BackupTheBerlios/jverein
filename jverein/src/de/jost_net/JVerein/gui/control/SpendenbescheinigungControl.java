@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/29 13:08:17 $
+ * $Revision: 1.7 $
+ * $Date: 2008/12/13 16:22:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
+ * Revision 1.7  2008/12/13 16:22:41  jost
+ * Bugfix Tagesdatum
+ *
  * Revision 1.6  2008/11/29 13:08:17  jost
  * Refactoring: Code-Optimierung
  *
@@ -351,6 +354,8 @@ public class SpendenbescheinigungControl extends AbstractControl
     tmp = (Date) getSpendedatum().getValue();
     String spendedatum = Einstellungen.DATEFORMAT.format(tmp);
     map.put("Spendedatum", spendedatum);
+    String tagesdatum = Einstellungen.DATEFORMAT.format(new Date());
+    map.put("Tagesdatum", tagesdatum);
     FormularAufbereitung fa = new FormularAufbereitung(file);
     fa.writeForm(fo, map);
     fa.showFormular();
