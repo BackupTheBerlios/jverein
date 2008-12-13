@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Abrechnungsausgabe.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:12:38 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/13 16:23:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnungsausgabe.java,v $
+ * Revision 1.2  2008/12/13 16:23:06  jost
+ * equals()-Methode implementiert.
+ *
  * Revision 1.1  2008/11/29 13:12:38  jost
  * Refactoring: Code-Optimierung
  *
@@ -69,6 +72,18 @@ public class Abrechnungsausgabe
     return ret;
   }
 
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Abrechnungsausgabe)
+    {
+      Abrechnungsausgabe v = (Abrechnungsausgabe) obj;
+      return (getKey() == v.getKey());
+    }
+    return false;
+  }
+
+  @Override
   public String toString()
   {
     return get(ausgabe);

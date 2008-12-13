@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/IntervallZusatzzahlung.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:13:15 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/13 16:24:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: IntervallZusatzzahlung.java,v $
+ * Revision 1.2  2008/12/13 16:24:55  jost
+ * equals()-Methode implementiert.
+ *
  * Revision 1.1  2008/11/29 13:13:15  jost
  * Refactoring: Code-Optimierung
  *
@@ -85,6 +88,18 @@ public class IntervallZusatzzahlung
     return ret;
   }
 
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof IntervallZusatzzahlung)
+    {
+      IntervallZusatzzahlung v = (IntervallZusatzzahlung) obj;
+      return (getKey() == v.getKey());
+    }
+    return false;
+  }
+
+  @Override
   public String toString()
   {
     return get(intervall);

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Beitragsmodel.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:12:56 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/13 16:23:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Beitragsmodel.java,v $
+ * Revision 1.2  2008/12/13 16:23:55  jost
+ * equals()-Methode implementiert.
+ *
  * Revision 1.1  2008/11/29 13:12:56  jost
  * Refactoring: Code-Optimierung
  *
@@ -79,6 +82,18 @@ public class Beitragsmodel
     return ret;
   }
 
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Beitragsmodel)
+    {
+      Beitragsmodel v = (Beitragsmodel) obj;
+      return (getKey() == v.getKey());
+    }
+    return false;
+  }
+
+  @Override
   public String toString()
   {
     return get(model);

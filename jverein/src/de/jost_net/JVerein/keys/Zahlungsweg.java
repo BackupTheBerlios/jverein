@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Zahlungsweg.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:13:36 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/13 16:25:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Zahlungsweg.java,v $
+ * Revision 1.2  2008/12/13 16:25:14  jost
+ * equals()-Methode implementiert.
+ *
  * Revision 1.1  2008/11/29 13:13:36  jost
  * Refactoring: Code-Optimierung
  *
@@ -69,6 +72,18 @@ public class Zahlungsweg
     return ret;
   }
 
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Zahlungsweg)
+    {
+      Zahlungsweg v = (Zahlungsweg) obj;
+      return (getKey() == v.getKey());
+    }
+    return false;
+  }
+
+  @Override
   public String toString()
   {
     return get(zahlungsweg);

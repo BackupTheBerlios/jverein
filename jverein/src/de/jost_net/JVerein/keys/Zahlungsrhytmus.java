@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Zahlungsrhytmus.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:13:26 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/13 16:25:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Zahlungsrhytmus.java,v $
+ * Revision 1.2  2008/12/13 16:25:05  jost
+ * equals()-Methode implementiert.
+ *
  * Revision 1.1  2008/11/29 13:13:26  jost
  * Refactoring: Code-Optimierung
  *
@@ -74,6 +77,18 @@ public class Zahlungsrhytmus
     return ret;
   }
 
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Zahlungsrhytmus)
+    {
+      Zahlungsrhytmus v = (Zahlungsrhytmus) obj;
+      return (getKey() == v.getKey());
+    }
+    return false;
+  }
+
+  @Override
   public String toString()
   {
     return get(zahlungsrhytmus);
