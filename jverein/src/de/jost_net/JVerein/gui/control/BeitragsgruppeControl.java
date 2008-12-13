@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/11/30 18:56:00 $
+ * $Revision: 1.10 $
+ * $Date: 2008/12/13 16:21:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.10  2008/12/13 16:21:17  jost
+ * Bugfix Beitragsart.
+ *
  * Revision 1.9  2008/11/30 18:56:00  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
@@ -40,11 +43,12 @@
 package de.jost_net.JVerein.gui.control;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
 import de.jost_net.JVerein.gui.menu.BeitragsgruppeMenu;
-import de.jost_net.JVerein.keys.ArtBuchungsart;
+import de.jost_net.JVerein.keys.ArtBeitragsart;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -80,7 +84,9 @@ public class BeitragsgruppeControl extends AbstractControl
   private Beitragsgruppe getBeitragsgruppe()
   {
     if (beitrag != null)
+    {
       return beitrag;
+    }
     beitrag = (Beitragsgruppe) getCurrentObject();
     return beitrag;
   }
@@ -112,8 +118,8 @@ public class BeitragsgruppeControl extends AbstractControl
     {
       return beitragsart;
     }
-    beitragsart = new SelectInput(ArtBuchungsart.getArray(),
-        new ArtBuchungsart(ArtBuchungsart.EINNAHME));
+    beitragsart = new SelectInput(ArtBeitragsart.getArray(),
+        new ArtBeitragsart(getBeitragsgruppe().getBeitragsArt()));
     return beitragsart;
   }
 
@@ -125,7 +131,7 @@ public class BeitragsgruppeControl extends AbstractControl
       b.setBezeichnung((String) getBezeichnung().getValue());
       Double d = (Double) getBetrag().getValue();
       b.setBetrag(d.doubleValue());
-      ArtBuchungsart ba = (ArtBuchungsart) getBeitragsArt().getValue();
+      ArtBeitragsart ba = (ArtBeitragsart) getBeitragsArt().getValue();
       b.setBeitragsArt(ba.getKey());
       b.store();
       GUI.getStatusBar().setSuccessText("Beitragsgruppe gespeichert");
