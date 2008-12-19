@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.46 $
- * $Date: 2008/12/13 16:22:22 $
+ * $Revision: 1.47 $
+ * $Date: 2008/12/19 06:53:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.47  2008/12/19 06:53:30  jost
+ * Bugfix Dropdown Zahlungsweg
+ *
  * Revision 1.46  2008/12/13 16:22:22  jost
  * Bugfix Standardwert
  *
@@ -523,9 +526,9 @@ public class MitgliedControl extends AbstractControl
     {
       public void handleEvent(Event event)
       {
-        Integer z = (Integer) zahlungsweg.getValue();
-        blz.setMandatory(z.intValue() == Zahlungsweg.ABBUCHUNG);
-        konto.setMandatory(z.intValue() == Zahlungsweg.ABBUCHUNG);
+        Zahlungsweg z = (Zahlungsweg) zahlungsweg.getValue();
+        blz.setMandatory(z.getKey() == Zahlungsweg.ABBUCHUNG);
+        konto.setMandatory(z.getKey() == Zahlungsweg.ABBUCHUNG);
       }
     });
     return zahlungsweg;
