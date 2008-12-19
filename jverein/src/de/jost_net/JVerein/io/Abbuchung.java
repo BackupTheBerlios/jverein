@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.24 $
- * $Date: 2008/11/29 13:12:04 $
+ * $Revision: 1.25 $
+ * $Date: 2008/12/19 06:54:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.25  2008/12/19 06:54:27  jost
+ * Keine Abrechnung bei Eintrittsdatum in der Zukunft
+ *
  * Revision 1.24  2008/11/29 13:12:04  jost
  * Refactoring: Code-Optimierung
  *
@@ -228,10 +231,10 @@ public class Abbuchung
     {
       // Alle Mitglieder lesen
       list = Einstellungen.getDBService().createList(Mitglied.class);
-      // Das Mitglied ist entweder noch angemeldet oder das Abmeldedatum liegt
-      // nach dem Stichtag.
-      list.addFilter("(austritt is null or austritt > ?)",
-          new Object[] { new java.sql.Date(stichtag.getTime()) });
+
+      // Das Mitglied muss bereits eingetreten sein
+      list.addFilter("(eintritt <= ?) ", new Object[] { new java.sql.Date(stichtag
+          .getTime()) });
       // Beitragsfreie Mitglieder können auch unberücksichtigt bleiben.
       if (beitragsfrei.length() > 0)
       {
