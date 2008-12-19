@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ZusatzabbuchungImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/29 13:17:37 $
+ * $Revision: 1.7 $
+ * $Date: 2008/12/19 12:25:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzabbuchungImpl.java,v $
+ * Revision 1.7  2008/12/19 12:25:52  jost
+ * Bugfix FÃ¤lligkeitsberechung
+ *
  * Revision 1.6  2008/11/29 13:17:37  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -236,10 +239,10 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
   public boolean isAktiv() throws RemoteException
   {
     // Wenn der Auftrag noch nie ausgeführt wurde, ist er auszuführen
-    if (getAusfuehrung() == null)
-    {
-      return true;
-    }
+//    if (getAusfuehrung() == null)
+//    {
+//      return true;
+//    }
     // Einmalige Ausführung
     if (getIntervall().intValue() == IntervallZusatzzahlung.KEIN)
     {
@@ -263,7 +266,7 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
     {
       return false;
     }
-    if (getFaelligkeit().getTime() >= Datum.getHeute().getTime())
+    if (getFaelligkeit().getTime() <= Datum.getHeute().getTime())
     {
       return true;
     }
