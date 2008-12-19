@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/11/29 13:12:24 $
+ * $Revision: 1.17 $
+ * $Date: 2008/12/19 06:55:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.17  2008/12/19 06:55:10  jost
+ * Wenn die Spalte adressierungszusatz in der Import-Datei fehlt, wird Leerstring in die DB eingetragen.
+ *
  * Revision 1.16  2008/11/29 13:12:24  jost
  * Refactoring: Code-Optimierung
  *
@@ -182,7 +185,7 @@ public class Import
         }
         catch (Exception e)
         {
-          // nichts zu tun
+          m.setAdressierungszusatz("");
         }
 
         try
