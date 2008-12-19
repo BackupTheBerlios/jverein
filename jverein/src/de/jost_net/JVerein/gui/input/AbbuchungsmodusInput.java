@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/AbbuchungsmodusInput.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/29 13:10:11 $
+ * $Revision: 1.7 $
+ * $Date: 2008/12/19 06:54:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungsmodusInput.java,v $
+ * Revision 1.7  2008/12/19 06:54:02  jost
+ * Eingetretene Mitglieder auch bei monatlicher, .... Abrechnung
+ *
  * Revision 1.6  2008/11/29 13:10:11  jost
  * Refactoring: Code-Optimierung
  *
@@ -118,6 +121,7 @@ public class AbbuchungsmodusInput extends SelectInput
       l.add(new AbbuchungsmodusObject(HA));
       l.add(new AbbuchungsmodusObject(VI));
       l.add(new AbbuchungsmodusObject(MO));
+      l.add(new AbbuchungsmodusObject(EINGETRETENEMITGLIEDER));
     }
     return PseudoIterator.fromArray((AbbuchungsmodusObject[]) l
         .toArray(new AbbuchungsmodusObject[l.size()]));
