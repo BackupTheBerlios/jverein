@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/12/13 16:21:17 $
+ * $Revision: 1.11 $
+ * $Date: 2008/12/19 06:52:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.11  2008/12/19 06:52:57  jost
+ * Überflüssiges Import-Statement entfernt
+ *
  * Revision 1.10  2008/12/13 16:21:17  jost
  * Bugfix Beitragsart.
  *
@@ -43,7 +46,6 @@
 package de.jost_net.JVerein.gui.control;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
