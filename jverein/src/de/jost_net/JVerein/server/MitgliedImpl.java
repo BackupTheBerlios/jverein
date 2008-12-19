@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.19 $
- * $Date: 2008/11/30 18:58:37 $
+ * $Revision: 1.20 $
+ * $Date: 2008/12/19 06:55:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.20  2008/12/19 06:55:44  jost
+ * Workaround f. fehlerhaften Import (Adressierungszusatz)
+ *
  * Revision 1.19  2008/11/30 18:58:37  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
@@ -562,7 +565,8 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
    */
   public String getAnschrift() throws RemoteException
   {
-    return (getAdressierungszusatz().length() > 0 ? getAdressierungszusatz()
+    return (getAdressierungszusatz() != null
+        && getAdressierungszusatz().length() > 0 ? getAdressierungszusatz()
         + ", " : "")
         + getStrasse() + ", " + getPlz() + " " + getOrt();
   }
