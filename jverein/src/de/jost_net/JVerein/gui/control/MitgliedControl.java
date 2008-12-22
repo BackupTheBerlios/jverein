@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.48 $
- * $Date: 2008/12/22 21:09:21 $
+ * $Revision: 1.49 $
+ * $Date: 2008/12/22 21:43:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.49  2008/12/22 21:43:46  jost
+ * Telefonnummern auf 20 Stellen erweitert.
+ *
  * Revision 1.48  2008/12/22 21:09:21  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -599,7 +602,7 @@ public class MitgliedControl extends AbstractControl
     {
       return telefonprivat;
     }
-    telefonprivat = new TextInput(getMitglied().getTelefonprivat(), 15);
+    telefonprivat = new TextInput(getMitglied().getTelefonprivat(), 20);
     return telefonprivat;
   }
 
@@ -609,7 +612,7 @@ public class MitgliedControl extends AbstractControl
     {
       return telefondienstlich;
     }
-    telefondienstlich = new TextInput(getMitglied().getTelefondienstlich(), 15);
+    telefondienstlich = new TextInput(getMitglied().getTelefondienstlich(), 20);
     return telefondienstlich;
   }
 
@@ -619,7 +622,7 @@ public class MitgliedControl extends AbstractControl
     {
       return handy;
     }
-    handy = new TextInput(getMitglied().getHandy(), 15);
+    handy = new TextInput(getMitglied().getHandy(), 20);
     return handy;
   }
 
@@ -964,21 +967,21 @@ public class MitgliedControl extends AbstractControl
     zusatzbetraegeList.setRememberColWidths(true);
     zusatzbetraegeList.setRememberOrder(true);
 
-    zusatzbetraegeList.addColumn("Startdatum", "startdatum",
-        new DateFormatter(Einstellungen.DATEFORMAT));
+    zusatzbetraegeList.addColumn("Startdatum", "startdatum", new DateFormatter(
+        Einstellungen.DATEFORMAT));
     zusatzbetraegeList.addColumn("nächste Fälligkeit", "faelligkeit",
         new DateFormatter(Einstellungen.DATEFORMAT));
     zusatzbetraegeList.addColumn("letzte Ausführung", "ausfuehrung",
         new DateFormatter(Einstellungen.DATEFORMAT));
     zusatzbetraegeList.addColumn("Intervall", "intervalltext");
-    zusatzbetraegeList.addColumn("Endedatum", "endedatum",
-        new DateFormatter(Einstellungen.DATEFORMAT));
+    zusatzbetraegeList.addColumn("Endedatum", "endedatum", new DateFormatter(
+        Einstellungen.DATEFORMAT));
     zusatzbetraegeList.addColumn("Buchungstext", "buchungstext");
-    zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter(
-        "", Einstellungen.DECIMALFORMAT));
+    zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
+        Einstellungen.DECIMALFORMAT));
     zusatzbetraegeList.addColumn("aktiv", "aktiv");
-    zusatzbetraegeList.setContextMenu(new ZusatzbetraegeMenu(
-        zusatzbetraegeList));
+    zusatzbetraegeList
+        .setContextMenu(new ZusatzbetraegeMenu(zusatzbetraegeList));
     return zusatzbetraegeList;
   }
 
