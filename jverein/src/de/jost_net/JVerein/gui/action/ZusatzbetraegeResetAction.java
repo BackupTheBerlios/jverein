@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/ZusatzabbuchungResetAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/03/30 13:20:16 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ZusatzbetraegeResetAction.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/12/22 21:07:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ZusatzabbuchungResetAction.java,v $
+ * $Log: ZusatzbetraegeResetAction.java,v $
+ * Revision 1.1  2008/12/22 21:07:48  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.3  2007/03/30 13:20:16  jost
  * Tabelle updaten.
  *
@@ -23,7 +26,7 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
+import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
@@ -32,26 +35,26 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Ausführungsdatum einer Zusatzabbuchung entfernen.
+ * Ausführungsdatum eines Zusatzbetrages entfernen.
  */
-public class ZusatzabbuchungResetAction implements Action
+public class ZusatzbetraegeResetAction implements Action
 {
   private TablePart table;
 
-  public ZusatzabbuchungResetAction(TablePart table)
+  public ZusatzbetraegeResetAction(TablePart table)
   {
     this.table = table;
   }
 
   public void handleAction(Object context) throws ApplicationException
   {
-    if (context == null || !(context instanceof Zusatzabbuchung))
+    if (context == null || !(context instanceof Zusatzbetrag))
     {
-      throw new ApplicationException("Keine Zusatzabbuchung ausgewählt");
+      throw new ApplicationException("Kein Zusatzbetrag ausgewählt");
     }
     try
     {
-      Zusatzabbuchung z = (Zusatzabbuchung) context;
+      Zusatzbetrag z = (Zusatzbetrag) context;
       if (z.isNewObject())
       {
         return;
@@ -59,7 +62,7 @@ public class ZusatzabbuchungResetAction implements Action
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
       d.setTitle("Ausführungsdatum zurücksetzen");
       d
-          .setText("Wollen Sie das Ausführungsdatum dieser Zusatzabbuchung wirklich zurücksetzen?");
+          .setText("Wollen Sie das Ausführungsdatum dieses Zusatzbetrages wirklich zurücksetzen?");
       try
       {
         Boolean choice = (Boolean) d.open();
@@ -68,7 +71,7 @@ public class ZusatzabbuchungResetAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error("Fehler beim Reset der Zusatzbuchung", e);
+        Logger.error("Fehler beim Reset des Zusatzbetrages", e);
         return;
       }
       int ind = table.removeItem(z);
@@ -79,7 +82,7 @@ public class ZusatzabbuchungResetAction implements Action
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Zurücksetzen des Ausführungsdatums der Zusatzabbuchung.";
+      String fehler = "Fehler beim Zurücksetzen des Ausführungsdatums des Zusatzbetrages.";
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

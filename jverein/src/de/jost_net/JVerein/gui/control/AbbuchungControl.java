@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.18 $
- * $Date: 2008/11/30 10:44:45 $
+ * $Revision: 1.19 $
+ * $Date: 2008/12/22 21:08:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.19  2008/12/22 21:08:19  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.18  2008/11/30 10:44:45  jost
  * Bugfix Abbuchungsmodus
  *
@@ -109,7 +112,7 @@ public class AbbuchungControl extends AbstractControl
 
   private TextInput zahlungsgrund;
 
-  private CheckboxInput zusatzabbuchung;
+  private CheckboxInput zusatzbetrag;
 
   private CheckboxInput kursteilnehmer;
 
@@ -215,14 +218,14 @@ public class AbbuchungControl extends AbstractControl
     return zahlungsgrund;
   }
 
-  public CheckboxInput getZusatzabbuchung() throws RemoteException
+  public CheckboxInput getZusatzbetrag() throws RemoteException
   {
-    if (zusatzabbuchung != null)
+    if (zusatzbetrag != null)
     {
-      return zusatzabbuchung;
+      return zusatzbetrag;
     }
-    zusatzabbuchung = new CheckboxInput(false);
-    return zusatzabbuchung;
+    zusatzbetrag = new CheckboxInput(false);
+    return zusatzbetrag;
   }
 
   public CheckboxInput getKursteilnehmer() throws RemoteException

@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ZusatzabbuchungControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/11/30 18:58:00 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/12/22 21:09:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ZusatzabbuchungControl.java,v $
+ * $Log: ZusatzbetragControl.java,v $
+ * Revision 1.1  2008/12/22 21:09:42  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.10  2008/11/30 18:58:00  jost
  * Refactoring: Code-Optimierung
  *
@@ -56,11 +59,11 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
-import de.jost_net.JVerein.gui.action.ZusatzabbuchungAction;
-import de.jost_net.JVerein.gui.menu.ZusatzabbuchungMenu;
+import de.jost_net.JVerein.gui.action.ZusatzbetraegeAction;
+import de.jost_net.JVerein.gui.menu.ZusatzbetraegeMenu;
 import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Mitglied;
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
+import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
@@ -80,7 +83,7 @@ import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
-public class ZusatzabbuchungControl extends AbstractControl
+public class ZusatzbetragControl extends AbstractControl
 {
   private DateInput faelligkeit = null;
 
@@ -88,7 +91,7 @@ public class ZusatzabbuchungControl extends AbstractControl
 
   private DecimalInput betrag;
 
-  private Zusatzabbuchung zuab;
+  private Zusatzbetrag zuab;
 
   private DateInput startdatum;
 
@@ -100,20 +103,20 @@ public class ZusatzabbuchungControl extends AbstractControl
 
   private SelectInput ausfuehrungSuch = null;
 
-  private TablePart zusatzabbuchungsList;
+  private TablePart zusatzbetraegeList;
 
-  public ZusatzabbuchungControl(AbstractView view)
+  public ZusatzbetragControl(AbstractView view)
   {
     super(view);
   }
 
-  public Zusatzabbuchung getZusatzabbuchung()
+  public Zusatzbetrag getZusatzbetrag()
   {
     if (zuab != null)
     {
       return zuab;
     }
-    zuab = (Zusatzabbuchung) getCurrentObject();
+    zuab = (Zusatzbetrag) getCurrentObject();
     return zuab;
   }
 
@@ -124,7 +127,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       return faelligkeit;
     }
 
-    Date d = getZusatzabbuchung().getFaelligkeit();
+    Date d = getZusatzbetrag().getFaelligkeit();
 
     this.faelligkeit = new DateInput(d, Einstellungen.DATEFORMAT);
     this.faelligkeit.setTitle("Fälligkeit");
@@ -149,7 +152,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     {
       return buchungstext;
     }
-    buchungstext = new TextInput(getZusatzabbuchung().getBuchungstext(), 27);
+    buchungstext = new TextInput(getZusatzbetrag().getBuchungstext(), 27);
     buchungstext.setMandatory(true);
     return buchungstext;
   }
@@ -160,7 +163,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     {
       return betrag;
     }
-    betrag = new DecimalInput(getZusatzabbuchung().getBetrag(),
+    betrag = new DecimalInput(getZusatzbetrag().getBetrag(),
         Einstellungen.DECIMALFORMAT);
     betrag.setMandatory(true);
     return betrag;
@@ -173,7 +176,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       return startdatum;
     }
 
-    Date d = getZusatzabbuchung().getStartdatum();
+    Date d = getZusatzbetrag().getStartdatum();
     this.startdatum = new DateInput(d, Einstellungen.DATEFORMAT);
     this.startdatum.setTitle("Startdatum");
     this.startdatum.setText("Bitte Startdatum wählen");
@@ -198,7 +201,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     {
       return intervall;
     }
-    Integer i = getZusatzabbuchung().getIntervall();
+    Integer i = getZusatzbetrag().getIntervall();
     if (i == null)
     {
       i = new Integer(0);
@@ -215,7 +218,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       return endedatum;
     }
 
-    Date d = getZusatzabbuchung().getEndedatum();
+    Date d = getZusatzbetrag().getEndedatum();
     this.endedatum = new DateInput(d, Einstellungen.DATEFORMAT);
     this.endedatum.setTitle("Startdatum");
     this.endedatum.setText("Bitte Startdatum wählen");
@@ -240,7 +243,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       return ausfuehrung;
     }
 
-    Date d = getZusatzabbuchung().getAusfuehrung();
+    Date d = getZusatzbetrag().getAusfuehrung();
 
     this.ausfuehrung = new DateInput(d, Einstellungen.DATEFORMAT);
     this.ausfuehrung.setTitle("Ausführung");
@@ -296,7 +299,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       {
         try
         {
-          getZusatzabbuchungsList();
+          getZusatzbetraegeList();
         }
         catch (RemoteException e)
         {
@@ -312,7 +315,7 @@ public class ZusatzabbuchungControl extends AbstractControl
   {
     try
     {
-      Zusatzabbuchung z = getZusatzabbuchung();
+      Zusatzbetrag z = getZusatzbetrag();
       z.setFaelligkeit((Date) getFaelligkeit().getValue());
       z.setStartdatum((Date) getStartdatum().getValue());
       IntervallZusatzzahlung iz = (IntervallZusatzzahlung) getIntervall()
@@ -323,7 +326,7 @@ public class ZusatzabbuchungControl extends AbstractControl
       Double d = (Double) getBetrag().getValue();
       z.setBetrag(d.doubleValue());
       z.store();
-      GUI.getStatusBar().setSuccessText("Zusatzabbuchung gespeichert");
+      GUI.getStatusBar().setSuccessText("Zusatzbetrag gespeichert");
     }
     catch (ApplicationException e)
     {
@@ -331,16 +334,16 @@ public class ZusatzabbuchungControl extends AbstractControl
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler bei speichern der Zusatzabbuchung";
+      String fehler = "Fehler bei speichern des Zusatzbetrages";
       Logger.error(fehler, e);
       GUI.getStatusBar().setErrorText(fehler);
     }
   }
 
-  public Part getZusatzabbuchungsList() throws RemoteException
+  public Part getZusatzbetraegeList() throws RemoteException
   {
     DBService service = Einstellungen.getDBService();
-    DBIterator zusatzabbuchungen = service.createList(Zusatzabbuchung.class);
+    DBIterator zusatzbetraege = service.createList(Zusatzbetrag.class);
     if (this.ausfuehrungSuch.getText().equals("Alle"))
     {
       // nichts tun
@@ -351,7 +354,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     }
     else if (this.ausfuehrungSuch.getText().equals("Noch nicht ausgeführt"))
     {
-      zusatzabbuchungen.addFilter("ausfuehrung is null");
+      zusatzbetraege.addFilter("ausfuehrung is null");
     }
     else
     {
@@ -359,20 +362,20 @@ public class ZusatzabbuchungControl extends AbstractControl
       {
         Date d = Einstellungen.DATEFORMAT.parse(this.ausfuehrungSuch.getText());
         java.sql.Date sqd = new java.sql.Date(d.getTime());
-        zusatzabbuchungen.addFilter("ausfuehrung = ?", new Object[] { sqd });
+        zusatzbetraege.addFilter("ausfuehrung = ?", new Object[] { sqd });
       }
       catch (ParseException e)
       {
         e.printStackTrace();
       }
     }
-    zusatzabbuchungen.setOrder("ORDER BY ausfuehrung DESC, faelligkeit DESC");
+    zusatzbetraege.setOrder("ORDER BY ausfuehrung DESC, faelligkeit DESC");
 
-    if (zusatzabbuchungsList == null)
+    if (zusatzbetraegeList == null)
     {
-      zusatzabbuchungsList = new TablePart(zusatzabbuchungen,
-          new ZusatzabbuchungAction(null));
-      zusatzabbuchungsList.addColumn("Name", "mitglied", new Formatter()
+      zusatzbetraegeList = new TablePart(zusatzbetraege,
+          new ZusatzbetraegeAction(null));
+      zusatzbetraegeList.addColumn("Name", "mitglied", new Formatter()
       {
         public String format(Object o)
         {
@@ -393,40 +396,39 @@ public class ZusatzabbuchungControl extends AbstractControl
           return name;
         }
       });
-      zusatzabbuchungsList.addColumn("Startdatum", "startdatum",
+      zusatzbetraegeList.addColumn("Startdatum", "startdatum",
           new DateFormatter(Einstellungen.DATEFORMAT));
-      zusatzabbuchungsList.addColumn("nächste Fälligkeit", "faelligkeit",
+      zusatzbetraegeList.addColumn("nächste Fälligkeit", "faelligkeit",
           new DateFormatter(Einstellungen.DATEFORMAT));
-      zusatzabbuchungsList.addColumn("letzte Ausführung", "ausfuehrung",
+      zusatzbetraegeList.addColumn("letzte Ausführung", "ausfuehrung",
           new DateFormatter(Einstellungen.DATEFORMAT));
-      zusatzabbuchungsList.addColumn("Intervall", "intervalltext");
-      zusatzabbuchungsList.addColumn("Endedatum", "endedatum",
-          new DateFormatter(Einstellungen.DATEFORMAT));
-      zusatzabbuchungsList.addColumn("Buchungstext", "buchungstext");
-      zusatzabbuchungsList.addColumn("Betrag", "betrag", new CurrencyFormatter(
+      zusatzbetraegeList.addColumn("Intervall", "intervalltext");
+      zusatzbetraegeList.addColumn("Endedatum", "endedatum", new DateFormatter(
+          Einstellungen.DATEFORMAT));
+      zusatzbetraegeList.addColumn("Buchungstext", "buchungstext");
+      zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter(
           "", Einstellungen.DECIMALFORMAT));
-      zusatzabbuchungsList.addColumn("aktiv", "aktiv");
+      zusatzbetraegeList.addColumn("aktiv", "aktiv");
 
-      zusatzabbuchungsList.setContextMenu(new ZusatzabbuchungMenu(
-          zusatzabbuchungsList));
-      zusatzabbuchungsList.setRememberColWidths(true);
-      zusatzabbuchungsList.setRememberOrder(true);
-      zusatzabbuchungsList.setSummary(true);
+      zusatzbetraegeList.setContextMenu(new ZusatzbetraegeMenu(
+          zusatzbetraegeList));
+      zusatzbetraegeList.setRememberColWidths(true);
+      zusatzbetraegeList.setRememberOrder(true);
+      zusatzbetraegeList.setSummary(true);
     }
     else
     {
-      zusatzabbuchungsList.removeAll();
-      while (zusatzabbuchungen.hasNext())
+      zusatzbetraegeList.removeAll();
+      while (zusatzbetraege.hasNext())
       {
-        zusatzabbuchungsList
-            .addItem((Zusatzabbuchung) zusatzabbuchungen.next());
+        zusatzbetraegeList.addItem((Zusatzbetrag) zusatzbetraege.next());
       }
     }
     if (this.ausfuehrungSuch.getText().equals("Aktive"))
     {
-      nichtAktiveEliminieren(zusatzabbuchungsList);
+      nichtAktiveEliminieren(zusatzbetraegeList);
     }
-    return zusatzabbuchungsList;
+    return zusatzbetraegeList;
   }
 
   @SuppressWarnings("unchecked")
@@ -436,7 +438,7 @@ public class ZusatzabbuchungControl extends AbstractControl
     Iterator it = li.iterator();
     while (it.hasNext())
     {
-      Zusatzabbuchung z = (Zusatzabbuchung) it.next();
+      Zusatzbetrag z = (Zusatzbetrag) it.next();
       if (!z.isAktiv())
       {
         table.removeItem(z);

@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/ZusatzabbuchungVorherigeFaelligkeitAction.java,v $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ZusatzbetraegeVorherigeFaelligkeitAction.java,v $
  * $Revision: 1.1 $
- * $Date: 2007/03/30 13:20:45 $
+ * $Date: 2008/12/22 21:08:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ZusatzabbuchungVorherigeFaelligkeitAction.java,v $
+ * $Log: ZusatzbetraegeVorherigeFaelligkeitAction.java,v $
+ * Revision 1.1  2008/12/22 21:08:01  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.1  2007/03/30 13:20:45  jost
  * Neu
  *
@@ -18,7 +21,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
+import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.util.Datum;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -28,26 +31,26 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Vorheriges Fälligkeitsdatum einer Zusatzabbuchung setzen.
+ * Vorheriges Fälligkeitsdatum eines Zusatzbetrages setzen.
  */
-public class ZusatzabbuchungVorherigeFaelligkeitAction implements Action
+public class ZusatzbetraegeVorherigeFaelligkeitAction implements Action
 {
   private TablePart table;
 
-  public ZusatzabbuchungVorherigeFaelligkeitAction(TablePart table)
+  public ZusatzbetraegeVorherigeFaelligkeitAction(TablePart table)
   {
     this.table = table;
   }
 
   public void handleAction(Object context) throws ApplicationException
   {
-    if (context == null || !(context instanceof Zusatzabbuchung))
+    if (context == null || !(context instanceof Zusatzbetrag))
     {
-      throw new ApplicationException("Keine Zusatzabbuchung ausgewählt");
+      throw new ApplicationException("Kein Zusatzbetrag ausgewählt");
     }
     try
     {
-      Zusatzabbuchung z = (Zusatzabbuchung) context;
+      Zusatzbetrag z = (Zusatzbetrag) context;
       if (z.isNewObject())
       {
         return;
@@ -65,7 +68,7 @@ public class ZusatzabbuchungVorherigeFaelligkeitAction implements Action
       {
         Logger
             .error(
-                "Fehler beim Setzen des vorherigen Fälligkeitsdatums der Zusatzbuchung",
+                "Fehler beim Setzen des vorherigen Fälligkeitsdatums des Zusatzbetrages",
                 e);
         return;
       }
@@ -88,7 +91,7 @@ public class ZusatzabbuchungVorherigeFaelligkeitAction implements Action
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Zurücksetzen des Ausführungsdatums der Zusatzabbuchung.";
+      String fehler = "Fehler beim Zurücksetzen des Ausführungsdatums des Zusatzbetrages.";
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

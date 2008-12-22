@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.17 $
- * $Date: 2008/11/29 13:04:15 $
+ * $Revision: 1.18 $
+ * $Date: 2008/12/22 21:04:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.18  2008/12/22 21:04:52  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.17  2008/11/29 13:04:15  jost
  * Refactoring: Code-Optimierung
  *
@@ -139,7 +142,7 @@ public class Einstellungen
             "eintrittsdatum.pflicht", true));
         einstellung.setKommunikationsdaten(settings.getBoolean(
             "kommunikationsdaten.einblenden", true));
-        einstellung.setZusatzabbuchung(settings.getBoolean(
+        einstellung.setZusatzbetrag(settings.getBoolean(
             "zusatzabbuchung.einblenden", true));
         einstellung.setVermerke(settings
             .getBoolean("vermerke.einblenden", true));

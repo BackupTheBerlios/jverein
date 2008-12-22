@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/29 13:04:57 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/22 21:05:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
+ * Revision 1.3  2008/12/22 21:05:14  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.2  2008/11/29 13:04:57  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -47,7 +50,7 @@ import de.jost_net.JVerein.server.MitgliedImpl;
 import de.jost_net.JVerein.server.SpendenbescheinigungImpl;
 import de.jost_net.JVerein.server.StammdatenImpl;
 import de.jost_net.JVerein.server.WiedervorlageImpl;
-import de.jost_net.JVerein.server.ZusatzabbuchungImpl;
+import de.jost_net.JVerein.server.ZusatzbetragImpl;
 import de.jost_net.JVerein.server.ZusatzfelderImpl;
 import de.willuhn.datasource.BeanUtil;
 import de.willuhn.datasource.GenericObject;
@@ -202,8 +205,8 @@ public class BackupCreateAction implements Action
           backup(WiedervorlageImpl.class, writer, monitor);
           monitor.addPercentComplete(5);
 
-          monitor.setStatusText("Speichere Zusatzabbuchungen");
-          backup(ZusatzabbuchungImpl.class, writer, monitor);
+          monitor.setStatusText("Speichere Zusatzbetraege");
+          backup(ZusatzbetragImpl.class, writer, monitor);
           monitor.addPercentComplete(5);
 
           monitor.setStatusText("Speichere Zusatzfelder");

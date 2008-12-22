@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/12/13 16:21:56 $
+ * $Revision: 1.14 $
+ * $Date: 2008/12/22 21:08:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.14  2008/12/22 21:08:50  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.13  2008/12/13 16:21:56  jost
  * Bugfix Standardwert
  *
@@ -78,7 +81,7 @@ public class EinstellungControl extends AbstractControl
 
   private CheckboxInput kommunikationsdaten;
 
-  private CheckboxInput zusatzabbuchung;
+  private CheckboxInput zusatzbetrag;
 
   private CheckboxInput vermerke;
 
@@ -144,15 +147,15 @@ public class EinstellungControl extends AbstractControl
     return kommunikationsdaten;
   }
 
-  public CheckboxInput getZusatzabbuchung() throws RemoteException
+  public CheckboxInput getZusatzbetrag() throws RemoteException
   {
-    if (zusatzabbuchung != null)
+    if (zusatzbetrag != null)
     {
-      return zusatzabbuchung;
+      return zusatzbetrag;
     }
-    zusatzabbuchung = new CheckboxInput(Einstellungen.getEinstellung()
-        .getZusatzabbuchung());
-    return zusatzabbuchung;
+    zusatzbetrag = new CheckboxInput(Einstellungen.getEinstellung()
+        .getZusatzbetrag());
+    return zusatzbetrag;
   }
 
   public CheckboxInput getVermerke() throws RemoteException
@@ -292,7 +295,7 @@ public class EinstellungControl extends AbstractControl
       e.setGeburtsdatumPflicht((Boolean) geburtsdatumpflicht.getValue());
       e.setEintrittsdatumPflicht((Boolean) eintrittsdatumpflicht.getValue());
       e.setKommunikationsdaten((Boolean) kommunikationsdaten.getValue());
-      e.setZusatzabbuchung((Boolean) zusatzabbuchung.getValue());
+      e.setZusatzbetrag((Boolean) zusatzbetrag.getValue());
       e.setVermerke((Boolean) vermerke.getValue());
       e.setWiedervorlage((Boolean) wiedervorlage.getValue());
       e.setKursteilnehmer((Boolean) kursteilnehmer.getValue());
