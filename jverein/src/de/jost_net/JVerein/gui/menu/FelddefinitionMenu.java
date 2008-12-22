@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/FelddefinitionMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/04/10 18:58:57 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:13:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionMenu.java,v $
+ * Revision 1.2  2008/12/22 21:13:21  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.1  2008/04/10 18:58:57  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -32,6 +35,6 @@ public class FelddefinitionMenu extends ContextMenu
   public FelddefinitionMenu()
   {
     addItem(new CheckedContextMenuItem("Löschen...",
-        new FelddefinitionDeleteAction()));
+        new FelddefinitionDeleteAction(), "user-trash.png"));
   }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/Attic/EigenschaftenMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/25 16:03:45 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:13:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenMenu.java,v $
+ * Revision 1.2  2008/12/22 21:13:05  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.1  2008/01/25 16:03:45  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -30,13 +33,13 @@ public class EigenschaftenMenu extends ContextMenu
 {
 
   /**
-   * Erzeugt ein Kontext-Menu fuer die Liste der Zusatzabbuchungen.
+   * Erzeugt ein Kontext-Menu fuer die Liste der Eigenschaften.
    */
   public EigenschaftenMenu(EigenschaftenControl control, Mitglied m)
   {
     addItem(new ContextMenuItem("Neu ...", new EigenschaftenNewAction(control,
-        m)));
-    addItem(new CheckedContextMenuItem("Löschen", new EigenschaftenDeleteAction(
-        control)));
+        m), "document-new.png"));
+    addItem(new CheckedContextMenuItem("Löschen",
+        new EigenschaftenDeleteAction(control), "user-trash.png"));
   }
 }

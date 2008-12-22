@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/KursteilnehmerMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/03/21 12:10:00 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/22 21:14:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerMenu.java,v $
+ * Revision 1.3  2008/12/22 21:14:32  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.2  2007/03/21 12:10:00  jost
  * Neu: Abbuchungsdatum beim Kursteilnehmer kann zurÃ¼ckgesetzt werden.
  *
@@ -35,8 +38,8 @@ public class KursteilnehmerMenu extends ContextMenu
   public KursteilnehmerMenu(TablePart table)
   {
     addItem(new CheckedContextMenuItem("Abbuchungsdatum löschen...",
-        new KursteilnehmerAbuResetAction(table)));
+        new KursteilnehmerAbuResetAction(table), "user-trash.png"));
     addItem(new CheckedContextMenuItem("Löschen...",
-        new KursteilnehmerDeleteAction()));
+        new KursteilnehmerDeleteAction(), "user-trash.png"));
   }
 }

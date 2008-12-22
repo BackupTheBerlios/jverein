@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/AnfangsbestandMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:50:30 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:10:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandMenu.java,v $
+ * Revision 1.2  2008/12/22 21:10:37  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.1  2008/05/22 06:50:30  jost
  * BuchfÃ¼hrung
  *
@@ -26,11 +29,11 @@ public class AnfangsbestandMenu extends ContextMenu
 {
 
   /**
-   * Erzeugt ein Kontext-Menu fuer die Liste der Zusatzabbuchungen.
+   * Erzeugt ein Kontext-Menu fuer die Liste der Zusatzbeträge.
    */
   public AnfangsbestandMenu()
   {
     addItem(new CheckedContextMenuItem("Löschen...",
-        new AnfangsbestandDeleteAction()));
+        new AnfangsbestandDeleteAction(),"user-trash.png"));
   }
 }

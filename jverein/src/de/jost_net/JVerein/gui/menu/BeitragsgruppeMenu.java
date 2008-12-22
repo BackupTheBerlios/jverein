@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BeitragsgruppeMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/02 13:41:04 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/22 21:12:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeMenu.java,v $
+ * Revision 1.3  2008/12/22 21:12:08  jost
+ * Icons ins Menü aufgenommen.
+ *
  * Revision 1.2  2007/12/02 13:41:04  jost
  * überflüssiges Import-Statement entfernt.
  *
@@ -34,6 +37,6 @@ public class BeitragsgruppeMenu extends ContextMenu
   public BeitragsgruppeMenu()
   {
     addItem(new CheckedContextMenuItem("L�schen...",
-        new BeitragsgruppeDeleteAction()));
+        new BeitragsgruppeDeleteAction(), "user-trash.png"));
   }
 }

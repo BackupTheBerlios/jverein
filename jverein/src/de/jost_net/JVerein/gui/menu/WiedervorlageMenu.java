@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/WiedervorlageMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/05/07 19:25:43 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:15:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageMenu.java,v $
+ * Revision 1.2  2008/12/22 21:15:41  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.1  2007/05/07 19:25:43  jost
  * Neu: Wiedervorlage
  *
@@ -22,7 +25,7 @@ import de.willuhn.jameica.gui.parts.ContextMenu;
 import de.willuhn.jameica.gui.parts.TablePart;
 
 /**
- * Kontext-Menu zu den Zusatzabbuchungen.
+ * Kontext-Menu zu den Wiedervorlagen.
  */
 public class WiedervorlageMenu extends ContextMenu
 {
@@ -35,6 +38,6 @@ public class WiedervorlageMenu extends ContextMenu
     addItem(new CheckedContextMenuItem("Erledigung",
         new WiedervorlageErledigungAction(table)));
     addItem(new CheckedContextMenuItem("Löschen...",
-        new WiedervorlageDeleteAction()));
+        new WiedervorlageDeleteAction(), "user-trash.png"));
   }
 }

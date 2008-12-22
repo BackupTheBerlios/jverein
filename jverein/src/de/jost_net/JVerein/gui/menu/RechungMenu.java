@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/Attic/RechungMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/16 18:51:44 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:15:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechungMenu.java,v $
+ * Revision 1.2  2008/12/22 21:15:08  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.1  2008/09/16 18:51:44  jost
  * Neu: Rechnung
  *
@@ -32,8 +35,8 @@ public class RechungMenu extends ContextMenu
    */
   public RechungMenu()
   {
-    addItem(new CheckedContextMenuItem("Rechnung...", new RechnungAction()));
+    addItem(new CheckedContextMenuItem("Rechnung...", new RechnungAction(),"rechnung.png"));
     addItem(new CheckedContextMenuItem("Löschen...",
-        new RechnungDeleteAction()));
+        new RechnungDeleteAction(), "user-trash.png"));
   }
 }

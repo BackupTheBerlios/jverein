@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/FormularfeldMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:11:01 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:13:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldMenu.java,v $
+ * Revision 1.2  2008/12/22 21:13:39  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.1  2008/07/18 20:11:01  jost
  * Neu: Formulare
  *
@@ -31,6 +34,6 @@ public class FormularfeldMenu extends ContextMenu
   public FormularfeldMenu()
   {
     addItem(new CheckedContextMenuItem("Löschen...",
-        new FormularfeldDeleteAction()));
+        new FormularfeldDeleteAction(), "user-trash.png"));
   }
 }

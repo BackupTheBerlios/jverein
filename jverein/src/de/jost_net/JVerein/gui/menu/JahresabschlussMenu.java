@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/JahresabschlussMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/06/28 16:58:24 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:14:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussMenu.java,v $
+ * Revision 1.2  2008/12/22 21:14:03  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.1  2008/06/28 16:58:24  jost
  * Neu: Jahresabschluss
  *
@@ -31,6 +34,6 @@ public class JahresabschlussMenu extends ContextMenu
   public JahresabschlussMenu()
   {
     addItem(new CheckedContextMenuItem("Löschen...",
-        new JahresabschlussDeleteAction()));
+        new JahresabschlussDeleteAction(), "user-trash.png"));
   }
 }

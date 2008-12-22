@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungMenu.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/12/06 10:50:07 $
+ * $Revision: 1.7 $
+ * $Date: 2008/12/22 21:12:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungMenu.java,v $
+ * Revision 1.7  2008/12/22 21:12:25  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.6  2008/12/06 10:50:07  jost
  * Bearbeiten aufgenommen
  *
@@ -35,18 +38,21 @@ import de.willuhn.jameica.gui.parts.ContextMenu;
 import de.willuhn.jameica.gui.parts.ContextMenuItem;
 
 /**
- * Kontext-Menu zu den Zusatzabbuchungen.
+ * Kontext-Menu zu den Buchungen.
  */
 public class BuchungMenu extends ContextMenu
 {
 
   /**
-   * Erzeugt ein Kontext-Menu fuer die Liste der Zusatzabbuchungen.
+   * Erzeugt ein Kontext-Menu fuer die Liste der Buchungen.
    */
   public BuchungMenu()
   {
-    addItem(new ContextMenuItem("Neu", new BuchungNeuAction()));
-    addItem(new CheckedContextMenuItem("Bearbeiten", new BuchungAction()));
-    addItem(new CheckedContextMenuItem("Löschen...", new BuchungDeleteAction()));
+    addItem(new ContextMenuItem("Neu", new BuchungNeuAction(),
+        "document-new.png"));
+    addItem(new CheckedContextMenuItem("Bearbeiten", new BuchungAction(),
+        "edit.png"));
+    addItem(new CheckedContextMenuItem("Löschen...", new BuchungDeleteAction(),
+        "user-trash.png"));
   }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedMenu.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/07/18 20:11:31 $
+ * $Revision: 1.4 $
+ * $Date: 2008/12/22 21:14:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedMenu.java,v $
+ * Revision 1.4  2008/12/22 21:14:57  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.3  2008/07/18 20:11:31  jost
  * Neu: Spendenbescheinigung
  *
@@ -38,9 +41,11 @@ public class MitgliedMenu extends ContextMenu
    */
   public MitgliedMenu()
   {
-    addItem(new CheckedContextMenuItem("Bearbeiten", new MitgliedDetailAction()));
-    addItem(new CheckedContextMenuItem("Löschen...", new MitgliedDeleteAction()));
+    addItem(new CheckedContextMenuItem("Bearbeiten",
+        new MitgliedDetailAction(), "edit.png"));
+    addItem(new CheckedContextMenuItem("Löschen...",
+        new MitgliedDeleteAction(), "user-trash.png"));
     addItem(new CheckedContextMenuItem("Spendenbescheinigung",
-        new SpendenbescheinigungAction()));
+        new SpendenbescheinigungAction(), "rechnung.png"));
   }
 }

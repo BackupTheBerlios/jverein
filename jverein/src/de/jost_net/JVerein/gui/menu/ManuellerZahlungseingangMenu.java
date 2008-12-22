@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/Attic/ManuellerZahlungseingangMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/03/20 07:56:54 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/22 21:14:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangMenu.java,v $
+ * Revision 1.3  2008/12/22 21:14:45  jost
+ * Icons ins MenÃ¼ aufgenommen.
+ *
  * Revision 1.2  2007/03/20 07:56:54  jost
  * Probleme beim Encoding.
  *
@@ -39,8 +42,9 @@ public class ManuellerZahlungseingangMenu extends ContextMenu
     addItem(new CheckedContextMenuItem("Zahlungseingangsdatum setzen ...",
         new ManuellerZahlungseingangDatumSetzenAction(table)));
     addItem(new CheckedContextMenuItem("Zahlungseingangsdatum löschen ...",
-        new ManuellerZahlungseingangDatumLoeschenAction(table)));
+        new ManuellerZahlungseingangDatumLoeschenAction(table),
+        "user-trash.png"));
     addItem(new CheckedContextMenuItem("Löschen...",
-        new ManuellerZahlungseingangDeleteAction(table)));
+        new ManuellerZahlungseingangDeleteAction(table), "user-trash.png"));
   }
 }
