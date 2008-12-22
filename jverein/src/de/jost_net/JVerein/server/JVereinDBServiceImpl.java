@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/11/29 13:16:14 $
+ * $Revision: 1.8 $
+ * $Date: 2008/12/22 21:22:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
+ * Revision 1.8  2008/12/22 21:22:36  jost
+ * Bugfix MySQL-Support
+ *
  * Revision 1.7  2008/11/29 13:16:14  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -37,8 +40,6 @@ import java.io.File;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.Locale;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.DBSupport;
@@ -133,70 +134,76 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
 
   public void install() throws RemoteException
   {
-    I18N i18n = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
-        .getResources().getI18N();
     ProgressMonitor monitor = Application.getCallback().getStartupMonitor();
-    monitor.setStatusText(i18n.tr("Installiere JVerein"));
-    this.driver.install();
+    monitor.setStatusText("Installiere JVerein");
+    // this.driver.install();
 
-    PluginResources res = Application.getPluginLoader().getPlugin(
-        JVereinPlugin.class).getResources();
-    File file = new File(res.getPath() + File.separator + "sql", "create.sql");
-    this.driver.execute(getConnection(), file);
+    // PluginResources res = Application.getPluginLoader().getPlugin(
+    // JVereinPlugin.class).getResources();
+    // Wir schreiben unseren Prefix davor.
+    // String prefix = JVereinDBService.SETTINGS.getString(
+    // "database.driver.scriptprefix", "h2-");
+
+    // File file = new File(res.getPath() + File.separator + "sql",
+    // prefix + "create.sql");
+    // this.driver.execute(getConnection(), file);
   }
 
   public void update(double oldVersion, double newVersion)
       throws RemoteException
   {
-    Logger.info("starting update process for jverein");
-
-    DecimalFormat df = (DecimalFormat) DecimalFormat
-        .getInstance(Locale.ENGLISH); // Punkt als Dezimal-Trenner
-    df.setMaximumFractionDigits(1);
-    df.setMinimumFractionDigits(1);
-    df.setGroupingUsed(false);
-
-    PluginResources res = Application.getPluginLoader().getPlugin(
-        JVereinPlugin.class).getResources();
-
-    double target = newVersion;
-
-    try
-    {
-      // Wir wiederholen die Updates solange, bis wir bei der aktuellen
-      // Versionsnummer angekommen sind.
-      while (oldVersion < target)
-      {
-        newVersion = oldVersion + 0.1d;
-
-        File f = new File(res.getPath() + File.separator + "sql", "update_"
-            + df.format(oldVersion) + "-" + df.format(newVersion) + ".sql");
-
-        I18N i18n = Application.getPluginLoader()
-            .getPlugin(JVereinPlugin.class).getResources().getI18N();
-        ProgressMonitor monitor = Application.getCallback().getStartupMonitor();
-        monitor.setStatusText(i18n.tr(
-            "Führe JVerein-Update durch: von {0} zu {1}", new String[] {
-                df.format(oldVersion), df.format(newVersion) }));
-
-        this.driver.execute(getConnection(), f);
-
-        // OK, naechster Durchlauf
-        oldVersion = newVersion;
-      }
-
-      Logger.info("Update completed");
-    }
-    catch (RemoteException re)
-    {
-      throw re;
-    }
-    catch (Exception e)
-    {
-      throw new RemoteException("unable to perform database update from "
-          + oldVersion + " to " + newVersion, e);
-    }
+    //
   }
+
+  // Logger.info("starting update process for jverein");
+  //
+  // DecimalFormat df = (DecimalFormat) DecimalFormat
+  // .getInstance(Locale.ENGLISH); // Punkt als Dezimal-Trenner
+  // df.setMaximumFractionDigits(1);
+  // df.setMinimumFractionDigits(1);
+  // df.setGroupingUsed(false);
+  //
+  // PluginResources res = Application.getPluginLoader().getPlugin(
+  // JVereinPlugin.class).getResources();
+  //
+  // double target = newVersion;
+  //
+  // try
+  // {
+  // // Wir wiederholen die Updates solange, bis wir bei der aktuellen
+  // // Versionsnummer angekommen sind.
+  // while (oldVersion < target)
+  // {
+  // newVersion = oldVersion + 0.1d;
+  //
+  // File f = new File(res.getPath() + File.separator + "sql", "update_"
+  // + df.format(oldVersion) + "-" + df.format(newVersion) + ".sql");
+  //
+  // I18N i18n = Application.getPluginLoader()
+  // .getPlugin(JVereinPlugin.class).getResources().getI18N();
+  // ProgressMonitor monitor = Application.getCallback().getStartupMonitor();
+  // monitor.setStatusText(i18n.tr(
+  // "Führe JVerein-Update durch: von {0} zu {1}", new String[] {
+  // df.format(oldVersion), df.format(newVersion) }));
+  //
+  // this.driver.execute(getConnection(), f);
+  //
+  // // OK, naechster Durchlauf
+  // oldVersion = newVersion;
+  // }
+  //
+  // Logger.info("Update completed");
+  // }
+  // catch (RemoteException re)
+  // {
+  // throw re;
+  // }
+  // catch (Exception e)
+  // {
+  // throw new RemoteException("unable to perform database update from "
+  // + oldVersion + " to " + newVersion, e);
+  // }
+  // }
 
   public String getSQLTimestamp(String content) throws RemoteException
   {
