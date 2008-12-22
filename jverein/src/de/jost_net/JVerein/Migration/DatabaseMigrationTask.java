@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/DatabaseMigrationTask.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/11/29 13:14:01 $
+ * $Revision: 1.5 $
+ * $Date: 2008/12/22 21:19:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DatabaseMigrationTask.java,v $
+ * Revision 1.5  2008/12/22 21:19:57  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.4  2008/11/29 13:14:01  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -36,7 +39,7 @@ import de.jost_net.JVerein.server.MitgliedImpl;
 import de.jost_net.JVerein.server.StammdatenImpl;
 import de.jost_net.JVerein.server.VersionImpl;
 import de.jost_net.JVerein.server.WiedervorlageImpl;
-import de.jost_net.JVerein.server.ZusatzabbuchungImpl;
+import de.jost_net.JVerein.server.ZusatzbetragImpl;
 import de.willuhn.datasource.BeanUtil;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -110,7 +113,7 @@ public class DatabaseMigrationTask implements BackgroundTask
         copy(VersionImpl.class, monitor);
       }
       copy(WiedervorlageImpl.class, monitor);
-      copy(ZusatzabbuchungImpl.class, monitor);
+      copy(ZusatzbetragImpl.class, monitor);
 
       monitor.setStatus(ProgressMonitor.STATUS_DONE);
       monitor.setStatusText(i18n.tr("Fertig"));

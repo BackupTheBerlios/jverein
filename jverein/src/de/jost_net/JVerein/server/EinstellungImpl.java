@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/16 16:59:11 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/22 21:22:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.2  2008/12/22 21:22:10  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.1  2008/11/16 16:59:11  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -127,7 +130,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
     setAttribute("kommunikationsdaten", new Boolean(kommunikationsdaten));
   }
 
-  public boolean getZusatzabbuchung() throws RemoteException
+  public boolean getZusatzbetrag() throws RemoteException
   {
     Object o = getAttribute("zusatzabbuchung");
     if (o instanceof Boolean)
@@ -141,7 +144,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
     throw new RemoteException("Weder String noch Boolean");
   }
 
-  public void setZusatzabbuchung(Boolean zusatzabbuchung)
+  public void setZusatzbetrag(Boolean zusatzabbuchung)
       throws RemoteException
   {
     setAttribute("zusatzabbuchung", new Boolean(zusatzabbuchung));

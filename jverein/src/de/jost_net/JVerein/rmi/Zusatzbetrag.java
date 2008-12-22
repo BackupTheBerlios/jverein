@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Attic/Zusatzabbuchung.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/03/30 13:26:01 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Zusatzbetrag.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/12/22 21:20:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Zusatzabbuchung.java,v $
+ * $Log: Zusatzbetrag.java,v $
+ * Revision 1.1  2008/12/22 21:20:48  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.3  2007/03/30 13:26:01  jost
  * Wiederkehrende Zusatzabbuchungen.
  *
@@ -26,7 +29,7 @@ import java.util.Date;
 
 import de.willuhn.datasource.rmi.DBObject;
 
-public interface Zusatzabbuchung extends DBObject
+public interface Zusatzbetrag extends DBObject
 {
   public Mitglied getMitglied() throws RemoteException;
 

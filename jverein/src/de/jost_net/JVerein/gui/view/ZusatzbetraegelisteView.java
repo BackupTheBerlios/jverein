@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ZusatzabbuchunglisteView.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegelisteView.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/12/22 21:18:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ZusatzabbuchunglisteView.java,v $
+ * $Log: ZusatzbetraegelisteView.java,v $
+ * Revision 1.1  2008/12/22 21:18:27  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.6  2008/05/24 14:04:08  jost
  * Redatkionelle Ã„nderung
  *
@@ -32,20 +35,20 @@ package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
-import de.jost_net.JVerein.gui.control.ZusatzabbuchungControl;
+import de.jost_net.JVerein.gui.control.ZusatzbetragControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
 
-public class ZusatzabbuchunglisteView extends AbstractView
+public class ZusatzbetraegelisteView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Liste der Zusatzabbuchungen");
+    GUI.getView().setTitle("Liste der Zusatzbeträge");
 
-    final ZusatzabbuchungControl control = new ZusatzabbuchungControl(this);
+    final ZusatzbetragControl control = new ZusatzbetragControl(this);
 
     LabelGroup group = new LabelGroup(getParent(), "Ausführungstag");
     group.addLabelPair("Ausführungstag", control.getAusfuehrungSuch());
@@ -54,7 +57,7 @@ public class ZusatzabbuchunglisteView extends AbstractView
     buttons.addButton("<< Zurück", new BackAction());
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.ZUSATZABBUCHUNGEN);
-    control.getZusatzabbuchungsList().paint(this.getParent());
+    control.getZusatzbetraegeList().paint(this.getParent());
   }
 
   public void unbind() throws ApplicationException

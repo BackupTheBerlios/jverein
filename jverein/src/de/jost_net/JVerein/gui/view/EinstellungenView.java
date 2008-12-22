@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.13 $
- * $Date: 2008/11/29 13:11:38 $
+ * $Revision: 1.14 $
+ * $Date: 2008/12/22 21:17:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.14  2008/12/22 21:17:26  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.13  2008/11/29 13:11:38  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
@@ -84,8 +87,8 @@ public class EinstellungenView extends AbstractView
         .getEintrittsdatumPflicht());
     group.addLabelPair("Kommunikationsdaten anzeigen", control
         .getKommunikationsdaten());
-    group.addLabelPair("Zusatzabbuchungen anzeigen *", control
-        .getZusatzabbuchung());
+    group.addLabelPair("Zusatzbeträge anzeigen *", control
+        .getZusatzbetrag());
     group.addLabelPair("Vermerke anzeigen", control.getVermerke());
     group.addLabelPair("Wiedervorlage anzeigen *", control.getWiedervorlage());
     group

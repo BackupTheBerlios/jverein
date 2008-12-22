@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.23 $
- * $Date: 2008/11/29 13:11:50 $
+ * $Revision: 1.24 $
+ * $Date: 2008/12/22 21:17:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.24  2008/12/22 21:17:44  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.23  2008/11/29 13:11:50  jost
  * Refactoring: Code-Optimierung
  *
@@ -188,12 +191,12 @@ public class MitgliedDetailView extends AbstractView
     {
       tab3.addPart(control.getFamilienverband());
     }
-    if (Einstellungen.getEinstellung().getZusatzabbuchung())
+    if (Einstellungen.getEinstellung().getZusatzbetrag())
     {
-      TabGroup tab4 = new TabGroup(folder, "Zusatzabbuchung");
-      control.getZusatzabbuchungenTable().paint(tab4.getComposite());
+      TabGroup tab4 = new TabGroup(folder, "Zusatzbeträge");
+      control.getZusatzbetraegeTable().paint(tab4.getComposite());
       ButtonArea buttonszus = new ButtonArea(tab4.getComposite(), 1);
-      buttonszus.addButton(control.getZusatzabbuchungNeu());
+      buttonszus.addButton(control.getZusatzbetragNeu());
     }
 
     if (Einstellungen.getEinstellung().getVermerke())

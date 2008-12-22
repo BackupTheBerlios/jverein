@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ZusatzabbuchungImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/12/19 12:25:52 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzbetragImpl.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2008/12/22 21:23:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ZusatzabbuchungImpl.java,v $
+ * $Log: ZusatzbetragImpl.java,v $
+ * Revision 1.1  2008/12/22 21:23:10  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.7  2008/12/19 12:25:52  jost
  * Bugfix Fälligkeitsberechung
  *
@@ -38,18 +41,18 @@ import java.util.Date;
 
 import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Mitglied;
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
+import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.util.Datum;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
-public class ZusatzabbuchungImpl extends AbstractDBObject implements
-    Zusatzabbuchung
+public class ZusatzbetragImpl extends AbstractDBObject implements
+    Zusatzbetrag
 {
   private static final long serialVersionUID = 1L;
 
-  public ZusatzabbuchungImpl() throws RemoteException
+  public ZusatzbetragImpl() throws RemoteException
   {
     super();
   }
@@ -114,7 +117,7 @@ public class ZusatzabbuchungImpl extends AbstractDBObject implements
     }
     catch (RemoteException e)
     {
-      String fehler = "Zusatzabbuchung kann nicht gespeichert werden. Siehe system log";
+      String fehler = "Zusatzbetrag kann nicht gespeichert werden. Siehe system log";
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

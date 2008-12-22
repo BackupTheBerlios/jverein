@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.17 $
- * $Date: 2008/12/19 06:55:10 $
+ * $Revision: 1.18 $
+ * $Date: 2008/12/22 21:19:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.18  2008/12/22 21:19:31  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.17  2008/12/19 06:55:10  jost
  * Wenn die Spalte adressierungszusatz in der Import-Datei fehlt, wird Leerstring in die DB eingetragen.
  *
@@ -85,7 +88,7 @@ import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Wiedervorlage;
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
+import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.util.ApplicationException;
@@ -297,12 +300,12 @@ public class Import
   {
     try
     {
-      // Zusatzabbuchungen
+      // Zusatzbeträge
       DBIterator list = Einstellungen.getDBService().createList(
-          Zusatzabbuchung.class);
+          Zusatzbetrag.class);
       while (list.hasNext())
       {
-        Zusatzabbuchung z = (Zusatzabbuchung) list.next();
+        Zusatzbetrag z = (Zusatzbetrag) list.next();
         z.delete();
       }
       // Zusatzfelder

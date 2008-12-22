@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.25 $
- * $Date: 2008/12/19 06:54:27 $
+ * $Revision: 1.26 $
+ * $Date: 2008/12/22 21:18:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.26  2008/12/22 21:18:57  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.25  2008/12/19 06:54:27  jost
  * Keine Abrechnung bei Eintrittsdatum in der Zukunft
  *
@@ -111,7 +114,7 @@ import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
 import de.jost_net.JVerein.rmi.Mitglied;
-import de.jost_net.JVerein.rmi.Zusatzabbuchung;
+import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.util.Datum;
 import de.jost_net.OBanToo.Dtaus.CSatz;
 import de.jost_net.OBanToo.Dtaus.Dtaus2Pdf;
@@ -149,9 +152,9 @@ public class Abbuchung
 
       abbuchenMitglieder(dtaus, param.abbuchungsmodus, param.stichtag,
           param.vondatum, monitor, param.verwendungszweck);
-      if (param.zusatzabbuchung)
+      if (param.zusatzbetraege)
       {
-        abbuchenZusatzabbuchungen(dtaus);
+        abbuchenZusatzbetraege(dtaus);
       }
       if (param.kursteilnehmer)
       {
@@ -340,15 +343,15 @@ public class Abbuchung
     }
   }
 
-  private void abbuchenZusatzabbuchungen(DtausDateiWriter dtaus)
+  private void abbuchenZusatzbetraege(DtausDateiWriter dtaus)
       throws NumberFormatException, DtausException, IOException,
       ApplicationException
   {
     DBIterator list = Einstellungen.getDBService().createList(
-        Zusatzabbuchung.class);
+        Zusatzbetrag.class);
     while (list.hasNext())
     {
-      Zusatzabbuchung z = (Zusatzabbuchung) list.next();
+      Zusatzbetrag z = (Zusatzbetrag) list.next();
       if (z.isAktiv())
       {
         Mitglied m = z.getMitglied();

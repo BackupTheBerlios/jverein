@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/AbbuchungParam.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/11/30 10:45:42 $
+ * $Revision: 1.8 $
+ * $Date: 2008/12/22 21:19:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungParam.java,v $
+ * Revision 1.8  2008/12/22 21:19:17  jost
+ * Zusatzabbuchung->Zusatzbetrag
+ *
  * Revision 1.7  2008/11/30 10:45:42  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
@@ -62,7 +65,7 @@ public class AbbuchungParam
 
   public final String verwendungszweck;
 
-  public final Boolean zusatzabbuchung;
+  public final Boolean zusatzbetraege;
 
   public final Boolean kursteilnehmer;
 
@@ -88,7 +91,7 @@ public class AbbuchungParam
     abbuchungsausgabe = aa.getKey();
     vondatum = (Date) ac.getVondatum().getValue();
     verwendungszweck = (String) ac.getZahlungsgrund().getValue();
-    zusatzabbuchung = (Boolean) ac.getZusatzabbuchung().getValue();
+    zusatzbetraege = (Boolean) ac.getZusatzbetrag().getValue();
     kursteilnehmer = (Boolean) ac.getKursteilnehmer().getValue();
     dtausprint = (Boolean) ac.getDtausPrint().getValue();
     this.pdffile = pdffile;
