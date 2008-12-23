@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.18 $
- * $Date: 2008/12/22 21:19:31 $
+ * $Revision: 1.19 $
+ * $Date: 2008/12/23 21:10:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.19  2008/12/23 21:10:06  jost
+ * Vermeidung von NPE's
+ *
  * Revision 1.18  2008/12/22 21:19:31  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -240,7 +243,23 @@ public class Import
         {
           // Nichts tun
         }
+        if (m.getTelefondienstlich() == null)
+        {
+          m.setTelefondienstlich("");
+        }
+        if (m.getTelefonprivat() == null)
+        {
+          m.setTelefonprivat("");
+        }
+        if (m.getHandy() == null)
+        {
+          m.setHandy("");
+        }
         m.setEmail(results.getString("Email"));
+        if (m.getEmail() == null)
+        {
+          m.setEmail("");
+        }
         String eintritt = results.getString("Eintritt");
         if (eintritt == null || eintritt.length() == 0
             || eintritt.equals("00.00.0000"))
