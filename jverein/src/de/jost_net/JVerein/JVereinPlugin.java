@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.18 $
- * $Date: 2008/12/26 17:17:41 $
+ * $Revision: 1.19 $
+ * $Date: 2008/12/26 17:19:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.19  2008/12/26 17:19:10  jost
+ * Überprüfung der minimalen Jameica-Version.
+ *
  * Revision 1.18  2008/12/26 17:17:41  jost
  * Überprüfung der minimalen Jameica-Version.
  *
@@ -106,7 +109,7 @@ public class JVereinPlugin extends AbstractPlugin
     if (!Application.getBuildDate().equals("")
         && Application.getBuildDate().compareTo("20081222") <= 0)
     {
-      String msg = "JVerein verlangt Jameica-Version mindestens vom 22.12.2008 sein. Bitte neuere Version installieren.";
+      String msg = "JVerein verlangt Jameica-Version mindestens vom 22.12.2008. Bitte neuere Version installieren.";
       Application.addWelcomeMessage(msg);
       Logger.error(msg);
     }
