@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AboutView.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/12/01 17:46:22 $
+ * $Revision: 1.4 $
+ * $Date: 2008/12/27 15:18:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AboutView.java,v $
+ * Revision 1.4  2008/12/27 15:18:30  jost
+ * Zusätzliche Infos werden ausgegeben.
+ *
  * Revision 1.3  2007/12/01 17:46:22  jost
  * Redaktionelle Änderungen und Aufnahme der Datenbankversion
  *
@@ -60,6 +63,12 @@ public class AboutView extends AbstractDialog
 
     group.addLabelPair("Version", new LabelInput(""
         + p.getManifest().getVersion()));
+
+    group.addLabelPair("Build-Date", new LabelInput(""
+        + p.getManifest().getBuildDate()));
+
+    group.addLabelPair("Build-Nr", new LabelInput(""
+        + p.getManifest().getBuildnumber()));
 
     Version v = (Version) Einstellungen.getDBService().createObject(
         Version.class, "1");
