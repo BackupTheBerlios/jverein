@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.19 $
- * $Date: 2008/12/26 17:19:10 $
+ * $Revision: 1.20 $
+ * $Date: 2008/12/27 15:17:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.20  2008/12/27 15:17:56  jost
+ * Überflüssiges Import-Statement entfernt
+ *
  * Revision 1.19  2008/12/26 17:19:10  jost
  * Überprüfung der minimalen Jameica-Version.
  *
@@ -70,14 +73,12 @@
 package de.jost_net.JVerein;
 
 import java.rmi.RemoteException;
-import java.util.List;
 
 import de.jost_net.JVerein.gui.navigation.MyExtension;
 import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.jost_net.JVerein.server.JVereinDBServiceImpl;
 import de.willuhn.jameica.gui.extension.ExtensionRegistry;
 import de.willuhn.jameica.plugin.AbstractPlugin;
-import de.willuhn.jameica.plugin.Manifest;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
