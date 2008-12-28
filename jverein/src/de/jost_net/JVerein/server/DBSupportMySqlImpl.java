@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportMySqlImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/22 21:21:48 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/28 21:26:26 $
  * $Author: jost $
  *
  * Copyright (c) by Michael Trapp
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMySqlImpl.java,v $
+ * Revision 1.3  2008/12/28 21:26:26  jost
+ * Javadoc entfernt.
+ *
  * Revision 1.2  2008/12/22 21:21:48  jost
  * Bugfix MySQL-Support
  *
@@ -132,7 +135,7 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
     if (sqlScript == null)
       return; // Ignore
 
-    sqlScript = new File(sqlScript.getParent(),  sqlScript.getName());
+    sqlScript = new File(sqlScript.getParent(), sqlScript.getName());
     if (!sqlScript.exists())
     {
       Logger.debug("file " + sqlScript + " does not exist, skipping");
@@ -198,9 +201,6 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
     }
   }
 
-  /**
-   * @see de.willuhn.jameica.hbci.server.AbstractDBSupportImpl#getTransactionIsolationLevel()
-   */
   public int getTransactionIsolationLevel() throws RemoteException
   {
     // damit sehen wir Datenbank-Updates durch andere
