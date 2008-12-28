@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyItem.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/12/22 21:16:52 $
+ * $Revision: 1.6 $
+ * $Date: 2008/12/28 07:55:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyItem.java,v $
+ * Revision 1.6  2008/12/28 07:55:27  jost
+ * Icons an Jameica angepasst
+ *
  * Revision 1.5  2008/12/22 21:16:52  jost
  * Icons ins Menü aufgenommen.
  *
@@ -25,7 +28,7 @@
 package de.jost_net.JVerein.gui.navigation;
 
 /*******************************************************************************
- * $Revision: 1.5 $ $Date: 2008/12/22 21:16:52 $ $Author: jost $ $Locker:  $
+ * $Revision: 1.6 $ $Date: 2008/12/28 07:55:27 $ $Author: jost $ $Locker:  $
  * $State: Exp $
  * 
  * Copyright (c) by willuhn software & services All rights reserved
@@ -83,7 +86,7 @@ public class MyItem implements NavigationItem
   {
     if (action == null)
     {
-      return SWTUtil.getImage(icon != null ? icon : "folder.gif");
+      return SWTUtil.getImage(icon != null ? icon : "folder.png");
     }
     else
     {
@@ -98,7 +101,7 @@ public class MyItem implements NavigationItem
   {
     if (action == null)
     {
-      return SWTUtil.getImage(icon != null ? icon : "folderopen.gif");
+      return SWTUtil.getImage(icon != null ? icon : "folder-open.png");
     }
     else
     {
@@ -269,6 +272,9 @@ public class MyItem implements NavigationItem
 
 /*******************************************************************************
  * $Log: MyItem.java,v $
+ * Revision 1.6  2008/12/28 07:55:27  jost
+ * Icons an Jameica angepasst
+ *
  * Revision 1.5  2008/12/22 21:16:52  jost
  * Icons ins Menü aufgenommen.
  * Revision 1.4 2008/11/29 13:11:27 jost Refactoring:
