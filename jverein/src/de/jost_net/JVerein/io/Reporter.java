@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/07/10 09:22:18 $
+ * $Revision: 1.8 $
+ * $Date: 2008/12/29 08:41:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.8  2008/12/29 08:41:16  jost
+ * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
+ *
  * Revision 1.7  2008/07/10 09:22:18  jost
  * Neuer Konstruktor mit Angabe von Rändern.
  *
@@ -368,6 +371,10 @@ public class Reporter
    */
   private PdfPCell getDetailCell(Date value, int align)
   {
+    if (value.equals(Einstellungen.NODATE))
+    {
+      return getDetailCell("", Element.ALIGN_LEFT);
+    }
     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
     return getDetailCell(sdf.format(value), align);
   }

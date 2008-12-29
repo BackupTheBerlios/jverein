@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/10/01 14:17:48 $
+ * $Revision: 1.8 $
+ * $Date: 2008/12/29 08:41:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
+ * Revision 1.8  2008/12/29 08:41:04  jost
+ * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
+ *
  * Revision 1.7  2008/10/01 14:17:48  jost
  * Warnungen entfernt
  *
@@ -41,6 +44,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -108,7 +112,18 @@ public class MitgliedAuswertungPDF
         }
         report.addColumn(anschriftkommunikation, Element.ALIGN_LEFT);
         report.addColumn(m.getGeburtsdatum(), Element.ALIGN_LEFT);
-        String zelle = notNull(Einstellungen.DATEFORMAT.format(m.getEintritt()));
+
+        Date d = m.getEintritt();
+        if (d.equals(Einstellungen.NODATE))
+        {
+          d = null;
+        }
+        String zelle = "";
+        if (d != null)
+        {
+          zelle = Einstellungen.DATEFORMAT.format(d);
+        }
+
         if (m.getAustritt() != null)
         {
           zelle += "\n" + Einstellungen.DATEFORMAT.format(m.getAustritt());

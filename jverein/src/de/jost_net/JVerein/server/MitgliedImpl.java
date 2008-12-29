@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.20 $
- * $Date: 2008/12/19 06:55:44 $
+ * $Revision: 1.21 $
+ * $Date: 2008/12/29 08:41:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.21  2008/12/29 08:41:29  jost
+ * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
+ *
  * Revision 1.20  2008/12/19 06:55:44  jost
  * Workaround f. fehlerhaften Import (Adressierungszusatz)
  *
@@ -367,7 +370,12 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
 
   public Date getGeburtsdatum() throws RemoteException
   {
-    return (Date) getAttribute("geburtsdatum");
+    Date d = (Date) getAttribute("geburtsdatum");
+    if (d == null)
+    {
+      return Einstellungen.NODATE;
+    }
+    return d;
   }
 
   public void setGeburtsdatum(Date geburtsdatum) throws RemoteException
@@ -433,7 +441,12 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
 
   public Date getEintritt() throws RemoteException
   {
-    return (Date) getAttribute("eintritt");
+    Date d = (Date) getAttribute("eintritt");
+    if (d == null)
+    {
+      return Einstellungen.NODATE;
+    }
+    return d;
   }
 
   public void setEintritt(Date eintritt) throws RemoteException

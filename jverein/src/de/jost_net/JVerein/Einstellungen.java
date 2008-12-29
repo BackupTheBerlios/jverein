@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.18 $
- * $Date: 2008/12/22 21:04:52 $
+ * $Revision: 1.19 $
+ * $Date: 2008/12/29 08:40:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.19  2008/12/29 08:40:36  jost
+ * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
+ *
  * Revision 1.18  2008/12/22 21:04:52  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -71,6 +74,8 @@ import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import de.jost_net.JVerein.keys.Beitragsmodel;
 import de.jost_net.JVerein.rmi.Einstellung;
@@ -117,8 +122,19 @@ public class Einstellungen
    */
   public final static String CURRENCY = "EUR";
 
+  public static Date NODATE = new Date();
+
   static
   {
+    Calendar cal = Calendar.getInstance();
+    cal.set(Calendar.YEAR, 1900);
+    cal.set(Calendar.MONTH, Calendar.JANUARY);
+    cal.set(Calendar.DAY_OF_MONTH, 1);
+    cal.set(Calendar.HOUR, 0);
+    cal.set(Calendar.MINUTE, 0);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    NODATE.setTime(cal.getTimeInMillis());
     DECIMALFORMAT.setMinimumFractionDigits(2);
     DECIMALFORMAT.setMaximumFractionDigits(2);
     try
