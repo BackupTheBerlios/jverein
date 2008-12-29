@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/10/01 14:16:51 $
+ * $Revision: 1.4 $
+ * $Date: 2008/12/29 09:19:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
+ * Revision 1.4  2008/12/29 09:19:15  jost
+ * Vermeidung NPE: Tagesdatum besetzen
+ *
  * Revision 1.3  2008/10/01 14:16:51  jost
  * Warnungen entfernt
  *
@@ -24,9 +27,11 @@ package de.jost_net.JVerein.gui.action;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.HashMap;
 
 import jonelo.NumericalChameleon.SpokenNumbers.GermanNumber;
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.io.FormularAufbereitung;
 import de.jost_net.JVerein.rmi.Formular;
 import de.willuhn.jameica.gui.Action;
@@ -56,6 +61,7 @@ public class FormularAnzeigeAction implements Action
       map.put("Betrag in Worten", GermanNumber.toString(1234));
       map.put("Spendedatum", "15.12.2008");
       map.put("Bescheinigungsdatum", "17.12.2008");
+      map.put("Tagesdatum", Einstellungen.DATEFORMAT.format(new Date()));
       FormularAufbereitung fab = new FormularAufbereitung(file);
       fab.writeForm(formular, map);
       fab.showFormular();
