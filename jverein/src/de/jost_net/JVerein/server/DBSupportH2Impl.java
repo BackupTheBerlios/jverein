@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/12/22 21:21:21 $
+ * $Revision: 1.6 $
+ * $Date: 2008/12/30 21:58:56 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.6  2008/12/30 21:58:56  jost
+ * Überflüssiges Import-Statement entfernt.
+ *
  * Revision 1.5  2008/12/22 21:21:21  jost
  * Bugfix MySQL-Support
  *
@@ -35,7 +38,6 @@ import java.sql.Connection;
 import java.util.HashMap;
 
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.willuhn.jameica.plugin.PluginResources;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
