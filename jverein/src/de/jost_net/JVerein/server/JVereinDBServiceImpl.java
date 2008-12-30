@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/12/22 21:22:36 $
+ * $Revision: 1.9 $
+ * $Date: 2008/12/30 21:59:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
+ * Revision 1.9  2008/12/30 21:59:48  jost
+ * Anpassung an neue Versionsmimik.
+ *
  * Revision 1.8  2008/12/22 21:22:36  jost
  * Bugfix MySQL-Support
  *
@@ -36,7 +39,6 @@
  **********************************************************************/
 package de.jost_net.JVerein.server;
 
-import java.io.File;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -45,7 +47,7 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.DBSupport;
 import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.willuhn.datasource.db.DBServiceImpl;
-import de.willuhn.jameica.plugin.PluginResources;
+import de.willuhn.jameica.plugin.Version;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
@@ -149,7 +151,7 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
     // this.driver.execute(getConnection(), file);
   }
 
-  public void update(double oldVersion, double newVersion)
+  public void update(Version oldVersion, Version newVersion)
       throws RemoteException
   {
     //

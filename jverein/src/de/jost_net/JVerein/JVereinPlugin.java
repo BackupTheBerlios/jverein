@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.20 $
- * $Date: 2008/12/27 15:17:56 $
+ * $Revision: 1.21 $
+ * $Date: 2008/12/30 21:57:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.21  2008/12/30 21:57:25  jost
+ * Anpassung an neue Versionsmimik.
+ *
  * Revision 1.20  2008/12/27 15:17:56  jost
  * Überflüssiges Import-Statement entfernt
  *
@@ -83,7 +86,7 @@ import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
-
+import de.willuhn.jameica.plugin.Version;
 /**
  * You need to have at least one class wich inherits from
  * <code>AbstractPlugin</code>. If so, Jameica will detect your plugin
@@ -163,7 +166,7 @@ public class JVereinPlugin extends AbstractPlugin
   /**
    * This method will be executed on every version change.
    */
-  public void update(final double oldVersion) throws ApplicationException
+  public void update(final Version oldVersion) throws ApplicationException
   {
     call(new ServiceCall()
     {
