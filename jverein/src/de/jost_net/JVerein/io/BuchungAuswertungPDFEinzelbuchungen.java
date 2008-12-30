@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungAuswertungPDFEinzelbuchungen.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/11 19:19:00 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/30 11:28:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungAuswertungPDFEinzelbuchungen.java,v $
+ * Revision 1.3  2008/12/30 11:28:23  jost
+ * Summenzeilen korrekt ausgeben. Bug #14978
+ *
  * Revision 1.2  2008/12/11 19:19:00  jost
  * *** empty log message ***
  *
@@ -89,6 +92,14 @@ public class BuchungAuswertungPDFEinzelbuchungen
       while (list.hasNext())
       {
         createTableContent(reporter, list, konto, dVon, dBis);
+        createTableHeader(reporter);
+        reporter.addColumn("", Element.ALIGN_LEFT);
+        reporter.addColumn("", Element.ALIGN_LEFT);
+        reporter.addColumn("", Element.ALIGN_LEFT);
+        reporter.addColumn("", Element.ALIGN_LEFT);
+        reporter.addColumn("Gesamtsumme ", Element.ALIGN_LEFT);
+        reporter.addColumn(summe);
+        reporter.closeTable();
       }
       if (buchungsart.getArt() == -1)
       {
@@ -224,6 +235,9 @@ public class BuchungAuswertungPDFEinzelbuchungen
       reporter.addColumn("", Element.ALIGN_LEFT);
     }
     reporter.addColumn("", Element.ALIGN_LEFT);
+    reporter.addColumn("", Element.ALIGN_LEFT);
+    reporter.addColumn("", Element.ALIGN_LEFT);
+    reporter.addColumn("", Element.ALIGN_LEFT);
     if (list != null)
     {
       reporter.addColumn("Summe " + ba.getBezeichnung(), Element.ALIGN_LEFT);
@@ -233,8 +247,6 @@ public class BuchungAuswertungPDFEinzelbuchungen
       reporter.addColumn("Summe ohne Zuordnung", Element.ALIGN_LEFT);
     }
     summe += buchungsartSumme;
-    reporter.addColumn("", Element.ALIGN_LEFT);
-    reporter.addColumn("", Element.ALIGN_LEFT);
     reporter.addColumn(buchungsartSumme);
     reporter.closeTable();
   }
