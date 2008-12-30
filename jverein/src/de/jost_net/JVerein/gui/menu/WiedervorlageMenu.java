@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/WiedervorlageMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/22 21:15:41 $
+ * $Revision: 1.3 $
+ * $Date: 2008/12/30 10:53:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageMenu.java,v $
+ * Revision 1.3  2008/12/30 10:53:26  jost
+ * Fehlende Icons ergänzt.
+ *
  * Revision 1.2  2008/12/22 21:15:41  jost
  * Icons ins Menü aufgenommen.
  *
@@ -36,7 +39,7 @@ public class WiedervorlageMenu extends ContextMenu
   public WiedervorlageMenu(TablePart table)
   {
     addItem(new CheckedContextMenuItem("Erledigung",
-        new WiedervorlageErledigungAction(table)));
+        new WiedervorlageErledigungAction(table), "emblem-default.png"));
     addItem(new CheckedContextMenuItem("L�schen...",
         new WiedervorlageDeleteAction(), "user-trash.png"));
   }

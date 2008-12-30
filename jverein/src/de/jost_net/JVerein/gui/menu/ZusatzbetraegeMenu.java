@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/ZusatzbetraegeMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/12/22 21:16:07 $
+ * $Revision: 1.2 $
+ * $Date: 2008/12/30 10:53:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegeMenu.java,v $
+ * Revision 1.2  2008/12/30 10:53:42  jost
+ * Fehlende Icons ergÃ¤nzt.
+ *
  * Revision 1.1  2008/12/22 21:16:07  jost
  * Icons ins MenÃ¼ aufgenommen.
  *
@@ -45,12 +48,14 @@ public class ZusatzbetraegeMenu extends ContextMenu
   public ZusatzbetraegeMenu(TablePart table)
   {
     addItem(new CheckedContextMenuItem("Vorheriges Fälligkeitsdatum",
-        new ZusatzbetraegeVorherigeFaelligkeitAction(table)));
+        new ZusatzbetraegeVorherigeFaelligkeitAction(table),
+        "office-calendar.png"));
     addItem(new CheckedContextMenuItem("Nächstes Fälligkeitsdatum",
-        new ZusatzbetraegeNaechsteFaelligkeitAction(table)));
+        new ZusatzbetraegeNaechsteFaelligkeitAction(table),
+        "office-calendar.png"));
     addItem(ContextMenuItem.SEPARATOR);
     addItem(new CheckedContextMenuItem("Erneut ausführen",
-        new ZusatzbetraegeResetAction(table)));
+        new ZusatzbetraegeResetAction(table), "view-refresh.png"));
     addItem(new CheckedContextMenuItem("Löschen...",
         new ZusatzbetraegeDeleteAction(), "user-trash.png"));
   }
