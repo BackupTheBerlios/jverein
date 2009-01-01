@@ -1,7 +1,7 @@
 /**********************************************************************
-* $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/RechnungDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/16 18:26:47 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/RechnungDeleteAction.java,v $
+ * $Revision: 1.2 $
+ * $Date: 2009/01/01 22:14:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungDeleteAction.java,v $
+ * Revision 1.2  2009/01/01 22:14:40  jost
+ * Vermeidung NullPointerException
+ *
  * Revision 1.1  2008/09/16 18:26:47  jost
  * Neu: Rechnung
  *
@@ -54,11 +57,11 @@ public class RechnungDeleteAction implements Action
       {
         return;
       }
-      if (a2.length > 0 && a2[0].isNewObject())
+      if (a2 != null && a2.length > 0 && a2[0].isNewObject())
       {
         return;
       }
-      if (a2.length > 0)
+      if (a2 != null && a2.length > 0)
       {
         title = "Abrechnungssätze";
       }
