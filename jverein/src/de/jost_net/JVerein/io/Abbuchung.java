@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.26 $
- * $Date: 2008/12/22 21:18:57 $
+ * $Revision: 1.27 $
+ * $Date: 2009/01/02 14:21:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.27  2009/01/02 14:21:57  jost
+ * Rechnungen für Zusatzbeträge implementiert.
+ *
  * Revision 1.26  2008/12/22 21:18:57  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -236,8 +239,8 @@ public class Abbuchung
       list = Einstellungen.getDBService().createList(Mitglied.class);
 
       // Das Mitglied muss bereits eingetreten sein
-      list.addFilter("(eintritt <= ?) ", new Object[] { new java.sql.Date(stichtag
-          .getTime()) });
+      list.addFilter("(eintritt <= ?) ", new Object[] { new java.sql.Date(
+          stichtag.getTime()) });
       // Beitragsfreie Mitglieder können auch unberücksichtigt bleiben.
       if (beitragsfrei.length() > 0)
       {
@@ -365,6 +368,7 @@ public class Abbuchung
         }
         z.setAusfuehrung(Datum.getHeute());
         z.store();
+        writeAbrechungsdaten(m, z.getBuchungstext(), "", z.getBetrag());
       }
     }
   }
