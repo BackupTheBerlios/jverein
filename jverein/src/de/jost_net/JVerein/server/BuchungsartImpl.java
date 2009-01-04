@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungsartImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/29 13:15:19 $
+ * $Revision: 1.7 $
+ * $Date: 2009/01/04 16:28:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartImpl.java,v $
+ * Revision 1.7  2009/01/04 16:28:02  jost
+ * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
+ *
  * Revision 1.6  2008/11/29 13:15:19  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -50,7 +53,7 @@ public class BuchungsartImpl extends AbstractDBObject implements Buchungsart
 
   public String getPrimaryAttribute() throws RemoteException
   {
-    return "id";
+    return "bezeichnung";
   }
 
   protected void deleteCheck() throws ApplicationException

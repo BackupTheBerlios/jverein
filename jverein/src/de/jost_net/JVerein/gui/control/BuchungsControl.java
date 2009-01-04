@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.17 $
- * $Date: 2008/12/06 16:46:08 $
+ * $Revision: 1.18 $
+ * $Date: 2009/01/04 16:26:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.18  2009/01/04 16:26:42  jost
+ * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
+ *
  * Revision 1.17  2008/12/06 16:46:08  jost
  * Standardwert fÃ¼r die Buchungart
  *
@@ -161,13 +164,18 @@ public class BuchungsControl extends AbstractControl
     settings.setStoreWhenRead(true);
   }
 
-  private Buchung getBuchung()
+  private Buchung getBuchung() throws RemoteException
   {
     if (buchung != null)
     {
       return buchung;
     }
     buchung = (Buchung) getCurrentObject();
+    if (buchung == null)
+    {
+      buchung = (Buchung) Einstellungen.getDBService().createObject(
+          Buchung.class, null);
+    }
     return buchung;
   }
 
@@ -615,7 +623,8 @@ public class BuchungsControl extends AbstractControl
           new BuchungsartFormatter());
       buchungsList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
           Einstellungen.DECIMALFORMAT));
-      buchungsList.setContextMenu(new BuchungMenu());
+      buchungsList.setMulti(true);
+      buchungsList.setContextMenu(new BuchungMenu(this));
       buchungsList.setRememberColWidths(true);
       buchungsList.setRememberOrder(true);
       buchungsList.setSummary(true);

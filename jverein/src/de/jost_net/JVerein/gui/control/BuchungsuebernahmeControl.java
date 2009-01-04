@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2008/11/29 13:06:41 $
+ * $Revision: 1.8 $
+ * $Date: 2009/01/04 16:27:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
+ * Revision 1.8  2009/01/04 16:27:14  jost
+ * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
+ *
  * Revision 1.7  2008/11/29 13:06:41  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -163,7 +166,8 @@ public class BuchungsuebernahmeControl extends AbstractControl
       jvid = new Integer(k.getID());
     }
     DBService service = Einstellungen.getDBService();
-    String sql = "select max(umsatzid) from buchung where konto = " + jvid.toString();
+    String sql = "select max(umsatzid) from buchung where konto = "
+        + jvid.toString();
 
     ResultSetExtractor rs = new ResultSetExtractor()
     {
