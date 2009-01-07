@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FelddefinitionDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/04/10 18:57:04 $
+ * $Revision: 1.2 $
+ * $Date: 2009/01/07 19:38:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionDeleteAction.java,v $
+ * Revision 1.2  2009/01/07 19:38:23  jost
+ * MySQL-Kompatibilität hergestellt.
+ *
  * Revision 1.1  2008/04/10 18:57:04  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -50,7 +53,7 @@ public class FelddefinitionDeleteAction implements Action
       DBIterator it = Einstellungen.getDBService().createList(Zusatzfelder.class);
       it.addFilter("felddefinition=?", new Object[] { fd.getID() });
       it.addFilter("feld is not null");
-      it.addFilter("feld not =''");
+      it.addFilter("feld <>''");
       if (it.size() > 0)
       {
         throw new ApplicationException(
