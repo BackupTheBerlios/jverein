@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungMenu.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/01/04 16:27:44 $
+ * $Revision: 1.9 $
+ * $Date: 2009/01/10 19:27:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungMenu.java,v $
+ * Revision 1.9  2009/01/10 19:27:23  jost
+ * Jameica 1.8-Kompatibilität hergestellt.
+ *
  * Revision 1.8  2009/01/04 16:27:44  jost
  * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
  *
@@ -42,6 +45,8 @@ import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.CheckedSingleContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
 import de.willuhn.jameica.gui.parts.ContextMenuItem;
+import de.willuhn.jameica.gui.util.SWTUtil;
+import de.willuhn.logging.Logger;
 
 /**
  * Kontext-Menu zu den Buchungen.
@@ -61,8 +66,21 @@ public class BuchungMenu extends ContextMenu
   {
     addItem(new ContextMenuItem("Neu", new BuchungNeuAction(),
         "document-new.png"));
-    addItem(new CheckedSingleContextMenuItem("Bearbeiten", new BuchungAction(),
-        "edit.png"));
+    // Work-Around: Jameica unterstütze in Version 1.7 den Konstruktor mit Icon
+    // nicht.
+    CheckedSingleContextMenuItem mnBearbeiten = new CheckedSingleContextMenuItem(
+        "Bearbeiten", new BuchungAction());
+    String icon = "edit.png";
+    try
+    {
+      mnBearbeiten.setImage(SWTUtil.getImage(icon));
+    }
+    catch (Exception e)
+    {
+      Logger.warn("icon " + icon + " not found");
+    }
+    addItem(mnBearbeiten);
+
     addItem(new CheckedContextMenuItem("Buchungsart zuordnen",
         new BuchungBuchungsartZuordnungAction(control)));
     addItem(new CheckedContextMenuItem("Löschen...", new BuchungDeleteAction(),
