@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.22 $
- * $Date: 2009/01/04 16:25:20 $
+ * $Revision: 1.23 $
+ * $Date: 2009/01/19 19:41:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.23  2009/01/19 19:41:13  jost
+ * Jameica-Build-Prüfung abgeschaltet.
+ *
  * Revision 1.22  2009/01/04 16:25:20  jost
  * Neue Mindest-Build-Date für Jameica festgelegt.
  *
@@ -90,6 +93,7 @@ import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 import de.willuhn.jameica.plugin.Version;
+
 /**
  * You need to have at least one class wich inherits from
  * <code>AbstractPlugin</code>. If so, Jameica will detect your plugin
@@ -113,13 +117,6 @@ public class JVereinPlugin extends AbstractPlugin
     super();
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
-    if (!Application.getBuildDate().equals("")
-        && Application.getBuildDate().compareTo("20090105") <= 0)
-    {
-      String msg = "JVerein verlangt Jameica-Version mindestens vom 05.01.2009. Bitte neuere Version installieren.";
-      Application.addWelcomeMessage(msg);
-      Logger.error(msg);
-    }
   }
 
   /**
