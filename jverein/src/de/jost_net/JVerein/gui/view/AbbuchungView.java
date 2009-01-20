@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.16 $
- * $Date: 2008/12/22 21:17:12 $
+ * $Revision: 1.17 $
+ * $Date: 2009/01/20 19:13:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.17  2009/01/20 19:13:51  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.16  2008/12/22 21:17:12  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -73,6 +76,7 @@ import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
@@ -128,7 +132,7 @@ public class AbbuchungView extends AbstractView
                 + "Üblicherweise 1.1. des Jahres.", true);
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.ABRECHNUNG);
     buttons.addButton(control.getStartButton());

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungDetailView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/16 18:52:18 $
+ * $Revision: 1.2 $
+ * $Date: 2009/01/20 19:15:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,19 +9,22 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungDetailView.java,v $
+ * Revision 1.2  2009/01/20 19:15:19  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.1  2008/09/16 18:52:18  jost
  * Neu: Rechnung
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
-import de.jost_net.JVerein.gui.action.RechnungListeAction;
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
+import de.jost_net.JVerein.gui.action.RechnungListeAction;
 import de.jost_net.JVerein.gui.control.RechnungControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
@@ -41,7 +44,7 @@ public class RechnungDetailView extends AbstractView
     group.addLabelPair("Betrag", control.getBetrag());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
-    buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.RECHNUNG);
     buttons.addButton("Suche", new RechnungListeAction());

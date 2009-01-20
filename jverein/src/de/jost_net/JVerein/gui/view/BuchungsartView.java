@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartView.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:52:37 $
+ * $Revision: 1.6 $
+ * $Date: 2009/01/20 19:15:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartView.java,v $
+ * Revision 1.6  2009/01/20 19:15:19  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.5  2008/05/22 06:52:37  jost
  * Buchf√ºhrung
  *
@@ -24,11 +27,11 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.control.BuchungsartControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
@@ -48,7 +51,7 @@ public class BuchungsartView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 2);
 
-    buttons.addButton("<< Zur¸ck", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("Speichern", new Action()
     {
       public void handleAction(Object context) throws ApplicationException

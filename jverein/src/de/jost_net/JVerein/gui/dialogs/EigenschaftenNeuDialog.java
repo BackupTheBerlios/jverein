@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/Attic/EigenschaftenNeuDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/25 16:03:19 $
+ * $Revision: 1.2 $
+ * $Date: 2009/01/20 19:13:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNeuDialog.java,v $
+ * Revision 1.2  2009/01/20 19:13:34  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.1  2008/01/25 16:03:19  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -51,13 +54,13 @@ public class EigenschaftenNeuDialog extends AbstractDialog
     group.addLabelPair("Neue Eigenschaft", control.getNeu());
 
     ButtonArea buttons = new ButtonArea(parent, 3);
-    buttons.addButton(i18n.tr("<< Zurück"), new Action()
+    buttons.addButton("Zurück", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
         close();
       }
-    });
+    }, "go-previous.png");
     buttons.addButton(i18n.tr("Speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/24 14:04:08 $
+ * $Revision: 1.6 $
+ * $Date: 2009/01/20 19:15:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportView.java,v $
+ * Revision 1.6  2009/01/20 19:15:19  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.5  2008/05/24 14:04:08  jost
  * Redatkionelle Ã„nderung
  *
@@ -32,7 +35,6 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.io.Import;
 import de.willuhn.jameica.gui.AbstractView;
@@ -40,6 +42,7 @@ import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.AbstractDialog;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.system.Application;
@@ -57,7 +60,7 @@ public class ImportView extends AbstractView
     GUI.getView().setTitle("Daten-Import");
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.IMPORT);
     Button button = new Button("Import starten", new Action()

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularfelderListeView.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:12:44 $
+ * $Revision: 1.2 $
+ * $Date: 2009/01/20 19:15:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,19 +9,22 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfelderListeView.java,v $
+ * Revision 1.2  2009/01/20 19:15:19  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.1  2008/07/18 20:12:44  jost
  * Neu: Formulare
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.FormularfeldAction;
 import de.jost_net.JVerein.gui.control.FormularfeldControl;
 import de.jost_net.JVerein.rmi.Formular;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.util.ApplicationException;
 
@@ -36,7 +39,7 @@ public class FormularfelderListeView extends AbstractView
     control.getFormularfeldList().paint(this.getParent());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.FORMULARE);
     buttons.addButton("neu", new FormularfeldAction(),

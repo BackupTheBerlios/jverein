@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartListView.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/03/16 07:36:29 $
+ * $Revision: 1.5 $
+ * $Date: 2009/01/20 19:15:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartListView.java,v $
+ * Revision 1.5  2009/01/20 19:15:19  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.4  2008/03/16 07:36:29  jost
  * Reaktivierung Buchf√ºhrung
  *
@@ -21,11 +24,11 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.BuchungsartAction;
 import de.jost_net.JVerein.gui.control.BuchungsartControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.util.ApplicationException;
 
@@ -40,7 +43,7 @@ public class BuchungsartListView extends AbstractView
     control.getBuchungsartList().paint(this.getParent());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
-    buttons.addButton("<< Zur¸ck", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("neu", new BuchungsartAction(), null);
   }
 

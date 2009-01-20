@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.14 $
- * $Date: 2008/12/22 21:17:26 $
+ * $Revision: 1.15 $
+ * $Date: 2009/01/20 19:15:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.15  2009/01/20 19:15:19  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.14  2008/12/22 21:17:26  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -53,12 +56,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.TabFolder;
 
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.EinstellungControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
 import de.willuhn.jameica.gui.util.LabelGroup;
@@ -87,8 +90,7 @@ public class EinstellungenView extends AbstractView
         .getEintrittsdatumPflicht());
     group.addLabelPair("Kommunikationsdaten anzeigen", control
         .getKommunikationsdaten());
-    group.addLabelPair("Zusatzbeträge anzeigen *", control
-        .getZusatzbetrag());
+    group.addLabelPair("Zusatzbeträge anzeigen *", control.getZusatzbetrag());
     group.addLabelPair("Vermerke anzeigen", control.getVermerke());
     group.addLabelPair("Wiedervorlage anzeigen *", control.getWiedervorlage());
     group
@@ -134,9 +136,9 @@ public class EinstellungenView extends AbstractView
     LabelGroup groupMitglieder = new LabelGroup(tabMitglieder.getComposite(),
         "Trefferliste Mitglieder");
     control.getSpaltendefinitionTable(groupMitglieder.getComposite());
- 
+
     ButtonArea buttons = new ButtonArea(getParent(), 3);
-    buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.EINSTELLUNGEN);
     buttons.addButton("Speichern", new Action()

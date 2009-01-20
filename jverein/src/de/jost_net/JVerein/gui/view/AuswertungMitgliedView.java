@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/11 20:47:48 $
+ * $Revision: 1.7 $
+ * $Date: 2009/01/20 19:14:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
+ * Revision 1.7  2009/01/20 19:14:35  jost
+ * neu: Back-Button mit Icon
+ *
  * Revision 1.6  2008/11/11 20:47:48  jost
  * 2spaltiges Layout und Selektion nach Geschlecht
  *
@@ -30,7 +33,6 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.rmi.JVereinDBService;
@@ -39,6 +41,7 @@ import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.SelectInput;
+import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.ColumnLayout;
 import de.willuhn.jameica.gui.util.LabelGroup;
@@ -86,7 +89,7 @@ public class AuswertungMitgliedView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
 
-    buttons.addButton("<< Zurück", new BackAction());
+    buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.AUSWERTUNGMITGLIEDER);
     buttons.addButton(control.getStartAuswertungButton());
