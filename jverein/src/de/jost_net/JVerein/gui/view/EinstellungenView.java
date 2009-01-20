@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.15 $
- * $Date: 2009/01/20 19:15:19 $
+ * $Revision: 1.16 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.16  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.15  2009/01/20 19:15:19  jost
  * neu: Back-Button mit Icon
  *
@@ -140,14 +143,14 @@ public class EinstellungenView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.EINSTELLUNGEN);
+        DokumentationUtil.EINSTELLUNGEN, false, "help-browser.png");
     buttons.addButton("Speichern", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
         control.handleStore();
       }
-    }, null, true);
+    }, null, true, "document-save.png");
   }
 
   public void unbind() throws ApplicationException

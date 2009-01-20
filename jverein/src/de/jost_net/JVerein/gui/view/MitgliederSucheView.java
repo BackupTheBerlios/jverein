@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.19 $
- * $Date: 2009/01/20 19:15:19 $
+ * $Revision: 1.20 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.20  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.19  2009/01/20 19:15:19  jost
  * neu: Back-Button mit Icon
  *
@@ -246,10 +249,11 @@ public class MitgliederSucheView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.MITGLIED);
+        DokumentationUtil.MITGLIED, false, "help-browser.png");
     if (anzahlbeitragsgruppe > 0)
     {
-      buttons.addButton("Neu", new MitgliedDetailAction());
+      buttons.addButton("Neu", new MitgliedDetailAction(), null, false,
+          "document-new.png");
     }
   }
 

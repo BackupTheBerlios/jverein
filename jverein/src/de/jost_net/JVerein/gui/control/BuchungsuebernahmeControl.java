@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/01/04 16:27:14 $
+ * $Revision: 1.9 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
+ * Revision 1.9  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.8  2009/01/04 16:27:14  jost
  * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
  *
@@ -104,7 +107,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
           throw new ApplicationException("Fehler beim Aufbau der Buchungsliste");
         }
       }
-    });
+    }, null, false, "system-search.png");
     return button;
   }
 

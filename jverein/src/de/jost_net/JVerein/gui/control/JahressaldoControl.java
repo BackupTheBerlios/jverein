@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/16 16:56:35 $
+ * $Revision: 1.7 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
+ * Revision 1.7  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.6  2008/11/16 16:56:35  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -118,7 +121,8 @@ public class JahressaldoControl extends AbstractControl
       {
         starteAuswertung();
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, true, "pdf.png"); // "true" defines this button as the default
+                               // button
     return b;
   }
 

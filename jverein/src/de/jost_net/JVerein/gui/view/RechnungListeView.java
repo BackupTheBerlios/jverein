@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungListeView.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/01/20 19:15:19 $
+ * $Revision: 1.5 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungListeView.java,v $
+ * Revision 1.5  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.4  2009/01/20 19:15:19  jost
  * neu: Back-Button mit Icon
  *
@@ -56,9 +59,9 @@ public class RechnungListeView extends AbstractView
       {
         GUI.startView(RechnungView.class.getName(), null);
       }
-    });
+    }, "printer.png");
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.RECHNUNG);
+        DokumentationUtil.RECHNUNG, false, "help-browser.png");
   }
 
   public void unbind() throws ApplicationException

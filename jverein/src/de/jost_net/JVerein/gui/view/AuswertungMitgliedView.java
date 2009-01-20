@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/01/20 19:14:35 $
+ * $Revision: 1.8 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
+ * Revision 1.8  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.7  2009/01/20 19:14:35  jost
  * neu: Back-Button mit Icon
  *
@@ -91,7 +94,7 @@ public class AuswertungMitgliedView extends AbstractView
 
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.AUSWERTUNGMITGLIEDER);
+        DokumentationUtil.AUSWERTUNGMITGLIEDER, false, "help-browser.png");
     buttons.addButton(control.getStartAuswertungButton());
 
   }

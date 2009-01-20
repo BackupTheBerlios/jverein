@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.50 $
- * $Date: 2008/12/29 08:40:49 $
+ * $Revision: 1.51 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.51  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.50  2008/12/29 08:40:49  jost
  * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
  *
@@ -1425,12 +1428,14 @@ public class MitgliedControl extends AbstractControl
 
   public Button getZusatzbetragNeu()
   {
-    return new Button("Neu", new ZusatzbetraegeAction(getMitglied()));
+    return new Button("Neu", new ZusatzbetraegeAction(getMitglied()), null,
+        false, "document-new.png");
   }
 
   public Button getWiedervorlageNeu()
   {
-    return new Button("Neu", new WiedervorlageAction(getMitglied()));
+    return new Button("Neu", new WiedervorlageAction(getMitglied()), null,
+        false, "document-new.png");
   }
 
   public TablePart getMitgliedTable(String anfangsbuchstabe)

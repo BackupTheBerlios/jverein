@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.17 $
- * $Date: 2009/01/20 19:13:51 $
+ * $Revision: 1.18 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.18  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.17  2009/01/20 19:13:51  jost
  * neu: Back-Button mit Icon
  *
@@ -134,7 +137,7 @@ public class AbbuchungView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.ABRECHNUNG);
+        DokumentationUtil.ABRECHNUNG, false, "help-browser.png");
     buttons.addButton(control.getStartButton());
   }
 

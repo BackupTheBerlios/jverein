@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/JahressaldoView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 19:15:19 $
+ * $Revision: 1.4 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoView.java,v $
+ * Revision 1.4  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.3  2009/01/20 19:15:19  jost
  * neu: Back-Button mit Icon
  *
@@ -50,7 +53,7 @@ public class JahressaldoView extends AbstractView
       {
         control.getSaldoList();
       }
-    }, null, true);
+    }, null, true, "system-search.png");
     buttons.addButton(button);
 
     LabelGroup group2 = new LabelGroup(getParent(), "Saldo");
@@ -59,7 +62,7 @@ public class JahressaldoView extends AbstractView
     ButtonArea buttons2 = new ButtonArea(this.getParent(), 3);
     buttons2.addButton(new Back(false));
     buttons2.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.JAHRESSALDO);
+        DokumentationUtil.JAHRESSALDO, false, "help-browser.png");
     buttons2.addButton(control.getStartAuswertungButton());
   }
 

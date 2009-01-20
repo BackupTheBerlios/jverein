@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KontoListView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 19:15:19 $
+ * $Revision: 1.4 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoListView.java,v $
+ * Revision 1.4  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.3  2009/01/20 19:15:19  jost
  * neu: Back-Button mit Icon
  *
@@ -44,11 +47,12 @@ public class KontoListView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.KONTEN);
+        DokumentationUtil.KONTEN, false, "help-browser.png");
 
     buttons.addButton("Hibiscus-Import",
         new HibiscusKontenImportAction(control));
-    buttons.addButton("neu", new KontoAction(), null);
+    buttons
+        .addButton("neu", new KontoAction(), null, false, "document-new.png");
   }
 
   public void unbind() throws ApplicationException

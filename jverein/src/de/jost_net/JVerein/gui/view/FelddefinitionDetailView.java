@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FelddefinitionDetailView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 19:15:19 $
+ * $Revision: 1.4 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -38,7 +38,7 @@ public class FelddefinitionDetailView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.FELDDEFINITIONEN);
+        DokumentationUtil.FELDDEFINITIONEN, false, "help-browser.png");
     buttons.addButton("Übersicht", new FelddefinitionenAction());
     buttons.addButton("Speichern", new Action()
     {
@@ -46,7 +46,7 @@ public class FelddefinitionDetailView extends AbstractView
       {
         control.handleStore();
       }
-    }, null, true);
+    }, null, true, "document-save.png");
   }
 
   public void unbind() throws ApplicationException

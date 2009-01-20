@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.18 $
- * $Date: 2009/01/04 16:26:42 $
+ * $Revision: 1.19 $
+ * $Date: 2009/01/20 20:09:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.19  2009/01/20 20:09:24  jost
+ * neue Icons
+ *
  * Revision 1.18  2009/01/04 16:26:42  jost
  * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
  *
@@ -492,7 +495,8 @@ public class BuchungsControl extends AbstractControl
       {
         starteAuswertung(true);
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, true, "pdf.png"); // "true" defines this button as the default
+                               // button
     return b;
   }
 
@@ -504,7 +508,8 @@ public class BuchungsControl extends AbstractControl
       {
         starteAuswertung(false);
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, true, "pdf.png"); // "true" defines this button as the default
+                               // button
     return b;
   }
 
