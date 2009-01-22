@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.52 $
- * $Date: 2009/01/22 18:24:01 $
+ * $Revision: 1.53 $
+ * $Date: 2009/01/22 21:05:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.53  2009/01/22 21:05:57  jost
+ * Zusätzliches Jahr in die Vergangenheit.
+ *
  * Revision 1.52  2009/01/22 18:24:01  jost
  * neue Icons
  *
@@ -1283,14 +1286,14 @@ public class MitgliedControl extends AbstractControl
       return jubeljahr;
     }
     Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.YEAR, -1);
-    Integer[] jubeljahre = new Integer[4];
-    for (int i = 0; i < 4; i++)
+    cal.add(Calendar.YEAR, -2);
+    Integer[] jubeljahre = new Integer[5];
+    for (int i = 0; i < 5; i++)
     {
       jubeljahre[i] = cal.get(Calendar.YEAR);
       cal.add(Calendar.YEAR, 1);
     }
-    jubeljahr = new SelectInput(jubeljahre, jubeljahre[1]);
+    jubeljahr = new SelectInput(jubeljahre, jubeljahre[2]);
     return jubeljahr;
   }
 
@@ -1427,7 +1430,8 @@ public class MitgliedControl extends AbstractControl
           throw new ApplicationException(e);
         }
       }
-    }, null, true, "go.png"); // "true" defines this button as the default button
+    }, null, true, "go.png"); // "true" defines this button as the default
+    // button
     return b;
   }
 
