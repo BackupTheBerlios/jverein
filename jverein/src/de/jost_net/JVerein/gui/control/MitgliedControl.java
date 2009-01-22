@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.51 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.52 $
+ * $Date: 2009/01/22 18:24:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.52  2009/01/22 18:24:01  jost
+ * neue Icons
+ *
  * Revision 1.51  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -1383,7 +1386,8 @@ public class MitgliedControl extends AbstractControl
               "Fehler beim Start der Mitgliederauswertung");
         }
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, true, "go.png"); // "true" defines this button as the default
+    // button
     return b;
   }
 
@@ -1402,7 +1406,8 @@ public class MitgliedControl extends AbstractControl
           throw new ApplicationException(e);
         }
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, true, "go.png"); // "true" defines this button as the default
+    // button
     return b;
   }
 
@@ -1422,7 +1427,7 @@ public class MitgliedControl extends AbstractControl
           throw new ApplicationException(e);
         }
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, true, "go.png"); // "true" defines this button as the default button
     return b;
   }
 

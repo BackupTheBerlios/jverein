@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KontoListView.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.5 $
+ * $Date: 2009/01/22 18:24:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoListView.java,v $
+ * Revision 1.5  2009/01/22 18:24:24  jost
+ * neue Icons
+ *
  * Revision 1.4  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -50,7 +53,7 @@ public class KontoListView extends AbstractView
         DokumentationUtil.KONTEN, false, "help-browser.png");
 
     buttons.addButton("Hibiscus-Import",
-        new HibiscusKontenImportAction(control));
+        new HibiscusKontenImportAction(control), "go.png");
     buttons
         .addButton("neu", new KontoAction(), null, false, "document-new.png");
   }

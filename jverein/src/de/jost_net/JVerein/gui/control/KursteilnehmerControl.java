@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2008/11/30 18:57:42 $
+ * $Revision: 1.16 $
+ * $Date: 2009/01/22 18:23:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.16  2009/01/22 18:23:43  jost
+ * neue Icons
+ *
  * Revision 1.15  2008/11/30 18:57:42  jost
  * Bugfix: PDF-Dokument öffnen
  *
@@ -471,7 +474,7 @@ public class KursteilnehmerControl extends AbstractControl
       {
          starteAuswertung();
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, true,"go.png"); // "true" defines this button as the default button
     return b;
   }
 
