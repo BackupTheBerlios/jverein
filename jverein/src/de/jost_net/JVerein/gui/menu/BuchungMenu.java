@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungMenu.java,v $
- * $Revision: 1.9 $
- * $Date: 2009/01/10 19:27:23 $
+ * $Revision: 1.10 $
+ * $Date: 2009/01/25 10:58:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungMenu.java,v $
+ * Revision 1.10  2009/01/25 10:58:39  jost
+ * Icons aufgenommen.
+ *
  * Revision 1.9  2009/01/10 19:27:23  jost
  * Jameica 1.8-Kompatibilität hergestellt.
  *
@@ -82,7 +85,7 @@ public class BuchungMenu extends ContextMenu
     addItem(mnBearbeiten);
 
     addItem(new CheckedContextMenuItem("Buchungsart zuordnen",
-        new BuchungBuchungsartZuordnungAction(control)));
+        new BuchungBuchungsartZuordnungAction(control), "zuordnung.png"));
     addItem(new CheckedContextMenuItem("Löschen...", new BuchungDeleteAction(),
         "user-trash.png"));
   }
