@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Spendenbescheinigung.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:17:09 $
+ * $Revision: 1.2 $
+ * $Date: 2009/01/26 18:48:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spendenbescheinigung.java,v $
+ * Revision 1.2  2009/01/26 18:48:21  jost
+ * Neu: Ersatz Aufwendungen
+ *
  * Revision 1.1  2008/07/18 20:17:09  jost
  * Neu: Spendenbescheinigung
  *
@@ -66,4 +69,8 @@ public interface Spendenbescheinigung extends DBObject
 
   public void setFormular(Formular formular) throws RemoteException;
 
+  public boolean getErsatzAufwendungen() throws RemoteException;
+
+  public void setErsatzAufwendungen(Boolean ersatzaufwendungen)
+      throws RemoteException;
 }

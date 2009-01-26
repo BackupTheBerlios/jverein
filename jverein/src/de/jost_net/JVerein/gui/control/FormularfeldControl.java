@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularfeldControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/11/29 13:07:42 $
+ * $Revision: 1.5 $
+ * $Date: 2009/01/26 18:47:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldControl.java,v $
+ * Revision 1.5  2009/01/26 18:47:34  jost
+ * Neu: Ersatz Aufwendungen
+ *
  * Revision 1.4  2008/11/29 13:07:42  jost
  * Refactoring: Code-Optimierung
  *
@@ -120,6 +123,7 @@ public class FormularfeldControl extends AbstractControl
       namen.add("Betrag");
       namen.add("Betrag in Worten");
       namen.add("Spendedatum");
+      namen.add("ErsatzAufwendungen");
     }
     if (formular.getArt() == Formularart.RECHNUNG)
     {

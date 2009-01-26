@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/SpendenbescheinigungImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/29 13:17:02 $
+ * $Revision: 1.3 $
+ * $Date: 2009/01/26 18:48:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungImpl.java,v $
+ * Revision 1.3  2009/01/26 18:48:36  jost
+ * Neu: Ersatz Aufwendungen
+ *
  * Revision 1.2  2008/11/29 13:17:02  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -207,6 +210,17 @@ public class SpendenbescheinigungImpl extends AbstractDBObject implements
   public void setFormular(Formular formular) throws RemoteException
   {
     setAttribute("formular", formular);
+  }
+
+  public boolean getErsatzAufwendungen() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("ersatzaufwendungen"));
+  }
+
+  public void setErsatzAufwendungen(Boolean ersatzaufwendungen)
+      throws RemoteException
+  {
+    setAttribute("ersatzaufwendungen", new Boolean(ersatzaufwendungen));
   }
 
   public Object getAttribute(String fieldName) throws RemoteException
