@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/12/06 16:46:24 $
+ * $Revision: 1.10 $
+ * $Date: 2009/01/26 19:27:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
+ * Revision 1.10  2009/01/26 19:27:21  jost
+ * Bugfix Pfad
+ *
  * Revision 1.9  2008/12/06 16:46:24  jost
  * Debug-Meldung entfernt.
  *
@@ -392,6 +395,7 @@ public class RechnungControl extends AbstractControl
       s = s + ".PDF";
     }
     final File file = new File(s);
+    settings.setAttribute("lastdir", file.getParent());
     Formular form = (Formular) getFormular().getValue();
     Formular fo = (Formular) Einstellungen.getDBService().createObject(
         Formular.class, form.getID());

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2009/01/22 18:23:43 $
+ * $Revision: 1.17 $
+ * $Date: 2009/01/26 19:27:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.17  2009/01/26 19:27:13  jost
+ * Bugfix Pfad
+ *
  * Revision 1.16  2009/01/22 18:23:43  jost
  * neue Icons
  *
@@ -646,6 +649,7 @@ public class KursteilnehmerControl extends AbstractControl
       }
 
       final File file = new File(s);
+      settings.setAttribute("lastdir",file.getParent());
       final String subtitle2 = subtitle;
 
       BackgroundTask t = new BackgroundTask()

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/01/26 18:47:54 $
+ * $Revision: 1.9 $
+ * $Date: 2009/01/26 19:27:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
+ * Revision 1.9  2009/01/26 19:27:30  jost
+ * Bugfix Pfad
+ *
  * Revision 1.8  2009/01/26 18:47:54  jost
  * Neu: Ersatz Aufwendungen
  *
@@ -340,6 +343,7 @@ public class SpendenbescheinigungControl extends AbstractControl
       s = s + ".PDF";
     }
     final File file = new File(s);
+    settings.setAttribute("lastdir", file.getParent());
     Formular fo = (Formular) Einstellungen.getDBService().createObject(
         Formular.class, getSpendenbescheinigung().getFormular().getID());
     HashMap<String, Object> map = new HashMap<String, Object>();
