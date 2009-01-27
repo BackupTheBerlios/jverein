@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupRestoreAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/29 13:05:10 $
+ * $Revision: 1.3 $
+ * $Date: 2009/01/27 18:50:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupRestoreAction.java,v $
+ * Revision 1.3  2009/01/27 18:50:15  jost
+ * Import-Statement korrigiert
+ *
  * Revision 1.2  2008/11/29 13:05:10  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -40,7 +43,7 @@ import de.willuhn.datasource.serialize.Reader;
 import de.willuhn.datasource.serialize.XmlReader;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.hbci.gui.action.BackupCreate;
+import de.jost_net.JVerein.gui.action.BackupCreateAction;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.BackgroundTask;
 import de.willuhn.logging.Logger;
@@ -59,8 +62,8 @@ public class BackupRestoreAction implements Action
   public void handleAction(Object context) throws ApplicationException
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.OPEN);
-    fd.setFileName("jverein-" + BackupCreate.DATEFORMAT.format(new Date())
-        + ".xml");
+    fd.setFileName("jverein-"
+        + BackupCreateAction.DATEFORMAT.format(new Date()) + ".xml");
     fd.setFilterExtensions(new String[] { "*.xml" });
     fd.setText("Bitte wählen Sie die Backup-Datei aus");
     String f = fd.open();

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.18 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.19 $
+ * $Date: 2009/01/27 18:50:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.19  2009/01/27 18:50:31  jost
+ * Import-Statement korrigiert
+ *
  * Revision 1.18  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -72,7 +75,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import de.jost_net.JVerein.Einstellungen;
-import de.jost_net.JVerein.gui.action.BackAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.AbbuchungControl;
 import de.willuhn.datasource.rmi.DBService;
