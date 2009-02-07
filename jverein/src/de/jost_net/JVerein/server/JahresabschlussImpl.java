@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JahresabschlussImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/29 13:16:04 $
+ * $Revision: 1.3 $
+ * $Date: 2009/02/07 20:32:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussImpl.java,v $
+ * Revision 1.3  2009/02/07 20:32:39  jost
+ * Bugfix: Anfangsbestand kann auch innerhalb des Geschäftsjahres liegen.
+ *
  * Revision 1.2  2008/11/29 13:16:04  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -97,7 +100,7 @@ public class JahresabschlussImpl extends AbstractDBObject implements
         DBIterator anfangsbestaende = Einstellungen.getDBService().createList(
             Anfangsbestand.class);
         anfangsbestaende.addFilter("konto = ?", new Object[] { k1.getID() });
-        anfangsbestaende.addFilter("datum = ?", new Object[] { gj
+        anfangsbestaende.addFilter("datum >= ?", new Object[] { gj
             .getBeginnGeschaeftsjahr() });
         if (!anfangsbestaende.hasNext())
         {
