@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.11 $
+ * $Date: 2009/02/07 20:32:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
+ * Revision 1.11  2009/02/07 20:32:01  jost
+ * Neu: Button neue Buchung
+ *
  * Revision 1.10  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -39,6 +42,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.gui.action.BuchungNeuAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BuchungsControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -74,10 +78,12 @@ public class BuchungView extends AbstractView
     grBuchungsinfos.addLabelPair("Auszugsnummer", control.getAuszugsnummer());
     grBuchungsinfos.addLabelPair("Blattnummer", control.getBlattnummer());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 3);
+    ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.BUCHUNGEN, false, "help-browser.png");
+    buttons.addButton("neu", new BuchungNeuAction(), null, false,
+        "document-new.png");
     buttons.addButton("Speichern", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
