@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungAuswertungPDFEinzelbuchungen.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/12/30 11:28:23 $
+ * $Revision: 1.4 $
+ * $Date: 2009/02/08 10:31:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungAuswertungPDFEinzelbuchungen.java,v $
+ * Revision 1.4  2009/02/08 10:31:50  jost
+ * Bugfix Gesamtsumme
+ *
  * Revision 1.3  2008/12/30 11:28:23  jost
  * Summenzeilen korrekt ausgeben. Bug #14978
  *
@@ -92,19 +95,19 @@ public class BuchungAuswertungPDFEinzelbuchungen
       while (list.hasNext())
       {
         createTableContent(reporter, list, konto, dVon, dBis);
-        createTableHeader(reporter);
-        reporter.addColumn("", Element.ALIGN_LEFT);
-        reporter.addColumn("", Element.ALIGN_LEFT);
-        reporter.addColumn("", Element.ALIGN_LEFT);
-        reporter.addColumn("", Element.ALIGN_LEFT);
-        reporter.addColumn("Gesamtsumme ", Element.ALIGN_LEFT);
-        reporter.addColumn(summe);
-        reporter.closeTable();
       }
       if (buchungsart.getArt() == -1)
       {
         createTableContent(reporter, null, konto, dVon, dBis);
       }
+      createTableHeader(reporter);
+      reporter.addColumn("", Element.ALIGN_LEFT);
+      reporter.addColumn("", Element.ALIGN_LEFT);
+      reporter.addColumn("", Element.ALIGN_LEFT);
+      reporter.addColumn("", Element.ALIGN_LEFT);
+      reporter.addColumn("Gesamtsumme ", Element.ALIGN_LEFT);
+      reporter.addColumn(summe);
+      reporter.closeTable();
       monitor.setStatusText("Auswertung fertig. " + list.size() + " Sätze.");
 
       reporter.close();
