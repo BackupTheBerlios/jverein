@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzbetragImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/12/22 21:23:10 $
+ * $Revision: 1.2 $
+ * $Date: 2009/02/12 22:17:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragImpl.java,v $
+ * Revision 1.2  2009/02/12 22:17:26  jost
+ * Vermeidung NPE
+ *
  * Revision 1.1  2008/12/22 21:23:10  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -47,8 +50,7 @@ import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
-public class ZusatzbetragImpl extends AbstractDBObject implements
-    Zusatzbetrag
+public class ZusatzbetragImpl extends AbstractDBObject implements Zusatzbetrag
 {
   private static final long serialVersionUID = 1L;
 
@@ -242,10 +244,10 @@ public class ZusatzbetragImpl extends AbstractDBObject implements
   public boolean isAktiv() throws RemoteException
   {
     // Wenn der Auftrag noch nie ausgeführt wurde, ist er auszuführen
-//    if (getAusfuehrung() == null)
-//    {
-//      return true;
-//    }
+    // if (getAusfuehrung() == null)
+    // {
+    // return true;
+    // }
     // Einmalige Ausführung
     if (getIntervall().intValue() == IntervallZusatzzahlung.KEIN)
     {
@@ -264,7 +266,7 @@ public class ZusatzbetragImpl extends AbstractDBObject implements
 
     // Wenn das Endedatum gesetzt ist und das Ausführungsdatum liegt hinter
     // dem Endedatum: nicht mehr ausführen
-    if (getEndedatum() != null
+    if (getEndedatum() != null && getAusfuehrung() != null
         && getAusfuehrung().getTime() >= getEndedatum().getTime())
     {
       return false;
