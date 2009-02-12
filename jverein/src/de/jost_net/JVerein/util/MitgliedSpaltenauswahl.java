@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/MitgliedSpaltenauswahl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/30 18:58:59 $
+ * $Revision: 1.3 $
+ * $Date: 2009/02/12 22:19:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSpaltenauswahl.java,v $
+ * Revision 1.3  2009/02/12 22:19:12  jost
+ * Anrede aufgenommen.
+ *
  * Revision 1.2  2008/11/30 18:58:59  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
@@ -36,6 +39,7 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
     super("mitglied");
     add("ID", "id", false);
     add("externe Mitgliedsnummer", "externemitgliedsnummer", false);
+    add("Anrede", "anrede", false);
     add("Titel", "titel", false);
     add("Name", "name", true);
     add("Vorname", "vorname", true);
@@ -78,7 +82,6 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
     }
     catch (RemoteException e)
     {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
 
