@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.19 $
- * $Date: 2008/12/22 21:08:19 $
+ * $Revision: 1.20 $
+ * $Date: 2009/02/15 20:01:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.20  2009/02/15 20:01:48  jost
+ * Formularwerte speichern und wiederherstellen
+ *
  * Revision 1.19  2008/12/22 21:08:19  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -224,7 +227,8 @@ public class AbbuchungControl extends AbstractControl
     {
       return zusatzbetrag;
     }
-    zusatzbetrag = new CheckboxInput(false);
+    zusatzbetrag = new CheckboxInput(settings.getBoolean("zusatzbetraege",
+        false));
     return zusatzbetrag;
   }
 
@@ -234,7 +238,8 @@ public class AbbuchungControl extends AbstractControl
     {
       return kursteilnehmer;
     }
-    kursteilnehmer = new CheckboxInput(false);
+    kursteilnehmer = new CheckboxInput(settings.getBoolean("kursteilnehmer",
+        false));
     return kursteilnehmer;
   }
 
@@ -244,7 +249,7 @@ public class AbbuchungControl extends AbstractControl
     {
       return dtausprint;
     }
-    dtausprint = new CheckboxInput(false);
+    dtausprint = new CheckboxInput(settings.getBoolean("dtausprint", false));
     return dtausprint;
   }
 
@@ -255,7 +260,8 @@ public class AbbuchungControl extends AbstractControl
       return ausgabe;
     }
     ausgabe = new SelectInput(Abrechnungsausgabe.getArray(),
-        new Abrechnungsausgabe(Abrechnungsausgabe.DTAUS));
+        new Abrechnungsausgabe(settings.getInt("abrechnungsausgabe",
+            Abrechnungsausgabe.DTAUS)));
     return ausgabe;
   }
 
@@ -287,6 +293,12 @@ public class AbbuchungControl extends AbstractControl
   {
     File dtausfile;
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
+    settings.setAttribute("zusatzbetraege", (Boolean) zusatzbetrag.getValue());
+    settings
+        .setAttribute("kursteilnehmer", (Boolean) kursteilnehmer.getValue());
+    settings.setAttribute("dtausprint", (Boolean) dtausprint.getValue());
+    Abrechnungsausgabe aa = (Abrechnungsausgabe) ausgabe.getValue();
+    settings.setAttribute("abrechnungsausgabe", aa.getKey());
 
     Integer modus = null;
     try
@@ -324,8 +336,7 @@ public class AbbuchungControl extends AbstractControl
     Integer ausgabe;
     try
     {
-      Abrechnungsausgabe aa = (Abrechnungsausgabe) this.getAbbuchungsausgabe()
-          .getValue();
+      aa = (Abrechnungsausgabe) this.getAbbuchungsausgabe().getValue();
       ausgabe = aa.getKey();
     }
     catch (RemoteException e2)
