@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.8 $
+ * $Date: 2009/03/01 17:39:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,11 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
+ * Revision 1.8  2009/03/01 17:39:49  jost
+ * - Ausgewähltes Jahr wird jetzt korrekt gespeichert und wiederhergestellt
+ * - Zusätzliche Zeile "Überschuss/Verlust"
+ * - Code bereinigt
+ *
  * Revision 1.7  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -48,7 +53,6 @@ import de.jost_net.JVerein.gui.parts.JahressaldoList;
 import de.jost_net.JVerein.io.JahressaldoPDF;
 import de.jost_net.JVerein.io.SaldoZeile;
 import de.jost_net.JVerein.rmi.Buchung;
-import de.jost_net.JVerein.rmi.Konto;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.Geschaeftsjahr;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -107,7 +111,7 @@ public class JahressaldoControl extends AbstractControl
       jahre.add(i);
     }
 
-    suchjahr = new SelectInput(jahre, null);
+    suchjahr = new SelectInput(jahre, settings.getInt("jahr", jahre.get(0)));
     suchjahr.setPleaseChoose("Bitte auswählen");
     suchjahr.setPreselected(settings.getInt("jahr", bis.get(Calendar.YEAR)));
     return suchjahr;
@@ -122,7 +126,7 @@ public class JahressaldoControl extends AbstractControl
         starteAuswertung();
       }
     }, null, true, "pdf.png"); // "true" defines this button as the default
-                               // button
+    // button
     return b;
   }
 
@@ -134,6 +138,8 @@ public class JahressaldoControl extends AbstractControl
   {
     try
     {
+      settings.setAttribute("jahr", (Integer) getSuchJahr().getValue());
+
       if (saldoList == null)
       {
         saldoList = new JahressaldoList(null, new Geschaeftsjahr(
@@ -162,47 +168,11 @@ public class JahressaldoControl extends AbstractControl
     return saldoList.getSaldoList();
   }
 
-  private ArrayList<SaldoZeile> getInfo() throws RemoteException,
-      ParseException, ApplicationException
-  {
-    ArrayList<SaldoZeile> zeile = new ArrayList<SaldoZeile>();
-    Konto k = (Konto) Einstellungen.getDBService().createObject(Konto.class,
-        null);
-    DBIterator konten = k.getKontenEinesJahres(new Geschaeftsjahr(
-        (Integer) getSuchJahr().getValue()));
-    double anfangsbestand = 0;
-    double einnahmen = 0;
-    double ausgaben = 0;
-    double umbuchungen = 0;
-    double endbestand = 0;
-    if (getSuchJahr().getValue() != null)
-    {
-      while (konten.hasNext())
-      {
-        SaldoZeile sz = new SaldoZeile(new Geschaeftsjahr(
-            (Integer) getSuchJahr().getValue()), (Konto) konten.next());
-        anfangsbestand += (Double) sz.getAttribute("anfangsbestand");
-        einnahmen += (Double) sz.getAttribute("einnahmen");
-        ausgaben += (Double) sz.getAttribute("ausgaben");
-        umbuchungen += (Double) sz.getAttribute("umbuchungen");
-        endbestand += (Double) sz.getAttribute("endbestand");
-        zeile.add(sz);
-      }
-    }
-    k = (Konto) Einstellungen.getDBService().createObject(Konto.class, null);
-    k.setNummer("");
-    k.setBezeichnung("Summe");
-    zeile.add(new SaldoZeile(k, anfangsbestand, einnahmen, ausgaben,
-        umbuchungen, endbestand));
-    settings.setAttribute("jahr", (Integer) suchjahr.getValue());
-    return zeile;
-  }
-
   private void starteAuswertung() throws ApplicationException
   {
     try
     {
-      ArrayList<SaldoZeile> zeile = getInfo();
+      ArrayList<SaldoZeile> zeile = saldoList.getInfo();
 
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("Ausgabedatei wählen.");
