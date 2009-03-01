@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/JahressaldoPDF.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/07/10 07:59:21 $
+ * $Revision: 1.3 $
+ * $Date: 2009/03/01 18:00:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoPDF.java,v $
+ * Revision 1.3  2009/03/01 18:00:52  jost
+ * Zusätzliche Zeile "Überschuss/Verlust"
+ *
  * Revision 1.2  2008/07/10 07:59:21  jost
  * Optimierung der internen Reporter-Klasse
  *
@@ -53,17 +56,17 @@ public class JahressaldoPDF
 
       reporter.addHeaderColumn("Konto-\nnummer", Element.ALIGN_CENTER, 50,
           Color.LIGHT_GRAY);
-      reporter.addHeaderColumn("Kontobezeichnung", Element.ALIGN_CENTER, 80,
+      reporter.addHeaderColumn("Kontobezeichnung", Element.ALIGN_CENTER, 90,
           Color.LIGHT_GRAY);
-      reporter.addHeaderColumn("Anfangs-\nbestand", Element.ALIGN_CENTER, 50,
+      reporter.addHeaderColumn("Anfangs-\nbestand", Element.ALIGN_CENTER, 45,
           Color.LIGHT_GRAY);
-      reporter.addHeaderColumn("Einnahmen", Element.ALIGN_CENTER, 50,
+      reporter.addHeaderColumn("Einnahmen", Element.ALIGN_CENTER, 45,
           Color.LIGHT_GRAY);
-      reporter.addHeaderColumn("Ausgaben", Element.ALIGN_CENTER, 50,
+      reporter.addHeaderColumn("Ausgaben", Element.ALIGN_CENTER, 45,
           Color.LIGHT_GRAY);
-      reporter.addHeaderColumn("Um-\nbuchungen", Element.ALIGN_CENTER, 50,
+      reporter.addHeaderColumn("Um-\nbuchungen", Element.ALIGN_CENTER, 45,
           Color.LIGHT_GRAY);
-      reporter.addHeaderColumn("Endbestand", Element.ALIGN_CENTER, 50,
+      reporter.addHeaderColumn("Endbestand", Element.ALIGN_CENTER, 45,
           Color.LIGHT_GRAY);
       reporter.addHeaderColumn("Bemerkung", Element.ALIGN_CENTER, 100,
           Color.LIGHT_GRAY);

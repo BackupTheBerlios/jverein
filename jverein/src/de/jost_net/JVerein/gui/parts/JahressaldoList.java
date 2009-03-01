@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/JahressaldoList.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/16 16:57:37 $
+ * $Revision: 1.3 $
+ * $Date: 2009/03/01 18:00:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoList.java,v $
+ * Revision 1.3  2009/03/01 18:00:20  jost
+ * Zusätzliche Zeile "Überschuss/Verlust"
+ *
  * Revision 1.2  2008/11/16 16:57:37  jost
  * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
  *
@@ -127,6 +130,7 @@ public class JahressaldoList extends TablePart implements Part
     double ausgaben = 0;
     double umbuchungen = 0;
     double endbestand = 0;
+    double jahressaldo = 0;
     if (gj != null)
     {
       while (konten.hasNext())
@@ -137,6 +141,8 @@ public class JahressaldoList extends TablePart implements Part
         ausgaben += (Double) sz.getAttribute("ausgaben");
         umbuchungen += (Double) sz.getAttribute("umbuchungen");
         endbestand += (Double) sz.getAttribute("endbestand");
+        jahressaldo += (Double) sz.getAttribute("endbestand")
+            - (Double) sz.getAttribute("anfangsbestand");
         zeile.add(sz);
       }
     }
@@ -145,7 +151,11 @@ public class JahressaldoList extends TablePart implements Part
     k.setBezeichnung("Summe");
     zeile.add(new SaldoZeile(k, anfangsbestand, einnahmen, ausgaben,
         umbuchungen, endbestand));
-    // settings.setAttribute("jahr", (Integer) suchjahr.getValue());
+    k = (Konto) Einstellungen.getDBService().createObject(Konto.class, null);
+    k.setNummer("");
+    k.setBezeichnung("Überschuss/Verlust(-)");
+    zeile.add(new SaldoZeile(k, null, null, null, null, jahressaldo));
+
     return zeile;
   }
 
