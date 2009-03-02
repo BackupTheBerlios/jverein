@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/MitgliedSpaltenauswahl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/02/12 22:19:12 $
+ * $Revision: 1.4 $
+ * $Date: 2009/03/02 19:22:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSpaltenauswahl.java,v $
+ * Revision 1.4  2009/03/02 19:22:41  jost
+ * Bug #15335
+ *
  * Revision 1.3  2009/02/12 22:19:12  jost
  * Anrede aufgenommen.
  *
@@ -60,6 +63,7 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
     add("Telefon privat", "telefonprivat", true);
     add("Telefon dienstlich", "telefondienstlich", false);
     add("Handy", "handy", false);
+    add("Email", "email", false);
     add("Eintritt", "eintritt", true, new DateFormatter(
         Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
     add("Beitragsgruppe", "beitragsgruppe", false,
