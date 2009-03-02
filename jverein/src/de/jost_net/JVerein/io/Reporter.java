@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.9 $
- * $Date: 2009/01/25 16:09:55 $
+ * $Revision: 1.10 $
+ * $Date: 2009/03/02 20:06:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.10  2009/03/02 20:06:36  jost
+ * Korrekte Anzeige von null-Werten
+ *
  * Revision 1.9  2009/01/25 16:09:55  jost
  * I18N entfernt.
  * Silbentrennung aufgenommen.
@@ -204,7 +207,14 @@ public class Reporter
    */
   public void addColumn(Double value)
   {
-    addColumn(getDetailCell(value.doubleValue()));
+    if (value != null)
+    {
+      addColumn(getDetailCell(value.doubleValue()));
+    }
+    else
+    {
+      addColumn(getDetailCell("", Element.ALIGN_LEFT));
+    }
   }
 
   /**
