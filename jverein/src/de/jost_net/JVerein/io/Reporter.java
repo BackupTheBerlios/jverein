@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/03/02 20:06:36 $
+ * $Revision: 1.11 $
+ * $Date: 2009/03/04 20:52:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.11  2009/03/04 20:52:18  jost
+ * Footer korrigiert.
+ *
  * Revision 1.10  2009/03/02 20:06:36  jost
  * Korrekte Anzeige von null-Werten
  *
@@ -126,8 +129,8 @@ public class Reporter
     rpt.addTitle(subtitle);
 
     Chunk fuss = new Chunk(title + " | " + subtitle + " | erstellt am "
-        + Einstellungen.DATEFORMAT.format(new Date()), FontFactory.getFont(
-        FontFactory.HELVETICA, 8, Font.BOLD));
+        + Einstellungen.DATEFORMAT.format(new Date()) + "     Seite: ",
+        FontFactory.getFont(FontFactory.HELVETICA, 8, Font.BOLD));
     HeaderFooter hf = new HeaderFooter(new Phrase(fuss), true);
     hf.setAlignment(Element.ALIGN_CENTER);
     rpt.setFooter(hf);
