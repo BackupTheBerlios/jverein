@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.53 $
- * $Date: 2009/01/22 21:05:57 $
+ * $Revision: 1.54 $
+ * $Date: 2009/03/07 14:19:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.54  2009/03/07 14:19:43  jost
+ * Bugfix: Beitragsgruppe gelöscht aber noch in den Default-Werten referenziert.
+ *
  * Revision 1.53  2009/01/22 21:05:57  jost
  * Zusätzliches Jahr in die Vergangenheit.
  *
@@ -215,6 +218,7 @@ import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
+import de.willuhn.datasource.rmi.ObjectNotFoundException;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -744,8 +748,16 @@ public class MitgliedControl extends AbstractControl
     String beitragsgru = settings.getString("mitglied.beitragsgruppe", "");
     if (beitragsgru.length() > 0)
     {
-      bg = (Beitragsgruppe) Einstellungen.getDBService().createObject(
-          Beitragsgruppe.class, beitragsgru);
+      try
+      {
+        bg = (Beitragsgruppe) Einstellungen.getDBService().createObject(
+            Beitragsgruppe.class, beitragsgru);
+      }
+      catch (ObjectNotFoundException e)
+      {
+        bg = (Beitragsgruppe) Einstellungen.getDBService().createObject(
+            Beitragsgruppe.class, null);
+      }
     }
     DBIterator list = Einstellungen.getDBService().createList(
         Beitragsgruppe.class);
