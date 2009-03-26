@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/09/16 18:52:08 $
+ * $Revision: 1.10 $
+ * $Date: 2009/03/26 21:02:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.10  2009/03/26 21:02:24  jost
+ * Neu: Adressbuchexport
+ *
  * Revision 1.9  2008/09/16 18:52:08  jost
  * Neu: Rechnung
  *
@@ -50,6 +53,8 @@ public class DokumentationUtil
   private static final String PRE = "http://www.jverein.de/index.php5?title=";
 
   public static final String ABBUCHUNG = PRE + "Abbuchung";
+
+  public static final String ADRESSBUCHEXPORT = PRE + "Adressbuchexport";
 
   public static final String ABRECHNUNG = PRE + "Abrechnung";
 
@@ -107,4 +112,6 @@ public class DokumentationUtil
 
   public static final String SPENDENBESCHEINIGUNG = PRE
       + "Spendenbescheinigung";
+
+  public static final String REPORTS = PRE + "Reports";
 }
