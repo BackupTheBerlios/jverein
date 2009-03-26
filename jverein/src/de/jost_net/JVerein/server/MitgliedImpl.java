@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.21 $
- * $Date: 2008/12/29 08:41:29 $
+ * $Revision: 1.22 $
+ * $Date: 2009/03/26 21:05:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.22  2009/03/26 21:05:16  jost
+ * Email-Adress-Checker
+ *
  * Revision 1.21  2008/12/29 08:41:29  jost
  * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
  *
@@ -85,6 +88,7 @@ import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
+import de.jost_net.JVerein.util.Checker;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
@@ -153,6 +157,14 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       throw new ApplicationException("Bitte Geschlecht auswählen");
     }
+    if (getEmail() != null && getEmail().length() > 0)
+    {
+      if (!Checker.isValidEmailAddress(getEmail()))
+      {
+        throw new ApplicationException("Ungültige Email-Adresse.");
+      }
+    }
+
     if (getEintritt() == null
         && Einstellungen.getEinstellung().getEintrittsdatumPflicht())
     {
