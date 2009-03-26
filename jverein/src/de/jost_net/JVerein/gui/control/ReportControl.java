@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ReportControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/02/15 20:03:36 $
+ * $Revision: 1.2 $
+ * $Date: 2009/03/26 20:59:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ReportControl.java,v $
+ * Revision 1.2  2009/03/26 20:59:32  jost
+ * Neu: Reports - Erste Version
+ *
  * Revision 1.1  2009/02/15 20:03:36  jost
  * Erster Code für neue Report-Mimik
  *
@@ -19,9 +22,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
-import de.jost_net.JVerein.gui.formatter.FormularartFormatter;
+import de.jost_net.JVerein.gui.formatter.ReportartFormatter;
+import de.jost_net.JVerein.io.JasperreportsInterface;
+import de.jost_net.JVerein.keys.Reportart;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Report;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -29,8 +36,8 @@ import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.input.FileInput;
+import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.Column;
 import de.willuhn.jameica.gui.parts.TablePart;
@@ -45,9 +52,13 @@ public class ReportControl extends AbstractControl
 
   private TextInput bezeichnung;
 
+  private SelectInput art;
+
   private FileInput datei;
 
   private Report report;
+
+  private Reportart reportart = null;
 
   public ReportControl(AbstractView view)
   {
@@ -76,6 +87,17 @@ public class ReportControl extends AbstractControl
     return bezeichnung;
   }
 
+  public SelectInput getArt() throws RemoteException
+  {
+    if (art != null)
+    {
+      return art;
+    }
+    art = new SelectInput(Reportart.getArray(), new Reportart(
+        (Integer) getReport().getArt()));
+    return art;
+  }
+
   public FileInput getDatei() throws RemoteException
   {
     if (datei != null)
@@ -95,6 +117,8 @@ public class ReportControl extends AbstractControl
     {
       Report r = getReport();
       r.setBezeichnung((String) getBezeichnung().getValue());
+      Reportart ra = (Reportart) getArt().getValue();
+      r.setArt(ra.getKey());
       String dat = (String) getDatei().getValue();
 
       if (dat.length() > 0)
@@ -103,14 +127,19 @@ public class ReportControl extends AbstractControl
         byte[] b = new byte[fis.available()];
         fis.read(b);
         fis.close();
-        r.setQuelle(new String(b));
+        r.setQuelle(b);
+        JasperreportsInterface jr = new JasperreportsInterface(r);
+        jr.compile();
+        Date jetzt = new Date();
+        r.setAenderung(new Timestamp(jetzt.getTime()));
       }
+
       r.store();
       GUI.getStatusBar().setSuccessText("Report gespeichert");
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Speichern des Formulares";
+      String fehler = "Fehler beim Speichern des Reports";
       Logger.error(fehler, e);
       GUI.getStatusBar().setErrorText(fehler);
     }
@@ -131,17 +160,26 @@ public class ReportControl extends AbstractControl
     }
   }
 
-  public Part getFormularList() throws RemoteException
+  public TablePart getReportList(Reportart reportart) throws RemoteException
   {
     DBService service = Einstellungen.getDBService();
     DBIterator reports = service.createList(Report.class);
-    reports.setOrder("ORDER BY typ, bezeichnung");
+    this.reportart = reportart;
+    if (reportart != null)
+    {
+      reports.addFilter("art = ?", new Object[] { reportart.getKey() });
+    }
+    reports.setOrder("ORDER BY bezeichnung");
 
     reportList = new TablePart(reports, null);
     reportList.addColumn("Bezeichnung", "bezeichnung");
-    // todo neuen ReportFormatter bauen
-    reportList.addColumn("Typ", "typ", new FormularartFormatter(), false,
-        Column.ALIGN_LEFT);
+    if (reportart == null)
+    {
+      reportList.addColumn("Art", "art", new ReportartFormatter(), false,
+          Column.ALIGN_LEFT);
+    }
+    reportList.addColumn("letzte Änderung", "aenderung");
+    reportList.addColumn("letzte Nutzung", "nutzung");
     reportList.setRememberColWidths(true);
     // reportList.setContextMenu(new FormularMenu());
     reportList.setRememberOrder(true);
@@ -153,11 +191,14 @@ public class ReportControl extends AbstractControl
   {
     reportList.removeAll();
     DBIterator reports = Einstellungen.getDBService().createList(Report.class);
-    reports.setOrder("ORDER BY typ, bezeichnung");
+    if (reportart != null)
+    {
+      reports.addFilter("art = ?", new Object[] { reportart.getKey() });
+    }
+    reports.setOrder("ORDER BY bezeichnung");
     while (reports.hasNext())
     {
       reportList.addItem((Formular) reports.next());
     }
   }
-
 }
