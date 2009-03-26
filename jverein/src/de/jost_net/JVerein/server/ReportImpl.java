@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ReportImpl.java,v $
  * $Revision: 1.2 
- * $Date: 2009/02/15 20:04:33 $
+ * $Date: 2009/03/26 21:05:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ReportImpl.java,v $
+ * Revision 1.2  2009/03/26 21:05:34  jost
+ * Neu: Reports - Erste Version
+ *
  * Revision 1.1  2009/02/15 20:04:33  jost
  * Erster Code für neue Report-Mimik
  *
@@ -16,6 +19,7 @@
 package de.jost_net.JVerein.server;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 
 import de.jost_net.JVerein.rmi.Report;
 import de.willuhn.datasource.db.AbstractDBObject;
@@ -83,12 +87,27 @@ public class ReportImpl extends AbstractDBObject implements Report
     setAttribute("bezeichnung", bezeichnung);
   }
 
-  public String getQuelle() throws RemoteException
+  public int getArt() throws RemoteException
   {
-    return (String) this.getAttribute("quelle");
+    Integer i = (Integer) getAttribute("art");
+    if (i == null)
+    {
+      return 0;
+    }
+    return i.intValue();
   }
 
-  public void setQuelle(String quelle) throws RemoteException
+  public void setArt(int art) throws RemoteException
+  {
+    setAttribute("art", art);
+  }
+
+  public byte[] getQuelle() throws RemoteException
+  {
+    return (byte[]) this.getAttribute("quelle");
+  }
+
+  public void setQuelle(byte[] quelle) throws RemoteException
   {
     setAttribute("quelle", quelle);
   }
@@ -101,6 +120,26 @@ public class ReportImpl extends AbstractDBObject implements Report
   public void setKompilat(byte[] kompilat) throws RemoteException
   {
     setAttribute("kompilat", kompilat);
+  }
+
+  public Timestamp getAenderung() throws RemoteException
+  {
+    return (Timestamp) this.getAttribute("aenderung");
+  }
+
+  public void setAenderung(Timestamp aenderung) throws RemoteException
+  {
+    setAttribute("aenderung", aenderung);
+  }
+
+  public Timestamp getNutzung() throws RemoteException
+  {
+    return (Timestamp) this.getAttribute("nutzung");
+  }
+
+  public void setNutzung(Timestamp nutzung) throws RemoteException
+  {
+    setAttribute("nutzung", nutzung);
   }
 
   public Object getAttribute(String fieldName) throws RemoteException

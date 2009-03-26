@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.9 $
+ * $Date: 2009/03/26 21:02:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
+ * Revision 1.9  2009/03/26 21:02:08  jost
+ * Neu: Reports - Erste Version
+ *
  * Revision 1.8  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -90,14 +93,13 @@ public class AuswertungMitgliedView extends AbstractView
     right.addLabelPair("Ausgabe", control.getAusgabe());
     right.addLabelPair("Sortierung", control.getSortierung());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 3);
+    ButtonArea buttons = new ButtonArea(getParent(), 4);
 
     buttons.addButton(new Back(false));
     buttons.addButton("Hilfe", new DokumentationAction(),
         DokumentationUtil.AUSWERTUNGMITGLIEDER, false, "help-browser.png");
     buttons.addButton(control.getStartAuswertungButton());
-
-  }
+   }
 
   public void unbind() throws ApplicationException
   {
