@@ -1,13 +1,17 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularDetailView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.4 $
+ * $Date: 2009/03/26 21:03:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
+ * $Log: FormularDetailView.java,v $
+ * Revision 1.4  2009/03/26 21:03:06  jost
+ * Javadoc angepasst.
+ *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
