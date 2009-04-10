@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/FormularAufbereitung.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/09/16 18:52:54 $
+ * $Revision: 1.3 $
+ * $Date: 2009/04/10 17:46:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAufbereitung.java,v $
+ * Revision 1.3  2009/04/10 17:46:17  jost
+ * Zusätzliche Datenfelder für die Rechnungserstellung
+ *
  * Revision 1.2  2008/09/16 18:52:54  jost
  * Refactoring Formularaufbereitung
  *
@@ -22,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.HashMap;
 
 import com.lowagie.text.Document;
@@ -147,6 +151,10 @@ public class FormularAufbereitung
     {
       stringVal = Einstellungen.DECIMALFORMAT.format((Double) val);
       buendig = rechts;
+    }
+    if (val instanceof Date)
+    {
+      stringVal = Einstellungen.DATEFORMAT.format((Date) val);
     }
     String[] ss = stringVal.split("\n");
     for (String s : ss)
