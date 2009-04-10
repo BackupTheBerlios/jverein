@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/DBSupportMcKoiImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/12/01 17:47:37 $
+ * $Revision: 1.3 $
+ * $Date: 2009/04/10 09:53:08 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMcKoiImpl.java,v $
+ * Revision 1.3  2009/04/10 09:53:08  jost
+ * Umstellung auf aktuelle Methoden.
+ *
  * Revision 1.2  2007/12/01 17:47:37  jost
  * Neue DB-Update-Mimik
  *
@@ -27,7 +30,7 @@ import java.text.MessageFormat;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.willuhn.datasource.db.EmbeddedDatabase;
-import de.willuhn.jameica.plugin.PluginResources;
+import de.willuhn.jameica.plugin.Manifest;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
 import de.willuhn.sql.version.Updater;
@@ -74,10 +77,9 @@ public class DBSupportMcKoiImpl extends AbstractDBSupportImpl
     {
       try
       {
-        PluginResources res = Application.getPluginLoader().getPlugin(
-            JVereinPlugin.class).getResources();
-        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, res
-            .getPath()
+        Manifest mani = Application.getManifest();
+        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, mani
+            .getPluginDir()
             + File.separator + "sql.mckoi", Application.getCallback()
             .getStartupMonitor());
         Updater updater = new Updater(udp);
