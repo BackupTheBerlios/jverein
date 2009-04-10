@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/11/29 13:14:29 $
+ * $Revision: 1.12 $
+ * $Date: 2009/04/10 09:43:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.12  2009/04/10 09:43:58  jost
+ * Versuch "Reports" abgebrochen
+ *
  * Revision 1.11  2008/11/29 13:14:29  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -81,13 +84,13 @@ public class MitgliedQuery
   }
 
   @SuppressWarnings("unchecked")
-  public ArrayList getQuery() throws RemoteException
+  public ArrayList get() throws RemoteException
   {
-    return getQuery("*");
+    return get("*");
   }
 
   @SuppressWarnings("unchecked")
-  public ArrayList getQuery(String anfangsbuchstabe) throws RemoteException
+  public ArrayList get(String anfangsbuchstabe) throws RemoteException
   {
     final DBService service = Einstellungen.getDBService();
 
