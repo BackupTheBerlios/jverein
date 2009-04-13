@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.16 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.17 $
+ * $Date: 2009/04/13 11:40:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.17  2009/04/13 11:40:14  jost
+ * Neu: Lehrgänge
+ *
  * Revision 1.16  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -98,6 +101,7 @@ public class EinstellungenView extends AbstractView
     group.addLabelPair("Wiedervorlage anzeigen *", control.getWiedervorlage());
     group
         .addLabelPair("Kursteilnehmer anzeigen *", control.getKursteilnehmer());
+    group.addLabelPair("Lehrgänge anzeigen*", control.getLehrgaenge());
     group.addLabelPair("externe Mitgliedsnummer", control
         .getExterneMitgliedsnummer());
     group.addHeadline("* Änderung erfordert Neustart");

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/03/26 21:02:24 $
+ * $Revision: 1.11 $
+ * $Date: 2009/04/13 11:40:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.11  2009/04/13 11:40:14  jost
+ * Neu: Lehrgänge
+ *
  * Revision 1.10  2009/03/26 21:02:24  jost
  * Neu: Adressbuchexport
  *
@@ -80,6 +83,8 @@ public class DokumentationUtil
   public static final String IMPORT = PRE + "Administration#Import";
 
   public static final String JUBILAEEN = PRE + "Auswertung#Jubil.C3.A4en";
+
+  public static final String LEHRGANG= PRE + "Lehrgang";
 
   public static final String MITGLIED = PRE + "Mitglieder";
 

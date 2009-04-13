@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.15 $
- * $Date: 2009/04/10 09:43:04 $
+ * $Revision: 1.16 $
+ * $Date: 2009/04/13 11:39:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.16  2009/04/13 11:39:54  jost
+ * Neu: Lehrgänge
+ *
  * Revision 1.15  2009/04/10 09:43:04  jost
  * Versuch "Reports" abgebrochen
  *
@@ -68,6 +71,7 @@ import de.jost_net.JVerein.gui.action.JahressaldoAction;
 import de.jost_net.JVerein.gui.action.JubilaeenAction;
 import de.jost_net.JVerein.gui.action.KontoListAction;
 import de.jost_net.JVerein.gui.action.KursteilnehmerSucheAction;
+import de.jost_net.JVerein.gui.action.LehrgaengeListeAction;
 import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangListeAction;
 import de.jost_net.JVerein.gui.action.MitgliedSucheAction;
 import de.jost_net.JVerein.gui.action.RechnungListeAction;
@@ -120,6 +124,11 @@ public class MyExtension implements Extension
       {
         jverein.addChild(new MyItem(jverein, "Wiedervorlage",
             new WiedervorlageListeAction(), "office-calendar.png"));
+      }
+      if (Einstellungen.getEinstellung().getLehrgaenge())
+      {
+        jverein.addChild(new MyItem(jverein, "Lehrgänge",
+            new LehrgaengeListeAction(), "x-office-presentation.png"));
       }
       jverein.addChild(new MyItem(jverein, "Spendenbescheinigung",
           new SpendenbescheinigungListeAction(), "rechnung.png"));

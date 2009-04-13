@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/12/22 21:05:14 $
+ * $Revision: 1.4 $
+ * $Date: 2009/04/13 11:37:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
+ * Revision 1.4  2009/04/13 11:37:36  jost
+ * Neu: Lehrgänge
+ *
  * Revision 1.3  2008/12/22 21:05:14  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -45,6 +48,8 @@ import de.jost_net.JVerein.server.FormularfeldImpl;
 import de.jost_net.JVerein.server.JahresabschlussImpl;
 import de.jost_net.JVerein.server.KontoImpl;
 import de.jost_net.JVerein.server.KursteilnehmerImpl;
+import de.jost_net.JVerein.server.LehrgangImpl;
+import de.jost_net.JVerein.server.LehrgangsartImpl;
 import de.jost_net.JVerein.server.ManuellerZahlungseingangImpl;
 import de.jost_net.JVerein.server.MitgliedImpl;
 import de.jost_net.JVerein.server.SpendenbescheinigungImpl;
@@ -211,6 +216,14 @@ public class BackupCreateAction implements Action
 
           monitor.setStatusText("Speichere Zusatzfelder");
           backup(ZusatzfelderImpl.class, writer, monitor);
+          monitor.addPercentComplete(5);
+
+          monitor.setStatusText("Speichere Lehrgangsarten");
+          backup(LehrgangsartImpl.class, writer, monitor);
+          monitor.addPercentComplete(5);
+
+          monitor.setStatusText("Speichere Lehrgänge");
+          backup(LehrgangImpl.class, writer, monitor);
           monitor.addPercentComplete(5);
 
           // Die Versionstabelle wird nicht mit kopiert

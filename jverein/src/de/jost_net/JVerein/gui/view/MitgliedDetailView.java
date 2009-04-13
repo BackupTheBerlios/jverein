@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.26 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.27 $
+ * $Date: 2009/04/13 11:40:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.27  2009/04/13 11:40:14  jost
+ * Neu: Lehrgänge
+ *
  * Revision 1.26  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -238,6 +241,14 @@ public class MitgliedDetailView extends AbstractView
       {
         cont.addInput(inp);
       }
+    }
+
+    if (Einstellungen.getEinstellung().getLehrgaenge())
+    {
+      TabGroup tab9 = new TabGroup(folder, "Lehrgänge");
+      control.getLehrgaengeTable().paint(tab9.getComposite());
+      ButtonArea buttonslehrg = new ButtonArea(tab9.getComposite(), 1);
+      buttonslehrg.addButton(control.getLehrgangNeu());
     }
 
     ButtonArea buttons = new ButtonArea(getParent(), 5);

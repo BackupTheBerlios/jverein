@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/22 21:20:17 $
+ * $Revision: 1.3 $
+ * $Date: 2009/04/13 11:40:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.3  2009/04/13 11:40:26  jost
+ * Neu: Lehrgänge
+ *
  * Revision 1.2  2008/12/22 21:20:17  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -59,6 +62,10 @@ public interface Einstellung extends DBObject
   public boolean getKursteilnehmer() throws RemoteException;
 
   public void setKursteilnehmer(Boolean kursteilnehmer) throws RemoteException;
+  
+  public boolean getLehrgaenge() throws RemoteException;
+  
+  public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException;
 
   public boolean getExterneMitgliedsnummer() throws RemoteException;
 
