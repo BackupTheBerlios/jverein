@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/04/10 09:53:08 $
+ * $Revision: 1.8 $
+ * $Date: 2009/04/13 11:40:44 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,8 +10,8 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
- * Revision 1.7  2009/04/10 09:53:08  jost
- * Umstellung auf aktuelle Methoden.
+ * Revision 1.8  2009/04/13 11:40:44  jost
+ * Änderung zurückgenommen.
  *
  * Revision 1.6  2008/12/30 21:58:56  jost
  * ÃœberflÃ¼ssiges Import-Statement entfernt.
@@ -41,7 +41,7 @@ import java.sql.Connection;
 import java.util.HashMap;
 
 import de.jost_net.JVerein.JVereinPlugin;
-import de.willuhn.jameica.plugin.Manifest;
+import de.willuhn.jameica.plugin.PluginResources;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
 import de.willuhn.sql.version.Updater;
@@ -161,14 +161,22 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
     {
       try
       {
-        Manifest mani = Application.getManifest();
-        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, mani
-            .getPluginDir()
+        PluginResources res = Application.getPluginLoader().getPlugin(
+            JVereinPlugin.class).getResources();
+        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, res
+            .getPath()
             + File.separator + "sql.h2", Application.getCallback()
             .getStartupMonitor());
+
+        // Manifest mani = Application.getManifest();
+        // JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, mani
+        // .getPluginDir()
+        // + File.separator + "sql.h2", Application.getCallback()
+        // .getStartupMonitor());
+
         if (udp.getCurrentVersion() == 0)
         {
-          File file = new File(mani.getPluginDir() + File.separator + "sql",
+          File file = new File(res.getPath() + File.separator + "sql",
               "h2-create.sql");
           execute(conn, file);
         }
