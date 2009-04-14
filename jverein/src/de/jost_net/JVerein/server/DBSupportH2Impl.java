@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/04/13 11:40:44 $
+ * $Revision: 1.9 $
+ * $Date: 2009/04/14 18:39:04 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.9  2009/04/14 18:39:04  jost
+ * Deprecated Method ersetzt
+ *
  * Revision 1.8  2009/04/13 11:40:44  jost
  * Änderung zurückgenommen.
  *
@@ -161,23 +164,22 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
     {
       try
       {
-        PluginResources res = Application.getPluginLoader().getPlugin(
-            JVereinPlugin.class).getResources();
-        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, res
-            .getPath()
-            + File.separator + "sql.h2", Application.getCallback()
-            .getStartupMonitor());
-
-        // Manifest mani = Application.getManifest();
-        // JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, mani
-        // .getPluginDir()
+        // PluginResources res = Application.getPluginLoader().getPlugin(
+        // JVereinPlugin.class).getResources();
+        // JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, res
+        // .getPath()
         // + File.separator + "sql.h2", Application.getCallback()
         // .getStartupMonitor());
 
+        String p = Application.getPluginLoader().getManifest(
+            JVereinPlugin.class).getPluginDir();
+        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, p
+            + File.separator + "sql.h2", Application.getCallback()
+            .getStartupMonitor());
+
         if (udp.getCurrentVersion() == 0)
         {
-          File file = new File(res.getPath() + File.separator + "sql",
-              "h2-create.sql");
+          File file = new File(p + File.separator + "sql", "h2-create.sql");
           execute(conn, file);
         }
 
