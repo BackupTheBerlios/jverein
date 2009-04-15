@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.19 $
- * $Date: 2008/12/23 21:10:06 $
+ * $Revision: 1.20 $
+ * $Date: 2009/04/15 21:04:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.20  2009/04/15 21:04:22  jost
+ * Vermeidung NPE
+ *
  * Revision 1.19  2008/12/23 21:10:06  jost
  * Vermeidung von NPE's
  *
@@ -272,7 +275,7 @@ public class Import
         m.setBeitragsgruppe(bg);
         // beitragsart.setValue(results.getString("Beitragsart_1"));
         String austritt = results.getString("Austritt");
-        if (austritt.equals("00.00.0000"))
+        if (austritt != null && austritt.equals("00.00.0000"))
         {
           austritt = null;
         }
@@ -287,7 +290,7 @@ public class Import
         {
           kuendigung = results.getString("Kuendigung");
         }
-        if (kuendigung.equals("00.00.0000"))
+        if (kuendigung != null && kuendigung.equals("00.00.0000"))
         {
           kuendigung = null;
         }
@@ -312,6 +315,7 @@ public class Import
     catch (Exception e)
     {
       monitor.log(" nicht importiert: " + e.getMessage());
+      e.printStackTrace();
     }
   }
 
