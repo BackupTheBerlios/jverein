@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.9 $
- * $Date: 2009/04/14 18:39:04 $
+ * $Revision: 1.10 $
+ * $Date: 2009/04/15 21:04:43 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.10  2009/04/15 21:04:43  jost
+ * Überflüssiges Import-Statement entfernt.
+ *
  * Revision 1.9  2009/04/14 18:39:04  jost
  * Deprecated Method ersetzt
  *
@@ -44,7 +47,6 @@ import java.sql.Connection;
 import java.util.HashMap;
 
 import de.jost_net.JVerein.JVereinPlugin;
-import de.willuhn.jameica.plugin.PluginResources;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
 import de.willuhn.sql.version.Updater;
