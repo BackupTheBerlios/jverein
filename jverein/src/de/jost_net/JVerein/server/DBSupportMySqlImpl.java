@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportMySqlImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/04/10 09:53:08 $
+ * $Revision: 1.5 $
+ * $Date: 2009/04/19 18:51:02 $
  * $Author: jost $
  *
  * Copyright (c) by Michael Trapp
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMySqlImpl.java,v $
+ * Revision 1.5  2009/04/19 18:51:02  jost
+ * Bugfix
+ *
  * Revision 1.4  2009/04/10 09:53:08  jost
  * Umstellung auf aktuelle Methoden.
  *
@@ -34,6 +37,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.willuhn.jameica.plugin.Manifest;
 import de.willuhn.jameica.system.Application;
@@ -106,15 +110,14 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
     {
       try
       {
-        Manifest mani = Application.getManifest();
-        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, mani
-            .getPluginDir()
+        String p = Application.getPluginLoader().getManifest(
+            JVereinPlugin.class).getPluginDir();
+        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, p
             + File.separator + "sql.mysql", Application.getCallback()
             .getStartupMonitor());
         if (udp.getCurrentVersion() == 0)
         {
-          File file = new File(mani.getPluginDir() + File.separator + "sql",
-              "mysql-create.sql");
+          File file = new File(p + File.separator + "sql", "mysql-create.sql");
           execute(conn, file);
         }
         Updater updater = new Updater(udp);
