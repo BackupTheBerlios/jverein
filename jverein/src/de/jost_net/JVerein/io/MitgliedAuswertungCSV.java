@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.12 $
- * $Date: 2008/12/04 20:00:55 $
+ * $Revision: 1.13 $
+ * $Date: 2009/04/25 05:30:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
+ * Revision 1.13  2009/04/25 05:30:41  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.12  2008/12/04 20:00:55  jost
  * Handy aufgenommen
  *
@@ -80,7 +83,7 @@ public class MitgliedAuswertungCSV
     {
       PrintWriter out = new PrintWriter(new FileOutputStream(file));
       out
-          .print("id;anrede;titel;name;vorname;adressierungszusatz;strasse;plz;ort;blz;konto;kontoinhaber;");
+          .print("id;personenart;anrede;titel;name;vorname;adressierungszusatz;strasse;plz;ort;blz;konto;kontoinhaber;");
       out
           .print("geburtsdatum;geschlecht;telefonprivat;telefondienstlich;handy;email;");
       out
@@ -101,6 +104,8 @@ public class MitgliedAuswertungCSV
         monitor.setStatus(faelle);
         Mitglied m = list.get(i);
         out.print(m.getID() + ";");
+        out.print(m.getPersonenart(
+            ) + ";");
         out.print(m.getAnrede() + ";");
         out.print(m.getTitel() + ";");
         out.print(m.getName() + ";");

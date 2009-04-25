@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.22 $
- * $Date: 2009/03/26 21:05:16 $
+ * $Revision: 1.23 $
+ * $Date: 2009/04/25 05:32:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.23  2009/04/25 05:32:29  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.22  2009/03/26 21:05:16  jost
  * Email-Adress-Checker
  *
@@ -140,20 +143,26 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
         throw new ApplicationException("Externe Mitgliedsnummer fehlt");
       }
     }
+    if (getPersonenart() == null
+        || (!getPersonenart().equals("n") && !getPersonenart().equals("j")))
+    {
+      throw new ApplicationException("Personenstatus ist nicht 'n' oder 'j'");
+    }
     if (getName() == null || getName().length() == 0)
     {
       throw new ApplicationException("Bitte Namen eingeben");
     }
-    if (getVorname() == null || getVorname().length() == 0)
+    if (getPersonenart().equals("n")
+        && (getVorname() == null || getVorname().length() == 0))
     {
       throw new ApplicationException("Bitte Vornamen eingeben");
     }
-    if (getGeburtsdatum() == null
+    if (getPersonenart().equals("n") && getGeburtsdatum() == null
         && Einstellungen.getEinstellung().getGeburtsdatumPflicht())
     {
       throw new ApplicationException("Bitte Geburtsdatum eingeben");
     }
-    if (getGeschlecht() == null)
+    if (getPersonenart().equals("n") && getGeschlecht() == null)
     {
       throw new ApplicationException("Bitte Geschlecht auswählen");
     }
@@ -246,6 +255,16 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public Integer getExterneMitgliedsnummer() throws RemoteException
   {
     return (Integer) getAttribute("externemitgliedsnummer");
+  }
+
+  public String getPersonenart() throws RemoteException
+  {
+    return (String) getAttribute("personenart");
+  }
+
+  public void setPersonenart(String personenart) throws RemoteException
+  {
+    setAttribute("personenart", personenart);
   }
 
   public String getAnrede() throws RemoteException

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportMySqlImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/04/19 18:51:02 $
+ * $Revision: 1.6 $
+ * $Date: 2009/04/25 05:31:41 $
  * $Author: jost $
  *
  * Copyright (c) by Michael Trapp
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMySqlImpl.java,v $
+ * Revision 1.6  2009/04/25 05:31:41  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.5  2009/04/19 18:51:02  jost
  * Bugfix
  *
@@ -39,7 +42,6 @@ import java.text.MessageFormat;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.JVereinDBService;
-import de.willuhn.jameica.plugin.Manifest;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
 import de.willuhn.sql.version.Updater;

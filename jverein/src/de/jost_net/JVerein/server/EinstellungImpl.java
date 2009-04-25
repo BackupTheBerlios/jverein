@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/04/13 11:41:02 $
+ * $Revision: 1.5 $
+ * $Date: 2009/04/25 05:32:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.5  2009/04/25 05:32:03  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.4  2009/04/13 11:41:02  jost
  * Neu: Lehrgänge
  *
@@ -156,6 +159,17 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException
   {
     setAttribute("lehrgaenge", new Boolean(lehrgaenge));
+  }
+
+  public boolean getJuristischePersonen() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("juristischepersonen"));
+  }
+
+  public void setJuristischePersonen(Boolean juristischepersonen)
+      throws RemoteException
+  {
+    setAttribute("juristischepersonen", new Boolean(juristischepersonen));
   }
 
   public boolean getExterneMitgliedsnummer() throws RemoteException

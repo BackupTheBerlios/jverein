@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.17 $
- * $Date: 2009/04/13 11:40:14 $
+ * $Revision: 1.18 $
+ * $Date: 2009/04/25 05:29:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.18  2009/04/25 05:29:21  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.17  2009/04/13 11:40:14  jost
  * Neu: Lehrgänge
  *
@@ -102,6 +105,7 @@ public class EinstellungenView extends AbstractView
     group
         .addLabelPair("Kursteilnehmer anzeigen *", control.getKursteilnehmer());
     group.addLabelPair("Lehrgänge anzeigen*", control.getLehrgaenge());
+    group.addLabelPair("Juristische Personen erlaubt", control.getJuristischePersonen());
     group.addLabelPair("externe Mitgliedsnummer", control
         .getExterneMitgliedsnummer());
     group.addHeadline("* Änderung erfordert Neustart");

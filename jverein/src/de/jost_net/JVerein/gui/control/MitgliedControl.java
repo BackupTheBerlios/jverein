@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.57 $
- * $Date: 2009/04/13 11:39:33 $
+ * $Revision: 1.58 $
+ * $Date: 2009/04/25 05:28:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.58  2009/04/25 05:28:26  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.57  2009/04/13 11:39:33  jost
  * Neu: Lehrgänge
  *
@@ -372,7 +375,7 @@ public class MitgliedControl extends AbstractControl
     settings.setStoreWhenRead(true);
   }
 
-  private Mitglied getMitglied()
+  public Mitglied getMitglied()
   {
     if (mitglied != null)
     {
@@ -394,6 +397,7 @@ public class MitgliedControl extends AbstractControl
       ex = -1;
     }
     externemitgliedsnummer = new IntegerInput(ex);
+    externemitgliedsnummer.setName("Ext. Mitgliedsnummer");
     return externemitgliedsnummer;
   }
 
@@ -404,6 +408,7 @@ public class MitgliedControl extends AbstractControl
       return anrede;
     }
     anrede = new TextInput(getMitglied().getAnrede(), 10);
+    anrede.setName("Anrede");
     return anrede;
   }
 
@@ -414,6 +419,7 @@ public class MitgliedControl extends AbstractControl
       return titel;
     }
     titel = new TextInput(getMitglied().getTitel(), 20);
+    titel.setName("Titel");
     return titel;
   }
 
@@ -424,6 +430,7 @@ public class MitgliedControl extends AbstractControl
       return name;
     }
     name = new TextInput(getMitglied().getName(), 40);
+    name.setName("Name");
     name.setMandatory(true);
     return name;
   }
@@ -436,6 +443,7 @@ public class MitgliedControl extends AbstractControl
     }
     vorname = new TextInput(getMitglied().getVorname(), 40);
     vorname.setMandatory(true);
+    vorname.setName("Vorname");
     return vorname;
   }
 
@@ -447,6 +455,7 @@ public class MitgliedControl extends AbstractControl
     }
     adressierungszusatz = new TextInput(getMitglied().getAdressierungszusatz(),
         40);
+    adressierungszusatz.setName("Adressierungszusatz");
     return adressierungszusatz;
   }
 
@@ -457,6 +466,7 @@ public class MitgliedControl extends AbstractControl
       return strasse;
     }
     strasse = new TextInput(getMitglied().getStrasse(), 40);
+    strasse.setName("Straße");
     return strasse;
   }
 
@@ -467,6 +477,7 @@ public class MitgliedControl extends AbstractControl
       return plz;
     }
     plz = new TextInput(getMitglied().getPlz(), 10);
+    plz.setName("PLZ");
     plz.addListener(new Listener()
     {
       public void handleEvent(Event event)
@@ -501,6 +512,7 @@ public class MitgliedControl extends AbstractControl
       return ort;
     }
     ort = new TextInput(getMitglied().getOrt(), 40);
+    ort.setName("Ort");
     return ort;
   }
 
@@ -516,6 +528,7 @@ public class MitgliedControl extends AbstractControl
       d = null;
     }
     this.geburtsdatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.geburtsdatum.setName("Geburtsdatum");
     this.geburtsdatum.setTitle("Geburtsdatum");
     this.geburtsdatum.setText("Bitte Geburtsdatum wählen");
     this.geburtsdatum.setMandatory(Einstellungen.getEinstellung()
@@ -542,6 +555,7 @@ public class MitgliedControl extends AbstractControl
     }
     geschlecht = new SelectInput(new String[] { "m", "w" }, getMitglied()
         .getGeschlecht());
+    geschlecht.setName("Geschlecht");
     geschlecht.setPleaseChoose("Bitte auswählen");
     geschlecht.setMandatory(true);
     return geschlecht;
@@ -563,6 +577,7 @@ public class MitgliedControl extends AbstractControl
       zahlungsweg = new SelectInput(Zahlungsweg.getArray(), new Zahlungsweg(
           Zahlungsweg.ABBUCHUNG));
     }
+    zahlungsweg.setName("Zahlungsweg");
     zahlungsweg.addListener(new Listener()
     {
       public void handleEvent(Event event)
@@ -591,6 +606,7 @@ public class MitgliedControl extends AbstractControl
       zahlungsrhytmus = new SelectInput(Zahlungsrhytmus.getArray(),
           new Zahlungsrhytmus(Zahlungsrhytmus.JAEHRLICH));
     }
+    zahlungsrhytmus.setName("Zahlungsrhytmus");
     return zahlungsrhytmus;
   }
 
@@ -601,6 +617,7 @@ public class MitgliedControl extends AbstractControl
       return blz;
     }
     blz = new TextInput(getMitglied().getBlz(), 8);
+    blz.setName("BLZ");
     blz.setMandatory(getMitglied().getZahlungsweg() == null
         || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
     BLZListener l = new BLZListener();
@@ -616,6 +633,7 @@ public class MitgliedControl extends AbstractControl
       return konto;
     }
     konto = new TextInput(getMitglied().getKonto(), 10);
+    konto.setName("Konto");
     konto.setMandatory(getMitglied().getZahlungsweg() == null
         || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
     return konto;
@@ -628,6 +646,7 @@ public class MitgliedControl extends AbstractControl
       return kontoinhaber;
     }
     kontoinhaber = new TextInput(getMitglied().getKontoinhaber(), 27);
+    kontoinhaber.setName("Kontoinhaber");
     return kontoinhaber;
   }
 
@@ -638,6 +657,7 @@ public class MitgliedControl extends AbstractControl
       return telefonprivat;
     }
     telefonprivat = new TextInput(getMitglied().getTelefonprivat(), 20);
+    telefonprivat.setName("Telefon priv.");
     return telefonprivat;
   }
 
@@ -648,6 +668,7 @@ public class MitgliedControl extends AbstractControl
       return telefondienstlich;
     }
     telefondienstlich = new TextInput(getMitglied().getTelefondienstlich(), 20);
+    telefondienstlich.setName("Telefon dienstl.");
     return telefondienstlich;
   }
 
@@ -658,6 +679,7 @@ public class MitgliedControl extends AbstractControl
       return handy;
     }
     handy = new TextInput(getMitglied().getHandy(), 20);
+    handy.setName("Handy");
     return handy;
   }
 
@@ -668,6 +690,7 @@ public class MitgliedControl extends AbstractControl
       return email;
     }
     email = new TextInput(getMitglied().getEmail(), 50);
+    email.setName("EMail");
     return email;
   }
 
@@ -685,6 +708,7 @@ public class MitgliedControl extends AbstractControl
     }
     this.eintritt = new DateInput(d, Einstellungen.DATEFORMAT);
     this.eintritt.setTitle("Eintrittsdatum");
+    this.eintritt.setName("Eintrittsdatum");
     this.eintritt.setText("Bitte Eintrittsdatum wählen");
     this.eintritt.setMandatory(Einstellungen.getEinstellung()
         .getEintrittsdatumPflicht());
@@ -712,6 +736,7 @@ public class MitgliedControl extends AbstractControl
         Beitragsgruppe.class);
     list.setOrder("ORDER BY bezeichnung");
     beitragsgruppe = new SelectInput(list, getMitglied().getBeitragsgruppe());
+    beitragsgruppe.setName("Beitragsgruppe");
     beitragsgruppe.setValue(getMitglied().getBeitragsgruppe());
     beitragsgruppe.setMandatory(true);
     beitragsgruppe.setAttribute("bezeichnung");
@@ -778,6 +803,7 @@ public class MitgliedControl extends AbstractControl
         Beitragsgruppe.class);
     list.setOrder("ORDER BY bezeichnung");
     beitragsgruppeausw = new SelectInput(list, bg);
+    beitragsgruppeausw.setName("Beitragsgruppe");
     beitragsgruppeausw.setAttribute("bezeichnung");
     beitragsgruppeausw.setPleaseChoose("Bitte auswählen");
     return beitragsgruppeausw;
@@ -880,6 +906,7 @@ public class MitgliedControl extends AbstractControl
 
     this.austritt = new DateInput(d, Einstellungen.DATEFORMAT);
     this.austritt.setTitle("Austrittsdatum");
+    this.austritt.setName("Austrittsdatum");
     this.austritt.setText("Bitte Austrittsdatum wählen");
     this.austritt.addListener(new Listener()
     {
@@ -904,6 +931,7 @@ public class MitgliedControl extends AbstractControl
     Date d = getMitglied().getKuendigung();
 
     this.kuendigung = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.kuendigung.setName("Kündigungsdatum");
     this.kuendigung.setTitle("Kündigungsdatum");
     this.kuendigung.setText("Bitte Kündigungsdatum wählen");
     this.kuendigung.addListener(new Listener()
@@ -927,6 +955,7 @@ public class MitgliedControl extends AbstractControl
       return vermerk1;
     }
     vermerk1 = new TextAreaInput(getMitglied().getVermerk1(), 255);
+    vermerk1.setName("Vermerk 1");
     return vermerk1;
   }
 
@@ -937,6 +966,7 @@ public class MitgliedControl extends AbstractControl
       return vermerk2;
     }
     vermerk2 = new TextAreaInput(getMitglied().getVermerk2(), 255);
+    vermerk2.setName("Vermerk 2");
     return vermerk2;
   }
 
@@ -1674,8 +1704,11 @@ public class MitgliedControl extends AbstractControl
         m.setExterneMitgliedsnummer(null);
       }
 
-      m.setGeburtsdatum((Date) getGeburtsdatum().getValue());
-      m.setGeschlecht((String) getGeschlecht().getValue());
+      if (m.getPersonenart().equals("n"))
+      {
+        m.setGeburtsdatum((Date) getGeburtsdatum().getValue());
+        m.setGeschlecht((String) getGeschlecht().getValue());
+      }
       m.setKonto((String) getKonto().getValue());
       m.setKontoinhaber((String) getKontoinhaber().getValue());
       m.setKuendigung((Date) getKuendigung().getValue());

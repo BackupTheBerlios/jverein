@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/04/13 11:40:26 $
+ * $Revision: 1.4 $
+ * $Date: 2009/04/25 05:31:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.4  2009/04/25 05:31:07  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.3  2009/04/13 11:40:26  jost
  * Neu: Lehrgänge
  *
@@ -48,8 +51,7 @@ public interface Einstellung extends DBObject
 
   public boolean getZusatzbetrag() throws RemoteException;
 
-  public void setZusatzbetrag(Boolean zusatzbetrag)
-      throws RemoteException;
+  public void setZusatzbetrag(Boolean zusatzbetrag) throws RemoteException;
 
   public boolean getVermerke() throws RemoteException;
 
@@ -62,9 +64,14 @@ public interface Einstellung extends DBObject
   public boolean getKursteilnehmer() throws RemoteException;
 
   public void setKursteilnehmer(Boolean kursteilnehmer) throws RemoteException;
-  
+
   public boolean getLehrgaenge() throws RemoteException;
-  
+
+  public void setJuristischePersonen(Boolean juristischePersonen)
+      throws RemoteException;
+
+  public boolean getJuristischePersonen() throws RemoteException;
+
   public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException;
 
   public boolean getExterneMitgliedsnummer() throws RemoteException;

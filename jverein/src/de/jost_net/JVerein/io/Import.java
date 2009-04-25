@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.20 $
- * $Date: 2009/04/15 21:04:22 $
+ * $Revision: 1.21 $
+ * $Date: 2009/04/25 05:30:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.21  2009/04/25 05:30:20  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.20  2009/04/15 21:04:22  jost
  * Vermeidung NPE
  *
@@ -184,6 +187,15 @@ public class Import
           m.setExterneMitgliedsnummer(new Integer(results
               .getString("Mitglieds_Nr")));
         }
+        try
+        {
+          m.setPersonenart(results.getString("Personenart"));
+        }
+        catch (Exception e)
+        {
+          m.setPersonenart("n");
+        }
+
         m.setAnrede(results.getString("Anrede"));
         m.setTitel(results.getString("Titel"));
         m.setName(results.getString("Nachname"));

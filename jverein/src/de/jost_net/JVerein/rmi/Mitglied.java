@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.10 $
- * $Date: 2008/11/13 20:18:28 $
+ * $Revision: 1.11 $
+ * $Date: 2009/04/25 05:31:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.11  2009/04/25 05:31:24  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.10  2008/11/13 20:18:28  jost
  * Adressierungszusatz aufgenommen.
  *
@@ -56,6 +59,10 @@ public interface Mitglied extends DBObject
 
   public void setID(String id) throws RemoteException;
 
+  public String getPersonenart() throws RemoteException;
+
+  public void setPersonenart(String personenart) throws RemoteException;
+
   public String getAnrede() throws RemoteException;
 
   public void setAnrede(String anrede) throws RemoteException;
@@ -74,7 +81,8 @@ public interface Mitglied extends DBObject
 
   public String getAdressierungszusatz() throws RemoteException;
 
-  public void setAdressierungszusatz(String adressierungszusatz) throws RemoteException;
+  public void setAdressierungszusatz(String adressierungszusatz)
+      throws RemoteException;
 
   public String getStrasse() throws RemoteException;
 
@@ -179,7 +187,7 @@ public interface Mitglied extends DBObject
   public Date getEingabedatum() throws RemoteException;
 
   public String getNameVorname() throws RemoteException;
-  
+
   public String getVornameName() throws RemoteException;
 
   public String getAnschrift() throws RemoteException;
