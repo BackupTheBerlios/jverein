@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedDetailAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:26:00 $
+ * $Revision: 1.3 $
+ * $Date: 2009/04/25 05:27:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailAction.java,v $
+ * Revision 1.3  2009/04/25 05:27:30  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.2  2007/02/23 20:26:00  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -18,9 +21,8 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
-import java.rmi.RemoteException;
-
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.gui.dialogs.PersonenartDialog;
 import de.jost_net.JVerein.gui.view.MitgliedDetailView;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.jameica.gui.Action;
@@ -43,8 +45,19 @@ public class MitgliedDetailAction implements Action
       {
         m = (Mitglied) Einstellungen.getDBService().createObject(
             Mitglied.class, null);
+        if (Einstellungen.getEinstellung().getJuristischePersonen())
+        {
+          PersonenartDialog pad = new PersonenartDialog(
+              PersonenartDialog.POSITION_CENTER);
+          String pa = (String) pad.open();
+          m.setPersonenart(pa);
+        }
+        else
+        {
+          m.setPersonenart("n");
+        }
       }
-      catch (RemoteException e)
+      catch (Exception e)
       {
         throw new ApplicationException(
             "Fehler bei der Erzeugung eines neuen Mitgliedes", e);

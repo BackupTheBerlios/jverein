@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2009/04/13 11:39:14 $
+ * $Revision: 1.16 $
+ * $Date: 2009/04/25 05:27:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.16  2009/04/25 05:27:52  jost
+ * Neu: Juristische Personen  können als Mitglied gespeichert werden.
+ *
  * Revision 1.15  2009/04/13 11:39:14  jost
  * Neu: Lehrgänge
  *
@@ -93,6 +96,8 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput kursteilnehmer;
 
   private CheckboxInput lehrgaenge;
+
+  private CheckboxInput juristischepersonen;
 
   private CheckboxInput externemitgliedsnummer;
 
@@ -206,6 +211,17 @@ public class EinstellungControl extends AbstractControl
     return lehrgaenge;
   }
 
+  public CheckboxInput getJuristischePersonen() throws RemoteException
+  {
+    if (juristischepersonen != null)
+    {
+      return juristischepersonen;
+    }
+    juristischepersonen = new CheckboxInput(Einstellungen.getEinstellung()
+        .getJuristischePersonen());
+    return juristischepersonen;
+  }
+
   public CheckboxInput getExterneMitgliedsnummer() throws RemoteException
   {
     if (externemitgliedsnummer != null)
@@ -316,6 +332,7 @@ public class EinstellungControl extends AbstractControl
       e.setWiedervorlage((Boolean) wiedervorlage.getValue());
       e.setKursteilnehmer((Boolean) kursteilnehmer.getValue());
       e.setLehrgaenge((Boolean) lehrgaenge.getValue());
+      e.setJuristischePersonen((Boolean) juristischepersonen.getValue());
       e.setExterneMitgliedsnummer((Boolean) externemitgliedsnummer.getValue());
       Beitragsmodel bm = (Beitragsmodel) beitragsmodel.getValue();
       e.setBeitragsmodel(bm.getKey());
