@@ -93,6 +93,12 @@
 	<p>Durch <a href="administration_felddefinitionen.shtml">Definition von Zusatzfeldern</a> die können 
 		zusätzliche Datenfelder erfasst werden.</p>
 
+    <!-- 
+    $Log: mitglied.shtml,v $
+    Revision 1.2  2009/05/03 15:33:30  jost
+    Neue Homepage
+
+    -->
     
     <!--#include virtual="footer.shtml"-->  
 

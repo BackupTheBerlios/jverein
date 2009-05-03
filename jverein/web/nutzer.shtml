@@ -20,5 +20,14 @@
     </tr>
     </table>
     <p>Für einen Eintrag in diese Liste bitte eine Mail an <a href='mailto:heiner@jverein.de'>heiner@jverein.de</a></p>
+
+    <!-- 
+    $Log: nutzer.shtml,v $
+    Revision 1.6  2009/05/03 15:33:30  jost
+    Neue Homepage
+
+    -->
+
+
 <!--#include virtual="footer.shtml"-->  
 

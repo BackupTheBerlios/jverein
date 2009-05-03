@@ -26,6 +26,12 @@
     <p>Beispiel für ein ausgefülltes Formular</p>
     <img src='images/Formularausgefuellt.jpg' class='screenshot'>
     
+    <!-- 
+    $Log: administration_formulare.shtml,v $
+    Revision 1.2  2009/05/03 15:33:30  jost
+    Neue Homepage
+
+    -->
     
     <!--#include virtual="footer.shtml"-->  
 

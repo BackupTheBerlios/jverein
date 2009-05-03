@@ -8,6 +8,13 @@
 _uacct = "UA-2013737-1";
 urchinTracker();
 </script>
+    <!-- 
+    $Log: footer.shtml,v $
+    Revision 1.5  2009/05/03 15:33:30  jost
+    Neue Homepage
+
+    -->
+
 </body>
 </html>
 

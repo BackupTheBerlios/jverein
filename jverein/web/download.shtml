@@ -4,5 +4,13 @@
     <a href="http://developer.berlios.de/project/showfiles.php?group_id=7335"
        target=blank>Projekt-Seite</a>
     geladen werden.</p>
+    
+    <!-- 
+    $Log: download.shtml,v $
+    Revision 1.4  2009/05/03 15:33:30  jost
+    Neue Homepage
+
+    -->
+    
 <!--#include virtual="footer.shtml"-->  
 
