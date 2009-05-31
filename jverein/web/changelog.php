@@ -1,8 +1,10 @@
 <? include ("frame.inc"); ?>
     <h1>Changelog</h1>
     <ul>
-    	<li>Version 1.1.2 vom&nbsp;? (noch nicht freigegeben)
+    	<li>Version 1.1.2 vom ? (noch nicht freigegeben)
     		<ul>
+    		    <li>Bugfix FirstStart: Jetzt wird auch die Existenz von Beitragsgruppen abgefragt</li>
+    			<li>Die Menüpunkte von Plugins>JVerein ins Hauptmenü kopiert</li>
     			<li>Mitglied: Name, Vorname und Straße als Suchfelder</li>
     			<li>Bugfix: Löschen von Mitgliedern mit Zusatzfeldern.</li>
     			<li>Neu: Juristische Personen (Firmen, Organisationen, Behörden) können als Mitglied gespeichert werden.</li>
@@ -418,6 +420,9 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
+    Revision 1.5  2009/05/31 12:28:15  jost
+    *** empty log message ***
+
     Revision 1.4  2009/05/15 19:10:18  jost
     *** empty log message ***
 
