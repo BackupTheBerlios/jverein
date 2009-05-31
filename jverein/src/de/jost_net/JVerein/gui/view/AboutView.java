@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AboutView.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/12/27 15:18:30 $
+ * $Revision: 1.5 $
+ * $Date: 2009/05/31 12:27:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AboutView.java,v $
+ * Revision 1.5  2009/05/31 12:27:27  jost
+ * Typografische Änderung.
+ *
  * Revision 1.4  2008/12/27 15:18:30  jost
  * ZusÃ¤tzliche Infos werden ausgegeben.
  *
@@ -50,8 +53,8 @@ public class AboutView extends AbstractDialog
     FormTextPart text = new FormTextPart();
     text.setText("<form>"
         + "<p><b>Plugin für die Vereinsverwaltung unter Jameica</b></p>"
-        + "<br/>Licence: GPL (http://www.gnu.org/copyleft/gpl.html)"
-        + "<br/><p>Copyright by Heiner Jostkleigrewe [heiner@jverein.de]</p>"
+        + "<br/>Licence: GPL [ http://www.gnu.org/copyleft/gpl.html ]"
+        + "<br/><p>Copyright by Heiner Jostkleigrewe [ heiner@jverein.de ]</p>"
         + "<p>http://www.jverein.de</p>" + "</form>");
 
     text.paint(parent);
