@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/FirstStart.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/12/29 19:09:22 $
+ * $Revision: 1.4 $
+ * $Date: 2009/05/31 12:26:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FirstStart.java,v $
+ * Revision 1.4  2009/05/31 12:26:26  jost
+ * Erläuternder Text wurde eingefügt.
+ *
  * Revision 1.3  2007/12/29 19:09:22  jost
  * Explizite HÃ¶he der Box vorgegeben.
  *
@@ -77,6 +80,7 @@ public class FirstStart extends AbstractBox
     text.setText("<form><p><span color=\"header\" font=\"header\">"
         + "Herzlich willkommen" + "</span></p>" + "<p>"
         + "JVerein wird zum ersten Mal gestartet. Die Stammdaten des Vereins "
+        + "(Name, eigene Bankverbindung) "
         + "und die Beitragsgruppe(n) sind zu erfassen. Außerdem kann das "
         + "Verhalten von JVerein durch die Einstellungen beeinflusst werden."
         + "</p></form>");
@@ -91,6 +95,6 @@ public class FirstStart extends AbstractBox
 
   public int getHeight()
   {
-    return 140;
+    return 160;
   }
 }
