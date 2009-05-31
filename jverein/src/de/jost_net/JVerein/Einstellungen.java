@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.19 $
- * $Date: 2008/12/29 08:40:36 $
+ * $Revision: 1.20 $
+ * $Date: 2009/05/31 12:26:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.20  2009/05/31 12:26:02  jost
+ * Bugfix FirstStart / Existenz von Beitragsgruppen wird jetzt auch abgeprüft.
+ *
  * Revision 1.19  2008/12/29 08:40:36  jost
  * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
  *
@@ -78,6 +81,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import de.jost_net.JVerein.keys.Beitragsmodel;
+import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Einstellung;
 import de.jost_net.JVerein.rmi.Stammdaten;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -287,7 +291,7 @@ public class Einstellungen
       {
         bstamm = true;
       }
-      DBIterator bg = getDBService().createList(Stammdaten.class);
+      DBIterator bg = getDBService().createList(Beitragsgruppe.class);
       if (bg.size() > 0)
       {
         bbeitragsgruppe = true;
