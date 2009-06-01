@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.8 $
+ * $Date: 2009/06/01 08:32:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportView.java,v $
+ * Revision 1.8  2009/06/01 08:32:39  jost
+ * Icon aufgenommen.
+ *
  * Revision 1.7  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -72,7 +75,7 @@ public class ImportView extends AbstractView
       {
         doImport();
       }
-    }, null, true);
+    }, null, true, "go.png");
     buttons.addButton(button);
   }
 
