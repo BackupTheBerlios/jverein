@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/04/15 21:04:43 $
+ * $Revision: 1.11 $
+ * $Date: 2009/06/02 17:12:55 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.11  2009/06/02 17:12:55  jost
+ * Ausgabe der Datenbankversion.
+ *
  * Revision 1.10  2009/04/15 21:04:43  jost
  * Überflüssiges Import-Statement entfernt.
  *
@@ -42,6 +45,7 @@
 package de.jost_net.JVerein.server;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -77,6 +81,18 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
     Logger.info("switching dbservice to uppercase");
     System.setProperty(JVereinDBServiceImpl.class.getName() + ".uppercase",
         "true");
+
+    try
+    {
+      Method m = Application.getClassLoader().load("org.h2.engine.Constants")
+          .getMethod("getVersion", (Class[]) null);
+      Logger.info("h2 version: " + m.invoke(null, (Object[]) null));
+    }
+    catch (Throwable t)
+    {
+      Logger.warn("unable to determine h2 version");
+    }
+
   }
 
   public String getJdbcDriver()
