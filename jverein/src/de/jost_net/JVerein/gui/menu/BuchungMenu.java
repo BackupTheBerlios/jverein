@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungMenu.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/01/25 10:58:39 $
+ * $Revision: 1.11 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungMenu.java,v $
+ * Revision 1.11  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.10  2009/01/25 10:58:39  jost
  * Icons aufgenommen.
  *
@@ -39,6 +42,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BuchungAction;
 import de.jost_net.JVerein.gui.action.BuchungBuchungsartZuordnungAction;
 import de.jost_net.JVerein.gui.action.BuchungDeleteAction;
@@ -67,12 +71,12 @@ public class BuchungMenu extends ContextMenu
 
   public BuchungMenu(BuchungsControl control)
   {
-    addItem(new ContextMenuItem("Neu", new BuchungNeuAction(),
-        "document-new.png"));
+    addItem(new ContextMenuItem(JVereinPlugin.getI18n().tr("neu"),
+        new BuchungNeuAction(), "document-new.png"));
     // Work-Around: Jameica unterstütze in Version 1.7 den Konstruktor mit Icon
     // nicht.
     CheckedSingleContextMenuItem mnBearbeiten = new CheckedSingleContextMenuItem(
-        "Bearbeiten", new BuchungAction());
+        JVereinPlugin.getI18n().tr("bearbeiten"), new BuchungAction());
     String icon = "edit.png";
     try
     {
@@ -84,9 +88,11 @@ public class BuchungMenu extends ContextMenu
     }
     addItem(mnBearbeiten);
 
-    addItem(new CheckedContextMenuItem("Buchungsart zuordnen",
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "Buchungsart zuordnen"),
         new BuchungBuchungsartZuordnungAction(control), "zuordnung.png"));
-    addItem(new CheckedContextMenuItem("Löschen...", new BuchungDeleteAction(),
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."), new BuchungDeleteAction(),
         "user-trash.png"));
   }
 }

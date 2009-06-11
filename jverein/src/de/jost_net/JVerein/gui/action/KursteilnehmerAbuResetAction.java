@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/KursteilnehmerAbuResetAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/03/21 12:09:32 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerAbuResetAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2007/03/21 12:09:32  jost
  * Neu: Abbuchungsdatum beim Kursteilnehmer kann zurÃ¼ckgesetzt werden.
  *
@@ -23,6 +26,7 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -47,7 +51,8 @@ public class KursteilnehmerAbuResetAction implements Action
   {
     if (context == null || !(context instanceof Kursteilnehmer))
     {
-      throw new ApplicationException("Kein Kursteilnehmer ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Kein Kursteilnehmer ausgewählt"));
     }
     try
     {
@@ -57,9 +62,12 @@ public class KursteilnehmerAbuResetAction implements Action
         return;
       }
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
-      d.setTitle("Abbuchungsdatum zurücksetzen");
+      d.setTitle(JVereinPlugin.getI18n().tr("Abbuchungsdatum zurücksetzen"));
       d
-          .setText("Wollen Sie das Ausführungsdatum der Abbuchung wirklich zurücksetzen?");
+          .setText(JVereinPlugin
+              .getI18n()
+              .tr(
+                  "Wollen Sie das Ausführungsdatum der Abbuchung wirklich zurücksetzen?"));
       try
       {
         Boolean choice = (Boolean) d.open();
@@ -68,8 +76,8 @@ public class KursteilnehmerAbuResetAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(
-            "Fehler beim Reset des Abbuchungsdatums des Kursteilnehmers", e);
+        Logger.error(JVereinPlugin.getI18n().tr(
+            "Fehler beim Reset des Abbuchungsdatums des Kursteilnehmers"), e);
         return;
       }
       int ind = table.removeItem(kt);
@@ -77,11 +85,13 @@ public class KursteilnehmerAbuResetAction implements Action
       kt.store();
       table.addItem(kt, ind);
 
-      GUI.getStatusBar().setSuccessText("Abbuchungsdatum zurückgesetzt.");
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Abbuchungsdatum zurückgesetzt."));
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Zurücksetzen des Abbuchungsdatum des Kursteilnehmers.";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Zurücksetzen des Abbuchungsdatum des Kursteilnehmers.");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

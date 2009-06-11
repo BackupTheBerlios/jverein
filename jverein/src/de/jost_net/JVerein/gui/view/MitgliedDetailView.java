@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.28 $
- * $Date: 2009/04/25 05:29:53 $
+ * $Revision: 1.29 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.29  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.28  2009/04/25 05:29:53  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
@@ -102,6 +105,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.TabFolder;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MitgliedDeleteAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
@@ -132,7 +136,7 @@ public class MitgliedDetailView extends AbstractView
 
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Daten des Mitgliedes");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Daten des Mitgliedes"));
 
     final MitgliedControl control = new MitgliedControl(this);
 
@@ -140,7 +144,7 @@ public class MitgliedDetailView extends AbstractView
 
     ColumnLayout cols1 = new ColumnLayout(scrolled.getComposite(), 2);
     SimpleContainer left = new SimpleContainer(cols1.getComposite());
-    left.addHeadline("Grunddaten");
+    left.addHeadline(JVereinPlugin.getI18n().tr("Grunddaten"));
     left.addInput(control.getAnrede());
     if (control.getMitglied().getPersonenart().equals("n"))
     {
@@ -148,8 +152,8 @@ public class MitgliedDetailView extends AbstractView
     }
     if (control.getMitglied().getPersonenart().equals("j"))
     {
-      control.getName().setName("Name Zeile 1");
-      control.getVorname().setName("Name Zeile 2");
+      control.getName().setName(JVereinPlugin.getI18n().tr("Name Zeile 1"));
+      control.getVorname().setName(JVereinPlugin.getI18n().tr("Name Zeile 2"));
       control.getVorname().setMandatory(false);
     }
     left.addInput(control.getName());
@@ -171,7 +175,7 @@ public class MitgliedDetailView extends AbstractView
     {
       ColumnLayout cols2 = new ColumnLayout(scrolled.getComposite(), 2);
       SimpleContainer left2 = new SimpleContainer(cols2.getComposite());
-      left2.addHeadline("Kommunikation");
+      left2.addHeadline(JVereinPlugin.getI18n().tr("Kommunikation"));
       left2.addInput(control.getTelefonprivat());
       left2.addInput(control.getHandy());
       SimpleContainer right2 = new SimpleContainer(cols2.getComposite());
@@ -182,7 +186,7 @@ public class MitgliedDetailView extends AbstractView
 
     ColumnLayout cols3 = new ColumnLayout(scrolled.getComposite(), 2);
     SimpleContainer left3 = new SimpleContainer(cols3.getComposite());
-    left3.addHeadline("Bankverbindung");
+    left3.addHeadline(JVereinPlugin.getI18n().tr("Bankverbindung"));
     left3.addInput(control.getZahlungsweg());
     if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH12631)
     {
@@ -198,7 +202,8 @@ public class MitgliedDetailView extends AbstractView
     folder.setLayoutData(new GridData(GridData.FILL_BOTH));
     folder.setBackground(Color.BACKGROUND.getSWTColor());
 
-    TabGroup tab3 = new TabGroup(folder, "Mitgliedschaft");
+    TabGroup tab3 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+        "Mitgliedschaft"));
     if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
     {
       tab3.addInput(control.getExterneMitgliedsnummer());
@@ -216,7 +221,8 @@ public class MitgliedDetailView extends AbstractView
     }
     if (Einstellungen.getEinstellung().getZusatzbetrag())
     {
-      TabGroup tab4 = new TabGroup(folder, "Zusatzbeträge");
+      TabGroup tab4 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+          "Zusatzbeträge"));
       control.getZusatzbetraegeTable().paint(tab4.getComposite());
       ButtonArea buttonszus = new ButtonArea(tab4.getComposite(), 1);
       buttonszus.addButton(control.getZusatzbetragNeu());
@@ -224,14 +230,18 @@ public class MitgliedDetailView extends AbstractView
 
     if (Einstellungen.getEinstellung().getVermerke())
     {
-      TabGroup tab5 = new TabGroup(folder, "Vermerke");
-      tab5.addLabelPair("Vermerk 1", control.getVermerk1());
-      tab5.addLabelPair("Vermerk 2", control.getVermerk2());
+      TabGroup tab5 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+          "Vermerke"));
+      tab5.addLabelPair(JVereinPlugin.getI18n().tr("Vermerk 1"), control
+          .getVermerk1());
+      tab5.addLabelPair(JVereinPlugin.getI18n().tr("Vermerk 2"), control
+          .getVermerk2());
     }
 
     if (Einstellungen.getEinstellung().getWiedervorlage())
     {
-      TabGroup tab6 = new TabGroup(folder, "Wiedervorlage");
+      TabGroup tab6 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+          "Wiedervorlage"));
       control.getWiedervorlageTable().paint(tab6.getComposite());
       ButtonArea buttonswvl = new ButtonArea(tab6.getComposite(), 1);
       buttonswvl.addButton(control.getWiedervorlageNeu());
@@ -240,16 +250,19 @@ public class MitgliedDetailView extends AbstractView
         DBSupportH2Impl.class.getName()).equals(
         DBSupportMcKoiImpl.class.getName()))
     {
-      TabGroup tab7 = new TabGroup(folder, "Eigenschaften");
+      TabGroup tab7 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+          "Eigenschaften"));
       EigenschaftenControl econtrol = new EigenschaftenControl(this,
           (Mitglied) control.getCurrentObject());
       econtrol.getEigenschaftenTable().paint(tab7.getComposite());
-      tab7.addText("Rechter Mausklick für Funktionen", false);
+      tab7.addText(JVereinPlugin.getI18n().tr(
+          "Rechter Mausklick für Funktionen"), false);
     }
     TextInput[] zusatzfelder = control.getZusatzfelder();
     if (zusatzfelder != null)
     {
-      TabGroup tab8 = new TabGroup(folder, "Zusatzfelder");
+      TabGroup tab8 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+          "Zusatzfelder"));
       ScrolledContainer cont = new ScrolledContainer(tab8.getComposite());
       for (TextInput inp : zusatzfelder)
       {
@@ -259,7 +272,8 @@ public class MitgliedDetailView extends AbstractView
 
     if (Einstellungen.getEinstellung().getLehrgaenge())
     {
-      TabGroup tab9 = new TabGroup(folder, "Lehrgänge");
+      TabGroup tab9 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+          "Lehrgänge"));
       control.getLehrgaengeTable().paint(tab9.getComposite());
       ButtonArea buttonslehrg = new ButtonArea(tab9.getComposite(), 1);
       buttonslehrg.addButton(control.getLehrgangNeu());
@@ -267,13 +281,15 @@ public class MitgliedDetailView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 5);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.MITGLIED, false, "help-browser.png");
-    buttons.addButton("Neu", new MitgliedDetailAction(), null, false,
-        "document-new.png");
-    buttons.addButton("Löschen", new MitgliedDeleteAction(), control
-        .getCurrentObject(), false, "user-trash.png");
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.MITGLIED, false,
+        "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+        new MitgliedDetailAction(), null, false, "document-new.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("löschen"),
+        new MitgliedDeleteAction(), control.getCurrentObject(), false,
+        "user-trash.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

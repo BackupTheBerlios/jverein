@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:26:00 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDeleteAction.java,v $
+ * Revision 1.3  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2007/02/23 20:26:00  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -20,6 +23,7 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -36,7 +40,8 @@ public class MitgliedDeleteAction implements Action
   {
     if (context == null || !(context instanceof Mitglied))
     {
-      throw new ApplicationException("Kein Mitglied ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Kein Mitglied ausgewählt"));
     }
     try
     {
@@ -46,8 +51,9 @@ public class MitgliedDeleteAction implements Action
         return;
       }
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
-      d.setTitle("Mitglied löschen");
-      d.setText("Wollen Sie dieses Mitglied wirklich löschen?");
+      d.setTitle(JVereinPlugin.getI18n().tr("Mitglied löschen"));
+      d.setText(JVereinPlugin.getI18n().tr(
+          "Wollen Sie dieses Mitglied wirklich löschen?"));
 
       try
       {
@@ -57,15 +63,18 @@ public class MitgliedDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error("Fehler beim Löschen des Mitgliedes", e);
+        Logger.error(JVereinPlugin.getI18n().tr(
+            "Fehler beim Löschen des Mitgliedes"), e);
         return;
       }
       m.delete();
-      GUI.getStatusBar().setSuccessText("Mitglied gelöscht.");
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Mitglied gelöscht."));
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Löschen des Mitgliedes";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Löschen des Mitgliedes");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

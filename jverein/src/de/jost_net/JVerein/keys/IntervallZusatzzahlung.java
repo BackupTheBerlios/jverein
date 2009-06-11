@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/IntervallZusatzzahlung.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/13 16:24:55 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: IntervallZusatzzahlung.java,v $
+ * Revision 1.3  2009/06/11 21:04:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/12/13 16:24:55  jost
  * equals()-Methode implementiert.
  *
@@ -19,6 +22,8 @@
 package de.jost_net.JVerein.keys;
 
 import java.util.ArrayList;
+
+import de.jost_net.JVerein.JVereinPlugin;
 
 /**
  * Intervall Zusatzzahlungen
@@ -59,17 +64,17 @@ public class IntervallZusatzzahlung
     switch (key)
     {
       case KEIN:
-        return "kein";
+        return JVereinPlugin.getI18n().tr("kein");
       case MONATLICH:
-        return "monatlich";
+        return JVereinPlugin.getI18n().tr("monatlich");
       case ZWEIMONATLICH:
-        return "zweimonatlich";
+        return JVereinPlugin.getI18n().tr("zweimonatlich");
       case VIERTELJAEHRLICH:
-        return "vierteljährlich";
+        return JVereinPlugin.getI18n().tr("vierteljährlich");
       case HALBJAEHRLICH:
-        return "halbjährlich";
+        return JVereinPlugin.getI18n().tr("halbjährlich");
       case JAEHRLICH:
-        return "jährlich";
+        return JVereinPlugin.getI18n().tr("jährlich");
       default:
         return null;
     }

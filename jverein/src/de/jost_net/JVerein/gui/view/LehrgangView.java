@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/LehrgangView.java,v $
- *  * $Revision: 1.1 $
- * $Date: 2009/04/13 11:40:14 $
+ *  * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,12 +9,16 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangView.java,v $
+ * Revision 1.2  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2009/04/13 11:40:14  jost
  * Neu: Lehrgänge
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.LehrgangControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -29,21 +33,26 @@ public class LehrgangView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Lehrgang");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Lehrgang"));
     final LehrgangControl control = new LehrgangControl(this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Lehrgang");
-    group.addLabelPair("Lehrgangsart", control.getLehrgangsart());
-    group.addLabelPair("am/von", control.getVon());
-    group.addLabelPair("bis", control.getBis());
-    group.addLabelPair("Veranstalter", control.getVeranstalter());
-    group.addLabelPair("Ergebnis", control.getErgebnis());
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
+        "Lehrgang"));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Lehrgangsart"), control
+        .getLehrgangsart());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("am/von"), control.getVon());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("bis"), control.getBis());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Veranstalter"), control
+        .getVeranstalter());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Ergebnis"), control
+        .getErgebnis());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.LEHRGANG, false, "help-browser.png");
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.LEHRGANG, false,
+        "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

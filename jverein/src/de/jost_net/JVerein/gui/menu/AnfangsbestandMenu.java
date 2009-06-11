@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/AnfangsbestandMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/22 21:10:37 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandMenu.java,v $
+ * Revision 1.3  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/12/22 21:10:37  jost
  * Icons ins MenÃ¼ aufgenommen.
  *
@@ -18,6 +21,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.AnfangsbestandDeleteAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
@@ -33,7 +37,8 @@ public class AnfangsbestandMenu extends ContextMenu
    */
   public AnfangsbestandMenu()
   {
-    addItem(new CheckedContextMenuItem("Löschen...",
-        new AnfangsbestandDeleteAction(),"user-trash.png"));
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."),
+        new AnfangsbestandDeleteAction(), "user-trash.png"));
   }
 }

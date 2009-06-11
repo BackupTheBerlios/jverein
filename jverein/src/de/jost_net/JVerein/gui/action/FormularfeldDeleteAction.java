@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularfeldDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/07/18 20:07:05 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldDeleteAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2008/07/18 20:07:05  jost
  * Neu: Formulare
  *
@@ -17,6 +20,7 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Formularfeld;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -39,7 +43,8 @@ public class FormularfeldDeleteAction implements Action
     }
     if (context == null || !(context instanceof Formularfeld))
     {
-      throw new ApplicationException("Kein Formularfeld ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Kein Formularfeld ausgewählt"));
     }
     try
     {
@@ -50,8 +55,9 @@ public class FormularfeldDeleteAction implements Action
       }
 
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
-      d.setTitle("Formularfeld löschen");
-      d.setText("Wollen Sie dieses Formularfeld wirklich löschen?");
+      d.setTitle(JVereinPlugin.getI18n().tr("Formularfeld löschen"));
+      d.setText(JVereinPlugin.getI18n().tr(
+          "Wollen Sie dieses Formularfeld wirklich löschen?"));
 
       try
       {
@@ -63,15 +69,18 @@ public class FormularfeldDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error("Fehler beim Löschen des Formularfeldes", e);
+        Logger.error(JVereinPlugin.getI18n().tr(
+            "Fehler beim Löschen des Formularfeldes"), e);
         return;
       }
       f.delete();
-      GUI.getStatusBar().setSuccessText("Formularfeld gelöscht.");
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Formularfeld gelöscht."));
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Löschen des Formularfeldes";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Löschen des Formularfeldes");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

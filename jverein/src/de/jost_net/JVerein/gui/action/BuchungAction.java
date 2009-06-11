@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungAction.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/07/09 13:17:48 $
+ * $Revision: 1.7 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungAction.java,v $
+ * Revision 1.7  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.6  2008/07/09 13:17:48  jost
  * Überflüssige Imports entfernt.
  *
@@ -30,6 +33,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.view.BuchungView;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
@@ -51,9 +55,10 @@ public class BuchungAction implements Action
         Jahresabschluss ja = b.getJahresabschluss();
         if (ja != null)
         {
-          throw new ApplicationException("Buchung wurde bereits am "
-              + Einstellungen.DATEFORMAT.format(ja.getDatum()) + " von "
-              + ja.getName() + " abgeschlossen.");
+          throw new ApplicationException(JVereinPlugin.getI18n().tr(
+              "Buchung wurde bereits am {0} von {1} abgeschlossen.",
+              new String[] { Einstellungen.DATEFORMAT.format(ja.getDatum()),
+                  ja.getName() }));
         }
       }
       catch (RemoteException e)
@@ -70,8 +75,8 @@ public class BuchungAction implements Action
       }
       catch (RemoteException e)
       {
-        throw new ApplicationException(
-            "Fehler bei der Erzeugung einer neuen Buchung", e);
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Fehler bei der Erzeugung einer neuen Buchung"), e);
       }
     }
     GUI.startView(BuchungView.class.getName(), b);

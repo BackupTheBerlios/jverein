@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/StammdatenImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/11/29 13:17:11 $
+ * $Revision: 1.7 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenImpl.java,v $
+ * Revision 1.7  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.6  2008/11/29 13:17:11  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -33,6 +36,7 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.io.AltersgruppenParser;
 import de.jost_net.JVerein.io.JubilaeenParser;
 import de.jost_net.JVerein.rmi.Stammdaten;
@@ -61,8 +65,8 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
 
   protected void deleteCheck() throws ApplicationException
   {
-    throw new ApplicationException(
-        "Der Stammdatensatz darf nicht gelöscht werden");
+    throw new ApplicationException(JVereinPlugin.getI18n().tr(
+        "Der Stammdatensatz darf nicht gelöscht werden"));
   }
 
   protected void insertCheck() throws ApplicationException
@@ -71,20 +75,23 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
     {
       if (getName() == null || getName().length() == 0)
       {
-        throw new ApplicationException("Bitte Namen eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Namen eingeben"));
       }
       if (getBlz() == null || getBlz().length() == 0)
       {
-        throw new ApplicationException("Bitte Bankleitzahl eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Bankleitzahl eingeben"));
       }
       if (getKonto() == null || getKonto().length() == 0)
       {
-        throw new ApplicationException("Bitte Kontonummer eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Kontonummer eingeben"));
       }
       if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
       {
-        throw new ApplicationException(
-            "Ungültige BLZ/Kontonummer. Bitte prüfen Sie Ihre Eingaben.");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Ungültige BLZ/Kontonummer. Bitte prüfen Sie Ihre Eingaben."));
       }
       try
       {
@@ -105,7 +112,8 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
     }
     catch (RemoteException e)
     {
-      String fehler = "Stammdaten können nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Stammdaten können nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

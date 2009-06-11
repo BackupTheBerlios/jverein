@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/02/07 20:32:01 $
+ * $Revision: 1.12 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
+ * Revision 1.12  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.11  2009/02/07 20:32:01  jost
  * Neu: Button neue Buchung
  *
@@ -42,6 +45,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BuchungNeuAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BuchungsControl;
@@ -57,34 +61,50 @@ public class BuchungView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Buchung");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Buchung"));
 
     final BuchungsControl control = new BuchungsControl(this);
 
-    LabelGroup grKontoauszug = new LabelGroup(getParent(), "Buchung");
-    grKontoauszug.addLabelPair("Buchungsnummer", control.getID());
-    grKontoauszug.addLabelPair("Umsatz-ID", control.getUmsatzid());
-    grKontoauszug.addLabelPair("Konto", control.getKonto());
-    grKontoauszug.addLabelPair("Name", control.getName());
-    grKontoauszug.addLabelPair("Betrag", control.getBetrag());
-    grKontoauszug.addLabelPair("Verwendungszweck", control.getZweck());
-    grKontoauszug.addLabelPair("Verwendungszweck 2", control.getZweck2());
-    grKontoauszug.addLabelPair("Datum", control.getDatum());
-    grKontoauszug.addLabelPair("Art", control.getArt());
-    grKontoauszug.addLabelPair("Kommentar", control.getKommentar());
+    LabelGroup grKontoauszug = new LabelGroup(getParent(), JVereinPlugin
+        .getI18n().tr("Buchung"));
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Buchungsnummer"),
+        control.getID());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Umsatz-ID"), control
+        .getUmsatzid());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Konto"), control
+        .getKonto());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control
+        .getName());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"), control
+        .getBetrag());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck"),
+        control.getZweck());
+    grKontoauszug.addLabelPair(
+        JVereinPlugin.getI18n().tr("Verwendungszweck 2"), control.getZweck2());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Datum"), control
+        .getDatum());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Art"), control
+        .getArt());
+    grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Kommentar"), control
+        .getKommentar());
 
-    LabelGroup grBuchungsinfos = new LabelGroup(getParent(), "Buchungsinfos");
-    grBuchungsinfos.addLabelPair("Buchungsart", control.getBuchungsart());
-    grBuchungsinfos.addLabelPair("Auszugsnummer", control.getAuszugsnummer());
-    grBuchungsinfos.addLabelPair("Blattnummer", control.getBlattnummer());
+    LabelGroup grBuchungsinfos = new LabelGroup(getParent(), JVereinPlugin
+        .getI18n().tr("Buchungsinfos"));
+    grBuchungsinfos.addLabelPair(JVereinPlugin.getI18n().tr("Buchungsart"),
+        control.getBuchungsart());
+    grBuchungsinfos.addLabelPair(JVereinPlugin.getI18n().tr("Auszugsnummer"),
+        control.getAuszugsnummer());
+    grBuchungsinfos.addLabelPair(JVereinPlugin.getI18n().tr("Blattnummer"),
+        control.getBlattnummer());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.BUCHUNGEN, false, "help-browser.png");
-    buttons.addButton("neu", new BuchungNeuAction(), null, false,
-        "document-new.png");
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.BUCHUNGEN, false,
+        "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+        new BuchungNeuAction(), null, false, "document-new.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/HibiscusKontenImportAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:46:13 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: HibiscusKontenImportAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2008/05/22 06:46:13  jost
  * Buchf√ºhrung
  *
@@ -18,6 +21,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.KontoControl;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -44,9 +48,6 @@ public class HibiscusKontenImportAction implements Action
 
   public void handleAction(Object context) throws ApplicationException
   {
-    final I18N i18n = Application.getPluginLoader().getPlugin(HBCI.class)
-        .getResources().getI18N();
-
     if (context == null)
     {
       // 1) Wir zeigen einen Dialog an, in dem der User das Konto auswaehlt
@@ -58,19 +59,21 @@ public class HibiscusKontenImportAction implements Action
       }
       catch (OperationCanceledException oce)
       {
-        GUI.getStatusBar().setErrorText(i18n.tr("Vorgang abgebrochen"));
+        GUI.getStatusBar().setErrorText(
+            JVereinPlugin.getI18n().tr("Vorgang abgebrochen"));
         return;
       }
       catch (Exception e)
       {
         Logger.error("error while choosing konto", e);
         GUI.getStatusBar().setErrorText(
-            i18n.tr("Fehler bei der Auswahl des Kontos."));
+            JVereinPlugin.getI18n().tr("Fehler bei der Auswahl des Kontos."));
       }
     }
 
     if (context == null || !(context instanceof Konto))
-      throw new ApplicationException(i18n.tr("Kein Konto ausgew‰hlt"));
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Kein Konto ausgew‰hlt"));
 
     final Konto k = (Konto) context;
     try
@@ -84,7 +87,8 @@ public class HibiscusKontenImportAction implements Action
       jvereinkonto.store();
       control.refreshTable();
       GUI.getStatusBar().setSuccessText(
-          "Konto " + k.getKontonummer() + " importiert.");
+          JVereinPlugin.getI18n().tr("Konto {0} importiert.",
+              new String[] { k.getKontonummer() }));
     }
     catch (RemoteException e)
     {

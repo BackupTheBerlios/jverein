@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Zahlungsweg.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/13 16:25:14 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Zahlungsweg.java,v $
+ * Revision 1.3  2009/06/11 21:04:03  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/12/13 16:25:14  jost
  * equals()-Methode implementiert.
  *
@@ -19,6 +22,8 @@
 package de.jost_net.JVerein.keys;
 
 import java.util.ArrayList;
+
+import de.jost_net.JVerein.JVereinPlugin;
 
 /**
  * Schlüssel Zahlungsweg
@@ -53,11 +58,11 @@ public class Zahlungsweg
     switch (key)
     {
       case ABBUCHUNG:
-        return "Abbuchung";
+        return JVereinPlugin.getI18n().tr("Abbuchung");
       case ÜBERWEISUNG:
-        return "Überweisung";
+        return JVereinPlugin.getI18n().tr("Überweisung");
       case BARZAHLUNG:
-        return "Barzahlung";
+        return JVereinPlugin.getI18n().tr("Barzahlung");
       default:
         return null;
     }

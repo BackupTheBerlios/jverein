@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungListeView.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.6 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungListeView.java,v $
+ * Revision 1.6  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.5  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -27,6 +30,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.RechnungControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -44,24 +48,29 @@ public class RechnungListeView extends AbstractView
     GUI.getView().setTitle("Rechnungen");
 
     final RechnungControl control = new RechnungControl(this);
-    LabelGroup group = new LabelGroup(getParent(), "Filter");
-    group.addLabelPair("Verwendungszweck", control.getSuchverwendungszweck());
-    group.addLabelPair("Eingabedatum von", control.getVondatum());
-    group.addLabelPair("Eingabedatum bis", control.getBisdatum());
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
+        "Filter"));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck"), control
+        .getSuchverwendungszweck());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Eingabedatum von"), control
+        .getVondatum());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Eingabedatum bis"), control
+        .getBisdatum());
 
     control.getAbrechungList().paint(this.getParent());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton("Drucken", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("drucken"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
         GUI.startView(RechnungView.class.getName(), null);
       }
     }, "printer.png");
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.RECHNUNG, false, "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.RECHNUNG, false,
+        "help-browser.png");
   }
 
   public void unbind() throws ApplicationException

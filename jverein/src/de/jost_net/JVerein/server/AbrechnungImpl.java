@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/AbrechnungImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/08/13 19:16:23 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungImpl.java,v $
+ * Revision 1.3  2009/06/11 21:04:23  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/08/13 19:16:23  jost
  * Bugfix Spalte Mitglied
  *
@@ -21,6 +24,7 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Abrechnung;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.db.AbstractDBObject;
@@ -56,12 +60,14 @@ public class AbrechnungImpl extends AbstractDBObject implements Abrechnung
     {
       if (getBetrag() < 0)
       {
-        throw new ApplicationException("Betrag nicht gültig");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Betrag nicht gültig"));
       }
     }
     catch (RemoteException e)
     {
-      String fehler = "Abrechung kann nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Abrechung kann nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

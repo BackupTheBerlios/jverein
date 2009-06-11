@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/KontoAuswahlDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/05/22 06:49:47 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoAuswahlDialog.java,v $
+ * Revision 1.2  2009/06/11 21:02:41  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2008/05/22 06:49:47  jost
  * BuchfÃ¼hrung
  *
@@ -19,6 +22,7 @@ package de.jost_net.JVerein.gui.dialogs;
 
 import org.eclipse.swt.widgets.Composite;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.parts.KontoList;
 import de.jost_net.JVerein.rmi.Konto;
 import de.willuhn.jameica.gui.Action;
@@ -40,16 +44,18 @@ public class KontoAuswahlDialog extends AbstractDialog
   public KontoAuswahlDialog(int position)
   {
     super(position);
-    this.setTitle("Konto-Auswahl");
+    this.setTitle(JVereinPlugin.getI18n().tr("Konto-Auswahl"));
   }
 
   protected void paint(Composite parent) throws Exception
   {
-    LabelGroup group = new LabelGroup(parent, "Verfügbare Konten");
+    LabelGroup group = new LabelGroup(parent, JVereinPlugin.getI18n().tr(
+        "Verfügbare Konten"));
 
     if (text == null || text.length() == 0)
     {
-      text = "Bitte wählen Sie das gewünschte Konto aus.";
+      text = JVereinPlugin.getI18n().tr(
+          "Bitte wählen Sie das gewünschte Konto aus.");
     }
     group.addText(text, true);
 
@@ -72,7 +78,7 @@ public class KontoAuswahlDialog extends AbstractDialog
     konten.paint(parent);
 
     ButtonArea b = new ButtonArea(parent, 2);
-    b.addButton(i18n.tr("Übernehmen"), new Action()
+    b.addButton(i18n.tr(JVereinPlugin.getI18n().tr("übernehmen")), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

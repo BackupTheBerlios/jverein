@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JahresabschlussImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/02/07 20:32:39 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:04:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussImpl.java,v $
+ * Revision 1.4  2009/06/11 21:04:23  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2009/02/07 20:32:39  jost
  * Bugfix: Anfangsbestand kann auch innerhalb des Geschäftsjahres liegen.
  *
@@ -26,6 +29,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Anfangsbestand;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
@@ -65,12 +69,16 @@ public class JahresabschlussImpl extends AbstractDBObject implements
       if (it.hasNext())
       {
         throw new ApplicationException(
-            "Jahresabschluss kann nicht gelöscht werden. Es existieren neuere Abschlüsse!");
+            JVereinPlugin
+                .getI18n()
+                .tr(
+                    "Jahresabschluss kann nicht gelöscht werden. Es existieren neuere Abschlüsse!"));
       }
     }
     catch (RemoteException e)
     {
-      String msg = "Jahresabschluss kann nicht gelöscht werden. Siehe system log";
+      String msg = JVereinPlugin.getI18n().tr(
+          "Jahresabschluss kann nicht gelöscht werden. Siehe system log");
       throw new ApplicationException(msg);
     }
 
@@ -83,12 +91,15 @@ public class JahresabschlussImpl extends AbstractDBObject implements
       if (hasBuchungenOhneBuchungsart())
       {
         throw new ApplicationException(
-            "Achtung! Es existieren noch Buchungen ohne Buchungsart. Kein Abschluss möglich!");
+            JVereinPlugin
+                .getI18n()
+                .tr(
+                    "Achtung! Es existieren noch Buchungen ohne Buchungsart. Kein Abschluss möglich!"));
       }
       if (getName() == null || getName().length() == 0)
       {
-        throw new ApplicationException(
-            "Name des Verantwortlichen für den Abschluss fehlt");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Name des Verantwortlichen für den Abschluss fehlt"));
       }
       Konto k = (Konto) Einstellungen.getDBService().createObject(Konto.class,
           null);
@@ -104,19 +115,22 @@ public class JahresabschlussImpl extends AbstractDBObject implements
             .getBeginnGeschaeftsjahr() });
         if (!anfangsbestaende.hasNext())
         {
-          throw new ApplicationException("Für Konto " + k1.getNummer() + " "
-              + k1.getBezeichnung() + " fehlt der Anfangsbestand.");
+          throw new ApplicationException(JVereinPlugin.getI18n().tr(
+              "Für Konto {0} {1} fehlt der Anfangsbestand.",
+              new String[] { k1.getNummer(), k1.getBezeichnung() }));
         }
       }
     }
     catch (ParseException e)
     {
-      throw new ApplicationException("Ungültiges von-Datum");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Ungültiges von-Datum"));
     }
     catch (RemoteException e)
     {
       e.printStackTrace();
-      String msg = "Jahresabschluss kann nicht gespeichert werden. Siehe system log";
+      String msg = JVereinPlugin.getI18n().tr(
+          "Jahresabschluss kann nicht gespeichert werden. Siehe system log");
       throw new ApplicationException(msg);
     }
   }

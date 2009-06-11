@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungsartAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/03/16 07:34:53 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartAction.java,v $
+ * Revision 1.5  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.4  2008/03/16 07:34:53  jost
  * Reaktivierung Buchführung
  *
@@ -24,6 +27,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.view.BuchungsartView;
 import de.jost_net.JVerein.rmi.Buchungsart;
 import de.willuhn.jameica.gui.Action;
@@ -49,8 +53,8 @@ public class BuchungsartAction implements Action
       }
       catch (RemoteException e)
       {
-        throw new ApplicationException(
-            "Fehler bei der Erzeugung einer neuen Buchungsart", e);
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Fehler bei der Erzeugung einer neuen Buchungsart"), e);
       }
     }
     GUI.startView(BuchungsartView.class.getName(), b);

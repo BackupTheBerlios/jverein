@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungBuchungsartZuordnungAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/01/04 16:26:03 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungBuchungsartZuordnungAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2009/01/04 16:26:03  jost
  * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
  *
@@ -18,6 +21,7 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.BuchungsControl;
 import de.jost_net.JVerein.gui.dialogs.BuchungsartZuordnungDialog;
 import de.jost_net.JVerein.rmi.Buchung;
@@ -44,7 +48,8 @@ public class BuchungBuchungsartZuordnungAction implements Action
     if (context == null
         || (!(context instanceof Buchung) && !(context instanceof Buchung[])))
     {
-      throw new ApplicationException("Keine Buchung(en) ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Keine Buchung(en) ausgewählt"));
     }
     try
     {
@@ -88,23 +93,26 @@ public class BuchungBuchungsartZuordnungAction implements Action
         String protecttext = "";
         if (counter > 0)
         {
-          protecttext = ", " + counter
-              + " Buchungen wurden nicht überschrieben. ";
+          protecttext = JVereinPlugin.getI18n().tr(
+              ", {0} Buchungen wurden nicht überschrieben. ",
+              new String[] { counter + "" });
         }
         GUI.getStatusBar().setSuccessText(
-            "Buchungsarten zugeordnet" + protecttext);
+            JVereinPlugin.getI18n().tr("Buchungsarten zugeordnet")
+                + protecttext);
       }
       catch (Exception e)
       {
         Logger.error("Fehler", e);
         GUI.getStatusBar().setErrorText(
-            "Fehler bei der Zuordnung der Buchungsart");
+            JVereinPlugin.getI18n().tr(
+                "Fehler bei der Zuordnung der Buchungsart"));
         return;
       }
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Speichern.";
+      String fehler = JVereinPlugin.getI18n().tr("Fehler beim Speichern.");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

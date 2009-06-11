@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.20 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.21 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.21  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.20  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -89,6 +92,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TabFolder;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
@@ -132,7 +136,7 @@ public class MitgliederSucheView extends AbstractView
 
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Suche Mitglied");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Suche Mitglied"));
 
     final MitgliedControl control = new MitgliedControl(this);
 
@@ -150,8 +154,9 @@ public class MitgliederSucheView extends AbstractView
         .execute(sql, new Object[] {}, rs);
     if (anzahlbeitragsgruppe.longValue() == 0)
     {
-      new LabelInput("Noch keine Beitragsgruppe erfaßt. Bitte unter "
-          + "Plugins|JVerein|Beitragsgruppe erfassen.").paint(getParent());
+      new LabelInput(JVereinPlugin.getI18n().tr(
+          "Noch keine Beitragsgruppe erfaßt. Bitte unter "
+              + "Plugins|JVerein|Beitragsgruppe erfassen.")).paint(getParent());
     }
 
     rs = new ResultSetExtractor()
@@ -163,20 +168,21 @@ public class MitgliederSucheView extends AbstractView
       }
     };
 
-    LabelGroup group = new LabelGroup(getParent(), "Filter");
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
+        "Filter"));
     ColumnLayout cl = new ColumnLayout(group.getComposite(), 2);
 
     SimpleContainer left = new SimpleContainer(cl.getComposite());
     Input mitglstat = control.getMitgliedStatus();
     mitglstat.addListener(new FilterListener(control));
-    left.addLabelPair("Mitgliedschaft", mitglstat);
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedschaft"), mitglstat);
     IntegerInput suchexternemitgliedsnummer = control
         .getSuchExterneMitgliedsnummer();
     suchexternemitgliedsnummer.addListener(new FilterListener(control));
     if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
     {
-      left.addLabelPair("Externe Mitgliedsnummer", control
-          .getSuchExterneMitgliedsnummer());
+      left.addLabelPair(JVereinPlugin.getI18n().tr("Externe Mitgliedsnummer"),
+          control.getSuchExterneMitgliedsnummer());
     }
 
     if (!JVereinDBService.SETTINGS.getString("database.driver",
@@ -185,24 +191,29 @@ public class MitgliederSucheView extends AbstractView
     {
       DialogInput mitgleigenschaften = control.getEigenschaftenAuswahl();
       mitgleigenschaften.addListener(new FilterListener(control));
-      left.addLabelPair("Eigenschaften", mitgleigenschaften);
+      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"),
+          mitgleigenschaften);
     }
     SelectInput mitglbeitragsgruppe = control.getBeitragsgruppeAusw();
     mitglbeitragsgruppe.addListener(new FilterListener(control));
-    left.addLabelPair("Beitragsgruppe", mitglbeitragsgruppe);
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsgruppe"),
+        mitglbeitragsgruppe);
 
     SimpleContainer right = new SimpleContainer(cl.getComposite());
 
     DateInput mitglgebdatvon = control.getGeburtsdatumvon();
     mitglgebdatvon.addListener(new FilterListener(control));
-    right.addLabelPair("Geburtsdatum von", mitglgebdatvon);
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"),
+        mitglgebdatvon);
     DateInput mitglgebdatbis = control.getGeburtsdatumbis();
     mitglgebdatbis.addListener(new FilterListener(control));
-    right.addLabelPair("Geburtsdatum bis", mitglgebdatbis);
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"),
+        mitglgebdatbis);
     SelectInput mitglgeschlecht = control.getGeschlecht();
     mitglgeschlecht.setMandatory(false);
     mitglgeschlecht.addListener(new FilterListener(control));
-    right.addLabelPair("Geschlecht", mitglgeschlecht);
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Geschlecht"),
+        mitglgeschlecht);
 
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
@@ -248,12 +259,13 @@ public class MitgliederSucheView extends AbstractView
     }
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.MITGLIED, false, "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.MITGLIED, false,
+        "help-browser.png");
     if (anzahlbeitragsgruppe > 0)
     {
-      buttons.addButton("Neu", new MitgliedDetailAction(), null, false,
-          "document-new.png");
+      buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+          new MitgliedDetailAction(), null, false, "document-new.png");
     }
   }
 

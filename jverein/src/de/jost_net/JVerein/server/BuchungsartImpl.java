@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungsartImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/01/04 16:28:02 $
+ * $Revision: 1.8 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartImpl.java,v $
+ * Revision 1.8  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.7  2009/01/04 16:28:02  jost
  * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
  *
@@ -32,6 +35,7 @@ package de.jost_net.JVerein.server;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Buchungsart;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
@@ -66,16 +70,19 @@ public class BuchungsartImpl extends AbstractDBObject implements Buchungsart
     {
       if (getBezeichnung() == null || getBezeichnung().length() == 0)
       {
-        throw new ApplicationException("Bitte Bezeichnung eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Bezeichnung eingeben"));
       }
       if (getNummer() < 0)
       {
-        throw new ApplicationException("Nummer nicht gültig");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Nummer nicht gültig"));
       }
     }
     catch (RemoteException e)
     {
-      String fehler = "Buchungsart kann nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Buchungsart kann nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

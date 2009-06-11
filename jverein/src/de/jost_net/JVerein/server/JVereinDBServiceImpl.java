@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/12/30 21:59:48 $
+ * $Revision: 1.10 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
+ * Revision 1.10  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.9  2008/12/30 21:59:48  jost
  * Anpassung an neue Versionsmimik.
  *
@@ -99,9 +102,7 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
 
   public String getName() throws RemoteException
   {
-    I18N i18n = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
-        .getResources().getI18N();
-    return i18n.tr("Datenbank-Service für JVerein");
+    return JVereinPlugin.getI18n().tr("Datenbank-Service für JVerein");
   }
 
   protected boolean getAutoCommit() throws RemoteException
@@ -137,7 +138,7 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
   public void install() throws RemoteException
   {
     ProgressMonitor monitor = Application.getCallback().getStartupMonitor();
-    monitor.setStatusText("Installiere JVerein");
+    monitor.setStatusText(JVereinPlugin.getI18n().tr("Installiere JVerein"));
     // this.driver.install();
 
     // PluginResources res = Application.getPluginLoader().getPlugin(

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/JahresabschlussView.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussView.java,v $
+ * Revision 1.5  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.4  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -30,6 +33,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.JahresabschlussControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -44,22 +48,24 @@ public class JahresabschlussView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Jahresabschluss");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Jahresabschluss"));
 
     final JahresabschlussControl control = new JahresabschlussControl(this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Jahresabschluss");
-    group.addLabelPair("von", control.getVon());
-    group.addLabelPair("bis", control.getBis());
-    group.addLabelPair("Datum", control.getDatum());
-    group.addLabelPair("Name", control.getName());
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
+        "Jahresabschluss"));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("von"), control.getVon());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("bis"), control.getBis());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Datum"), control.getDatum());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control.getName());
     group.addPart(control.getJahresabschlussSaldo());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.JAHRESABSCHLUSS, false, "help-browser.png");
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.JAHRESABSCHLUSS, false,
+        "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

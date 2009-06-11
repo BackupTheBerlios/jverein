@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/KontoMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/22 21:14:19 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoMenu.java,v $
+ * Revision 1.3  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/12/22 21:14:19  jost
  * Icons ins MenÃ¼ aufgenommen.
  *
@@ -18,6 +21,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.AnfangsbestandNeuAction;
 import de.jost_net.JVerein.gui.action.KontoDeleteAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
@@ -34,9 +38,10 @@ public class KontoMenu extends ContextMenu
    */
   public KontoMenu()
   {
-    addItem(new CheckedContextMenuItem("Anfangsbestand",
-        new AnfangsbestandNeuAction(), "document-new.png"));
-    addItem(new CheckedContextMenuItem("Löschen...", new KontoDeleteAction(),
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "Anfangsbestand"), new AnfangsbestandNeuAction(), "document-new.png"));
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."), new KontoDeleteAction(),
         "user-trash.png"));
   }
 }

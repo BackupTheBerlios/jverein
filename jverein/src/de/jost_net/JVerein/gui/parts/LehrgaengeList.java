@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/LehrgaengeList.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/04/13 11:40:03 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:03:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgaengeList.java,v $
+ * Revision 1.2  2009/06/11 21:03:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2009/04/13 11:40:03  jost
  * Neu: Lehrgänge
  *
@@ -20,6 +23,7 @@ import java.rmi.RemoteException;
 import org.eclipse.swt.widgets.Composite;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.LehrgangAction;
 import de.jost_net.JVerein.gui.menu.LehrgangMenu;
 import de.jost_net.JVerein.rmi.Lehrgang;
@@ -50,31 +54,34 @@ public class LehrgaengeList extends TablePart implements Part
     if (lehrgaengeList == null)
     {
       lehrgaengeList = new TablePart(lehrgaenge, new LehrgangAction(null));
-      lehrgaengeList.addColumn("Name", "mitglied", new Formatter()
-      {
-        public String format(Object o)
-        {
-          Mitglied m = (Mitglied) o;
-          if (m == null)
-            return null;
-          String name = null;
-          try
+      lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("Name"), "mitglied",
+          new Formatter()
           {
-            name = m.getNameVorname();
-          }
-          catch (RemoteException e)
-          {
-            e.printStackTrace();
-          }
-          return name;
-        }
-      });
-      lehrgaengeList.addColumn("von/am", "von", new DateFormatter(
-          Einstellungen.DATEFORMAT));
-      lehrgaengeList.addColumn("bis", "bis", new DateFormatter(
-          Einstellungen.DATEFORMAT));
-      lehrgaengeList.addColumn("Veranstalter", "veranstalter");
-      lehrgaengeList.addColumn("Ergebnis", "ergebnis");
+            public String format(Object o)
+            {
+              Mitglied m = (Mitglied) o;
+              if (m == null)
+                return null;
+              String name = null;
+              try
+              {
+                name = m.getNameVorname();
+              }
+              catch (RemoteException e)
+              {
+                e.printStackTrace();
+              }
+              return name;
+            }
+          });
+      lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("von/am"), "von",
+          new DateFormatter(Einstellungen.DATEFORMAT));
+      lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("bis"), "bis",
+          new DateFormatter(Einstellungen.DATEFORMAT));
+      lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("Veranstalter"),
+          "veranstalter");
+      lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("Ergebnis"),
+          "ergebnis");
       lehrgaengeList.setContextMenu(new LehrgangMenu());
       lehrgaengeList.setRememberColWidths(true);
       lehrgaengeList.setRememberOrder(true);

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/MitgliedSpaltenauswahl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/03/02 19:22:41 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSpaltenauswahl.java,v $
+ * Revision 1.5  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.4  2009/03/02 19:22:41  jost
  * Bug #15335
  *
@@ -27,6 +30,7 @@ package de.jost_net.JVerein.util;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.formatter.BeitragsgruppeFormatter;
 import de.jost_net.JVerein.gui.formatter.ZahlungsrhytmusFormatter;
 import de.jost_net.JVerein.gui.formatter.ZahlungswegFormatter;
@@ -41,39 +45,42 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
   {
     super("mitglied");
     add("ID", "id", false);
-    add("externe Mitgliedsnummer", "externemitgliedsnummer", false);
-    add("Anrede", "anrede", false);
-    add("Titel", "titel", false);
-    add("Name", "name", true);
-    add("Vorname", "vorname", true);
-    add("Adressierungszusatz", "adressierungszusatz", false);
-    add("Straße", "strasse", true);
-    add("PLZ", "plz", false);
-    add("Ort", "ort", true);
-    add("Zahlungsweg", "zahlungsweg", false, new ZahlungswegFormatter(),
-        Column.ALIGN_LEFT);
-    add("Zahlungsrhytmus", "zahlungsrhytmus", false,
-        new ZahlungsrhytmusFormatter(), Column.ALIGN_LEFT);
-    add("BLZ", "blz", false);
-    add("Konto", "konto", false);
-    add("Kontoinhaber", "kontoinhaber", false);
-    add("Geburtsdatum", "geburtsdatum", true, new DateFormatter(
-        Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
-    add("Geschlecht", "geschlecht", false);
-    add("Telefon privat", "telefonprivat", true);
-    add("Telefon dienstlich", "telefondienstlich", false);
-    add("Handy", "handy", false);
-    add("Email", "email", false);
-    add("Eintritt", "eintritt", true, new DateFormatter(
-        Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
-    add("Beitragsgruppe", "beitragsgruppe", false,
+    add(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
+        "externemitgliedsnummer", false);
+    add(JVereinPlugin.getI18n().tr("Anrede"), "anrede", false);
+    add(JVereinPlugin.getI18n().tr("Titel"), "titel", false);
+    add(JVereinPlugin.getI18n().tr("Name"), "name", true);
+    add(JVereinPlugin.getI18n().tr("Vorname"), "vorname", true);
+    add(JVereinPlugin.getI18n().tr("Adressierungszusatz"),
+        "adressierungszusatz", false);
+    add(JVereinPlugin.getI18n().tr("Straße"), "strasse", true);
+    add(JVereinPlugin.getI18n().tr("PLZ"), "plz", false);
+    add(JVereinPlugin.getI18n().tr("Ort"), "ort", true);
+    add(JVereinPlugin.getI18n().tr("Zahlungsweg"), "zahlungsweg", false,
+        new ZahlungswegFormatter(), Column.ALIGN_LEFT);
+    add(JVereinPlugin.getI18n().tr("Zahlungsrhytmus"), "zahlungsrhytmus",
+        false, new ZahlungsrhytmusFormatter(), Column.ALIGN_LEFT);
+    add(JVereinPlugin.getI18n().tr("BLZ"), "blz", false);
+    add(JVereinPlugin.getI18n().tr("Konto"), "konto", false);
+    add(JVereinPlugin.getI18n().tr("Kontoinhaber"), "kontoinhaber", false);
+    add(JVereinPlugin.getI18n().tr("Geburtsdatum"), "geburtsdatum", true,
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+    add(JVereinPlugin.getI18n().tr("Geschlecht"), "geschlecht", false);
+    add(JVereinPlugin.getI18n().tr("Telefon privat"), "telefonprivat", true);
+    add(JVereinPlugin.getI18n().tr("Telefon dienstlich"), "telefondienstlich",
+        false);
+    add(JVereinPlugin.getI18n().tr("Handy"), "handy", false);
+    add(JVereinPlugin.getI18n().tr("Email"), "email", false);
+    add(JVereinPlugin.getI18n().tr("Eintritt"), "eintritt", true,
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+    add(JVereinPlugin.getI18n().tr("Beitragsgruppe"), "beitragsgruppe", false,
         new BeitragsgruppeFormatter(), Column.ALIGN_LEFT);
-    add("Austritt", "austritt", true, new DateFormatter(
-        Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
-    add("Kündigung", "kuendigung", false, new DateFormatter(
-        Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
-    add("Eingabedatum", "eingabedatum", false, new DateFormatter(
-        Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+    add(JVereinPlugin.getI18n().tr("Austritt"), "austritt", true,
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+    add(JVereinPlugin.getI18n().tr("Kündigung"), "kuendigung", false,
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+    add(JVereinPlugin.getI18n().tr("Eingabedatum"), "eingabedatum", false,
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
     try
     {
       DBIterator it = Einstellungen.getDBService().createList(

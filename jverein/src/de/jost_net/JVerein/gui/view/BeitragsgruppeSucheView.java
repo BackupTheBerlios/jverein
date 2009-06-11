@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeSucheView.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.9 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeSucheView.java,v $
+ * Revision 1.9  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.8  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -36,6 +39,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDeleteAction;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
@@ -50,7 +54,7 @@ public class BeitragsgruppeSucheView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Beitragsgruppen");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Beitragsgruppen"));
 
     BeitragsgruppeControl control = new BeitragsgruppeControl(this);
 
@@ -58,12 +62,14 @@ public class BeitragsgruppeSucheView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.BEITRAGSGRUPPEN, false, "help-browser.png");
-    buttons.addButton("Löschen", new BeitragsgruppeDeleteAction(), control
-        .getBeitragsgruppeTable(), false, "user-trash.png");
-    buttons.addButton("Neu", new BeitragsgruppeDetailAction(), null, false,
-        "document-new.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.BEITRAGSGRUPPEN, false,
+        "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("löschen"),
+        new BeitragsgruppeDeleteAction(), control.getBeitragsgruppeTable(),
+        false, "user-trash.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+        new BeitragsgruppeDetailAction(), null, false, "document-new.png");
   }
 
   public void unbind() throws ApplicationException

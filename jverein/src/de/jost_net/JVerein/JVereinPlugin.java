@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.23 $
- * $Date: 2009/01/19 19:41:13 $
+ * $Revision: 1.24 $
+ * $Date: 2009/06/11 21:00:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
+ * Revision 1.24  2009/06/11 21:00:26  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.23  2009/01/19 19:41:13  jost
  * Jameica-Build-Prüfung abgeschaltet.
  *
@@ -81,7 +84,11 @@
  **********************************************************************/
 package de.jost_net.JVerein;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.Locale;
 
 import de.jost_net.JVerein.gui.navigation.MyExtension;
 import de.jost_net.JVerein.rmi.JVereinDBService;
@@ -92,6 +99,7 @@ import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
+import de.willuhn.util.I18N;
 import de.willuhn.jameica.plugin.Version;
 
 /**
@@ -102,6 +110,8 @@ import de.willuhn.jameica.plugin.Version;
 public class JVereinPlugin extends AbstractPlugin
 {
   private Settings settings;
+
+  private static I18N i18n;
 
   /**
    * MessageConsumer, mit dem JVerein über neu eingetroffene Umsätze aus
@@ -117,6 +127,8 @@ public class JVereinPlugin extends AbstractPlugin
     super();
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
+    i18n = new I18N("lang/jverein_messages", Locale.getDefault(),
+        JVereinPlugin.class.getClassLoader());
   }
 
   /**
@@ -184,6 +196,19 @@ public class JVereinPlugin extends AbstractPlugin
    */
   public void shutDown()
   {
+    try
+    {
+      getI18n()
+          .storeUntranslated(new FileOutputStream("/tmp/untranslated.txt"));
+    }
+    catch (FileNotFoundException e)
+    {
+      e.printStackTrace();
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -237,7 +262,7 @@ public class JVereinPlugin extends AbstractPlugin
     }
     catch (Exception e)
     {
-      throw new ApplicationException(getResources().getI18N().tr(
+      throw new ApplicationException(getI18n().tr(
           "Fehler beim Initialisieren der Datenbank"), e);
     }
     finally
@@ -256,4 +281,8 @@ public class JVereinPlugin extends AbstractPlugin
     }
   }
 
+  public static I18N getI18n()
+  {
+    return i18n;
+  }
 }

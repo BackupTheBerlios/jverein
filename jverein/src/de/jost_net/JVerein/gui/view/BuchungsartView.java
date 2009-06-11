@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartView.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.8 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartView.java,v $
+ * Revision 1.8  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.7  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -30,6 +33,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.BuchungsartControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -43,19 +47,19 @@ public class BuchungsartView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Buchungsart");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Buchungsart"));
 
     final BuchungsartControl control = new BuchungsartControl(this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Buchungsart");
-    group.addLabelPair("Nummer", control.getNummer());
-    group.addLabelPair("Bezeichnung", control.getBezeichnung());
-    group.addLabelPair("Art", control.getArt());
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr("Buchungsart"));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Nummer"), control.getNummer());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"), control.getBezeichnung());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Art"), control.getArt());
 
     ButtonArea buttons = new ButtonArea(getParent(), 2);
 
     buttons.addButton(new Back(false));
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

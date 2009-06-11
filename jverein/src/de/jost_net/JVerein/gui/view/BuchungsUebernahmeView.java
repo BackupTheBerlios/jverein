@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsUebernahmeView.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.9 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsUebernahmeView.java,v $
+ * Revision 1.9  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.8  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -33,6 +36,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BuchungsuebernahmeControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -46,13 +50,13 @@ public class BuchungsUebernahmeView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Buchungen aus Hibiscus übernehmen");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Buchungen aus Hibiscus übernehmen"));
 
     final BuchungsuebernahmeControl control = new BuchungsuebernahmeControl(
         this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Auswahl");
-    group.addLabelPair("Konto", control.getKonto());
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr("Auswahl"));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Konto"), control.getKonto());
     ButtonArea suchButton = new ButtonArea(group.getComposite(), 1);
     suchButton.addButton(control.getSuchButton());
 
@@ -60,7 +64,7 @@ public class BuchungsUebernahmeView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"), new DokumentationAction(),
         DokumentationUtil.BUCHUNGENAUSHIBISCUS, false, "help-browser.png");
     buttons.addButton(control.getUebernahmeButton());
   }

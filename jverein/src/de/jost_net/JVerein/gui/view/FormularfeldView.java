@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularfeldView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldView.java,v $
+ * Revision 1.4  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -21,6 +24,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.FormularfeldControl;
 import de.jost_net.JVerein.rmi.Formularfeld;
@@ -36,24 +40,27 @@ public class FormularfeldView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Formularfeld");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Formularfeld"));
     Formularfeld ff = (Formularfeld) getCurrentObject();
 
     final FormularfeldControl control = new FormularfeldControl(this, ff
         .getFormular());
 
-    LabelGroup group = new LabelGroup(getParent(), "Formularfeld");
-    group.addLabelPair("Name", control.getName());
-    group.addLabelPair("von links", control.getX());
-    group.addLabelPair("von unten", control.getY());
-    group.addLabelPair("Font", control.getFont());
-    group.addLabelPair("Font-Höhe", control.getFontsize());
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
+        "Formularfeld"));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control.getName());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("von links"), control.getX());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("von unten"), control.getY());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Font"), control.getFont());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Font-Höhe"), control
+        .getFontsize());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.FORMULARE, false, "help-browser.png");
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.FORMULARE, false,
+        "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

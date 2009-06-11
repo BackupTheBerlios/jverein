@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Abrechnungsausgabe.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/13 16:23:06 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnungsausgabe.java,v $
+ * Revision 1.3  2009/06/11 21:04:03  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/12/13 16:23:06  jost
  * equals()-Methode implementiert.
  *
@@ -19,6 +22,8 @@
 package de.jost_net.JVerein.keys;
 
 import java.util.ArrayList;
+
+import de.jost_net.JVerein.JVereinPlugin;
 
 /**
  * Abrechnungsausgabe
@@ -55,9 +60,9 @@ public class Abrechnungsausgabe
       case DTAUS:
         return "DTAUS-Datei";
       case HIBISCUS_EINZELBUCHUNGEN:
-        return "Hibiscus (Einzelbuchungen)";
+        return JVereinPlugin.getI18n().tr("Hibiscus (Einzelbuchungen)");
       case HIBISCUS_SAMMELBUCHUNG:
-        return "Hibiscus (Sammelbuchungen)";
+        return JVereinPlugin.getI18n().tr("Hibiscus (Sammelbuchungen)");
       default:
         return null;
     }

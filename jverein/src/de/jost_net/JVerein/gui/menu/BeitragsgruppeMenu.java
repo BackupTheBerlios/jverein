@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BeitragsgruppeMenu.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/12/22 21:12:08 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeMenu.java,v $
+ * Revision 1.4  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2008/12/22 21:12:08  jost
  * Icons ins MenÃ¼ aufgenommen.
  *
@@ -21,6 +24,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDeleteAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
@@ -36,7 +40,8 @@ public class BeitragsgruppeMenu extends ContextMenu
    */
   public BeitragsgruppeMenu()
   {
-    addItem(new CheckedContextMenuItem("Löschen...",
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."),
         new BeitragsgruppeDeleteAction(), "user-trash.png"));
   }
 }

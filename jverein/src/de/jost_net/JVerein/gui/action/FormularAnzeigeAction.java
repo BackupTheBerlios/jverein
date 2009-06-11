@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/12/29 09:19:15 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
+ * Revision 1.5  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.4  2008/12/29 09:19:15  jost
  * Vermeidung NPE: Tagesdatum besetzen
  *
@@ -32,6 +35,7 @@ import java.util.HashMap;
 
 import jonelo.NumericalChameleon.SpokenNumbers.GermanNumber;
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.io.FormularAufbereitung;
 import de.jost_net.JVerein.rmi.Formular;
 import de.willuhn.jameica.gui.Action;
@@ -49,7 +53,8 @@ public class FormularAnzeigeAction implements Action
     }
     else
     {
-      throw new ApplicationException("Kein Formular zur Anzeige ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Kein Formular zur Anzeige ausgewählt"));
     }
     try
     {

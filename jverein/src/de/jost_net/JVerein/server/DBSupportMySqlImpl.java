@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportMySqlImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/04/25 05:31:41 $
+ * $Revision: 1.7 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Michael Trapp
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMySqlImpl.java,v $
+ * Revision 1.7  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.6  2009/04/25 05:31:41  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
@@ -127,7 +130,8 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
       }
       catch (Exception e2)
       {
-        Logger.error("Datenbankupdate kann nicht ausgeführt werden.", e2);
+        Logger.error(JVereinPlugin.getI18n().tr(
+            "Datenbankupdate kann nicht ausgeführt werden."), e2);
         throw new ApplicationException(e2);
       }
     }

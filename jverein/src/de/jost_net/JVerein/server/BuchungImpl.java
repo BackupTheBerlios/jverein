@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.9 $
- * $Date: 2008/12/03 22:01:02 $
+ * $Revision: 1.10 $
+ * $Date: 2009/06/11 21:04:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
+ * Revision 1.10  2009/06/11 21:04:23  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.9  2008/12/03 22:01:02  jost
  * Erweiterung um Auszugs- und Blattnummer
  *
@@ -40,6 +43,7 @@ import java.rmi.RemoteException;
 import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Buchungsart;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
@@ -82,8 +86,8 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
     catch (RemoteException e)
     {
       Logger.error("insert check of buchung failed", e);
-      throw new ApplicationException(
-          "Buchung kann nicht gespeichert werden. Siehe system log");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Buchung kann nicht gespeichert werden. Siehe system log"));
     }
   }
 
@@ -91,17 +95,22 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
   {
     if (getKonto() == null)
     {
-      throw new ApplicationException("Bitte Konto eingeben");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Bitte Konto eingeben"));
     }
     if (getDatum() == null)
     {
-      throw new ApplicationException("Bitte Datum eingeben");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Bitte Datum eingeben"));
     }
     Jahresabschluss ja = getJahresabschluss();
     if (ja != null)
     {
       throw new ApplicationException(
-          "Buchung kann nicht gespeichert werden. Zeitraum ist bereits abgeschlossen!");
+          JVereinPlugin
+              .getI18n()
+              .tr(
+                  "Buchung kann nicht gespeichert werden. Zeitraum ist bereits abgeschlossen!"));
     }
   }
 
@@ -147,7 +156,6 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
 
   public Integer getAuszugsnummer() throws RemoteException
   {
-
     return (Integer) getAttribute("auszugsnummer");
   }
 
@@ -158,7 +166,6 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
 
   public Integer getBlattnummer() throws RemoteException
   {
-
     return (Integer) getAttribute("blattnummer");
   }
 

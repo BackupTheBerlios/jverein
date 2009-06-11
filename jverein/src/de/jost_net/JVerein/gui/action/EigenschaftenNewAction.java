@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/EigenschaftenNewAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/25 15:59:47 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,12 +9,16 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNewAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2008/01/25 15:59:47  jost
  * Neu: Eigenschaften des Mitgliedes
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.EigenschaftenControl;
 import de.jost_net.JVerein.gui.dialogs.EigenschaftenNeuDialog;
 import de.jost_net.JVerein.rmi.Mitglied;
@@ -44,8 +48,11 @@ public class EigenschaftenNewAction implements Action
     catch (Exception e)
     {
       throw new ApplicationException(
-          "Diaglog zur Eingabe neuer Eigenschaften kann nicht geöffnet werden ("
-              + e.getMessage() + ")");
+          JVereinPlugin
+              .getI18n()
+              .tr(
+                  "Diaglog zur Eingabe neuer Eigenschaften kann nicht geöffnet werden."),
+          e);
     }
   }
 }

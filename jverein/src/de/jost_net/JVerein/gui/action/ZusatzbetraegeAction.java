@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ZusatzbetraegeAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/12/22 21:06:50 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegeAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2008/12/22 21:06:50  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -27,6 +30,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.view.ZusatzbetragView;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
@@ -65,8 +69,8 @@ public class ZusatzbetraegeAction implements Action
       }
       catch (RemoteException e)
       {
-        throw new ApplicationException(
-            "Fehler bei der Erzeugung eines neuen Zusatzbetrages", e);
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Fehler bei der Erzeugung eines neuen Zusatzbetrages"), e);
       }
     }
     GUI.startView(ZusatzbetragView.class.getName(), z);

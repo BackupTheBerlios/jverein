@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/LehrgangMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/04/13 11:39:46 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,12 +9,16 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangMenu.java,v $
+ * Revision 1.2  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2009/04/13 11:39:46  jost
  * Neu: Lehrgänge
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.LehrgangDeleteAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
@@ -30,7 +34,8 @@ public class LehrgangMenu extends ContextMenu
    */
   public LehrgangMenu()
   {
-    addItem(new CheckedContextMenuItem("Löschen...",
-        new LehrgangDeleteAction(), "user-trash.png"));
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."), new LehrgangDeleteAction(),
+        "user-trash.png"));
   }
 }

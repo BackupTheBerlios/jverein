@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/Attic/ManuellerZahlungseingangMenu.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/12/30 10:53:15 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangMenu.java,v $
+ * Revision 1.5  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.4  2008/12/30 10:53:15  jost
  * Fehlende Icons ergÃ¤nzt.
  *
@@ -24,6 +27,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangDatumLoeschenAction;
 import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangDatumSetzenAction;
 import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangDeleteAction;
@@ -42,13 +46,16 @@ public class ManuellerZahlungseingangMenu extends ContextMenu
    */
   public ManuellerZahlungseingangMenu(TablePart table)
   {
-    addItem(new CheckedContextMenuItem("Zahlungseingangsdatum setzen ...",
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "Zahlungseingangsdatum setzen ..."),
         new ManuellerZahlungseingangDatumSetzenAction(table),
         "office-calendar.png"));
-    addItem(new CheckedContextMenuItem("Zahlungseingangsdatum löschen ...",
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "Zahlungseingangsdatum löschen ..."),
         new ManuellerZahlungseingangDatumLoeschenAction(table),
         "user-trash.png"));
-    addItem(new CheckedContextMenuItem("Löschen...",
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."),
         new ManuellerZahlungseingangDeleteAction(table), "user-trash.png"));
   }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/FormularMenu.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/18 15:54:56 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularMenu.java,v $
+ * Revision 1.4  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2009/01/18 15:54:56  jost
  * Icons aufgenommen.
  *
@@ -21,6 +24,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.FormularAnzeigeAction;
 import de.jost_net.JVerein.gui.action.FormularDeleteAction;
 import de.jost_net.JVerein.gui.action.FormularfelderListeAction;
@@ -39,12 +43,13 @@ public class FormularMenu extends ContextMenu
    */
   public FormularMenu()
   {
-    addItem(new CheckedContextMenuItem("Formularfelder",
-        new FormularfelderListeAction(), "rechnung.png"));
-    addItem(new CheckedContextMenuItem("Anzeigen", new FormularAnzeigeAction(),
-        "edit.png"));
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "Formularfelder"), new FormularfelderListeAction(), "rechnung.png"));
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr("anzeigen"),
+        new FormularAnzeigeAction(), "edit.png"));
     addItem(ContextMenuItem.SEPARATOR);
-    addItem(new CheckedContextMenuItem("Löschen...",
-        new FormularDeleteAction(), "user-trash.png"));
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."), new FormularDeleteAction(),
+        "user-trash.png"));
   }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/WiedervorlageMenu.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/12/30 10:53:26 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageMenu.java,v $
+ * Revision 1.4  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2008/12/30 10:53:26  jost
  * Fehlende Icons ergÃ¤nzt.
  *
@@ -21,6 +24,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.WiedervorlageDeleteAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageErledigungAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
@@ -38,9 +42,10 @@ public class WiedervorlageMenu extends ContextMenu
    */
   public WiedervorlageMenu(TablePart table)
   {
-    addItem(new CheckedContextMenuItem("Erledigung",
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr("erledigt"),
         new WiedervorlageErledigungAction(table), "emblem-default.png"));
-    addItem(new CheckedContextMenuItem("Löschen...",
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."),
         new WiedervorlageDeleteAction(), "user-trash.png"));
   }
 }

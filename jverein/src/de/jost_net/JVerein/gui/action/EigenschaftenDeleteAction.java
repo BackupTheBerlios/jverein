@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/EigenschaftenDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/01/25 15:59:22 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenDeleteAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2008/01/25 15:59:22  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -17,6 +20,7 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.EigenschaftenControl;
 import de.jost_net.JVerein.rmi.Eigenschaften;
 import de.willuhn.jameica.gui.Action;
@@ -41,7 +45,8 @@ public class EigenschaftenDeleteAction implements Action
   {
     if (context == null || !(context instanceof Eigenschaften))
     {
-      throw new ApplicationException("Keine Eigenschaft ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Keine Eigenschaft ausgewählt"));
     }
     try
     {
@@ -51,8 +56,9 @@ public class EigenschaftenDeleteAction implements Action
         return;
       }
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
-      d.setTitle("Eigenschaft löschen");
-      d.setText("Wollen Sie diese Eigenschaft wirklich löschen?");
+      d.setTitle(JVereinPlugin.getI18n().tr("Eigenschaft löschen"));
+      d.setText(JVereinPlugin.getI18n().tr(
+          "Wollen Sie diese Eigenschaft wirklich löschen?"));
 
       try
       {
@@ -64,16 +70,19 @@ public class EigenschaftenDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error("Fehler beim Löschen der Eigenschaft", e);
+        Logger.error(JVereinPlugin.getI18n().tr(
+            "Fehler beim Löschen der Eigenschaft"), e);
         return;
       }
       ei.delete();
       control.refreshTable();
-      GUI.getStatusBar().setSuccessText("Eigenschaft gelöscht.");
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Eigenschaft gelöscht."));
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Löschen der Eigenschaft";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Löschen der Eigenschaft");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

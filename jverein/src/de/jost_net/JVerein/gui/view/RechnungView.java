@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungView.java,v $
+ * Revision 1.4  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -64,6 +67,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.RechnungControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -77,22 +81,27 @@ public class RechnungView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Rechnung");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Rechnung"));
 
     final RechnungControl control = new RechnungControl(this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Parameter");
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
+        "Parameter"));
     if (this.getCurrentObject() == null)
     {
-      group.addLabelPair("von Datum", control.getVondatum());
-      group.addLabelPair("bis Datum", control.getVondatum());
+      group.addLabelPair(JVereinPlugin.getI18n().tr("von Datum"), control
+          .getVondatum());
+      group.addLabelPair(JVereinPlugin.getI18n().tr("bis Datum"), control
+          .getVondatum());
     }
-    group.addLabelPair("Formular", control.getFormular());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Formular"), control
+        .getFormular());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.RECHNUNG, false, "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.RECHNUNG, false,
+        "help-browser.png");
     buttons.addButton(control.getStartButton(this.getCurrentObject()));
   }
 

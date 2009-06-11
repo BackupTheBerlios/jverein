@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ManuellerZahlungseingangImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/29 13:16:44 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangImpl.java,v $
+ * Revision 1.3  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/11/29 13:16:44  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -21,6 +24,7 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
@@ -58,7 +62,7 @@ public class ManuellerZahlungseingangImpl extends AbstractDBObject implements
     }
     catch (RemoteException e)
     {
-      String fehler = "ManuellerZahlungseingang kann nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr("ManuellerZahlungseingang kann nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }
@@ -68,15 +72,15 @@ public class ManuellerZahlungseingangImpl extends AbstractDBObject implements
   {
     if (getName() == null || getName().length() == 0)
     {
-      throw new ApplicationException("Bitte Namen eingeben");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr("Bitte Namen eingeben"));
     }
     if (getVZweck1() == null || getVZweck1().length() == 0)
     {
-      throw new ApplicationException("Bitte Verwendungszweck 1 eingeben");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr("Bitte Verwendungszweck 1 eingeben"));
     }
     if (getBetrag() <= 0)
     {
-      throw new ApplicationException("Bitte Betrag > 0 eingeben");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr("Bitte Betrag > 0 eingeben"));
     }
   }
 
@@ -88,7 +92,7 @@ public class ManuellerZahlungseingangImpl extends AbstractDBObject implements
     }
     catch (RemoteException e)
     {
-      String fehler = "ManuellerZahlungseingang kann nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr("ManuellerZahlungseingang kann nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

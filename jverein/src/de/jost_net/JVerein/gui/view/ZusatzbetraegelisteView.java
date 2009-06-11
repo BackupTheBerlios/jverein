@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegelisteView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegelisteView.java,v $
+ * Revision 1.4  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -39,6 +42,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.ZusatzbetragControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -52,17 +56,21 @@ public class ZusatzbetraegelisteView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Liste der Zusatzbeträge");
+    GUI.getView().setTitle(
+        JVereinPlugin.getI18n().tr("Liste der Zusatzbeträge"));
 
     final ZusatzbetragControl control = new ZusatzbetragControl(this);
 
-    LabelGroup group = new LabelGroup(getParent(), "Ausführungstag");
-    group.addLabelPair("Ausführungstag", control.getAusfuehrungSuch());
+    LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
+        "Ausführungstag"));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Ausführungstag"), control
+        .getAusfuehrungSuch());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.ZUSATZABBUCHUNGEN, false, "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.ZUSATZABBUCHUNGEN, false,
+        "help-browser.png");
     control.getZusatzbetraegeList().paint(this.getParent());
   }
 

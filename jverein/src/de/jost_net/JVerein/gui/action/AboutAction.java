@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AboutAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/02/23 20:25:42 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:00:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AboutAction.java,v $
+ * Revision 1.3  2009/06/11 21:00:51  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2007/02/23 20:25:42  jost
  * Mail- und Webadresse im Header korrigiert.
  *
@@ -18,6 +21,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.view.AboutView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.dialogs.AbstractDialog;
@@ -34,7 +38,8 @@ public class AboutAction implements Action
     }
     catch (Exception e)
     {
-      String fehler = "Fehler beim öffnen des AboutView-Dialoges";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim öffnen des AboutView-Dialoges");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

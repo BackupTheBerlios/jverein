@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/WiedervorlageImpl.java,v $
- *  * $Revision: 1.2 $
- * $Date: 2008/11/29 13:17:28 $
+ *  * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageImpl.java,v $
+ * Revision 1.3  2009/06/11 21:04:23  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/11/29 13:17:28  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -21,6 +24,7 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.willuhn.datasource.db.AbstractDBObject;
@@ -57,16 +61,19 @@ public class WiedervorlageImpl extends AbstractDBObject implements
     {
       if (getDatum() == null)
       {
-        throw new ApplicationException("Bitte Datum eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Datum eingeben"));
       }
       if (getVermerk() == null)
       {
-        throw new ApplicationException("Bitte Vermerk eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Vermerk eingeben"));
       }
     }
     catch (RemoteException e)
     {
-      String fehler = "Wiedervorlage kann nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Wiedervorlage kann nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

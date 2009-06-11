@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Spaltenauswahl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:18:27 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spaltenauswahl.java,v $
+ * Revision 1.2  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2008/11/29 13:18:27  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
@@ -21,6 +24,7 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Composite;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.willuhn.jameica.gui.formatter.Formatter;
 import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.jameica.system.Settings;
@@ -77,7 +81,8 @@ public abstract class Spaltenauswahl
       return spaltendefinitionList;
     }
     spaltendefinitionList = new TablePart(spalten, null);
-    spaltendefinitionList.addColumn("Spalte", "spaltenbezeichnung");
+    spaltendefinitionList.addColumn(JVereinPlugin.getI18n().tr("Spalte"),
+        "spaltenbezeichnung");
     spaltendefinitionList.setCheckable(true);
     spaltendefinitionList.setMulti(true);
     spaltendefinitionList.setSummary(false);

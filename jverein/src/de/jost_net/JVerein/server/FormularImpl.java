@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FormularImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/29 13:15:55 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularImpl.java,v $
+ * Revision 1.3  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/11/29 13:15:55  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -20,6 +23,7 @@ package de.jost_net.JVerein.server;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Formular;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
@@ -54,7 +58,8 @@ public class FormularImpl extends AbstractDBObject implements Formular
     {
       if (getInhalt() == null)
       {
-        throw new ApplicationException("Bitte gültigen Dateinamen angeben!");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte gültigen Dateinamen angeben!"));
       }
     }
     catch (RemoteException e)
@@ -70,12 +75,14 @@ public class FormularImpl extends AbstractDBObject implements Formular
     {
       if (getBezeichnung() == null || getBezeichnung().length() == 0)
       {
-        throw new ApplicationException("Bitte Bezeichnung eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Bezeichnung eingeben"));
       }
     }
     catch (RemoteException e)
     {
-      String fehler = "Formular kann nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Formularfeld kann nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

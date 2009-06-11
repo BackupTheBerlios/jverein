@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/06/01 08:32:39 $
+ * $Revision: 1.9 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportView.java,v $
+ * Revision 1.9  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.8  2009/06/01 08:32:39  jost
  * Icon aufgenommen.
  *
@@ -41,6 +44,7 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.io.Import;
 import de.willuhn.jameica.gui.AbstractView;
@@ -63,19 +67,21 @@ public class ImportView extends AbstractView
   public void bind() throws Exception
   {
 
-    GUI.getView().setTitle("Daten-Import");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Daten-Import"));
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.IMPORT, false, "help-browser.png");
-    Button button = new Button("Import starten", new Action()
-    {
-      public void handleAction(Object context) throws ApplicationException
-      {
-        doImport();
-      }
-    }, null, true, "go.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.IMPORT, false,
+        "help-browser.png");
+    Button button = new Button(JVereinPlugin.getI18n().tr("importieren"),
+        new Action()
+        {
+          public void handleAction(Object context) throws ApplicationException
+          {
+            doImport();
+          }
+        }, null, true, "go.png");
     buttons.addButton(button);
   }
 
@@ -85,8 +91,9 @@ public class ImportView extends AbstractView
   private void doImport() throws ApplicationException
   {
     YesNoDialog ynd = new YesNoDialog(AbstractDialog.POSITION_CENTER);
-    ynd.setText("Achtung! Existierende Daten werden gelöscht. Weiter?");
-    ynd.setTitle("Import");
+    ynd.setText(JVereinPlugin.getI18n().tr(
+        "Achtung! Existierende Daten werden gelöscht. Weiter?"));
+    ynd.setTitle(JVereinPlugin.getI18n().tr("Import"));
     Boolean choice;
     try
     {
@@ -102,7 +109,8 @@ public class ImportView extends AbstractView
     settings.setStoreWhenRead(true);
 
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.OPEN);
-    fd.setText("Bitte wählen Sie die Import-Datei aus.");
+    fd.setText(JVereinPlugin.getI18n().tr(
+        "Bitte wählen Sie die Import-Datei aus."));
 
     String path = settings
         .getString("lastdir", System.getProperty("user.home"));
@@ -121,8 +129,8 @@ public class ImportView extends AbstractView
     final File file = new File(s);
     if (!file.exists() || !file.isFile())
     {
-      throw new ApplicationException(
-          "Datei existiert nicht oder ist nicht lesbar");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Datei existiert nicht oder ist nicht lesbar"));
     }
     // Wir merken uns noch das Verzeichnis vom letzten mal
     settings.setAttribute("lastdir", file.getParent());
@@ -136,7 +144,8 @@ public class ImportView extends AbstractView
           new Import(file.getParent(), file.getName(), monitor);
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
-          GUI.getStatusBar().setSuccessText("Daten importiert aus " + s);
+          GUI.getStatusBar().setSuccessText(
+              JVereinPlugin.getI18n().tr("Daten importiert aus {0}", s));
           GUI.getCurrentView().reload();
         }
         catch (ApplicationException ae)
@@ -150,8 +159,9 @@ public class ImportView extends AbstractView
         {
           monitor.setStatus(ProgressMonitor.STATUS_ERROR);
           Logger.error("error while reading objects from " + s, e);
-          ApplicationException ae = new ApplicationException(
-              "Fehler beim Importieren der Daten aus " + s, e);
+          ApplicationException ae = new ApplicationException(JVereinPlugin
+              .getI18n().tr("Fehler beim Importieren der Daten aus {0}, {1}",
+                  new String[] { s, e.getMessage() }));
           monitor.setStatusText(ae.getMessage());
           GUI.getStatusBar().setErrorText(ae.getMessage());
           throw ae;

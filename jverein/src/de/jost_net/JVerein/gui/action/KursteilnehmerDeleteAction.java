@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/KursteilnehmerDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/02/25 19:11:24 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerDeleteAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2007/02/25 19:11:24  jost
  * Neu: Kursteilnehmer
  *
@@ -17,6 +20,7 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -33,7 +37,8 @@ public class KursteilnehmerDeleteAction implements Action
   {
     if (context == null || !(context instanceof Kursteilnehmer))
     {
-      throw new ApplicationException("Keinen Kursteilnehmer ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Keinen Kursteilnehmer ausgewählt"));
     }
     try
     {
@@ -43,8 +48,9 @@ public class KursteilnehmerDeleteAction implements Action
         return;
       }
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
-      d.setTitle("Kursteilnehmer löschen");
-      d.setText("Wollen Sie diesen Kursteilnehmer wirklich löschen?");
+      d.setTitle(JVereinPlugin.getI18n().tr("Kursteilnehmer löschen"));
+      d.setText(JVereinPlugin.getI18n().tr(
+          "Wollen Sie diesen Kursteilnehmer wirklich löschen?"));
 
       try
       {
@@ -54,15 +60,18 @@ public class KursteilnehmerDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error("Fehler beim Löschen des Kursteilnehmers", e);
+        Logger.error(JVereinPlugin.getI18n().tr(
+            "Fehler beim Löschen des Kursteilnehmers"), e);
         return;
       }
       kt.delete();
-      GUI.getStatusBar().setSuccessText("Kursteilnehmer gelöscht.");
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Kursteilnehmer gelöscht."));
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Löschen des Kursteilnehmers";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Löschen des Kursteilnehmers");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

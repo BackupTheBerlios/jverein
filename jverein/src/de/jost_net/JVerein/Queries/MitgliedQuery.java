@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/04/10 09:43:58 $
+ * $Revision: 1.13 $
+ * $Date: 2009/06/11 21:04:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.13  2009/06/11 21:04:24  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.12  2009/04/10 09:43:58  jost
  * Versuch "Reports" abgebrochen
  *
@@ -56,6 +59,7 @@ import java.util.Date;
 import java.util.StringTokenizer;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
@@ -96,18 +100,20 @@ public class MitgliedQuery
 
     sql = "select distinct mitglied.* ";
     String sort = (String) control.getSortierung().getValue();
-    if (sort.equals("Geburtstagsliste"))
+    if (sort.equals(JVereinPlugin.getI18n().tr("Geburtstagsliste")))
     {
       sql += ", month(geburtsdatum), day(geburtsdatum) ";
     }
     sql += "from mitglied ";
     if (control.isMitgliedStatusAktiv())
     {
-      if (control.getMitgliedStatus().getValue().equals("Angemeldet"))
+      if (control.getMitgliedStatus().getValue().equals(
+          JVereinPlugin.getI18n().tr("Angemeldet")))
       {
         addCondition("(austritt is null or austritt > current_date())");
       }
-      else if (control.getMitgliedStatus().getValue().equals("Abgemeldet"))
+      else if (control.getMitgliedStatus().getValue().equals(
+          JVereinPlugin.getI18n().tr("Abgemeldet")))
       {
         addCondition("austritt is not null and austritt <= current_date()");
       }
@@ -202,15 +208,15 @@ public class MitgliedQuery
     {
       sql += " ORDER BY name, vorname";
     }
-    else if (sort.equals("Eintrittsdatum"))
+    else if (sort.equals(JVereinPlugin.getI18n().tr("Eintrittsdatum")))
     {
       sql += " ORDER BY eintritt";
     }
-    else if (sort.equals("Geburtsdatum"))
+    else if (sort.equals(JVereinPlugin.getI18n().tr("Geburtsdatum")))
     {
       sql += " ORDER BY geburtsdatum";
     }
-    else if (sort.equals("Geburtstagsliste"))
+    else if (sort.equals(JVereinPlugin.getI18n().tr("Geburtstagsliste")))
     {
       sql += " ORDER BY month(geburtsdatum), day(geburtsdatum)";
     }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.60 $
- * $Date: 2009/05/20 05:55:14 $
+ * $Revision: 1.61 $
+ * $Date: 2009/06/11 21:02:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.61  2009/06/11 21:02:30  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.60  2009/05/20 05:55:14  jost
  * SearchInput für Name, Vorname und Straßennamen
  *
@@ -1842,17 +1845,17 @@ public class MitgliedControl extends AbstractControl
       m.setKonto((String) getKonto().getValue());
       m.setKontoinhaber((String) getKontoinhaber().getValue());
       m.setKuendigung((Date) getKuendigung().getValue());
-      m.setName((String) getName().getValue());
+      m.setName((String) getName().getText());
       m.setOrt((String) getOrt().getValue());
       m.setPlz((String) getPlz().getValue());
-      m.setStrasse((String) getStrasse().getValue());
+      m.setStrasse((String) getStrasse().getText());
       m.setTelefondienstlich((String) getTelefondienstlich().getValue());
       m.setTelefonprivat((String) getTelefonprivat().getValue());
       m.setHandy((String) getHandy().getValue());
       m.setTitel((String) getTitel().getValue());
       m.setVermerk1((String) getVermerk1().getValue());
       m.setVermerk2((String) getVermerk2().getValue());
-      m.setVorname((String) getVorname().getValue());
+      m.setVorname((String) getVorname().getText());
       if (m.getID() == null)
       {
         m.setEingabedatum();

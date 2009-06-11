@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/StammdatenAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/12/28 13:09:23 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenAction.java,v $
+ * Revision 1.4  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2007/12/28 13:09:23  jost
  * Bugfix beim erzeugen eines Stammdaten-Objektes
  *
@@ -24,6 +27,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.view.StammdatenView;
 import de.jost_net.JVerein.rmi.Stammdaten;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -59,8 +63,8 @@ public class StammdatenAction implements Action
       }
       catch (RemoteException e)
       {
-        throw new ApplicationException(
-            "Fehler bei der Erzeugung eines Stammdatenobjektes aus der DB", e);
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Fehler bei der Erzeugung eines Stammdatenobjektes aus der DB"), e);
       }
     }
     GUI.startView(StammdatenView.class.getName(), stamm);

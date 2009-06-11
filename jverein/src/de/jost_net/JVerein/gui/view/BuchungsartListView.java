@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartListView.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.7 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartListView.java,v $
+ * Revision 1.7  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.6  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -27,6 +30,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BuchungsartAction;
 import de.jost_net.JVerein.gui.control.BuchungsartControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -39,7 +43,7 @@ public class BuchungsartListView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Buchungsarten");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Buchungsarten"));
 
     BuchungsartControl control = new BuchungsartControl(this);
 
@@ -47,8 +51,8 @@ public class BuchungsartListView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(new Back(false));
-    buttons.addButton("neu", new BuchungsartAction(), null, false,
-        "document-new.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+        new BuchungsartAction(), null, false, "document-new.png");
   }
 
   public void unbind() throws ApplicationException

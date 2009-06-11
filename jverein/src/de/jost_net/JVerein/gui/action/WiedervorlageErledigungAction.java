@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/WiedervorlageErledigungAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/05/07 19:24:23 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageErledigungAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2007/05/07 19:24:23  jost
  * Neu: Wiedervorlage
  *
@@ -18,6 +21,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -41,7 +45,8 @@ public class WiedervorlageErledigungAction implements Action
   {
     if (context == null || !(context instanceof Wiedervorlage))
     {
-      throw new ApplicationException("Keine Wiedervorlage ausgewählt");
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Keine Wiedervorlage ausgewählt"));
     }
     try
     {
@@ -61,11 +66,13 @@ public class WiedervorlageErledigungAction implements Action
       int ind = table.removeItem(w);
       w.store();
       table.addItem(w, ind);
-      GUI.getStatusBar().setSuccessText("Erledigungsdatum bearbeitet.");
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Erledigungsdatum bearbeitet."));
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler beim Verändern des Erledigungsdatums.";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Verändern des Erledigungsdatums.");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

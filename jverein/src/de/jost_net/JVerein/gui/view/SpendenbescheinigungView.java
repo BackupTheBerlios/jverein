@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/SpendenbescheinigungView.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/01/27 18:51:03 $
+ * $Revision: 1.6 $
+ * $Date: 2009/06/11 21:03:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungView.java,v $
+ * Revision 1.6  2009/06/11 21:03:39  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.5  2009/01/27 18:51:03  jost
  * *** empty log message ***
  *
@@ -27,6 +30,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.SpendenbescheinigungControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -43,7 +47,7 @@ public class SpendenbescheinigungView extends AbstractView
 {
   public void bind() throws Exception
   {
-    GUI.getView().setTitle("Spendenbescheinigung");
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Spendenbescheinigung"));
 
     final SpendenbescheinigungControl control = new SpendenbescheinigungControl(
         this);
@@ -52,37 +56,49 @@ public class SpendenbescheinigungView extends AbstractView
     ColumnLayout cols1 = new ColumnLayout(scrolled.getComposite(), 2);
     SimpleContainer left = new SimpleContainer(cols1.getComposite());
 
-    left.addHeadline("Empfänger");
-    left.addLabelPair("Zeile 1", control.getZeile1());
-    left.addLabelPair("Zeile 2", control.getZeile2());
-    left.addLabelPair("Zeile 3", control.getZeile3());
-    left.addLabelPair("Zeile 4", control.getZeile4());
-    left.addLabelPair("Zeile 5", control.getZeile5());
-    left.addLabelPair("Zeile 6", control.getZeile6());
-    left.addLabelPair("Zeile 7", control.getZeile7());
+    left.addHeadline(JVereinPlugin.getI18n().tr("Empfänger"));
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zeile 1"), control
+        .getZeile1());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zeile 2"), control
+        .getZeile2());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zeile 3"), control
+        .getZeile3());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zeile 4"), control
+        .getZeile4());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zeile 5"), control
+        .getZeile5());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zeile 6"), control
+        .getZeile6());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zeile 7"), control
+        .getZeile7());
 
     SimpleContainer right = new SimpleContainer(cols1.getComposite());
 
-    right.addHeadline("Datum");
-    right.addLabelPair("Spende", control.getSpendedatum());
-    right.addLabelPair("Bescheinigung", control.getBescheinigungsdatum());
+    right.addHeadline(JVereinPlugin.getI18n().tr("Datum"));
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Spende"), control
+        .getSpendedatum());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Bescheinigung"), control
+        .getBescheinigungsdatum());
 
-    right.addHeadline("Betrag");
-    right.addLabelPair("Betrag", control.getBetrag());
+    right.addHeadline(JVereinPlugin.getI18n().tr("Betrag"));
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"), control
+        .getBetrag());
 
-    right.addHeadline("Ersatz für Aufwendungen");
-    right.addLabelPair("Ersatz für Aufwendungen", control
-        .getErsatzAufwendungen());
+    right.addHeadline(JVereinPlugin.getI18n().tr("Ersatz für Aufwendungen"));
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Ersatz für Aufwendungen"),
+        control.getErsatzAufwendungen());
 
-    right.addHeadline("Formular");
-    right.addLabelPair("Formular", control.getFormular());
+    right.addHeadline(JVereinPlugin.getI18n().tr("Formular"));
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Formular"), control
+        .getFormular());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton("Hilfe", new DokumentationAction(),
-        DokumentationUtil.SPENDENBESCHEINIGUNG, false, "help-browser.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.SPENDENBESCHEINIGUNG,
+        false, "help-browser.png");
     buttons.addButton(control.getPDFButton());
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

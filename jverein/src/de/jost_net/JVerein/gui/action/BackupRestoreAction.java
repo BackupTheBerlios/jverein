@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupRestoreAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/27 18:50:15 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupRestoreAction.java,v $
+ * Revision 1.4  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2009/01/27 18:50:15  jost
  * Import-Statement korrigiert
  *
@@ -65,7 +68,8 @@ public class BackupRestoreAction implements Action
     fd.setFileName("jverein-"
         + BackupCreateAction.DATEFORMAT.format(new Date()) + ".xml");
     fd.setFilterExtensions(new String[] { "*.xml" });
-    fd.setText("Bitte wählen Sie die Backup-Datei aus");
+    fd.setText(JVereinPlugin.getI18n().tr(
+        "Bitte wählen Sie die Backup-Datei aus"));
     String f = fd.open();
     if (f == null || f.length() == 0)
     {
@@ -87,7 +91,7 @@ public class BackupRestoreAction implements Action
        */
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
-        monitor.setStatusText("Importiere Backup");
+        monitor.setStatusText(JVereinPlugin.getI18n().tr("Importiere Backup"));
         Logger.info("importing backup " + file.getAbsolutePath());
         final ClassLoader loader = Application.getPluginLoader().getPlugin(
             JVereinPlugin.class).getResources().getClassLoader();
@@ -129,9 +133,9 @@ public class BackupRestoreAction implements Action
             {
               Logger.error("unable to import " + o.getClass().getName() + ":"
                   + o.getID() + ", skipping", e);
-              monitor
-                  .log("  "
-                      + (BeanUtil.toString(o) + " fehlerhaft " + e.getMessage() + ", überspringe"));
+              monitor.log(JVereinPlugin.getI18n().tr(
+                  " {0} fehlerhaft: {1}, überspringe ",
+                  new String[] { BeanUtil.toString(o), e.getMessage() }));
             }
             if (count++ % 100 == 0)
             {
@@ -139,7 +143,8 @@ public class BackupRestoreAction implements Action
             }
           }
 
-          monitor.setStatusText("Backup importiert");
+          monitor
+              .setStatusText(JVereinPlugin.getI18n().tr("Backup importiert"));
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
         }

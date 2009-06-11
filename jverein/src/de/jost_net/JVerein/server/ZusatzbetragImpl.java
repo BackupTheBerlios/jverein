@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzbetragImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/02/12 22:17:26 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragImpl.java,v $
+ * Revision 1.3  2009/06/11 21:04:23  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2009/02/12 22:17:26  jost
  * Vermeidung NPE
  *
@@ -42,6 +45,7 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
@@ -79,47 +83,54 @@ public class ZusatzbetragImpl extends AbstractDBObject implements Zusatzbetrag
     {
       if (getStartdatum() == null)
       {
-        throw new ApplicationException("Bitte Startdatum eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Startdatum eingeben"));
       }
       if (getFaelligkeit() == null)
       {
-        throw new ApplicationException("Bitte nächste Fälligkeit eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte nächste Fälligkeit eingeben"));
       }
       if (getIntervall() == null)
       {
-        throw new ApplicationException("Bitte Intervall eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Intervall eingeben"));
       }
       if (getBuchungstext() == null || getBuchungstext().length() == 0)
       {
-        throw new ApplicationException("Bitte Buchungstext eingeben");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Bitte Buchungstext eingeben"));
       }
       if (getEndedatum() != null)
       {
         if (!Datum
             .isImInterval(getStartdatum(), getEndedatum(), getIntervall()))
         {
-          throw new ApplicationException("Endedatum liegt nicht im Intervall");
+          throw new ApplicationException(JVereinPlugin.getI18n().tr(
+              "Endedatum liegt nicht im Intervall"));
         }
       }
       if (getFaelligkeit().getTime() < getStartdatum().getTime())
       {
-        throw new ApplicationException(
-            "Das Fälligkeitsdatum darf nicht vor dem Startdatum liegen");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Das Fälligkeitsdatum darf nicht vor dem Startdatum liegen"));
       }
       if (!Datum
           .isImInterval(getStartdatum(), getFaelligkeit(), getIntervall()))
       {
-        throw new ApplicationException(
-            "Nächste Fälligkeit liegt nicht im Intervall");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Nächste Fälligkeit liegt nicht im Intervall"));
       }
       if (getBetrag() <= 0)
       {
-        throw new ApplicationException("Betrag nicht gültig");
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Betrag nicht gültig"));
       }
     }
     catch (RemoteException e)
     {
-      String fehler = "Zusatzbetrag kann nicht gespeichert werden. Siehe system log";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Zusatzbetrag kann nicht gespeichert werden. Siehe system log");
       Logger.error(fehler, e);
       throw new ApplicationException(fehler);
     }

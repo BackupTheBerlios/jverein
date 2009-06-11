@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/WiedervorlageAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/05/07 19:23:41 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/11 21:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageAction.java,v $
+ * Revision 1.2  2009/06/11 21:02:05  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.1  2007/05/07 19:23:41  jost
  * Neu: Wiedervorlage
  *
@@ -18,6 +21,7 @@ package de.jost_net.JVerein.gui.action;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.view.WiedervorlageView;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Wiedervorlage;
@@ -56,8 +60,8 @@ public class WiedervorlageAction implements Action
       }
       catch (RemoteException e)
       {
-        throw new ApplicationException(
-            "Fehler bei der Erzeugung einer neuen Wiedervorlage", e);
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Fehler bei der Erzeugung einer neuen Wiedervorlage"), e);
       }
     }
     GUI.startView(WiedervorlageView.class.getName(), w);

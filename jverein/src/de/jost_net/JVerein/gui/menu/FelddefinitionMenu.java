@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/FelddefinitionMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/22 21:13:21 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:03:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionMenu.java,v $
+ * Revision 1.3  2009/06/11 21:03:02  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/12/22 21:13:21  jost
  * Icons ins MenÃ¼ aufgenommen.
  *
@@ -19,6 +22,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.FelddefinitionDeleteAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
@@ -34,7 +38,8 @@ public class FelddefinitionMenu extends ContextMenu
    */
   public FelddefinitionMenu()
   {
-    addItem(new CheckedContextMenuItem("Löschen...",
+    addItem(new CheckedContextMenuItem(
+        JVereinPlugin.getI18n().tr("löschen..."),
         new FelddefinitionDeleteAction(), "user-trash.png"));
   }
 }

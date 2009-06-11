@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/Attic/EigenschaftenNeuDialog.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/01/20 20:09:24 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:02:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNeuDialog.java,v $
+ * Revision 1.4  2009/06/11 21:02:41  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2009/01/20 20:09:24  jost
  * neue Icons
  *
@@ -25,6 +28,7 @@ import java.rmi.RemoteException;
 
 import org.eclipse.swt.widgets.Composite;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.EigenschaftenControl;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.jameica.gui.Action;
@@ -45,26 +49,28 @@ public class EigenschaftenNeuDialog extends AbstractDialog
   {
     super(EigenschaftenNeuDialog.POSITION_CENTER);
     this.setSize(400, 400);
-    setTitle("Neue Eigenschaften zu " + m.getNameVorname());
+    setTitle(JVereinPlugin.getI18n().tr("Neue Eigenschaften zu ")
+        + m.getNameVorname());
     control = new EigenschaftenControl(null, m);
   }
 
   protected void paint(Composite parent) throws Exception
   {
-    LabelGroup group = new LabelGroup(parent, "Existierende Eigenschaften",
-        true);
+    LabelGroup group = new LabelGroup(parent, JVereinPlugin.getI18n().tr(
+        "Existierende Eigenschaften"), true);
     group.addPart(control.getEigenschaftenNeuTable());
-    group.addLabelPair("Neue Eigenschaft", control.getNeu());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Neue Eigenschaft"), control
+        .getNeu());
 
     ButtonArea buttons = new ButtonArea(parent, 3);
-    buttons.addButton("Zurück", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("Zurück"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
         close();
       }
     }, "go-previous.png");
-    buttons.addButton("Speichern", new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
@@ -72,7 +78,10 @@ public class EigenschaftenNeuDialog extends AbstractDialog
         if (input.length() == 0)
         {
           throw new ApplicationException(
-              "Bitte mit Doppelklick Eigenschaft auswählen oder über die Tastatur eingeben");
+              JVereinPlugin
+                  .getI18n()
+                  .tr(
+                      "Bitte mit Doppelklick Eigenschaft auswählen oder über die Tastatur eingeben"));
         }
         try
         {
@@ -84,7 +93,8 @@ public class EigenschaftenNeuDialog extends AbstractDialog
           if (e.getCause().getMessage().indexOf("Index oder ") > -1)
           {
             control.getStatusbar().setColor(Color.ERROR);
-            control.getStatusbar().setValue("Eigenschaft schon vorhanden");
+            control.getStatusbar().setValue(
+                JVereinPlugin.getI18n().tr("Eigenschaft schon vorhanden"));
           }
           else
           {

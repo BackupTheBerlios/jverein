@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/Attic/Wiedervorlage.java,v $
- * $Revision: 1.3 $
- * $Date: 2007/12/29 19:09:41 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/11 21:02:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Wiedervorlage.java,v $
+ * Revision 1.4  2009/06/11 21:02:17  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.3  2007/12/29 19:09:41  jost
  * Explizite Höhe der Box vorgegeben.
  *
@@ -22,6 +25,7 @@ import java.rmi.RemoteException;
 
 import org.eclipse.swt.widgets.Composite;
 
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.WiedervorlageListeAction;
 import de.jost_net.JVerein.gui.parts.WiedervorlageList;
 import de.willuhn.jameica.gui.boxes.AbstractBox;
@@ -36,7 +40,7 @@ public class Wiedervorlage extends AbstractBox implements Box
 
   public String getName()
   {
-    return "JVerein: Wiedervorlage";
+    return JVereinPlugin.getI18n().tr("JVerein: Wiedervorlage");
   }
 
   public int getDefaultIndex()

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/ArtBuchungsart.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/12/13 16:23:45 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/11 21:04:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArtBuchungsart.java,v $
+ * Revision 1.3  2009/06/11 21:04:03  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.2  2008/12/13 16:23:45  jost
  * equals()-Methode implementiert.
  *
@@ -19,6 +22,8 @@
 package de.jost_net.JVerein.keys;
 
 import java.util.ArrayList;
+
+import de.jost_net.JVerein.JVereinPlugin;
 
 /**
  * Art der Buchungsart
@@ -53,11 +58,11 @@ public class ArtBuchungsart
     switch (key)
     {
       case EINNAHME:
-        return "Einnahme";
+        return JVereinPlugin.getI18n().tr("Einnahme");
       case AUSGABE:
-        return "Ausgabe";
+        return JVereinPlugin.getI18n().tr("Ausgabe");
       case UMBUCHUNG:
-        return "Umbuchung";
+        return JVereinPlugin.getI18n().tr("Umbuchung");
       default:
         return null;
     }
