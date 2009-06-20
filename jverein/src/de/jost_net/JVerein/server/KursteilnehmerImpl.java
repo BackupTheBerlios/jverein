@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KursteilnehmerImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/06/11 21:04:23 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/20 12:33:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerImpl.java,v $
+ * Revision 1.5  2009/06/20 12:33:53  jost
+ * Vereinheitlichung der Bezeichner
+ *
  * Revision 1.4  2009/06/11 21:04:23  jost
  * Vorbereitung I18N
  *
@@ -93,7 +96,7 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
     if (getBlz() == null || getBlz().length() != 8)
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
-          "Bitte BLZ eingeben"));
+          "Bitte Bankleitzahl eingeben"));
     }
     if (getKonto() == null || getKonto().length() == 0)
     {
@@ -103,7 +106,7 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
     if (getBetrag() <= 0)
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
-          "Bitte Betrag > 0 eingeben"));
+          "Bitte Betrag größer als 0 eingeben"));
     }
     if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
     {

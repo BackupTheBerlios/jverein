@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ManuellerZahlungseingangImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:04:24 $
+ * $Revision: 1.4 $
+ * $Date: 2009/06/20 12:34:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangImpl.java,v $
+ * Revision 1.4  2009/06/20 12:34:06  jost
+ * Vereinheitlichung der Bezeichner
+ *
  * Revision 1.3  2009/06/11 21:04:24  jost
  * Vorbereitung I18N
  *
@@ -80,7 +83,7 @@ public class ManuellerZahlungseingangImpl extends AbstractDBObject implements
     }
     if (getBetrag() <= 0)
     {
-      throw new ApplicationException(JVereinPlugin.getI18n().tr("Bitte Betrag > 0 eingeben"));
+      throw new ApplicationException(JVereinPlugin.getI18n().tr("Bitte Betrag größer als eingeben"));
     }
   }
 

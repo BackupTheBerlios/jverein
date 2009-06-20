@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/BuchungsartZuordnungDialog.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:41 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/20 12:33:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartZuordnungDialog.java,v $
+ * Revision 1.3  2009/06/20 12:33:13  jost
+ * Vereinheitlichung der Bezeichner
+ *
  * Revision 1.2  2009/06/11 21:02:41  jost
  * Vorbereitung I18N
  *
@@ -99,7 +102,7 @@ public class BuchungsartZuordnungDialog extends AbstractDialog
         close();
       }
     }, null, true);
-    buttons.addButton(JVereinPlugin.getI18n().tr("Abbrechen"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("abbrechen"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

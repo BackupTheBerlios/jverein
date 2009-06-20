@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/Attic/EigenschaftenNeuDialog.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/06/11 21:02:41 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/20 12:33:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNeuDialog.java,v $
+ * Revision 1.5  2009/06/20 12:33:28  jost
+ * Vereinheitlichung der Bezeichner
+ *
  * Revision 1.4  2009/06/11 21:02:41  jost
  * Vorbereitung I18N
  *
@@ -63,7 +66,7 @@ public class EigenschaftenNeuDialog extends AbstractDialog
         .getNeu());
 
     ButtonArea buttons = new ButtonArea(parent, 3);
-    buttons.addButton(JVereinPlugin.getI18n().tr("Zurück"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("zurück"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/KontoAuswahlDialog.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:41 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/20 12:33:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoAuswahlDialog.java,v $
+ * Revision 1.3  2009/06/20 12:33:40  jost
+ * Vereinheitlichung der Bezeichner
+ *
  * Revision 1.2  2009/06/11 21:02:41  jost
  * Vorbereitung I18N
  *
@@ -90,7 +93,7 @@ public class KontoAuswahlDialog extends AbstractDialog
         close();
       }
     });
-    b.addButton(i18n.tr("Abbrechen"), new Action()
+    b.addButton(i18n.tr("abbrechen"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
