@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BeitragsgruppeDeleteAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.5 $
+ * $Date: 2009/06/21 08:51:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDeleteAction.java,v $
+ * Revision 1.5  2009/06/21 08:51:42  jost
+ * Bessere Fehlermeldung bei der Löschung von Beitragsgruppen, denen noch Mitglieder zugeordnet sind. Siehe #15892
+ *
  * Revision 1.4  2009/06/11 21:02:05  jost
  * Vorbereitung I18N
  *
@@ -26,8 +29,11 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
+import de.jost_net.JVerein.rmi.Mitglied;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
@@ -59,6 +65,18 @@ public class BeitragsgruppeDeleteAction implements Action
       {
         return;
       }
+      DBIterator mitgl = Einstellungen.getDBService()
+          .createList(Mitglied.class);
+      mitgl.addFilter("beitragsgruppe = ?", new Object[] { bg.getID() });
+      if (mitgl.size() > 0)
+      {
+        throw new ApplicationException(
+            JVereinPlugin
+                .getI18n()
+                .tr(
+                    "Beitragsgruppe \"{0}\" kann nicht gelöscht werden. {1} Mitglied(er) sind dieser Beitragsgruppe zugeordnet.",
+                    new String[] { bg.getBezeichnung(), mitgl.size() + "" }));
+      }
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
       d.setTitle(JVereinPlugin.getI18n().tr("Beitragsgruppe löschen"));
       d.setText(JVereinPlugin.getI18n().tr(
@@ -88,6 +106,7 @@ public class BeitragsgruppeDeleteAction implements Action
       String fehler = JVereinPlugin.getI18n().tr(
           "Fehler beim Löschen der Beitragsgruppe");
       GUI.getStatusBar().setErrorText(fehler);
+      GUI.getView().setErrorText(fehler);
       Logger.error(fehler, e);
     }
   }
