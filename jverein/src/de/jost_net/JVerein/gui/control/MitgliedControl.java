@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.62 $
- * $Date: 2009/06/21 08:53:00 $
+ * $Revision: 1.63 $
+ * $Date: 2009/06/21 11:45:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.63  2009/06/21 11:45:46  jost
+ * Pflichtfelder als Pflichtfelder markiert.
+ *
  * Revision 1.62  2009/06/21 08:53:00  jost
  * Ausgabe von Langtexten beim Geschlecht.
  *
@@ -487,6 +490,7 @@ public class MitgliedControl extends AbstractControl
     name.setName("Name");
     name.setMaxLength(40);
     name.setDelay(1000);
+    name.setMandatory(true);
     name.setSearchString("");
     return name;
   }
@@ -538,6 +542,7 @@ public class MitgliedControl extends AbstractControl
     vorname.setMaxLength(40);
     vorname.setDelay(1000);
     vorname.setSearchString("");
+    vorname.setMandatory(true);
     return vorname;
   }
 
