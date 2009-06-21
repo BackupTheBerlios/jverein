@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/12/19 06:52:57 $
+ * $Revision: 1.12 $
+ * $Date: 2009/06/21 08:52:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.12  2009/06/21 08:52:21  jost
+ * Vorbereitung I18N
+ *
  * Revision 1.11  2008/12/19 06:52:57  jost
  * Überflüssiges Import-Statement entfernt
  *
@@ -48,6 +51,7 @@ package de.jost_net.JVerein.gui.control;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeDetailAction;
 import de.jost_net.JVerein.gui.menu.BeitragsgruppeMenu;
 import de.jost_net.JVerein.keys.ArtBeitragsart;
@@ -136,7 +140,8 @@ public class BeitragsgruppeControl extends AbstractControl
       ArtBeitragsart ba = (ArtBeitragsart) getBeitragsArt().getValue();
       b.setBeitragsArt(ba.getKey());
       b.store();
-      GUI.getStatusBar().setSuccessText("Beitragsgruppe gespeichert");
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Beitragsgruppe gespeichert"));
     }
     catch (ApplicationException e)
     {
@@ -144,9 +149,11 @@ public class BeitragsgruppeControl extends AbstractControl
     }
     catch (RemoteException e)
     {
-      String fehler = "Fehler bei speichern der Beitragsgruppe";
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler bei speichern der Beitragsgruppe");
       Logger.error(fehler, e);
       GUI.getStatusBar().setErrorText(fehler);
+      GUI.getView().setErrorText(fehler);
     }
   }
 
