@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.61 $
- * $Date: 2009/06/11 21:02:30 $
+ * $Revision: 1.62 $
+ * $Date: 2009/06/21 08:53:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.62  2009/06/21 08:53:00  jost
+ * Ausgabe von Langtexten beim Geschlecht.
+ *
  * Revision 1.61  2009/06/11 21:02:30  jost
  * Vorbereitung I18N
  *
@@ -221,6 +224,7 @@ import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
 import de.jost_net.JVerein.gui.action.ZusatzbetraegeAction;
 import de.jost_net.JVerein.gui.dialogs.EigenschaftenAuswahlDialog;
+import de.jost_net.JVerein.gui.input.GeschlechtInput;
 import de.jost_net.JVerein.gui.menu.LehrgangMenu;
 import de.jost_net.JVerein.gui.menu.MitgliedMenu;
 import de.jost_net.JVerein.gui.menu.WiedervorlageMenu;
@@ -293,7 +297,7 @@ public class MitgliedControl extends AbstractControl
 
   private DateInput geburtsdatum = null;
 
-  private SelectInput geschlecht;
+  private GeschlechtInput geschlecht;
 
   private SelectInput zahlungsweg;
 
@@ -679,14 +683,13 @@ public class MitgliedControl extends AbstractControl
     return geburtsdatum;
   }
 
-  public SelectInput getGeschlecht() throws RemoteException
+  public GeschlechtInput getGeschlecht() throws RemoteException
   {
     if (geschlecht != null)
     {
       return geschlecht;
     }
-    geschlecht = new SelectInput(new String[] { "m", "w" }, getMitglied()
-        .getGeschlecht());
+    geschlecht = new GeschlechtInput(getMitglied().getGeschlecht());
     geschlecht.setName("Geschlecht");
     geschlecht.setPleaseChoose("Bitte auswählen");
     geschlecht.setMandatory(true);
