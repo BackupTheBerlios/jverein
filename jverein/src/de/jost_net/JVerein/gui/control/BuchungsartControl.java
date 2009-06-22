@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2008/12/13 16:21:39 $
+ * $Revision: 1.12 $
+ * $Date: 2009/06/22 18:12:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.12  2009/06/22 18:12:19  jost
+ * *** empty log message ***
+ *
  * Revision 1.11  2008/12/13 16:21:39  jost
  * Bugfix Standardwert
  *
@@ -145,7 +148,7 @@ public class BuchungsartControl extends AbstractControl
       }
       catch (ApplicationException e)
       {
-        GUI.getView().setErrorText(e.getMessage());
+        GUI.getStatusBar().setErrorText(e.getMessage());
       }
     }
     catch (RemoteException e)
