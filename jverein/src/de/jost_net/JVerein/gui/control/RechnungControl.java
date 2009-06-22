@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/04/10 17:46:03 $
+ * $Revision: 1.12 $
+ * $Date: 2009/06/22 18:14:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
+ * Revision 1.12  2009/06/22 18:14:09  jost
+ * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
+ *
  * Revision 1.11  2009/04/10 17:46:03  jost
  * Zusätzliche Datenfelder für die Rechnungserstellung
  *
@@ -271,7 +274,7 @@ public class RechnungControl extends AbstractControl
     }
     catch (ApplicationException e)
     {
-      GUI.getView().setErrorText(e.getMessage());
+      GUI.getStatusBar().setErrorText(e.getMessage());
     }
     catch (RemoteException e)
     {

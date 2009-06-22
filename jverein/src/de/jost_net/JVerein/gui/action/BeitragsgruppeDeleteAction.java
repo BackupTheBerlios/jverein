@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BeitragsgruppeDeleteAction.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/21 08:51:42 $
+ * $Revision: 1.6 $
+ * $Date: 2009/06/22 18:11:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDeleteAction.java,v $
+ * Revision 1.6  2009/06/22 18:11:51  jost
+ * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
+ *
  * Revision 1.5  2009/06/21 08:51:42  jost
  * Bessere Fehlermeldung bei der Löschung von Beitragsgruppen, denen noch Mitglieder zugeordnet sind. Siehe #15892
  *
@@ -106,7 +109,6 @@ public class BeitragsgruppeDeleteAction implements Action
       String fehler = JVereinPlugin.getI18n().tr(
           "Fehler beim Löschen der Beitragsgruppe");
       GUI.getStatusBar().setErrorText(fehler);
-      GUI.getView().setErrorText(fehler);
       Logger.error(fehler, e);
     }
   }

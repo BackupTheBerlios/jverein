@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/06/21 08:52:21 $
+ * $Revision: 1.13 $
+ * $Date: 2009/06/22 18:12:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.13  2009/06/22 18:12:10  jost
+ * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
+ *
  * Revision 1.12  2009/06/21 08:52:21  jost
  * Vorbereitung I18N
  *
@@ -145,7 +148,7 @@ public class BeitragsgruppeControl extends AbstractControl
     }
     catch (ApplicationException e)
     {
-      GUI.getView().setErrorText(e.getMessage());
+      GUI.getStatusBar().setErrorText(e.getMessage());
     }
     catch (RemoteException e)
     {
@@ -153,7 +156,6 @@ public class BeitragsgruppeControl extends AbstractControl
           "Fehler bei speichern der Beitragsgruppe");
       Logger.error(fehler, e);
       GUI.getStatusBar().setErrorText(fehler);
-      GUI.getView().setErrorText(fehler);
     }
   }
 

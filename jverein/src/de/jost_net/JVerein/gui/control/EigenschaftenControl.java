@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/EigenschaftenControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/11/29 13:06:56 $
+ * $Revision: 1.3 $
+ * $Date: 2009/06/22 18:12:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenControl.java,v $
+ * Revision 1.3  2009/06/22 18:12:47  jost
+ * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
+ *
  * Revision 1.2  2008/11/29 13:06:56  jost
  * Refactoring: Warnungen beseitigt.
  *
@@ -189,7 +192,7 @@ public class EigenschaftenControl extends AbstractControl
     }
     catch (ApplicationException e)
     {
-      GUI.getView().setErrorText(e.getMessage());
+      GUI.getStatusBar().setErrorText(e.getMessage());
     }
   }
 

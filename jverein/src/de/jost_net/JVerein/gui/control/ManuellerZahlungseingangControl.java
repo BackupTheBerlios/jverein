@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ManuellerZahlungseingangControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/03/13 19:56:48 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/22 18:13:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangControl.java,v $
+ * Revision 1.2  2009/06/22 18:13:43  jost
+ * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
+ *
  * Revision 1.1  2007/03/13 19:56:48  jost
  * Neu: Manueller Zahlungseingang.
  *
@@ -127,7 +130,7 @@ public class ManuellerZahlungseingangControl extends AbstractControl
     }
     catch (ApplicationException e)
     {
-      GUI.getView().setErrorText(e.getMessage());
+      GUI.getStatusBar().setErrorText(e.getMessage());
     }
     catch (RemoteException e)
     {

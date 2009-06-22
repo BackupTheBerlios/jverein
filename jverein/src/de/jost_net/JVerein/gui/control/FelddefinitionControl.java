@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FelddefinitionControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/04/10 18:58:13 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/22 18:12:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionControl.java,v $
+ * Revision 1.2  2009/06/22 18:12:59  jost
+ * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
+ *
  * Revision 1.1  2008/04/10 18:58:13  jost
  * Neu: Benutzerdefinierte Datenfelder
  *
@@ -107,7 +110,7 @@ public class FelddefinitionControl extends AbstractControl
     }
     catch (ApplicationException e)
     {
-      GUI.getView().setErrorText(e.getMessage());
+      GUI.getStatusBar().setErrorText(e.getMessage());
     }
     catch (RemoteException e)
     {
