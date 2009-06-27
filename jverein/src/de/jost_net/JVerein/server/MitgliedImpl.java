@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.24 $
- * $Date: 2009/06/11 21:04:24 $
+ * $Revision: 1.25 $
+ * $Date: 2009/06/27 09:46:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.25  2009/06/27 09:46:31  jost
+ * Bugfix Plausi Geburtsdatum und Eintrittsdatum
+ *
  * Revision 1.24  2009/06/11 21:04:24  jost
  * Vorbereitung I18N
  *
@@ -166,7 +169,8 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
           "Bitte Vornamen eingeben"));
     }
-    if (getPersonenart().equals("n") && getGeburtsdatum() == null
+    if (getPersonenart().equals("n")
+        && getGeburtsdatum().getTime() == Einstellungen.NODATE.getTime()
         && Einstellungen.getEinstellung().getGeburtsdatumPflicht())
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
@@ -186,7 +190,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       }
     }
 
-    if (getEintritt() == null
+    if (getEintritt().getTime() == Einstellungen.NODATE.getTime()
         && Einstellungen.getEinstellung().getEintrittsdatumPflicht())
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
