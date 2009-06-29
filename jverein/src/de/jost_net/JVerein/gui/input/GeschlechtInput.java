@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/GeschlechtInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/06/21 08:53:12 $
+ * $Revision: 1.2 $
+ * $Date: 2009/06/29 19:43:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: GeschlechtInput.java,v $
+ * Revision 1.2  2009/06/29 19:43:16  jost
+ * Debug-Meldung entfernt.
+ *
  * Revision 1.1  2009/06/21 08:53:12  jost
  * Ausgabe von Langtexten beim Geschlecht.
  *
@@ -37,7 +40,6 @@ public class GeschlechtInput extends SelectInput
   public GeschlechtInput(String geschlecht) throws RemoteException
   {
     super(init(), new GeschlechtObject(geschlecht));
-    System.out.println("GeschlechtInput wurde initialisiert");
   }
 
   /**
