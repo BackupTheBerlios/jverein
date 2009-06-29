@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.25 $
- * $Date: 2009/06/27 09:46:31 $
+ * $Revision: 1.26 $
+ * $Date: 2009/06/29 19:44:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.26  2009/06/29 19:44:25  jost
+ * Bugfix BLZ-Prüfung.
+ *
  * Revision 1.25  2009/06/27 09:46:31  jost
  * Bugfix Plausi Geburtsdatum und Eintrittsdatum
  *
@@ -205,11 +208,13 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
         throw new ApplicationException(JVereinPlugin.getI18n().tr(
             "Bitte Bankverbindung eingeben"));
       }
-      if (getBlz() != null && getBlz().length() != 8)
-      {
-        throw new ApplicationException(JVereinPlugin.getI18n().tr(
-            "Die Bankleitzahl muss 8stellig sein"));
-      }
+    }
+    if (getBlz() != null && getBlz().length() != 0 && getBlz().length() != 8)
+    {
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Die Bankleitzahl muss 8stellig sein"));
+    }
+    if (getBlz().length() != 0 || getKonto().length() != 0l)
       if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
       {
         throw new ApplicationException(
@@ -219,7 +224,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
                     "BLZ/Kontonummer ({0}/{1}) ungültig. Bitte prüfen Sie Ihre Eingaben.",
                     new String[] { getBlz(), getKonto() }));
       }
-    }
+
     if (getZahlungsrhytmus() != 12 && getZahlungsrhytmus() != 6
         && getZahlungsrhytmus() != 3 && getZahlungsrhytmus() != 1)
     {
