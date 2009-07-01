@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<plugin xmlns="http://www.willuhn.de/schema/jameica-plugin"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.willuhn.de/schema/jameica-plugin http://www.willuhn.de/schema/jameica-plugin-1.0.xsd"
+        name="jverein.test" version="1.0" class="de.jost_net.JVerein.Test.TestPlugin">
+
+  <description>Testet JVerein</description>
+  <url></url>
+  <homepage>http://www.jverein.de</homepage>
+  <license>GPL - http://www.gnu.org/copyleft/gpl.html</license>
+
+  <requires jameica="1.8+">
+    <!-- stellt sicher, dass Hibiscus initialisiert ist, BEVOR wir mit dem Test anfangen -->
+    <import plugin="hibiscus" version="1.10+"/>
+    <import plugin="jverein" version="1.2+"/>
+  </requires>
+
+  <classfinder>
+    <include>.*\.class</include>
+  </classfinder>
+
+</plugin>
+
