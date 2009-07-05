@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/AbstractTest.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/01 07:02:20 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/05 13:40:25 $
  * $Author: jost $
  *
  * Copyright (c) by willuhn.webdesign and  (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractTest.java,v $
+ * Revision 1.2  2009/07/05 13:40:25  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2009/07/01 07:02:20  jost
  * Initial
  *
@@ -16,23 +19,24 @@
 
 package de.jost_net.JVerein.Test;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 import junit.framework.TestCase;
-import de.jost_net.JVerein.Einstellungen;
-import de.willuhn.datasource.rmi.DBService;
+
+import com.lowagie.text.DocumentException;
 
 /**
  */
-public class AbstractTest extends TestCase
+public abstract class AbstractTest extends TestCase
 {
+  protected UseCaseDescription usecaseDescription;
 
-  /**
-   * Constructor for KontoImplTest.
-   * 
-   * @param arg0
-   */
-  public AbstractTest(String arg0)
+  public AbstractTest(String name) throws DocumentException,
+      MalformedURLException, IOException
   {
-    super(arg0);
+    super(name);
+    usecaseDescription = new UseCaseDescription();
   }
 
   /*
@@ -43,9 +47,15 @@ public class AbstractTest extends TestCase
     super.setUp();
   }
 
-  public DBService getDBService() throws Exception
+  protected UseCaseDescription getUseCaseDescription()
   {
-    return (DBService) Einstellungen.getDBService();
+    return usecaseDescription;
+  }
+
+  protected void writeDocument() throws DocumentException,
+      MalformedURLException, IOException
+  {
+    usecaseDescription.write(TestPlugin.doc);
   }
 
 }

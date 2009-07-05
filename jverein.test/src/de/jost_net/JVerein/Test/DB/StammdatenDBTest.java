@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/DB/Attic/StammdatenTest.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/07/01 07:19:49 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/DB/Attic/StammdatenDBTest.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2009/07/05 13:40:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: StammdatenTest.java,v $
+ * $Log: StammdatenDBTest.java,v $
+ * Revision 1.1  2009/07/05 13:40:40  jost
+ * *** empty log message ***
+ *
  * Revision 1.2  2009/07/01 07:19:49  jost
  * Jameica-Default-Logger verwenden
  *
@@ -18,14 +21,20 @@
  **********************************************************************/
 package de.jost_net.JVerein.Test.DB;
 
-import de.jost_net.JVerein.Test.AbstractTest;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import com.lowagie.text.DocumentException;
+
+import de.jost_net.JVerein.Test.AbstractDBTest;
 import de.jost_net.JVerein.rmi.Stammdaten;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
 
-public class StammdatenTest extends AbstractTest
+public class StammdatenDBTest extends AbstractDBTest
 {
-  public StammdatenTest(String arg0)
+  public StammdatenDBTest(String arg0) throws DocumentException,
+      MalformedURLException, IOException
   {
     super(arg0);
   }
@@ -47,5 +56,15 @@ public class StammdatenTest extends AbstractTest
     Logger.info("Teste auf Vorhandensein in Iterator");
     DBIterator i = getDBService().createList(Stammdaten.class);
     assertNotNull(i.contains(st));
+  }
+
+  public String getUseCaseName()
+  {
+    return "...";
+  }
+
+  public String getDescription()
+  {
+    return "...";
   }
 }

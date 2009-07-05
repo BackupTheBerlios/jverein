@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/TestPlugin.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/01 07:02:20 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/05 13:40:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: TestPlugin.java,v $
+ * Revision 1.2  2009/07/05 13:40:25  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2009/07/01 07:02:20  jost
  * Initial
  *
@@ -16,7 +19,7 @@
 package de.jost_net.JVerein.Test;
 
 import junit.textui.TestRunner;
-import de.jost_net.JVerein.Test.DB.StammdatenTest;
+import de.jost_net.JVerein.Test.GUI.StammdatenGUITest;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
@@ -26,33 +29,34 @@ import de.willuhn.util.ApplicationException;
  */
 public class TestPlugin extends AbstractPlugin
 {
+  public static TestDocument doc;
+
   /**
    * @see de.willuhn.jameica.plugin.AbstractPlugin#init()
    */
   public void init() throws ApplicationException
   {
-    TestRunner.run(StammdatenTest.class);
-
-    // Wir muessen den Shutdown-Test in einem Extra
-    // Thread machen, da der PluginLoader aus der Init-Methode
-    // unseres Plugins zurueckgekehrt sein muss.
-    Thread t = new Thread()
+    System.out.println("-->Start des Test-Plugins");
+    new Thread(new Runnable()
     {
       public void run()
       {
-        // Wir warten erstmal noch 5 Sekunden
-        Logger.info("Warte 5 Sekunden bis Shutdown");
         try
         {
-          sleep(5000l);
+          doc = new TestDocument(JameicaStarter.WORK_DIR + "/testdoc.pdf");
+          Thread.sleep(2000);
+          // TestRunner.run(StammdatenTest.class);
+          TestRunner.run(StammdatenGUITest.class);
+          Logger.info("Warte 2 Sekunden bis Shutdown");
+          Thread.sleep(2000);
+          TestRunner.run(ShutdownTest.class);
+          doc.close();
         }
-        catch (InterruptedException e)
+        catch (Throwable e)
         {
-          throw new RuntimeException(e);
+          e.printStackTrace();
         }
-        TestRunner.run(ShutdownTest.class);
       }
-    };
-    t.start();
+    }).start();
   }
 }
