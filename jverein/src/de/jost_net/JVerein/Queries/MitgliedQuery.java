@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.13 $
- * $Date: 2009/06/11 21:04:24 $
+ * $Revision: 1.14 $
+ * $Date: 2009/07/05 10:26:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.14  2009/07/05 10:26:26  jost
+ * Bugfix Geschlechtsauswahl
+ *
  * Revision 1.13  2009/06/11 21:04:24  jost
  * Vorbereitung I18N
  *
@@ -153,7 +156,8 @@ public class MitgliedQuery
     {
       addCondition("geburtsdatum <= ?");
     }
-    if (control.getGeschlecht().getValue() != null)
+    if (control.getGeschlecht().getText() != null
+        && !control.getGeschlecht().getText().equals("Bitte auswählen"))
     {
       addCondition("geschlecht = ?");
     }
@@ -261,7 +265,8 @@ public class MitgliedQuery
       Date d = (Date) control.getGeburtsdatumbis().getValue();
       bedingungen.add(new java.sql.Date(d.getTime()));
     }
-    if (control.getGeschlecht().getValue() != null)
+    if (control.getGeschlecht().getText() != null
+        && !control.getGeschlecht().getText().equals("Bitte auswählen"))
     {
       String g = (String) control.getGeschlecht().getValue();
       bedingungen.add(g);
