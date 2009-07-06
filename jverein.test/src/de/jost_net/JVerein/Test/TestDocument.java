@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/TestDocument.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/05 13:40:25 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/06 07:21:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: TestDocument.java,v $
+ * Revision 1.2  2009/07/06 07:21:02  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2009/07/05 13:40:25  jost
  * *** empty log message ***
  *
@@ -24,7 +27,9 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
+import com.lowagie.text.HeaderFooter;
 import com.lowagie.text.Paragraph;
+import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfWriter;
 
 import de.jost_net.JVerein.Einstellungen;
@@ -51,6 +56,8 @@ public class TestDocument
           + Einstellungen.DATEFORMAT.format(new Date()), font2);
       p2.setAlignment(Element.ALIGN_CENTER);
       doc.add(p2);
+      HeaderFooter hf = new HeaderFooter(new Phrase("JVerein-Test                                                            Seite: "), true);
+      doc.setFooter(hf);
       doc.newPage();
     }
     catch (FileNotFoundException e)

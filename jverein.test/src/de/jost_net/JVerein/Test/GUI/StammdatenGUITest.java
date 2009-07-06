@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/GUI/Attic/StammdatenGUITest.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/05 13:40:48 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/06 07:18:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenGUITest.java,v $
+ * Revision 1.2  2009/07/06 07:18:20  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2009/07/05 13:40:48  jost
  * *** empty log message ***
  *
@@ -74,14 +77,8 @@ public class StammdatenGUITest extends AbstractGUITest
         "0-6,7-12,13-16,17-18,19-25,26-99");
     bot.button("speichern").click();
     SWTBotLabel l = bot.labelWithId("SWTBot", "STATUSBAR");
-    System.out.println(l.getText());
+    assertEquals("Stammdaten gespeichert ", l.getText());
     this.writeDocument();
-    // bot.captureScreenshot(AllTests.WORK_DIR + "/stammdaten001.png");
-    // TestPlugin.doc.addImage(AllTests.WORK_DIR + "/stammdaten001.png");
-    // System.out.println(mnt.getNodes());
-    // System.out.println(mnt.getText());
-    // // mntreeitem.click();
-    // assertNotNull(mntree);
   }
 
 }
