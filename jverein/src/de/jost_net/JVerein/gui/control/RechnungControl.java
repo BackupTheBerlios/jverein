@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/06/22 18:14:09 $
+ * $Revision: 1.13 $
+ * $Date: 2009/07/13 20:52:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
+ * Revision 1.13  2009/07/13 20:52:07  jost
+ * Vermeidung NPE
+ *
  * Revision 1.12  2009/06/22 18:14:09  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -319,7 +322,10 @@ public class RechnungControl extends AbstractControl
 
   private void refresh()
   {
-
+    if (abrechnungsList == null)
+    {
+      return;
+    }
     try
     {
       abrechnungsList.removeAll();
@@ -419,6 +425,26 @@ public class RechnungControl extends AbstractControl
       for (Abrechnung abr : abrechnung)
       {
         aufbereitenFormular(abr, fo, file);
+      }
+    }
+    if (currentObject == null)
+    {
+      DBIterator abr = Einstellungen.getDBService()
+          .createList(Abrechnung.class);
+      if (getVondatum().getValue() != null)
+      {
+        abr.addFilter("datum >= ?", new Object[] { (Date) getVondatum()
+            .getValue() });
+      }
+      if (getBisdatum().getValue() != null)
+      {
+        abr.addFilter("datum <= ?", new Object[] { (Date) getBisdatum()
+            .getValue() });
+      }
+      while (abr.hasNext())
+      {
+        Abrechnung ab = (Abrechnung) abr.next();
+        aufbereitenFormular(ab, fo, file);
       }
     }
     fa.showFormular();
