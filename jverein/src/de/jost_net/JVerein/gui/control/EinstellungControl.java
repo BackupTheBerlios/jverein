@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2009/04/25 05:27:52 $
+ * $Revision: 1.17 $
+ * $Date: 2009/07/14 07:28:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.17  2009/07/14 07:28:53  jost
+ * Neu: Box aktuelle Geburtstage
+ *
  * Revision 1.16  2009/04/25 05:27:52  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
@@ -112,6 +115,10 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput rechnungfuerueberweisung;
 
   private CheckboxInput rechnungfuerbarzahlung;
+
+  private SelectInput aktuellegeburtstagevorher;
+
+  private SelectInput aktuellegeburtstagenachher;
 
   private Settings settings;
 
@@ -233,6 +240,38 @@ public class EinstellungControl extends AbstractControl
     return externemitgliedsnummer;
   }
 
+  public SelectInput getAktuelleGeburtstageVorher() throws RemoteException
+  {
+    if (aktuellegeburtstagevorher != null)
+    {
+      return aktuellegeburtstagevorher;
+    }
+    Integer[] v = new Integer[30];
+    for (int i = 0; i < 30; i++)
+    {
+      v[i] = i;
+    }
+    aktuellegeburtstagevorher = new SelectInput(v, Einstellungen
+        .getEinstellung().getAktuelleGeburtstageVorher());
+    return aktuellegeburtstagevorher;
+  }
+
+  public SelectInput getAktuelleGeburtstageNachher() throws RemoteException
+  {
+    if (aktuellegeburtstagenachher != null)
+    {
+      return aktuellegeburtstagenachher;
+    }
+    Integer[] v = new Integer[30];
+    for (int i = 0; i < 30; i++)
+    {
+      v[i] = i;
+    }
+    aktuellegeburtstagenachher = new SelectInput(v, Einstellungen
+        .getEinstellung().getAktuelleGeburtstageNachher());
+    return aktuellegeburtstagenachher;
+  }
+
   public SelectInput getBeitragsmodel() throws RemoteException
   {
     if (beitragsmodel != null)
@@ -333,6 +372,10 @@ public class EinstellungControl extends AbstractControl
       e.setKursteilnehmer((Boolean) kursteilnehmer.getValue());
       e.setLehrgaenge((Boolean) lehrgaenge.getValue());
       e.setJuristischePersonen((Boolean) juristischepersonen.getValue());
+      e.setAktuelleGeburtstageVorher((Integer) aktuellegeburtstagevorher
+          .getValue());
+      e.setAktuelleGeburtstageNachher((Integer) aktuellegeburtstagenachher
+          .getValue());
       e.setExterneMitgliedsnummer((Boolean) externemitgliedsnummer.getValue());
       Beitragsmodel bm = (Beitragsmodel) beitragsmodel.getValue();
       e.setBeitragsmodel(bm.getKey());

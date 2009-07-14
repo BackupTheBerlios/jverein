@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.19 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.20 $
+ * $Date: 2009/07/14 07:29:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.20  2009/07/14 07:29:27  jost
+ * Neu: Box aktuelle Geburtstage
+ *
  * Revision 1.19  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -120,6 +123,12 @@ public class EinstellungenView extends AbstractView
         "Juristische Personen erlaubt"), control.getJuristischePersonen());
     group.addLabelPair(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
         control.getExterneMitgliedsnummer());
+    group.addLabelPair(JVereinPlugin.getI18n().tr(
+        "aktuelle Geburtstage - Tage vorher"), control
+        .getAktuelleGeburtstageVorher());
+    group.addLabelPair(JVereinPlugin.getI18n().tr(
+        "aktuelle Geburtstage - Tage nachher"), control
+        .getAktuelleGeburtstageNachher());
     group.addHeadline("* "
         + JVereinPlugin.getI18n().tr("Änderung erfordert Neustart"));
 
