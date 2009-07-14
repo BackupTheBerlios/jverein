@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/04/25 05:32:03 $
+ * $Revision: 1.6 $
+ * $Date: 2009/07/14 07:30:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.6  2009/07/14 07:30:30  jost
+ * Bugfix Rechnungen.
+ *
  * Revision 1.5  2009/04/25 05:32:03  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
@@ -181,6 +184,28 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
       throws RemoteException
   {
     setAttribute("externemitgliedsnummer", new Boolean(externemitgliedsnummer));
+  }
+
+  public Integer getAktuelleGeburtstageVorher() throws RemoteException
+  {
+    return (Integer) getAttribute("aktuellegeburtstagevorher");
+  }
+
+  public void setAktuelleGeburtstageVorher(Integer vorher)
+      throws RemoteException
+  {
+    setAttribute("aktuellegeburtstagevorher", vorher);
+  }
+
+  public Integer getAktuelleGeburtstageNachher() throws RemoteException
+  {
+    return (Integer) getAttribute("aktuellegeburtstagenachher");
+  }
+
+  public void setAktuelleGeburtstageNachher(Integer nachher)
+      throws RemoteException
+  {
+    setAttribute("aktuellegeburtstagenachher", nachher);
   }
 
   public int getBeitragsmodel() throws RemoteException

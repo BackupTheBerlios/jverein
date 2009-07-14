@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/04/25 05:31:07 $
+ * $Revision: 1.5 $
+ * $Date: 2009/07/14 07:30:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.5  2009/07/14 07:30:18  jost
+ * Bugfix Rechnungen.
+ *
  * Revision 1.4  2009/04/25 05:31:07  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
@@ -77,6 +80,16 @@ public interface Einstellung extends DBObject
   public boolean getExterneMitgliedsnummer() throws RemoteException;
 
   public void setExterneMitgliedsnummer(Boolean externemitgliedsnummer)
+      throws RemoteException;
+
+  public Integer getAktuelleGeburtstageVorher() throws RemoteException;
+
+  public void setAktuelleGeburtstageVorher(Integer vorher)
+      throws RemoteException;
+
+  public Integer getAktuelleGeburtstageNachher() throws RemoteException;
+
+  public void setAktuelleGeburtstageNachher(Integer vorher)
       throws RemoteException;
 
   public int getBeitragsmodel() throws RemoteException;
