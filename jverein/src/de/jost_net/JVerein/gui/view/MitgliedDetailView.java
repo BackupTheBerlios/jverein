@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.29 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.30 $
+ * $Date: 2009/07/14 20:27:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.30  2009/07/14 20:27:05  jost
+ * Zahlungsdaten in eigenen Tab verschoben.
+ * Platzoptimierung.
+ *
  * Revision 1.29  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -144,7 +148,7 @@ public class MitgliedDetailView extends AbstractView
 
     ColumnLayout cols1 = new ColumnLayout(scrolled.getComposite(), 2);
     SimpleContainer left = new SimpleContainer(cols1.getComposite());
-    left.addHeadline(JVereinPlugin.getI18n().tr("Grunddaten"));
+    // left.addHeadline(JVereinPlugin.getI18n().tr("Grunddaten"));
     left.addInput(control.getAnrede());
     if (control.getMitglied().getPersonenart().equals("n"))
     {
@@ -161,7 +165,7 @@ public class MitgliedDetailView extends AbstractView
     left.addInput(control.getAdressierungszusatz());
 
     SimpleContainer right = new SimpleContainer(cols1.getComposite());
-    right.addHeadline("");
+    // right.addHeadline("");
     right.addInput(control.getStrasse());
     right.addInput(control.getPlz());
     right.addInput(control.getOrt());
@@ -175,28 +179,14 @@ public class MitgliedDetailView extends AbstractView
     {
       ColumnLayout cols2 = new ColumnLayout(scrolled.getComposite(), 2);
       SimpleContainer left2 = new SimpleContainer(cols2.getComposite());
-      left2.addHeadline(JVereinPlugin.getI18n().tr("Kommunikation"));
+      // left2.addHeadline(JVereinPlugin.getI18n().tr("Kommunikation"));
       left2.addInput(control.getTelefonprivat());
       left2.addInput(control.getHandy());
       SimpleContainer right2 = new SimpleContainer(cols2.getComposite());
-      right2.addHeadline("");
+      // right2.addHeadline("");
       right2.addInput(control.getTelefondienstlich());
       right2.addInput(control.getEmail());
     }
-
-    ColumnLayout cols3 = new ColumnLayout(scrolled.getComposite(), 2);
-    SimpleContainer left3 = new SimpleContainer(cols3.getComposite());
-    left3.addHeadline(JVereinPlugin.getI18n().tr("Bankverbindung"));
-    left3.addInput(control.getZahlungsweg());
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH12631)
-    {
-      left3.addInput(control.getZahlungsrhytmus());
-    }
-    left3.addInput(control.getKontoinhaber());
-    SimpleContainer right3 = new SimpleContainer(cols3.getComposite());
-    right3.addHeadline("");
-    right3.addInput(control.getBlz());
-    right3.addInput(control.getKonto());
 
     TabFolder folder = new TabFolder(scrolled.getComposite(), SWT.NONE);
     folder.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -219,6 +209,17 @@ public class MitgliedDetailView extends AbstractView
     {
       tab3.addPart(control.getFamilienverband());
     }
+
+    TabGroup tab1 = new TabGroup(folder, JVereinPlugin.getI18n().tr("Zahlung"));
+    tab1.addInput(control.getZahlungsweg());
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH12631)
+    {
+      tab1.addInput(control.getZahlungsrhytmus());
+    }
+    tab1.addInput(control.getKontoinhaber());
+    tab1.addInput(control.getBlz());
+    tab1.addInput(control.getKonto());
+
     if (Einstellungen.getEinstellung().getZusatzbetrag())
     {
       TabGroup tab4 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
