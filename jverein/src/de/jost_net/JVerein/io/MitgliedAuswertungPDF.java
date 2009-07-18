@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/01/25 16:08:41 $
+ * $Revision: 1.11 $
+ * $Date: 2009/07/18 13:43:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
+ * Revision 1.11  2009/07/18 13:43:25  jost
+ * NPE verhindert.
+ *
  * Revision 1.10  2009/01/25 16:08:41  jost
  * Vermerke entfernt.
  *
@@ -99,11 +102,12 @@ public class MitgliedAuswertungPDF
         Mitglied m = list.get(i);
         report.addColumn(m.getNameVorname(), Element.ALIGN_LEFT);
         String anschriftkommunikation = m.getAnschrift();
-        if (m.getTelefonprivat().length() > 0)
+        if (m.getTelefonprivat() != null && m.getTelefonprivat().length() > 0)
         {
           anschriftkommunikation += "\nTel. priv: " + m.getTelefonprivat();
         }
-        if (m.getTelefondienstlich().length() > 0)
+        if (m.getTelefondienstlich() != null
+            && m.getTelefondienstlich().length() > 0)
         {
           anschriftkommunikation += "\nTel. dienstl: "
               + m.getTelefondienstlich();
@@ -112,7 +116,7 @@ public class MitgliedAuswertungPDF
         {
           anschriftkommunikation += "\nHandy: " + m.getHandy();
         }
-        if (m.getEmail().length() > 0)
+        if (m.getEmail() != null && m.getEmail().length() > 0)
         {
           anschriftkommunikation += "\nEMail: " + m.getEmail();
         }
