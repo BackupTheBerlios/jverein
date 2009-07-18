@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.64 $
- * $Date: 2009/06/22 18:13:57 $
+ * $Revision: 1.65 $
+ * $Date: 2009/07/18 13:43:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.65  2009/07/18 13:43:08  jost
+ * Logging erweitert.
+ *
  * Revision 1.64  2009/06/22 18:13:57  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -2165,6 +2168,7 @@ public class MitgliedControl extends AbstractControl
         }
         catch (ApplicationException ae)
         {
+          Logger.error("",ae);
           monitor.setStatusText(ae.getMessage());
           monitor.setStatus(ProgressMonitor.STATUS_ERROR);
           GUI.getStatusBar().setErrorText(ae.getMessage());
@@ -2172,6 +2176,7 @@ public class MitgliedControl extends AbstractControl
         }
         catch (Exception re)
         {
+          Logger.error("",re);
           monitor.setStatusText(re.getMessage());
           monitor.setStatus(ProgressMonitor.STATUS_ERROR);
           GUI.getStatusBar().setErrorText(re.getMessage());
