@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.20 $
- * $Date: 2009/05/31 12:26:02 $
+ * $Revision: 1.21 $
+ * $Date: 2009/07/18 13:42:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
+ * Revision 1.21  2009/07/18 13:42:30  jost
+ * Bugfix DecimalFormat
+ *
  * Revision 1.20  2009/05/31 12:26:02  jost
  * Bugfix FirstStart / Existenz von Beitragsgruppen wird jetzt auch abgeprüft.
  *
@@ -118,8 +121,8 @@ public class Einstellungen
   /**
    * Our decimal formatter.
    */
-  public final static DecimalFormat DECIMALFORMAT = (DecimalFormat) DecimalFormat
-      .getInstance(Application.getConfig().getLocale());
+  public final static DecimalFormat DECIMALFORMAT = new DecimalFormat(
+      "###,###.##");
 
   /**
    * Our currency name.

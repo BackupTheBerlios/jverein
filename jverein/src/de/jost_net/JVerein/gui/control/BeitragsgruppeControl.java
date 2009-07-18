@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2009/06/22 18:12:10 $
+ * $Revision: 1.14 $
+ * $Date: 2009/07/18 13:42:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.14  2009/07/18 13:42:50  jost
+ * Bugfix DecimalFormat
+ *
  * Revision 1.13  2009/06/22 18:12:10  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -52,6 +55,7 @@
 package de.jost_net.JVerein.gui.control;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
@@ -116,7 +120,8 @@ public class BeitragsgruppeControl extends AbstractControl
       return betrag;
     }
     betrag = new DecimalInput(getBeitragsgruppe().getBetrag(),
-        Einstellungen.DECIMALFORMAT);
+        new DecimalFormat("###,###.##"));
+    // Einstellungen.DECIMALFORMAT);
     betrag.setMandatory(true);
     return betrag;
   }
