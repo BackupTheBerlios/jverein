@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/UseCaseDescription.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/05 13:40:25 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/19 20:47:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: UseCaseDescription.java,v $
+ * Revision 1.2  2009/07/19 20:47:48  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2009/07/05 13:40:25  jost
  * *** empty log message ***
  *
@@ -29,20 +32,19 @@ public class UseCaseDescription
 {
   private String name;
 
+  private String description;
+
   private String precondition;
 
   private ArrayList<String> execution;
 
   private String expectedresult;
 
-  public UseCaseDescription()
+  public UseCaseDescription(String name, String description)
   {
     execution = new ArrayList<String>();
-  }
-
-  public void setName(String name)
-  {
     this.name = name;
+    this.description = description;
   }
 
   public void setPreCondition(String precondition)
@@ -73,6 +75,8 @@ public class UseCaseDescription
     tab.setWidthPercentage(100);
     tab.addCell("Name");
     tab.addCell(name);
+    tab.addCell("Beschreibung");
+    tab.addCell(description);
     tab.addCell("Voraussetzung(en)");
     tab.addCell(precondition);
     tab.addCell("Ausführung");

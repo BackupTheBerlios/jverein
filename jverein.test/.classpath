@@ -7,9 +7,9 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/jameica"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jverein"/>
 	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.junit4_4.5.0.v20090423/junit.jar" sourcepath="/home/heiner/eclipse/plugins/org.junit4_4.5.0.v20090423/junit.jar"/>
-	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.eclipse.swtbot.eclipse.core_2.0.0.358-dev.jar"/>
-	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.eclipse.swtbot.junit4_x_2.0.0.358-dev.jar"/>
-	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.eclipse.swtbot.swt.finder_2.0.0.358-dev.jar"/>
+	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.eclipse.swtbot.eclipse.core_2.0.0.371-dev-e35.jar"/>
+	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.eclipse.swtbot.junit4_x_2.0.0.371-dev-e35.jar"/>
+	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.eclipse.swtbot.swt.finder_2.0.0.371-dev-e35.jar"/>
 	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
 	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.apache.log4j_1.2.13.v200806030600.jar"/>
 	<classpathentry kind="lib" path="/home/heiner/eclipse/plugins/org.hamcrest.integration_1.1.0.v20090501071000.jar"/>

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/TestPlugin.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/07/05 13:40:25 $
+ * $Revision: 1.3 $
+ * $Date: 2009/07/19 20:47:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: TestPlugin.java,v $
+ * Revision 1.3  2009/07/19 20:47:48  jost
+ * *** empty log message ***
+ *
  * Revision 1.2  2009/07/05 13:40:25  jost
  * *** empty log message ***
  *
@@ -19,7 +22,8 @@
 package de.jost_net.JVerein.Test;
 
 import junit.textui.TestRunner;
-import de.jost_net.JVerein.Test.GUI.StammdatenGUITest;
+import de.jost_net.JVerein.Test.Tests.BeitragsgruppeATest;
+import de.jost_net.JVerein.Test.Tests.StammdatenATest;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
@@ -46,7 +50,8 @@ public class TestPlugin extends AbstractPlugin
           doc = new TestDocument(JameicaStarter.WORK_DIR + "/testdoc.pdf");
           Thread.sleep(2000);
           // TestRunner.run(StammdatenTest.class);
-          TestRunner.run(StammdatenGUITest.class);
+          TestRunner.run(StammdatenATest.class);
+          TestRunner.run(BeitragsgruppeATest.class);
           Logger.info("Warte 2 Sekunden bis Shutdown");
           Thread.sleep(2000);
           TestRunner.run(ShutdownTest.class);

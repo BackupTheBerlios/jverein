@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/TestDocument.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/07/06 07:21:02 $
+ * $Revision: 1.3 $
+ * $Date: 2009/07/19 20:47:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: TestDocument.java,v $
+ * Revision 1.3  2009/07/19 20:47:48  jost
+ * *** empty log message ***
+ *
  * Revision 1.2  2009/07/06 07:21:02  jost
  * *** empty log message ***
  *
@@ -52,11 +55,13 @@ public class TestDocument
           font1);
       p1.setAlignment(Element.ALIGN_CENTER);
       doc.add(p1);
-      Paragraph p2 = new Paragraph("vom "
-          + Einstellungen.DATEFORMAT.format(new Date()), font2);
+      String datum = Einstellungen.TIMESTAMPFORMAT.format(new Date());
+      Paragraph p2 = new Paragraph("vom " + datum, font2);
       p2.setAlignment(Element.ALIGN_CENTER);
       doc.add(p2);
-      HeaderFooter hf = new HeaderFooter(new Phrase("JVerein-Test                                                            Seite: "), true);
+      HeaderFooter hf = new HeaderFooter(new Phrase(
+          "JVerein-Test                                    " + datum
+              + "                        Seite: "), true);
       doc.setFooter(hf);
       doc.newPage();
     }
@@ -73,6 +78,11 @@ public class TestDocument
   public void add(Element e) throws DocumentException
   {
     doc.add(e);
+  }
+
+  public void newPage() throws DocumentException
+  {
+    doc.newPage();
   }
 
   public void close()

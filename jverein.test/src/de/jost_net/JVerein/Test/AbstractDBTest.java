@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.test/src/de/jost_net/JVerein/Test/AbstractDBTest.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/05 13:40:25 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/19 20:47:48 $
  * $Author: jost $
  *
  * Copyright (c) by willuhn.webdesign and  (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractDBTest.java,v $
+ * Revision 1.2  2009/07/19 20:47:48  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2009/07/05 13:40:25  jost
  * *** empty log message ***
  *
@@ -29,11 +32,6 @@ public abstract class AbstractDBTest extends AbstractTest
       MalformedURLException, IOException
   {
     super(name);
-  }
-
-  public DBService getDBService() throws Exception
-  {
-    return (DBService) Einstellungen.getDBService();
   }
 
 }
