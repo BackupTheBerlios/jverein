@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/06/11 21:04:24 $
+ * $Revision: 1.11 $
+ * $Date: 2009/07/24 20:23:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
+ * Revision 1.11  2009/07/24 20:23:25  jost
+ * Überflüssige Imports entfernt.
+ *
  * Revision 1.10  2009/06/11 21:04:24  jost
  * Vorbereitung I18N
  *
@@ -54,7 +57,6 @@ import de.willuhn.jameica.plugin.Version;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
-import de.willuhn.util.I18N;
 import de.willuhn.util.ProgressMonitor;
 
 public class JVereinDBServiceImpl extends DBServiceImpl implements
