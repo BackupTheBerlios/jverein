@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/AktuelleGeburtstageList.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/14 07:29:12 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/24 18:42:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageList.java,v $
+ * Revision 1.2  2009/07/24 18:42:26  jost
+ * Vermeidung NullpointerException
+ *
  * Revision 1.1  2009/07/14 07:29:12  jost
  * Neu: Box aktuelle Geburtstage
  *
@@ -44,9 +47,18 @@ public class AktuelleGeburtstageList extends TablePart implements Part
     DBIterator geburtstage = service.createList(Mitglied.class);
     String filter = "";
     Calendar cal = Calendar.getInstance();
-    int vorher = Einstellungen.getEinstellung().getAktuelleGeburtstageVorher();
-    int nachher = Einstellungen.getEinstellung()
-        .getAktuelleGeburtstageNachher();
+    int vorher = 0;
+    int nachher = 0;
+
+    try
+    {
+      vorher = Einstellungen.getEinstellung().getAktuelleGeburtstageVorher();
+      nachher = Einstellungen.getEinstellung().getAktuelleGeburtstageNachher();
+    }
+    catch (NullPointerException e)
+    {
+      //
+    }
     cal.add(Calendar.DAY_OF_YEAR, vorher * -1);
     for (int i = vorher; i > 0; i--)
     {
