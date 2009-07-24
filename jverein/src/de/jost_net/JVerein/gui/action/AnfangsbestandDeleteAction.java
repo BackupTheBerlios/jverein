@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AnfangsbestandDeleteAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:01:06 $
+ * $Revision: 1.4 $
+ * $Date: 2009/07/24 20:15:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandDeleteAction.java,v $
+ * Revision 1.4  2009/07/24 20:15:54  jost
+ * *** empty log message ***
+ *
  * Revision 1.3  2009/06/11 21:01:06  jost
  * Vorbereitung I18N
  *
@@ -23,7 +26,6 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
-import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Anfangsbestand;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
@@ -91,11 +93,13 @@ public class AnfangsbestandDeleteAction implements Action
         return;
       }
       a.delete();
-      GUI.getStatusBar().setSuccessText(JVereinPlugin.getI18n().tr("Anfangsbestand gelöscht."));
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Anfangsbestand gelöscht."));
     }
     catch (RemoteException e)
     {
-      String fehler = JVereinPlugin.getI18n().tr("Fehler beim Löschen des Anfangsbestandes");
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Löschen des Anfangsbestandes");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }
