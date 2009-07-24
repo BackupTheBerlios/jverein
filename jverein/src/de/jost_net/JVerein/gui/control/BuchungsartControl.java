@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/06/22 18:12:19 $
+ * $Revision: 1.13 $
+ * $Date: 2009/07/24 20:17:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.13  2009/07/24 20:17:10  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.12  2009/06/22 18:12:19  jost
  * *** empty log message ***
  *
@@ -99,13 +102,17 @@ public class BuchungsartControl extends AbstractControl
     return buchungsart;
   }
 
-  public IntegerInput getNummer() throws RemoteException
+  public IntegerInput getNummer(boolean withFocus) throws RemoteException
   {
     if (nummer != null)
     {
       return nummer;
     }
     nummer = new IntegerInput(getBuchungsart().getNummer());
+    if (withFocus)
+    {
+      nummer.focus();
+    }
     return nummer;
   }
 
@@ -137,7 +144,7 @@ public class BuchungsartControl extends AbstractControl
     try
     {
       Buchungsart b = getBuchungsart();
-      b.setNummer(((Integer) getNummer().getValue()).intValue());
+      b.setNummer(((Integer) getNummer(false).getValue()).intValue());
       b.setBezeichnung((String) getBezeichnung().getValue());
       ArtBuchungsart ba = (ArtBuchungsart) getArt().getValue();
       b.setArt(ba.getKey());

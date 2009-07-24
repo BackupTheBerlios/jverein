@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/11/30 18:56:54 $
+ * $Revision: 1.4 $
+ * $Date: 2009/07/24 20:18:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularControl.java,v $
+ * Revision 1.4  2009/07/24 20:18:03  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.3  2008/11/30 18:56:54  jost
  * Refactoring: Code-Optimierung
  *
@@ -77,13 +80,17 @@ public class FormularControl extends AbstractControl
     return formular;
   }
 
-  public TextInput getBezeichnung() throws RemoteException
+  public TextInput getBezeichnung(boolean withFocus) throws RemoteException
   {
     if (bezeichnung != null)
     {
       return bezeichnung;
     }
     bezeichnung = new TextInput((String) getFormular().getBezeichnung(), 50);
+    if (withFocus)
+    {
+      bezeichnung.focus();
+    }
     return bezeichnung;
   }
 
@@ -116,7 +123,7 @@ public class FormularControl extends AbstractControl
     try
     {
       Formular f = getFormular();
-      f.setBezeichnung((String) getBezeichnung().getValue());
+      f.setBezeichnung((String) getBezeichnung(true).getValue());
       Formularart fa = (Formularart) getArt().getValue();
       f.setArt(fa.getKey());
       String dat = (String) getDatei().getValue();

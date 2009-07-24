@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/06/22 18:14:21 $
+ * $Revision: 1.11 $
+ * $Date: 2009/07/24 20:19:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
+ * Revision 1.11  2009/07/24 20:19:31  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.10  2009/06/22 18:14:21  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -130,13 +133,17 @@ public class SpendenbescheinigungControl extends AbstractControl
     return spendenbescheinigung;
   }
 
-  public TextInput getZeile1() throws RemoteException
+  public TextInput getZeile1(boolean withFocus) throws RemoteException
   {
     if (zeile1 != null)
     {
       return zeile1;
     }
     zeile1 = new TextInput((String) getSpendenbescheinigung().getZeile1(), 40);
+    if (withFocus)
+    {
+      zeile1.focus();
+    }
     return zeile1;
   }
 
@@ -267,7 +274,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     try
     {
       Spendenbescheinigung spb = getSpendenbescheinigung();
-      spb.setZeile1((String) getZeile1().getValue());
+      spb.setZeile1((String) getZeile1(false).getValue());
       spb.setZeile2((String) getZeile2().getValue());
       spb.setZeile3((String) getZeile3().getValue());
       spb.setZeile4((String) getZeile4().getValue());
@@ -350,7 +357,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     Formular fo = (Formular) Einstellungen.getDBService().createObject(
         Formular.class, getSpendenbescheinigung().getFormular().getID());
     HashMap<String, Object> map = new HashMap<String, Object>();
-    String empfaenger = (String) getZeile1().getValue() + "\n"
+    String empfaenger = (String) getZeile1(false).getValue() + "\n"
         + (String) getZeile2().getValue() + "\n"
         + (String) getZeile3().getValue() + "\n"
         + (String) getZeile4().getValue() + "\n"

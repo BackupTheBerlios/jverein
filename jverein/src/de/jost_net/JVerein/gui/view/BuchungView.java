@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.13 $
+ * $Date: 2009/07/24 20:21:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
+ * Revision 1.13  2009/07/24 20:21:02  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.12  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -72,7 +75,7 @@ public class BuchungView extends AbstractView
     grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Umsatz-ID"), control
         .getUmsatzid());
     grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Konto"), control
-        .getKonto());
+        .getKonto(true));
     grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control
         .getName());
     grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"), control

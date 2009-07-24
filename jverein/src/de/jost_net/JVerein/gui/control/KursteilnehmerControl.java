@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.19 $
- * $Date: 2009/06/22 18:13:14 $
+ * $Revision: 1.20 $
+ * $Date: 2009/07/24 20:18:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.20  2009/07/24 20:18:31  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.19  2009/06/22 18:13:14  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -101,7 +104,6 @@ import de.willuhn.jameica.gui.formatter.DateFormatter;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.DecimalInput;
 import de.willuhn.jameica.gui.input.Input;
-import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.internal.action.Program;
 import de.willuhn.jameica.gui.parts.Button;
@@ -168,7 +170,7 @@ public class KursteilnehmerControl extends AbstractControl
     return ktn;
   }
 
-  public Input getName() throws RemoteException
+  public Input getName(boolean withFocus) throws RemoteException
   {
     if (name != null)
     {
@@ -176,6 +178,10 @@ public class KursteilnehmerControl extends AbstractControl
     }
     name = new TextInput(getKursteilnehmer().getName(), 27);
     name.setMandatory(true);
+    if (withFocus)
+    {
+      name.focus();
+    }
     return name;
   }
 
@@ -563,7 +569,7 @@ public class KursteilnehmerControl extends AbstractControl
     try
     {
       Kursteilnehmer k = getKursteilnehmer();
-      k.setName((String) getName().getValue());
+      k.setName((String) getName(false).getValue());
       k.setVZweck1((String) getVZweck1().getValue());
       k.setVZweck2((String) getVZweck2().getValue());
       k.setBlz((String) getBlz().getValue());

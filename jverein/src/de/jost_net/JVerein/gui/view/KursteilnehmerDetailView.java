@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KursteilnehmerDetailView.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.7 $
+ * $Date: 2009/07/24 20:21:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerDetailView.java,v $
+ * Revision 1.7  2009/07/24 20:21:56  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.6  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -57,7 +60,7 @@ public class KursteilnehmerDetailView extends AbstractView
     LabelGroup grGrund = new LabelGroup(getParent(), JVereinPlugin.getI18n()
         .tr("Daten für die Abbuchung"));
     grGrund.getComposite().setSize(290, 190);
-    grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control.getName());
+    grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control.getName(true));
     grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck 1"),
         control.getVZweck1());
     grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck 2"),

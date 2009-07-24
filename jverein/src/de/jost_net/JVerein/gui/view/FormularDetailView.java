@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularDetailView.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.6 $
+ * $Date: 2009/07/24 20:21:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularDetailView.java,v $
+ * Revision 1.6  2009/07/24 20:21:34  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.5  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -40,7 +43,7 @@ public class FormularDetailView extends AbstractView
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Formular"));
     group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"), control
-        .getBezeichnung());
+        .getBezeichnung(true));
     group.addLabelPair(JVereinPlugin.getI18n().tr("Art"), control.getArt());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Datei"), control.getDatei());
 

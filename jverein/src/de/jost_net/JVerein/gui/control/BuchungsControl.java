@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.21 $
- * $Date: 2009/06/22 18:12:35 $
+ * $Revision: 1.22 $
+ * $Date: 2009/07/24 20:17:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
+ * Revision 1.22  2009/07/24 20:17:31  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.21  2009/06/22 18:12:35  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -215,13 +218,17 @@ public class BuchungsControl extends AbstractControl
     return umsatzid;
   }
 
-  public DialogInput getKonto() throws RemoteException
+  public DialogInput getKonto(boolean withFocus) throws RemoteException
   {
     if (konto != null)
     {
       return konto;
     }
     konto = new KontoauswahlInput(getBuchung().getKonto()).getKontoAuswahl();
+    if (withFocus)
+    {
+      konto.focus();
+    }
     return konto;
   }
 
@@ -502,7 +509,7 @@ public class BuchungsControl extends AbstractControl
         starteAuswertung(true);
       }
     }, null, true, "pdf.png"); // "true" defines this button as the default
-                               // button
+    // button
     return b;
   }
 
@@ -515,7 +522,7 @@ public class BuchungsControl extends AbstractControl
         starteAuswertung(false);
       }
     }, null, true, "pdf.png"); // "true" defines this button as the default
-                               // button
+    // button
     return b;
   }
 
@@ -536,7 +543,7 @@ public class BuchungsControl extends AbstractControl
         {
           b.setBuchungsart(null);
         }
-        b.setKonto((Konto) getKonto().getValue());
+        b.setKonto((Konto) getKonto(false).getValue());
         b.setAuszugsnummer((Integer) getAuszugsnummer().getValue());
         b.setBlattnummer((Integer) getBlattnummer().getValue());
         b.setName((String) getName().getValue());

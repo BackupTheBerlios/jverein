@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/LehrgangsartControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/04/13 11:39:27 $
+ * $Revision: 1.2 $
+ * $Date: 2009/07/24 20:18:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangsartControl.java,v $
+ * Revision 1.2  2009/07/24 20:18:46  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.1  2009/04/13 11:39:27  jost
  * Neu: Lehrgänge
  *
@@ -71,13 +74,17 @@ public class LehrgangsartControl extends AbstractControl
     return lehrgangsart;
   }
 
-  public TextInput getBezeichnung() throws RemoteException
+  public TextInput getBezeichnung(boolean withFocus) throws RemoteException
   {
     if (bezeichnung != null)
     {
       return bezeichnung;
     }
     bezeichnung = new TextInput((String) getLehrgangsart().getBezeichnung(), 50);
+    if (withFocus)
+    {
+      bezeichnung.focus();
+    }
     return bezeichnung;
   }
 
@@ -156,7 +163,7 @@ public class LehrgangsartControl extends AbstractControl
     try
     {
       Lehrgangsart l = getLehrgangsart();
-      l.setBezeichnung((String) getBezeichnung().getValue());
+      l.setBezeichnung((String) getBezeichnung(false).getValue());
       l.setVon((Date) getVon().getValue());
       l.setBis((Date) getBis().getValue());
       l.setVeranstalter((String) getVeranstalter().getValue());

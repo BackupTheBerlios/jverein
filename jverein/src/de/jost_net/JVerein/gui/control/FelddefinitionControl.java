@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FelddefinitionControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/22 18:12:59 $
+ * $Revision: 1.3 $
+ * $Date: 2009/07/24 20:17:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionControl.java,v $
+ * Revision 1.3  2009/07/24 20:17:47  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.2  2009/06/22 18:12:59  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -63,7 +66,7 @@ public class FelddefinitionControl extends AbstractControl
     return felddefinition;
   }
 
-  public Input getName() throws RemoteException
+  public Input getName(boolean withFocus) throws RemoteException
   {
     if (name != null)
     {
@@ -71,6 +74,10 @@ public class FelddefinitionControl extends AbstractControl
     }
     name = new TextInput(getFelddefinition().getName(), 50);
     name.setMandatory(true);
+    if (withFocus)
+    {
+      name.focus();
+    }
     return name;
   }
 
@@ -101,7 +108,7 @@ public class FelddefinitionControl extends AbstractControl
     try
     {
       Felddefinition f = getFelddefinition();
-      f.setName((String) getName().getValue());
+      f.setName((String) getName(true).getValue());
       f.setLabel((String) getLabel().getValue());
       Integer i = (Integer) getLaenge().getValue();
       f.setLaenge(i.intValue());

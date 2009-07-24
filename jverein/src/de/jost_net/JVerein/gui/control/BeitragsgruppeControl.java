@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2009/07/18 13:42:50 $
+ * $Revision: 1.15 $
+ * $Date: 2009/07/24 20:16:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.15  2009/07/24 20:16:56  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.14  2009/07/18 13:42:50  jost
  * Bugfix DecimalFormat
  *
@@ -104,12 +107,16 @@ public class BeitragsgruppeControl extends AbstractControl
     return beitrag;
   }
 
-  public Input getBezeichnung() throws RemoteException
+  public Input getBezeichnung(boolean withFocus) throws RemoteException
   {
     if (bezeichnung != null)
       return bezeichnung;
     bezeichnung = new TextInput(getBeitragsgruppe().getBezeichnung(), 30);
     bezeichnung.setMandatory(true);
+    if (withFocus)
+    {
+      bezeichnung.focus();
+    }
     return bezeichnung;
   }
 
@@ -142,7 +149,7 @@ public class BeitragsgruppeControl extends AbstractControl
     try
     {
       Beitragsgruppe b = getBeitragsgruppe();
-      b.setBezeichnung((String) getBezeichnung().getValue());
+      b.setBezeichnung((String) getBezeichnung(false).getValue());
       Double d = (Double) getBetrag().getValue();
       b.setBetrag(d.doubleValue());
       ArtBeitragsart ba = (ArtBeitragsart) getBeitragsArt().getValue();

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.30 $
- * $Date: 2009/07/14 20:27:05 $
+ * $Revision: 1.31 $
+ * $Date: 2009/07/24 20:22:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.31  2009/07/24 20:22:28  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.30  2009/07/14 20:27:05  jost
  * Zahlungsdaten in eigenen Tab verschoben.
  * Platzoptimierung.
@@ -156,11 +159,11 @@ public class MitgliedDetailView extends AbstractView
     }
     if (control.getMitglied().getPersonenart().equals("j"))
     {
-      control.getName().setName(JVereinPlugin.getI18n().tr("Name Zeile 1"));
+      control.getName(true).setName(JVereinPlugin.getI18n().tr("Name Zeile 1"));
       control.getVorname().setName(JVereinPlugin.getI18n().tr("Name Zeile 2"));
       control.getVorname().setMandatory(false);
     }
-    left.addInput(control.getName());
+    left.addInput(control.getName(true));
     left.addInput(control.getVorname());
     left.addInput(control.getAdressierungszusatz());
 

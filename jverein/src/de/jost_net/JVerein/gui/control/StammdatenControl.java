@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/StammdatenControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/06/22 18:14:33 $
+ * $Revision: 1.12 $
+ * $Date: 2009/07/24 20:19:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenControl.java,v $
+ * Revision 1.12  2009/07/24 20:19:48  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.11  2009/06/22 18:14:33  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -111,7 +114,7 @@ public class StammdatenControl extends AbstractControl
     return stamm;
   }
 
-  public Input getName() throws RemoteException
+  public Input getName(boolean withFocus) throws RemoteException
   {
     if (name != null)
     {
@@ -119,6 +122,10 @@ public class StammdatenControl extends AbstractControl
     }
     name = new TextInput(getStammdaten().getName(), 27);
     name.setMandatory(true);
+    if (withFocus)
+    {
+      name.focus();
+    }
     return name;
   }
 
@@ -183,7 +190,7 @@ public class StammdatenControl extends AbstractControl
     try
     {
       Stammdaten s = getStammdaten();
-      s.setName((String) getName().getValue());
+      s.setName((String) getName(false).getValue());
       s.setBlz((String) getBlz().getValue());
       s.setKonto((String) getKonto().getValue());
       s.setAltersgruppen((String) getAltersgruppen().getValue());
