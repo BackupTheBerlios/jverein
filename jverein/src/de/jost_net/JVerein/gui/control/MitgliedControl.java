@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.66 $
- * $Date: 2009/07/24 20:19:00 $
+ * $Revision: 1.67 $
+ * $Date: 2009/07/27 15:05:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.67  2009/07/27 15:05:21  jost
+ * Vereinheitlichung Eigenschaften
+ *
  * Revision 1.66  2009/07/24 20:19:00  jost
  * Focus auf erstes Feld setzen.
  *
@@ -231,6 +234,7 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.Queries.MitgliedQuery;
+import de.jost_net.JVerein.gui.action.EigenschaftenNewAction;
 import de.jost_net.JVerein.gui.action.LehrgangAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
@@ -1680,6 +1684,12 @@ public class MitgliedControl extends AbstractControl
   {
     return new Button("Neu", new WiedervorlageAction(getMitglied()), null,
         false, "document-new.png");
+  }
+
+  public Button getEigenschaftenNeu(EigenschaftenControl contr)
+  {
+    return new Button("Neu", new EigenschaftenNewAction(contr, getMitglied()),
+        null, false, "document-new.png");
   }
 
   public Button getLehrgangNeu()

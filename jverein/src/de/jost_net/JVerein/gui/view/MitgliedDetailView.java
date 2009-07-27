@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.31 $
- * $Date: 2009/07/24 20:22:28 $
+ * $Revision: 1.32 $
+ * $Date: 2009/07/27 15:05:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.32  2009/07/27 15:05:50  jost
+ * Vereinheitlichung Eigenschaften
+ *
  * Revision 1.31  2009/07/24 20:22:28  jost
  * Focus auf erstes Feld setzen.
  *
@@ -259,8 +262,10 @@ public class MitgliedDetailView extends AbstractView
       EigenschaftenControl econtrol = new EigenschaftenControl(this,
           (Mitglied) control.getCurrentObject());
       econtrol.getEigenschaftenTable().paint(tab7.getComposite());
-      tab7.addText(JVereinPlugin.getI18n().tr(
-          "Rechter Mausklick für Funktionen"), false);
+      ButtonArea buttonswvl = new ButtonArea(tab7.getComposite(), 1);
+      buttonswvl.addButton(control.getEigenschaftenNeu(econtrol));
+      // tab7.addText(JVereinPlugin.getI18n().tr(
+      // "Rechter Mausklick für Funktionen"), false);
     }
     TextInput[] zusatzfelder = control.getZusatzfelder();
     if (zusatzfelder != null)
