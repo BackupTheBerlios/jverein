@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/WiedervorlageControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/22 18:14:45 $
+ * $Revision: 1.4 $
+ * $Date: 2009/07/27 15:25:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageControl.java,v $
+ * Revision 1.4  2009/07/27 15:25:34  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.3  2009/06/22 18:14:45  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -63,7 +66,7 @@ public class WiedervorlageControl extends AbstractControl
     return wvl;
   }
 
-  public DateInput getDatum() throws RemoteException
+  public DateInput getDatum(boolean withFocus) throws RemoteException
   {
     if (datum != null)
     {
@@ -86,6 +89,10 @@ public class WiedervorlageControl extends AbstractControl
         }
       }
     });
+    if (withFocus)
+    {
+      datum.focus();
+    }
     return datum;
   }
 
@@ -131,7 +138,7 @@ public class WiedervorlageControl extends AbstractControl
     try
     {
       Wiedervorlage w = getWiedervorlage();
-      w.setDatum((Date) getDatum().getValue());
+      w.setDatum((Date) getDatum(false).getValue());
       w.setVermerk((String) getVermerk().getValue());
       w.setErledigung((Date) getErledigung().getValue());
       w.store();

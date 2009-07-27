@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AnfangsbestandView.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.6 $
+ * $Date: 2009/07/27 15:26:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandView.java,v $
+ * Revision 1.6  2009/07/27 15:26:04  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.5  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -49,10 +52,10 @@ public class AnfangsbestandView extends AbstractView
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Anfangsbestand"));
     group.addLabelPair(JVereinPlugin.getI18n().tr("Konto"), control.getKonto());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Datum"), control.getDatum());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Datum"), control.getDatum(true));
     if (control.getAnfangsbestand().getID() != null)
     {
-      control.getDatum().setEnabled(false);
+      control.getDatum(false).setEnabled(false);
     }
     group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"), control
         .getBetrag());

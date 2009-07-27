@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/22 18:15:00 $
+ * $Revision: 1.3 $
+ * $Date: 2009/07/27 15:25:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
+ * Revision 1.3  2009/07/27 15:25:49  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.2  2009/06/22 18:15:00  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -172,7 +175,7 @@ public class ZusatzbetragControl extends AbstractControl
     return betrag;
   }
 
-  public DateInput getStartdatum() throws RemoteException
+  public DateInput getStartdatum(boolean withFocus) throws RemoteException
   {
     if (startdatum != null)
     {
@@ -195,6 +198,10 @@ public class ZusatzbetragControl extends AbstractControl
         faelligkeit.setValue(date);
       }
     });
+    if (withFocus)
+    {
+      startdatum.focus();
+    }
     return startdatum;
   }
 
@@ -320,7 +327,7 @@ public class ZusatzbetragControl extends AbstractControl
     {
       Zusatzbetrag z = getZusatzbetrag();
       z.setFaelligkeit((Date) getFaelligkeit().getValue());
-      z.setStartdatum((Date) getStartdatum().getValue());
+      z.setStartdatum((Date) getStartdatum(false).getValue());
       IntervallZusatzzahlung iz = (IntervallZusatzzahlung) getIntervall()
           .getValue();
       z.setIntervall(iz.getKey());

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AnfangsbestandControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/12/06 16:45:40 $
+ * $Revision: 1.4 $
+ * $Date: 2009/07/27 15:21:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandControl.java,v $
+ * Revision 1.4  2009/07/27 15:21:44  jost
+ * Focus auf erstes Feld setzen.
+ *
  * Revision 1.3  2008/12/06 16:45:40  jost
  * Debug-Meldung entfernt.
  *
@@ -87,13 +90,17 @@ public class AnfangsbestandControl extends AbstractControl
     return konto;
   }
 
-  public DateInput getDatum() throws RemoteException
+  public DateInput getDatum(boolean withFocus) throws RemoteException
   {
     if (datum != null)
     {
       return datum;
     }
     datum = new DateInput(getAnfangsbestand().getDatum());
+    if (withFocus)
+    {
+      datum.focus();
+    }
     return datum;
   }
 
@@ -130,7 +137,7 @@ public class AnfangsbestandControl extends AbstractControl
       }
       Konto k = (Konto) konten.next();
       a.setKonto(k);
-      a.setDatum((Date) getDatum().getValue());
+      a.setDatum((Date) getDatum(false).getValue());
       a.setBetrag((Double) getBetrag().getValue());
       a.store();
       GUI.getStatusBar().setSuccessText("Anfangsbestand gespeichert");
