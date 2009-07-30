@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.32 $
- * $Date: 2009/07/19 13:49:03 $
+ * $Revision: 1.33 $
+ * $Date: 2009/07/30 18:23:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.33  2009/07/30 18:23:18  jost
+ * Bugfix DTAUS-Datei mit überlangen Namen
+ *
  * Revision 1.32  2009/07/19 13:49:03  jost
  * Bugfix Abrechnung
  *
@@ -239,7 +242,7 @@ public class Abbuchung
       }
       beitragsfrei += " beitragsgruppe <> " + b.getID();
     }
- 
+
     // Beitragsgruppen-Tabelle lesen und cachen
     list = Einstellungen.getDBService().createList(Beitragsgruppe.class);
     list.addFilter("betrag > 0");
@@ -536,7 +539,12 @@ public class Abbuchung
     dtaus.setCBLZEndbeguenstigt(Integer.parseInt(m.getBlz()));
     dtaus.setCInterneKundennummer(Integer.parseInt(m.getID()));
     dtaus.setCKonto(Long.parseLong(m.getKonto()));
-    String name = m.getName() + ", " + m.getVorname();
+    String name = m.getNameVorname();
+    String mitgliedname = name;
+    if (mitgliedname.length() > 27)
+    {
+      mitgliedname = mitgliedname.substring(0, 27);
+    }
     if (m.getKontoinhaber().length() > 0)
     {
       name = m.getKontoinhaber();
@@ -549,7 +557,7 @@ public class Abbuchung
     dtaus
         .setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
     dtaus.addCVerwendungszweck(verwendungszweck);
-    dtaus.addCVerwendungszweck(m.getName() + "," + m.getVorname());
+    dtaus.addCVerwendungszweck(mitgliedname);
     dtaus.writeCSatz();
   }
 
