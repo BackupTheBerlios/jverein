@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/08/09 15:28:14 $
+ * $Revision: 1.13 $
+ * $Date: 2009/08/17 18:52:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.13  2009/08/17 18:52:12  jost
+ * Neuer Pfad
+ *
  * Revision 1.12  2009/08/09 15:28:14  jost
  * Umstellung auf neue Web-Site
  *
@@ -56,7 +59,7 @@ public class DokumentationUtil
 
   }
 
-  private static final String PRE = "http://www.jverein.de/neu/";
+  private static final String PRE = "http://www.jverein.de/";
 
   public static final String ADRESSBUCHEXPORT = PRE
       + "dokumentationauswertungadressbuchexport.php";
