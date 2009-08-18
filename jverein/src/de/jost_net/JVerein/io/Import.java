@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.21 $
- * $Date: 2009/04/25 05:30:20 $
+ * $Revision: 1.22 $
+ * $Date: 2009/08/18 17:31:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.22  2009/08/18 17:31:03  jost
+ * - Abrechnungsdaten löschen
+ * - Bugfix Barzahlung
+ *
  * Revision 1.21  2009/04/25 05:30:20  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
@@ -92,6 +96,7 @@ import java.util.Set;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.keys.Zahlungsweg;
+import de.jost_net.JVerein.rmi.Abrechnung;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
@@ -221,16 +226,17 @@ public class Import
         m.setOrt(results.getString("Ort"));
         m.setGeburtsdatum(results.getString("Geburtsdatum"));
         m.setGeschlecht(results.getString("Geschlecht"));
+        m.setBlz(results.getString("Bankleitzahl"));
+        m.setKonto(results.getString("Kontonummer"));
+
         if (results.getString("Zahlungsart").equals("l"))
         {
           m.setZahlungsweg(Zahlungsweg.ABBUCHUNG);
-          m.setBlz(results.getString("Bankleitzahl"));
-          m.setKonto(results.getString("Kontonummer"));
         }
         else if (results.getString("Zahlungsart").equals("b"))
         {
           m.setZahlungsweg(Zahlungsweg.BARZAHLUNG);
-        }
+         }
         else
         {
           monitor.log(m.getNameVorname()
@@ -358,6 +364,14 @@ public class Import
         ManuellerZahlungseingang m = (ManuellerZahlungseingang) list.next();
         m.delete();
       }
+      // Abrechnung
+      list = Einstellungen.getDBService().createList(Abrechnung.class);
+      while (list.hasNext())
+      {
+        Abrechnung abr = (Abrechnung) list.next();
+        abr.delete();
+      }
+
       // Wiedervorlage
       list = Einstellungen.getDBService().createList(Wiedervorlage.class);
       while (list.hasNext())
