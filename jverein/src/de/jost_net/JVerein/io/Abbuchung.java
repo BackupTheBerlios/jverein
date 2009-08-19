@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.33 $
- * $Date: 2009/07/30 18:23:18 $
+ * $Revision: 1.34 $
+ * $Date: 2009/08/19 21:00:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.34  2009/08/19 21:00:30  jost
+ * Manuelle Buchungen auch für Zusatzbeträge.
+ *
  * Revision 1.33  2009/07/30 18:23:18  jost
  * Bugfix DTAUS-Datei mit überlangen Namen
  *
@@ -409,6 +412,11 @@ public class Abbuchung
             throw new ApplicationException(m.getNameVorname() + ": "
                 + e.getMessage());
           }
+        }
+        else
+        {
+          writeManuellerZahlungseingang(m, z.getBuchungstext(), new Double(z
+              .getBetrag()));
         }
         if (z.getIntervall().intValue() != IntervallZusatzzahlung.KEIN
             && (z.getEndedatum() == null || z.getFaelligkeit().getTime() <= z
