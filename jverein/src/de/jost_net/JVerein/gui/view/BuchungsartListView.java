@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartListView.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.8 $
+ * $Date: 2009/08/19 20:59:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartListView.java,v $
+ * Revision 1.8  2009/08/19 20:59:22  jost
+ * Hilfebutton aufgenommen.
+ *
  * Revision 1.7  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -32,6 +35,7 @@ package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BuchungsartAction;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BuchungsartControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -49,8 +53,12 @@ public class BuchungsartListView extends AbstractView
 
     control.getBuchungsartList().paint(this.getParent());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
+    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.BUCHUNGSARTEN, false,
+        "help-browser.png");
+
     buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
         new BuchungsartAction(), null, false, "document-new.png");
   }
