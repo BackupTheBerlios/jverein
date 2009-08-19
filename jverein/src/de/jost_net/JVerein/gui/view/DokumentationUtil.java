@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.13 $
- * $Date: 2009/08/17 18:52:12 $
+ * $Revision: 1.14 $
+ * $Date: 2009/08/19 20:59:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.14  2009/08/19 20:59:46  jost
+ * Link Buchungsarten aufgenommen.
+ *
  * Revision 1.13  2009/08/17 18:52:12  jost
  * Neuer Pfad
  *
@@ -76,6 +79,9 @@ public class DokumentationUtil
 
   public static final String BEITRAGSGRUPPEN = PRE
       + "administration_beitragsgruppen.php";
+
+  public static final String BUCHUNGSARTEN = PRE
+      + "administration_buchungsarten.php";
 
   public static final String FELDDEFINITIONEN = PRE
       + "administration_felddefinitionen.php";
