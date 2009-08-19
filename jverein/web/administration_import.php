@@ -75,7 +75,7 @@
 	</tr>
 	<tr>
 		<td>Zahlungsart</td>
-		<td>l (Kleinbuchstabe L)] für Lastschrift oder b für Barzahlung</td>
+		<td>l (Kleinbuchstabe L)] für Lastschrift, b für Barzahlung oder u für Überweisung</td>
 	</tr>
 	<tr>
 		<td>Zahlungsrhytmus</td>
@@ -142,6 +142,9 @@ Mitglieds_Nr;Anrede;Titel;Nachname;Vorname;Straße;Plz;Ort;Geburtsdatum;Geschlech
 	
 	<!-- 
     $Log: administration_import.php,v $
+    Revision 1.3  2009/08/19 21:01:28  jost
+    *** empty log message ***
+
     Revision 1.2  2009/05/11 05:59:46  jost
     können/müssen
 
