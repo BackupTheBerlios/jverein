@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.22 $
- * $Date: 2009/08/18 17:31:03 $
+ * $Revision: 1.23 $
+ * $Date: 2009/08/19 21:01:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.23  2009/08/19 21:01:13  jost
+ * Zahlungsweg "überweisung" kann jetzt auch importiert werden.
+ *
  * Revision 1.22  2009/08/18 17:31:03  jost
  * - Abrechnungsdaten löschen
  * - Bugfix Barzahlung
@@ -236,7 +239,11 @@ public class Import
         else if (results.getString("Zahlungsart").equals("b"))
         {
           m.setZahlungsweg(Zahlungsweg.BARZAHLUNG);
-         }
+        }
+        else if (results.getString("Zahlungsart").equals("u"))
+        {
+          m.setZahlungsweg(Zahlungsweg.ÜBERWEISUNG);
+        }
         else
         {
           monitor.log(m.getNameVorname()
