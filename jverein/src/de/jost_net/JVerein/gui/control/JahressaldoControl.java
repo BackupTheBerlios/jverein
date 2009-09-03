@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/03/01 17:39:49 $
+ * $Revision: 1.9 $
+ * $Date: 2009/09/03 18:48:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
+ * Revision 1.9  2009/09/03 18:48:00  jost
+ * Vermeidung NPE
+ *
  * Revision 1.8  2009/03/01 17:39:49  jost
  * - Ausgewähltes Jahr wird jetzt korrekt gespeichert und wiederhergestellt
  * - Zusätzliche Zeile "Überschuss/Verlust"
@@ -112,7 +115,7 @@ public class JahressaldoControl extends AbstractControl
     }
 
     suchjahr = new SelectInput(jahre, settings.getInt("jahr", jahre.get(0)));
-    suchjahr.setPleaseChoose("Bitte auswählen");
+   // suchjahr.setPleaseChoose("Bitte auswählen");
     suchjahr.setPreselected(settings.getInt("jahr", bis.get(Calendar.YEAR)));
     return suchjahr;
   }
