@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsklasseView.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/09/10 18:18:45 $
+ * $Revision: 1.2 $
+ * $Date: 2009/09/10 18:46:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseView.java,v $
+ * Revision 1.2  2009/09/10 18:46:46  jost
+ * Hilfe aufgenommen
+ *
  * Revision 1.1  2009/09/10 18:18:45  jost
  * neu: Buchungsklassen
  *
@@ -16,6 +19,7 @@
 package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BuchungsklasseControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -40,9 +44,13 @@ public class BuchungsklasseView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"), control
         .getBezeichnung());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 2);
+    ButtonArea buttons = new ButtonArea(getParent(), 3);
 
     buttons.addButton(new Back(false));
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+        new DokumentationAction(), DokumentationUtil.BUCHUNGSKLASSEN, false,
+        "help-browser.png");
+
     buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
