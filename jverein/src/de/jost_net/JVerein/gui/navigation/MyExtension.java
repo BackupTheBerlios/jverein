@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.19 $
- * $Date: 2009/06/11 21:03:13 $
+ * $Revision: 1.20 $
+ * $Date: 2009/09/10 18:17:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.20  2009/09/10 18:17:47  jost
+ * neu: Buchungsklassen
+ *
  * Revision 1.19  2009/06/11 21:03:13  jost
  * Vorbereitung I18N
  *
@@ -80,6 +83,8 @@ import de.jost_net.JVerein.gui.action.BackupRestoreAction;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeSucheAction;
 import de.jost_net.JVerein.gui.action.BuchungsListeAction;
 import de.jost_net.JVerein.gui.action.BuchungsartListAction;
+import de.jost_net.JVerein.gui.action.BuchungsklasseListAction;
+import de.jost_net.JVerein.gui.action.BuchungsklasseSaldoAction;
 import de.jost_net.JVerein.gui.action.BuchungsuebernahmeAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.EinstellungenAction;
@@ -195,6 +200,9 @@ public class MyExtension implements Extension
       buchfuehrung.addChild(new MyItem(buchfuehrung, JVereinPlugin.getI18n()
           .tr("Buchungen"), new BuchungsListeAction(),
           "preferences-system-windows.png"));
+      buchfuehrung
+          .addChild(new MyItem(buchfuehrung, JVereinPlugin.getI18n().tr(
+              "Buchungsklassen"), new BuchungsklasseSaldoAction(), "summe.png"));
       buchfuehrung.addChild(new MyItem(buchfuehrung, JVereinPlugin.getI18n()
           .tr("Jahressaldo"), new JahressaldoAction(), "summe.png"));
       buchfuehrung
@@ -210,6 +218,9 @@ public class MyExtension implements Extension
       einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
           .tr("Beitragsgruppe"), new BeitragsgruppeSucheAction(),
           "breakpoint_view.gif"));
+      einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
+          .tr("Buchungsklasse"), new BuchungsklasseListAction(),
+          "activity_category.gif"));
       einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
           .tr("Buchungsart"), new BuchungsartListAction(),
           "activity_category.gif"));

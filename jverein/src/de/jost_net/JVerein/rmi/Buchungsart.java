@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchungsart.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/05/22 06:55:25 $
+ * $Revision: 1.6 $
+ * $Date: 2009/09/10 18:19:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchungsart.java,v $
+ * Revision 1.6  2009/09/10 18:19:20  jost
+ * neu: Buchungsklassen
+ *
  * Revision 1.5  2008/05/22 06:55:25  jost
  * Buchführung
  *
@@ -41,5 +44,11 @@ public interface Buchungsart extends DBObject
   public int getArt() throws RemoteException;
 
   public void setArt(int art) throws RemoteException;
+
+  public Buchungsklasse getBuchungsklasse() throws RemoteException;
+
+  public int getBuchungsklasseId() throws RemoteException;
+
+  public void setBuchungsklasse(Integer buchungsklasse) throws RemoteException;
 
 }
