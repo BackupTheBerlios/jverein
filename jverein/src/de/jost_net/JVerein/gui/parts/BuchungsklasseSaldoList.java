@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/BuchungsklasseSaldoList.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/09/10 18:17:58 $
+ * $Revision: 1.2 $
+ * $Date: 2009/09/12 19:03:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoList.java,v $
+ * Revision 1.2  2009/09/12 19:03:00  jost
+ * neu: Buchungsjournal
+ *
  * Revision 1.1  2009/09/10 18:17:58  jost
  * neu: Buchungsklassen
  *
@@ -197,9 +200,15 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
     umbuchungen = (Double) service.execute(sql, new Object[] {
         gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(), 2 }, rs);
     suBukUmbuchungen += umbuchungen;
-    zeile.add(new BuchungsklasseSaldoZeile("Nicht zugeordnet", einnahmen,
-        ausgaben, umbuchungen));
-
+    if (einnahmen != 0 || ausgaben != 0 || umbuchungen != 0)
+    {
+      Buchungsklasse b = (Buchungsklasse) service.createObject(
+          Buchungsklasse.class, null);
+      b.setBezeichnung("Nicht zugeordnet");
+      zeile.add(new BuchungsklasseSaldoZeile(b));
+      zeile.add(new BuchungsklasseSaldoZeile("Nicht zugeordnet", einnahmen,
+          ausgaben, umbuchungen));
+    }
     return zeile;
   }
 

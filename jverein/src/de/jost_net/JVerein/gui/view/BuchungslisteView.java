@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungslisteView.java,v $
- * $Revision: 1.13 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.14 $
+ * $Date: 2009/09/12 19:03:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungslisteView.java,v $
+ * Revision 1.14  2009/09/12 19:03:16  jost
+ * neu: Buchungsjournal
+ *
  * Revision 1.13  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -102,11 +105,12 @@ public class BuchungslisteView extends AbstractView
 
     control.getBuchungsList().paint(this.getParent());
 
-    ButtonArea buttons2 = new ButtonArea(this.getParent(), 5);
+    ButtonArea buttons2 = new ButtonArea(this.getParent(), 6);
     buttons2.addButton(new Back(false));
     buttons2.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGEN, false,
         "help-browser.png");
+    buttons2.addButton(control.getStartAuswertungBuchungsjournalButton());
     buttons2.addButton(control.getStartAuswertungEinzelbuchungenButton());
     buttons2.addButton(control.getStartAuswertungSummenButton());
     buttons2.addButton(JVereinPlugin.getI18n().tr("neu"),
