@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklasseSaldoZeile.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/09/10 18:19:09 $
+ * $Revision: 1.2 $
+ * $Date: 2009/09/12 19:05:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoZeile.java,v $
+ * Revision 1.2  2009/09/12 19:05:14  jost
+ * neu: Buchungsklassen
+ *
  * Revision 1.1  2009/09/10 18:19:09  jost
  * neu: Buchungsklassen
  *
@@ -38,9 +41,20 @@ public class BuchungsklasseSaldoZeile implements GenericObject
 
   private Double ausgaben;
 
+  public static final int UNDEFINED = 0;
+
+  public static final int HEADER = 1;
+
+  public static final int DETAIL = 2;
+
+  public static final int FOOTER = 3;
+
+  private int status = UNDEFINED;
+
   public BuchungsklasseSaldoZeile(Buchungsklasse buchungsklasse)
   {
     this.buchungsklasse = buchungsklasse;
+    this.status = HEADER;
     this.buchungsart = null;
     this.text = null;
     this.umbuchungen = null;
@@ -51,6 +65,7 @@ public class BuchungsklasseSaldoZeile implements GenericObject
   public BuchungsklasseSaldoZeile(Buchungsart buchungsart, Double einnahmen,
       Double ausgaben, Double umbuchungen)
   {
+    this.status = DETAIL;
     this.buchungsklasse = null;
     this.buchungsart = buchungsart;
     this.text = null;
@@ -62,12 +77,18 @@ public class BuchungsklasseSaldoZeile implements GenericObject
   public BuchungsklasseSaldoZeile(String text, Double einnahmen,
       Double ausgaben, Double umbuchungen)
   {
+    this.status = FOOTER;
     this.buchungsklasse = null;
     this.buchungsart = null;
     this.text = text;
     this.umbuchungen = new Double(umbuchungen);
     this.einnahmen = new Double(einnahmen);
     this.ausgaben = new Double(ausgaben);
+  }
+
+  public int getStatus()
+  {
+    return status;
   }
 
   public Object getAttribute(String arg0) throws RemoteException
