@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/07/14 07:30:30 $
+ * $Revision: 1.7 $
+ * $Date: 2009/09/13 19:20:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.7  2009/09/13 19:20:40  jost
+ * Neu: Prüfung auf Updates
+ *
  * Revision 1.6  2009/07/14 07:30:30  jost
  * Bugfix Rechnungen.
  *
@@ -32,6 +35,7 @@
 package de.jost_net.JVerein.server;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import de.jost_net.JVerein.rmi.Einstellung;
 import de.willuhn.datasource.db.AbstractDBObject;
@@ -272,6 +276,42 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
       throws RemoteException
   {
     setAttribute("rechnungfuerbarzahlung", new Boolean(rechnungfuerbarzahlung));
+  }
+
+  public Integer getUpdateInterval() throws RemoteException
+  {
+    return (Integer) getAttribute("updateinterval");
+  }
+
+  public void setUpdateInterval(Integer updateinterval) throws RemoteException
+  {
+    setAttribute("updateinterval", updateinterval);
+  }
+
+  public boolean getUpdateDiagInfos() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("updatediaginfos"));
+  }
+
+  public void setUpdateDiagInfos(Boolean updatediaginfos)
+      throws RemoteException
+  {
+    setAttribute("updatediaginfos", new Boolean(updatediaginfos));
+  }
+
+  public Date getUpdateLastCheck() throws RemoteException
+  {
+    Date d = (Date) getAttribute("updatelastcheck");
+    if (d == null)
+    {
+      return new Date();
+    }
+    return d;
+  }
+
+  public void setUpdateLastCheck(Date updatelastcheck) throws RemoteException
+  {
+    setAttribute("updatelastcheck", updatelastcheck);
   }
 
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/07/14 07:30:18 $
+ * $Revision: 1.6 $
+ * $Date: 2009/09/13 19:20:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.6  2009/09/13 19:20:29  jost
+ * Neu: Prüfung auf Updates
+ *
  * Revision 1.5  2009/07/14 07:30:18  jost
  * Bugfix Rechnungen.
  *
@@ -28,6 +31,7 @@
 package de.jost_net.JVerein.rmi;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import de.willuhn.datasource.rmi.DBObject;
 
@@ -120,5 +124,17 @@ public interface Einstellung extends DBObject
 
   public void setRechnungFuerBarzahlung(Boolean rechnungfuerbarzahlung)
       throws RemoteException;
+
+  public Integer getUpdateInterval() throws RemoteException;
+
+  public void setUpdateInterval(Integer updateinterval) throws RemoteException;
+
+  public boolean getUpdateDiagInfos() throws RemoteException;
+
+  public void setUpdateDiagInfos(Boolean updateinterval) throws RemoteException;
+
+  public Date getUpdateLastCheck() throws RemoteException;
+
+  public void setUpdateLastCheck(Date updatelastcheck) throws RemoteException;
 
 }
