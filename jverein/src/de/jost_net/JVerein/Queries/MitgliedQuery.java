@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.14 $
- * $Date: 2009/07/05 10:26:26 $
+ * $Revision: 1.15 $
+ * $Date: 2009/09/14 19:14:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.15  2009/09/14 19:14:51  jost
+ * Mitglieder mit Austrittsdatum in der Zukunft werden mit ausgewertet.
+ *
  * Revision 1.14  2009/07/05 10:26:26  jost
  * Bugfix Geschlechtsauswahl
  *
@@ -184,7 +187,7 @@ public class MitgliedQuery
         if (control.getAustrittvon().getValue() == null
             && control.getAustrittbis().getValue() == null)
         {
-          addCondition("austritt is null");
+          addCondition("(austritt is null or austritt > current_date())");
         }
       }
     }
