@@ -7,6 +7,7 @@
     			<li>Vermeidung NullPointerException beim Jahressaldo.</li>
     			<li>Neu: Buchungsjournal, Feature Request <a href='https://developer.berlios.de/bugs/?func=detailbug&bug_id=16103&group_id=7335'>#16103</a></li>
     			<li>Neu: Überprüfung auf Updates.</li>
+    			<li>Auswertung Mitglieder: Mitglieder mit Austrittsdatum in der Zukunft werden mit ausgewertet.</li>
     		</ul>
     	<li>Version 1.2 vom 23.8.2009</li>
     		<ul>
@@ -435,6 +436,9 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
+    Revision 1.17  2009/09/14 19:16:16  jost
+    *** empty log message ***
+
     Revision 1.16  2009/09/13 19:21:07  jost
     Neu: Prüfung auf Updates
 
