@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/BuchungsklasseSaldoList.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/09/12 19:03:00 $
+ * $Revision: 1.3 $
+ * $Date: 2009/09/15 19:22:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoList.java,v $
+ * Revision 1.3  2009/09/15 19:22:10  jost
+ * Korrekte Bildung der Summen.
+ *
  * Revision 1.2  2009/09/12 19:03:00  jost
  * neu: Buchungsjournal
  *
@@ -160,7 +163,9 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
       DBIterator buchungsartenIt = service.createList(Buchungsart.class);
       buchungsartenIt.addFilter("buchungsklasse = ?",
           new Object[] { buchungsklasse.getID() });
-
+      suBukEinnahmen = new Double(0);
+      suBukAusgaben = new Double(0);
+      suBukUmbuchungen = new Double(0);
       while (buchungsartenIt.hasNext())
       {
         buchungsart = (Buchungsart) buchungsartenIt.next();
@@ -186,6 +191,9 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
       zeile.add(new BuchungsklasseSaldoZeile("Saldo "
           + buchungsklasse.getBezeichnung(), suBukEinnahmen, suBukAusgaben,
           suBukUmbuchungen));
+      zeile.add(new BuchungsklasseSaldoZeile("Gewinn/Verlust "
+          + buchungsklasse.getBezeichnung(), suBukEinnahmen - suBukAusgaben
+          - suBukUmbuchungen));
     }
     String sql = "select sum(betrag) from buchung, buchungsart "
         + "where datum >= ? and datum <= ?  "
