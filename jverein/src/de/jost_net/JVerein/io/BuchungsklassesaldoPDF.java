@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklassesaldoPDF.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/09/12 19:05:02 $
+ * $Revision: 1.2 $
+ * $Date: 2009/09/15 19:24:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklassesaldoPDF.java,v $
+ * Revision 1.2  2009/09/15 19:24:12  jost
+ * Saldo-Bildung
+ *
  * Revision 1.1  2009/09/12 19:05:02  jost
  * neu: Buchungsklassen
  *
@@ -71,16 +74,26 @@ public class BuchungsklassesaldoPDF
           }
           case BuchungsklasseSaldoZeile.FOOTER:
           {
-            reporter
-                .addColumn((String) bkz
-                    .getAttribute("buchungsklassenbezeichnung"),
-                    Element.ALIGN_LEFT);
+            reporter.addColumn((String) bkz
+                .getAttribute("buchungsklassenbezeichnung"),
+                Element.ALIGN_RIGHT);
             reporter.addColumn((Double) bkz.getAttribute("einnahmen"));
             reporter.addColumn((Double) bkz.getAttribute("ausgaben"));
             reporter.addColumn((Double) bkz.getAttribute("umbuchungen"));
+            break;
+          }
+          case BuchungsklasseSaldoZeile.FOOTER2:
+          {
+            reporter.addColumn((String) bkz
+                .getAttribute("buchungsklassenbezeichnung"),
+                Element.ALIGN_RIGHT);
+            reporter.addColumn((Double) bkz.getAttribute("einnahmen"));
+            reporter.addColumn("", Element.ALIGN_LEFT);
+            reporter.addColumn("", Element.ALIGN_LEFT);
             reporter.closeTable();
             break;
           }
+
         }
       }
       monitor.setStatusText("Auswertung fertig.");

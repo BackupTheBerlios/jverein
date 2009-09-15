@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklasseSaldoZeile.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/09/12 19:05:14 $
+ * $Revision: 1.3 $
+ * $Date: 2009/09/15 19:24:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoZeile.java,v $
+ * Revision 1.3  2009/09/15 19:24:25  jost
+ * Saldo-Bildung
+ *
  * Revision 1.2  2009/09/12 19:05:14  jost
  * neu: Buchungsklassen
  *
@@ -48,6 +51,8 @@ public class BuchungsklasseSaldoZeile implements GenericObject
   public static final int DETAIL = 2;
 
   public static final int FOOTER = 3;
+  
+  public static final int FOOTER2 = 4;
 
   private int status = UNDEFINED;
 
@@ -84,6 +89,17 @@ public class BuchungsklasseSaldoZeile implements GenericObject
     this.umbuchungen = new Double(umbuchungen);
     this.einnahmen = new Double(einnahmen);
     this.ausgaben = new Double(ausgaben);
+  }
+
+  public BuchungsklasseSaldoZeile(String text, Double gewinnverlust)
+  {
+    this.status = FOOTER2;
+    this.buchungsklasse = null;
+    this.buchungsart = null;
+    this.text = text;
+    this.umbuchungen = null;
+    this.einnahmen = new Double(gewinnverlust);
+    this.ausgaben = null;
   }
 
   public int getStatus()
