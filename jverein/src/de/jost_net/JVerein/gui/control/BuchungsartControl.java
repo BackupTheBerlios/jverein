@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2009/09/10 18:16:58 $
+ * $Revision: 1.15 $
+ * $Date: 2009/09/15 19:21:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.15  2009/09/15 19:21:15  jost
+ * Buchungsklasse in die Übersicht aufgenommen.
+ *
  * Revision 1.14  2009/09/10 18:16:58  jost
  * neu: Buchungsklassen
  *
@@ -232,6 +235,7 @@ public class BuchungsartControl extends AbstractControl
         return "ungültig";
       }
     }, false, Column.ALIGN_LEFT);
+    buchungsartList.addColumn("Buchungsklasse", "buchungsklasse");
     buchungsartList.setContextMenu(new BuchungsartMenu());
     buchungsartList.setRememberColWidths(true);
     buchungsartList.setRememberOrder(true);
