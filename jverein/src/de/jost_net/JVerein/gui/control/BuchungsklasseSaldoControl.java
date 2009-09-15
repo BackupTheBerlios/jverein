@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsklasseSaldoControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/09/12 19:02:46 $
+ * $Revision: 1.3 $
+ * $Date: 2009/09/15 19:21:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoControl.java,v $
+ * Revision 1.3  2009/09/15 19:21:35  jost
+ * TODO-Tag entfernt.
+ *
  * Revision 1.2  2009/09/12 19:02:46  jost
  * neu: Buchungsjournal
  *
@@ -205,7 +208,6 @@ public class BuchungsklasseSaldoControl extends AbstractControl
       {
         try
         {
-          // TODO ################## Anpassen
           new BuchungsklassesaldoPDF(zeile, file, monitor, gj);
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
