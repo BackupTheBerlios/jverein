@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/SaldoZeile.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/07/09 13:18:18 $
+ * $Revision: 1.4 $
+ * $Date: 2009/09/16 20:57:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SaldoZeile.java,v $
+ * Revision 1.4  2009/09/16 20:57:24  jost
+ * Bugfix: Casesensitives SQL-Statement.
+ *
  * Revision 1.3  2008/07/09 13:18:18  jost
  * Überflüssige Imports entfernt.
  *
@@ -85,7 +88,7 @@ public class SaldoZeile implements GenericObject
     }
     String sql = "select sum(betrag) from buchung, buchungsart "
         + "where datum >= ? and datum <= ? AND konto = ? "
-        + "and buchung.BUCHUNGSART = BUCHUNGSART.ID " + "and BUCHUNGSART.ART=?";
+        + "and buchung.buchungsart = buchungsart.id " + "and buchungsart.art=?";
 
     ResultSetExtractor rs = new ResultSetExtractor()
     {
