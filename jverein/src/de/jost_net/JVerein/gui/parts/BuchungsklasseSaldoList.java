@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/BuchungsklasseSaldoList.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/09/15 19:22:10 $
+ * $Revision: 1.4 $
+ * $Date: 2009/09/16 21:36:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoList.java,v $
+ * Revision 1.4  2009/09/16 21:36:05  jost
+ * Bugfix Saldobildung
+ *
  * Revision 1.3  2009/09/15 19:22:10  jost
  * Korrekte Bildung der Summen.
  *
@@ -192,8 +195,8 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
           + buchungsklasse.getBezeichnung(), suBukEinnahmen, suBukAusgaben,
           suBukUmbuchungen));
       zeile.add(new BuchungsklasseSaldoZeile("Gewinn/Verlust "
-          + buchungsklasse.getBezeichnung(), suBukEinnahmen - suBukAusgaben
-          - suBukUmbuchungen));
+          + buchungsklasse.getBezeichnung(), suBukEinnahmen + suBukAusgaben
+          + suBukUmbuchungen));
     }
     String sql = "select sum(betrag) from buchung, buchungsart "
         + "where datum >= ? and datum <= ?  "
