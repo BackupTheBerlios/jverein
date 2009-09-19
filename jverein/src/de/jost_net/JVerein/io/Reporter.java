@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/03/04 20:52:18 $
+ * $Revision: 1.12 $
+ * $Date: 2009/09/19 16:29:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
+ * Revision 1.12  2009/09/19 16:29:09  jost
+ * Weiterentwicklung
+ *
  * Revision 1.11  2009/03/04 20:52:18  jost
  * Footer korrigiert.
  *
@@ -205,6 +208,17 @@ public class Reporter
     addColumn(getDetailCell(text, align, Color.WHITE));
   }
 
+  public void addColumn(String text, int align, int colspan)
+  {
+    addColumn(getDetailCell(text, align, Color.WHITE, colspan));
+  }
+
+  public void addColumn(String text, int align, Color backgroundcolor,
+      int colspan)
+  {
+    addColumn(getDetailCell(text, align, backgroundcolor, colspan));
+  }
+
   /**
    * Fuegt eine neue Zelle zur Tabelle hinzu.
    */
@@ -290,6 +304,10 @@ public class Reporter
 
   public void closeTable() throws DocumentException
   {
+    if (table == null)
+    {
+      return;
+    }
     rpt.add(table);
     table = null;
     headers = new ArrayList<PdfPCell>();
@@ -345,6 +363,18 @@ public class Reporter
     return cell;
   }
 
+  private PdfPCell getDetailCell(String text, int align, Color backgroundcolor,
+      int colspan)
+  {
+    PdfPCell cell = new PdfPCell(new Phrase(new Chunk(notNull(text),
+        FontFactory.getFont(FontFactory.HELVETICA, 8)).setHyphenation(hyph)));
+    cell.setHorizontalAlignment(align);
+    cell.setBackgroundColor(backgroundcolor);
+    cell.setColspan(colspan);
+    return cell;
+
+  }
+
   /**
    * Erzeugt eine Zelle der Tabelle.
    * 
@@ -370,10 +400,14 @@ public class Reporter
   {
     Font f = null;
     if (value >= 0)
+    {
       f = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL,
           Color.BLACK);
+    }
     else
+    {
       f = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL, Color.RED);
+    }
     PdfPCell cell = new PdfPCell(new Phrase(Einstellungen.DECIMALFORMAT
         .format(value), f));
     cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
