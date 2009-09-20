@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2009/09/15 19:21:15 $
+ * $Revision: 1.16 $
+ * $Date: 2009/09/20 19:02:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.16  2009/09/20 19:02:45  jost
+ * Buchungsart Art war immer Einnahme.
+ *
  * Revision 1.15  2009/09/15 19:21:15  jost
  * Buchungsklasse in die Übersicht aufgenommen.
  *
@@ -142,7 +145,8 @@ public class BuchungsartControl extends AbstractControl
     {
       return art;
     }
-    art = new SelectInput(ArtBuchungsart.getArray(), getBuchungsart().getArt());
+    art = new SelectInput(ArtBuchungsart.getArray(), new ArtBuchungsart(
+        getBuchungsart().getArt()));
     return art;
   }
 
