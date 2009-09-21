@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/FormularAufbereitung.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/04/10 17:46:17 $
+ * $Revision: 1.4 $
+ * $Date: 2009/09/21 18:19:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAufbereitung.java,v $
+ * Revision 1.4  2009/09/21 18:19:29  jost
+ * NullPointerException abgefangen.
+ *
  * Revision 1.3  2009/04/10 17:46:17  jost
  * Zusätzliche Datenfelder für die Rechnungserstellung
  *
@@ -139,6 +142,10 @@ public class FormularAufbereitung
     float x = mm2point(feld.getX().floatValue());
     float y = mm2point(feld.getY().floatValue());
     Object val = map.get(feld.getName());
+    if (val == null)
+    {
+      return;
+    }
     int links = 1;
     int rechts = 2;
     int buendig = links;
