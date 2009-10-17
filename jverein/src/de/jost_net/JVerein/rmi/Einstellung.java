@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/09/13 19:20:29 $
+ * $Revision: 1.7 $
+ * $Date: 2009/10/17 19:47:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.7  2009/10/17 19:47:29  jost
+ * Vorbereitung Mailversand.
+ *
  * Revision 1.6  2009/09/13 19:20:29  jost
  * Neu: Prüfung auf Updates
  *
@@ -137,4 +140,28 @@ public interface Einstellung extends DBObject
 
   public void setUpdateLastCheck(Date updatelastcheck) throws RemoteException;
 
+  public String getSmtpServer() throws RemoteException;
+
+  public void setSmtpServer(String smtp_server) throws RemoteException;
+
+  public String getSmtpPort() throws RemoteException;
+
+  public void setSmtpPort(String smtp_port) throws RemoteException;
+
+  public String getSmtpAuthUser() throws RemoteException;
+
+  public void setSmtpAuthUser(String smtp_auth_user) throws RemoteException;
+
+  public String getSmtpAuthPwd() throws RemoteException;
+
+  public void setSmtpAuthPwd(String smtp_auth_pwd) throws RemoteException;
+
+  public String getSmtpFromAddress() throws RemoteException;
+
+  public void setSmtpFromAddress(String smtp_from_address)
+      throws RemoteException;
+
+  public Boolean getSmtpSsl() throws RemoteException;
+
+  public void setSmtpSsl(Boolean smtp_ssl) throws RemoteException;
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/09/13 19:26:44 $
+ * $Revision: 1.9 $
+ * $Date: 2009/10/17 19:48:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.9  2009/10/17 19:48:01  jost
+ * Vorbereitung Mailversand.
+ *
  * Revision 1.8  2009/09/13 19:26:44  jost
  * Vermeidung NPE
  *
@@ -322,4 +325,69 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
     setAttribute("updatelastcheck", updatelastcheck);
   }
 
+  public String getSmtpServer() throws RemoteException
+  {
+    return (String) getAttribute("smtp_server");
+  }
+
+  public void setSmtpServer(String smtp_server) throws RemoteException
+  {
+    setAttribute("smtp_server", smtp_server);
+  }
+
+  public String getSmtpPort() throws RemoteException
+  {
+    String ret = (String) getAttribute("smtp_port");
+    if (ret == null)
+    {
+      ret = "25";
+    }
+    return ret;
+  }
+
+  public void setSmtpPort(String smtp_port) throws RemoteException
+  {
+    setAttribute("smtp_port", smtp_port);
+  }
+
+  public String getSmtpAuthUser() throws RemoteException
+  {
+    return (String) getAttribute("smtp_auth_user");
+  }
+
+  public void setSmtpAuthUser(String smtp_auth_user) throws RemoteException
+  {
+    setAttribute("smtp_auth_user", smtp_auth_user);
+  }
+
+  public String getSmtpAuthPwd() throws RemoteException
+  {
+    return (String) getAttribute("smtp_auth_pwd");
+  }
+
+  public void setSmtpAuthPwd(String smtp_auth_pwd) throws RemoteException
+  {
+    setAttribute("smtp_auth_pwd", smtp_auth_pwd);
+  }
+
+  public String getSmtpFromAddress() throws RemoteException
+  {
+    return (String) getAttribute("smtp_from_address");
+  }
+
+  public void setSmtpFromAddress(String smtp_from_address)
+      throws RemoteException
+  {
+    setAttribute("smtp_from_address", smtp_from_address);
+  }
+
+  public Boolean getSmtpSsl() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("smtp_ssl"));
+  }
+
+  public void setSmtpSsl(Boolean smtp_ssl) throws RemoteException
+  {
+    setAttribute("smtp_ssl", smtp_ssl);
+  }
 }

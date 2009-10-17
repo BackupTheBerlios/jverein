@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.21 $
- * $Date: 2009/09/13 19:20:17 $
+ * $Revision: 1.22 $
+ * $Date: 2009/10/17 19:46:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.22  2009/10/17 19:46:44  jost
+ * Vorbereitung Mailversand.
+ *
  * Revision 1.21  2009/09/13 19:20:17  jost
  * Neu: Prüfung auf Updates
  *
@@ -189,6 +192,18 @@ public class EinstellungenView extends AbstractView
     groupUpdate.addLabelPair("Diagnoseunterlagen mitsenden", control
         .getUpdateDiagInfos());
     groupUpdate.addLabelPair("letzter Check", control.getUpdateLastCheck());
+
+    // TabGroup tabMail = new TabGroup(folder,
+    // JVereinPlugin.getI18n().tr("Mail"));
+    // LabelGroup groupMail = new LabelGroup(tabMail.getComposite(),
+    // JVereinPlugin
+    // .getI18n().tr("Mail"));
+    // groupMail.addLabelPair("Server", control.getSmtpServer());
+    // groupMail.addLabelPair("Port", control.getSmtpPort());
+    // groupMail.addLabelPair("Benutzer", control.getSmtpAuthUser());
+    // groupMail.addLabelPair("Passwort", control.getSmtpAuthPwd());
+    // groupMail.addLabelPair("Absenderadresse", control.getSmtpFromAddress());
+    // groupMail.addLabelPair("SSL verwenden", control.getSmtpSsl());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
