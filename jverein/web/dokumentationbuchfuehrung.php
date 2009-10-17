@@ -1,6 +1,7 @@
 <? include ("frame.inc"); ?>
 <h1>Dokumentation: Buchführung</h1>
 <ul>
+	<li><a href="buchfuehrungzusammenhaenge.php">Zusammenhänge</a></li>
 	<li><a href="dokumentationbuchfuehrungkonten.php">Konten</a></li>
 	<li><a href="dokumentationbuchfuehrunganfangsbestaende.php">Anfangsbestände</a></li>
 	<li><a href="dokumentationbuchfuehrungbuchungenaushibiscusuebernehmen.php">Buchungen aus Hibiscus übernehmen</a></li>
@@ -11,6 +12,9 @@
 
     <!-- 
     $Log: dokumentationbuchfuehrung.php,v $
+    Revision 1.2  2009/10/17 19:57:40  jost
+    *** empty log message ***
+
     Revision 1.1  2009/05/08 14:46:22  jost
     shtml - php
 
