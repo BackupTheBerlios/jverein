@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/09/21 18:18:04 $
+ * $Revision: 1.7 $
+ * $Date: 2009/10/17 19:44:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
+ * Revision 1.7  2009/10/17 19:44:19  jost
+ * *** empty log message ***
+ *
  * Revision 1.6  2009/09/21 18:18:04  jost
  * Weitere Testdaten aufgenommen.
  *
@@ -41,10 +44,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.FormularfeldControl;
 import de.jost_net.JVerein.io.FormularAufbereitung;
-import de.jost_net.JVerein.keys.Zahlungsrhytmus;
-import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Formular;
-import de.jost_net.JVerein.rmi.Formularfeld;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.util.ApplicationException;
 

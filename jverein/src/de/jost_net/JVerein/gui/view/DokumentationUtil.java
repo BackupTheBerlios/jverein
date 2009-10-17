@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.15 $
- * $Date: 2009/09/10 18:18:57 $
+ * $Revision: 1.16 $
+ * $Date: 2009/10/17 19:46:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.16  2009/10/17 19:46:30  jost
+ * *** empty log message ***
+ *
  * Revision 1.15  2009/09/10 18:18:57  jost
  * neu: Buchungsklassen
  *
@@ -86,7 +89,7 @@ public class DokumentationUtil
   public static final String BUCHUNGSARTEN = PRE
       + "administration_buchungsarten.php";
 
-  public static final String BUCHUNGSKLASSEN= PRE
+  public static final String BUCHUNGSKLASSEN = PRE
       + "administration_buchungsklassen.php";
 
   public static final String FELDDEFINITIONEN = PRE
@@ -118,7 +121,10 @@ public class DokumentationUtil
 
   public static final String WIEDERVORLAGE = PRE + "wiedervorlage.php";
 
-  public static final String ZUSATZABBUCHUNGEN = PRE + "zusatzbetraege.php";
+  public static final String ZUSATZBETRAEGE = PRE + "zusatzbetraege.php";
+
+  public static final String ZUSATZBETRAEGEIMPORT = PRE
+      + "zusatzbetraegeimport.php";
 
   public static final String KONTEN = PRE
       + "dokumentationbuchfuehrungkonten.php";
