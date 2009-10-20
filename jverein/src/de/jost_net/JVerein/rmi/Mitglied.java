@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/04/25 05:31:24 $
+ * $Revision: 1.12 $
+ * $Date: 2009/10/20 18:01:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.12  2009/10/20 18:01:17  jost
+ * Neu: Anzeige IBAN
+ *
  * Revision 1.11  2009/04/25 05:31:24  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
@@ -112,6 +115,8 @@ public interface Mitglied extends DBObject
   public String getKonto() throws RemoteException;
 
   public void setKonto(String konto) throws RemoteException;
+
+  public String getIban() throws RemoteException;
 
   public String getKontoinhaber() throws RemoteException;
 

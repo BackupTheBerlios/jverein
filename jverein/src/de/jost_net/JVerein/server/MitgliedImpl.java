@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.26 $
- * $Date: 2009/06/29 19:44:25 $
+ * $Revision: 1.27 $
+ * $Date: 2009/10/20 18:01:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.27  2009/10/20 18:01:33  jost
+ * Neu: Anzeige IBAN
+ *
  * Revision 1.26  2009/06/29 19:44:25  jost
  * Bugfix BLZ-Prüfung.
  *
@@ -102,6 +105,7 @@ import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.util.Checker;
+import de.jost_net.JVerein.util.IbanBicCalc;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
@@ -419,6 +423,11 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public void setKonto(String konto) throws RemoteException
   {
     setAttribute("konto", konto);
+  }
+
+  public String getIban() throws RemoteException
+  {
+    return IbanBicCalc.createIban(getKonto(), getBlz(), "DE");
   }
 
   public String getKontoinhaber() throws RemoteException

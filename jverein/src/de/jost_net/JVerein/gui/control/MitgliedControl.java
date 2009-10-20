@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.67 $
- * $Date: 2009/07/27 15:05:21 $
+ * $Revision: 1.68 $
+ * $Date: 2009/10/20 17:57:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.68  2009/10/20 17:57:36  jost
+ * Neu: Anzeige IBAN
+ *
  * Revision 1.67  2009/07/27 15:05:21  jost
  * Vereinheitlichung Eigenschaften
  *
@@ -322,6 +325,8 @@ public class MitgliedControl extends AbstractControl
   private Input blz;
 
   private Input konto;
+
+  private Input iban;
 
   private Input kontoinhaber;
 
@@ -794,6 +799,20 @@ public class MitgliedControl extends AbstractControl
     konto.setMandatory(getMitglied().getZahlungsweg() == null
         || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
     return konto;
+  }
+
+  public Input getIban() throws RemoteException
+  {
+    if (iban != null)
+    {
+      return iban;
+    }
+    iban = new TextInput(getMitglied().getIban(), 30);
+    iban.setName("IBAN");
+    iban.setMandatory(getMitglied().getZahlungsweg() == null
+        || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
+    iban.setEnabled(false);
+    return iban;
   }
 
   public Input getKontoinhaber() throws RemoteException
