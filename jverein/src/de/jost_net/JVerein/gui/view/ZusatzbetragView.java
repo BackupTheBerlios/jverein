@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetragView.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/07/27 15:26:32 $
+ * $Revision: 1.6 $
+ * $Date: 2009/10/20 17:59:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragView.java,v $
+ * Revision 1.6  2009/10/20 17:59:27  jost
+ * Neu: Import von Zusatzbeträgen
+ *
  * Revision 1.5  2009/07/27 15:26:32  jost
  * Focus auf erstes Feld setzen.
  *
@@ -79,7 +82,7 @@ public class ZusatzbetragView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
-        new DokumentationAction(), DokumentationUtil.ZUSATZABBUCHUNGEN, false,
+        new DokumentationAction(), DokumentationUtil.ZUSATZBETRAEGE, false,
         "help-browser.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("löschen"),
         new ZusatzbetraegeDeleteAction(), control.getZusatzbetrag(), false,

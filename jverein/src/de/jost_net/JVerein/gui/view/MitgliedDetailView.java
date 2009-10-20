@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.32 $
- * $Date: 2009/07/27 15:05:50 $
+ * $Revision: 1.33 $
+ * $Date: 2009/10/20 17:58:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.33  2009/10/20 17:58:45  jost
+ * Neu: Import von Zusatzbeträgen
+ *
  * Revision 1.32  2009/07/27 15:05:50  jost
  * Vereinheitlichung Eigenschaften
  *
@@ -225,6 +228,7 @@ public class MitgliedDetailView extends AbstractView
     tab1.addInput(control.getKontoinhaber());
     tab1.addInput(control.getBlz());
     tab1.addInput(control.getKonto());
+    tab1.addInput(control.getIban());
 
     if (Einstellungen.getEinstellung().getZusatzbetrag())
     {

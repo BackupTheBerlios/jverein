@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.20 $
- * $Date: 2009/09/10 18:17:47 $
+ * $Revision: 1.21 $
+ * $Date: 2009/10/20 17:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.21  2009/10/20 17:58:27  jost
+ * Neu: Import von Zusatzbeträgen
+ *
  * Revision 1.20  2009/09/10 18:17:47  jost
  * neu: Buchungsklassen
  *
@@ -105,6 +108,7 @@ import de.jost_net.JVerein.gui.action.SpendenbescheinigungListeAction;
 import de.jost_net.JVerein.gui.action.StammdatenAction;
 import de.jost_net.JVerein.gui.action.StatistikMitgliedAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageListeAction;
+import de.jost_net.JVerein.gui.action.ZusatzbetraegeImportAction;
 import de.jost_net.JVerein.gui.action.ZusatzbetraegeListeAction;
 import de.willuhn.jameica.gui.NavigationItem;
 import de.willuhn.jameica.gui.extension.Extendable;
@@ -144,6 +148,9 @@ public class MyExtension implements Extension
         jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
             "Zusatzbeträge"), new ZusatzbetraegeListeAction(),
             "zusatzbetraege.png"));
+        jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
+            "Zusatzbeträge importieren"), new ZusatzbetraegeImportAction(),
+        "zusatzbetraege.png"));
       }
       jverein
           .addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
