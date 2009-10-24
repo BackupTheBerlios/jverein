@@ -27,35 +27,35 @@
 	</tr>
 	<tr>
 		<td>Anrede</td>
-		<td>Herrn/Frau</td>
+		<td>Herrn/Frau, max. 10 Stellen</td>
 	</tr>
 	<tr>
 		<td>Titel</td>
-		<td>Dr. ....</td>
+		<td>Dr. ...., max. 10 Stellen</td>
 	</tr>
 	<tr>
 		<td>Nachname</td>
-		<td>Nachname</td>
+		<td>Nachname, max. 40 Stellen</td>
 	</tr>
 	<tr>
 		<td>Vorname</td>
-		<td>Vorname</td>
+		<td>Vorname, max. 40 Stellen</td>
 	</tr>
 	<tr>
 		<td>Adressierungszusatz</td>
-		<td>Adressierungszusatz, z. B. bei Lieschen M√ºller (ab. V 1.1)</td>
+		<td>Adressierungszusatz, z. B. bei Lieschen M√ºller (ab. V 1.1), max. 40 Stellen</td>
 	</tr>
 	<tr>
 		<td>Strasse</td>
-		<td>Straﬂenname inkl. Hausnummer</td>
+		<td>Straﬂenname inkl. Hausnummer, max. 40 Stellen</td>
 	</tr>
 	<tr>
 		<td>Plz</td>
-		<td>Postleitzahl</td>
+		<td>Postleitzahl, max. 10 Stellen</td>
 	</tr>
 	<tr>
 		<td>Ort</td>
-		<td>Ort</td>
+		<td>Ort, max. 40 Stellen</td>
 	</tr>
 	<tr>
 		<td>Geburtsdatum</td>
@@ -83,23 +83,23 @@
 	</tr>
 	<tr>
 		<td>Zahler</td>
-		<td>Kontoinhaber, wenn nicht identisch mit dem Mitglied</td>
+		<td>Kontoinhaber, wenn nicht identisch mit dem Mitglied, max. 27 Stellen</td>
 	</tr>
 	<tr>
 		<td>Telefon_privat</td>
-		<td></td>
+		<td>max. 20 Stellen</td>
 	</tr>
 	<tr>
 		<td>Telefon_dienstlich</td>
-		<td></td>
+		<td>max. 20 Stellen</td>
 	</tr>
 	<tr>
 		<td>Handy</td>
-		<td></td>
+		<td>max. 20 Stellen</td>
 	</tr>
 	<tr>
 		<td>Email</td>
-		<td></td>
+		<td>max. 50 Stellen</td>
 	</tr>
 	<tr>
 		<td>Eintritt</td>
@@ -142,6 +142,9 @@ Mitglieds_Nr;Anrede;Titel;Nachname;Vorname;Straﬂe;Plz;Ort;Geburtsdatum;Geschlech
 	
 	<!-- 
     $Log: administration_import.php,v $
+    Revision 1.4  2009/10/24 14:52:25  jost
+    Max. L‰nge angegeben
+
     Revision 1.3  2009/08/19 21:01:28  jost
     *** empty log message ***
 
