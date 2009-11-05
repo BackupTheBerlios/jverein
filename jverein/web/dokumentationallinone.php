@@ -12,6 +12,7 @@
 	<? include ("kursteilnehmer.php"); ?>
 	<? include ("abrechnung.php"); ?>
 	<? include ("zusatzbetraege.php"); ?>
+	<? include ("zusatzbetraegeimport.php"); ?>
 	<? include ("manuelle_zahlungseingaenge.php"); ?>
 	<? include ("wiedervorlage.php"); ?>
 	<? include ("lehrgaenge.php"); ?>
@@ -37,6 +38,9 @@
 
     <!-- 
     $Log: dokumentationallinone.php,v $
+    Revision 1.4  2009/11/05 20:08:07  jost
+    Zusatzbeträge-Import aufgenommen.
+
     Revision 1.3  2009/10/17 19:57:40  jost
     *** empty log message ***
 
