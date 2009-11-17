@@ -48,7 +48,8 @@
 	<img src='images/Einstellungenrechnungen.jpg' class='screenshot'>
 	<p>Festlegung, für welche Zahlungswege Rechnungsinformationen gespeichert werden sollen. (Ab Version 1.1)</p>
 	
-	<h2>Tabellen</h2>
+	
+	<h2><a name='tabellen'>Tabellen</a></h2>
 	<p>Festlegung der Spalten, die in Tabellen angezeigt werden sollen. 
 	<img src='images/Einstellungentabellen.jpg' class='screenshot'>
 	
@@ -60,6 +61,9 @@
 	
 	<!-- 
     $Log: administration_einstellungen.php,v $
+    Revision 1.4  2009/11/17 21:05:16  jost
+    *** empty log message ***
+
     Revision 1.3  2009/09/13 19:20:57  jost
     *** empty log message ***
 
