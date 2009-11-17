@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/06/02 17:12:55 $
+ * $Revision: 1.12 $
+ * $Date: 2009/11/17 21:02:38 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.12  2009/11/17 21:02:38  jost
+ * DB-Aktualisierung optimiert.
+ *
  * Revision 1.11  2009/06/02 17:12:55  jost
  * Ausgabe der Datenbankversion.
  *
@@ -53,7 +56,6 @@ import java.util.HashMap;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
-import de.willuhn.sql.version.Updater;
 import de.willuhn.util.ApplicationException;
 
 /**
@@ -72,9 +74,6 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
     DBMAPPING.put("Bw0vbcBX5SInOkfnSb+DHA==", new Double(0.9));
   }
 
-  /**
-   * ct.
-   */
   public DBSupportH2Impl()
   {
     // H2-Datenbank verwendet uppercase Identifier
@@ -189,21 +188,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
         // + File.separator + "sql.h2", Application.getCallback()
         // .getStartupMonitor());
 
-        String p = Application.getPluginLoader().getManifest(
-            JVereinPlugin.class).getPluginDir();
-        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, p
-            + File.separator + "sql.h2", Application.getCallback()
+        new JVereinUpdateProvider(conn, Application.getCallback()
             .getStartupMonitor());
-
-        if (udp.getCurrentVersion() == 0)
-        {
-          File file = new File(p + File.separator + "sql", "h2-create.sql");
-          execute(conn, file);
-        }
-
-        Updater updater = new Updater(udp);
-        updater.execute();
-
       }
       catch (Exception e2)
       {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/07/24 20:23:25 $
+ * $Revision: 1.12 $
+ * $Date: 2009/11/17 21:04:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
+ * Revision 1.12  2009/11/17 21:04:07  jost
+ * DB-Aktualisierung optimiert.
+ *
  * Revision 1.11  2009/07/24 20:23:25  jost
  * Überflüssige Imports entfernt.
  *
@@ -141,6 +144,14 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
   {
     ProgressMonitor monitor = Application.getCallback().getStartupMonitor();
     monitor.setStatusText(JVereinPlugin.getI18n().tr("Installiere JVerein"));
+    try
+    {
+      new JVereinUpdateProvider(getConnection(), monitor);
+    }
+    catch (ApplicationException e)
+    {
+      throw new RemoteException(e.getMessage());
+    }
     // this.driver.install();
 
     // PluginResources res = Application.getPluginLoader().getPlugin(

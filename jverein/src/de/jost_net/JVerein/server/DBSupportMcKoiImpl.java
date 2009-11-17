@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/DBSupportMcKoiImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/04/10 09:53:08 $
+ * $Revision: 1.4 $
+ * $Date: 2009/11/17 21:02:51 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMcKoiImpl.java,v $
+ * Revision 1.4  2009/11/17 21:02:51  jost
+ * DB-Aktualisierung optimiert.
+ *
  * Revision 1.3  2009/04/10 09:53:08  jost
  * Umstellung auf aktuelle Methoden.
  *
@@ -23,17 +26,14 @@
 
 package de.jost_net.JVerein.server;
 
-import java.io.File;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.text.MessageFormat;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.willuhn.datasource.db.EmbeddedDatabase;
-import de.willuhn.jameica.plugin.Manifest;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
-import de.willuhn.sql.version.Updater;
 import de.willuhn.util.ApplicationException;
 import de.willuhn.util.I18N;
 import de.willuhn.util.ProgressMonitor;
@@ -77,14 +77,8 @@ public class DBSupportMcKoiImpl extends AbstractDBSupportImpl
     {
       try
       {
-        Manifest mani = Application.getManifest();
-        JVereinUpdateProvider udp = new JVereinUpdateProvider(conn, mani
-            .getPluginDir()
-            + File.separator + "sql.mckoi", Application.getCallback()
+        new JVereinUpdateProvider(conn, Application.getCallback()
             .getStartupMonitor());
-        Updater updater = new Updater(udp);
-        updater.execute();
-
       }
       catch (Exception e2)
       {
