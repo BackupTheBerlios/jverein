@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.68 $
- * $Date: 2009/10/20 17:57:36 $
+ * $Revision: 1.69 $
+ * $Date: 2009/11/17 20:56:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.69  2009/11/17 20:56:55  jost
+ * Neu: Eigenschaft und EigenschaftGruppe
+ *
  * Revision 1.68  2009/10/20 17:57:36  jost
  * Neu: Anzeige IBAN
  *
@@ -229,15 +232,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.TreeItem;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.Queries.MitgliedQuery;
-import de.jost_net.JVerein.gui.action.EigenschaftenNewAction;
 import de.jost_net.JVerein.gui.action.LehrgangAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
@@ -257,12 +261,15 @@ import de.jost_net.JVerein.keys.ArtBeitragsart;
 import de.jost_net.JVerein.keys.Zahlungsrhytmus;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
+import de.jost_net.JVerein.rmi.Eigenschaft;
+import de.jost_net.JVerein.rmi.Eigenschaften;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Lehrgang;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
+import de.jost_net.JVerein.server.EigenschaftenNode;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
 import de.willuhn.datasource.GenericObject;
@@ -277,6 +284,7 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.formatter.CurrencyFormatter;
 import de.willuhn.jameica.gui.formatter.DateFormatter;
+import de.willuhn.jameica.gui.formatter.TreeFormatter;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.DialogInput;
 import de.willuhn.jameica.gui.input.Input;
@@ -287,6 +295,7 @@ import de.willuhn.jameica.gui.input.TextAreaInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.parts.TablePart;
+import de.willuhn.jameica.gui.parts.TreePart;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.BackgroundTask;
 import de.willuhn.jameica.system.Settings;
@@ -351,6 +360,10 @@ public class MitgliedControl extends AbstractControl
   private DateInput kuendigung = null;
 
   private TextInput[] zusatzfelder;
+
+  private TreePart eigenschaftenTree;
+
+  private TreePart eigenschaftenAuswahlTree;
 
   // Elemente für die Auswertung
 
@@ -446,7 +459,7 @@ public class MitgliedControl extends AbstractControl
     {
       return anrede;
     }
-    anrede = new TextInput(getMitglied().getAnrede(), 10);
+    anrede = new TextInput(getMitglied().getAnrede(), 40);
     anrede.setName("Anrede");
     return anrede;
   }
@@ -457,7 +470,7 @@ public class MitgliedControl extends AbstractControl
     {
       return titel;
     }
-    titel = new TextInput(getMitglied().getTitel(), 20);
+    titel = new TextInput(getMitglied().getTitel(), 40);
     titel.setName("Titel");
     return titel;
   }
@@ -1566,20 +1579,6 @@ public class MitgliedControl extends AbstractControl
     return jubelart;
   }
 
-  public DialogInput getEigenschaftenAuswahl() throws RemoteException
-  {
-    if (eigenschaftenabfrage != null)
-    {
-      return eigenschaftenabfrage;
-    }
-    EigenschaftenAuswahlDialog d = new EigenschaftenAuswahlDialog();
-    d.addCloseListener(new EigenschaftenListener());
-    String tmp = settings.getString("mitglied.eigenschaften", "");
-    eigenschaftenabfrage = new DialogInput(tmp, d);
-
-    return eigenschaftenabfrage;
-  }
-
   public Input getAusgabe() throws RemoteException
   {
     if (ausgabe != null)
@@ -1705,12 +1704,6 @@ public class MitgliedControl extends AbstractControl
         false, "document-new.png");
   }
 
-  public Button getEigenschaftenNeu(EigenschaftenControl contr)
-  {
-    return new Button("Neu", new EigenschaftenNewAction(contr, getMitglied()),
-        null, false, "document-new.png");
-  }
-
   public Button getLehrgangNeu()
   {
     return new Button("Neu", new LehrgangAction(getMitglied()), null, false,
@@ -1829,10 +1822,22 @@ public class MitgliedControl extends AbstractControl
       }
     }
 
-    if (eigenschaftenabfrage != null)
+    if (eigenschaftenAuswahlTree != null)
     {
-      settings.setAttribute("mitglied.eigenschaften", getEigenschaftenAuswahl()
-          .getText());
+      String tmp = "";
+      for (Object o : eigenschaftenAuswahlTree.getItems())
+      {
+        EigenschaftenNode node = (EigenschaftenNode) o;
+        if (node.getNodeType() == EigenschaftenNode.EIGENSCHAFTEN)
+        {
+          if (tmp.length() > 0)
+          {
+            tmp += ",";
+          }
+          tmp += node.getEigenschaft().getID();
+        }
+      }
+      settings.setAttribute("mitglied.eigenschaften", tmp);
     }
 
     if (beitragsgruppeausw != null)
@@ -1848,6 +1853,68 @@ public class MitgliedControl extends AbstractControl
         settings.setAttribute("mitglied.beitragsgruppe", "");
       }
     }
+  }
+
+  public String getEigenschaftenString()
+  {
+    return settings.getString("mitglied.eigenschaften", "");
+  }
+
+  public TreePart getEigenschaftenTree() throws RemoteException
+  {
+    if (eigenschaftenTree != null)
+    {
+      return eigenschaftenTree;
+    }
+    eigenschaftenTree = new TreePart(new EigenschaftenNode(mitglied), null);
+    eigenschaftenTree.setCheckable(true);
+    // eigenschaftenTree.setCheckListener(new Listener()
+    // {
+    // public void handleEvent(Event event)
+    // {
+    // if (event.detail == SWT.CHECK)
+    // {
+    // EigenschaftenNode node = (EigenschaftenNode) eigenschaftenTree
+    // .getSelection();
+    // if (node.getNodeType() == EigenschaftenNode.EIGENSCHAFTEN)
+    // {
+    // if (node.getEigenschaften() == null)
+    // {
+    // try
+    // {
+    // Eigenschaften ei = (Eigenschaften) Einstellungen.getDBService()
+    // .createObject(Eigenschaften.class, null);
+    // {
+    // ei.setMitglied(node.getMitglied().getID());
+    // ei.setEigenschaft(node.getEigenschaft().getID());
+    // ei.store();
+    // }
+    // }
+    // catch (Exception e)
+    // {
+    // String error = "Eigenschaft kann nicht gespeichert werden";
+    // Logger.error(error, e);
+    // }
+    // }
+    // else
+    // {
+    // try
+    // {
+    // node.getEigenschaften().delete();
+    // }
+    // catch (Exception e)
+    // {
+    // String error = "Eigenschaft kann nicht gelöscht werden";
+    // Logger.error(error, e);
+    // }
+    // }
+    // }
+    // }
+    // }
+    // });
+
+    eigenschaftenTree.setFormatter(new EigenschaftTreeFormatter());
+    return eigenschaftenTree;
   }
 
   public void handleStore()
@@ -1912,6 +1979,36 @@ public class MitgliedControl extends AbstractControl
       }
       m.store();
 
+      if (eigenschaftenTree != null)
+      {
+        if (!getMitglied().isNewObject())
+        {
+          DBIterator it = Einstellungen.getDBService().createList(
+              Eigenschaften.class);
+          it.addFilter("mitglied = ?", new Object[] { getMitglied().getID() });
+          while (it.hasNext())
+          {
+            Eigenschaften ei = (Eigenschaften) it.next();
+            ei.delete();
+          }
+        }
+        for (Object o1 : eigenschaftenTree.getItems())
+        {
+          if (o1 instanceof EigenschaftenNode)
+          {
+            EigenschaftenNode node = (EigenschaftenNode) o1;
+            if (node.getNodeType() == EigenschaftenNode.EIGENSCHAFTEN)
+            {
+              Eigenschaften eig = (Eigenschaften) Einstellungen.getDBService()
+                  .createObject(Eigenschaften.class, null);
+              eig.setEigenschaft(node.getEigenschaft().getID());
+              eig.setMitglied(getMitglied().getID());
+              eig.store();
+            }
+          }
+        }
+      }
+
       if (zusatzfelder != null)
       {
         for (TextInput ti : zusatzfelder)
@@ -1954,6 +2051,20 @@ public class MitgliedControl extends AbstractControl
       Logger.error(fehler, e);
       GUI.getStatusBar().setErrorText(fehler);
     }
+  }
+
+  public TreePart getEigenschaftenAuswahlTree() throws RemoteException
+  {
+    if (eigenschaftenAuswahlTree != null)
+    {
+      return eigenschaftenAuswahlTree;
+    }
+    eigenschaftenAuswahlTree = new TreePart(new EigenschaftenNode(settings
+        .getString("mitglied.eigenschaften", "")), null);
+    eigenschaftenAuswahlTree.setCheckable(true);
+
+    eigenschaftenAuswahlTree.setFormatter(new EigenschaftTreeFormatter());
+    return eigenschaftenAuswahlTree;
   }
 
   @SuppressWarnings("unchecked")
@@ -2295,19 +2406,28 @@ public class MitgliedControl extends AbstractControl
     }
   }
 
-  /**
-   * Listener, der die Auswahl der Eigenschaften ueberwacht.
-   */
-  private class EigenschaftenListener implements Listener
+  public class EigenschaftTreeFormatter implements TreeFormatter
   {
-    public void handleEvent(Event event)
+    public void format(TreeItem item)
     {
-      if (event == null || event.data == null)
+      EigenschaftenNode eigenschaftitem = (EigenschaftenNode) item.getData();
+      if (eigenschaftitem.getNodeType() == EigenschaftenNode.ROOT
+          || eigenschaftitem.getNodeType() == EigenschaftenNode.EIGENSCHAFTGRUPPE)
       {
-        return;
+        item.setGrayed(true);
       }
-      String selection = (String) event.data;
-      eigenschaftenabfrage.setText(selection);
+      else
+      {
+        if (eigenschaftitem.getEigenschaften() != null
+            || eigenschaftitem.isPreset())
+        {
+          item.setChecked(true);
+        }
+        else
+        {
+          item.setChecked(false);
+        }
+      }
     }
   }
 

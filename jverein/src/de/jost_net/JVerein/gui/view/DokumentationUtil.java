@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.16 $
- * $Date: 2009/10/17 19:46:30 $
+ * $Revision: 1.17 $
+ * $Date: 2009/11/17 20:59:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.17  2009/11/17 20:59:38  jost
+ * Neu: Eigenschaft und EigenschaftGruppe
+ *
  * Revision 1.16  2009/10/17 19:46:30  jost
  * *** empty log message ***
  *
@@ -91,6 +94,12 @@ public class DokumentationUtil
 
   public static final String BUCHUNGSKLASSEN = PRE
       + "administration_buchungsklassen.php";
+
+  public static final String EIGENSCHAFT = PRE
+      + "administration_eigenschaft.php";
+
+  public static final String EIGENSCHAFTGRUPPE = PRE
+      + "administration_eigenschaftgruppe.php";
 
   public static final String FELDDEFINITIONEN = PRE
       + "administration_felddefinitionen.php";

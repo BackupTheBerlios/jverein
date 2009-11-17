@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.11 $
+ * $Date: 2009/11/17 20:59:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
+ * Revision 1.11  2009/11/17 20:59:26  jost
+ * Neu: Eigenschaft und EigenschaftGruppe
+ *
  * Revision 1.10  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -77,8 +80,9 @@ public class AuswertungMitgliedView extends AbstractView
         DBSupportH2Impl.class.getName()).equals(
         DBSupportMcKoiImpl.class.getName()))
     {
-      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"), control
-          .getEigenschaftenAuswahl());
+      // left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"), control
+      // .getEigenschaftenAuswahl());
+      left.addPart(control.getEigenschaftenAuswahlTree());
     }
 
     left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"), control

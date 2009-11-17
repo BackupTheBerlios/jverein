@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:04:23 $
+ * $Revision: 1.4 $
+ * $Date: 2009/11/17 21:03:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenImpl.java,v $
+ * Revision 1.4  2009/11/17 21:03:14  jost
+ * Neu: Eigenschaft und EigenschaftGruppe
+ *
  * Revision 1.3  2009/06/11 21:04:23  jost
  * Vorbereitung I18N
  *
@@ -24,8 +27,9 @@ package de.jost_net.JVerein.server;
 import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.rmi.Eigenschaft;
 import de.jost_net.JVerein.rmi.Eigenschaften;
+import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
@@ -85,6 +89,10 @@ public class EigenschaftenImpl extends AbstractDBObject implements
     {
       return Mitglied.class;
     }
+    else if ("eigenschaft".equals(arg0))
+    {
+      return Eigenschaft.class;
+    }
     return null;
   }
 
@@ -93,14 +101,14 @@ public class EigenschaftenImpl extends AbstractDBObject implements
     return (Mitglied) getAttribute("mitglied");
   }
 
-  public void setMitglied(int mitglied) throws RemoteException
+  public void setMitglied(String mitglied) throws RemoteException
   {
     setAttribute("mitglied", new Integer(mitglied));
   }
 
-  public String getEigenschaft() throws RemoteException
+  public Eigenschaft getEigenschaft() throws RemoteException
   {
-    return (String) getAttribute("eigenschaft");
+    return (Eigenschaft) getAttribute("eigenschaft");
   }
 
   public void setEigenschaft(String eigenschaft) throws RemoteException

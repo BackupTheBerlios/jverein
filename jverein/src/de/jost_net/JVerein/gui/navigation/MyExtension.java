@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.21 $
- * $Date: 2009/10/20 17:58:27 $
+ * $Revision: 1.22 $
+ * $Date: 2009/11/17 20:59:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.22  2009/11/17 20:59:01  jost
+ * Neu: Eigenschaft und EigenschaftGruppe
+ *
  * Revision 1.21  2009/10/20 17:58:27  jost
  * Neu: Import von Zusatzbeträgen
  *
@@ -90,6 +93,8 @@ import de.jost_net.JVerein.gui.action.BuchungsklasseListAction;
 import de.jost_net.JVerein.gui.action.BuchungsklasseSaldoAction;
 import de.jost_net.JVerein.gui.action.BuchungsuebernahmeAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
+import de.jost_net.JVerein.gui.action.EigenschaftGruppeListeAction;
+import de.jost_net.JVerein.gui.action.EigenschaftListeAction;
 import de.jost_net.JVerein.gui.action.EinstellungenAction;
 import de.jost_net.JVerein.gui.action.FelddefinitionenAction;
 import de.jost_net.JVerein.gui.action.FormularListeAction;
@@ -150,7 +155,7 @@ public class MyExtension implements Extension
             "zusatzbetraege.png"));
         jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
             "Zusatzbeträge importieren"), new ZusatzbetraegeImportAction(),
-        "zusatzbetraege.png"));
+            "zusatzbetraege.png"));
       }
       jverein
           .addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
@@ -227,6 +232,12 @@ public class MyExtension implements Extension
           "breakpoint_view.gif"));
       einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
           .tr("Buchungsklasse"), new BuchungsklasseListAction(),
+          "activity_category.gif"));
+      einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
+          .tr("Eigenschaften-Gruppen"), new EigenschaftGruppeListeAction(),
+          "activity_category.gif"));
+      einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
+          .tr("Eigenschaften"), new EigenschaftListeAction(),
           "activity_category.gif"));
       einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
           .tr("Buchungsart"), new BuchungsartListAction(),
