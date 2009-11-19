@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.22 $
- * $Date: 2009/11/17 21:01:13 $
+ * $Revision: 1.23 $
+ * $Date: 2009/11/19 19:44:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
+ * Revision 1.23  2009/11/19 19:44:42  jost
+ * Bugfix Eigenschaften
+ *
  * Revision 1.22  2009/11/17 21:01:13  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -186,6 +189,15 @@ public class MitgliederSucheView extends AbstractView
     {
       left.addLabelPair(JVereinPlugin.getI18n().tr("Externe Mitgliedsnummer"),
           control.getSuchExterneMitgliedsnummer());
+    }
+    if (!JVereinDBService.SETTINGS.getString("database.driver",
+        DBSupportH2Impl.class.getName()).equals(
+        DBSupportMcKoiImpl.class.getName()))
+    {
+      DialogInput mitgleigenschaften = control.getEigenschaftenAuswahl();
+      mitgleigenschaften.addListener(new FilterListener(control));
+      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"),
+          mitgleigenschaften);
     }
 
     SelectInput mitglbeitragsgruppe = control.getBeitragsgruppeAusw();

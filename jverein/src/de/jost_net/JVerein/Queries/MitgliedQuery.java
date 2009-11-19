@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.16 $
- * $Date: 2009/11/17 21:01:25 $
+ * $Revision: 1.17 $
+ * $Date: 2009/11/19 19:44:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.17  2009/11/19 19:44:54  jost
+ * Bugfix Eigenschaften
+ *
  * Revision 1.16  2009/11/17 21:01:25  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -128,28 +131,25 @@ public class MitgliedQuery
       }
     }
     String eigenschaften = "";
-    if (!dialog)
+    eigenschaften = control.getEigenschaftenString();
+    if (eigenschaften != null && eigenschaften.length() > 0)
     {
-      eigenschaften = control.getEigenschaftenString();
-      if (eigenschaften != null && eigenschaften.length() > 0)
+      String condEigenschaft = "(select count(*) from eigenschaften where ";
+      StringTokenizer st = new StringTokenizer(eigenschaften, ",");
+      condEigenschaft += "eigenschaften.mitglied = mitglied.id AND (";
+      boolean first = true;
+      while (st.hasMoreTokens())
       {
-        String condEigenschaft = "(select count(*) from eigenschaften where ";
-        StringTokenizer st = new StringTokenizer(eigenschaften, ",");
-        condEigenschaft += "eigenschaften.mitglied = mitglied.id AND (";
-        boolean first = true;
-        while (st.hasMoreTokens())
+        if (!first)
         {
-          if (!first)
-          {
-            condEigenschaft += "OR ";
-          }
-          st.nextToken();
-          first = false;
-          condEigenschaft += "eigenschaft = ? ";
+          condEigenschaft += "OR ";
         }
-        condEigenschaft += ")) = ? ";
-        addCondition(condEigenschaft);
+        st.nextToken();
+        first = false;
+        condEigenschaft += "eigenschaft = ? ";
       }
+      condEigenschaft += ")) = ? ";
+      addCondition(condEigenschaft);
     }
 
     if (!anfangsbuchstabe.equals("*"))
@@ -255,19 +255,16 @@ public class MitgliedQuery
     };
     ArrayList<Object> bedingungen = new ArrayList<Object>();
 
-    if (!dialog)
+    if (eigenschaften != null && eigenschaften.length() > 0)
     {
-      if (eigenschaften != null && eigenschaften.length() > 0)
+      StringTokenizer st = new StringTokenizer(eigenschaften, ",");
+      int tokcount = 0;
+      while (st.hasMoreTokens())
       {
-        StringTokenizer st = new StringTokenizer(eigenschaften, ",");
-        int tokcount = 0;
-        while (st.hasMoreTokens())
-        {
-          bedingungen.add((Object) st.nextToken());
-          tokcount++;
-        }
-        bedingungen.add(new Integer(tokcount));
+        bedingungen.add((Object) st.nextToken());
+        tokcount++;
       }
+      bedingungen.add(new Integer(tokcount));
     }
     if (control.getGeburtsdatumvon().getValue() != null)
     {

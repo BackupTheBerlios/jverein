@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/EigenschaftenAuswahlDialog.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/11/17 20:57:34 $
+ * $Revision: 1.4 $
+ * $Date: 2009/11/19 19:44:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenAuswahlDialog.java,v $
+ * Revision 1.4  2009/11/19 19:44:02  jost
+ * Bugfix Eigenschaften
+ *
  * Revision 1.3  2009/11/17 20:57:34  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -31,9 +34,12 @@ import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.server.EigenschaftenNode;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.dialogs.AbstractDialog;
+import de.willuhn.jameica.gui.input.DialogInput;
 import de.willuhn.jameica.gui.parts.TreePart;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
+import de.willuhn.jameica.system.Settings;
+import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
@@ -45,14 +51,17 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
 
   private TreePart tree;
 
-  private String selection = "";
+  private Settings settings;
 
-  public EigenschaftenAuswahlDialog() throws RemoteException
+  private String tmp2 = "";
+
+  public EigenschaftenAuswahlDialog(Settings settings) throws RemoteException
   {
     super(EigenschaftenAuswahlDialog.POSITION_CENTER);
     this.setSize(400, 400);
     setTitle(JVereinPlugin.getI18n().tr("Eigenschaften auswählen "));
     control = new MitgliedControl(null);
+    this.settings = settings;
   }
 
   protected void paint(Composite parent) throws Exception
@@ -67,6 +76,7 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
     {
       public void handleAction(Object context) throws ApplicationException
       {
+        String tmp1 = "";
         try
         {
           ArrayList checkednodes = (ArrayList) tree.getItems();
@@ -75,18 +85,21 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
             EigenschaftenNode checkedNode = (EigenschaftenNode) o;
             if (checkedNode.getNodeType() == EigenschaftenNode.EIGENSCHAFTEN)
             {
-              if (selection.length() > 0)
+              if (tmp1.length() > 0)
               {
-                selection += ",";
+                tmp1 += ",";
+                tmp2 += ", ";
               }
-              selection += checkedNode.getEigenschaft().getID();
+              tmp1 += checkedNode.getEigenschaft().getID();
+              tmp2 += checkedNode.getEigenschaft().getBezeichnung();
             }
           }
         }
         catch (RemoteException e)
         {
-          throw new ApplicationException(e.getMessage());
+          Logger.error("Fehler", e);
         }
+        settings.setAttribute("mitglied.eigenschaften", tmp1);
         close();
       }
     });
@@ -94,6 +107,6 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
 
   protected Object getData() throws Exception
   {
-    return selection;
+    return tmp2;
   }
 }
