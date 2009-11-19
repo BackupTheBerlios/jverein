@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/10/17 19:47:29 $
+ * $Revision: 1.8 $
+ * $Date: 2009/11/19 21:11:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.8  2009/11/19 21:11:03  jost
+ * Update-Option entfernt.
+ *
  * Revision 1.7  2009/10/17 19:47:29  jost
  * Vorbereitung Mailversand.
  *
@@ -127,18 +130,6 @@ public interface Einstellung extends DBObject
 
   public void setRechnungFuerBarzahlung(Boolean rechnungfuerbarzahlung)
       throws RemoteException;
-
-  public Integer getUpdateInterval() throws RemoteException;
-
-  public void setUpdateInterval(Integer updateinterval) throws RemoteException;
-
-  public boolean getUpdateDiagInfos() throws RemoteException;
-
-  public void setUpdateDiagInfos(Boolean updateinterval) throws RemoteException;
-
-  public Date getUpdateLastCheck() throws RemoteException;
-
-  public void setUpdateLastCheck(Date updatelastcheck) throws RemoteException;
 
   public String getSmtpServer() throws RemoteException;
 

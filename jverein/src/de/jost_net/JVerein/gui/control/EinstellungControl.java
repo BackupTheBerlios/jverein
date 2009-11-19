@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.19 $
- * $Date: 2009/10/17 19:45:24 $
+ * $Revision: 1.20 $
+ * $Date: 2009/11/19 21:10:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.20  2009/11/19 21:10:37  jost
+ * Update-Option entfernt.
+ *
  * Revision 1.19  2009/10/17 19:45:24  jost
  * Vorbereitung Mailversand.
  *
@@ -130,12 +133,6 @@ public class EinstellungControl extends AbstractControl
   private SelectInput aktuellegeburtstagevorher;
 
   private SelectInput aktuellegeburtstagenachher;
-
-  private SelectInput updateinterval;
-
-  private CheckboxInput updatediaginfos;
-
-  private DateInput updatelastcheck;
 
   private TextInput smtp_server;
 
@@ -367,40 +364,6 @@ public class EinstellungControl extends AbstractControl
     return rechnungfuerbarzahlung;
   }
 
-  public SelectInput getUpdateInterval() throws RemoteException
-  {
-    if (updateinterval != null)
-    {
-      return updateinterval;
-    }
-    updateinterval = new UpdateIntervalInput(Einstellungen.getEinstellung()
-        .getUpdateInterval());
-    return updateinterval;
-  }
-
-  public CheckboxInput getUpdateDiagInfos() throws RemoteException
-  {
-    if (updatediaginfos != null)
-    {
-      return updatediaginfos;
-    }
-    updatediaginfos = new CheckboxInput(Einstellungen.getEinstellung()
-        .getUpdateDiagInfos());
-    return updatediaginfos;
-  }
-
-  public DateInput getUpdateLastCheck() throws RemoteException
-  {
-    if (updatelastcheck != null)
-    {
-      return updatelastcheck;
-    }
-    updatelastcheck = new DateInput(Einstellungen.getEinstellung()
-        .getUpdateLastCheck());
-    updatelastcheck.setEnabled(false);
-    return updatelastcheck;
-  }
-
   public TextInput getSmtpServer() throws RemoteException
   {
     if (smtp_server != null)
@@ -513,9 +476,6 @@ public class EinstellungControl extends AbstractControl
       e.setRechnungFuerBarzahlung((Boolean) rechnungfuerbarzahlung.getValue());
       e.setDateinamenmuster((String) dateinamenmuster.getValue());
       e.setBeginnGeschaeftsjahr((String) beginngeschaeftsjahr.getValue());
-      e.setUpdateInterval((Integer) updateinterval.getValue());
-      e.setUpdateDiagInfos((Boolean) updatediaginfos.getValue());
-      e.setUpdateLastCheck((Date) updatelastcheck.getValue());
       // e.setSmtpServer((String) smtp_server.getValue());
       // Integer port = (Integer) smtp_port.getValue();
       // e.setSmtpPort(port.toString());

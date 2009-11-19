@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.9 $
- * $Date: 2009/10/17 19:48:01 $
+ * $Revision: 1.10 $
+ * $Date: 2009/11/19 21:11:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.10  2009/11/19 21:11:16  jost
+ * Update-Option entfernt.
+ *
  * Revision 1.9  2009/10/17 19:48:01  jost
  * Vorbereitung Mailversand.
  *
@@ -282,26 +285,6 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
       throws RemoteException
   {
     setAttribute("rechnungfuerbarzahlung", new Boolean(rechnungfuerbarzahlung));
-  }
-
-  public Integer getUpdateInterval() throws RemoteException
-  {
-    Integer ret = (Integer) getAttribute("updateinterval");
-    if (ret == null)
-    {
-      return new Integer(30);
-    }
-    return ret;
-  }
-
-  public void setUpdateInterval(Integer updateinterval) throws RemoteException
-  {
-    setAttribute("updateinterval", updateinterval);
-  }
-
-  public boolean getUpdateDiagInfos() throws RemoteException
-  {
-    return Util.getBoolean(getAttribute("updatediaginfos"));
   }
 
   public void setUpdateDiagInfos(Boolean updatediaginfos)
