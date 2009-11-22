@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenNode.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 21:03:28 $
+ * $Revision: 1.2 $
+ * $Date: 2009/11/22 16:20:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNode.java,v $
+ * Revision 1.2  2009/11/22 16:20:36  jost
+ * Sortierung der Nodes
+ *
  * Revision 1.1  2009/11/17 21:03:28  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -81,6 +84,7 @@ public class EigenschaftenNode implements GenericObjectNode
     nodetype = ROOT;
     DBIterator it = Einstellungen.getDBService().createList(
         EigenschaftGruppe.class);
+    it.setOrder("order by bezeichnung");
     while (it.hasNext())
     {
       EigenschaftGruppe eg = (EigenschaftGruppe) it.next();
@@ -100,6 +104,7 @@ public class EigenschaftenNode implements GenericObjectNode
     DBIterator it = Einstellungen.getDBService().createList(Eigenschaft.class);
     it.addFilter("eigenschaftgruppe = ?", new Object[] { eigenschaftgruppe
         .getID() });
+    it.setOrder("order by bezeichnung");
     while (it.hasNext())
     {
       Eigenschaft eigenschaft = (Eigenschaft) it.next();
