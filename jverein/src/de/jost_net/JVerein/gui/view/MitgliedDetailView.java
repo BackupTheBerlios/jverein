@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.34 $
- * $Date: 2009/11/17 21:01:00 $
+ * $Revision: 1.35 $
+ * $Date: 2009/11/22 16:19:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.35  2009/11/22 16:19:48  jost
+ * Scrollpane f. Eigenschaften
+ *
  * Revision 1.34  2009/11/17 21:01:00  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -265,10 +268,10 @@ public class MitgliedDetailView extends AbstractView
     {
       TabGroup tab7 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
           "Eigenschaften"));
-      GridLayout layout = (GridLayout) tab7.getComposite().getLayout();
-      layout.numColumns = 3;
-      tab7.getComposite().setLayout(layout);
-      control.getEigenschaftenTree().paint(tab7.getComposite());
+      ScrolledContainer scrolledEigenschaften = new ScrolledContainer(tab7
+          .getComposite());
+      control.getEigenschaftenTree()
+          .paint(scrolledEigenschaften.getComposite());
     }
     TextInput[] zusatzfelder = control.getZusatzfelder();
     if (zusatzfelder != null)
