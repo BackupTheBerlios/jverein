@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.22 $
- * $Date: 2009/11/17 20:59:01 $
+ * $Revision: 1.23 $
+ * $Date: 2009/11/22 16:19:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.23  2009/11/22 16:19:01  jost
+ * Reihenfolge korrigiert.
+ *
  * Revision 1.22  2009/11/17 20:59:01  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -234,13 +237,13 @@ public class MyExtension implements Extension
           .tr("Buchungsklasse"), new BuchungsklasseListAction(),
           "activity_category.gif"));
       einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
+          .tr("Buchungsart"), new BuchungsartListAction(),
+          "activity_category.gif"));
+      einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
           .tr("Eigenschaften-Gruppen"), new EigenschaftGruppeListeAction(),
           "activity_category.gif"));
       einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
           .tr("Eigenschaften"), new EigenschaftListeAction(),
-          "activity_category.gif"));
-      einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
-          .tr("Buchungsart"), new BuchungsartListAction(),
           "activity_category.gif"));
       einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
           .tr("Einstellungen"), new EinstellungenAction(), "settings.gif"));
