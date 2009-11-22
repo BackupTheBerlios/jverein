@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftDetailView.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 20:59:50 $
+ * $Revision: 1.2 $
+ * $Date: 2009/11/22 16:19:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftDetailView.java,v $
+ * Revision 1.2  2009/11/22 16:19:25  jost
+ * Typo
+ *
  * Revision 1.1  2009/11/17 20:59:50  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -38,7 +41,7 @@ public class EigenschaftDetailView extends AbstractView
         .getI18n().tr("Eigenschaft"));
     grEigenschaft.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"),
         control.getBezeichnung());
-    grEigenschaft.addLabelPair(JVereinPlugin.getI18n().tr("Gruppet"), control
+    grEigenschaft.addLabelPair(JVereinPlugin.getI18n().tr("Gruppe"), control
         .getEigenschaftGruppe());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
