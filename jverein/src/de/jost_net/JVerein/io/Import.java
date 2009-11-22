@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.24 $
- * $Date: 2009/09/15 19:24:49 $
+ * $Revision: 1.25 $
+ * $Date: 2009/11/22 12:22:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.25  2009/11/22 12:22:54  jost
+ * Eigenschaften importieren.
+ *
  * Revision 1.24  2009/09/15 19:24:49  jost
  * Bugfix Zahlungsrhytmus
  *
@@ -93,8 +96,10 @@ import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
@@ -104,6 +109,9 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Abrechnung;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
+import de.jost_net.JVerein.rmi.Eigenschaft;
+import de.jost_net.JVerein.rmi.EigenschaftGruppe;
+import de.jost_net.JVerein.rmi.Eigenschaften;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
 import de.jost_net.JVerein.rmi.Mitglied;
@@ -111,11 +119,16 @@ import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.willuhn.datasource.rmi.DBIterator;
+import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 import de.willuhn.util.ProgressMonitor;
 
 public class Import
 {
+  private static final String EIGENSCHAFT = "Eigenschaft_";
+
+  private EigenschaftGruppe eigenschaftgruppe;
+
   public Import(String path, String file, ProgressMonitor monitor)
   {
     ResultSet results;
@@ -182,6 +195,12 @@ public class Import
 
       results = stmt.executeQuery("SELECT * FROM " + file.substring(0, pos));
 
+      eigenschaftgruppe = (EigenschaftGruppe) Einstellungen.getDBService()
+          .createObject(EigenschaftGruppe.class, null);
+      eigenschaftgruppe.setBezeichnung("Noch nicht zugeordnet");
+      eigenschaftgruppe.store();
+
+      ArrayList<String> eigenschaftenspalten = getEigenschaftspalten(results);
       while (results.next())
       {
         anz++;
@@ -333,6 +352,16 @@ public class Import
           zf.setFeld(results.getString(f.getName()));
           zf.store();
         }
+        for (String feld : eigenschaftenspalten)
+        {
+          String eig = results.getString(feld);
+          Eigenschaften eigenschaften = (Eigenschaften) Einstellungen
+              .getDBService().createObject(Eigenschaften.class, null);
+          eigenschaften.setMitglied(m.getID());
+          eigenschaften.setEigenschaft(getEigenschaftID(eig));
+          eigenschaften.store();
+        }
+
       }
 
       // clean up
@@ -388,6 +417,27 @@ public class Import
       {
         Wiedervorlage w = (Wiedervorlage) list.next();
         w.delete();
+      }
+      // Eigenschaften
+      list = Einstellungen.getDBService().createList(Eigenschaften.class);
+      while (list.hasNext())
+      {
+        Eigenschaften e = (Eigenschaften) list.next();
+        e.delete();
+      }
+      // Eigenschaft
+      list = Einstellungen.getDBService().createList(Eigenschaft.class);
+      while (list.hasNext())
+      {
+        Eigenschaft e = (Eigenschaft) list.next();
+        e.delete();
+      }
+      // Eigenschaft
+      list = Einstellungen.getDBService().createList(EigenschaftGruppe.class);
+      while (list.hasNext())
+      {
+        EigenschaftGruppe e = (EigenschaftGruppe) list.next();
+        e.delete();
       }
       // Mitglieder
       list = Einstellungen.getDBService().createList(Mitglied.class);
@@ -471,4 +521,52 @@ public class Import
     }
     return beitragsgruppen2;
   }
+
+  private String getEigenschaftID(String eigenschaft)
+  {
+    try
+    {
+      DBIterator it = Einstellungen.getDBService()
+          .createList(Eigenschaft.class);
+      it.addFilter("bezeichnung = ?", new Object[] { eigenschaft });
+      if (it.hasNext())
+      {
+        Eigenschaft eig = (Eigenschaft) it.next();
+        return eig.getID();
+      }
+      else
+      {
+        Eigenschaft eigenschaftneu = (Eigenschaft) Einstellungen.getDBService()
+            .createObject(Eigenschaft.class, null);
+        eigenschaftneu.setBezeichnung(eigenschaft);
+        eigenschaftneu.setEigenschaftGruppe(new Integer(eigenschaftgruppe
+            .getID()));
+        eigenschaftneu.store();
+        return eigenschaftneu.getID();
+      }
+    }
+    catch (Exception e)
+    {
+      Logger.error("Fehler", e);
+    }
+    return null;
+  }
+
+  private ArrayList<String> getEigenschaftspalten(ResultSet results)
+      throws SQLException
+  {
+    ArrayList<String> ret = new ArrayList<String>();
+    ResultSetMetaData rsm = results.getMetaData();
+    int anzspalten = rsm.getColumnCount();
+    for (int i = 1; i < anzspalten; i++)
+    {
+      String colname = rsm.getColumnName(i);
+      if (colname.startsWith(EIGENSCHAFT))
+      {
+        ret.add(colname);
+      }
+    }
+    return ret;
+  }
+
 }
