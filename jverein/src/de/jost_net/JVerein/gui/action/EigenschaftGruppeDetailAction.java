@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/EigenschaftGruppeDetailAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 20:55:27 $
+ * $Revision: 1.2 $
+ * $Date: 2009/11/23 20:39:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeDetailAction.java,v $
+ * Revision 1.2  2009/11/23 20:39:21  jost
+ * Bugfix Lösch-Button
+ *
  * Revision 1.1  2009/11/17 20:55:27  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -28,10 +31,20 @@ import de.willuhn.util.ApplicationException;
 
 public class EigenschaftGruppeDetailAction implements Action
 {
+  private boolean neu;
+
+  public EigenschaftGruppeDetailAction(boolean neu)
+  {
+    this.neu = neu;
+  }
+
   public void handleAction(Object context) throws ApplicationException
   {
     EigenschaftGruppe eg = null;
-
+    if (neu)
+    {
+      context = null;
+    }
     if (context != null && (context instanceof EigenschaftGruppe))
     {
       eg = (EigenschaftGruppe) context;

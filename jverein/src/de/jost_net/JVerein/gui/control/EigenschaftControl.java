@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EigenschaftControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 20:56:06 $
+ * $Revision: 1.2 $
+ * $Date: 2009/11/23 20:39:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftControl.java,v $
+ * Revision 1.2  2009/11/23 20:39:34  jost
+ * Bugfix Lösch-Button
+ *
  * Revision 1.1  2009/11/17 20:56:06  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -141,7 +144,7 @@ public class EigenschaftControl extends AbstractControl
     if (eigenschaftList == null)
     {
       eigenschaftList = new TablePart(eigenschaften,
-          new EigenschaftDetailAction());
+          new EigenschaftDetailAction(false));
       eigenschaftList.addColumn("Bezeichnung", "bezeichnung");
       eigenschaftList.addColumn("Gruppe", "eigenschaftgruppe",
           new EigenschaftGruppeFormatter());

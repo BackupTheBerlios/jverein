@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EigenschaftGruppeControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 20:56:33 $
+ * $Revision: 1.2 $
+ * $Date: 2009/11/23 20:39:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeControl.java,v $
+ * Revision 1.2  2009/11/23 20:39:44  jost
+ * Bugfix Lösch-Button
+ *
  * Revision 1.1  2009/11/17 20:56:33  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -99,12 +102,17 @@ public class EigenschaftGruppeControl extends AbstractControl
 
   public Part getEigenschaftGruppeList() throws RemoteException
   {
+    if (eigenschaftgruppeList != null)
+    {
+      return eigenschaftgruppeList;
+    }
+
     DBService service = Einstellungen.getDBService();
     DBIterator eigenschaftgruppe = service.createList(EigenschaftGruppe.class);
     eigenschaftgruppe.setOrder("ORDER BY bezeichnung");
 
     eigenschaftgruppeList = new TablePart(eigenschaftgruppe,
-        new EigenschaftGruppeDetailAction());
+        new EigenschaftGruppeDetailAction(false));
     eigenschaftgruppeList.addColumn("Bezeichnung", "bezeichnung");
     eigenschaftgruppeList.setContextMenu(new EigenschaftGruppeMenu());
     eigenschaftgruppeList.setRememberColWidths(true);

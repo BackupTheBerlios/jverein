@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/EigenschaftGruppeDeleteAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 20:55:11 $
+ * $Revision: 1.2 $
+ * $Date: 2009/11/23 20:39:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeDeleteAction.java,v $
+ * Revision 1.2  2009/11/23 20:39:07  jost
+ * Bugfix Lösch-Button
+ *
  * Revision 1.1  2009/11/17 20:55:11  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -22,6 +25,7 @@ import de.jost_net.JVerein.rmi.EigenschaftGruppe;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
+import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
@@ -32,6 +36,11 @@ public class EigenschaftGruppeDeleteAction implements Action
 {
   public void handleAction(Object context) throws ApplicationException
   {
+    if (context instanceof TablePart)
+    {
+      TablePart tp = (TablePart) context;
+      context = tp.getSelection();
+    }
     if (context == null || !(context instanceof EigenschaftGruppe))
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
