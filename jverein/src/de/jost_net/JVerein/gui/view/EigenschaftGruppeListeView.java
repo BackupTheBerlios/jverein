@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeListeView.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 21:00:18 $
+ * $Revision: 1.2 $
+ * $Date: 2009/11/23 20:40:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeListeView.java,v $
+ * Revision 1.2  2009/11/23 20:40:35  jost
+ * Neuer Menüpunkt: neu
+ *
  * Revision 1.1  2009/11/17 21:00:18  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -45,7 +48,8 @@ public class EigenschaftGruppeListeView extends AbstractView
         new EigenschaftGruppeDeleteAction(),
         control.getEigenschaftGruppeList(), false, "user-trash.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
-        new EigenschaftGruppeDetailAction(), null, false, "document-new.png");
+        new EigenschaftGruppeDetailAction(true), null, false,
+        "document-new.png");
   }
 
   public void unbind() throws ApplicationException
