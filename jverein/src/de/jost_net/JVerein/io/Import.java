@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.26 $
- * $Date: 2009/11/22 16:20:09 $
+ * $Revision: 1.27 $
+ * $Date: 2009/11/25 22:14:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.27  2009/11/25 22:14:33  jost
+ * Bugfix letzte Spalte
+ *
  * Revision 1.26  2009/11/22 16:20:09  jost
  * Bugfix Eigenschaften-Import
  *
@@ -565,9 +568,10 @@ public class Import
     ArrayList<String> ret = new ArrayList<String>();
     ResultSetMetaData rsm = results.getMetaData();
     int anzspalten = rsm.getColumnCount();
-    for (int i = 1; i < anzspalten; i++)
+    for (int i = 1; i <= anzspalten; i++)
     {
       String colname = rsm.getColumnName(i);
+      System.out.println(colname);
       if (colname.startsWith(EIGENSCHAFT))
       {
         ret.add(colname);
