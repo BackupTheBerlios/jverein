@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/ManuellerZahlungseingangDatumLoeschenAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.3 $
+ * $Date: 2009/11/26 19:50:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangDatumLoeschenAction.java,v $
+ * Revision 1.3  2009/11/26 19:50:10  jost
+ * Mehrfachauswahl ermöglicht.
+ *
  * Revision 1.2  2009/06/11 21:02:05  jost
  * Vorbereitung I18N
  *
@@ -46,23 +49,37 @@ public class ManuellerZahlungseingangDatumLoeschenAction implements Action
 
   public void handleAction(Object context) throws ApplicationException
   {
-    if (context == null || !(context instanceof ManuellerZahlungseingang))
+    if (context == null)
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
-          "Keinen manuellen Zahlungseingang ausgewählt"));
+          "Keinen ManuellenZahlungseingang ausgewählt"));
     }
+
+    Object[] objects = null;
+
+    if (context instanceof Object[])
+    {
+      objects = (Object[]) context;
+    }
+    else
+    {
+      objects = new Object[] { context };
+    }
+
     try
     {
-      ManuellerZahlungseingang mz = (ManuellerZahlungseingang) context;
-      if (mz.isNewObject())
+      for (Object cont : objects)
       {
-        return;
+        ManuellerZahlungseingang mz = (ManuellerZahlungseingang) cont;
+        if (mz.isNewObject())
+        {
+          return;
+        }
+        int ind = table.removeItem(mz);
+        mz.setEingangsdatum(null);
+        mz.store();
+        table.addItem(mz, ind);
       }
-      int ind = table.removeItem(mz);
-      mz.setEingangsdatum(null);
-      mz.store();
-      table.addItem(mz, ind);
-
       GUI.getStatusBar().setSuccessText(
           JVereinPlugin.getI18n().tr("Datum entfernt."));
     }
