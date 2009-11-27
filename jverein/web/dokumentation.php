@@ -16,9 +16,9 @@
 		<li><a href="administration_formulare.php">Formulare</a></li>
 		<li><a href="administration_erweitert.php">Erweitert</a>
 		<ul>
-			<li><a href="administration_erweitert.php#backup_erstellen">Diagnoseback
+			<li><a href="administration_erweitert.php#backup_erstellen">Diagnosebackup
 			erstellen</a></li>
-			<li><a href="administration_erweitert.php#backup_importieren">Diagnoseback
+			<li><a href="administration_erweitert.php#backup_importieren">Diagnosebackup
 			importieren</a></li>
 		</ul>
 		</li>
@@ -61,6 +61,9 @@
 
     <!-- 
     $Log: dokumentation.php,v $
+    Revision 1.6  2009/11/27 14:47:55  jost
+    *** empty log message ***
+
     Revision 1.5  2009/11/22 16:20:47  jost
     *** empty log message ***
 
