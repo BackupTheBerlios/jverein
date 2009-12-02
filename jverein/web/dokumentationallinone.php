@@ -38,9 +38,13 @@
 	<? include ("dokumentationbeitragsmodelle.php"); ?>
 	<? include ("dokumentationmigrationinsh2format.php"); ?>
 	<? include ("jameica_portable.php"); ?>
+	<? include ("openofficeh2.php"); ?>
 
     <!-- 
     $Log: dokumentationallinone.php,v $
+    Revision 1.6  2009/12/02 22:32:06  jost
+    Neues Dokument: Zugriff mit OpenOffice-Base auf die H2-Datenbank
+
     Revision 1.5  2009/11/22 16:20:47  jost
     *** empty log message ***
 
