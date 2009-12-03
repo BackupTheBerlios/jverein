@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.70 $
- * $Date: 2009/11/19 19:43:49 $
+ * $Revision: 1.71 $
+ * $Date: 2009/12/03 16:32:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.71  2009/12/03 16:32:26  jost
+ * Bugfix Anzeige Eigenschaften
+ *
  * Revision 1.70  2009/11/19 19:43:49  jost
  * Bugfix Eigenschaften
  *
@@ -1600,9 +1603,16 @@ public class MitgliedControl extends AbstractControl
       {
         text += ", ";
       }
-      Eigenschaft ei = (Eigenschaft) Einstellungen.getDBService().createObject(
-          Eigenschaft.class, stt.nextToken());
-      text += ei.getBezeichnung();
+      try
+      {
+        Eigenschaft ei = (Eigenschaft) Einstellungen.getDBService()
+            .createObject(Eigenschaft.class, stt.nextToken());
+        text += ei.getBezeichnung();
+      }
+      catch (ObjectNotFoundException e)
+      {
+        //
+      }
     }
     eigenschaftenabfrage = new DialogInput(text, d);
 
