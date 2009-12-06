@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.36 $
- * $Date: 2009/11/23 20:42:18 $
+ * $Revision: 1.37 $
+ * $Date: 2009/12/06 21:40:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.37  2009/12/06 21:40:59  jost
+ * Überflüssigen Code entfernt.
+ *
  * Revision 1.36  2009/11/23 20:42:18  jost
  * Bugfix f. Windows. Größe der Eigenschaftauswahl verändert.
  *
@@ -124,7 +127,6 @@ package de.jost_net.JVerein.gui.view;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.TabFolder;
 
 import de.jost_net.JVerein.Einstellungen;

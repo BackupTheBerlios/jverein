@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/11/19 21:11:03 $
+ * $Revision: 1.9 $
+ * $Date: 2009/12/06 21:41:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.9  2009/12/06 21:41:48  jost
+ * Überflüssigen Code entfernt.
+ *
  * Revision 1.8  2009/11/19 21:11:03  jost
  * Update-Option entfernt.
  *
@@ -37,7 +40,6 @@
 package de.jost_net.JVerein.rmi;
 
 import java.rmi.RemoteException;
-import java.util.Date;
 
 import de.willuhn.datasource.rmi.DBObject;
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/EigenschaftenAuswahlDialog.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/11/19 19:44:02 $
+ * $Revision: 1.5 $
+ * $Date: 2009/12/06 21:40:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenAuswahlDialog.java,v $
+ * Revision 1.5  2009/12/06 21:40:39  jost
+ * Überflüssigen Code entfernt.
+ *
  * Revision 1.4  2009/11/19 19:44:02  jost
  * Bugfix Eigenschaften
  *
@@ -34,7 +37,6 @@ import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.server.EigenschaftenNode;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.dialogs.AbstractDialog;
-import de.willuhn.jameica.gui.input.DialogInput;
 import de.willuhn.jameica.gui.parts.TreePart;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
