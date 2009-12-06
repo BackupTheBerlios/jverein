@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.27 $
- * $Date: 2009/10/20 18:01:33 $
+ * $Revision: 1.28 $
+ * $Date: 2009/12/06 21:42:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.28  2009/12/06 21:42:15  jost
+ * Bugfix ungültige Kontonummer
+ *
  * Revision 1.27  2009/10/20 18:01:33  jost
  * Neu: Anzeige IBAN
  *
@@ -219,6 +222,15 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
           "Die Bankleitzahl muss 8stellig sein"));
     }
     if (getBlz().length() != 0 || getKonto().length() != 0l)
+    {
+      try
+      {
+        Integer.parseInt(getKonto());
+      }
+      catch (NumberFormatException e)
+      {
+        throw new ApplicationException("Kontonummer ist nicht numerisch");
+      }
       if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
       {
         throw new ApplicationException(
@@ -228,7 +240,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
                     "BLZ/Kontonummer ({0}/{1}) ungültig. Bitte prüfen Sie Ihre Eingaben.",
                     new String[] { getBlz(), getKonto() }));
       }
-
+    }
     if (getZahlungsrhytmus() != 12 && getZahlungsrhytmus() != 6
         && getZahlungsrhytmus() != 3 && getZahlungsrhytmus() != 1)
     {
