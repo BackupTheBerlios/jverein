@@ -58,11 +58,14 @@
 	<li><a href="dokumentationmigrationinsh2format.php">Migration der Datenbank ins H2-Format</a></li>
 	<li><a href="jameica_portable.php">Jameica + Plugins portable</a></li>
 	<li><a href="openofficeh2.php">Mit OpenOffice-Base auf die H2-Datenbank zugreifen</a></li>
-	<li><a href="dokumentationmysql.php">JVerein mit MySQL</a></li>
+	<li><a href="dokumentationmysql.php">MySQL-Support</a></li>
 </ul>
 
     <!-- 
     $Log: dokumentation.php,v $
+    Revision 1.9  2009/12/11 16:18:06  jost
+    *** empty log message ***
+
     Revision 1.8  2009/12/11 14:04:31  jost
     MySQL aufgenommen
 
