@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.17 $
- * $Date: 2009/11/17 20:59:38 $
+ * $Revision: 1.18 $
+ * $Date: 2009/12/11 22:34:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.18  2009/12/11 22:34:18  jost
+ * Link korrigiert.
+ *
  * Revision 1.17  2009/11/17 20:59:38  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -142,7 +145,7 @@ public class DokumentationUtil
       + "dokumentationbuchfuehrunganfangsbestaende.php";
 
   public static final String BUCHUNGENAUSHIBISCUS = PRE
-      + "Buchungen_aus_Hibiscus_übernehmen";
+      + "dokumentationbuchfuehrungbuchungenaushibiscusuebernehmen.php";
 
   public static final String BUCHUNGEN = PRE
       + "dokumentationbuchfuehrungbuchungenaushibiscusuebernehmen.php";
