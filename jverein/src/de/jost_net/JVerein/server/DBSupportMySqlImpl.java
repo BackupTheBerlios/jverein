@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportMySqlImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/11/17 21:03:03 $
+ * $Revision: 1.9 $
+ * $Date: 2009/12/12 16:26:30 $
  * $Author: jost $
  *
  * Copyright (c) by Michael Trapp
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMySqlImpl.java,v $
+ * Revision 1.9  2009/12/12 16:26:30  jost
+ * Kommentare entfernen.
+ *
  * Revision 1.8  2009/11/17 21:03:03  jost
  * DB-Aktualisierung optimiert.
  *
@@ -75,19 +78,7 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
   {
     String key = "database.driver.mysql.password";
 
-    // TODO: Erst moeglich, wenn eine GUI zum Eingeben des Passwortes existiert
-    // try
-    // {
-    // // Das Passwort verschluesseln wir nach Moeglichkeit
-    // Wallet wallet = Settings.getWallet();
-    // return (String) wallet.get(key);
-    // }
-    // catch (Exception e)
-    // {
-    // Logger.error("unable to read jdbc password from wallet, using plaintext
-    // fallback",e);
     return JVereinDBService.SETTINGS.getString(key, null);
-    // }
   }
 
   /**
