@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenNode.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/11/22 16:20:36 $
+ * $Revision: 1.3 $
+ * $Date: 2009/12/12 16:27:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNode.java,v $
+ * Revision 1.3  2009/12/12 16:27:04  jost
+ * todo's entfernt.
+ *
  * Revision 1.2  2009/11/22 16:20:36  jost
  * Sortierung der Nodes
  *
@@ -162,13 +165,11 @@ public class EigenschaftenNode implements GenericObjectNode
 
   public GenericIterator getPath() throws RemoteException
   {
-    // TODO Auto-generated method stub
     return null;
   }
 
   public GenericIterator getPossibleParents() throws RemoteException
   {
-    // TODO Auto-generated method stub
     return null;
   }
 
@@ -179,7 +180,6 @@ public class EigenschaftenNode implements GenericObjectNode
 
   public boolean equals(GenericObject other) throws RemoteException
   {
-    // TODO Auto-generated method stub
     return false;
   }
 
@@ -205,19 +205,16 @@ public class EigenschaftenNode implements GenericObjectNode
 
   public String[] getAttributeNames() throws RemoteException
   {
-    // TODO Auto-generated method stub
     return null;
   }
 
   public String getID() throws RemoteException
   {
-    // TODO Auto-generated method stub
     return null;
   }
 
   public String getPrimaryAttribute() throws RemoteException
   {
-    // TODO Auto-generated method stub
     return null;
   }
 
