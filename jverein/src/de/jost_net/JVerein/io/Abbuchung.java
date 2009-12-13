@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.35 $
- * $Date: 2009/12/06 21:41:23 $
+ * $Revision: 1.36 $
+ * $Date: 2009/12/13 17:43:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.36  2009/12/13 17:43:35  jost
+ * Debugging-Infos entfernt.
+ *
  * Revision 1.35  2009/12/06 21:41:23  jost
  * Bugfix ungültige Kontonummer
  *
@@ -244,9 +247,6 @@ public class Abbuchung
     {
       // Alle Mitglieder lesen
       list = Einstellungen.getDBService().createList(Mitglied.class);
-
-      // TODO TEST enfernen
-      list.addFilter("name='Amlow'");
 
       // Das Mitglied muss bereits eingetreten sein
       list.addFilter("(eintritt <= ? or eintritt is null) ",
