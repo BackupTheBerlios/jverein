@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.36 $
- * $Date: 2009/12/13 17:43:35 $
+ * $Revision: 1.37 $
+ * $Date: 2009/12/17 19:25:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.37  2009/12/17 19:25:25  jost
+ * Überflüssigen Code entfernt.
+ *
  * Revision 1.36  2009/12/13 17:43:35  jost
  * Debugging-Infos entfernt.
  *
@@ -127,7 +130,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.Hashtable;
 
