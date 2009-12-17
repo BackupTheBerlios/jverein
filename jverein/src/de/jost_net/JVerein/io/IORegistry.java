@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/IORegistry.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/10/20 18:00:48 $
+ * $Revision: 1.2 $
+ * $Date: 2009/12/17 19:25:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: IORegistry.java,v $
+ * Revision 1.2  2009/12/17 19:25:44  jost
+ * *** empty log message ***
+ *
  * Revision 1.1  2009/10/20 18:00:48  jost
  * Neu: Import von Zusatzbeträgen
  *
@@ -44,7 +47,7 @@ public class IORegistry
    *          zu ladender Typ.
    * @return Liste der gefundenen Importer/Exporter.
    */
-  private static synchronized ArrayList load(Class type)
+  private static synchronized ArrayList load(Class<?> type)
   {
     ArrayList l = new ArrayList();
     try
