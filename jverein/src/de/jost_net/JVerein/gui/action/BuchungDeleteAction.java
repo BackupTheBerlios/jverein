@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungDeleteAction.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.7 $
+ * $Date: 2009/12/17 19:21:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungDeleteAction.java,v $
+ * Revision 1.7  2009/12/17 19:21:53  jost
+ * Mehrere Buchungen können gleichzeitig gelöscht werden.
+ *
  * Revision 1.6  2009/06/11 21:02:05  jost
  * Vorbereitung I18N
  *
@@ -44,27 +47,41 @@ public class BuchungDeleteAction implements Action
 {
   public void handleAction(Object context) throws ApplicationException
   {
-    if (context == null || !(context instanceof Buchung))
+    if (context == null
+        || (!(context instanceof Buchung) && !(context instanceof Buchung[])))
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
           "Keine Buchung ausgewählt"));
     }
     try
     {
-      Buchung b = (Buchung) context;
-      if (b.isNewObject())
+      Buchung[] b = null;
+      if (context instanceof Buchung)
+      {
+        b = new Buchung[1];
+        b[0] = (Buchung) context;
+      }
+      if (context instanceof Buchung[])
+      {
+        b = (Buchung[]) context;
+      }
+      if (b != null && b.length > 0 && b[0].isNewObject())
       {
         return;
       }
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
-      d.setTitle(JVereinPlugin.getI18n().tr("Buchung löschen"));
+      d.setTitle(JVereinPlugin.getI18n().tr(
+          "Buchung" + (b.length > 1 ? "en" : "") + " löschen"));
       d.setText(JVereinPlugin.getI18n().tr(
-          "Wollen Sie diese Buchung wirklich löschen?"));
+          "Wollen Sie diese Buchung" + (b.length > 1 ? "en" : "")
+              + " wirklich löschen?"));
       try
       {
         Boolean choice = (Boolean) d.open();
         if (!choice.booleanValue())
+        {
           return;
+        }
       }
       catch (Exception e)
       {
@@ -72,10 +89,13 @@ public class BuchungDeleteAction implements Action
             "Fehler beim Löschen der Buchung"), e);
         return;
       }
-
-      b.delete();
+      for (Buchung bu : b)
+      {
+        bu.delete();
+      }
       GUI.getStatusBar().setSuccessText(
-          JVereinPlugin.getI18n().tr("Buchung gelöscht."));
+          JVereinPlugin.getI18n().tr(
+              "Buchung" + (b.length > 1 ? "en" : "") + " gelöscht."));
     }
     catch (RemoteException e)
     {
