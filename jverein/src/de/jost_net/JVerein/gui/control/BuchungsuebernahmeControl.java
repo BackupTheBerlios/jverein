@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/01/22 18:23:35 $
+ * $Revision: 1.11 $
+ * $Date: 2009/12/17 19:23:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
+ * Revision 1.11  2009/12/17 19:23:50  jost
+ * Mehrfache Buchungsübernahme verhindert.
+ *
  * Revision 1.10  2009/01/22 18:23:35  jost
  * neue Icons
  *
@@ -139,6 +142,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
             b.setArt(u.getArt());
             b.setKommentar(u.getKommentar());
             b.store();
+            buchungsList.removeItem(u);
           }
           GUI.getStatusBar().setSuccessText("Daten übernommen");
           GUI.getCurrentView().reload();
