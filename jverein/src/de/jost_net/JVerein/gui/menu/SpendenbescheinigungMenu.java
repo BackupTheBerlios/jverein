@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/SpendenbescheinigungMenu.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:03:02 $
+ * $Revision: 1.4 $
+ * $Date: 2010/01/01 21:40:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungMenu.java,v $
+ * Revision 1.4  2010/01/01 21:40:17  jost
+ * Existierende Spendenbescheinigung kann als Vorlage für eine neue Spendenbescheinigung verwendet werden.
+ *
  * Revision 1.3  2009/06/11 21:03:02  jost
  * Vorbereitung I18N
  *
@@ -23,6 +26,7 @@ package de.jost_net.JVerein.gui.menu;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungDeleteAction;
+import de.jost_net.JVerein.gui.action.SpendenbescheinigungDuplizierenAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
 
@@ -37,6 +41,9 @@ public class SpendenbescheinigungMenu extends ContextMenu
    */
   public SpendenbescheinigungMenu()
   {
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "als Vorlage für neue Spende"),
+        new SpendenbescheinigungDuplizierenAction(), "edit-copy.png"));
     addItem(new CheckedContextMenuItem(
         JVereinPlugin.getI18n().tr("löschen..."),
         new SpendenbescheinigungDeleteAction(), "user-trash.png"));
