@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Jubilaeenliste.java,v $
- * $Revision: 1.6 $
- * $Date: 2008/12/24 09:17:09 $
+ * $Revision: 1.7 $
+ * $Date: 2010/01/01 20:28:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Jubilaeenliste.java,v $
+ * Revision 1.7  2010/01/01 20:28:09  jost
+ * Konkrete Fehlermeldung, wenn bei der Erstellung einer Altersjubil‰umsliste der Eintag in den Stammdaten fehlt.
+ *
  * Revision 1.6  2008/12/24 09:17:09  jost
  * Bei Altersjubil√§en wird jetzt das Geburtsdatum anstatt des Eintrittsdatums ausgegeben.
  *
@@ -80,24 +83,29 @@ public class Jubilaeenliste
         {
           throw new RemoteException("keine Stammdaten gespeichert");
         }
+
+        if (art.equals(MitgliedControl.JUBELART_MITGLIEDSCHAFT))
+        {
+          mitgliedschaft(reporter, stamm, jahr);
+        }
+        else if (art.equals(MitgliedControl.JUBELART_ALTER))
+        {
+          alter(reporter, stamm, jahr);
+        }
+
+        reporter.close();
+        fos.close();
       }
       catch (RemoteException e)
       {
         throw new ApplicationException(
             "Keine Stammdaten gespeichert. Bitte erfassen.");
       }
-
-      if (art.equals(MitgliedControl.JUBELART_MITGLIEDSCHAFT))
+      catch (RuntimeException e)
       {
-        mitgliedschaft(reporter, stamm, jahr);
+        throw new ApplicationException(
+            "Keine Angaben zu Altersjubil‰en in den Stammdaten");
       }
-      else if (art.equals(MitgliedControl.JUBELART_ALTER))
-      {
-        alter(reporter, stamm, jahr);
-      }
-
-      reporter.close();
-      fos.close();
       GUI.getDisplay().asyncExec(new Runnable()
       {
         public void run()

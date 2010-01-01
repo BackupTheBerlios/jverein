@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.72 $
- * $Date: 2010/01/01 18:38:04 $
+ * $Revision: 1.73 $
+ * $Date: 2010/01/01 20:27:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.73  2010/01/01 20:27:58  jost
+ * Konkrete Fehlermeldung, wenn bei der Erstellung einer Altersjubiläumsliste der Eintag in den Stammdaten fehlt.
+ *
  * Revision 1.72  2010/01/01 18:38:04  jost
  * Typisierung der Zusatzfelder
  *
@@ -2391,10 +2394,6 @@ public class MitgliedControl extends AbstractControl
           new Jubilaeenliste(file, monitor, jahr, art);
         }
         catch (RemoteException e)
-        {
-          e.printStackTrace();
-        }
-        catch (ApplicationException e)
         {
           e.printStackTrace();
         }
