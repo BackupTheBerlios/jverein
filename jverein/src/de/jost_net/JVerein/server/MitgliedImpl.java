@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.28 $
- * $Date: 2009/12/06 21:42:15 $
+ * $Revision: 1.29 $
+ * $Date: 2010/01/01 20:12:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.29  2010/01/01 20:12:03  jost
+ * Typisierung der Zusatzfelder
+ *
  * Revision 1.28  2009/12/06 21:42:15  jost
  * Bugfix ungültige Kontonummer
  *
@@ -102,6 +105,7 @@ import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.keys.Datentyp;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Felddefinition;
@@ -225,7 +229,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       try
       {
-        Integer.parseInt(getKonto());
+        Long.parseLong(getKonto());
       }
       catch (NumberFormatException e)
       {
@@ -258,13 +262,14 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
         DBIterator famang = Einstellungen.getDBService().createList(
             Mitglied.class);
         famang.addFilter("zahlerid = " + getID());
+        famang.addFilter("austritt is null");
         if (famang.hasNext())
         {
           throw new ApplicationException(
               JVereinPlugin
                   .getI18n()
                   .tr(
-                      "Diese Mitglied zahlt noch für andere Mitglieder. Zunächst Beitragsart der Angehörigen ändern!"));
+                      "Dieses Mitglied zahlt noch für andere Mitglieder. Zunächst Beitragsart der Angehörigen ändern!"));
         }
       }
     }
@@ -686,7 +691,19 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       if (it.hasNext())
       {
         Zusatzfelder zf = (Zusatzfelder) it.next();
-        return zf.getFeld();
+        switch (fd.getDatentyp())
+        {
+          case Datentyp.ZEICHENFOLGE:
+            return zf.getFeld();
+          case Datentyp.DATUM:
+            return zf.getFeldDatum();
+          case Datentyp.GANZZAHL:
+            return zf.getFeldGanzzahl();
+          case Datentyp.JANEIN:
+            return zf.getFeldJaNein();
+          case Datentyp.WAEHRUNG:
+            return zf.getFeldWaehrung();
+        }
       }
       else
       {

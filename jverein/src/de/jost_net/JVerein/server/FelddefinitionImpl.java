@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FelddefinitionImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/06/11 21:04:23 $
+ * $Revision: 1.5 $
+ * $Date: 2010/01/01 20:11:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionImpl.java,v $
+ * Revision 1.5  2010/01/01 20:11:12  jost
+ * Typisierung der Zusatzfelder
+ *
  * Revision 1.4  2009/06/11 21:04:23  jost
  * Vorbereitung I18N
  *
@@ -28,6 +31,7 @@ import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.keys.Datentyp;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.db.AbstractDBObject;
@@ -90,7 +94,8 @@ public class FelddefinitionImpl extends AbstractDBObject implements
               getName()));
         }
       }
-      if (getLaenge() < 1 || getLaenge() > 1000)
+      if (getDatentyp() == Datentyp.ZEICHENFOLGE
+          && (getLaenge() < 1 || getLaenge() > 1000))
       {
         throw new ApplicationException(JVereinPlugin.getI18n().tr(
             "Ungültige Feldlänge"));
@@ -133,6 +138,24 @@ public class FelddefinitionImpl extends AbstractDBObject implements
   public void setLabel(String label) throws RemoteException
   {
     setAttribute("label", label);
+  }
+
+  public int getDatentyp() throws RemoteException
+  {
+    Integer i = (Integer) getAttribute("datentyp");
+    if (i == null)
+    {
+      return 0;
+    }
+    else
+    {
+      return i;
+    }
+  }
+
+  public void setDatentyp(int datentyp) throws RemoteException
+  {
+    setAttribute("datentyp", datentyp);
   }
 
   public int getLaenge() throws RemoteException
