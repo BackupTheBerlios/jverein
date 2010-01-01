@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FelddefinitionDetailView.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/07/24 20:21:21 $
+ * $Revision: 1.7 $
+ * $Date: 2010/01/01 18:38:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -36,6 +36,8 @@ public class FelddefinitionDetailView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control
         .getName(true));
     group.addLabelPair(JVereinPlugin.getI18n().tr("Label"), control.getLabel());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Datentyp"), control
+        .getDatentyp());
     group
         .addLabelPair(JVereinPlugin.getI18n().tr("Länge"), control.getLaenge());
 

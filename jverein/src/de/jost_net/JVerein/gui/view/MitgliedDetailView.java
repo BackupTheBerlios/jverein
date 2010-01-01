@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.37 $
- * $Date: 2009/12/06 21:40:59 $
+ * $Revision: 1.38 $
+ * $Date: 2010/01/01 18:39:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.38  2010/01/01 18:39:09  jost
+ * Typisierung der Zusatzfelder
+ *
  * Revision 1.37  2009/12/06 21:40:59  jost
  * Überflüssigen Code entfernt.
  *
@@ -144,6 +147,7 @@ import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -279,13 +283,13 @@ public class MitgliedDetailView extends AbstractView
       control.getEigenschaftenTree()
           .paint(scrolledEigenschaften.getComposite());
     }
-    TextInput[] zusatzfelder = control.getZusatzfelder();
+    Input[] zusatzfelder = control.getZusatzfelder();
     if (zusatzfelder != null)
     {
       TabGroup tab8 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
           "Zusatzfelder"));
       ScrolledContainer cont = new ScrolledContainer(tab8.getComposite());
-      for (TextInput inp : zusatzfelder)
+      for (Input inp : zusatzfelder)
       {
         cont.addInput(inp);
       }
