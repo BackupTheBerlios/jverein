@@ -3,6 +3,7 @@
     <ul>
 	   	<li>Version 1.3 noch nicht freigegeben</li>
     		<ul>
+    			<li>Neu: Konkrete Fehlermeldung, wenn bei der Erstellung der Altersjubiläumsliste der Eintrag in den Stammdaten fehlt.</li>
     			<li>Zusatzfeldern können jetzt Datentypen zugeordnet werden</li>
     			<li>Zusatzfelder: Bei der Löschung einer Felddefinition wird nach Rückfrage auch der Inhalt der Datenfelder beim Mitglied gelöscht.</li>
     			<li>Buchführung: Mehrere Buchungen können gleichzeitig gelöscht werden.</li>
@@ -452,6 +453,9 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
+    Revision 1.33  2010/01/01 20:28:32  jost
+    *** empty log message ***
+
     Revision 1.32  2010/01/01 20:13:21  jost
     *** empty log message ***
 
