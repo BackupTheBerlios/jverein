@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.23 $
- * $Date: 2009/11/19 21:10:51 $
+ * $Revision: 1.24 $
+ * $Date: 2010/01/01 22:35:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.24  2010/01/01 22:35:57  jost
+ * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
+ *
  * Revision 1.23  2009/11/19 21:10:51  jost
  * Update-Option entfernt.
  *
@@ -147,6 +150,8 @@ public class EinstellungenView extends AbstractView
         JVereinPlugin.getI18n().tr("Beiträge"));
     groupAbu.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsmodel"), control
         .getBeitragsmodel());
+    groupAbu.addInput(control.getZahlungsrhytmus());
+    groupAbu.addInput(control.getZahlungsweg());
 
     TabGroup tabDateinamen = new TabGroup(folder, JVereinPlugin.getI18n().tr(
         "Dateinamen"));

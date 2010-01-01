@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.9 $
- * $Date: 2009/12/06 21:41:48 $
+ * $Revision: 1.10 $
+ * $Date: 2010/01/01 22:36:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.10  2010/01/01 22:36:09  jost
+ * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
+ *
  * Revision 1.9  2009/12/06 21:41:48  jost
  * Überflüssigen Code entfernt.
  *
@@ -157,4 +160,12 @@ public interface Einstellung extends DBObject
   public Boolean getSmtpSsl() throws RemoteException;
 
   public void setSmtpSsl(Boolean smtp_ssl) throws RemoteException;
+
+  public int getZahlungsrhytmus() throws RemoteException;
+
+  public void setZahlungsrhytmus(int zahlungsrhytmus) throws RemoteException;
+
+  public int getZahlungsweg() throws RemoteException;
+
+  public void setZahlungsweg(int zahlungsweg) throws RemoteException;
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/11/19 21:11:16 $
+ * $Revision: 1.11 $
+ * $Date: 2010/01/01 22:36:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.11  2010/01/01 22:36:19  jost
+ * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
+ *
  * Revision 1.10  2009/11/19 21:11:16  jost
  * Update-Option entfernt.
  *
@@ -373,4 +376,25 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   {
     setAttribute("smtp_ssl", smtp_ssl);
   }
+
+  public int getZahlungsrhytmus() throws RemoteException
+  {
+    return (Integer) getAttribute("zahlungsrhytmus");
+  }
+
+  public void setZahlungsrhytmus(int zahlungsrhytmus) throws RemoteException
+  {
+    setAttribute("zahlungsrhytmus", zahlungsrhytmus);
+  }
+
+  public int getZahlungsweg() throws RemoteException
+  {
+    return (Integer) getAttribute("zahlungsweg");
+  }
+
+  public void setZahlungsweg(int zahlungsweg) throws RemoteException
+  {
+    setAttribute("zahlungsweg", zahlungsweg);
+  }
+
 }

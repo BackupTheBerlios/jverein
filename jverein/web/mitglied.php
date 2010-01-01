@@ -76,7 +76,7 @@
 		<li>Barzahlung</li>
 		<li>Überweisung</li>
 	</ul>
-	<p>zur Verfügung.</p>
+	<p>zur Verfügung. Die Standardwerte können unter Administration|Einstellungen|Beiträge festgelegt werden.</p>
 	<p>Beim Zahlungsweg Abbuchung werden Bankleitzahl und die Kontonummer auf Plausibilität
 		überprüft. Zusätzlich kann ein abweichender Kontoinhaber eingegeben werden.</p>
 		
@@ -134,6 +134,9 @@
 
     <!-- 
     $Log: mitglied.php,v $
+    Revision 1.6  2010/01/01 22:37:25  jost
+    Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
+
     Revision 1.5  2009/11/22 16:20:47  jost
     *** empty log message ***
 

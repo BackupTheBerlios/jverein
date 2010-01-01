@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.73 $
- * $Date: 2010/01/01 20:27:58 $
+ * $Revision: 1.74 $
+ * $Date: 2010/01/01 22:35:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.74  2010/01/01 22:35:44  jost
+ * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
+ *
  * Revision 1.73  2010/01/01 20:27:58  jost
  * Konkrete Fehlermeldung, wenn bei der Erstellung einer Altersjubiläumsliste der Eintag in den Stammdaten fehlt.
  *
@@ -766,7 +769,7 @@ public class MitgliedControl extends AbstractControl
     else
     {
       zahlungsweg = new SelectInput(Zahlungsweg.getArray(), new Zahlungsweg(
-          Zahlungsweg.ABBUCHUNG));
+          Einstellungen.getEinstellung().getZahlungsweg()));
     }
     zahlungsweg.setName("Zahlungsweg");
     zahlungsweg.addListener(new Listener()
@@ -795,7 +798,8 @@ public class MitgliedControl extends AbstractControl
     else
     {
       zahlungsrhytmus = new SelectInput(Zahlungsrhytmus.getArray(),
-          new Zahlungsrhytmus(Zahlungsrhytmus.JAEHRLICH));
+          new Zahlungsrhytmus(Einstellungen.getEinstellung()
+              .getZahlungsrhytmus()));
     }
     zahlungsrhytmus.setName("Zahlungsrhytmus");
     return zahlungsrhytmus;
@@ -1197,6 +1201,10 @@ public class MitgliedControl extends AbstractControl
     while (it.hasNext())
     {
       Felddefinition fd = (Felddefinition) it.next();
+      zf = (Zusatzfelder) Einstellungen.getDBService().createObject(
+          Zusatzfelder.class, null);
+      zf.setFelddefinition(Integer.parseInt(fd.getID()));
+
       if (getMitglied().getID() != null)
       {
         DBIterator it2 = Einstellungen.getDBService().createList(
@@ -1205,14 +1213,8 @@ public class MitgliedControl extends AbstractControl
         it2.addFilter("felddefinition=?", new Object[] { fd.getID() });
         if (it2.size() > 0)
         {
-          zf = (Zusatzfelder) it2.next();
-        }
-        else
-        {
-          zf = (Zusatzfelder) Einstellungen.getDBService().createObject(
-              Zusatzfelder.class, null);
           zf.setMitglied(Integer.parseInt(getMitglied().getID()));
-          zf.setFelddefinition(Integer.parseInt(fd.getID()));
+          zf = (Zusatzfelder) it2.next();
         }
       }
       switch (fd.getDatentyp())

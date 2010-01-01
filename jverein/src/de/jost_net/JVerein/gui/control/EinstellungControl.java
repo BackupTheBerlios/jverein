@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.21 $
- * $Date: 2009/12/06 21:40:23 $
+ * $Revision: 1.22 $
+ * $Date: 2010/01/01 22:35:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
+ * Revision 1.22  2010/01/01 22:35:31  jost
+ * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
+ *
  * Revision 1.21  2009/12/06 21:40:23  jost
  * Überflüssigen Code entfernt.
  *
@@ -81,6 +84,8 @@ import org.eclipse.swt.widgets.Composite;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.keys.Beitragsmodel;
+import de.jost_net.JVerein.keys.Zahlungsrhytmus;
+import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Einstellung;
 import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -145,6 +150,10 @@ public class EinstellungControl extends AbstractControl
   private TextInput smtp_from_address;
 
   private CheckboxInput smtp_ssl;
+
+  private SelectInput zahlungsweg;
+
+  private SelectInput zahlungsrhytmus;
 
   private Settings settings;
 
@@ -429,6 +438,31 @@ public class EinstellungControl extends AbstractControl
     return smtp_ssl;
   }
 
+  public SelectInput getZahlungsweg() throws RemoteException
+  {
+    if (zahlungsweg != null)
+    {
+      return zahlungsweg;
+    }
+    zahlungsweg = new SelectInput(Zahlungsweg.getArray(), new Zahlungsweg(
+        Einstellungen.getEinstellung().getZahlungsweg()));
+    zahlungsweg.setName("Zahlungsweg");
+    return zahlungsweg;
+  }
+
+  public SelectInput getZahlungsrhytmus() throws RemoteException
+  {
+    if (zahlungsrhytmus != null)
+    {
+      return zahlungsrhytmus;
+    }
+    zahlungsrhytmus = new SelectInput(
+        Zahlungsrhytmus.getArray(),
+        new Zahlungsrhytmus(Einstellungen.getEinstellung().getZahlungsrhytmus()));
+    zahlungsrhytmus.setName("Zahlungsrhytmus");
+    return zahlungsrhytmus;
+  }
+
   public TablePart getSpaltendefinitionTable(Composite parent)
       throws RemoteException
   {
@@ -483,6 +517,10 @@ public class EinstellungControl extends AbstractControl
       // e.setSmtpAuthPwd((String) smtp_auth_pwd.getValue());
       // e.setSmtpFromAddress((String) smtp_from_address.getValue());
       // e.setSmtpSsl((Boolean) smtp_ssl.getValue());
+      Zahlungsrhytmus zr = (Zahlungsrhytmus) zahlungsrhytmus.getValue();
+      e.setZahlungsrhytmus(zr.getKey());
+      Zahlungsweg zw = (Zahlungsweg) zahlungsweg.getValue();
+      e.setZahlungsweg(zw.getKey());
       e.store();
       spalten.save();
       GUI.getStatusBar().setSuccessText("Einstellungen gespeichert");
