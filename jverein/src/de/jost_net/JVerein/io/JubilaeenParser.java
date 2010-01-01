@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/JubilaeenParser.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/12/22 08:27:02 $
+ * $Revision: 1.2 $
+ * $Date: 2010/01/01 20:28:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JubilaeenParser.java,v $
+ * Revision 1.2  2010/01/01 20:28:24  jost
+ * Typo
+ *
  * Revision 1.1  2007/12/22 08:27:02  jost
  * Neu: JubilÃ¤enliste
  *
@@ -39,7 +42,7 @@ public class JubilaeenParser
       }
       catch (NumberFormatException e)
       {
-        throw new RuntimeException("Ungültiger Eintag: " + element);
+        throw new RuntimeException("Ungültiger Eintrag: " + element);
       }
     }
   }
