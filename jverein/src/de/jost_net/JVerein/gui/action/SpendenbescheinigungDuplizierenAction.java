@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/SpendenbescheinigungDuplizierenAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/01/01 21:40:04 $
+ * $Revision: 1.2 $
+ * $Date: 2010/01/01 22:40:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungDuplizierenAction.java,v $
+ * Revision 1.2  2010/01/01 22:40:20  jost
+ * Überflüssigen Code entfernt.
+ *
  * Revision 1.1  2010/01/01 21:40:04  jost
  * Existierende Spendenbescheinigung kann als Vorlage für eine neue Spendenbescheinigung verwendet werden.
  *
@@ -23,8 +26,6 @@ import de.jost_net.JVerein.gui.view.SpendenbescheinigungView;
 import de.jost_net.JVerein.rmi.Spendenbescheinigung;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.dialogs.YesNoDialog;
-import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
