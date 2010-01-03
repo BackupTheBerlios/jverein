@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/SpendenbescheinigungView.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/07/24 20:22:53 $
+ * $Revision: 1.8 $
+ * $Date: 2010/01/03 08:58:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungView.java,v $
+ * Revision 1.8  2010/01/03 08:58:53  jost
+ * Neu-Button aufgenommen.
+ *
  * Revision 1.7  2009/07/24 20:22:53  jost
  * Focus auf erstes Feld setzen.
  *
@@ -35,6 +38,7 @@ package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
+import de.jost_net.JVerein.gui.action.SpendenbescheinigungAction;
 import de.jost_net.JVerein.gui.control.SpendenbescheinigungControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -95,12 +99,14 @@ public class SpendenbescheinigungView extends AbstractView
     right.addLabelPair(JVereinPlugin.getI18n().tr("Formular"), control
         .getFormular());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 4);
+    ButtonArea buttons = new ButtonArea(getParent(), 5);
     buttons.addButton(new Back(false));
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.SPENDENBESCHEINIGUNG,
         false, "help-browser.png");
     buttons.addButton(control.getPDFButton());
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+        new SpendenbescheinigungAction(), null, false, "document-new.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
