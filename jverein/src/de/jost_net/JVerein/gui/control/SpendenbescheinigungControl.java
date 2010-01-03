@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/07/24 20:19:31 $
+ * $Revision: 1.12 $
+ * $Date: 2010/01/03 08:58:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
+ * Revision 1.12  2010/01/03 08:58:22  jost
+ * Logo für PDF-Ausgabe
+ *
  * Revision 1.11  2009/07/24 20:19:31  jost
  * Focus auf erstes Feld setzen.
  *
@@ -325,7 +328,7 @@ public class SpendenbescheinigungControl extends AbstractControl
               "Fehler bei der Aufbereitung der Spendenbescheinigung");
         }
       }
-    }, null, true); // "true" defines this button as the default button
+    }, null, false, "acroread.png");
     return b;
   }
 
