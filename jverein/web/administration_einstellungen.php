@@ -21,6 +21,8 @@
 	<li>Externe Mitgliedsnummern verwenden. Vereine, die auf Bundes- oder Landesebene organisiert 
 	sind und eine durchgängige Mitgliedsnummer verwalten möchten, können in JVerein eine externe 
 	Mitgliedsnummer speichern.</li>
+	<li>Aktuelle Geburtstage - Tage vorher/Tage nachher - Unter Jameica|Startseite anpassen|JVerein: Aktuelle Geburtstage|aktivieren
+	kann die Anzeige auf der Startseite eingeschaltet werden.</li> 
 	</ul>
 	
 	<h2>Beiträge</h2>
@@ -57,6 +59,9 @@
 	
 	<!-- 
     $Log: administration_einstellungen.php,v $
+    Revision 1.7  2010/01/10 20:59:50  jost
+    *** empty log message ***
+
     Revision 1.6  2010/01/01 22:37:06  jost
     Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
 
