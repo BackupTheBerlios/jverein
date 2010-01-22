@@ -209,7 +209,7 @@
 		<td>ja</td>
 	</tr>
 	<tr>
-		<td>Eigenschaft_xx</td>
+		<td>Eigenschaft_xx<br>ab Version 1.3</td>
 		<td>Eigenschaft eines Mitglieds. Diese Spalte kann mehrfach vorkommen. Anstatt von xx werden 01-99 oder andere Werte eingetragen.
 		    Die importieren Eigenschaften werden der Gruppe 'Noch nicht zugeordnet' zugeordnet.</td>
 		<td>30</td>
@@ -235,6 +235,9 @@ Mitglieds_Nr;Anrede;Titel;Nachname;Vorname;Straﬂe;Plz;Ort;Geburtsdatum;Geschlech
 	
 	<!-- 
     $Log: administration_import.php,v $
+    Revision 1.8  2010/01/22 15:54:27  jost
+    *** empty log message ***
+
     Revision 1.7  2009/11/22 19:49:57  jost
     *** empty log message ***
 
