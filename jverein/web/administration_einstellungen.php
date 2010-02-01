@@ -52,13 +52,20 @@
 	<img src='images/Einstellungenrechnungen.jpg' class='screenshot'>
 	<p>Festlegung, für welche Zahlungswege Rechnungsinformationen gespeichert werden sollen. (Ab Version 1.1)</p>
 	
-	
 	<h2><a name='tabellen'></a>Tabellen</h2>
 	<p>Festlegung der Spalten, die in Tabellen angezeigt werden sollen. 
 	<img src='images/Einstellungentabellen.jpg' class='screenshot'>
 	
+
+	<h2><a name=mail></a>Mail</h2>
+	<img src='images/Einstellungenmail.jpg' class='screenshot'>
+	<p>Angaben für den Mail-Versand ab Version 1.3</p>
+	
 	<!-- 
     $Log: administration_einstellungen.php,v $
+    Revision 1.8  2010/02/01 21:03:42  jost
+    Neu: Einfache Mailfunktion
+
     Revision 1.7  2010/01/10 20:59:50  jost
     *** empty log message ***
 

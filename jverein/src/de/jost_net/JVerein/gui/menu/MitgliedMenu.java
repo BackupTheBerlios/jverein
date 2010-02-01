@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedMenu.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/11 21:03:02 $
+ * $Revision: 1.6 $
+ * $Date: 2010/02/01 20:59:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedMenu.java,v $
+ * Revision 1.6  2010/02/01 20:59:57  jost
+ * Neu: Einfache Mailfunktion
+ *
  * Revision 1.5  2009/06/11 21:03:02  jost
  * Vorbereitung I18N
  *
@@ -28,10 +31,12 @@
 package de.jost_net.JVerein.gui.menu;
 
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.gui.action.MitgliedMailSendenAction;
 import de.jost_net.JVerein.gui.action.MitgliedDeleteAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungAction;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
+import de.willuhn.jameica.gui.parts.CheckedSingleContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
 
 /**
@@ -41,17 +46,17 @@ public class MitgliedMenu extends ContextMenu
 {
 
   /**
-   * Erzeugt ein Kontext-Menu fuer die Liste der Mitglieder.
+   * Erzeugt ein Kontext-Menu für die Liste der Mitglieder.
    */
   public MitgliedMenu()
   {
-    addItem(new CheckedContextMenuItem(
-        JVereinPlugin.getI18n().tr("bearbeiten"), new MitgliedDetailAction(),
-        "edit.png"));
-    addItem(new CheckedContextMenuItem(
-        JVereinPlugin.getI18n().tr("löschen..."), new MitgliedDeleteAction(),
-        "user-trash.png"));
+    addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
+        "bearbeiten"), new MitgliedDetailAction(), "edit.png"));
     addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "Mail senden ..."), new MitgliedMailSendenAction(), "mail-message-new.png"));
+    addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
+        "löschen..."), new MitgliedDeleteAction(), "user-trash.png"));
+    addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
         "Spendenbescheinigung"), new SpendenbescheinigungAction(),
         "rechnung.png"));
   }

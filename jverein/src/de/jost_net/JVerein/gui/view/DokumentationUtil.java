@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.18 $
- * $Date: 2009/12/11 22:34:18 $
+ * $Revision: 1.19 $
+ * $Date: 2010/02/01 21:00:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.19  2010/02/01 21:00:24  jost
+ * Neu: Einfache Mailfunktion
+ *
  * Revision 1.18  2009/12/11 22:34:18  jost
  * Link korrigiert.
  *
@@ -118,6 +121,8 @@ public class DokumentationUtil
       + "dokumentationauswertungjubilaeen.php";
 
   public static final String LEHRGANG = PRE + "lehrgaenge.php";
+
+  public static final String MAIL = PRE + "mail.php";
 
   public static final String MITGLIED = PRE + "mitglied.php";
 

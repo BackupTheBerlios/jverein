@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.23 $
- * $Date: 2009/11/22 16:19:01 $
+ * $Revision: 1.24 $
+ * $Date: 2010/02/01 21:00:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.24  2010/02/01 21:00:07  jost
+ * Neu: Einfache Mailfunktion
+ *
  * Revision 1.23  2009/11/22 16:19:01  jost
  * Reihenfolge korrigiert.
  *
@@ -108,6 +111,8 @@ import de.jost_net.JVerein.gui.action.KontoListAction;
 import de.jost_net.JVerein.gui.action.KursteilnehmerSucheAction;
 import de.jost_net.JVerein.gui.action.LehrgaengeListeAction;
 import de.jost_net.JVerein.gui.action.LehrgangsartListeAction;
+import de.jost_net.JVerein.gui.action.MailListeAction;
+import de.jost_net.JVerein.gui.action.MailVorlagenAction;
 import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangListeAction;
 import de.jost_net.JVerein.gui.action.MitgliedImportAction;
 import de.jost_net.JVerein.gui.action.MitgliedSucheAction;
@@ -200,6 +205,14 @@ public class MyExtension implements Extension
           "Adressbuchexport"), new AdressbuchExportAction(),
           "document-open.png"));
       jverein.addChild(auswertung);
+
+      NavigationItem mail = null;
+      mail = new MyItem(mail, JVereinPlugin.getI18n().tr("Mail"), null);
+      mail.addChild(new MyItem(mail, JVereinPlugin.getI18n().tr("Mails"),
+          new MailListeAction()));
+      mail.addChild(new MyItem(mail, JVereinPlugin.getI18n()
+          .tr("Mail-Vorlagen"), new MailVorlagenAction()));
+      jverein.addChild(mail);
 
       NavigationItem buchfuehrung = null;
       buchfuehrung = new MyItem(buchfuehrung, JVereinPlugin.getI18n().tr(

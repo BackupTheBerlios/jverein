@@ -44,6 +44,7 @@
 		<li><a href="dokumentationauswertungadressbuchexport.php">Adressbuch-Export</a>(ab Version 1.2)</li>
 	</ul>
 	</li>
+	<li><a href="mail.php">Mail</a>
 	<li><a href="dokumentationbuchfuehrung.php">Buchführung</a>	<ul>
 		<li><a href="buchfuehrungzusammenhaenge.php">Zusammenhänge</a></li>
 		<li><a href="dokumentationbuchfuehrungkonten.php">Konten</a></li>
@@ -63,6 +64,9 @@
 
     <!-- 
     $Log: dokumentation.php,v $
+    Revision 1.11  2010/02/01 21:03:42  jost
+    Neu: Einfache Mailfunktion
+
     Revision 1.10  2009/12/22 18:51:56  jost
     *** empty log message ***
 

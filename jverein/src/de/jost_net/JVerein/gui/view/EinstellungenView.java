@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.24 $
- * $Date: 2010/01/01 22:35:57 $
+ * $Revision: 1.25 $
+ * $Date: 2010/02/01 21:00:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.25  2010/02/01 21:00:35  jost
+ * Neu: Einfache Mailfunktion
+ *
  * Revision 1.24  2010/01/01 22:35:57  jost
  * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
  *
@@ -192,17 +195,15 @@ public class EinstellungenView extends AbstractView
         JVereinPlugin.getI18n().tr("Trefferliste Mitglieder"));
     control.getSpaltendefinitionTable(groupMitglieder.getComposite());
 
-    // TabGroup tabMail = new TabGroup(folder,
-    // JVereinPlugin.getI18n().tr("Mail"));
-    // LabelGroup groupMail = new LabelGroup(tabMail.getComposite(),
-    // JVereinPlugin
-    // .getI18n().tr("Mail"));
-    // groupMail.addLabelPair("Server", control.getSmtpServer());
-    // groupMail.addLabelPair("Port", control.getSmtpPort());
-    // groupMail.addLabelPair("Benutzer", control.getSmtpAuthUser());
-    // groupMail.addLabelPair("Passwort", control.getSmtpAuthPwd());
-    // groupMail.addLabelPair("Absenderadresse", control.getSmtpFromAddress());
-    // groupMail.addLabelPair("SSL verwenden", control.getSmtpSsl());
+    TabGroup tabMail = new TabGroup(folder, JVereinPlugin.getI18n().tr("Mail"));
+    LabelGroup groupMail = new LabelGroup(tabMail.getComposite(), JVereinPlugin
+        .getI18n().tr("Mail"));
+    groupMail.addLabelPair("Server", control.getSmtpServer());
+    groupMail.addLabelPair("Port", control.getSmtpPort());
+    groupMail.addLabelPair("Benutzer", control.getSmtpAuthUser());
+    groupMail.addLabelPair("Passwort", control.getSmtpAuthPwd());
+    groupMail.addLabelPair("Absenderadresse", control.getSmtpFromAddress());
+    groupMail.addLabelPair("SSL verwenden", control.getSmtpSsl());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
