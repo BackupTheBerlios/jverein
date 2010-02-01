@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/IORegistry.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/12/17 19:25:44 $
+ * $Revision: 1.3 $
+ * $Date: 2010/02/01 21:01:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: IORegistry.java,v $
+ * Revision 1.3  2010/02/01 21:01:30  jost
+ * Vermeidung Warnings.
+ *
  * Revision 1.2  2009/12/17 19:25:44  jost
  * *** empty log message ***
  *
@@ -32,7 +35,7 @@ public class IORegistry
 {
 
   // Liste der Zusatzbeträge-Import-Filter
-  private static ArrayList zusatzbetraege = null;
+  private static ArrayList<?> zusatzbetraege = null;
 
   static
   {
@@ -47,13 +50,13 @@ public class IORegistry
    *          zu ladender Typ.
    * @return Liste der gefundenen Importer/Exporter.
    */
-  private static synchronized ArrayList load(Class<?> type)
+  private static synchronized ArrayList<?> load(Class<?> type)
   {
-    ArrayList l = new ArrayList();
+    ArrayList<IO> l = new ArrayList<IO>();
     try
     {
       ClassFinder finder = Application.getClassLoader().getClassFinder();
-      Class[] list = finder.findImplementors(type);
+      Class<?>[] list = finder.findImplementors(type);
       if (list == null || list.length == 0)
       {
         throw new ClassNotFoundException();
@@ -86,7 +89,7 @@ public class IORegistry
   /**
    * Liefert eine Liste aller verfuegbaren Import-Formate für Zusatzbeträge
    */
-  public static Importer[] getImporter(Class<Object> type)
+  public static Importer[] getImporter(Class<?> type)
       throws ClassNotFoundException
   {
     if (type.getName().equals(IZusatzbetraegeImport.class.getName()))

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/ImportDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/10/20 17:58:08 $
+ * $Revision: 1.2 $
+ * $Date: 2010/02/01 20:59:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportDialog.java,v $
+ * Revision 1.2  2010/02/01 20:59:00  jost
+ * Vermeidung Warnings.
+ *
  * Revision 1.1  2009/10/20 17:58:08  jost
  * Neu: Import von Zusatzbeträgen
  *
@@ -54,9 +57,9 @@ public class ImportDialog extends AbstractDialog
 
   private GenericObject context = null;
 
-  private Class<Object> type = null;
+  private Class<?> type = null;
 
-  public ImportDialog(GenericObject context, Class type)
+  public ImportDialog(GenericObject context, Class<?> type)
   {
     super(POSITION_CENTER);
     i18n = JVereinPlugin.getI18n();

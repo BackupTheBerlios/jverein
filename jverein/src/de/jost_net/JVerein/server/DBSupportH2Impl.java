@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/11/17 21:02:38 $
+ * $Revision: 1.13 $
+ * $Date: 2010/02/01 21:02:48 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
+ * Revision 1.13  2010/02/01 21:02:48  jost
+ * Vermeidung Warnings.
+ *
  * Revision 1.12  2009/11/17 21:02:38  jost
  * DB-Aktualisierung optimiert.
  *
@@ -83,8 +86,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
 
     try
     {
-      Method m = Application.getClassLoader().load("org.h2.engine.Constants")
-          .getMethod("getVersion", (Class[]) null);
+      Method m = (Method) Application.getClassLoader().load(
+          "org.h2.engine.Constants").getMethod("getVersion", (Class<?>[]) null);
       Logger.info("h2 version: " + m.invoke(null, (Object[]) null));
     }
     catch (Throwable t)

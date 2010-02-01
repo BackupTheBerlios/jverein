@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.74 $
- * $Date: 2010/01/01 22:35:44 $
+ * $Revision: 1.75 $
+ * $Date: 2010/02/01 20:58:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.75  2010/02/01 20:58:33  jost
+ * Vermeidung Warnings.
+ *
  * Revision 1.74  2010/01/01 22:35:44  jost
  * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
  *
@@ -503,7 +506,7 @@ public class MitgliedControl extends AbstractControl
 
     name = new SearchInput()
     {
-      public List startSearch(String text)
+      public List<?> startSearch(String text)
       {
         try
         {
@@ -526,7 +529,7 @@ public class MitgliedControl extends AbstractControl
           };
           String sql = "select name from mitglied where name like ? "
               + "group by name order by name";
-          return (List) Einstellungen.getDBService().execute(sql,
+          return (List<?>) Einstellungen.getDBService().execute(sql,
               new Object[] { text }, rs);
         }
         catch (Exception e)
@@ -558,7 +561,7 @@ public class MitgliedControl extends AbstractControl
 
     vorname = new SearchInput()
     {
-      public List startSearch(String text)
+      public List<?> startSearch(String text)
       {
         try
         {
@@ -581,7 +584,7 @@ public class MitgliedControl extends AbstractControl
           };
           String sql = "select vorname from mitglied where vorname like ? "
               + "group by vorname order by vorname";
-          return (List) Einstellungen.getDBService().execute(sql,
+          return (List<?>) Einstellungen.getDBService().execute(sql,
               new Object[] { text }, rs);
         }
         catch (Exception e)
@@ -622,7 +625,7 @@ public class MitgliedControl extends AbstractControl
 
     strasse = new SearchInput()
     {
-      public List startSearch(String text)
+      public List<?> startSearch(String text)
       {
         try
         {
@@ -645,7 +648,7 @@ public class MitgliedControl extends AbstractControl
           };
           String sql = "select strasse from mitglied where strasse like ? "
               + "group by strasse order by strasse";
-          return (List) Einstellungen.getDBService().execute(sql,
+          return (List<?>) Einstellungen.getDBService().execute(sql,
               new Object[] { text }, rs);
         }
         catch (Exception e)
@@ -1812,6 +1815,7 @@ public class MitgliedControl extends AbstractControl
         new MitgliedDetailAction());
     new MitgliedSpaltenauswahl().setColumns(part);
     part.setContextMenu(new MitgliedMenu());
+    part.setMulti(true);
     part.setRememberColWidths(true);
     part.setRememberOrder(true);
     part.setRememberState(true);

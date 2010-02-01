@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/EigenschaftenAuswahlDialog.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/12/06 21:40:39 $
+ * $Revision: 1.6 $
+ * $Date: 2010/02/01 20:58:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenAuswahlDialog.java,v $
+ * Revision 1.6  2010/02/01 20:58:46  jost
+ * Vermeidung Warnings.
+ *
  * Revision 1.5  2009/12/06 21:40:39  jost
  * Überflüssigen Code entfernt.
  *
@@ -81,7 +84,7 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
         String tmp1 = "";
         try
         {
-          ArrayList checkednodes = (ArrayList) tree.getItems();
+          ArrayList<?> checkednodes = (ArrayList<?>) tree.getItems();
           for (Object o : checkednodes)
           {
             EigenschaftenNode checkedNode = (EigenschaftenNode) o;
