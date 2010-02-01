@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.38 $
- * $Date: 2010/01/01 18:39:09 $
+ * $Revision: 1.39 $
+ * $Date: 2010/02/01 21:01:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.39  2010/02/01 21:01:17  jost
+ * *** empty log message ***
+ *
  * Revision 1.38  2010/01/01 18:39:09  jost
  * Typisierung der Zusatzfelder
  *
@@ -148,7 +151,6 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.Input;
-import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
@@ -277,9 +279,10 @@ public class MitgliedDetailView extends AbstractView
     {
       TabGroup tab7 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
           "Eigenschaften"));
-      ScrolledContainer scrolledEigenschaften = new ScrolledContainer(tab7
+      SimpleContainer sc = new SimpleContainer(tab7.getComposite(), true);
+      ScrolledContainer scrolledEigenschaften = new ScrolledContainer(sc
           .getComposite());
-      scrolledEigenschaften.getComposite().setBounds(0, 0, 300, 200);
+      scrolledEigenschaften.getComposite().setSize(300, 200);
       control.getEigenschaftenTree()
           .paint(scrolledEigenschaften.getComposite());
     }
