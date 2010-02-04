@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/02/01 20:57:58 $
+ * $Revision: 1.2 $
+ * $Date: 2010/02/04 18:38:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
+ * Revision 1.2  2010/02/04 18:38:38  jost
+ * Zusätzliche Datenfelder
+ *
  * Revision 1.1  2010/02/01 20:57:58  jost
  * Neu: Einfache Mailfunktion
  *
@@ -20,6 +23,7 @@ import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TreeSet;
 
@@ -238,7 +242,13 @@ public class MailControl extends AbstractControl
             context.put("empf", empf.getMitglied());
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             context.put("tagesdatum", sdf.format(new Date()));
-
+            sdf.applyPattern("MM.yyyy");
+            context.put("aktuellermonat", sdf.format(new Date()));
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MONTH, 1);
+            context.put("folgemonat", sdf.format(calendar.getTime()));
+            calendar.add(Calendar.MONTH, -2);
+            context.put("vormonat", sdf.format(calendar.getTime()));
             StringWriter wbetr = new StringWriter();
             Velocity.evaluate(context, wbetr, "LOG", betr);
             StringWriter wtext = new StringWriter();
