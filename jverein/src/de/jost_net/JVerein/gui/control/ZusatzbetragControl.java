@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/07/27 15:25:49 $
+ * $Revision: 1.4 $
+ * $Date: 2010/02/08 18:14:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
+ * Revision 1.4  2010/02/08 18:14:42  jost
+ * JaNeinFormatter f. Zusatzzahlungen
+ *
  * Revision 1.3  2009/07/27 15:25:49  jost
  * Focus auf erstes Feld setzen.
  *
@@ -66,6 +69,7 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.ZusatzbetraegeAction;
+import de.jost_net.JVerein.gui.formatter.JaNeinFormatter;
 import de.jost_net.JVerein.gui.menu.ZusatzbetraegeMenu;
 import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Mitglied;
@@ -418,7 +422,7 @@ public class ZusatzbetragControl extends AbstractControl
       zusatzbetraegeList.addColumn("Buchungstext", "buchungstext");
       zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter(
           "", Einstellungen.DECIMALFORMAT));
-      zusatzbetraegeList.addColumn("aktiv", "aktiv");
+      zusatzbetraegeList.addColumn("aktiv", "aktiv", new JaNeinFormatter());
 
       zusatzbetraegeList.setContextMenu(new ZusatzbetraegeMenu(
           zusatzbetraegeList));
