@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.39 $
- * $Date: 2010/02/01 21:01:17 $
+ * $Revision: 1.40 $
+ * $Date: 2010/02/08 18:15:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
+ * Revision 1.40  2010/02/08 18:15:22  jost
+ * Ausgewähltes Tab wieder aktivieren
+ *
  * Revision 1.39  2010/02/01 21:01:17  jost
  * *** empty log message ***
  *
@@ -132,6 +135,8 @@
 package de.jost_net.JVerein.gui.view;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.TabFolder;
 
@@ -162,6 +167,7 @@ import de.willuhn.util.ApplicationException;
 
 public class MitgliedDetailView extends AbstractView
 {
+  private static int tabindex = -1;
 
   public void bind() throws Exception
   {
@@ -213,7 +219,7 @@ public class MitgliedDetailView extends AbstractView
       right2.addInput(control.getEmail());
     }
 
-    TabFolder folder = new TabFolder(scrolled.getComposite(), SWT.NONE);
+    final TabFolder folder = new TabFolder(scrolled.getComposite(), SWT.NONE);
     folder.setLayoutData(new GridData(GridData.FILL_BOTH));
     folder.setBackground(Color.BACKGROUND.getSWTColor());
 
@@ -306,6 +312,22 @@ public class MitgliedDetailView extends AbstractView
       ButtonArea buttonslehrg = new ButtonArea(tab9.getComposite(), 1);
       buttonslehrg.addButton(control.getLehrgangNeu());
     }
+    if (tabindex != -1)
+    {
+      folder.setSelection(tabindex);
+    }
+    folder.addSelectionListener(new SelectionListener()
+    {
+      public void widgetSelected(SelectionEvent arg0)
+      {
+        tabindex = folder.getSelectionIndex();
+      }
+
+      public void widgetDefaultSelected(SelectionEvent arg0)
+      {
+        //
+      }
+    });
 
     ButtonArea buttons = new ButtonArea(getParent(), 5);
     buttons.addButton(new Back(false));
