@@ -1,13 +1,16 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/IbanBicCalc.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/10/20 18:01:47 $
+ * $Revision: 1.2 $
+ * $Date: 2010/02/15 17:25:07 $
  * $Author: jost $
  *
  * Copyright (c) by Ralf Neumaier
  * All rights reserved
  * www.jverein.de
  * $Log: IbanBicCalc.java,v $
+ * Revision 1.2  2010/02/15 17:25:07  jost
+ * Vermeidung NPE
+ *
  * Revision 1.1  2009/10/20 18:01:47  jost
  * Neu: Anzeige IBAN
  *
@@ -15,6 +18,8 @@
 package de.jost_net.JVerein.util;
 
 import java.math.BigInteger;
+
+import de.willuhn.logging.Logger;
 
 /**
  * 
@@ -95,7 +100,7 @@ public class IbanBicCalc
       return "Fehler ! Länderkürzel fehlt";
     }
 
-    String leanderKennung = getLandKennung(landKuerzel);
+    String laenderKennung = getLandKennung(landKuerzel);
     StringBuilder sb = new StringBuilder();
 
     for (int i = 0; i < 10 - kontoNr.length(); i++)
@@ -104,7 +109,18 @@ public class IbanBicCalc
     }
 
     sb.append(kontoNr);
-    BigInteger bi = new BigInteger(blz + sb.toString() + leanderKennung);
+    BigInteger bi = null;
+
+    try
+    {
+      bi = new BigInteger(blz + sb.toString() + laenderKennung);
+    }
+    catch (NumberFormatException e)
+    {
+      Logger.error("Ungültige Bankverbindung: " + blz + sb.toString()
+          + laenderKennung);
+      return "Ungültige Bankverbindung";
+    }
     BigInteger modulo = bi.mod(BigInteger.valueOf(97));
     String pruefZiffer = String.valueOf(98 - modulo.longValue());
 
