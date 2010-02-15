@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.37 $
- * $Date: 2009/12/17 19:25:25 $
+ * $Revision: 1.38 $
+ * $Date: 2010/02/15 17:23:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.38  2010/02/15 17:23:18  jost
+ * Bugfix zu lange Namen mit Umlauten.
+ *
  * Revision 1.37  2009/12/17 19:25:25  jost
  * Überflüssigen Code entfernt.
  *
@@ -566,9 +569,9 @@ public class Abbuchung
     }
     String name = m.getNameVorname();
     String mitgliedname = name;
-    if (mitgliedname.length() > 27)
+    if (mitgliedname.length() > 25)
     {
-      mitgliedname = mitgliedname.substring(0, 27);
+      mitgliedname = mitgliedname.substring(0, 25);
     }
     if (m.getKontoinhaber().length() > 0)
     {
