@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/02/04 18:38:38 $
+ * $Revision: 1.3 $
+ * $Date: 2010/02/15 17:22:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
+ * Revision 1.3  2010/02/15 17:22:14  jost
+ * Mail-Anhang implementiert
+ *
  * Revision 1.2  2010/02/04 18:38:38  jost
  * Zusätzliche Datenfelder
  *
@@ -32,10 +35,12 @@ import org.apache.velocity.app.Velocity;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.MailDetailAction;
+import de.jost_net.JVerein.gui.menu.MailAnhangMenu;
 import de.jost_net.JVerein.gui.menu.MailAuswahlMenu;
 import de.jost_net.JVerein.gui.menu.MailMenu;
 import de.jost_net.JVerein.io.MailSender;
 import de.jost_net.JVerein.rmi.Mail;
+import de.jost_net.JVerein.rmi.MailAnhang;
 import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -65,6 +70,8 @@ public class MailControl extends AbstractControl
   private TextInput betreff;
 
   private TextAreaInput txt;
+
+  private TablePart anhang;
 
   private TablePart mitgliedmitmail;
 
@@ -142,6 +149,21 @@ public class MailControl extends AbstractControl
     getMail().getEmpfaenger().remove(me);
   }
 
+  public void addAnhang(MailAnhang ma) throws RemoteException
+  {
+    if (!getMail().getAnhang().contains(ma))
+    {
+      getAnhang().addItem(ma);
+      getMail().getAnhang().add(ma);
+    }
+  }
+
+  public void removeAnhang(MailAnhang ma) throws RemoteException
+  {
+    getAnhang().removeItem(ma);
+    getMail().getAnhang().remove(ma);
+  }
+
   public TablePart getMitgliedMitMail() throws RemoteException
   {
     if (mitgliedmitmail != null)
@@ -180,6 +202,42 @@ public class MailControl extends AbstractControl
     txt = new TextAreaInput((String) getMail().getTxt(), 1000);
     txt.setName("Text");
     return txt;
+  }
+
+  public TablePart getAnhang() throws RemoteException
+  {
+    if (anhang != null)
+    {
+      return anhang;
+    }
+    if (!getMail().isNewObject() && getMail().getAnhang() == null)
+    {
+      DBIterator it = Einstellungen.getDBService().createList(MailAnhang.class);
+      it.addFilter("mail = ?", new Object[] { getMail().getID() });
+      TreeSet<MailAnhang> anh = new TreeSet<MailAnhang>();
+      while (it.hasNext())
+      {
+        MailAnhang an = (MailAnhang) it.next();
+        anh.add(an);
+      }
+      getMail().setAnhang(anh);
+    }
+    else if (getMail().getAnhang() == null)
+    {
+      getMail().setAnhang(new TreeSet<MailAnhang>());
+    }
+    // Umwandeln in ArrayList
+    ArrayList<MailAnhang> anhang2 = new ArrayList<MailAnhang>();
+    for (MailAnhang ma : getMail().getAnhang())
+    {
+      anhang2.add(ma);
+    }
+    anhang = new TablePart(anhang2, null);
+    anhang.addColumn("Dateiname", "dateiname");
+    anhang.setContextMenu(new MailAnhangMenu(this));
+    anhang.setRememberOrder(true);
+    anhang.setSummary(false);
+    return anhang;
   }
 
   public Button getMailSendButton()
@@ -254,7 +312,8 @@ public class MailControl extends AbstractControl
             StringWriter wtext = new StringWriter();
             Velocity.evaluate(context, wtext, "LOG", txt);
             sender.sendMail(empf.getMailAdresse(),
-                wbetr.getBuffer().toString(), wtext.getBuffer().toString());
+                wbetr.getBuffer().toString(), wtext.getBuffer().toString(),
+                getMail().getAnhang());
           }
 
           monitor.setPercentComplete(100);
@@ -312,6 +371,32 @@ public class MailControl extends AbstractControl
       {
         me.setMail(m);
         me.store();
+      }
+      DBIterator it = Einstellungen.getDBService().createList(
+          MailEmpfaenger.class);
+      it.addFilter("mail = ?", new Object[] { m.getID() });
+      while (it.hasNext())
+      {
+        MailEmpfaenger me = (MailEmpfaenger) it.next();
+        if (!m.getEmpfaenger().contains(me))
+        {
+          me.delete();
+        }
+      }
+      for (MailAnhang ma : getMail().getAnhang())
+      {
+        ma.setMail(m);
+        ma.store();
+      }
+      it = Einstellungen.getDBService().createList(MailAnhang.class);
+      it.addFilter("mail = ?", new Object[] { m.getID() });
+      while (it.hasNext())
+      {
+        MailAnhang ma = (MailAnhang) it.next();
+        if (!m.getAnhang().contains(ma))
+        {
+          ma.delete();
+        }
       }
       GUI.getStatusBar().setSuccessText("Mail gespeichert");
     }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mail.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/02/01 21:02:25 $
+ * $Revision: 1.2 $
+ * $Date: 2010/02/15 17:23:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mail.java,v $
+ * Revision 1.2  2010/02/15 17:23:50  jost
+ * Mail-Anhang implementiert
+ *
  * Revision 1.1  2010/02/01 21:02:25  jost
  * Neu: Einfache Mailfunktion
  *
@@ -27,6 +30,10 @@ public interface Mail extends DBObject
 
   public void setEmpfaenger(TreeSet<MailEmpfaenger> empfaenger)
       throws RemoteException;
+
+  public TreeSet<MailAnhang> getAnhang() throws RemoteException;
+
+  public void setAnhang(TreeSet<MailAnhang> anhang) throws RemoteException;
 
   public String getBetreff() throws RemoteException;
 

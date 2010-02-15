@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MailDetailAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/02/01 20:57:26 $
+ * $Revision: 1.2 $
+ * $Date: 2010/02/15 17:21:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,13 +9,14 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailDetailAction.java,v $
+ * Revision 1.2  2010/02/15 17:21:55  jost
+ * Mail-Anhang implementiert
+ *
  * Revision 1.1  2010/02/01 20:57:26  jost
  * Neu: Einfache Mailfunktion
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
-
-import java.util.TreeSet;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
@@ -23,7 +24,6 @@ import de.jost_net.JVerein.gui.control.MailVorlageControl;
 import de.jost_net.JVerein.gui.dialogs.MailVorlagenAuswahlDialog;
 import de.jost_net.JVerein.gui.view.MailDetailView;
 import de.jost_net.JVerein.rmi.Mail;
-import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.MailVorlage;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -53,7 +53,7 @@ public class MailDetailAction implements Action
           m.setBetreff(mv.getBetreff());
           m.setTxt(mv.getTxt());
         }
-       }
+      }
       catch (Exception e)
       {
         throw new ApplicationException(JVereinPlugin.getI18n().tr(
