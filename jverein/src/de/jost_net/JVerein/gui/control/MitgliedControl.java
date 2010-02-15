@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.76 $
- * $Date: 2010/02/08 18:14:17 $
+ * $Revision: 1.77 $
+ * $Date: 2010/02/15 19:53:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.77  2010/02/15 19:53:16  jost
+ * IBAN direkt bei der Eingabe von Kontonummer und BLZ berechnen
+ *
  * Revision 1.76  2010/02/08 18:14:17  jost
  * JaNeinFormatter f. Zusatzzahlungen
  *
@@ -295,6 +298,7 @@ import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.server.EigenschaftenNode;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.IbanBicCalc;
 import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -825,6 +829,23 @@ public class MitgliedControl extends AbstractControl
     BLZListener l = new BLZListener();
     blz.addListener(l);
     l.handleEvent(null); // Einmal initial ausfuehren
+    blz.addListener(new Listener()
+    {
+      public void handleEvent(Event arg0)
+      {
+        try
+        {
+          getIban().setValue(
+              IbanBicCalc.createIban((String) getKonto().getValue(),
+                  (String) getBlz().getValue(), "DE"));
+        }
+        catch (RemoteException e)
+        {
+          // 
+        }
+      }
+
+    });
     return blz;
   }
 
@@ -838,6 +859,22 @@ public class MitgliedControl extends AbstractControl
     konto.setName("Konto");
     konto.setMandatory(getMitglied().getZahlungsweg() == null
         || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
+    konto.addListener(new Listener()
+    {
+      public void handleEvent(Event arg0)
+      {
+        try
+        {
+          getIban().setValue(
+              IbanBicCalc.createIban((String) getKonto().getValue(),
+                  (String) getBlz().getValue(), "DE"));
+        }
+        catch (RemoteException e)
+        {
+          // 
+        }
+      }
+    });
     return konto;
   }
 
