@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailDetailView.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/02/15 17:22:49 $
+ * $Revision: 1.3 $
+ * $Date: 2010/02/16 20:21:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailDetailView.java,v $
+ * Revision 1.3  2010/02/16 20:21:29  jost
+ * Layout-Korrektur
+ *
  * Revision 1.2  2010/02/15 17:22:49  jost
  * Mail-Anhang implementiert
  *
@@ -101,7 +104,7 @@ public class MailDetailView extends AbstractView
     addLabel("Anhang", comp, GridData.VERTICAL_ALIGN_BEGINNING);
     Composite comp4 = new Composite(comp, SWT.NONE);
     GridData gd4 = new GridData(GridData.FILL_HORIZONTAL);
-    gd4.heightHint = 100;
+    gd4.heightHint = 90;
     comp4.setLayoutData(gd4);
     GridLayout gl4 = new GridLayout();
     gl4.marginWidth = 0;
@@ -115,7 +118,7 @@ public class MailDetailView extends AbstractView
     GridLayout gl5 = new GridLayout();
     gl5.marginWidth = 0;
     comp5.setLayout(gl5);
-    Button addAttachment = new Button("Anlage", new Action()
+    Button addAttachment = new Button("    Anlage    ", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
