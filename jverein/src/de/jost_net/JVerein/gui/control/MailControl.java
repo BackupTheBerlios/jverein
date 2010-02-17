@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/02/15 17:22:14 $
+ * $Revision: 1.4 $
+ * $Date: 2010/02/17 16:30:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
+ * Revision 1.4  2010/02/17 16:30:34  jost
+ * Statusanzeige
+ *
  * Revision 1.3  2010/02/15 17:22:14  jost
  * Mail-Anhang implementiert
  *
@@ -293,6 +296,9 @@ public class MailControl extends AbstractControl
 
           Velocity.init();
           Logger.debug("preparing velocity context");
+          monitor.setStatus(ProgressMonitor.STATUS_RUNNING);
+          monitor.setPercentComplete(0);
+          int zae = 0;
           for (MailEmpfaenger empf : getMail().getEmpfaenger())
           {
             VelocityContext context = new VelocityContext();
@@ -314,7 +320,12 @@ public class MailControl extends AbstractControl
             sender.sendMail(empf.getMailAdresse(),
                 wbetr.getBuffer().toString(), wtext.getBuffer().toString(),
                 getMail().getAnhang());
+            zae++;
+            double proz = (double) zae
+                / (double) getMail().getEmpfaenger().size() * 100d;
+            monitor.setPercentComplete((int) proz);
           }
+          monitor.setStatus(ProgressMonitor.STATUS_DONE);
 
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
