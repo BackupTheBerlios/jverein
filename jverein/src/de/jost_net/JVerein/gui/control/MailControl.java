@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/02/17 16:30:34 $
+ * $Revision: 1.5 $
+ * $Date: 2010/02/17 21:26:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
+ * Revision 1.5  2010/02/17 21:26:09  jost
+ * Statusanzeige
+ *
  * Revision 1.4  2010/02/17 16:30:34  jost
  * Statusanzeige
  *
@@ -320,15 +323,16 @@ public class MailControl extends AbstractControl
             sender.sendMail(empf.getMailAdresse(),
                 wbetr.getBuffer().toString(), wtext.getBuffer().toString(),
                 getMail().getAnhang());
+            monitor.log(empf.getMailAdresse());
             zae++;
             double proz = (double) zae
                 / (double) getMail().getEmpfaenger().size() * 100d;
             monitor.setPercentComplete((int) proz);
           }
-          monitor.setStatus(ProgressMonitor.STATUS_DONE);
-
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
+          monitor.setStatusText("Anzahl verschickter Mails: "
+              + getMail().getEmpfaenger().size());
           GUI.getStatusBar().setSuccessText(
               "Mail" + (getMail().getEmpfaenger().size() > 1 ? "s" : "")
                   + " verschickt");
