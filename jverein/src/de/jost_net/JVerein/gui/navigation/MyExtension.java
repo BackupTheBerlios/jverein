@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.24 $
- * $Date: 2010/02/01 21:00:07 $
+ * $Revision: 1.25 $
+ * $Date: 2010/02/21 20:15:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.25  2010/02/21 20:15:53  jost
+ * Adressbuchexport ins Mail-Menü verschoben.
+ *
  * Revision 1.24  2010/02/01 21:00:07  jost
  * Neu: Einfache Mailfunktion
  *
@@ -201,9 +204,6 @@ public class MyExtension implements Extension
       }
       auswertung.addChild(new MyItem(auswertung, JVereinPlugin.getI18n().tr(
           "Statistik"), new StatistikMitgliedAction(), "document-open.png"));
-      auswertung.addChild(new MyItem(auswertung, JVereinPlugin.getI18n().tr(
-          "Adressbuchexport"), new AdressbuchExportAction(),
-          "document-open.png"));
       jverein.addChild(auswertung);
 
       NavigationItem mail = null;
@@ -212,6 +212,9 @@ public class MyExtension implements Extension
           new MailListeAction()));
       mail.addChild(new MyItem(mail, JVereinPlugin.getI18n()
           .tr("Mail-Vorlagen"), new MailVorlagenAction()));
+      mail.addChild(new MyItem(auswertung, JVereinPlugin.getI18n().tr(
+          "Adressbuchexport"), new AdressbuchExportAction(),
+          "document-open.png"));
       jverein.addChild(mail);
 
       NavigationItem buchfuehrung = null;
