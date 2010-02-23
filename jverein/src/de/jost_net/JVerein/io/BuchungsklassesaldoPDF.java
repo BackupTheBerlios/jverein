@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklassesaldoPDF.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/09/19 16:28:38 $
+ * $Revision: 1.4 $
+ * $Date: 2010/02/23 21:16:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklassesaldoPDF.java,v $
+ * Revision 1.4  2010/02/23 21:16:13  jost
+ * Individueller Zeitraum
+ *
  * Revision 1.3  2009/09/19 16:28:38  jost
  * Weiterentwicklung
  *
@@ -28,11 +31,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 
-import de.jost_net.JVerein.util.Geschaeftsjahr;
+import de.jost_net.JVerein.Einstellungen;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
 import de.willuhn.jameica.messaging.StatusBarMessage;
@@ -44,13 +48,14 @@ import de.willuhn.util.ProgressMonitor;
 public class BuchungsklassesaldoPDF
 {
   public BuchungsklassesaldoPDF(ArrayList<BuchungsklasseSaldoZeile> zeile,
-      final File file, ProgressMonitor monitor, Geschaeftsjahr gj)
+      final File file, ProgressMonitor monitor, Date datumvon, Date datumbis)
       throws ApplicationException, RemoteException
   {
     try
     {
       FileOutputStream fos = new FileOutputStream(file);
-      String subtitle = gj.toString();
+      String subtitle = Einstellungen.DATEFORMAT.format(datumvon) + " - "
+          + Einstellungen.DATEFORMAT.format(datumbis);
       Reporter reporter = new Reporter(fos, monitor, "Buchungsklassesaldo",
           subtitle, zeile.size());
       makeHeader(reporter);

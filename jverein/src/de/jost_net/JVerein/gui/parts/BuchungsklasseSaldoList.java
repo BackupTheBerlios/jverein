@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/BuchungsklasseSaldoList.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/09/19 16:28:16 $
+ * $Revision: 1.6 $
+ * $Date: 2010/02/23 21:15:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoList.java,v $
+ * Revision 1.6  2010/02/23 21:15:49  jost
+ * Individueller Zeitraum
+ *
  * Revision 1.5  2009/09/19 16:28:16  jost
  * Weiterentwicklung
  *
@@ -32,6 +35,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -40,7 +44,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.io.BuchungsklasseSaldoZeile;
 import de.jost_net.JVerein.rmi.Buchungsart;
 import de.jost_net.JVerein.rmi.Buchungsklasse;
-import de.jost_net.JVerein.util.Geschaeftsjahr;
 import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.pseudo.PseudoIterator;
@@ -58,26 +61,16 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
 {
   private TablePart saldoList;
 
-  private Geschaeftsjahr gj = null;
+  private Date datumvon = null;
 
-  public BuchungsklasseSaldoList(Action action, int jahr)
+  private Date datumbis = null;
+
+  public BuchungsklasseSaldoList(Action action, Date datumvon, Date datumbis)
       throws RemoteException
   {
     super(action);
-    try
-    {
-      gj = new Geschaeftsjahr(jahr);
-    }
-    catch (ParseException e)
-    {
-      e.printStackTrace();
-    }
-  }
-
-  public BuchungsklasseSaldoList(Action action, Geschaeftsjahr gj)
-  {
-    super(action);
-    this.gj = gj;
+    this.datumvon = datumvon;
+    this.datumbis = datumbis;
   }
 
   public Part getSaldoList() throws ApplicationException
@@ -194,17 +187,14 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
             + "where datum >= ? and datum <= ?  "
             + "and buchung.buchungsart = buchungsart.id "
             + "and buchungsart.id = ? " + "and buchungsart.art = ?";
-        einnahmen = (Double) service.execute(sql, new Object[] {
-            gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(),
-            buchungsart.getID(), 0 }, rsd);
+        einnahmen = (Double) service.execute(sql, new Object[] { datumvon,
+            datumbis, buchungsart.getID(), 0 }, rsd);
         suBukEinnahmen += einnahmen;
-        ausgaben = (Double) service.execute(sql, new Object[] {
-            gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(),
-            buchungsart.getID(), 1 }, rsd);
+        ausgaben = (Double) service.execute(sql, new Object[] { datumvon,
+            datumbis, buchungsart.getID(), 1 }, rsd);
         suBukAusgaben += ausgaben;
-        umbuchungen = (Double) service.execute(sql, new Object[] {
-            gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(),
-            buchungsart.getID(), 2 }, rsd);
+        umbuchungen = (Double) service.execute(sql, new Object[] { datumvon,
+            datumbis, buchungsart.getID(), 2 }, rsd);
         suBukUmbuchungen += umbuchungen;
         zeile.add(new BuchungsklasseSaldoZeile(BuchungsklasseSaldoZeile.DETAIL,
             buchungsart, einnahmen, ausgaben, umbuchungen));
@@ -225,16 +215,16 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
         + "where datum >= ? and datum <= ?  "
         + "and buchung.buchungsart = buchungsart.id "
         + "and buchungsart.buchungsklasse is null and buchungsart.art = ?";
-    einnahmen = (Double) service.execute(sql, new Object[] {
-        gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(), 0 }, rsd);
+    einnahmen = (Double) service.execute(sql, new Object[] { datumvon,
+        datumbis, 0 }, rsd);
     suBukEinnahmen += einnahmen;
     suEinnahmen += einnahmen;
-    ausgaben = (Double) service.execute(sql, new Object[] {
-        gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(), 1 }, rsd);
+    ausgaben = (Double) service.execute(sql, new Object[] { datumvon, datumbis,
+        1 }, rsd);
     suBukAusgaben += ausgaben;
     suAusgaben += ausgaben;
-    umbuchungen = (Double) service.execute(sql, new Object[] {
-        gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(), 2 }, rsd);
+    umbuchungen = (Double) service.execute(sql, new Object[] { datumvon,
+        datumbis, 2 }, rsd);
     suBukUmbuchungen += umbuchungen;
     suUmbuchungen += umbuchungen;
     if (einnahmen != 0 || ausgaben != 0 || umbuchungen != 0)
@@ -256,8 +246,8 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
 
     sql = "select count(*) from buchung " + "where datum >= ? and datum <= ?  "
         + "and buchung.buchungsart is null";
-    Integer anzahl = (Integer) service.execute(sql, new Object[] {
-        gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr() }, rsi);
+    Integer anzahl = (Integer) service.execute(sql, new Object[] { datumvon,
+        datumbis }, rsi);
     if (anzahl > 0)
     {
       zeile.add(new BuchungsklasseSaldoZeile(
@@ -267,9 +257,14 @@ public class BuchungsklasseSaldoList extends TablePart implements Part
     return zeile;
   }
 
-  public void setGeschaeftsjahr(Geschaeftsjahr gj)
+  public void setDatumvon(Date datumvon)
   {
-    this.gj = gj;
+    this.datumvon = datumvon;
+  }
+
+  public void setDatumbis(Date datumbis)
+  {
+    this.datumbis = datumbis;
   }
 
   public void removeAll()

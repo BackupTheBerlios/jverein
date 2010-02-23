@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsklasseSaldoView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/09/16 21:36:35 $
+ * $Revision: 1.4 $
+ * $Date: 2010/02/23 21:16:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoView.java,v $
+ * Revision 1.4  2010/02/23 21:16:02  jost
+ * Individueller Zeitraum
+ *
  * Revision 1.3  2009/09/16 21:36:35  jost
  * Tabelle nur so groß wie nötig
  *
@@ -43,9 +46,11 @@ public class BuchungsklasseSaldoView extends AbstractView
         this);
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
-        "Jahr"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Jahr"), control
-        .getSuchJahr());
+        "Zeitraum"));
+    group
+        .addLabelPair(JVereinPlugin.getI18n().tr("von"), control.getDatumvon());
+    group
+        .addLabelPair(JVereinPlugin.getI18n().tr("bis"), control.getDatumbis());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 1);
     Button button = new Button(JVereinPlugin.getI18n().tr("suchen"),
