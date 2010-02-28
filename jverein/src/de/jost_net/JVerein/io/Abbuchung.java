@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.39 $
- * $Date: 2010/02/28 15:17:28 $
+ * $Revision: 1.40 $
+ * $Date: 2010/02/28 20:03:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.40  2010/02/28 20:03:47  jost
+ * Mitgliedsnummer mit ausgeben.
+ *
  * Revision 1.39  2010/02/28 15:17:28  jost
  * Mitgliedsnummer in den Verwendungszweck übernommen.
  *
@@ -571,7 +574,10 @@ public class Abbuchung
       throw new DtausException("Ungültige Kontonummer " + m.getKonto());
     }
     String name = m.getNameVorname();
-    String mitgliedname = m.getID() + "/" + name;
+    String mitgliedname = (Einstellungen.getEinstellung()
+        .getExterneMitgliedsnummer() ? m.getExterneMitgliedsnummer() : m
+        .getID())
+        + "/" + name;
     if (mitgliedname.length() > 25)
     {
       mitgliedname = mitgliedname.substring(0, 25);
