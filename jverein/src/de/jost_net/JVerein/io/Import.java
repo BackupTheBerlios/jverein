@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.27 $
- * $Date: 2009/11/25 22:14:33 $
+ * $Revision: 1.28 $
+ * $Date: 2010/02/28 15:05:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.28  2010/02/28 15:05:11  jost
+ * Bugfix Eintrittsdatum
+ *
  * Revision 1.27  2009/11/25 22:14:33  jost
  * Bugfix letzte Spalte
  *
@@ -320,7 +323,15 @@ public class Import
         if (eintritt == null || eintritt.length() == 0
             || eintritt.equals("00.00.0000"))
         {
-          eintritt = "01.01.1900";
+          if (Einstellungen.getEinstellung().getEintrittsdatumPflicht())
+          {
+            throw new ApplicationException(m.getNameVorname()
+                + ": Eintrittsdatum fehlt!");
+          }
+          else
+          {
+            eintritt = null;
+          }
         }
         m.setEintritt(eintritt);
         Integer bg = new Integer(beitragsgruppen2.get(results
