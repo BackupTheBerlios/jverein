@@ -3,6 +3,7 @@
     <ul>
 	   	<li>Version 1.3 noch nicht freigegeben</li>
     		<ul>
+    		    <li>Bugfix beim Import des Eintrittsdatums.</li>
     			<li>Adressbuchexport ins Mail-Menü verschoben.</li>
     		    <li>Mailfunktion um Dateianhänge erweitert.</li>
     			<li>IBAN direkt bei der Eingabe von Kontonummer und BLZ berechnen</li>
@@ -461,6 +462,9 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
+    Revision 1.41  2010/02/28 15:06:24  jost
+    *** empty log message ***
+
     Revision 1.40  2010/02/21 20:16:07  jost
     Adressbuchexport ins Mail-Menü verschoben.
 
