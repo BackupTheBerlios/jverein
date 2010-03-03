@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupRestoreAction.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/11/17 20:51:06 $
+ * $Revision: 1.6 $
+ * $Date: 2010/03/03 20:11:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupRestoreAction.java,v $
+ * Revision 1.6  2010/03/03 20:11:23  jost
+ * *** empty log message ***
+ *
  * Revision 1.5  2009/11/17 20:51:06  jost
  * Meldung bei gefüllter Datenbank
  *
@@ -164,11 +167,10 @@ public class BackupRestoreAction implements Action
               monitor.addPercentComplete(1);
             }
           }
-
+          monitor.setStatus(ProgressMonitor.STATUS_DONE);
           monitor
               .setStatusText(JVereinPlugin.getI18n().tr("Backup importiert"));
           monitor.setPercentComplete(100);
-          monitor.setStatus(ProgressMonitor.STATUS_DONE);
         }
         catch (Exception e)
         {
