@@ -26,6 +26,7 @@
 	<? include ("dokumentationauswertungkursteilnehmer.php"); ?>
 	<? include ("dokumentationauswertungstatistik.php"); ?>
 	<? include ("dokumentationauswertungadressbuchexport.php"); ?>
+	<? include ("mail.php");?>
 	<? include ("buchfuehrungzusammenhaenge.php"); ?>
  	<? include ("dokumentationbuchfuehrung.php"); ?>
 	<? include ("dokumentationbuchfuehrungkonten.php"); ?>
@@ -41,6 +42,9 @@
 
     <!-- 
     $Log: dokumentationallinone.php,v $
+    Revision 1.8  2010/03/05 21:55:46  jost
+    mail aufgenommen.
+
     Revision 1.7  2009/12/22 18:51:56  jost
     *** empty log message ***
 
