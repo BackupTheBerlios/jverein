@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.78 $
- * $Date: 2010/03/27 20:08:48 $
+ * $Revision: 1.79 $
+ * $Date: 2010/03/27 20:18:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.79  2010/03/27 20:18:24  jost
+ * Überflüssigen Code entfernt.
+ *
  * Revision 1.78  2010/03/27 20:08:48  jost
  * EigenschaftenAuswahl überarbeitet.
  *
@@ -303,7 +306,6 @@ import de.jost_net.JVerein.server.EigenschaftenNode;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.IbanBicCalc;
 import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
-import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
