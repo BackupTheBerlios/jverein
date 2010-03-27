@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.17 $
- * $Date: 2009/11/19 19:44:54 $
+ * $Revision: 1.18 $
+ * $Date: 2010/03/27 20:10:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
+ * Revision 1.18  2010/03/27 20:10:55  jost
+ * Bugfix Eigenschaftensuche
+ *
  * Revision 1.17  2009/11/19 19:44:54  jost
  * Bugfix Eigenschaften
  *
@@ -148,7 +151,7 @@ public class MitgliedQuery
         first = false;
         condEigenschaft += "eigenschaft = ? ";
       }
-      condEigenschaft += ")) = ? ";
+      condEigenschaft += ")) > 0 ";
       addCondition(condEigenschaft);
     }
 
@@ -264,7 +267,6 @@ public class MitgliedQuery
         bedingungen.add((Object) st.nextToken());
         tokcount++;
       }
-      bedingungen.add(new Integer(tokcount));
     }
     if (control.getGeburtsdatumvon().getValue() != null)
     {
