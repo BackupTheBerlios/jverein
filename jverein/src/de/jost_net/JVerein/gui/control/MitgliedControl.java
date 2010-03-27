@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.77 $
- * $Date: 2010/02/15 19:53:16 $
+ * $Revision: 1.78 $
+ * $Date: 2010/03/27 20:08:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.78  2010/03/27 20:08:48  jost
+ * EigenschaftenAuswahl überarbeitet.
+ *
  * Revision 1.77  2010/02/15 19:53:16  jost
  * IBAN direkt bei der Eingabe von Kontonummer und BLZ berechnen
  *
@@ -300,6 +303,7 @@ import de.jost_net.JVerein.server.EigenschaftenNode;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.IbanBicCalc;
 import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
+import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -1688,9 +1692,9 @@ public class MitgliedControl extends AbstractControl
     {
       return eigenschaftenabfrage;
     }
-    EigenschaftenAuswahlDialog d = new EigenschaftenAuswahlDialog(settings);
-    d.addCloseListener(new EigenschaftenListener());
     String tmp = settings.getString("mitglied.eigenschaften", "");
+    EigenschaftenAuswahlDialog d = new EigenschaftenAuswahlDialog(tmp);
+    d.addCloseListener(new EigenschaftenListener());
 
     StringTokenizer stt = new StringTokenizer(tmp, ",");
     String text = "";
@@ -2218,14 +2222,15 @@ public class MitgliedControl extends AbstractControl
     }
   }
 
-  public TreePart getEigenschaftenAuswahlTree() throws RemoteException
+  public TreePart getEigenschaftenAuswahlTree(String vorbelegung)
+      throws RemoteException
   {
     if (eigenschaftenAuswahlTree != null)
     {
       return eigenschaftenAuswahlTree;
     }
-    eigenschaftenAuswahlTree = new TreePart(new EigenschaftenNode(settings
-        .getString("mitglied.eigenschaften", "")), null);
+    eigenschaftenAuswahlTree = new TreePart(new EigenschaftenNode(vorbelegung),
+        null);
     eigenschaftenAuswahlTree.setCheckable(true);
 
     eigenschaftenAuswahlTree.setFormatter(new EigenschaftTreeFormatter());
@@ -2578,8 +2583,29 @@ public class MitgliedControl extends AbstractControl
       {
         return;
       }
-      String selection = (String) event.data;
-      eigenschaftenabfrage.setText(selection);
+      ArrayList<Object> sel = (ArrayList<Object>) event.data;
+      String id = "";
+      String text = "";
+      for (Object o : sel)
+      {
+        if (text.length() > 0)
+        {
+          id += ",";
+          text += ", ";
+        }
+        EigenschaftenNode node = (EigenschaftenNode) o;
+        try
+        {
+          id += node.getEigenschaft().getID();
+          text += node.getEigenschaft().getBezeichnung();
+        }
+        catch (RemoteException e)
+        {
+          Logger.error("Fehler", e);
+        }
+      }
+      eigenschaftenabfrage.setText(text);
+      settings.setAttribute("mitglied.eigenschaften", id);
     }
   }
 
@@ -2591,7 +2617,7 @@ public class MitgliedControl extends AbstractControl
       if (eigenschaftitem.getNodeType() == EigenschaftenNode.ROOT
           || eigenschaftitem.getNodeType() == EigenschaftenNode.EIGENSCHAFTGRUPPE)
       {
-        item.setGrayed(true);
+        //
       }
       else
       {
