@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/02/17 21:26:09 $
+ * $Revision: 1.6 $
+ * $Date: 2010/03/27 20:08:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
+ * Revision 1.6  2010/03/27 20:08:11  jost
+ * Bugfix 2. Aufruf
+ *
  * Revision 1.5  2010/02/17 21:26:09  jost
  * Statusanzeige
  *
@@ -172,7 +175,7 @@ public class MailControl extends AbstractControl
 
   public TablePart getMitgliedMitMail() throws RemoteException
   {
-    if (mitgliedmitmail != null)
+    if (mitgliedmitmail != null && mitgliedmitmail.size() > 0)
     {
       return mitgliedmitmail;
     }
