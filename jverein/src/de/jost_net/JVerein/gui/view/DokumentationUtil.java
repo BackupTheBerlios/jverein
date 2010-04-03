@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.19 $
- * $Date: 2010/02/01 21:00:24 $
+ * $Revision: 1.20 $
+ * $Date: 2010/04/03 11:31:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.20  2010/04/03 11:31:51  jost
+ * Bugfix
+ *
  * Revision 1.19  2010/02/01 21:00:24  jost
  * Neu: Einfache Mailfunktion
  *
@@ -99,7 +102,7 @@ public class DokumentationUtil
       + "administration_buchungsarten.php";
 
   public static final String BUCHUNGSKLASSEN = PRE
-      + "administration_buchungsklassen.php";
+      + "administration_buchungsklasse.php";
 
   public static final String EIGENSCHAFT = PRE
       + "administration_eigenschaft.php";
