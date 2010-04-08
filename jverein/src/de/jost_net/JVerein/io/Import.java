@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.28 $
- * $Date: 2010/02/28 15:05:11 $
+ * $Revision: 1.29 $
+ * $Date: 2010/04/08 17:57:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.29  2010/04/08 17:57:21  jost
+ * Umstellung auf Logger
+ *
  * Revision 1.28  2010/02/28 15:05:11  jost
  * Bugfix Eintrittsdatum
  *
@@ -582,7 +585,7 @@ public class Import
     for (int i = 1; i <= anzspalten; i++)
     {
       String colname = rsm.getColumnName(i);
-      System.out.println(colname);
+      Logger.info(colname);
       if (colname.startsWith(EIGENSCHAFT))
       {
         ret.add(colname);
