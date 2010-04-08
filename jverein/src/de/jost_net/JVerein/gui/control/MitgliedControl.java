@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.80 $
- * $Date: 2010/03/30 17:43:04 $
+ * $Revision: 1.81 $
+ * $Date: 2010/04/08 17:56:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.81  2010/04/08 17:56:20  jost
+ * Bugfix
+ *
  * Revision 1.80  2010/03/30 17:43:04  jost
  * Eigenschaftenauswahl: Klick auf Gruppe ändert alle Kind-Einträge
  *
@@ -1695,12 +1698,8 @@ public class MitgliedControl extends AbstractControl
 
   public DialogInput getEigenschaftenAuswahl() throws RemoteException
   {
-    if (eigenschaftenabfrage != null)
-    {
-      return eigenschaftenabfrage;
-    }
     String tmp = settings.getString("mitglied.eigenschaften", "");
-    EigenschaftenAuswahlDialog d = new EigenschaftenAuswahlDialog(tmp);
+    final EigenschaftenAuswahlDialog d = new EigenschaftenAuswahlDialog(tmp);
     d.addCloseListener(new EigenschaftenListener());
 
     StringTokenizer stt = new StringTokenizer(tmp, ",");
@@ -1723,7 +1722,12 @@ public class MitgliedControl extends AbstractControl
       }
     }
     eigenschaftenabfrage = new DialogInput(text, d);
-
+    eigenschaftenabfrage.addListener(new Listener() {
+      public void handleEvent(Event event)
+      {
+        d.setDefaults(settings.getString("mitglied.eigenschaften", ""));
+      }
+    });
     return eigenschaftenabfrage;
   }
 
@@ -2232,10 +2236,6 @@ public class MitgliedControl extends AbstractControl
   public TreePart getEigenschaftenAuswahlTree(String vorbelegung)
       throws RemoteException
   {
-    if (eigenschaftenAuswahlTree != null)
-    {
-      return eigenschaftenAuswahlTree;
-    }
     eigenschaftenAuswahlTree = new TreePart(new EigenschaftenNode(vorbelegung),
         null);
     eigenschaftenAuswahlTree.setCheckable(true);
@@ -2264,6 +2264,10 @@ public class MitgliedControl extends AbstractControl
         }
         try
         {
+          if (o.getChildren() == null)
+          {
+            return;
+          }
           List children = PseudoIterator.asList(o.getChildren());
           boolean b = event.detail > 0;
           eigenschaftenAuswahlTree.setChecked(children

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/EigenschaftenAuswahlDialog.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/03/27 20:10:05 $
+ * $Revision: 1.8 $
+ * $Date: 2010/04/08 17:56:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenAuswahlDialog.java,v $
+ * Revision 1.8  2010/04/08 17:56:56  jost
+ * Bugfix
+ *
  * Revision 1.7  2010/03/27 20:10:05  jost
  * EigenschaftenAuswahl überarbeitet.
  *
@@ -56,7 +59,7 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
 {
   private MitgliedControl control;
 
-  private TreePart tree;
+  private String defaults = null;
 
   private ArrayList<Object> retval = new ArrayList<Object>();
 
@@ -74,15 +77,22 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
     this.setSize(400, 400);
     setTitle(JVereinPlugin.getI18n().tr("Eigenschaften auswählen "));
     control = new MitgliedControl(null);
-    if (defaults == null)
-    {
-      defaults = "";
-    }
-    tree = control.getEigenschaftenAuswahlTree(defaults);
+    this.setDefaults(defaults);
+  }
+  
+  /**
+   * Speichert die Default-Werte.
+   * @param defaults
+   */
+  public void setDefaults(String defaults)
+  {
+    this.defaults = defaults != null ? defaults : "";
   }
 
   protected void paint(Composite parent) throws RemoteException
   {
+    final TreePart tree = control.getEigenschaftenAuswahlTree(this.defaults);
+
     LabelGroup group = new LabelGroup(parent, JVereinPlugin.getI18n().tr(
         "Eigenschaften"), true);
 
@@ -95,6 +105,7 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
       {
         try
         {
+          retval = new ArrayList<Object>();
           ArrayList<?> checkednodes = (ArrayList<?>) tree.getItems();
           for (Object o : checkednodes)
           {
