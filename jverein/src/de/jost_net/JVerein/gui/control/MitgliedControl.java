@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.81 $
- * $Date: 2010/04/08 17:56:20 $
+ * $Revision: 1.82 $
+ * $Date: 2010/04/12 17:21:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.82  2010/04/12 17:21:08  jost
+ * Überflüssigen Code entfernt.
+ *
  * Revision 1.81  2010/04/08 17:56:20  jost
  * Bugfix
  *
@@ -2275,7 +2278,6 @@ public class MitgliedControl extends AbstractControl
         }
         catch (RemoteException e)
         {
-          // TODO Auto-generated catch block
           e.printStackTrace();
         }
       }
