@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.41 $
- * $Date: 2010/04/18 06:54:23 $
+ * $Revision: 1.42 $
+ * $Date: 2010/04/25 13:55:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.42  2010/04/25 13:55:54  jost
+ * Vorarbeiten Mitgliedskonto
+ *
  * Revision 1.41  2010/04/18 06:54:23  jost
  * Zusätzliche Prüfung der Bankverbindung.
  *
@@ -149,8 +152,8 @@ import com.lowagie.text.DocumentException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.gui.input.AbbuchungsmodusInput;
 import de.jost_net.JVerein.keys.Abrechnungsausgabe;
+import de.jost_net.JVerein.keys.Abrechnungsmodi;
 import de.jost_net.JVerein.keys.Beitragsmodel;
 import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.keys.Zahlungsrhytmus;
@@ -269,7 +272,7 @@ public class Abbuchung
       beitr.put(b.getID(), new Double(b.getBetrag()));
     }
 
-    if (modus != AbbuchungsmodusInput.KEINBEITRAG)
+    if (modus != Abrechnungsmodi.KEINBEITRAG)
     {
       // Alle Mitglieder lesen
       list = Einstellungen.getDBService().createList(Mitglied.class);
@@ -294,7 +297,7 @@ public class Abbuchung
       }
       if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH12631)
       {
-        if (modus == AbbuchungsmodusInput.HAVIMO)
+        if (modus == Abrechnungsmodi.HAVIMO)
         {
           list
               .addFilter(
@@ -303,7 +306,7 @@ public class Abbuchung
                       new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
                       new Integer(Zahlungsrhytmus.MONATLICH) });
         }
-        if (modus == AbbuchungsmodusInput.JAVIMO)
+        if (modus == Abrechnungsmodi.JAVIMO)
         {
           list
               .addFilter(
@@ -312,28 +315,28 @@ public class Abbuchung
                       new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
                       new Integer(Zahlungsrhytmus.MONATLICH) });
         }
-        if (modus == AbbuchungsmodusInput.VIMO)
+        if (modus == Abrechnungsmodi.VIMO)
         {
           list.addFilter("(zahlungsrhytmus = ? or zahlungsrhytmus = ?)",
               new Object[] { new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
                   new Integer(Zahlungsrhytmus.MONATLICH) });
         }
-        if (modus == AbbuchungsmodusInput.MO)
+        if (modus == Abrechnungsmodi.MO)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
               Zahlungsrhytmus.MONATLICH) });
         }
-        if (modus == AbbuchungsmodusInput.VI)
+        if (modus == Abrechnungsmodi.VI)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
               Zahlungsrhytmus.VIERTELJAEHRLICH) });
         }
-        if (modus == AbbuchungsmodusInput.HA)
+        if (modus == Abrechnungsmodi.HA)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
               Zahlungsrhytmus.HALBJAEHRLICH) });
         }
-        if (modus == AbbuchungsmodusInput.JA)
+        if (modus == Abrechnungsmodi.JA)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
               Zahlungsrhytmus.JAEHRLICH) });
