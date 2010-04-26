@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/AktuelleGeburtstageList.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/07/24 18:42:26 $
+ * $Revision: 1.3 $
+ * $Date: 2010/04/26 19:22:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageList.java,v $
+ * Revision 1.3  2010/04/26 19:22:42  jost
+ * Korrekte Behandlung von ausgetretenen Mitgliedern
+ *
  * Revision 1.2  2009/07/24 18:42:26  jost
  * Vermeidung NullpointerException
  *
@@ -20,6 +23,7 @@ package de.jost_net.JVerein.gui.parts;
 
 import java.rmi.RemoteException;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -82,7 +86,8 @@ public class AktuelleGeburtstageList extends TablePart implements Part
       cal.add(Calendar.DAY_OF_MONTH, 1);
     }
     geburtstage.addFilter(filter);
-    geburtstage.addFilter("kuendigung is null");
+    geburtstage.addFilter("austritt is null or austritt > ?",
+        new Object[] { new Date() });
     geburtstage.setOrder("ORDER BY month(geburtsdatum), day(geburtsdatum)");
 
     if (aktuelleGeburtstageList == null)
