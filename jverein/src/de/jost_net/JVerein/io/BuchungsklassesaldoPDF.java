@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklassesaldoPDF.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/02/23 21:16:13 $
+ * $Revision: 1.5 $
+ * $Date: 2010/05/02 06:09:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklassesaldoPDF.java,v $
+ * Revision 1.5  2010/05/02 06:09:32  jost
+ * Redakt. Änderung
+ *
  * Revision 1.4  2010/02/23 21:16:13  jost
  * Individueller Zeitraum
  *
@@ -56,7 +59,7 @@ public class BuchungsklassesaldoPDF
       FileOutputStream fos = new FileOutputStream(file);
       String subtitle = Einstellungen.DATEFORMAT.format(datumvon) + " - "
           + Einstellungen.DATEFORMAT.format(datumbis);
-      Reporter reporter = new Reporter(fos, monitor, "Buchungsklassesaldo",
+      Reporter reporter = new Reporter(fos, monitor, "Buchungsklassen-Saldo",
           subtitle, zeile.size());
       makeHeader(reporter);
 
