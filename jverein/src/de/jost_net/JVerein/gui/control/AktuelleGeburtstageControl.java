@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AktuelleGeburtstageControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/14 07:28:43 $
+ * $Revision: 1.2 $
+ * $Date: 2010/05/16 10:42:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageControl.java,v $
+ * Revision 1.2  2010/05/16 10:42:55  jost
+ * Einheitlicher Umgang mit ausgetretenen Mitgliedern
+ *
  * Revision 1.1  2009/07/14 07:28:43  jost
  * Neu: Box aktuelle Geburtstage
  *
@@ -22,6 +25,7 @@ import java.util.Calendar;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -110,7 +114,7 @@ public class AktuelleGeburtstageControl extends AbstractControl
       cal.add(Calendar.DAY_OF_MONTH, 1);
     }
     geburtstage.addFilter(filter);
-    geburtstage.addFilter("kuendigung is null");
+    MitgliedUtils.setNurAktive(geburtstage);
     geburtstage.setOrder("ORDER BY month(geburtsdatum), day(geburtsdatum)");
 
     if (aktuelleGeburtstageList == null)

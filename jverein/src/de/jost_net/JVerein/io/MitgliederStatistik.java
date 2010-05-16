@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliederStatistik.java,v $
- * $Revision: 1.8 $
- * $Date: 2009/03/02 21:09:39 $
+ * $Revision: 1.9 $
+ * $Date: 2010/05/16 10:44:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederStatistik.java,v $
+ * Revision 1.9  2010/05/16 10:44:28  jost
+ * Einheitlicher Umgang mit ausgetretenen Mitgliedern
+ *
  * Revision 1.8  2009/03/02 21:09:39  jost
  * Bugfix Altersgruppen und Berücksichtigung des Eintrittsdatums
  *
@@ -57,6 +60,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Stammdaten;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
@@ -278,8 +282,7 @@ public class MitgliederStatistik
     list = Einstellungen.getDBService().createList(Mitglied.class);
     list.addFilter("geburtsdatum >= ?", new Object[] { vd });
     list.addFilter("geburtsdatum <= ?", new Object[] { bd });
-    list.addFilter("(austritt is null or austritt > ?)",
-        new Object[] { stichtag });
+    MitgliedUtils.setNurAktive(list, stichtag);
     list.addFilter("(eintritt is null or eintritt <= ?)",
         new Object[] { stichtag });
 
@@ -295,8 +298,7 @@ public class MitgliederStatistik
       Date stichtag) throws RemoteException
   {
     DBIterator list = Einstellungen.getDBService().createList(Mitglied.class);
-    list.addFilter("(austritt is null or austritt > ?)",
-        new Object[] { stichtag });
+    MitgliedUtils.setNurAktive(list, stichtag);
     list.addFilter("(eintritt is null or eintritt <= ?)",
         new Object[] { stichtag });
     if (bg != null)

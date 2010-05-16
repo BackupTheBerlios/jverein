@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/03/27 20:08:11 $
+ * $Revision: 1.7 $
+ * $Date: 2010/05/16 10:43:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
+ * Revision 1.7  2010/05/16 10:43:19  jost
+ * Einheitlicher Umgang mit ausgetretenen Mitgliedern
+ *
  * Revision 1.6  2010/03/27 20:08:11  jost
  * Bugfix 2. Aufruf
  *
@@ -52,6 +55,7 @@ import de.jost_net.JVerein.rmi.Mail;
 import de.jost_net.JVerein.rmi.MailAnhang;
 import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -180,6 +184,7 @@ public class MailControl extends AbstractControl
       return mitgliedmitmail;
     }
     DBIterator it = Einstellungen.getDBService().createList(Mitglied.class);
+    MitgliedUtils.setNurAktive(it);
     it.addFilter("email is not null and length(email)  > 0");
     mitgliedmitmail = new TablePart(it, null);
     mitgliedmitmail.addColumn("EMail", "email");

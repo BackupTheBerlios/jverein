@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/AktuelleGeburtstageList.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/04/26 19:22:42 $
+ * $Revision: 1.4 $
+ * $Date: 2010/05/16 10:43:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageList.java,v $
+ * Revision 1.4  2010/05/16 10:43:58  jost
+ * Einheitlicher Umgang mit ausgetretenen Mitgliedern
+ *
  * Revision 1.3  2010/04/26 19:22:42  jost
  * Korrekte Behandlung von ausgetretenen Mitgliedern
  *
@@ -30,6 +33,7 @@ import org.eclipse.swt.widgets.Composite;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.Part;
@@ -49,6 +53,7 @@ public class AktuelleGeburtstageList extends TablePart implements Part
   {
     DBService service = Einstellungen.getDBService();
     DBIterator geburtstage = service.createList(Mitglied.class);
+    MitgliedUtils.setNurAktive(geburtstage);
     String filter = "";
     Calendar cal = Calendar.getInstance();
     int vorher = 0;
@@ -86,8 +91,6 @@ public class AktuelleGeburtstageList extends TablePart implements Part
       cal.add(Calendar.DAY_OF_MONTH, 1);
     }
     geburtstage.addFilter(filter);
-    geburtstage.addFilter("austritt is null or austritt > ?",
-        new Object[] { new Date() });
     geburtstage.setOrder("ORDER BY month(geburtsdatum), day(geburtsdatum)");
 
     if (aktuelleGeburtstageList == null)

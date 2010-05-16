@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Jubilaeenliste.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/01/01 20:28:09 $
+ * $Revision: 1.8 $
+ * $Date: 2010/05/16 10:44:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Jubilaeenliste.java,v $
+ * Revision 1.8  2010/05/16 10:44:15  jost
+ * Einheitlicher Umgang mit ausgetretenen Mitgliedern
+ *
  * Revision 1.7  2010/01/01 20:28:09  jost
  * Konkrete Fehlermeldung, wenn bei der Erstellung einer Altersjubiläumsliste der Eintag in den Stammdaten fehlt.
  *
@@ -51,6 +54,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Stammdaten;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
@@ -157,7 +161,7 @@ public class Jubilaeenliste
 
       DBIterator mitgl = Einstellungen.getDBService()
           .createList(Mitglied.class);
-      mitgl.addFilter("austritt is null");
+      MitgliedUtils.setNurAktive(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
       cal.add(Calendar.YEAR, jubi * -1);
@@ -206,7 +210,7 @@ public class Jubilaeenliste
 
       DBIterator mitgl = Einstellungen.getDBService()
           .createList(Mitglied.class);
-      mitgl.addFilter("austritt is null");
+     MitgliedUtils.setNurAktive(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
       cal.add(Calendar.YEAR, jubi * -1);

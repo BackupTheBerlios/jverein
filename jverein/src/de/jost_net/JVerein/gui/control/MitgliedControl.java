@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.82 $
- * $Date: 2010/04/12 17:21:08 $
+ * $Revision: 1.83 $
+ * $Date: 2010/05/16 10:43:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.83  2010/05/16 10:43:42  jost
+ * Einheitlicher Umgang mit ausgetretenen Mitgliedern
+ *
  * Revision 1.82  2010/04/12 17:21:08  jost
  * Überflüssigen Code entfernt.
  *
@@ -312,6 +315,7 @@ import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.server.EigenschaftenNode;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.IbanBicCalc;
 import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
@@ -1113,7 +1117,7 @@ public class MitgliedControl extends AbstractControl
     }
     DBIterator zhl = Einstellungen.getDBService().createList(Mitglied.class);
     zhl.addFilter(cond);
-    zhl.addFilter("austritt is null");
+    MitgliedUtils.setNurAktive(zhl);
     zhl.setOrder("ORDER BY name, vorname");
 
     String suche = "";
@@ -1725,7 +1729,8 @@ public class MitgliedControl extends AbstractControl
       }
     }
     eigenschaftenabfrage = new DialogInput(text, d);
-    eigenschaftenabfrage.addListener(new Listener() {
+    eigenschaftenabfrage.addListener(new Listener()
+    {
       public void handleEvent(Event event)
       {
         d.setDefaults(settings.getString("mitglied.eigenschaften", ""));

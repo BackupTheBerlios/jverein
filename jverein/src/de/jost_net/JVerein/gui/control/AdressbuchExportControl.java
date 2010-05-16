@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AdressbuchExportControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/03/26 20:58:32 $
+ * $Revision: 1.2 $
+ * $Date: 2010/05/16 10:42:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AdressbuchExportControl.java,v $
+ * Revision 1.2  2010/05/16 10:42:38  jost
+ * Einheitlicher Umgang mit ausgetretenen Mitgliedern
+ *
  * Revision 1.1  2009/03/26 20:58:32  jost
  * Neu: Adressbuchexport
  *
@@ -25,6 +28,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.io.Adressbuch.Txt;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.Dateiname;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -153,7 +157,7 @@ public class AdressbuchExportControl extends AbstractControl
         {
           DBIterator it = Einstellungen.getDBService().createList(
               Mitglied.class);
-          it.addFilter("austritt is null");
+          MitgliedUtils.setNurAktive(it);
           if (isNurEmail)
           {
             it.addFilter("email is not null and length(email)>0");
