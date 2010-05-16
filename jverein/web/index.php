@@ -63,6 +63,7 @@
 	<div style="float:left; width:200px;  left: 850px; ">    
 	   	<h1>News</h1>
     	<ul>
+    		<li>16.05.2010: Version 1.3.1 freigegeben</a>.</li> 
     		<li>29.04.2010: Das Windows-Setup für die Jameica-Suite steht jetzt im Downloadbereich zur Verfügung.</li> 
     		<li>09.04.2010: <a href='version1.3.0.php'>Version 1.3.0 freigegeben</a>.</li> 
     		<li>28.03.2010: Neuer  <a href='download.php'>Downloadbereich</a></li> 
@@ -71,6 +72,9 @@
 	   
 	<!-- 
     $Log: index.php,v $
+    Revision 1.32  2010/05/16 12:09:46  jost
+    *** empty log message ***
+
     Revision 1.31  2010/04/29 12:45:50  jost
     *** empty log message ***
 
