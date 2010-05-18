@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/AbrechnungslaeufeImpl.java,v $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AbrechnungslaufImpl.java,v $
  * $Revision: 1.1 $
- * $Date: 2010/04/25 13:56:52 $
+ * $Date: 2010/05/18 20:25:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AbrechnungslaeufeImpl.java,v $
+ * $Log: AbrechnungslaufImpl.java,v $
+ * Revision 1.1  2010/05/18 20:25:09  jost
+ * Anpassung Klassenname
+ *
  * Revision 1.1  2010/04/25 13:56:52  jost
  * Vorarbeiten Mitgliedskonto
  *
@@ -19,23 +22,23 @@ import java.rmi.RemoteException;
 import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
-import de.jost_net.JVerein.rmi.Abrechnungslaeufe;
+import de.jost_net.JVerein.rmi.Abrechnungslauf;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.util.ApplicationException;
 
-public class AbrechnungslaeufeImpl extends AbstractDBObject implements
-    Abrechnungslaeufe
+public class AbrechnungslaufImpl extends AbstractDBObject implements
+    Abrechnungslauf
 {
   private static final long serialVersionUID = 1L;
 
-  public AbrechnungslaeufeImpl() throws RemoteException
+  public AbrechnungslaufImpl() throws RemoteException
   {
     super();
   }
 
   protected String getTableName()
   {
-    return "abrechnungslaeufe";
+    return "abrechnungslauf";
   }
 
   public String getPrimaryAttribute() throws RemoteException

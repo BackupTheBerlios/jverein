@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitgliedskonto.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/04/28 06:17:50 $
+ * $Revision: 1.2 $
+ * $Date: 2010/05/18 20:24:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitgliedskonto.java,v $
+ * Revision 1.2  2010/05/18 20:24:32  jost
+ * Anpassung Klassenname
+ *
  * Revision 1.1  2010/04/28 06:17:50  jost
  * Neu: Mitgliedskonto
  *
@@ -23,6 +26,11 @@ import de.willuhn.datasource.rmi.DBObject;
 public interface Mitgliedskonto extends DBObject
 {
   public String getID() throws RemoteException;
+
+  public Abrechnungslauf getAbrechnungslauf() throws RemoteException;
+
+  public void setAbrechnungslauf(Abrechnungslauf abrechnungslauf)
+      throws RemoteException;
 
   public Mitglied getMitglied() throws RemoteException;
 
@@ -48,8 +56,8 @@ public interface Mitgliedskonto extends DBObject
 
   public double getBetrag() throws RemoteException;
 
-  public void setReferenz(String referenz) throws RemoteException;
+  public void setReferenz(Mitgliedskonto referenz) throws RemoteException;
 
-  public String getReferenz() throws RemoteException;
+  public Mitgliedskonto getReferenz() throws RemoteException;
 
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.42 $
- * $Date: 2010/04/25 13:55:54 $
+ * $Revision: 1.43 $
+ * $Date: 2010/05/18 20:21:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.43  2010/05/18 20:21:08  jost
+ * Anpassung Klassenname
+ *
  * Revision 1.42  2010/04/25 13:55:54  jost
  * Vorarbeiten Mitgliedskonto
  *
@@ -159,7 +162,7 @@ import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.keys.Zahlungsrhytmus;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Abrechnung;
-import de.jost_net.JVerein.rmi.Abrechnungslaeufe;
+import de.jost_net.JVerein.rmi.Abrechnungslauf;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
@@ -217,8 +220,8 @@ public class Abbuchung
     {
       buchenHibiscus(param);
     }
-    Abrechnungslaeufe abrl = (Abrechnungslaeufe) Einstellungen.getDBService()
-        .createObject(Abrechnungslaeufe.class, null);
+    Abrechnungslauf abrl = (Abrechnungslauf) Einstellungen.getDBService()
+        .createObject(Abrechnungslauf.class, null);
     abrl.setDatum(new Date());
     abrl.setAbbuchungsausgabe(param.abbuchungsausgabe);
     abrl.setDtausdruck(param.dtausprint);

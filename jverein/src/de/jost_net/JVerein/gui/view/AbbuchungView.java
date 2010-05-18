@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.21 $
- * $Date: 2010/04/25 13:55:04 $
+ * $Revision: 1.22 $
+ * $Date: 2010/05/18 20:20:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.22  2010/05/18 20:20:06  jost
+ * Anpassung Klassenname
+ *
  * Revision 1.21  2010/04/25 13:55:04  jost
  * Vorarbeiten Mitgliedskonto
  *
@@ -82,7 +85,7 @@ import java.sql.SQLException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.gui.action.AbrechnunslaeufeListAction;
+import de.jost_net.JVerein.gui.action.AbrechnunslaufListAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.AbbuchungControl;
 import de.willuhn.datasource.rmi.DBService;
@@ -161,7 +164,7 @@ public class AbbuchungView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton("Rückgängig", new AbrechnunslaeufeListAction(), null,
+    buttons.addButton("Rückgängig", new AbrechnunslaufListAction(), null,
         false, "edit-undo.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ABRECHNUNG, false,

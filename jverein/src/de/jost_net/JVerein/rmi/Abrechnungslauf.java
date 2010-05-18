@@ -1,14 +1,17 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Attic/Abrechnungslaeufe.java,v $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Abrechnungslauf.java,v $
  * $Revision: 1.1 $
- * $Date: 2010/04/25 13:56:26 $
+ * $Date: 2010/05/18 20:24:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Abrechnungslaeufe.java,v $
+ * $Log: Abrechnungslauf.java,v $
+ * Revision 1.1  2010/05/18 20:24:00  jost
+ * Anpassung Klassenname
+ *
  * Revision 1.1  2010/04/25 13:56:26  jost
  * Vorarbeiten Mitgliedskonto
  *
@@ -20,7 +23,7 @@ import java.util.Date;
 
 import de.willuhn.datasource.rmi.DBObject;
 
-public interface Abrechnungslaeufe extends DBObject
+public interface Abrechnungslauf extends DBObject
 {
   public Date getDatum() throws RemoteException;
 
