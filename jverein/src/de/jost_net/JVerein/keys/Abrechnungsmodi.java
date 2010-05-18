@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Abrechnungsmodi.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/04/25 13:56:11 $
+ * $Revision: 1.2 $
+ * $Date: 2010/05/18 20:23:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,16 +9,16 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnungsmodi.java,v $
+ * Revision 1.2  2010/05/18 20:23:26  jost
+ * Überflüssige Imports entfernt.
+ *
  * Revision 1.1  2010/04/25 13:56:11  jost
  * Vorarbeiten Mitgliedskonto
  *
  **********************************************************************/
 package de.jost_net.JVerein.keys;
 
-import java.util.ArrayList;
-
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.gui.input.AbbuchungsmodusInput;
 
 /**
  * Abrechnungsmodi
