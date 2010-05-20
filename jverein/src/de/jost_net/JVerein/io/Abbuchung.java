@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.43 $
- * $Date: 2010/05/18 20:21:08 $
+ * $Revision: 1.44 $
+ * $Date: 2010/05/20 18:07:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
+ * Revision 1.44  2010/05/20 18:07:26  jost
+ * Close eingefügt.
+ *
  * Revision 1.43  2010/05/18 20:21:08  jost
  * Anpassung Klassenname
  *
@@ -215,6 +218,7 @@ public class Abbuchung
     // Ende der Abbuchung. Jetzt wird noch der E-Satz geschrieben. Die Werte
     // wurden beim Schreiben der C-Sätze ermittelt.
     dtaus.writeESatz();
+    dtaus.close();
     if (param.abbuchungsausgabe == Abrechnungsausgabe.HIBISCUS_EINZELBUCHUNGEN
         || param.abbuchungsausgabe == Abrechnungsausgabe.HIBISCUS_SAMMELBUCHUNG)
     {
