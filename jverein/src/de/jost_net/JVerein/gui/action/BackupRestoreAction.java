@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupRestoreAction.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/03/03 20:11:23 $
+ * $Revision: 1.7 $
+ * $Date: 2010/05/24 14:59:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupRestoreAction.java,v $
+ * Revision 1.7  2010/05/24 14:59:19  jost
+ * Vermeidung Fehlermeldung.
+ *
  * Revision 1.6  2010/03/03 20:11:23  jost
  * *** empty log message ***
  *
@@ -35,6 +38,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -44,6 +48,7 @@ import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.EigenschaftGruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.BeanUtil;
 import de.willuhn.datasource.GenericObject;
@@ -121,13 +126,24 @@ public class BackupRestoreAction implements Action
         final ClassLoader loader = Application.getPluginLoader().getPlugin(
             JVereinPlugin.class).getResources().getClassLoader();
 
+        try
+        {
+          EigenschaftGruppe eg = (EigenschaftGruppe) Einstellungen
+              .getDBService().createObject(EigenschaftGruppe.class, "1");
+          eg.delete();
+        }
+        catch (RemoteException e1)
+        {
+          Logger.error("EigenschaftGruppe mit id=1 kann nicht gelöscht werden",
+              e1);
+        }
+
         Reader reader = null;
         try
         {
           InputStream is = new BufferedInputStream(new FileInputStream(file));
           reader = new XmlReader(is, new ObjectFactory()
           {
-
             @SuppressWarnings("unchecked")
             public GenericObject create(String type, String id, Map values)
                 throws Exception
@@ -143,7 +159,6 @@ public class BackupRestoreAction implements Action
               }
               return object;
             }
-
           });
 
           long count = 1;
