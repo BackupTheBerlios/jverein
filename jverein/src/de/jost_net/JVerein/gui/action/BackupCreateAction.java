@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/02/01 20:56:43 $
+ * $Revision: 1.8 $
+ * $Date: 2010/05/24 14:57:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
+ * Revision 1.8  2010/05/24 14:57:58  jost
+ * Weitere Tabellen aufgenommen.
+ *
  * Revision 1.7  2010/02/01 20:56:43  jost
  * Mail-Tabellen aufgenommen
  *
@@ -50,11 +53,14 @@ import de.jost_net.JVerein.rmi.Mail;
 import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.MailVorlage;
 import de.jost_net.JVerein.server.AbrechnungImpl;
+import de.jost_net.JVerein.server.AbrechnungslaufImpl;
 import de.jost_net.JVerein.server.AnfangsbestandImpl;
 import de.jost_net.JVerein.server.BeitragsgruppeImpl;
 import de.jost_net.JVerein.server.BuchungImpl;
 import de.jost_net.JVerein.server.BuchungsartImpl;
+import de.jost_net.JVerein.server.BuchungsklasseImpl;
 import de.jost_net.JVerein.server.EigenschaftGruppeImpl;
+import de.jost_net.JVerein.server.EigenschaftImpl;
 import de.jost_net.JVerein.server.EigenschaftenImpl;
 import de.jost_net.JVerein.server.EinstellungImpl;
 import de.jost_net.JVerein.server.FelddefinitionImpl;
@@ -65,8 +71,10 @@ import de.jost_net.JVerein.server.KontoImpl;
 import de.jost_net.JVerein.server.KursteilnehmerImpl;
 import de.jost_net.JVerein.server.LehrgangImpl;
 import de.jost_net.JVerein.server.LehrgangsartImpl;
+import de.jost_net.JVerein.server.MailAnhangImpl;
 import de.jost_net.JVerein.server.ManuellerZahlungseingangImpl;
 import de.jost_net.JVerein.server.MitgliedImpl;
+import de.jost_net.JVerein.server.MitgliedskontoImpl;
 import de.jost_net.JVerein.server.SpendenbescheinigungImpl;
 import de.jost_net.JVerein.server.StammdatenImpl;
 import de.jost_net.JVerein.server.WiedervorlageImpl;
@@ -93,16 +101,17 @@ public class BackupCreateAction implements Action
 {
   // Die Versionstabelle wird nicht mit kopiert
   Class<?>[] tab = { StammdatenImpl.class, EinstellungImpl.class,
-      BeitragsgruppeImpl.class, BeitragsgruppeImpl.class,
-      BuchungsartImpl.class, KontoImpl.class, BuchungImpl.class,
+      BeitragsgruppeImpl.class, BuchungsartImpl.class,
+      BuchungsklasseImpl.class, KontoImpl.class, BuchungImpl.class,
       FelddefinitionImpl.class, SpendenbescheinigungImpl.class,
       FormularImpl.class, FormularfeldImpl.class, FelddefinitionImpl.class,
       MitgliedImpl.class, AbrechnungImpl.class, EigenschaftGruppeImpl.class,
-      EigenschaftenImpl.class, AnfangsbestandImpl.class,
+      EigenschaftImpl.class, EigenschaftenImpl.class, AnfangsbestandImpl.class,
       JahresabschlussImpl.class, ManuellerZahlungseingangImpl.class,
       KursteilnehmerImpl.class, WiedervorlageImpl.class,
       ZusatzbetragImpl.class, ZusatzfelderImpl.class, LehrgangsartImpl.class,
-      LehrgangImpl.class, MailVorlage.class, MailEmpfaenger.class, Mail.class };
+      LehrgangImpl.class, MailVorlage.class, MailEmpfaenger.class, Mail.class,
+      MailAnhangImpl.class, AbrechnungslaufImpl.class, MitgliedskontoImpl.class };
 
   /**
    * Dateformat, welches fuer den Dateinamen genutzt wird.
@@ -226,6 +235,7 @@ public class BackupCreateAction implements Action
       throws Exception
   {
     DBIterator list = Einstellungen.getDBService().createList(type);
+    list.setOrder("ORDER by id");
     long count = 1;
     while (list.hasNext())
     {
