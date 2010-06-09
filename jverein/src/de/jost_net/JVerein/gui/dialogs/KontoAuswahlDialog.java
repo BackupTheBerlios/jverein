@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/KontoAuswahlDialog.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/20 12:33:40 $
+ * $Revision: 1.4 $
+ * $Date: 2010/06/09 18:50:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,6 +10,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoAuswahlDialog.java,v $
+ * Revision 1.4  2010/06/09 18:50:05  jost
+ * Größe des Dialog verändert.
+ *
  * Revision 1.3  2009/06/20 12:33:40  jost
  * Vereinheitlichung der Bezeichner
  *
@@ -47,6 +50,7 @@ public class KontoAuswahlDialog extends AbstractDialog
   public KontoAuswahlDialog(int position)
   {
     super(position);
+    super.setSize(400, 300);
     this.setTitle(JVereinPlugin.getI18n().tr("Konto-Auswahl"));
   }
 
