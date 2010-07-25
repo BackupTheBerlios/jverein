@@ -1,3 +1,18 @@
+/**********************************************************************
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/KontoauswahlInput.java,v $
+ * $Revision: 1.3 $
+ * $Date: 2010/07/25 18:34:58 $
+ * $Author: jost $
+ *
+ * Copyright (c) by Heiner Jostkleigrewe
+ * All rights reserved
+ * heiner@jverein.de
+ * www.jverein.de
+ * $Log: KontoauswahlInput.java,v $
+ * Revision 1.3  2010/07/25 18:34:58  jost
+ * Doc
+ *
+**********************************************************************/
 package de.jost_net.JVerein.gui.input;
 
 import java.rmi.RemoteException;
