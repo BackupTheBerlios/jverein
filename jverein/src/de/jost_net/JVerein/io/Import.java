@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.29 $
- * $Date: 2010/04/08 17:57:21 $
+ * $Revision: 1.30 $
+ * $Date: 2010/07/25 18:44:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
+ * Revision 1.30  2010/07/25 18:44:24  jost
+ * Bugfix Zahlungsrhytmus
+ *
  * Revision 1.29  2010/04/08 17:57:21  jost
  * Umstellung auf Logger
  *
@@ -288,6 +291,10 @@ public class Import
         try
         {
           zahlungsrhytmus = results.getString("Zahlungsrhytmus");
+          if (zahlungsrhytmus.length()== 0)
+          {
+            zahlungsrhytmus="12";
+          }
         }
         catch (SQLException e)
         {
