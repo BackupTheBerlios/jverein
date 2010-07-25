@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.25 $
- * $Date: 2010/02/21 20:15:53 $
+ * $Revision: 1.26 $
+ * $Date: 2010/07/25 18:36:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
+ * Revision 1.26  2010/07/25 18:36:26  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.25  2010/02/21 20:15:53  jost
  * Adressbuchexport ins Mail-Menü verschoben.
  *
@@ -119,6 +122,7 @@ import de.jost_net.JVerein.gui.action.MailVorlagenAction;
 import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangListeAction;
 import de.jost_net.JVerein.gui.action.MitgliedImportAction;
 import de.jost_net.JVerein.gui.action.MitgliedSucheAction;
+import de.jost_net.JVerein.gui.action.MitgliedskontoListeAction;
 import de.jost_net.JVerein.gui.action.RechnungListeAction;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungListeAction;
 import de.jost_net.JVerein.gui.action.StammdatenAction;
@@ -158,6 +162,13 @@ public class MyExtension implements Extension
       {
         jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
             "Rechnung"), new RechnungListeAction(), "rechnung.png"));
+      }
+      if (Einstellungen.getEinstellung().getMitgliedskonto())
+      {
+        jverein
+            .addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
+                "Mitgliedskonten"), new MitgliedskontoListeAction(),
+                "rechnung.png"));
       }
       if (Einstellungen.getEinstellung().getZusatzbetrag())
       {
