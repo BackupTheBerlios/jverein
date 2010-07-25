@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AbrechnungslaufImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/05/18 20:25:09 $
+ * $Revision: 1.2 $
+ * $Date: 2010/07/25 18:46:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufImpl.java,v $
+ * Revision 1.2  2010/07/25 18:46:42  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.1  2010/05/18 20:25:09  jost
  * Anpassung Klassenname
  *
@@ -43,7 +46,7 @@ public class AbrechnungslaufImpl extends AbstractDBObject implements
 
   public String getPrimaryAttribute() throws RemoteException
   {
-    return "id";
+    return "idtext";
   }
 
   protected void deleteCheck() throws ApplicationException
@@ -63,6 +66,11 @@ public class AbrechnungslaufImpl extends AbstractDBObject implements
   protected Class getForeignObject(String arg0) throws RemoteException
   {
     return null;
+  }
+
+  public Integer getNr() throws RemoteException
+  {
+    return new Integer(getID());
   }
 
   public Date getDatum() throws RemoteException
@@ -173,8 +181,24 @@ public class AbrechnungslaufImpl extends AbstractDBObject implements
     setAttribute("abbuchungsausgabe", abbuchungsausgabe);
   }
 
+  /**
+   * Gibt den Text zur ID aus
+   */
+  public String getIDText() throws RemoteException
+  {
+    return getID() + " vom " + Einstellungen.DATEFORMAT.format(getDatum());
+  }
+
   public Object getAttribute(String fieldName) throws RemoteException
   {
+    if (fieldName.equals("idtext"))
+    {
+      return getIDText();
+    }
+    if (fieldName.equals("nr"))
+    {
+      return getNr();
+    }
     return super.getAttribute(fieldName);
   }
 }

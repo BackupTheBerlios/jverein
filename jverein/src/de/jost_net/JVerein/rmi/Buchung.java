@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.8 $
- * $Date: 2008/12/03 22:00:50 $
+ * $Revision: 1.9 $
+ * $Date: 2010/07/25 18:45:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchung.java,v $
+ * Revision 1.9  2010/07/25 18:45:51  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.8  2008/12/03 22:00:50  jost
  * Erweiterung um Auszugs- und Blattnummer
  *
@@ -89,6 +92,25 @@ public interface Buchung extends DBObject
   public int getBuchungsartId() throws RemoteException;
 
   public void setBuchungsart(Integer buchungsart) throws RemoteException;
+
+  public Abrechnungslauf getAbrechnungslauf() throws RemoteException;
+
+  public int getAbrechnungslaufID() throws RemoteException;
+
+  public void setAbrechnungslauf(Abrechnungslauf abrechnungslauf)
+      throws RemoteException;
+
+  public void setAbrechnungslauf(Integer abrechnungslauf)
+      throws RemoteException;
+
+  public Mitgliedskonto getMitgliedskonto() throws RemoteException;
+
+  public int getMitgliedskontoID() throws RemoteException;
+
+  public void setMitgliedskonto(Mitgliedskonto mitgliedskonto)
+      throws RemoteException;
+
+  public void setMitgliedskontoID(Integer mitgliedskonto) throws RemoteException;
 
   public Jahresabschluss getJahresabschluss() throws RemoteException;
 

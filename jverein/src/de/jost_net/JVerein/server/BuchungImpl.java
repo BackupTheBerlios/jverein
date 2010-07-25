@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.10 $
- * $Date: 2009/06/11 21:04:23 $
+ * $Revision: 1.11 $
+ * $Date: 2010/07/25 18:46:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
+ * Revision 1.11  2010/07/25 18:46:52  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.10  2009/06/11 21:04:23  jost
  * Vorbereitung I18N
  *
@@ -44,10 +47,12 @@ import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.Abrechnungslauf;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Buchungsart;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
 import de.jost_net.JVerein.rmi.Konto;
+import de.jost_net.JVerein.rmi.Mitgliedskonto;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
@@ -129,6 +134,14 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
     else if ("konto".equals(field))
     {
       return Konto.class;
+    }
+    else if ("mitgliedskonto".equals(field))
+    {
+      return Mitgliedskonto.class;
+    }
+    else if ("abrechnungslauf".equals(field))
+    {
+      return Abrechnungslauf.class;
     }
     return null;
   }
@@ -265,6 +278,50 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
   public void setBuchungsart(Integer buchungsart) throws RemoteException
   {
     setAttribute("buchungsart", buchungsart);
+  }
+
+  public Abrechnungslauf getAbrechnungslauf() throws RemoteException
+  {
+    return (Abrechnungslauf) getAttribute("abrechnungslauf");
+  }
+
+  public int getAbrechnungslaufID() throws RemoteException
+  {
+    return Integer.parseInt(getAbrechnungslauf().getID());
+  }
+
+  public void setAbrechnungslauf(Integer abrechnungslauf)
+      throws RemoteException
+  {
+    setAttribute("abrechnungslauf", abrechnungslauf);
+  }
+
+  public void setAbrechnungslauf(Abrechnungslauf abrechnungslauf)
+      throws RemoteException
+  {
+    setAttribute("abrechnungslauf", new Integer(abrechnungslauf.getID()));
+  }
+
+  public Mitgliedskonto getMitgliedskonto() throws RemoteException
+  {
+    return (Mitgliedskonto) getAttribute("mitgliedskonto");
+  }
+
+  public int getMitgliedskontoID() throws RemoteException
+  {
+    return Integer.parseInt(getMitgliedskonto().getID());
+  }
+
+  public void setMitgliedskontoID(Integer mitgliedskontoID)
+      throws RemoteException
+  {
+    setAttribute("mitgliedskonto", mitgliedskontoID);
+  }
+
+  public void setMitgliedskonto(Mitgliedskonto mitgliedskonto)
+      throws RemoteException
+  {
+    setAttribute("mitgliedskonto", new Integer(mitgliedskonto.getID()));
   }
 
   public Object getAttribute(String fieldName) throws RemoteException

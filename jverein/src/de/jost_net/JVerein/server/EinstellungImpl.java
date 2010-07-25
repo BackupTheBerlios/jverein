@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/01/21 21:37:47 $
+ * $Revision: 1.13 $
+ * $Date: 2010/07/25 18:47:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
+ * Revision 1.13  2010/07/25 18:47:09  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.12  2010/01/21 21:37:47  jost
  * Vermeidung NPE
  *
@@ -194,6 +197,16 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
     setAttribute("juristischepersonen", new Boolean(juristischepersonen));
   }
 
+  public boolean getMitgliedskonto() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("mitgliedskonto"));
+  }
+
+  public void setMitgliedskonto(Boolean mitgliedskonto) throws RemoteException
+  {
+    setAttribute("mitgliedskonto", new Boolean(mitgliedskonto));
+  }
+
   public boolean getExterneMitgliedsnummer() throws RemoteException
   {
     return Util.getBoolean(getAttribute("externemitgliedsnummer"));
@@ -257,6 +270,17 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
       throws RemoteException
   {
     setAttribute("beginngeschaeftsjahr", beginngeschaeftsjahr);
+  }
+
+  public String getMitgliedskontoIstzahlung() throws RemoteException
+  {
+    return (String) getAttribute("mitgliedskontoistzahlung");
+  }
+
+  public void setMitgliedskontoIstzahlung(String mitgliedskontoistzahlung)
+      throws RemoteException
+  {
+    setAttribute("mitgliedskontoistzahlung", mitgliedskontoistzahlung);
   }
 
   public boolean getRechnungFuerAbbuchung() throws RemoteException

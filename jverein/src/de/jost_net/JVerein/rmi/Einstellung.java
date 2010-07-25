@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/01/01 22:36:09 $
+ * $Revision: 1.11 $
+ * $Date: 2010/07/25 18:46:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
+ * Revision 1.11  2010/07/25 18:46:05  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.10  2010/01/01 22:36:09  jost
  * Standardwerte für Zahlungsweg und Zahlungsrhytmus können vorgegeben werden.
  *
@@ -89,6 +92,11 @@ public interface Einstellung extends DBObject
       throws RemoteException;
 
   public boolean getJuristischePersonen() throws RemoteException;
+
+  public void setMitgliedskonto(Boolean mitgliedskonto)
+      throws RemoteException;
+
+  public boolean getMitgliedskonto() throws RemoteException;
 
   public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException;
 

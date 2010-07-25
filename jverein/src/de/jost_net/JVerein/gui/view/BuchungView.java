@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/05/28 19:55:32 $
+ * $Revision: 1.15 $
+ * $Date: 2010/07/25 18:42:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
+ * Revision 1.15  2010/07/25 18:42:11  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.14  2010/05/28 19:55:32  jost
  * Scrollbar aufgenommen.
  *
@@ -51,6 +54,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BuchungNeuAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
@@ -94,6 +98,11 @@ public class BuchungView extends AbstractView
         .getDatum());
     grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Art"), control
         .getArt());
+    if (Einstellungen.getEinstellung().getMitgliedskonto())
+    {
+      grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonto"),
+          control.getMitgliedskonto());
+    }
     grKontoauszug.addLabelPair(JVereinPlugin.getI18n().tr("Kommentar"), control
         .getKommentar());
 

@@ -18,9 +18,13 @@
 		wurden.</p>
 	<h2>Buchung</h2>
     <img src='images/Buchung.jpg' class='screenshot'>
+    <p><a href="mitgliedskonto.php#auswahl">Siehe auch Mitgliedskonto</a></p>
     
     <!-- 
     $Log: dokumentationbuchfuehrungbuchungen.php,v $
+    Revision 1.2  2010/07/25 18:49:03  jost
+    Neu: Mitgliedskonto
+
     Revision 1.1  2009/05/08 14:46:22  jost
     shtml - php
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.22 $
- * $Date: 2010/05/18 20:20:06 $
+ * $Revision: 1.23 $
+ * $Date: 2010/07/25 18:41:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
+ * Revision 1.23  2010/07/25 18:41:49  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.22  2010/05/18 20:20:06  jost
  * Anpassung Klassenname
  *
@@ -164,8 +167,11 @@ public class AbbuchungView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton("Rückgängig", new AbrechnunslaufListAction(), null,
-        false, "edit-undo.png");
+    if (Einstellungen.getEinstellung().getMitgliedskonto())
+    {
+      buttons.addButton("Rückgängig", new AbrechnunslaufListAction(), null,
+          false, "edit-undo.png");
+    }
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ABRECHNUNG, false,
         "help-browser.png");

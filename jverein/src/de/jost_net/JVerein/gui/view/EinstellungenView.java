@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.25 $
- * $Date: 2010/02/01 21:00:35 $
+ * $Revision: 1.26 $
+ * $Date: 2010/07/25 18:42:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
+ * Revision 1.26  2010/07/25 18:42:57  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.25  2010/02/01 21:00:35  jost
  * Neu: Einfache Mailfunktion
  *
@@ -136,6 +139,8 @@ public class EinstellungenView extends AbstractView
         control.getLehrgaenge());
     group.addLabelPair(JVereinPlugin.getI18n().tr(
         "Juristische Personen erlaubt"), control.getJuristischePersonen());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonten *"), control
+        .getMitgliedskonto());
     group.addLabelPair(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
         control.getExterneMitgliedsnummer());
     group.addLabelPair(JVereinPlugin.getI18n().tr(

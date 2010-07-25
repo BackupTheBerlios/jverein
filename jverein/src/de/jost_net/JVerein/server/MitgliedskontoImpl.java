@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedskontoImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/05/18 20:25:56 $
+ * $Revision: 1.3 $
+ * $Date: 2010/07/25 18:47:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoImpl.java,v $
+ * Revision 1.3  2010/07/25 18:47:32  jost
+ * Neu: Mitgliedskonto
+ *
  * Revision 1.2  2010/05/18 20:25:56  jost
  * Anpassung Klassenname
  *
@@ -62,6 +65,13 @@ public class MitgliedskontoImpl extends AbstractDBObject implements
         throw new ApplicationException(JVereinPlugin.getI18n().tr(
             "Verwendungszweck fehlt"));
       }
+      if (getBetrag() == null)
+      {
+        String fehler = "Betrag fehlt";
+        Logger.error(fehler);
+        throw new ApplicationException(fehler);
+      }
+
     }
     catch (RemoteException e)
     {
@@ -84,10 +94,6 @@ public class MitgliedskontoImpl extends AbstractDBObject implements
     {
       return Mitglied.class;
     }
-    if ("referenz".equals(arg0))
-    {
-      return Mitgliedskonto.class;
-    }
     if ("abrechnungslauf".equals(arg0))
     {
       return Abrechnungslauf.class;
@@ -103,7 +109,7 @@ public class MitgliedskontoImpl extends AbstractDBObject implements
   public void setAbrechnungslauf(Abrechnungslauf abrechnungslauf)
       throws RemoteException
   {
-    setAttribute("abrechnungslauf", abrechnungslauf);
+    setAttribute("abrechnungslauf", new Integer(abrechnungslauf.getID()));
   }
 
   public Mitglied getMitglied() throws RemoteException
@@ -114,16 +120,6 @@ public class MitgliedskontoImpl extends AbstractDBObject implements
   public void setMitglied(Mitglied mitglied) throws RemoteException
   {
     setAttribute("mitglied", new Integer(mitglied.getID()));
-  }
-
-  public String getBuchungstyp() throws RemoteException
-  {
-    return (String) getAttributeType("buchungstyp");
-  }
-
-  public void setBuchungstyp(String buchungstyp) throws RemoteException
-  {
-    setAttribute("buchungstyp", buchungstyp);
   }
 
   public Date getDatum() throws RemoteException
@@ -164,27 +160,34 @@ public class MitgliedskontoImpl extends AbstractDBObject implements
     setAttribute("zweck2", zweck2);
   }
 
-  public double getBetrag() throws RemoteException
+  public Integer getZahlungsweg() throws RemoteException
   {
-    Double d = (Double) getAttribute("betrag");
-    if (d == null)
-      return 0;
-    return d.doubleValue();
+    return (Integer) getAttribute("zahlungsweg");
   }
 
-  public void setBetrag(double d) throws RemoteException
+  public void setZahlungsweg(Integer zahlungsweg) throws RemoteException
   {
-    setAttribute("betrag", new Double(d));
+    setAttribute("zahlungsweg", zahlungsweg);
   }
 
-  public Mitgliedskonto getReferenz() throws RemoteException
+  public Double getBetrag() throws RemoteException
   {
-    return (Mitgliedskonto) getAttribute("referenz");
+    return (Double) getAttribute("betrag");
   }
 
-  public void setReferenz(Mitgliedskonto referenz) throws RemoteException
+  public void setBetrag(Double d) throws RemoteException
   {
-    setAttribute("referenz", referenz);
+    setAttribute("betrag", d);
+  }
+
+  public Double getIstBetrag() throws RemoteException
+  {
+    return (Double) getAttribute("istbetrag");
+  }
+
+  public void setIstBetrag(Double d) throws RemoteException
+  {
+    setAttribute("istbetrag", d);
   }
 
   public Object getAttribute(String fieldName) throws RemoteException
