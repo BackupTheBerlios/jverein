@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.20 $
- * $Date: 2010/04/03 11:31:51 $
+ * $Revision: 1.21 $
+ * $Date: 2010/07/25 18:42:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
+ * Revision 1.21  2010/07/25 18:42:36  jost
+ * Neu: Mitgliedskonto + Bugfix
+ *
  * Revision 1.20  2010/04/03 11:31:51  jost
  * Bugfix
  *
@@ -129,6 +132,12 @@ public class DokumentationUtil
 
   public static final String MITGLIED = PRE + "mitglied.php";
 
+  public static final String MITGLIEDSKONTO_AUSWAHL = PRE
+      + "mitgliedskonto.php#auswahl";
+
+  public static final String MITGLIEDSKONTO_UEBERSICHT = PRE
+      + "mitgliedskonto.php#uebersicht";
+
   public static final String KURSTEILNEHMER = PRE + "kursteilnehmer.php";
 
   public static final String MANUELLEZAHLUNGSEINGAENGE = PRE
@@ -156,7 +165,7 @@ public class DokumentationUtil
       + "dokumentationbuchfuehrungbuchungenaushibiscusuebernehmen.php";
 
   public static final String BUCHUNGEN = PRE
-      + "dokumentationbuchfuehrungbuchungenaushibiscusuebernehmen.php";
+      + "dokumentationbuchfuehrungbuchungen.php";
 
   public static final String JAHRESSALDO = PRE
       + "dokumentationbuchfuehrungjahressaldo.php";
