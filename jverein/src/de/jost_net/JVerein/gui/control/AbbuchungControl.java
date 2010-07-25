@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.21 $
- * $Date: 2010/04/25 13:53:59 $
+ * $Revision: 1.22 $
+ * $Date: 2010/07/25 18:30:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
+ * Revision 1.22  2010/07/25 18:30:07  jost
+ * Icon eingefügt
+ *
  * Revision 1.21  2010/04/25 13:53:59  jost
  * Vorarbeiten Mitgliedskonto
  *
@@ -289,7 +292,7 @@ public class AbbuchungControl extends AbstractControl
           GUI.getStatusBar().setErrorText(e.getMessage());
         }
       }
-    }, null, true);
+    }, null, true, "go.png");
     return button;
   }
 
