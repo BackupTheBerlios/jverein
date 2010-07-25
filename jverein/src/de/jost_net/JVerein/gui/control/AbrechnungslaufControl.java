@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbrechnungslaufControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/05/18 20:19:04 $
+ * $Revision: 1.2 $
+ * $Date: 2010/07/25 18:30:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufControl.java,v $
+ * Revision 1.2  2010/07/25 18:30:44  jost
+ * Finetuning
+ *
  * Revision 1.1  2010/05/18 20:19:04  jost
  * Anpassung Klassenname
  *
@@ -24,6 +27,7 @@ import java.rmi.RemoteException;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.formatter.AbrechnungsmodusFormatter;
 import de.jost_net.JVerein.gui.formatter.JaNeinFormatter;
+import de.jost_net.JVerein.gui.menu.AbrechnungslaufMenu;
 import de.jost_net.JVerein.rmi.Abrechnungslauf;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -73,6 +77,7 @@ public class AbrechnungslaufControl extends AbstractControl
     if (abrechnungslaufList == null)
     {
       abrechnungslaufList = new TablePart(abrechnungslaeufe, null);
+      abrechnungslaufList.addColumn("Nr", "nr");
       abrechnungslaufList.addColumn("Datum", "datum", new DateFormatter(
           Einstellungen.DATEFORMAT));
       abrechnungslaufList.addColumn("Modus", "modus",
@@ -86,7 +91,7 @@ public class AbrechnungslaufControl extends AbstractControl
           new JaNeinFormatter());
       abrechnungslaufList.addColumn("Kursteilnehmer", "kursteilnehmer",
           new JaNeinFormatter());
-      // abrechnungsList.setContextMenu(new RechungMenu());
+      abrechnungslaufList.setContextMenu(new AbrechnungslaufMenu());
       abrechnungslaufList.setRememberColWidths(true);
       abrechnungslaufList.setRememberOrder(true);
       abrechnungslaufList.setSummary(true);
