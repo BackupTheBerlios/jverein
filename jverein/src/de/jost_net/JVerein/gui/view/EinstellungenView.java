@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.26 $
- * $Date: 2010/07/25 18:42:57 $
+ * $Revision: 1.27 $
+ * $Date: 2010/07/26 08:04:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.26  2010/07/25 18:42:57  jost
+ * Revision 1.27  2010/07/26 08:04:59  jost
+ * 2spaltiges Layout
+ *
+ * Revision 1.26  2010-07-25 18:42:57  jost
  * Neu: Mitgliedskonto
  *
  * Revision 1.25  2010/02/01 21:00:35  jost
@@ -98,8 +101,10 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
+import de.willuhn.jameica.gui.util.ColumnLayout;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.jameica.gui.util.ScrolledContainer;
+import de.willuhn.jameica.gui.util.SimpleContainer;
 import de.willuhn.jameica.gui.util.TabGroup;
 import de.willuhn.util.ApplicationException;
 
@@ -118,38 +123,42 @@ public class EinstellungenView extends AbstractView
 
     TabGroup tabAnzeige = new TabGroup(folder, JVereinPlugin.getI18n().tr(
         "Anzeige"));
+
     LabelGroup group = new LabelGroup(tabAnzeige.getComposite(), JVereinPlugin
         .getI18n().tr("Anzeige"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum Pflichtfeld"),
+    ColumnLayout cols1 = new ColumnLayout(group.getComposite(), 2);
+    SimpleContainer left = new SimpleContainer(cols1.getComposite());
+
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum Pflichtfeld"),
         control.getGeburtsdatumPflicht());
-    group.addLabelPair(
-        JVereinPlugin.getI18n().tr("Eintrittsdatum Pflichtfeld"), control
-            .getEintrittsdatumPflicht());
-    group.addLabelPair(JVereinPlugin.getI18n().tr(
-        "Kommunikationsdaten anzeigen"), control.getKommunikationsdaten());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Zusatzbeträge anzeigen")
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Eintrittsdatum Pflichtfeld"),
+        control.getEintrittsdatumPflicht());
+    left.addLabelPair(JVereinPlugin.getI18n()
+        .tr("Kommunikationsdaten anzeigen"), control.getKommunikationsdaten());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Zusatzbeträge anzeigen")
         + "*", control.getZusatzbetrag());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Vermerke anzeigen"), control
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Vermerke anzeigen"), control
         .getVermerke());
-    group.addLabelPair(JVereinPlugin.getI18n().tr(
-        "Wiedervorlage anzeigen" + "*"), control.getWiedervorlage());
-    group.addLabelPair(JVereinPlugin.getI18n().tr(
+    left.addLabelPair(JVereinPlugin.getI18n()
+        .tr("Wiedervorlage anzeigen" + "*"), control.getWiedervorlage());
+    left.addLabelPair(JVereinPlugin.getI18n().tr(
         "Kursteilnehmer anzeigen" + "*"), control.getKursteilnehmer());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Lehrgänge anzeigen" + "*"),
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Lehrgänge anzeigen" + "*"),
         control.getLehrgaenge());
-    group.addLabelPair(JVereinPlugin.getI18n().tr(
+    SimpleContainer right = new SimpleContainer(cols1.getComposite());
+    right.addLabelPair(JVereinPlugin.getI18n().tr(
         "Juristische Personen erlaubt"), control.getJuristischePersonen());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonten *"), control
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonten *"), control
         .getMitgliedskonto());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
+    right.addLabelPair(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
         control.getExterneMitgliedsnummer());
-    group.addLabelPair(JVereinPlugin.getI18n().tr(
+    right.addLabelPair(JVereinPlugin.getI18n().tr(
         "aktuelle Geburtstage - Tage vorher"), control
         .getAktuelleGeburtstageVorher());
-    group.addLabelPair(JVereinPlugin.getI18n().tr(
+    right.addLabelPair(JVereinPlugin.getI18n().tr(
         "aktuelle Geburtstage - Tage nachher"), control
         .getAktuelleGeburtstageNachher());
-    group.addHeadline("* "
+    right.addHeadline("* "
         + JVereinPlugin.getI18n().tr("Änderung erfordert Neustart"));
 
     TabGroup tabBeitraege = new TabGroup(folder, JVereinPlugin.getI18n().tr(
