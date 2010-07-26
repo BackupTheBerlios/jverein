@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/10/17 19:44:19 $
+ * $Revision: 1.8 $
+ * $Date: 2010/07/26 14:47:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
+ * Revision 1.8  2010/07/26 14:47:18  jost
+ * Bugfix
+ *
  * Revision 1.7  2009/10/17 19:44:19  jost
  * *** empty log message ***
  *
@@ -68,7 +71,7 @@ public class FormularAnzeigeAction implements Action
       final File file = File.createTempFile("formular", ".pdf");
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put(FormularfeldControl.EMPFAENGER,
-          "Herr\nDr. Willi Wichtig\nTestgasse 1\n12345Testenhausen");
+          "Herr\nDr. Willi Wichtig\nTestgasse 1\n12345 Testenhausen");
       map.put(FormularfeldControl.ZAHLUNGSGRUND1, "Zahlungsgrund 1");
       map.put(FormularfeldControl.ZAHLUNGSGRUND2, "Zahlungsgrund 2");
       map.put(FormularfeldControl.BETRAG, "*1.234,00*");
