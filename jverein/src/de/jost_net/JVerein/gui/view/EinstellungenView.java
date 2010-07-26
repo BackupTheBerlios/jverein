@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.27 $
- * $Date: 2010/07/26 08:04:59 $
+ * $Revision: 1.28 $
+ * $Date: 2010/07/26 08:23:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.27  2010/07/26 08:04:59  jost
+ * Revision 1.28  2010/07/26 08:23:13  jost
+ * Manuelle Zahlungen defaultm‰ﬂig deaktviert. Reaktvierbar durch Einstellungen.
+ *
+ * Revision 1.27  2010-07-26 08:04:59  jost
  * 2spaltiges Layout
  *
  * Revision 1.26  2010-07-25 18:42:57  jost
@@ -150,6 +153,8 @@ public class EinstellungenView extends AbstractView
         "Juristische Personen erlaubt"), control.getJuristischePersonen());
     right.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonten *"), control
         .getMitgliedskonto());
+    right.addLabelPair(JVereinPlugin.getI18n().tr(
+        "manuelle Zahlungen reaktivieren*"), control.getManuelleZahlungen());
     right.addLabelPair(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
         control.getExterneMitgliedsnummer());
     right.addLabelPair(JVereinPlugin.getI18n().tr(
