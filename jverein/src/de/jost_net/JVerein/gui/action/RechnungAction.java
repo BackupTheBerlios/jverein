@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/RechnungAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/16 18:26:29 $
+ * $Revision: 1.2 $
+ * $Date: 2010/07/28 07:25:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungAction.java,v $
+ * Revision 1.2  2010/07/28 07:25:48  jost
+ * deprecated
+ *
  * Revision 1.1  2008/09/16 18:26:29  jost
  * Neu: Rechnung
  *
@@ -20,7 +23,11 @@ import de.jost_net.JVerein.rmi.Abrechnung;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.util.ApplicationException;
-
+/**
+ * @deprecated In Version 1.5 ausmustern
+ * @author heiner
+ *
+ */
 public class RechnungAction implements Action
 {
   public void handleAction(Object context) throws ApplicationException

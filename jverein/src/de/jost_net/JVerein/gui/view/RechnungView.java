@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungView.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/07/13 20:52:32 $
+ * $Revision: 1.6 $
+ * $Date: 2010/07/28 07:27:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungView.java,v $
+ * Revision 1.6  2010/07/28 07:27:24  jost
+ * deprecated
+ *
  * Revision 1.5  2009/07/13 20:52:32  jost
  * Bugfix Datenfeld
  *
@@ -79,7 +82,9 @@ import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
-
+/**
+ * @deprecated In Version 1.5 ausmustern
+ */
 public class RechnungView extends AbstractView
 {
   public void bind() throws Exception

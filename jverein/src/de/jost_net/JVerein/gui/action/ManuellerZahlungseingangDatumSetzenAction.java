@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/ManuellerZahlungseingangDatumSetzenAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/11/26 19:50:19 $
+ * $Revision: 1.4 $
+ * $Date: 2010/07/28 07:25:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangDatumSetzenAction.java,v $
+ * Revision 1.4  2010/07/28 07:25:48  jost
+ * deprecated
+ *
  * Revision 1.3  2009/11/26 19:50:19  jost
  * Mehrfachauswahl ermöglicht.
  *
@@ -45,7 +48,9 @@ public class ManuellerZahlungseingangDatumSetzenAction implements Action
   private Date date = null;
 
   private TablePart table;
-
+/**
+ * @deprecated In Version 1.5 ausmustern
+ */
   public ManuellerZahlungseingangDatumSetzenAction(TablePart table)
   {
     super();

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ManuellerZahlungseingangListeView.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.7 $
+ * $Date: 2010/07/28 07:27:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangListeView.java,v $
+ * Revision 1.7  2010/07/28 07:27:08  jost
+ * deprecated
+ *
  * Revision 1.6  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -38,7 +41,9 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.util.ApplicationException;
-
+/**
+ * @deprecated In Version 1.5 ausmustern
+ */
 public class ManuellerZahlungseingangListeView extends AbstractView
 {
   public void bind() throws Exception

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2009/07/24 20:19:16 $
+ * $Revision: 1.15 $
+ * $Date: 2010/07/28 07:26:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
+ * Revision 1.15  2010/07/28 07:26:33  jost
+ * deprecated
+ *
  * Revision 1.14  2009/07/24 20:19:16  jost
  * Focus auf erstes Feld setzen.
  *
@@ -93,6 +96,9 @@ import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
+/**
+ * @deprecated In Version 1.5 ausmustern
+ */
 public class RechnungControl extends AbstractControl
 {
   private de.willuhn.jameica.system.Settings settings;

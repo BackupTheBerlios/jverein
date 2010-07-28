@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/ManuellerZahlungseingangImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/06/20 12:34:06 $
+ * $Revision: 1.5 $
+ * $Date: 2010/07/28 07:28:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangImpl.java,v $
+ * Revision 1.5  2010/07/28 07:28:21  jost
+ * deprecated
+ *
  * Revision 1.4  2009/06/20 12:34:06  jost
  * Vereinheitlichung der Bezeichner
  *
@@ -32,7 +35,9 @@ import de.jost_net.JVerein.rmi.ManuellerZahlungseingang;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
-
+/**
+ * @deprecated In Version 1.5 ausmustern
+ */
 public class ManuellerZahlungseingangImpl extends AbstractDBObject implements
     ManuellerZahlungseingang
 {

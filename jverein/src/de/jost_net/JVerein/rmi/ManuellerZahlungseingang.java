@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Attic/ManuellerZahlungseingang.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/03/13 19:58:40 $
+ * $Revision: 1.2 $
+ * $Date: 2010/07/28 07:28:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingang.java,v $
+ * Revision 1.2  2010/07/28 07:28:05  jost
+ * deprecated
+ *
  * Revision 1.1  2007/03/13 19:58:40  jost
  * Neu: Manueller Zahlungseingang.
  *
@@ -21,6 +24,9 @@ import java.util.Date;
 import de.willuhn.datasource.rmi.DBObject;
 import de.willuhn.util.ApplicationException;
 
+/**
+ * @deprecated In Version 1.5 ausmustern
+ */
 public interface ManuellerZahlungseingang extends DBObject
 {
   public void setID(String id) throws RemoteException;
