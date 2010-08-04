@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedskontoMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/07/25 18:36:03 $
+ * $Revision: 1.2 $
+ * $Date: 2010/08/04 10:40:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoMenu.java,v $
- * Revision 1.1  2010/07/25 18:36:03  jost
+ * Revision 1.2  2010/08/04 10:40:52  jost
+ * Javadoc
+ *
+ * Revision 1.1  2010-07-25 18:36:03  jost
  * Neu: Mitgliedskonto
  *
  **********************************************************************/
@@ -40,7 +43,7 @@ public class MitgliedskontoMenu extends ContextMenu
   private final static I18N i18n = JVereinPlugin.getI18n();
 
   /**
-   * Erzeugt ein Kontext-Menu fuer eine Liste von Ueberweisungen.
+   * Erzeugt ein Kontext-Menu fuer eine Liste von Mitgliedskonten.
    */
   public MitgliedskontoMenu()
   {
