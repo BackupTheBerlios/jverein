@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoListeView.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/07/25 18:43:30 $
+ * $Revision: 1.2 $
+ * $Date: 2010/08/04 10:41:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoListeView.java,v $
- * Revision 1.1  2010/07/25 18:43:30  jost
+ * Revision 1.2  2010/08/04 10:41:16  jost
+ * Prerelease Rechnung
+ *
+ * Revision 1.1  2010-07-25 18:43:30  jost
  * Neu: Mitgliedskonto
  *
  **********************************************************************/
@@ -19,6 +22,7 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.control.MitgliedskontoControl;
+import de.jost_net.JVerein.gui.menu.Mitgliedskonto2Menu;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.buttons.Back;
@@ -40,8 +44,8 @@ public class MitgliedskontoListeView extends AbstractView
     group.addLabelPair("bis", control.getBisdatum());
     group.addLabelPair("Differenz", control.getDifferenz());
 
-    control.getMitgliedskontoList(new MitgliedDetailAction(), null).paint(
-        this.getParent());
+    control.getMitgliedskontoList(new MitgliedDetailAction(),
+        new Mitgliedskonto2Menu()).paint(this.getParent());
 
     ButtonArea buttons2 = new ButtonArea(this.getParent(), 3);
     buttons2.addButton(new Back(false));
