@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MitgliedskontoAuswahlDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/07/25 18:32:23 $
+ * $Revision: 1.2 $
+ * $Date: 2010/08/08 11:32:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoAuswahlDialog.java,v $
- * Revision 1.1  2010/07/25 18:32:23  jost
+ * Revision 1.2  2010/08/08 11:32:29  jost
+ * Nicht-Case-Sensitive-Suche
+ *
+ * Revision 1.1  2010-07-25 18:32:23  jost
  * Neu: Mitgliedskonto
  *
  **********************************************************************/
@@ -93,15 +96,8 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
         close();
       }
     };
-    // final MitgliedskontoList konten = new
-    // de.jost_net.JVerein.gui.parts.MitgliedskontoList(
-    // a);
     mitgliedskontolist = control.getMitgliedskontoList(action, null);
     mitgliedskontolist.paint(parent);
-    // konten.setContextMenu(null);
-    // konten.setMulti(false);
-    // konten.setSummary(false);
-    // konten.paint(parent);
 
     ButtonArea b = new ButtonArea(parent, 3);
     b.addButton(i18n.tr(JVereinPlugin.getI18n().tr("übernehmen")), new Action()
