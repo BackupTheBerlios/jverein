@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/08/08 19:31:44 $
+ * $Revision: 1.10 $
+ * $Date: 2010/08/10 15:58:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
- * Revision 1.9  2010/08/08 19:31:44  jost
+ * Revision 1.10  2010/08/10 15:58:14  jost
+ * neues Feld Zahlungsgrund
+ *
+ * Revision 1.9  2010-08-08 19:31:44  jost
  * Bugfix
  *
  * Revision 1.8  2010-07-26 14:47:18  jost
@@ -76,6 +79,8 @@ public class FormularAnzeigeAction implements Action
       map.put(FormularfeldControl.EMPFAENGER,
           "Herr\nDr. Willi Wichtig\nTestgasse 1\n12345 Testenhausen");
       map.put(FormularfeldControl.BUCHUNGSDATUM, new Date());
+      map.put(FormularfeldControl.ZAHLUNGSGRUND,
+          "Zahlungsgrund1 Zahlungsgrund2");
       map.put(FormularfeldControl.ZAHLUNGSGRUND1, "Zahlungsgrund 1");
       map.put(FormularfeldControl.ZAHLUNGSGRUND2, "Zahlungsgrund 2");
       map.put(FormularfeldControl.BETRAG, new Double(1234));

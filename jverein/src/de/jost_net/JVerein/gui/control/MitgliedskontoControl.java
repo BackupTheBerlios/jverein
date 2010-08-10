@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/08/10 05:39:04 $
+ * $Revision: 1.6 $
+ * $Date: 2010/08/10 15:58:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.5  2010/08/10 05:39:04  jost
+ * Revision 1.6  2010/08/10 15:58:58  jost
+ * neues Feld Zahlungsgrund
+ *
+ * Revision 1.5  2010-08-10 05:39:04  jost
  * *** empty log message ***
  *
  * Revision 1.4  2010-08-08 19:32:56  jost
@@ -605,6 +608,7 @@ public class MitgliedskontoControl extends AbstractControl
         + m.getOrt();
     map.put(FormularfeldControl.EMPFAENGER, empfaenger);
     ArrayList<Date> buda = new ArrayList<Date>();
+    ArrayList<String> zg = new ArrayList<String>();
     ArrayList<String> zg1 = new ArrayList<String>();
     ArrayList<String> zg2 = new ArrayList<String>();
     ArrayList<Double> betrag = new ArrayList<Double>();
@@ -612,6 +616,7 @@ public class MitgliedskontoControl extends AbstractControl
     for (Mitgliedskonto mkto : mk)
     {
       buda.add(mkto.getDatum());
+      zg.add(mkto.getZweck1() + " " + mkto.getZweck2());
       zg1.add(mkto.getZweck1());
       zg2.add(mkto.getZweck2());
       betrag.add(new Double(mkto.getBetrag()));
@@ -623,6 +628,7 @@ public class MitgliedskontoControl extends AbstractControl
       betrag.add(summe);
     }
     map.put(FormularfeldControl.BUCHUNGSDATUM, buda.toArray());
+    map.put(FormularfeldControl.ZAHLUNGSGRUND, zg.toArray());
     map.put(FormularfeldControl.ZAHLUNGSGRUND1, zg1.toArray());
     map.put(FormularfeldControl.ZAHLUNGSGRUND2, zg2.toArray());
     map.put(FormularfeldControl.BETRAG, betrag.toArray());
