@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularfeldControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/08/08 19:32:26 $
+ * $Revision: 1.8 $
+ * $Date: 2010/08/10 05:38:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldControl.java,v $
- * Revision 1.7  2010/08/08 19:32:26  jost
+ * Revision 1.8  2010/08/10 05:38:18  jost
+ * Undo
+ *
+ * Revision 1.7  2010-08-08 19:32:26  jost
  * neues Feld Summe
  *
  * Revision 1.6  2009/04/10 17:45:50  jost
@@ -88,8 +91,6 @@ public class FormularfeldControl extends AbstractControl
   public static final String BUCHUNGSDATUM = "Buchungsdatum";
 
   public static final String BETRAG = "Betrag";
-  
-  public static final String SUMME = "Summe";
 
   public static final String ZAHLUNGSWEG = "Zahlungsweg";
 
@@ -187,7 +188,6 @@ public class FormularfeldControl extends AbstractControl
       namen.add(ZAHLUNGSGRUND2);
       namen.add(BUCHUNGSDATUM);
       namen.add(BETRAG);
-      namen.add(SUMME);
       namen.add(ZAHLUNGSWEG);
       namen.add(ID);
       namen.add(EXTERNEMITGLIEDSNUMMER);
