@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.27 $
- * $Date: 2010/07/26 08:23:01 $
+ * $Revision: 1.28 $
+ * $Date: 2010/08/10 05:39:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
- * Revision 1.27  2010/07/26 08:23:01  jost
+ * Revision 1.28  2010/08/10 05:39:41  jost
+ * Reaktivierung alter Rechnungen
+ *
+ * Revision 1.27  2010-07-26 08:23:01  jost
  * Manuelle Zahlungen defaultm‰ﬂig deaktviert. Reaktvierbar durch Einstellungen.
  *
  * Revision 1.26  2010-07-25 18:36:26  jost
@@ -159,12 +162,15 @@ public class MyExtension implements Extension
       }
       jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
           "Abrechnung"), new AbbuchungAction(), "accessories-calculator.png"));
-      if (Einstellungen.getEinstellung().getRechnungFuerAbbuchung()
-          || Einstellungen.getEinstellung().getRechnungFuerUeberweisung()
-          || Einstellungen.getEinstellung().getRechnungFuerBarzahlung())
+      if (Einstellungen.getEinstellung().getRechnungen13())
       {
-        jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
-            "Rechnung"), new RechnungListeAction(), "rechnung.png"));
+        if (Einstellungen.getEinstellung().getRechnungFuerAbbuchung()
+            || Einstellungen.getEinstellung().getRechnungFuerUeberweisung()
+            || Einstellungen.getEinstellung().getRechnungFuerBarzahlung())
+        {
+          jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
+              "Rechnung"), new RechnungListeAction(), "rechnung.png"));
+        }
       }
       if (Einstellungen.getEinstellung().getMitgliedskonto())
       {

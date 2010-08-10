@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/07/26 08:23:36 $
+ * $Revision: 1.15 $
+ * $Date: 2010/08/10 05:41:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.14  2010/07/26 08:23:36  jost
+ * Revision 1.15  2010/08/10 05:41:15  jost
+ * Reaktivierung alter Rechnungen
+ *
+ * Revision 1.14  2010-07-26 08:23:36  jost
  * Manuelle Zahlungen defaultm‰ﬂig deaktviert. Reaktvierbar durch Einstellungen.
  *
  * Revision 1.13  2010-07-25 18:47:09  jost
@@ -219,6 +222,16 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
       throws RemoteException
   {
     setAttribute("manuellezahlungen", new Boolean(manuellezahlungen));
+  }
+
+  public boolean getRechnungen13() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("rechnungen13"));
+  }
+
+  public void setRechnungen13(Boolean rechnungen13) throws RemoteException
+  {
+    setAttribute("rechnungen13", new Boolean(rechnungen13));
   }
 
   public boolean getExterneMitgliedsnummer() throws RemoteException

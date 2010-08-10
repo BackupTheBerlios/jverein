@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/07/26 08:23:24 $
+ * $Revision: 1.13 $
+ * $Date: 2010/08/10 05:40:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.12  2010/07/26 08:23:24  jost
+ * Revision 1.13  2010/08/10 05:40:58  jost
+ * Reaktivierung alter Rechnungen
+ *
+ * Revision 1.12  2010-07-26 08:23:24  jost
  * Manuelle Zahlungen defaultm‰ﬂig deaktviert. Reaktvierbar durch Einstellungen.
  *
  * Revision 1.11  2010-07-25 18:46:05  jost
@@ -104,6 +107,10 @@ public interface Einstellung extends DBObject
       throws RemoteException;
 
   public boolean getManuelleZahlungen() throws RemoteException;
+
+  public void setRechnungen13(Boolean rechnungen13) throws RemoteException;
+
+  public boolean getRechnungen13() throws RemoteException;
 
   public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException;
 

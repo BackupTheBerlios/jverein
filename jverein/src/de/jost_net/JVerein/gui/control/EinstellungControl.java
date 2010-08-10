@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.25 $
- * $Date: 2010/07/26 08:22:48 $
+ * $Revision: 1.26 $
+ * $Date: 2010/08/10 05:37:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.25  2010/07/26 08:22:48  jost
+ * Revision 1.26  2010/08/10 05:37:49  jost
+ * Reaktivierung alter Rechnungen
+ *
+ * Revision 1.25  2010-07-26 08:22:48  jost
  * Manuelle Zahlungen defaultm‰ﬂig deaktviert. Reaktvierbar durch Einstellungen.
  *
  * Revision 1.24  2010-07-25 18:31:40  jost
@@ -133,6 +136,8 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput mitgliedskonto;
 
   private CheckboxInput manuellezahlungen;
+
+  private CheckboxInput rechnungen13;
 
   private CheckboxInput externemitgliedsnummer;
 
@@ -297,6 +302,17 @@ public class EinstellungControl extends AbstractControl
     manuellezahlungen = new CheckboxInput(Einstellungen.getEinstellung()
         .getManuelleZahlungen());
     return manuellezahlungen;
+  }
+
+  public CheckboxInput getRechnungen13() throws RemoteException
+  {
+    if (rechnungen13 != null)
+    {
+      return rechnungen13;
+    }
+    rechnungen13 = new CheckboxInput(Einstellungen.getEinstellung()
+        .getRechnungen13());
+    return rechnungen13;
   }
 
   public CheckboxInput getExterneMitgliedsnummer() throws RemoteException
@@ -534,6 +550,7 @@ public class EinstellungControl extends AbstractControl
       e.setJuristischePersonen((Boolean) juristischepersonen.getValue());
       e.setMitgliedskonto((Boolean) mitgliedskonto.getValue());
       e.setManuelleZahlungen((Boolean) manuellezahlungen.getValue());
+      e.setRechnungen13((Boolean) rechnungen13.getValue());
       e.setAktuelleGeburtstageVorher((Integer) aktuellegeburtstagevorher
           .getValue());
       e.setAktuelleGeburtstageNachher((Integer) aktuellegeburtstagenachher
