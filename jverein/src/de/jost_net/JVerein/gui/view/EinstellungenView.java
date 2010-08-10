@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.29 $
- * $Date: 2010/08/10 05:40:02 $
+ * $Revision: 1.30 $
+ * $Date: 2010/08/10 18:06:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.29  2010/08/10 05:40:02  jost
+ * Revision 1.30  2010/08/10 18:06:49  jost
+ * Zahlungswegtexte für den Rechnungsdruck
+ *
+ * Revision 1.29  2010-08-10 05:40:02  jost
  * Reaktivierung alter Rechnungen
  *
  * Revision 1.28  2010-07-26 08:23:13  jost
@@ -98,6 +101,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.TabFolder;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.EinstellungControl;
@@ -200,12 +204,24 @@ public class EinstellungenView extends AbstractView
         "Rechnungen"));
     LabelGroup groupRechnungen = new LabelGroup(tabRechnungen.getComposite(),
         JVereinPlugin.getI18n().tr("Rechnungen"));
-    groupRechnungen.addLabelPair(JVereinPlugin.getI18n().tr(
-        "für Zahlungsweg Abbuchung"), control.getRechnungFuerAbbuchung());
-    groupRechnungen.addLabelPair(JVereinPlugin.getI18n().tr(
-        "für Zahlungsweg Überweisung"), control.getRechnungFuerUeberweisung());
-    groupRechnungen.addLabelPair(JVereinPlugin.getI18n().tr(
-        "für Zahlungsweg Barzahlung"), control.getRechnungFuerBarzahlung());
+    if (Einstellungen.getEinstellung().getRechnungen13())
+    {
+      groupRechnungen.addLabelPair(JVereinPlugin.getI18n().tr(
+          "für Zahlungsweg Abbuchung"), control.getRechnungFuerAbbuchung());
+      groupRechnungen
+          .addLabelPair(JVereinPlugin.getI18n().tr(
+              "für Zahlungsweg Überweisung"), control
+              .getRechnungFuerUeberweisung());
+      groupRechnungen.addLabelPair(JVereinPlugin.getI18n().tr(
+          "für Zahlungsweg Barzahlung"), control.getRechnungFuerBarzahlung());
+    }
+    groupRechnungen.addLabelPair(JVereinPlugin.getI18n().tr("Text Abbuchung"),
+        control.getRechnungTextAbbuchung());
+    groupRechnungen.addLabelPair(
+        JVereinPlugin.getI18n().tr("Text Überweisung"), control
+            .getRechnungTextUeberweisung());
+    groupRechnungen.addLabelPair(JVereinPlugin.getI18n().tr("Text Bar"),
+        control.getRechnungTextBar());
 
     TabGroup tabTabellen = new TabGroup(folder, JVereinPlugin.getI18n().tr(
         "Tabellen"));

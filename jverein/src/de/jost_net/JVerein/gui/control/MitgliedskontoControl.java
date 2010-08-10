@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/08/10 15:58:58 $
+ * $Revision: 1.7 $
+ * $Date: 2010/08/10 18:06:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.6  2010/08/10 15:58:58  jost
+ * Revision 1.7  2010/08/10 18:06:30  jost
+ * Zahlungswegtexte für den Rechnungsdruck
+ *
+ * Revision 1.6  2010-08-10 15:58:58  jost
  * neues Feld Zahlungsgrund
  *
  * Revision 1.5  2010-08-10 05:39:04  jost
@@ -666,19 +669,20 @@ public class MitgliedskontoControl extends AbstractControl
     {
       case Zahlungsweg.ABBUCHUNG:
       {
-        zahlungsweg = "Abbuchung von Konto "
-            + mk.get(0).getMitglied().getKonto() + ", BLZ: "
-            + mk.get(0).getMitglied().getBlz();
+        zahlungsweg = Einstellungen.getEinstellung().getRechnungTextAbbuchung();
+        zahlungsweg = zahlungsweg.replaceAll("\\$\\{Konto\\}", m.getKonto());
+        zahlungsweg = zahlungsweg.replaceAll("\\$\\{BLZ\\}", m.getBlz());
         break;
       }
       case Zahlungsweg.BARZAHLUNG:
       {
-        zahlungsweg = "Bar";
+        zahlungsweg = Einstellungen.getEinstellung().getRechnungTextBar();
         break;
       }
       case Zahlungsweg.ÜBERWEISUNG:
       {
-        zahlungsweg = "Überweisung";
+        zahlungsweg = Einstellungen.getEinstellung()
+            .getRechnungTextUeberweisung();
         break;
       }
     }

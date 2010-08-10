@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/08/10 05:40:58 $
+ * $Revision: 1.14 $
+ * $Date: 2010/08/10 18:07:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.13  2010/08/10 05:40:58  jost
+ * Revision 1.14  2010/08/10 18:07:02  jost
+ * Zahlungswegtexte für den Rechnungsdruck
+ *
+ * Revision 1.13  2010-08-10 05:40:58  jost
  * Reaktivierung alter Rechnungen
  *
  * Revision 1.12  2010-07-26 08:23:24  jost
@@ -111,6 +114,20 @@ public interface Einstellung extends DBObject
   public void setRechnungen13(Boolean rechnungen13) throws RemoteException;
 
   public boolean getRechnungen13() throws RemoteException;
+
+  public void setRechnungTextAbbuchung(String rechnungtextabbuchung)
+      throws RemoteException;
+
+  public String getRechnungTextAbbuchung() throws RemoteException;
+
+  public void setRechnungTextUeberweisung(String rechnungtextueberweisung)
+      throws RemoteException;
+
+  public String getRechnungTextUeberweisung() throws RemoteException;
+
+  public void setRechnungTextBar(String rechnungtextbar) throws RemoteException;
+
+  public String getRechnungTextBar() throws RemoteException;
 
   public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException;
 
