@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/08/08 19:32:56 $
+ * $Revision: 1.5 $
+ * $Date: 2010/08/10 05:39:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.4  2010/08/08 19:32:56  jost
+ * Revision 1.5  2010/08/10 05:39:04  jost
+ * *** empty log message ***
+ *
+ * Revision 1.4  2010-08-08 19:32:56  jost
  * Zusammenfassung der Rechnungen
  *
  * Revision 1.3  2010-08-04 10:40:09  jost
@@ -518,7 +521,7 @@ public class MitgliedskontoControl extends AbstractControl
           GUI.getStatusBar().setErrorText(e.getMessage());
         }
       }
-    }, null, true,"go.png");
+    }, null, true, "go.png");
     return button;
   }
 
@@ -614,11 +617,15 @@ public class MitgliedskontoControl extends AbstractControl
       betrag.add(new Double(mkto.getBetrag()));
       summe += mkto.getBetrag();
     }
+    if (buda.size() > 1)
+    {
+      zg1.add("Summe");
+      betrag.add(summe);
+    }
     map.put(FormularfeldControl.BUCHUNGSDATUM, buda.toArray());
     map.put(FormularfeldControl.ZAHLUNGSGRUND1, zg1.toArray());
     map.put(FormularfeldControl.ZAHLUNGSGRUND2, zg2.toArray());
     map.put(FormularfeldControl.BETRAG, betrag.toArray());
-    map.put(FormularfeldControl.SUMME, summe);
     map.put(FormularfeldControl.ID, m.getID());
     map.put(FormularfeldControl.EXTERNEMITGLIEDSNUMMER, m
         .getExterneMitgliedsnummer());
