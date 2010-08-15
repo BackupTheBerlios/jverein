@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoRechnungView.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/08/04 10:41:27 $
+ * $Revision: 1.2 $
+ * $Date: 2010/08/15 19:01:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoRechnungView.java,v $
- * Revision 1.1  2010/08/04 10:41:27  jost
+ * Revision 1.2  2010/08/15 19:01:42  jost
+ * Rechnungen auch für einen vorgegebenen Zeitraum ausgeben.
+ *
+ * Revision 1.1  2010-08-04 10:41:27  jost
  * Prerelease Rechnung
  *
  **********************************************************************/
@@ -35,6 +38,14 @@ public class MitgliedskontoRechnungView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Parameter"));
+    if (this.getCurrentObject() == null)
+    {
+      group.addLabelPair(JVereinPlugin.getI18n().tr("von Datum"), control
+          .getVondatum(MitgliedskontoControl.DATUM_RECHNUNG));
+      group.addLabelPair(JVereinPlugin.getI18n().tr("bis Datum"), control
+          .getBisdatum(MitgliedskontoControl.DATUM_RECHNUNG));
+    }
+
     group.addLabelPair(JVereinPlugin.getI18n().tr("Formular"), control
         .getFormular());
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/08/10 18:06:30 $
+ * $Revision: 1.8 $
+ * $Date: 2010/08/15 19:00:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.7  2010/08/10 18:06:30  jost
+ * Revision 1.8  2010/08/15 19:00:50  jost
+ * Rechnungen auch für einen vorgegebenen Zeitraum ausgeben.
+ *
+ * Revision 1.7  2010-08-10 18:06:30  jost
  * Zahlungswegtexte für den Rechnungsdruck
  *
  * Revision 1.6  2010-08-10 15:58:58  jost
@@ -38,6 +41,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -120,6 +124,12 @@ public class MitgliedskontoControl extends AbstractControl
   private TablePart mitgliedskontoList;
 
   private TreePart mitgliedskontoTree;
+
+  public static final String DATUM_MITGLIEDSKONTO = "datum.mitgliedskonto.";
+
+  public static final String DATUM_RECHNUNG = "datum.rechnung.";
+
+  private String datumverwendung = null;
 
   private DateInput vondatum = null;
 
@@ -235,13 +245,28 @@ public class MitgliedskontoControl extends AbstractControl
     return formular;
   }
 
-  public DateInput getVondatum() throws RemoteException
+  public DateInput getVondatum(String datumverwendung) throws RemoteException
   {
     if (vondatum != null)
     {
       return vondatum;
     }
     Date d = null;
+    this.datumverwendung = datumverwendung;
+
+    String tmp = settings.getString(datumverwendung + "datumvon", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
+
     this.vondatum = new DateInput(d, Einstellungen.DATEFORMAT);
     this.vondatum.setTitle("Anfangsdatum");
     this.vondatum.setText("Bitte Anfangsdatum wählen");
@@ -249,13 +274,26 @@ public class MitgliedskontoControl extends AbstractControl
     return vondatum;
   }
 
-  public DateInput getBisdatum() throws RemoteException
+  public DateInput getBisdatum(String datumverwendung) throws RemoteException
   {
     if (bisdatum != null)
     {
       return bisdatum;
     }
+    this.datumverwendung = datumverwendung;
     Date d = null;
+    String tmp = settings.getString(datumverwendung + "datumbis", null);
+    if (tmp != null)
+    {
+      try
+      {
+        d = Einstellungen.DATEFORMAT.parse(tmp);
+      }
+      catch (ParseException e)
+      {
+        d = null;
+      }
+    }
     this.bisdatum = new DateInput(d, Einstellungen.DATEFORMAT);
     this.bisdatum.setTitle("Endedatum");
     this.bisdatum.setText("Bitte Endedatum wählen");
@@ -380,7 +418,13 @@ public class MitgliedskontoControl extends AbstractControl
       d1 = (Date) vondatum.getValue();
       if (d1 != null)
       {
+        settings.setAttribute(datumverwendung + "datumvon",
+            Einstellungen.DATEFORMAT.format(d1));
         vd = new java.sql.Date(d1.getTime());
+      }
+      else
+      {
+        settings.setAttribute(datumverwendung + "datumvon", "");
       }
     }
     if (bisdatum != null)
@@ -388,7 +432,13 @@ public class MitgliedskontoControl extends AbstractControl
       d1 = (Date) bisdatum.getValue();
       if (d1 != null)
       {
+        settings.setAttribute(datumverwendung + "datumbis",
+            Einstellungen.DATEFORMAT.format(d1));
         bd = new java.sql.Date(d1.getTime());
+      }
+      else
+      {
+        settings.setAttribute(datumverwendung + "datumbis", "");
       }
     }
     String sql = "select mitgliedskonto.*, sum(mitgliedskonto.betrag) sollsumme, "
@@ -560,37 +610,87 @@ public class MitgliedskontoControl extends AbstractControl
     Formular fo = (Formular) Einstellungen.getDBService().createObject(
         Formular.class, form.getID());
     fa = new FormularAufbereitung(file);
-    ArrayList<ArrayList<Mitgliedskonto>> mks = getRechnungsempfaenger(currentObject);
+    ArrayList<ArrayList<Mitgliedskonto>> mks = null;
+    if (currentObject != null)
+    {
+      mks = getRechnungsempfaenger(currentObject);
+    }
+    else
+    {
+      DBIterator it = Einstellungen.getDBService().createList(
+          Mitgliedskonto.class);
+      Date d = null;
+      if (getVondatum(datumverwendung).getValue() != null)
+      {
+        d = (Date) getVondatum(datumverwendung).getValue();
+        if (d != null)
+        {
+          settings.setAttribute(datumverwendung + "datumvon",
+              Einstellungen.DATEFORMAT.format(d));
+        }
+
+        it.addFilter("datum >= ?", new Object[] { d });
+      }
+      else
+      {
+        settings.setAttribute(datumverwendung + "datumvon", "");
+      }
+      if (getBisdatum(datumverwendung).getValue() != null)
+      {
+        d = (Date) getBisdatum(datumverwendung).getValue();
+        if (d != null)
+        {
+          settings.setAttribute(datumverwendung + "datumbis",
+              Einstellungen.DATEFORMAT.format(d));
+        }
+        it.addFilter("datum <= ?", new Object[] { d });
+      }
+      else
+      {
+        settings.setAttribute(datumverwendung + "datumbis", "");
+      }
+
+      Mitgliedskonto[] mk = new Mitgliedskonto[it.size()];
+      int i = 0;
+      while (it.hasNext())
+      {
+        mk[i] = (Mitgliedskonto) it.next();
+        i++;
+        // mk.add((Mitgliedskonto) Einstellungen.getDBService().createObject(
+        // Mitgliedskonto.class, mkto.getID()));
+      }
+      mks = getRechnungsempfaenger(mk);
+    }
     for (ArrayList<Mitgliedskonto> mk : mks)
     {
       aufbereitenFormular(mk, fo, file);
     }
-    if (currentObject == null)
-    {
-      DBIterator abr = Einstellungen.getDBService().createList(
-          Mitgliedskonto.class);
-      if (getVondatum().getValue() != null)
-      {
-        abr.addFilter("datum >= ?", new Object[] { (Date) getVondatum()
-            .getValue() });
-      }
-      if (getBisdatum().getValue() != null)
-      {
-        abr.addFilter("datum <= ?", new Object[] { (Date) getBisdatum()
-            .getValue() });
-      }
-      ArrayList<Object> mktos = new ArrayList<Object>();
-      while (abr.hasNext())
-      {
-        mktos.add(abr.next());
-      }
-      ArrayList<ArrayList<Mitgliedskonto>> mkt = getRechnungsempfaenger(mktos
-          .toArray());
-      for (ArrayList<Mitgliedskonto> mk : mkt)
-      {
-        aufbereitenFormular(mk, fo, file);
-      }
-    }
+    // if (currentObject == null)
+    // {
+    // DBIterator abr = Einstellungen.getDBService().createList(
+    // Mitgliedskonto.class);
+    // if (getVondatum().getValue() != null)
+    // {
+    // abr.addFilter("datum >= ?", new Object[] { (Date) getVondatum()
+    // .getValue() });
+    // }
+    // if (getBisdatum().getValue() != null)
+    // {
+    // abr.addFilter("datum <= ?", new Object[] { (Date) getBisdatum()
+    // .getValue() });
+    // }
+    // ArrayList<Object> mktos = new ArrayList<Object>();
+    // while (abr.hasNext())
+    // {
+    // mktos.add(abr.next());
+    // }
+    // ArrayList<ArrayList<Mitgliedskonto>> mkt = getRechnungsempfaenger(mktos
+    // .toArray());
+    // for (ArrayList<Mitgliedskonto> mk : mkt)
+    // {
+    // aufbereitenFormular(mk, fo, file);
+    // }
+    // }
     fa.showFormular();
 
   }
@@ -628,6 +728,7 @@ public class MitgliedskontoControl extends AbstractControl
     if (buda.size() > 1)
     {
       zg1.add("Summe");
+      zg.add("Summe");
       betrag.add(summe);
     }
     map.put(FormularfeldControl.BUCHUNGSDATUM, buda.toArray());
