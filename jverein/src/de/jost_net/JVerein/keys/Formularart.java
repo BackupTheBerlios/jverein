@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Formularart.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:04:03 $
+ * $Revision: 1.4 $
+ * $Date: 2010/08/16 20:17:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Formularart.java,v $
+ * Revision 1.4  2010/08/16 20:17:58  jost
+ * Neu: Mahnung
+ *
  * Revision 1.3  2009/06/11 21:04:03  jost
  * Vorbereitung I18N
  *
@@ -33,6 +36,8 @@ public class Formularart
   public static final int SPENDENBESCHEINIGUNG = 1;
 
   public static final int RECHNUNG = 2;
+
+  public static final int MAHNUNG = 3;
 
   private int formularart;
 
@@ -59,6 +64,8 @@ public class Formularart
         return JVereinPlugin.getI18n().tr("Spendenbescheinigung");
       case RECHNUNG:
         return JVereinPlugin.getI18n().tr("Rechnung");
+      case MAHNUNG:
+        return JVereinPlugin.getI18n().tr("Mahnung");
       default:
         return null;
     }
@@ -69,6 +76,7 @@ public class Formularart
     ArrayList<Formularart> ret = new ArrayList<Formularart>();
     ret.add(new Formularart(SPENDENBESCHEINIGUNG));
     ret.add(new Formularart(RECHNUNG));
+    ret.add(new Formularart(MAHNUNG));
     return ret;
   }
 

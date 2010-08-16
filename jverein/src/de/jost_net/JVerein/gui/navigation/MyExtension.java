@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.29 $
- * $Date: 2010/08/15 19:01:13 $
+ * $Revision: 1.30 $
+ * $Date: 2010/08/16 20:17:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
- * Revision 1.29  2010/08/15 19:01:13  jost
+ * Revision 1.30  2010/08/16 20:17:14  jost
+ * Neu: Mahnung
+ *
+ * Revision 1.29  2010-08-15 19:01:13  jost
  * Rechnungen auch für einen vorgegebenen Zeitraum ausgeben.
  *
  * Revision 1.28  2010-08-10 05:39:41  jost
@@ -132,6 +135,7 @@ import de.jost_net.JVerein.gui.action.ManuellerZahlungseingangListeAction;
 import de.jost_net.JVerein.gui.action.MitgliedImportAction;
 import de.jost_net.JVerein.gui.action.MitgliedSucheAction;
 import de.jost_net.JVerein.gui.action.MitgliedskontoListeAction;
+import de.jost_net.JVerein.gui.action.MitgliedskontoMahnungAction;
 import de.jost_net.JVerein.gui.action.MitgliedskontoRechnungAction;
 import de.jost_net.JVerein.gui.action.RechnungListeAction;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungListeAction;
@@ -184,6 +188,8 @@ public class MyExtension implements Extension
                 "rechnung.png"));
         jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
             "Rechnungen"), new MitgliedskontoRechnungAction(), "rechnung.png"));
+        jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
+            "Mahnungen"), new MitgliedskontoMahnungAction(), "rechnung.png"));
       }
       if (Einstellungen.getEinstellung().getZusatzbetrag())
       {

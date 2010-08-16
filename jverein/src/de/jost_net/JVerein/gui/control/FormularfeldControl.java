@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularfeldControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/08/10 15:58:34 $
+ * $Revision: 1.10 $
+ * $Date: 2010/08/16 20:16:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldControl.java,v $
- * Revision 1.9  2010/08/10 15:58:34  jost
+ * Revision 1.10  2010/08/16 20:16:16  jost
+ * Neu: Mahnung
+ *
+ * Revision 1.9  2010-08-10 15:58:34  jost
  * neues Feld Zahlungsgrund
  *
  * Revision 1.8  2010-08-10 05:38:18  jost
@@ -187,7 +190,8 @@ public class FormularfeldControl extends AbstractControl
       namen.add("Spendedatum");
       namen.add("ErsatzAufwendungen");
     }
-    if (formular.getArt() == Formularart.RECHNUNG)
+    if (formular.getArt() == Formularart.RECHNUNG
+        || formular.getArt() == Formularart.MAHNUNG)
     {
       namen.add(ZAHLUNGSGRUND);
       namen.add(ZAHLUNGSGRUND1);
