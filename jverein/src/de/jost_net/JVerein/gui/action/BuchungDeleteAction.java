@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungDeleteAction.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/12/17 19:21:53 $
+ * $Revision: 1.8 $
+ * $Date: 2010/08/21 08:44:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungDeleteAction.java,v $
+ * Revision 1.8  2010/08/21 08:44:07  jost
+ * Bugfix: Keine Löschung, wenn Buchung bereits abgeschlossen.
+ *
  * Revision 1.7  2009/12/17 19:21:53  jost
  * Mehrere Buchungen können gleichzeitig gelöscht werden.
  *
@@ -32,8 +35,10 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Buchung;
+import de.jost_net.JVerein.rmi.Jahresabschluss;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
@@ -91,6 +96,14 @@ public class BuchungDeleteAction implements Action
       }
       for (Buchung bu : b)
       {
+        Jahresabschluss ja = bu.getJahresabschluss();
+        if (ja != null)
+        {
+          throw new ApplicationException(JVereinPlugin.getI18n().tr(
+              "Buchung wurde bereits am {0} von {1} abgeschlossen.",
+              new String[] { Einstellungen.DATEFORMAT.format(ja.getDatum()),
+                  ja.getName() }));
+        }
         bu.delete();
       }
       GUI.getStatusBar().setSuccessText(
