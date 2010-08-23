@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/LehrgaengeListeView.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.3 $
+ * $Date: 2010/08/23 13:39:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgaengeListeView.java,v $
+ * Revision 1.3  2010/08/23 13:39:32  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.2  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -21,10 +24,10 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.LehrgaengeListeAction;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.gui.parts.LehrgaengeList;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.util.ApplicationException;
 
@@ -37,7 +40,7 @@ public class LehrgaengeListeView extends AbstractView
         this.getParent());
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.LEHRGANG, false,
         "help-browser.png");
   }

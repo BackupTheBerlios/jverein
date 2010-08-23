@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungslisteView.java,v $
- * $Revision: 1.14 $
- * $Date: 2009/09/12 19:03:16 $
+ * $Revision: 1.15 $
+ * $Date: 2010/08/23 13:39:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungslisteView.java,v $
+ * Revision 1.15  2010/08/23 13:39:32  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.14  2009/09/12 19:03:16  jost
  * neu: Buchungsjournal
  *
@@ -57,10 +60,10 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BuchungNeuAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BuchungsControl;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
@@ -86,7 +89,7 @@ public class BuchungslisteView extends AbstractView
         .getBisdatum());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 1);
-    Button button = new Button("suchen", new Action()
+    Button button = new Button("&suchen", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
@@ -107,7 +110,7 @@ public class BuchungslisteView extends AbstractView
 
     ButtonArea buttons2 = new ButtonArea(this.getParent(), 6);
     buttons2.addButton(new Back(false));
-    buttons2.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons2.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGEN, false,
         "help-browser.png");
     buttons2.addButton(control.getStartAuswertungBuchungsjournalButton());

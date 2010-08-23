@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.24 $
- * $Date: 2010/07/25 18:31:18 $
+ * $Revision: 1.25 $
+ * $Date: 2010/08/23 13:31:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.24  2010/07/25 18:31:18  jost
+ * Revision 1.25  2010/08/23 13:31:50  jost
+ * Optimierung Tastatursteuerung
+ *
+ * Revision 1.24  2010-07-25 18:31:18  jost
  * Neu: Mitgliedskonto
  *
  * Revision 1.23  2009/09/12 19:02:31  jost
@@ -551,7 +554,7 @@ public class BuchungsControl extends AbstractControl
 
   public Button getStartAuswertungBuchungsjournalButton()
   {
-    Button b = new Button("PDF Buchungsjournal", new Action()
+    Button b = new Button("&PDF Buchungsjournal", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

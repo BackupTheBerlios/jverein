@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailDetailView.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/02/16 20:21:29 $
+ * $Revision: 1.4 $
+ * $Date: 2010/08/23 13:39:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailDetailView.java,v $
+ * Revision 1.4  2010/08/23 13:39:31  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.3  2010/02/16 20:21:29  jost
  * Layout-Korrektur
  *
@@ -36,11 +39,11 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MailControl;
 import de.jost_net.JVerein.gui.dialogs.MailEmpfaengerAuswahlDialog;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.rmi.MailAnhang;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
@@ -78,7 +81,7 @@ public class MailDetailView extends AbstractView
     GridLayout gl3 = new GridLayout();
     gl3.marginWidth = 0;
     comp3.setLayout(gl3);
-    Button add = new Button("Hinzufügen", new Action()
+    Button add = new Button("H&inzufügen", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
@@ -118,7 +121,7 @@ public class MailDetailView extends AbstractView
     GridLayout gl5 = new GridLayout();
     gl5.marginWidth = 0;
     comp5.setLayout(gl5);
-    Button addAttachment = new Button("    Anlage    ", new Action()
+    Button addAttachment = new Button("    &Anlage    ", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
@@ -153,7 +156,7 @@ public class MailDetailView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.MAIL, false,
         "help-browser.png");
     buttons.addButton(control.getMailSpeichernButton());

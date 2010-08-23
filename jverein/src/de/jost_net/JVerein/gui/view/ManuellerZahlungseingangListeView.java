@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ManuellerZahlungseingangListeView.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/07/28 07:27:08 $
+ * $Revision: 1.8 $
+ * $Date: 2010/08/23 13:39:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangListeView.java,v $
- * Revision 1.7  2010/07/28 07:27:08  jost
+ * Revision 1.8  2010/08/23 13:39:33  jost
+ * Optimierung Tastatursteuerung
+ *
+ * Revision 1.7  2010-07-28 07:27:08  jost
  * deprecated
  *
  * Revision 1.6  2009/06/11 21:03:39  jost
@@ -36,11 +39,12 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.ManuellerZahlungseingangControl;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.util.ApplicationException;
+
 /**
  * @deprecated In Version 1.5 ausmustern
  */
@@ -59,7 +63,7 @@ public class ManuellerZahlungseingangListeView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.MANUELLEZAHLUNGSEINGAENGE,
         false, "help-browser.png");
   }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KursteilnehmerDetailView.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/07/24 20:21:56 $
+ * $Revision: 1.8 $
+ * $Date: 2010/08/23 13:39:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerDetailView.java,v $
+ * Revision 1.8  2010/08/23 13:39:32  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.7  2009/07/24 20:21:56  jost
  * Focus auf erstes Feld setzen.
  *
@@ -41,10 +44,10 @@ import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.KursteilnehmerDeleteAction;
 import de.jost_net.JVerein.gui.action.KursteilnehmerDetailAction;
 import de.jost_net.JVerein.gui.control.KursteilnehmerControl;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
@@ -60,7 +63,8 @@ public class KursteilnehmerDetailView extends AbstractView
     LabelGroup grGrund = new LabelGroup(getParent(), JVereinPlugin.getI18n()
         .tr("Daten für die Abbuchung"));
     grGrund.getComposite().setSize(290, 190);
-    grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control.getName(true));
+    grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control
+        .getName(true));
     grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck 1"),
         control.getVZweck1());
     grGrund.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck 2"),
@@ -82,15 +86,15 @@ public class KursteilnehmerDetailView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 5);
 
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.KURSTEILNEHMER, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&neu"),
         new KursteilnehmerDetailAction(), null, false, "document-new.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("löschen"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&löschen"),
         new KursteilnehmerDeleteAction(), control.getCurrentObject(), false,
         "user-trash.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

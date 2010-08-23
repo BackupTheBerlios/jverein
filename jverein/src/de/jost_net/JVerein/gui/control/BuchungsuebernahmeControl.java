@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2009/12/17 19:23:50 $
+ * $Revision: 1.12 $
+ * $Date: 2010/08/23 13:33:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
+ * Revision 1.12  2010/08/23 13:33:14  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.11  2009/12/17 19:23:50  jost
  * Mehrfache Buchungsübernahme verhindert.
  *
@@ -119,7 +122,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
 
   public Button getUebernahmeButton()
   {
-    Button button = new Button("Übernahme", new Action()
+    Button button = new Button("&Übernahme", new Action()
     {
       @SuppressWarnings("unchecked")
       public void handleAction(Object context) throws ApplicationException

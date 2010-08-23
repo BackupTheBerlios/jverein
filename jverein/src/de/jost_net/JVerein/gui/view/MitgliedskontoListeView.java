@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoListeView.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/08/16 20:17:26 $
+ * $Revision: 1.5 $
+ * $Date: 2010/08/23 13:39:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoListeView.java,v $
- * Revision 1.4  2010/08/16 20:17:26  jost
+ * Revision 1.5  2010/08/23 13:39:32  jost
+ * Optimierung Tastatursteuerung
+ *
+ * Revision 1.4  2010-08-16 20:17:26  jost
  * Neu: Mahnung
  *
  * Revision 1.3  2010-08-15 19:01:29  jost
@@ -28,10 +31,10 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.control.MitgliedskontoControl;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.gui.menu.Mitgliedskonto2Menu;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
@@ -57,7 +60,7 @@ public class MitgliedskontoListeView extends AbstractView
 
     ButtonArea buttons2 = new ButtonArea(this.getParent(), 3);
     buttons2.addButton(new Back(false));
-    buttons2.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons2.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.MITGLIEDSKONTO_UEBERSICHT,
         false, "help-browser.png");
   }

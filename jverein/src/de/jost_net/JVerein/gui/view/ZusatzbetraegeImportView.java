@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegeImportView.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/10/20 17:58:58 $
+ * $Revision: 1.2 $
+ * $Date: 2010/08/23 13:39:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegeImportView.java,v $
+ * Revision 1.2  2010/08/23 13:39:31  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.1  2009/10/20 17:58:58  jost
  * Neu: Import von Zusatzbeträgen
  *
@@ -18,11 +21,11 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.dialogs.ImportDialog;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.io.IZusatzbetraegeImport;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.logging.Logger;
@@ -37,10 +40,10 @@ public class ZusatzbetraegeImportView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.ZUSATZBETRAEGEIMPORT,
         false, "help-browser.png");
-    Button button = new Button(JVereinPlugin.getI18n().tr("importieren"),
+    Button button = new Button(JVereinPlugin.getI18n().tr("&importieren"),
         new Action()
         {
           public void handleAction(Object context) throws ApplicationException

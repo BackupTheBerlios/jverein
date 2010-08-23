@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AdressbuchExportControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/05/16 10:42:38 $
+ * $Revision: 1.3 $
+ * $Date: 2010/08/23 13:30:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AdressbuchExportControl.java,v $
+ * Revision 1.3  2010/08/23 13:30:06  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.2  2010/05/16 10:42:38  jost
  * Einheitlicher Umgang mit ausgetretenen Mitgliedern
  *
@@ -16,7 +19,7 @@
  * Neu: Adressbuchexport
  *
  **********************************************************************/
- 
+
 package de.jost_net.JVerein.gui.control;
 
 import java.io.File;
@@ -78,9 +81,8 @@ public class AdressbuchExportControl extends AbstractControl
     {
       return encoding;
     }
-    encoding = new SelectInput(
-        new Object[] { "Cp1250", "ISO8859_15_FDIS", "UTF-8" }, settings.getString(
-            "encoding", "ISO8859_15_FDIS"));
+    encoding = new SelectInput(new Object[] { "Cp1250", "ISO8859_15_FDIS",
+        "UTF-8" }, settings.getString("encoding", "ISO8859_15_FDIS"));
     return encoding;
   }
 
@@ -96,7 +98,7 @@ public class AdressbuchExportControl extends AbstractControl
 
   public Button getStartButton()
   {
-    Button button = new Button("starten", new Action()
+    Button button = new Button("&starten", new Action()
     {
       public void handleAction(Object context)
       {
@@ -114,7 +116,7 @@ public class AdressbuchExportControl extends AbstractControl
           GUI.getStatusBar().setErrorText(e.getMessage());
         }
       }
-    }, null, true);
+    }, null, true, "go.png");
     return button;
   }
 

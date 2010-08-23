@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.20 $
- * $Date: 2009/07/24 20:18:31 $
+ * $Revision: 1.21 $
+ * $Date: 2010/08/23 13:34:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
+ * Revision 1.21  2010/08/23 13:34:26  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.20  2009/07/24 20:18:31  jost
  * Focus auf erstes Feld setzen.
  *
@@ -483,7 +486,7 @@ public class KursteilnehmerControl extends AbstractControl
 
   public Button getStartAuswertungButton() throws RemoteException
   {
-    Button b = new Button("Start", new Action()
+    Button b = new Button("&starten", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

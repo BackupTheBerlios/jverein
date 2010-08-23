@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungView.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/07/28 07:27:24 $
+ * $Revision: 1.7 $
+ * $Date: 2010/08/23 13:39:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungView.java,v $
- * Revision 1.6  2010/07/28 07:27:24  jost
+ * Revision 1.7  2010/08/23 13:39:31  jost
+ * Optimierung Tastatursteuerung
+ *
+ * Revision 1.6  2010-07-28 07:27:24  jost
  * deprecated
  *
  * Revision 1.5  2009/07/13 20:52:32  jost
@@ -76,12 +79,13 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.RechnungControl;
+import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.util.ApplicationException;
+
 /**
  * @deprecated In Version 1.5 ausmustern
  */
@@ -107,7 +111,7 @@ public class RechnungView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.RECHNUNG, false,
         "help-browser.png");
     buttons.addButton(control.getStartButton(this.getCurrentObject()));

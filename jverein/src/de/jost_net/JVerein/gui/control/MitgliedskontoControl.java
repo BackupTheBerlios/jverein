@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/08/16 20:16:45 $
+ * $Revision: 1.10 $
+ * $Date: 2010/08/23 13:36:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.9  2010/08/16 20:16:45  jost
+ * Revision 1.10  2010/08/23 13:36:42  jost
+ * Optimierung Tastatursteuerung
+ *
+ * Revision 1.9  2010-08-16 20:16:45  jost
  * Neu: Mahnung
  *
  * Revision 1.8  2010-08-15 19:00:50  jost
@@ -565,7 +568,7 @@ public class MitgliedskontoControl extends AbstractControl
 
   public Button getStartRechnungButton(final Object currentObject)
   {
-    Button button = new Button("starten", new Action()
+    Button button = new Button("&starten", new Action()
     {
       public void handleAction(Object context)
       {
@@ -677,7 +680,7 @@ public class MitgliedskontoControl extends AbstractControl
 
   public Button getStartMahnungButton(final Object currentObject)
   {
-    Button button = new Button("starten", new Action()
+    Button button = new Button("&starten", new Action()
     {
       public void handleAction(Object context)
       {

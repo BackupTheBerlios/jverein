@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsklasseSaldoControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/02/23 21:15:37 $
+ * $Revision: 1.5 $
+ * $Date: 2010/08/23 13:32:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoControl.java,v $
+ * Revision 1.5  2010/08/23 13:32:24  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.4  2010/02/23 21:15:37  jost
  * Individueller Zeitraum
  *
@@ -114,7 +117,7 @@ public class BuchungsklasseSaldoControl extends AbstractControl
 
   public Button getStartAuswertungButton()
   {
-    Button b = new Button("PDF", new Action()
+    Button b = new Button("&PDF", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

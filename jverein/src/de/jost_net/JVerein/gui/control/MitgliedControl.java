@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.83 $
- * $Date: 2010/05/16 10:43:42 $
+ * $Revision: 1.84 $
+ * $Date: 2010/08/23 13:36:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
+ * Revision 1.84  2010/08/23 13:36:02  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.83  2010/05/16 10:43:42  jost
  * Einheitlicher Umgang mit ausgetretenen Mitgliedern
  *
@@ -1791,7 +1794,7 @@ public class MitgliedControl extends AbstractControl
 
   public Button getStartAuswertungButton()
   {
-    Button b = new Button("Start", new Action()
+    Button b = new Button("&starten", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
@@ -1813,7 +1816,7 @@ public class MitgliedControl extends AbstractControl
 
   public Button getStartStatistikButton()
   {
-    Button b = new Button("Start", new Action()
+    Button b = new Button("&starten", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
@@ -1833,7 +1836,7 @@ public class MitgliedControl extends AbstractControl
 
   public Button getStartJubilaeenButton()
   {
-    Button b = new Button("Start", new Action()
+    Button b = new Button("&Start", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {

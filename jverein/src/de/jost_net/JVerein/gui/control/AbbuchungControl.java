@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.22 $
- * $Date: 2010/07/25 18:30:07 $
+ * $Revision: 1.23 $
+ * $Date: 2010/08/23 13:29:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
- * Revision 1.22  2010/07/25 18:30:07  jost
+ * Revision 1.23  2010/08/23 13:29:08  jost
+ * Optimierung Tastatursteuerung
+ *
+ * Revision 1.22  2010-07-25 18:30:07  jost
  * Icon eingefügt
  *
  * Revision 1.21  2010/04/25 13:53:59  jost
@@ -274,7 +277,7 @@ public class AbbuchungControl extends AbstractControl
 
   public Button getStartButton()
   {
-    Button button = new Button("starten", new Action()
+    Button button = new Button("&starten", new Action()
     {
       public void handleAction(Object context)
       {

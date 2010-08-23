@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2009/09/03 18:48:00 $
+ * $Revision: 1.10 $
+ * $Date: 2010/08/23 13:33:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
+ * Revision 1.10  2010/08/23 13:33:40  jost
+ * Optimierung Tastatursteuerung
+ *
  * Revision 1.9  2009/09/03 18:48:00  jost
  * Vermeidung NPE
  *
@@ -115,14 +118,14 @@ public class JahressaldoControl extends AbstractControl
     }
 
     suchjahr = new SelectInput(jahre, settings.getInt("jahr", jahre.get(0)));
-   // suchjahr.setPleaseChoose("Bitte auswählen");
+    // suchjahr.setPleaseChoose("Bitte auswählen");
     suchjahr.setPreselected(settings.getInt("jahr", bis.get(Calendar.YEAR)));
     return suchjahr;
   }
 
   public Button getStartAuswertungButton()
   {
-    Button b = new Button("PDF", new Action()
+    Button b = new Button("&PDF", new Action()
     {
       public void handleAction(Object context) throws ApplicationException
       {
