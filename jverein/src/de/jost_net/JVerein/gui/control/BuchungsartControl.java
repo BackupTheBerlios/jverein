@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2009/09/20 19:02:45 $
+ * $Revision: 1.17 $
+ * $Date: 2010/08/24 17:40:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
+ * Revision 1.17  2010/08/24 17:40:16  jost
+ * Spalte Bezeichnung verlängert
+ *
  * Revision 1.16  2009/09/20 19:02:45  jost
  * Buchungsart Art war immer Einnahme.
  *
@@ -135,7 +138,7 @@ public class BuchungsartControl extends AbstractControl
     {
       return bezeichnung;
     }
-    bezeichnung = new TextInput(getBuchungsart().getBezeichnung(), 30);
+    bezeichnung = new TextInput(getBuchungsart().getBezeichnung(), 50);
     return bezeichnung;
   }
 
