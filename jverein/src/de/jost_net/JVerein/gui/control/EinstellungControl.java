@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.27 $
- * $Date: 2010/08/10 18:06:09 $
+ * $Revision: 1.28 $
+ * $Date: 2010/08/25 11:52:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.27  2010/08/10 18:06:09  jost
+ * Revision 1.28  2010/08/25 11:52:42  jost
+ * Bugfix NPE
+ *
+ * Revision 1.27  2010-08-10 18:06:09  jost
  * Zahlungswegtexte für den Rechnungsdruck
  *
  * Revision 1.26  2010-08-10 05:37:49  jost
@@ -605,10 +608,10 @@ public class EinstellungControl extends AbstractControl
       e.setExterneMitgliedsnummer((Boolean) externemitgliedsnummer.getValue());
       Beitragsmodel bm = (Beitragsmodel) beitragsmodel.getValue();
       e.setBeitragsmodel(bm.getKey());
-      e.setRechnungFuerAbbuchung((Boolean) rechnungfuerabbuchung.getValue());
-      e.setRechnungFuerUeberweisung((Boolean) rechnungfuerueberweisung
-          .getValue());
-      e.setRechnungFuerBarzahlung((Boolean) rechnungfuerbarzahlung.getValue());
+//      e.setRechnungFuerAbbuchung((Boolean) rechnungfuerabbuchung.getValue());
+//      e.setRechnungFuerUeberweisung((Boolean) rechnungfuerueberweisung
+//          .getValue());
+//      e.setRechnungFuerBarzahlung((Boolean) rechnungfuerbarzahlung.getValue());
       e.setDateinamenmuster((String) dateinamenmuster.getValue());
       e.setBeginnGeschaeftsjahr((String) beginngeschaeftsjahr.getValue());
       e.setSmtpServer((String) smtp_server.getValue());
