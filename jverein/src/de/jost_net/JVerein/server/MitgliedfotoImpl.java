@@ -1,0 +1,87 @@
+/**********************************************************************
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedfotoImpl.java,v $
+ * $Revision: 1.1 $
+ * $Date: 2010/08/26 11:14:57 $
+ * $Author: jost $
+ *
+ * Copyright (c) by Heiner Jostkleigrewe
+ * All rights reserved
+ * heiner@jverein.de
+ * www.jverein.de
+ * $Log: MitgliedfotoImpl.java,v $
+ * Revision 1.1  2010/08/26 11:14:57  jost
+ * Neu: Fotos von Mitgliedern
+ *
+ **********************************************************************/
+package de.jost_net.JVerein.server;
+
+import java.rmi.RemoteException;
+
+import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.Mitgliedfoto;
+import de.willuhn.datasource.db.AbstractDBObject;
+import de.willuhn.logging.Logger;
+import de.willuhn.util.ApplicationException;
+
+public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
+{
+
+  private static final long serialVersionUID = 1603994510932244220L;
+
+  public MitgliedfotoImpl() throws RemoteException
+  {
+    super();
+  }
+
+  @Override
+  protected String getTableName()
+  {
+    return "mitgliedfoto";
+  }
+
+  @Override
+  public String getPrimaryAttribute() throws RemoteException
+  {
+    return "mitglied";
+  }
+
+  @Override
+  protected void deleteCheck() throws ApplicationException
+  {
+    //
+  }
+
+  @Override
+  protected void insertCheck() throws ApplicationException
+  {
+    updateCheck();
+  }
+
+  @Override
+  protected void updateCheck() throws ApplicationException
+  {
+    //
+  }
+
+  @Override
+  protected Class getForeignObject(String arg0)
+  {
+    return null;
+  }
+
+  public byte[] getFoto() throws RemoteException
+  {
+    return (byte[]) this.getAttribute("foto");
+  }
+
+  public void setFoto(byte[] foto) throws RemoteException
+  {
+    setAttribute("foto", foto);
+  }
+
+  public void setMitglied(int mitglied) throws RemoteException
+  {
+    setAttribute("mitglied", mitglied);
+  }
+
+}
