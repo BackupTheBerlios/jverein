@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/07/25 18:46:52 $
+ * $Revision: 1.12 $
+ * $Date: 2010/08/27 17:59:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
- * Revision 1.11  2010/07/25 18:46:52  jost
+ * Revision 1.12  2010/08/27 17:59:23  jost
+ * Vermeidung NPE
+ *
+ * Revision 1.11  2010-07-25 18:46:52  jost
  * Neu: Mitgliedskonto
  *
  * Revision 1.10  2009/06/11 21:04:23  jost
@@ -321,7 +324,14 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
   public void setMitgliedskonto(Mitgliedskonto mitgliedskonto)
       throws RemoteException
   {
-    setAttribute("mitgliedskonto", new Integer(mitgliedskonto.getID()));
+    if (mitgliedskonto != null)
+    {
+      setAttribute("mitgliedskonto", new Integer(mitgliedskonto.getID()));
+    }
+    else
+    {
+      setAttribute("mitgliedskonto", null);
+    }
   }
 
   public Object getAttribute(String fieldName) throws RemoteException
