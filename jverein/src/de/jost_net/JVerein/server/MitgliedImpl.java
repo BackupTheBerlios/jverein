@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.29 $
- * $Date: 2010/01/01 20:12:03 $
+ * $Revision: 1.30 $
+ * $Date: 2010/08/27 19:10:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
+ * Revision 1.30  2010/08/27 19:10:03  jost
+ * neu: Mitgliedsfoto
+ *
  * Revision 1.29  2010/01/01 20:12:03  jost
  * Typisierung der Zusatzfelder
  *
@@ -110,6 +113,7 @@ import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.rmi.Mitgliedfoto;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.util.Checker;
 import de.jost_net.JVerein.util.IbanBicCalc;
@@ -296,6 +300,10 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     if ("beitragsgruppe".equals(field))
     {
       return Beitragsgruppe.class;
+    }
+    if ("foto".equals(field))
+    {
+      return Mitgliedfoto.class;
     }
     return null;
   }
@@ -561,6 +569,16 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public void setBeitragsgruppe(Integer beitragsgruppe) throws RemoteException
   {
     setAttribute("beitragsgruppe", beitragsgruppe);
+  }
+
+  public Mitgliedfoto getFoto() throws RemoteException
+  {
+    return (Mitgliedfoto) getAttribute("foto");
+  }
+
+  public void setFoto(Mitgliedfoto foto) throws RemoteException
+  {
+    setAttribute("foto", foto);
   }
 
   public Integer getZahlerID() throws RemoteException

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.42 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.43 $
+ * $Date: 2010/08/27 19:08:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
- * Revision 1.42  2010/08/23 13:39:32  jost
+ * Revision 1.43  2010/08/27 19:08:08  jost
+ * neu: Mitgliedsfoto
+ *
+ * Revision 1.42  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.41  2010-07-25 18:43:18  jost
@@ -324,6 +327,12 @@ public class MitgliedDetailView extends AbstractView
       ButtonArea buttonslehrg = new ButtonArea(tab9.getComposite(), 1);
       buttonslehrg.addButton(control.getLehrgangNeu());
     }
+    if (Einstellungen.getEinstellung().getMitgliedfoto())
+    {
+      TabGroup tab10 = new TabGroup(folder, JVereinPlugin.getI18n().tr("Foto"));
+      tab10.addLabelPair("Foto", control.getFoto());
+    }
+
     if (tabindex != -1)
     {
       folder.setSelection(tabindex);

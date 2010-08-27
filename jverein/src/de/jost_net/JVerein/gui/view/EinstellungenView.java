@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.31 $
- * $Date: 2010/08/23 13:39:31 $
+ * $Revision: 1.32 $
+ * $Date: 2010/08/27 19:07:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.31  2010/08/23 13:39:31  jost
+ * Revision 1.32  2010/08/27 19:07:50  jost
+ * neu: Mitgliedsfoto
+ *
+ * Revision 1.31  2010-08-23 13:39:31  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.30  2010-08-10 18:06:49  jost
@@ -163,6 +166,8 @@ public class EinstellungenView extends AbstractView
         "Juristische Personen erlaubt"), control.getJuristischePersonen());
     right.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonten *"), control
         .getMitgliedskonto());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedsfoto *"), control
+        .getMitgliedfoto());
     right.addLabelPair(JVereinPlugin.getI18n().tr(
         "manuelle Zahlungen reaktivieren*"), control.getManuelleZahlungen());
     right.addLabelPair(JVereinPlugin.getI18n().tr(

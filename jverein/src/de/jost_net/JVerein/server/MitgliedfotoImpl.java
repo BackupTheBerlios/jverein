@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedfotoImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/08/26 11:14:57 $
+ * $Revision: 1.2 $
+ * $Date: 2010/08/27 19:09:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedfotoImpl.java,v $
- * Revision 1.1  2010/08/26 11:14:57  jost
+ * Revision 1.2  2010/08/27 19:09:46  jost
+ * neu: Mitgliedsfoto
+ *
+ * Revision 1.1  2010-08-26 11:14:57  jost
  * Neu: Fotos von Mitgliedern
  *
  **********************************************************************/
@@ -17,10 +20,9 @@ package de.jost_net.JVerein.server;
 
 import java.rmi.RemoteException;
 
-import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedfoto;
 import de.willuhn.datasource.db.AbstractDBObject;
-import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
@@ -42,7 +44,7 @@ public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
   @Override
   public String getPrimaryAttribute() throws RemoteException
   {
-    return "mitglied";
+    return "id";
   }
 
   @Override
@@ -69,6 +71,11 @@ public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
     return null;
   }
 
+  public void setMitglied(Mitglied mitglied) throws RemoteException
+  {
+    setAttribute("mitglied", mitglied.getID());
+  }
+
   public byte[] getFoto() throws RemoteException
   {
     return (byte[]) this.getAttribute("foto");
@@ -77,11 +84,6 @@ public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
   public void setFoto(byte[] foto) throws RemoteException
   {
     setAttribute("foto", foto);
-  }
-
-  public void setMitglied(int mitglied) throws RemoteException
-  {
-    setAttribute("mitglied", mitglied);
   }
 
 }

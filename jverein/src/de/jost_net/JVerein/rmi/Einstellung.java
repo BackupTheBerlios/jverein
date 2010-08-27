@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/08/10 18:07:02 $
+ * $Revision: 1.15 $
+ * $Date: 2010/08/27 19:08:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.14  2010/08/10 18:07:02  jost
+ * Revision 1.15  2010/08/27 19:08:23  jost
+ * neu: Mitgliedsfoto
+ *
+ * Revision 1.14  2010-08-10 18:07:02  jost
  * Zahlungswegtexte für den Rechnungsdruck
  *
  * Revision 1.13  2010-08-10 05:40:58  jost
@@ -105,6 +108,10 @@ public interface Einstellung extends DBObject
   public void setMitgliedskonto(Boolean mitgliedskonto) throws RemoteException;
 
   public boolean getMitgliedskonto() throws RemoteException;
+
+  public void setMitgliedfoto(Boolean mitgliedfoto) throws RemoteException;
+
+  public boolean getMitgliedfoto() throws RemoteException;
 
   public void setManuelleZahlungen(Boolean manuellezahlungen)
       throws RemoteException;

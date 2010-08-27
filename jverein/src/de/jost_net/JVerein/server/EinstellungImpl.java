@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.16 $
- * $Date: 2010/08/10 18:07:15 $
+ * $Revision: 1.17 $
+ * $Date: 2010/08/27 19:09:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.16  2010/08/10 18:07:15  jost
+ * Revision 1.17  2010/08/27 19:09:11  jost
+ * neu: Mitgliedsfoto
+ *
+ * Revision 1.16  2010-08-10 18:07:15  jost
  * Zahlungswegtexte für den Rechnungsdruck
  *
  * Revision 1.15  2010-08-10 05:41:15  jost
@@ -214,6 +217,16 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setMitgliedskonto(Boolean mitgliedskonto) throws RemoteException
   {
     setAttribute("mitgliedskonto", new Boolean(mitgliedskonto));
+  }
+
+  public boolean getMitgliedfoto() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("mitgliedfoto"));
+  }
+
+  public void setMitgliedfoto(Boolean mitgliedfoto) throws RemoteException
+  {
+    setAttribute("mitgliedfoto", new Boolean(mitgliedfoto));
   }
 
   public boolean getManuelleZahlungen() throws RemoteException

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.28 $
- * $Date: 2010/08/25 11:52:42 $
+ * $Revision: 1.29 $
+ * $Date: 2010/08/27 19:07:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.28  2010/08/25 11:52:42  jost
+ * Revision 1.29  2010/08/27 19:07:06  jost
+ * neu: Mitgliedsfoto
+ *
+ * Revision 1.28  2010-08-25 11:52:42  jost
  * Bugfix NPE
  *
  * Revision 1.27  2010-08-10 18:06:09  jost
@@ -140,6 +143,8 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput juristischepersonen;
 
   private CheckboxInput mitgliedskonto;
+
+  private CheckboxInput mitgliedfoto;
 
   private CheckboxInput manuellezahlungen;
 
@@ -303,6 +308,17 @@ public class EinstellungControl extends AbstractControl
     mitgliedskonto = new CheckboxInput(Einstellungen.getEinstellung()
         .getMitgliedskonto());
     return mitgliedskonto;
+  }
+
+  public CheckboxInput getMitgliedfoto() throws RemoteException
+  {
+    if (mitgliedfoto != null)
+    {
+      return mitgliedfoto;
+    }
+    mitgliedfoto = new CheckboxInput(Einstellungen.getEinstellung()
+        .getMitgliedfoto());
+    return mitgliedfoto;
   }
 
   public CheckboxInput getManuelleZahlungen() throws RemoteException
@@ -594,6 +610,7 @@ public class EinstellungControl extends AbstractControl
       e.setLehrgaenge((Boolean) lehrgaenge.getValue());
       e.setJuristischePersonen((Boolean) juristischepersonen.getValue());
       e.setMitgliedskonto((Boolean) mitgliedskonto.getValue());
+      e.setMitgliedfoto((Boolean) mitgliedfoto.getValue());
       e.setManuelleZahlungen((Boolean) manuellezahlungen.getValue());
       e.setRechnungen13((Boolean) rechnungen13.getValue());
       e.setRechnungTextAbbuchung((String) rechnungtextabbuchung.getValue());
@@ -608,10 +625,11 @@ public class EinstellungControl extends AbstractControl
       e.setExterneMitgliedsnummer((Boolean) externemitgliedsnummer.getValue());
       Beitragsmodel bm = (Beitragsmodel) beitragsmodel.getValue();
       e.setBeitragsmodel(bm.getKey());
-//      e.setRechnungFuerAbbuchung((Boolean) rechnungfuerabbuchung.getValue());
-//      e.setRechnungFuerUeberweisung((Boolean) rechnungfuerueberweisung
-//          .getValue());
-//      e.setRechnungFuerBarzahlung((Boolean) rechnungfuerbarzahlung.getValue());
+      // e.setRechnungFuerAbbuchung((Boolean) rechnungfuerabbuchung.getValue());
+      // e.setRechnungFuerUeberweisung((Boolean) rechnungfuerueberweisung
+      // .getValue());
+      // e.setRechnungFuerBarzahlung((Boolean)
+      // rechnungfuerbarzahlung.getValue());
       e.setDateinamenmuster((String) dateinamenmuster.getValue());
       e.setBeginnGeschaeftsjahr((String) beginngeschaeftsjahr.getValue());
       e.setSmtpServer((String) smtp_server.getValue());

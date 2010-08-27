@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.12 $
- * $Date: 2009/10/20 18:01:17 $
+ * $Revision: 1.13 $
+ * $Date: 2010/08/27 19:08:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
+ * Revision 1.13  2010/08/27 19:08:41  jost
+ * neu: Mitgliedsfoto
+ *
  * Revision 1.12  2009/10/20 18:01:17  jost
  * Neu: Anzeige IBAN
  *
@@ -196,5 +199,9 @@ public interface Mitglied extends DBObject
   public String getVornameName() throws RemoteException;
 
   public String getAnschrift() throws RemoteException;
+
+  public Mitgliedfoto getFoto() throws RemoteException;
+
+  public void setFoto(Mitgliedfoto foto) throws RemoteException;
 
 }
