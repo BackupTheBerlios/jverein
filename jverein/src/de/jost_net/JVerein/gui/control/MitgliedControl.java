@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.85 $
- * $Date: 2010/08/27 19:07:25 $
+ * $Revision: 1.86 $
+ * $Date: 2010/09/01 05:56:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.85  2010/08/27 19:07:25  jost
+ * Revision 1.86  2010/09/01 05:56:57  jost
+ * Vermeidung NPE
+ *
+ * Revision 1.85  2010-08-27 19:07:25  jost
  * neu: Mitgliedsfoto
  *
  * Revision 1.84  2010-08-23 13:36:02  jost
@@ -2180,7 +2183,7 @@ public class MitgliedControl extends AbstractControl
       if (it.size() > 0)
       {
         f = (Mitgliedfoto) it.next();
-        if (foto.getValue() == null)
+        if (foto == null)
         {
           f.delete();
         }
