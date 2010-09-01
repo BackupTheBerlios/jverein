@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.25 $
- * $Date: 2010/08/23 13:31:50 $
+ * $Revision: 1.26 $
+ * $Date: 2010/09/01 05:56:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.25  2010/08/23 13:31:50  jost
+ * Revision 1.26  2010/09/01 05:56:35  jost
+ * Bugfix numerische Sortierung
+ *
+ * Revision 1.25  2010-08-23 13:31:50  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.24  2010-07-25 18:31:18  jost
@@ -660,7 +663,7 @@ public class BuchungsControl extends AbstractControl
     if (buchungsList == null)
     {
       buchungsList = new TablePart(buchungen, new BuchungAction());
-      buchungsList.addColumn("Nr", "id");
+      buchungsList.addColumn("Nr", "id-int");
       buchungsList.addColumn("Konto", "konto", new Formatter()
       {
         public String format(Object o)

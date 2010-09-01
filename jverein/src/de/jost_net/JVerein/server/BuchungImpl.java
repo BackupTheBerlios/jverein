@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/08/27 17:59:23 $
+ * $Revision: 1.13 $
+ * $Date: 2010/09/01 05:58:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
- * Revision 1.12  2010/08/27 17:59:23  jost
+ * Revision 1.13  2010/09/01 05:58:19  jost
+ * Bugfix numerische Sortierung
+ *
+ * Revision 1.12  2010-08-27 17:59:23  jost
  * Vermeidung NPE
  *
  * Revision 1.11  2010-07-25 18:46:52  jost
@@ -336,6 +339,19 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
 
   public Object getAttribute(String fieldName) throws RemoteException
   {
+    if ("id-int".equals(fieldName))
+    {
+      try
+      {
+        return new Integer(getID());
+      }
+      catch (Exception e)
+      {
+        Logger.error("unable to parse id: " + getID());
+        return getID();
+      }
+    }
+
     return super.getAttribute(fieldName);
   }
 
