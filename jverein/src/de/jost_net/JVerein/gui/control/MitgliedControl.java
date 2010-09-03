@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.86 $
- * $Date: 2010/09/01 05:56:57 $
+ * $Revision: 1.87 $
+ * $Date: 2010/09/03 16:52:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.86  2010/09/01 05:56:57  jost
+ * Revision 1.87  2010/09/03 16:52:42  jost
+ * Mitgliedsfoto wird jetzt korrekt skaliert.
+ *
+ * Revision 1.86  2010-09-01 05:56:57  jost
  * Vermeidung NPE
  *
  * Revision 1.85  2010-08-27 19:07:25  jost
@@ -1278,8 +1281,8 @@ public class MitgliedControl extends AbstractControl
     {
       f = fo.getFoto();
     }
-    foto = new ImageInput(f, 140, 200);
-    foto.setScale(false);
+    foto = new ImageInput(f, 200, 200);
+    foto.setScale(true);
     return foto;
   }
 
