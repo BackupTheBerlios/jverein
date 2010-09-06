@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AbrechnungslaufDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/21 08:43:41 $
+ * $Revision: 1.3 $
+ * $Date: 2010/09/06 13:24:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufDeleteAction.java,v $
- * Revision 1.2  2010/08/21 08:43:41  jost
+ * Revision 1.3  2010/09/06 13:24:40  jost
+ * Überflüssigen Code entfernt.
+ *
+ * Revision 1.2  2010-08-21 08:43:41  jost
  * Bugfix: Keine Löschung, wenn Buchung bereits abgeschlossen.
  *
  * Revision 1.1  2010-07-25 18:28:03  jost
@@ -19,20 +22,14 @@
 package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
-import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Abrechnungslauf;
 import de.jost_net.JVerein.rmi.Buchung;
-import de.jost_net.JVerein.rmi.Buchungsart;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
-import de.jost_net.JVerein.rmi.Konto;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
-import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
-import de.willuhn.datasource.rmi.DBObject;
-import de.willuhn.datasource.rmi.Listener;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
