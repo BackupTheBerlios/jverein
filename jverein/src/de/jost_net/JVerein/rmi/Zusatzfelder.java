@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Zusatzfelder.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/01/01 20:11:00 $
+ * $Revision: 1.3 $
+ * $Date: 2010/09/07 17:00:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Zusatzfelder.java,v $
+ * Revision 1.3  2010/09/07 17:00:10  jost
+ * neue Methode
+ *
  * Revision 1.2  2010/01/01 20:11:00  jost
  * Typisierung der Zusatzfelder
  *
@@ -60,4 +63,6 @@ public interface Zusatzfelder extends DBObject
   public Boolean getFeldJaNein() throws RemoteException;
 
   public void setFeldJaNein(Boolean janein) throws RemoteException;
+
+  public String getString() throws RemoteException;
 }
