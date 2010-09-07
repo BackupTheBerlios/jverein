@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/09/01 13:49:24 $
+ * $Revision: 1.15 $
+ * $Date: 2010/09/07 16:59:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
- * Revision 1.14  2010/09/01 13:49:24  jost
+ * Revision 1.15  2010/09/07 16:59:57  jost
+ * Bugfix Images
+ *
+ * Revision 1.14  2010-09-01 13:49:24  jost
  * neue Methode
  *
  * Revision 1.13  2010-09-01 05:58:01  jost
@@ -213,12 +216,28 @@ public class Reporter
     table.addCell(cell);
   }
 
-  public void addColumn(byte[] image) throws BadElementException,
+  public void addColumn(byte[] image, int width, int height,
+      int horizontalalignment) throws BadElementException,
       MalformedURLException, IOException
   {
     Image i = Image.getInstance(image);
-    i.scaleAbsolute(100, 200);
-    table.addCell(i);
+    float w = (float) i.width() / (float) (width);
+    float h = (float) i.height() / (float) (height);
+    if (w > h)
+    {
+      h = i.height() / w;
+      w = width;
+    }
+    else
+    {
+      w = i.width() / h;
+      h = height;
+    }
+    i.scaleToFit(w, h);
+    PdfPCell cell = new PdfPCell(i, false);
+    cell.setPadding(3);
+    cell.setHorizontalAlignment(horizontalalignment);
+    table.addCell(cell);
   }
 
   /**
@@ -310,9 +329,9 @@ public class Reporter
    * Erzeugt den Tabellen-Header.
    * 
    * @param tabellenbreiteinprozent
-   *        Breite der Tabelle in Prozent
+   *          Breite der Tabelle in Prozent
    * @param alignment
-   *        Horizontale Ausrichtung der Tabelle (siehe com.lowagie.Element.)
+   *          Horizontale Ausrichtung der Tabelle (siehe com.lowagie.Element.)
    * @throws DocumentException
    */
   public void createHeader(float tabellenbreiteinprozent, int alignment)
@@ -388,11 +407,11 @@ public class Reporter
    * Erzeugt eine Zelle der Tabelle.
    * 
    * @param text
-   *        der anzuzeigende Text.
+   *          der anzuzeigende Text.
    * @param align
-   *        die Ausrichtung.
+   *          die Ausrichtung.
    * @param backgroundcolor
-   *        die Hintergundfarbe.
+   *          die Hintergundfarbe.
    * @return die erzeugte Zelle.
    */
   private PdfPCell getDetailCell(String text, int align, Color backgroundcolor)
@@ -420,9 +439,9 @@ public class Reporter
    * Erzeugt eine Zelle der Tabelle.
    * 
    * @param text
-   *        der anzuzeigende Text.
+   *          der anzuzeigende Text.
    * @param align
-   *        die Ausrichtung.
+   *          die Ausrichtung.
    * @return die erzeugte Zelle.
    */
   private PdfPCell getDetailCell(String text, int align)
@@ -434,7 +453,7 @@ public class Reporter
    * Erzeugt eine Zelle fuer die uebergebene Zahl.
    * 
    * @param value
-   *        die Zahl.
+   *          die Zahl.
    * @return die erzeugte Zelle.
    */
   private PdfPCell getDetailCell(double value)
@@ -449,8 +468,8 @@ public class Reporter
     {
       f = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL, Color.RED);
     }
-    PdfPCell cell = new PdfPCell(new Phrase(
-        Einstellungen.DECIMALFORMAT.format(value), f));
+    PdfPCell cell = new PdfPCell(new Phrase(Einstellungen.DECIMALFORMAT
+        .format(value), f));
     cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
     return cell;
   }
@@ -459,7 +478,7 @@ public class Reporter
    * Erzeugt eine Zelle fuer das uebergebene Datum.
    * 
    * @param value
-   *        das Datum.
+   *          das Datum.
    * @return die erzeugte Zelle.
    */
   private PdfPCell getDetailCell(Date value, int align)
@@ -476,7 +495,7 @@ public class Reporter
    * Gibt einen Leerstring aus, falls der Text null ist.
    * 
    * @param text
-   *        der Text.
+   *          der Text.
    * @return der Text oder Leerstring - niemals null.
    */
   public String notNull(String text)
