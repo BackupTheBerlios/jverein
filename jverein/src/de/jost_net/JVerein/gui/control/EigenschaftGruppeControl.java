@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EigenschaftGruppeControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/11/23 20:39:44 $
+ * $Revision: 1.3 $
+ * $Date: 2010/09/09 18:49:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeControl.java,v $
+ * Revision 1.3  2010/09/09 18:49:34  jost
+ * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
+ *
  * Revision 1.2  2009/11/23 20:39:44  jost
  * Bugfix Lösch-Button
  *
@@ -22,6 +25,7 @@ import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.EigenschaftGruppeDetailAction;
+import de.jost_net.JVerein.gui.formatter.JaNeinFormatter;
 import de.jost_net.JVerein.gui.menu.EigenschaftGruppeMenu;
 import de.jost_net.JVerein.rmi.EigenschaftGruppe;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -30,6 +34,7 @@ import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.Part;
+import de.willuhn.jameica.gui.input.CheckboxInput;
 import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.TablePart;
@@ -43,6 +48,8 @@ public class EigenschaftGruppeControl extends AbstractControl
   private TablePart eigenschaftgruppeList;
 
   private Input bezeichnung;
+
+  private CheckboxInput pflicht;
 
   private EigenschaftGruppe eigenschaftgruppe;
 
@@ -73,6 +80,16 @@ public class EigenschaftGruppeControl extends AbstractControl
     return bezeichnung;
   }
 
+  public CheckboxInput getPflicht() throws RemoteException
+  {
+    if (pflicht != null)
+    {
+      return pflicht;
+    }
+    pflicht = new CheckboxInput(getEigenschaftGruppe().getPflicht());
+    return pflicht;
+  }
+
   /**
    * This method stores the project using the current values.
    */
@@ -82,6 +99,7 @@ public class EigenschaftGruppeControl extends AbstractControl
     {
       EigenschaftGruppe eg = getEigenschaftGruppe();
       eg.setBezeichnung((String) getBezeichnung().getValue());
+      eg.setPflicht((Boolean) getPflicht().getValue());
       try
       {
         eg.store();
@@ -114,6 +132,8 @@ public class EigenschaftGruppeControl extends AbstractControl
     eigenschaftgruppeList = new TablePart(eigenschaftgruppe,
         new EigenschaftGruppeDetailAction(false));
     eigenschaftgruppeList.addColumn("Bezeichnung", "bezeichnung");
+    eigenschaftgruppeList
+        .addColumn("Pflicht", "pflicht", new JaNeinFormatter());
     eigenschaftgruppeList.setContextMenu(new EigenschaftGruppeMenu());
     eigenschaftgruppeList.setRememberColWidths(true);
     eigenschaftgruppeList.setRememberOrder(true);

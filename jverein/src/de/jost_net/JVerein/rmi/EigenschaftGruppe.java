@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/EigenschaftGruppe.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 21:02:05 $
+ * $Revision: 1.2 $
+ * $Date: 2010/09/09 18:50:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppe.java,v $
+ * Revision 1.2  2010/09/09 18:50:57  jost
+ * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
+ *
  * Revision 1.1  2009/11/17 21:02:05  jost
  * Neu: Eigenschaft und EigenschaftGruppe
  *
@@ -24,4 +27,9 @@ public interface EigenschaftGruppe extends DBObject
   public String getBezeichnung() throws RemoteException;
 
   public void setBezeichnung(String bezeichnung) throws RemoteException;
+
+  public void setPflicht(Boolean pflicht) throws RemoteException;
+
+  public boolean getPflicht() throws RemoteException;
+
 }

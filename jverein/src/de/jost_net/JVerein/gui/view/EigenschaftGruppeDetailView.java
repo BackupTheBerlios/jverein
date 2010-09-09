@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeDetailView.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.3 $
+ * $Date: 2010/09/09 18:50:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeDetailView.java,v $
- * Revision 1.2  2010/08/23 13:39:32  jost
+ * Revision 1.3  2010/09/09 18:50:40  jost
+ * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
+ *
+ * Revision 1.2  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.1  2009/11/17 21:00:04  jost
@@ -42,6 +45,8 @@ public class EigenschaftGruppeDetailView extends AbstractView
         "Eigenschaften-Gruppe"));
     group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"), control
         .getBezeichnung());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Pflicht"), control
+        .getPflicht());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));

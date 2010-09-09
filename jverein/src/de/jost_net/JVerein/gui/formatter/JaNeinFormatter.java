@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/formatter/JaNeinFormatter.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/01/01 18:38:41 $
+ * $Revision: 1.2 $
+ * $Date: 2010/09/09 18:50:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JaNeinFormatter.java,v $
+ * Revision 1.2  2010/09/09 18:50:26  jost
+ * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
+ *
  * Revision 1.1  2010/01/01 18:38:41  jost
  * Typisierung der Zusatzfelder
  *
@@ -29,6 +32,14 @@ public class JaNeinFormatter implements Formatter
     {
       Boolean b = (Boolean) o;
       if (b)
+      {
+        return "X";
+      }
+    }
+    if (o instanceof String)
+    {
+      String s = (String) o;
+      if (s.equalsIgnoreCase("TRUE"))
       {
         return "X";
       }

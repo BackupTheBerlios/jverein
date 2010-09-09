@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.88 $
- * $Date: 2010/09/06 17:46:14 $
+ * $Revision: 1.89 $
+ * $Date: 2010/09/09 18:50:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.88  2010/09/06 17:46:14  jost
+ * Revision 1.89  2010/09/09 18:50:07  jost
+ * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
+ *
+ * Revision 1.88  2010-09-06 17:46:14  jost
  * Vermeidung NPE
  *
  * Revision 1.87  2010-09-03 16:52:42  jost
@@ -289,6 +292,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -322,6 +326,7 @@ import de.jost_net.JVerein.keys.Zahlungsrhytmus;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Eigenschaft;
+import de.jost_net.JVerein.rmi.EigenschaftGruppe;
 import de.jost_net.JVerein.rmi.Eigenschaften;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Lehrgang;
@@ -2125,6 +2130,43 @@ public class MitgliedControl extends AbstractControl
     try
     {
       Mitglied m = getMitglied();
+
+      if (eigenschaftenTree != null)
+      {
+        HashMap<String, Boolean> pflichtgruppen = new HashMap<String, Boolean>();
+        DBIterator it = Einstellungen.getDBService().createList(
+            EigenschaftGruppe.class);
+        it.addFilter("pflicht = ?", new Object[] { "TRUE" });
+        while (it.hasNext())
+        {
+          EigenschaftGruppe eg = (EigenschaftGruppe) it.next();
+          pflichtgruppen.put(eg.getID(), new Boolean(false));
+        }
+        for (Object o1 : eigenschaftenTree.getItems())
+        {
+          if (o1 instanceof EigenschaftenNode)
+          {
+            EigenschaftenNode node = (EigenschaftenNode) o1;
+            if (node.getNodeType() == EigenschaftenNode.EIGENSCHAFTEN)
+            {
+              Eigenschaft ei = (Eigenschaft) node.getObject();
+              pflichtgruppen.put(ei.getEigenschaftGruppeId() + "", new Boolean(
+                  true));
+            }
+          }
+        }
+        for (String key : pflichtgruppen.keySet())
+        {
+          if (!pflichtgruppen.get(key))
+          {
+            EigenschaftGruppe eg = (EigenschaftGruppe) Einstellungen
+                .getDBService().createObject(EigenschaftGruppe.class, key);
+            throw new ApplicationException("In der Eigenschaftengruppe \""
+                + eg.getBezeichnung() + "\" fehlt ein Eintrag!");
+          }
+        }
+      }
+
       m.setAdressierungszusatz((String) getAdressierungszusatz().getValue());
       m.setAustritt((Date) getAustritt().getValue());
       m.setAnrede((String) getAnrede().getValue());
