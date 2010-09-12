@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/KontoauswahlInput.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/07/25 18:34:58 $
+ * $Revision: 1.4 $
+ * $Date: 2010/09/12 08:02:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,10 +9,14 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoauswahlInput.java,v $
- * Revision 1.3  2010/07/25 18:34:58  jost
+ * Revision 1.4  2010/09/12 08:02:49  jost
+ * Letztes Konto wird wieder vorgegeben.
+ * Siehe auch http://www.jverein.de/forum/viewtopic.php?f=1&t=198
+ *
+ * Revision 1.3  2010-07-25 18:34:58  jost
  * Doc
  *
-**********************************************************************/
+ **********************************************************************/
 package de.jost_net.JVerein.gui.input;
 
 import java.rmi.RemoteException;
@@ -20,6 +24,7 @@ import java.rmi.RemoteException;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.dialogs.KontoAuswahlDialog;
 import de.jost_net.JVerein.rmi.Konto;
@@ -33,14 +38,19 @@ public class KontoauswahlInput
 
   private Konto konto;
 
+  private de.willuhn.jameica.system.Settings settings;
+
   public KontoauswahlInput()
   {
-    this.konto = null;
+    this(null);
   }
 
   public KontoauswahlInput(Konto konto)
   {
     this.konto = konto;
+    settings = new de.willuhn.jameica.system.Settings(this.getClass());
+    settings.setStoreWhenRead(true);
+
   }
 
   /**
@@ -58,6 +68,12 @@ public class KontoauswahlInput
     KontoAuswahlDialog d = new KontoAuswahlDialog(
         KontoAuswahlDialog.POSITION_MOUSE);
     d.addCloseListener(new KontoListener());
+
+    if (konto == null && settings.getString("kontoid", null) != null)
+    {
+      konto = (Konto) Einstellungen.getDBService().createObject(Konto.class,
+          settings.getString("kontoid", null));
+    }
 
     kontoAuswahl = new DialogInput(konto == null ? "" : konto.getNummer(), d);
     kontoAuswahl.setComment(konto == null ? "" : konto.getBezeichnung());
@@ -85,12 +101,12 @@ public class KontoauswahlInput
         return;
       }
       konto = (Konto) event.data;
-
       try
       {
         String b = konto.getBezeichnung();
         getKontoAuswahl().setText(konto.getNummer());
         getKontoAuswahl().setComment(b == null ? "" : b);
+        settings.setAttribute("kontoid", konto.getID());
       }
       catch (RemoteException er)
       {
