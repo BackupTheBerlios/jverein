@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MitgliedskontoAuswahlDialog.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/08/16 20:16:58 $
+ * $Revision: 1.4 $
+ * $Date: 2010/09/12 19:59:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoAuswahlDialog.java,v $
- * Revision 1.3  2010/08/16 20:16:58  jost
+ * Revision 1.4  2010/09/12 19:59:25  jost
+ * Mitgliedskontoauswahl kann rückgängig gemacht werden.
+ *
+ * Revision 1.3  2010-08-16 20:16:58  jost
  * Neu: Mahnung
  *
  * Revision 1.2  2010-08-08 11:32:29  jost
@@ -102,7 +105,7 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
     mitgliedskontolist = control.getMitgliedskontoList(action, null);
     mitgliedskontolist.paint(parent);
 
-    ButtonArea b = new ButtonArea(parent, 3);
+    ButtonArea b = new ButtonArea(parent, 4);
     b.addButton(i18n.tr(JVereinPlugin.getI18n().tr("übernehmen")), new Action()
     {
       public void handleAction(Object context) throws ApplicationException
@@ -116,6 +119,14 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
         close();
       }
     }, null, true, "emblem-default.png");
+    b.addButton(i18n.tr(JVereinPlugin.getI18n().tr("entfernen")), new Action()
+    {
+      public void handleAction(Object context) throws ApplicationException
+      {
+        choosen = null;
+        close();
+      }
+    }, null, true, "edit-undo.png");
     b.addButton(JVereinPlugin.getI18n().tr("Hilfe"), new DokumentationAction(),
         DokumentationUtil.MITGLIEDSKONTO_AUSWAHL, false, "help-browser.png");
 
