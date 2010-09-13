@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MailVorlageImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/02/01 21:03:15 $
+ * $Revision: 1.2 $
+ * $Date: 2010/09/13 15:26:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailVorlageImpl.java,v $
+ * Revision 1.2  2010/09/13 15:26:48  jost
+ * Länge des Textes auf 10.000 Zeichen verlängert.
+ * http://www.jverein.de/forum/viewtopic.php?f=5&t=194
+ *
  * Revision 1.1  2010/02/01 21:03:15  jost
  * Neu: Einfache Mailfunktion
  *
@@ -61,6 +65,12 @@ public class MailVorlageImpl extends AbstractDBObject implements MailVorlage
         throw new ApplicationException(JVereinPlugin.getI18n().tr(
             "Bitte Text eingeben"));
       }
+      if (getTxt().length() > 10000)
+      {
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Maximale Länge des Textes 10.000 Zeichen"));
+      }
+
     }
     catch (RemoteException e)
     {
