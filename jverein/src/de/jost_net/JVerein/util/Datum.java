@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Datum.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/01/01 12:36:50 $
+ * $Revision: 1.5 $
+ * $Date: 2010/09/13 18:43:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Datum.java,v $
+ * Revision 1.5  2010/09/13 18:43:13  jost
+ * Neue Methode
+ *
  * Revision 1.4  2008/01/01 12:36:50  jost
  * Javadoc korrigiert
  *
@@ -84,6 +87,14 @@ public class Datum
     {
       return cal.getTime();
     }
+  }
+
+  public static Date addTage(Date datum, int tage)
+  {
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(datum);
+    cal.add(Calendar.DAY_OF_MONTH, tage);
+    return cal.getTime();
   }
 
   public static Date toDate(String value) throws ParseException
