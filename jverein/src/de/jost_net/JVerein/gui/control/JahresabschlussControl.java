@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahresabschlussControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/06/28 16:56:55 $
+ * $Revision: 1.2 $
+ * $Date: 2010/09/13 18:41:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussControl.java,v $
- * Revision 1.1  2008/06/28 16:56:55  jost
+ * Revision 1.2  2010/09/13 18:41:49  jost
+ * Anfangsbestände beim Jahresabschluss setzen und bei der Löschung auch löschen.
+ *
+ * Revision 1.1  2008-06-28 16:56:55  jost
  * Neu: Jahresabschluss
  *
  * Revision 1.1  2008/05/22 06:47:13  jost
@@ -20,14 +23,19 @@ package de.jost_net.JVerein.gui.control;
 
 import java.rmi.RemoteException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.menu.JahresabschlussMenu;
 import de.jost_net.JVerein.gui.parts.JahressaldoList;
+import de.jost_net.JVerein.io.SaldoZeile;
+import de.jost_net.JVerein.rmi.Anfangsbestand;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
+import de.jost_net.JVerein.rmi.Konto;
+import de.jost_net.JVerein.util.Datum;
 import de.jost_net.JVerein.util.Geschaeftsjahr;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -36,6 +44,7 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.formatter.DateFormatter;
+import de.willuhn.jameica.gui.input.CheckboxInput;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.TablePart;
@@ -59,6 +68,8 @@ public class JahresabschlussControl extends AbstractControl
   private TextInput name;
 
   private Jahresabschluss jahresabschluss;
+
+  private CheckboxInput anfangsbestaende;
 
   public JahresabschlussControl(AbstractView view)
   {
@@ -150,6 +161,16 @@ public class JahresabschlussControl extends AbstractControl
     return name;
   }
 
+  public CheckboxInput getAnfangsbestaende() throws RemoteException
+  {
+    if (anfangsbestaende != null)
+    {
+      return anfangsbestaende;
+    }
+    anfangsbestaende = new CheckboxInput(false);
+    return anfangsbestaende;
+  }
+
   public Part getJahresabschlussSaldo() throws RemoteException
   {
     if (jahresabschlusssaldoList != null)
@@ -185,6 +206,27 @@ public class JahresabschlussControl extends AbstractControl
       ja.setDatum((Date) getDatum().getValue());
       ja.setName((String) getName().getValue());
       ja.store();
+      if ((Boolean) getAnfangsbestaende().getValue())
+      {
+        JahressaldoList jsl = new JahressaldoList(null, new Geschaeftsjahr(ja
+            .getVon()));
+        ArrayList<SaldoZeile> zeilen = jsl.getInfo();
+        for (SaldoZeile z : zeilen)
+        {
+          String ktonr = (String) z.getAttribute("kontonummer");
+          if (ktonr.length() > 0)
+          {
+            Double endbestand = (Double) z.getAttribute("endbestand");
+            Anfangsbestand anf = (Anfangsbestand) Einstellungen.getDBService()
+                .createObject(Anfangsbestand.class, null);
+            Konto konto = (Konto) z.getAttribute("konto");
+            anf.setBetrag(endbestand);
+            anf.setDatum(Datum.addTage(ja.getBis(), 1));
+            anf.setKonto(konto);
+            anf.store();
+          }
+        }
+      }
       GUI.getStatusBar().setSuccessText("Jahresabschluss gespeichert");
     }
     catch (RemoteException e)
@@ -195,6 +237,7 @@ public class JahresabschlussControl extends AbstractControl
     }
     catch (ParseException e)
     {
+
       String fehler = "Fehler bei speichern des Jahresabschlusses";
       Logger.error(fehler, e);
       GUI.getStatusBar().setErrorText(fehler);

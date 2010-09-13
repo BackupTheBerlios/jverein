@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/SaldoZeile.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/09/16 20:57:24 $
+ * $Revision: 1.5 $
+ * $Date: 2010/09/13 18:42:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SaldoZeile.java,v $
+ * Revision 1.5  2010/09/13 18:42:30  jost
+ * Anfangsbestände beim Jahresabschluss setzen und bei der Löschung auch löschen.
+ *
  * Revision 1.4  2009/09/16 20:57:24  jost
  * Bugfix: Casesensitives SQL-Statement.
  *
@@ -115,7 +118,11 @@ public class SaldoZeile implements GenericObject
 
   public Object getAttribute(String arg0) throws RemoteException
   {
-    if (arg0.equals("kontonummer"))
+    if (arg0.equals("konto"))
+    {
+      return konto;
+    }
+    else if (arg0.equals("kontonummer"))
     {
       return konto.getNummer();
     }

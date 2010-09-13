@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/JahresabschlussView.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.7 $
+ * $Date: 2010/09/13 18:42:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussView.java,v $
- * Revision 1.6  2010/08/23 13:39:32  jost
+ * Revision 1.7  2010/09/13 18:42:04  jost
+ * Anfangsbestände beim Jahresabschluss setzen und bei der Löschung auch löschen.
+ *
+ * Revision 1.6  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.5  2009/06/11 21:03:39  jost
@@ -61,6 +64,8 @@ public class JahresabschlussView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("bis"), control.getBis());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Datum"), control.getDatum());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Name"), control.getName());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Anfangsbestände Folgejahr"),
+        control.getAnfangsbestaende());
     group.addPart(control.getJahresabschlussSaldo());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);

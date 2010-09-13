@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/JahresabschlussDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.3 $
+ * $Date: 2010/09/13 18:41:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussDeleteAction.java,v $
+ * Revision 1.3  2010/09/13 18:41:33  jost
+ * Anfangsbestände beim Jahresabschluss setzen und bei der Löschung auch löschen.
+ *
  * Revision 1.2  2009/06/11 21:02:05  jost
  * Vorbereitung I18N
  *
@@ -20,8 +23,12 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.Anfangsbestand;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
+import de.jost_net.JVerein.util.Datum;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
@@ -73,6 +80,16 @@ public class JahresabschlussDeleteAction implements Action
         return;
       }
       a.delete();
+      DBIterator it = Einstellungen.getDBService().createList(
+          Anfangsbestand.class);
+      it.addFilter("datum = ?", new Object[] { Datum.addTage(a.getBis(), 1) });
+      while (it.hasNext())
+      {
+        Anfangsbestand a1 = (Anfangsbestand) it.next();
+        Anfangsbestand a2 = (Anfangsbestand) Einstellungen.getDBService()
+            .createObject(Anfangsbestand.class, a1.getID());
+        a2.delete();
+      }
       GUI.getStatusBar().setSuccessText(
           JVereinPlugin.getI18n().tr("Jahresabschluss gelöscht."));
     }
