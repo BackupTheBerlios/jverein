@@ -27,6 +27,7 @@
     			<li>Mitgliederliste im PDF-Format: Ausgabe der Eigenschaften.</li>
                 <li>Buchführung: Überall, wo ein Bankkonto auszuwählen ist, wird das zuletzt genutzte vorgegeben.</li>   	
     			<li>Bugfixes bei der Erstellung des Diagnose-Backups.</li>
+    			<li>Maximale Länge des Textes für Mails und Mailvorlagen auf 10.000 Zeichen verlängert.</li>
     		</ul>
 
 	   	<li>Version 1.3.2 vom 18.05.2010</li>
@@ -504,7 +505,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.65  2010/09/12 11:52:18  jost
+    Revision 1.66  2010/09/13 15:26:58  jost
+    *** empty log message ***
+
+    Revision 1.65  2010-09-12 11:52:18  jost
     *** empty log message ***
 
     Revision 1.64  2010-09-12 08:07:14  jost
