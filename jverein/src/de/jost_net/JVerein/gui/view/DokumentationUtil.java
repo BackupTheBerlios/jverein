@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.21 $
- * $Date: 2010/07/25 18:42:36 $
+ * $Revision: 1.22 $
+ * $Date: 2010/09/14 06:19:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
- * Revision 1.21  2010/07/25 18:42:36  jost
+ * Revision 1.22  2010/09/14 06:19:10  jost
+ * Hilfe f. Mitgliedskonto
+ *
+ * Revision 1.21  2010-07-25 18:42:36  jost
  * Neu: Mitgliedskonto + Bugfix
  *
  * Revision 1.20  2010/04/03 11:31:51  jost
@@ -90,7 +93,9 @@ public class DokumentationUtil
 
   public static final String ABRECHNUNG = PRE + "abrechnung.php";
 
-  public static final String RECHNUNG = PRE + "rechnungen.php";
+  public static final String RECHNUNG = PRE + "mitgliedskonto.php#rechnung";
+
+  public static final String MAHNUNG= PRE + "mitgliedskonto.php#mahnung";
 
   public static final String AUSWERTUNGKURSTEILNEHMER = PRE
       + "dokumentationauswertungkursteilnehmer.php";

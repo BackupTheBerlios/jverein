@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoMahnungView.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/23 13:39:31 $
+ * $Revision: 1.3 $
+ * $Date: 2010/09/14 06:19:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoMahnungView.java,v $
- * Revision 1.2  2010/08/23 13:39:31  jost
+ * Revision 1.3  2010/09/14 06:19:22  jost
+ * Hilfe f. Mitgliedskonto
+ *
+ * Revision 1.2  2010-08-23 13:39:31  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.1  2010-08-16 20:17:37  jost
@@ -53,7 +56,7 @@ public class MitgliedskontoMahnungView extends AbstractView
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
     buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
-        new DokumentationAction(), DokumentationUtil.RECHNUNG, false,
+        new DokumentationAction(), DokumentationUtil.MAHNUNG, false,
         "help-browser.png");
     buttons.addButton(control.getStartMahnungButton(this.getCurrentObject()));
   }
