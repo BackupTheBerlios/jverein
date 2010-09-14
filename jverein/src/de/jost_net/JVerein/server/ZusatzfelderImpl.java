@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzfelderImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/09/07 17:00:29 $
+ * $Revision: 1.5 $
+ * $Date: 2010/09/14 15:41:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzfelderImpl.java,v $
- * Revision 1.4  2010/09/07 17:00:29  jost
+ * Revision 1.5  2010/09/14 15:41:03  jost
+ * Vermeidung NPE
+ *
+ * Revision 1.4  2010-09-07 17:00:29  jost
  * neue Methode
  *
  * Revision 1.3  2010/01/01 20:12:19  jost
@@ -189,13 +192,27 @@ public class ZusatzfelderImpl extends AbstractDBObject implements Zusatzfelder
       switch (typ)
       {
         case Datentyp.DATUM:
-          return Einstellungen.DATEFORMAT.format(getFeldDatum());
+          if (getFeldDatum() != null)
+          {
+            return Einstellungen.DATEFORMAT.format(getFeldDatum());
+          }
+          else
+          {
+            return "";
+          }
         case Datentyp.GANZZAHL:
           return getFeldGanzzahl() + "";
         case Datentyp.JANEIN:
           return getFeldJaNein() ? "ja" : "nein";
         case Datentyp.WAEHRUNG:
-          return Einstellungen.DECIMALFORMAT.format(getFeldWaehrung());
+          if (getFeldWaehrung() != null)
+          {
+            return Einstellungen.DECIMALFORMAT.format(getFeldWaehrung());
+          }
+          else
+          {
+            return "";
+          }
         case Datentyp.ZEICHENFOLGE:
           return getFeld();
         default:
