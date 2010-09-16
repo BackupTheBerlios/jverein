@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/KontoauswahlInput.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/09/12 08:02:49 $
+ * $Revision: 1.5 $
+ * $Date: 2010/09/16 18:12:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoauswahlInput.java,v $
- * Revision 1.4  2010/09/12 08:02:49  jost
+ * Revision 1.5  2010/09/16 18:12:30  jost
+ * Vermeidung ObjectNotFoundException abgefangen.
+ *
+ * Revision 1.4  2010-09-12 08:02:49  jost
  * Letztes Konto wird wieder vorgegeben.
  * Siehe auch http://www.jverein.de/forum/viewtopic.php?f=1&t=198
  *
@@ -28,6 +31,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.dialogs.KontoAuswahlDialog;
 import de.jost_net.JVerein.rmi.Konto;
+import de.willuhn.datasource.rmi.ObjectNotFoundException;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.DialogInput;
 import de.willuhn.logging.Logger;
@@ -71,8 +75,15 @@ public class KontoauswahlInput
 
     if (konto == null && settings.getString("kontoid", null) != null)
     {
-      konto = (Konto) Einstellungen.getDBService().createObject(Konto.class,
-          settings.getString("kontoid", null));
+      try
+      {
+        konto = (Konto) Einstellungen.getDBService().createObject(Konto.class,
+            settings.getString("kontoid", null));
+      }
+      catch (ObjectNotFoundException e)
+      {
+        settings.setAttribute("kontoid", "");
+      }
     }
 
     kontoAuswahl = new DialogInput(konto == null ? "" : konto.getNummer(), d);
