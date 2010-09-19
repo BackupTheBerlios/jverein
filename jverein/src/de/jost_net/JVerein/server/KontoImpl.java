@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/11 21:04:23 $
+ * $Revision: 1.6 $
+ * $Date: 2010/09/19 16:15:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoImpl.java,v $
+ * Revision 1.6  2010/09/19 16:15:16  jost
+ * Länge der Kontobezeichnung auf 255  Zeichen verlängert.
+ *
  * Revision 1.5  2009/06/11 21:04:23  jost
  * Vorbereitung I18N
  *
@@ -70,6 +73,11 @@ public class KontoImpl extends AbstractDBObject implements Konto
       {
         throw new ApplicationException(JVereinPlugin.getI18n().tr(
             "Bitte Bezeichnung eingeben"));
+      }
+      if (getBezeichnung().length() > 255)
+      {
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Maximale Länge der Bezeichnung: 255 Zeichen"));
       }
       if (getNummer() == null || getNummer().length() == 0)
       {

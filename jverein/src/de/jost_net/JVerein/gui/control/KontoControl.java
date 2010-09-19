@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KontoControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/05/26 18:58:39 $
+ * $Revision: 1.3 $
+ * $Date: 2010/09/19 16:14:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoControl.java,v $
+ * Revision 1.3  2010/09/19 16:14:31  jost
+ * L‰nge der Kontobezeichnung auf 255  Zeichen verl‰ngert.
+ *
  * Revision 1.2  2008/05/26 18:58:39  jost
  * Neu: Er√∂ffnungsdatum
  *
@@ -91,7 +94,7 @@ public class KontoControl extends AbstractControl
     {
       return bezeichnung;
     }
-    bezeichnung = new TextInput(getKonto().getBezeichnung(), 30);
+    bezeichnung = new TextInput(getKonto().getBezeichnung(), 255);
     return bezeichnung;
   }
 
