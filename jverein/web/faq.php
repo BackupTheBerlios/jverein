@@ -4,7 +4,7 @@
     <a href='#neuerlaptop'>Wie kann ich JVerein auf einen neuen Rechner bringen?</a><br>
     <a href='#programmordner'>Wo liegt der JVerein-Programmordner?</a><br>
     <a href='#datenordner'>Wo liegt der JVerein-Datenordner standardmäßig?</a><br>
-    <a href='#datenordnerverschieben'>Wie kann ich den Datenordner an einem Nichtstandardplatz legen?</a><br>
+    <a href='#datenordnerverschieben'>Wie kann ich den Datenordner an einen Nichtstandardplatz legen?</a><br>
     <a href='#internet'>Kann JVerein über ein Netzwerk betrieben werden?</a><br>
     <br>
     <a name="neuerlaptop"></a>
@@ -38,7 +38,7 @@
           </table>    
           </p>
     <a name="datenordner"></a>
-    <p>Q: Wie kann ich den Datenordner an einem Nichtstandardplatz legen?<br>
+    <p>Q: Wie kann ich den Datenordner an einen Nichtstandardplatz legen?<br>
        A:
           <p>
           Beim Aufruf von Jameica wird der Schalter <code>-f pfad</code> angegeben.</p>
@@ -60,7 +60,10 @@
           gestellt werden. Darin kann auch ohne Probleme gesucht werden.</p> 
     <!-- 
     $Log: faq.php,v $
-    Revision 1.5  2010/10/01 08:37:54  jost
+    Revision 1.6  2010/10/01 09:06:16  jost
+    *** empty log message ***
+
+    Revision 1.5  2010-10-01 08:37:54  jost
     Datenverzeichnis verschieben.
 
     Revision 1.4  2010-08-08 14:46:12  jost
