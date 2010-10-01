@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegelisteView.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/08/23 13:39:33 $
+ * $Revision: 1.7 $
+ * $Date: 2010/10/01 13:30:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegelisteView.java,v $
- * Revision 1.6  2010/08/23 13:39:33  jost
+ * Revision 1.7  2010/10/01 13:30:21  jost
+ * Neu: PDF-Ausgabe der Zusatzbuchungen
+ *
+ * Revision 1.6  2010-08-23 13:39:33  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.5  2009/10/20 17:59:12  jost
@@ -72,12 +75,14 @@ public class ZusatzbetraegelisteView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Ausführungstag"), control
         .getAusfuehrungSuch());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
+    control.getZusatzbetraegeList().paint(this.getParent());
+
+    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
+    buttons.addButton(control.getPDFAusgabeButton());
     buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.ZUSATZBETRAEGE, false,
         "help-browser.png");
-    control.getZusatzbetraegeList().paint(this.getParent());
   }
 
   public void unbind() throws ApplicationException
