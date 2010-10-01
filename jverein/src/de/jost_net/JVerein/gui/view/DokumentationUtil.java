@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.22 $
- * $Date: 2010/09/14 06:19:10 $
+ * $Revision: 1.23 $
+ * $Date: 2010/10/01 16:18:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
- * Revision 1.22  2010/09/14 06:19:10  jost
+ * Revision 1.23  2010/10/01 16:18:18  jost
+ * Bugfix
+ *
+ * Revision 1.22  2010-09-14 06:19:10  jost
  * Hilfe f. Mitgliedskonto
  *
  * Revision 1.21  2010-07-25 18:42:36  jost
@@ -158,7 +161,7 @@ public class DokumentationUtil
   public static final String ZUSATZBETRAEGE = PRE + "zusatzbetraege.php";
 
   public static final String ZUSATZBETRAEGEIMPORT = PRE
-      + "zusatzbetraegeimport.php";
+      + "zusatzbetraege_import.php";
 
   public static final String KONTEN = PRE
       + "dokumentationbuchfuehrungkonten.php";
