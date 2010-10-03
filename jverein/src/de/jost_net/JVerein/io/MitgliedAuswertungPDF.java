@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/09/09 19:55:07 $
+ * $Revision: 1.13 $
+ * $Date: 2010/10/03 09:48:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
- * Revision 1.12  2010/09/09 19:55:07  jost
+ * Revision 1.13  2010/10/03 09:48:20  jost
+ * Überflüssigen Import entfernt.
+ *
+ * Revision 1.12  2010-09-09 19:55:07  jost
  * Ausgabe der Eigenschaften
  *
  * Revision 1.11  2009/07/18 13:43:25  jost
@@ -64,7 +67,6 @@ import com.lowagie.text.FontFactory;
 import com.lowagie.text.Paragraph;
 
 import de.jost_net.JVerein.Einstellungen;
-import de.jost_net.JVerein.rmi.Eigenschaft;
 import de.jost_net.JVerein.rmi.Eigenschaften;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.rmi.DBIterator;
