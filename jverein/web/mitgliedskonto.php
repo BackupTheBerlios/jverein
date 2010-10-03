@@ -57,10 +57,10 @@
     Mitgliedskontoinformation aus der Buchung entfernt. Damit können Fehleingaben korrigiert werden.
     </p>
 
-    <h2><a name="rechnung">Rechnungen</h2>
+    <h2><a name="rechnung"></a>Rechnungen</h2>
     <p>wird noch ergänzt</p>
     
-    <h2><a name="mahnung">Mahnungen</h2>
+    <h2><a name="mahnung"></a>Mahnungen</h2>
     <p>wird noch ergänzt</p>
     
  	<h2>sonstiges</h2>
@@ -78,7 +78,10 @@
     
     <!-- 
     $Log: mitgliedskonto.php,v $
-    Revision 1.4  2010/09/14 06:19:48  jost
+    Revision 1.5  2010/10/03 09:48:35  jost
+    Korrekte Syntax
+
+    Revision 1.4  2010-09-14 06:19:48  jost
     Hilfe f. Mitgliedskonto
 
     Revision 1.3  2010-08-10 05:35:24  jost
