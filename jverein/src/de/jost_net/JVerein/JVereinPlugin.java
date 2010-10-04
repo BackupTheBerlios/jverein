@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.24 $
- * $Date: 2009/06/11 21:00:26 $
+ * $Revision: 1.25 $
+ * $Date: 2010/10/04 12:18:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
- * Revision 1.24  2009/06/11 21:00:26  jost
+ * Revision 1.25  2010/10/04 12:18:46  jost
+ * Tool zur Ermittlung der Views ohne Hilfetext
+ *
+ * Revision 1.24  2009-06-11 21:00:26  jost
  * Vorbereitung I18N
  *
  * Revision 1.23  2009/01/19 19:41:13  jost
@@ -93,14 +96,16 @@ import java.util.Locale;
 import de.jost_net.JVerein.gui.navigation.MyExtension;
 import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.jost_net.JVerein.server.JVereinDBServiceImpl;
+import de.jost_net.JVerein.util.HelpConsumer;
 import de.willuhn.jameica.gui.extension.ExtensionRegistry;
+import de.willuhn.jameica.messaging.MessageConsumer;
 import de.willuhn.jameica.plugin.AbstractPlugin;
+import de.willuhn.jameica.plugin.Version;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 import de.willuhn.util.I18N;
-import de.willuhn.jameica.plugin.Version;
 
 /**
  * You need to have at least one class wich inherits from
@@ -109,6 +114,7 @@ import de.willuhn.jameica.plugin.Version;
  */
 public class JVereinPlugin extends AbstractPlugin
 {
+
   private Settings settings;
 
   private static I18N i18n;
@@ -144,6 +150,7 @@ public class JVereinPlugin extends AbstractPlugin
 
     call(new ServiceCall()
     {
+
       public void call(JVereinDBService service) throws ApplicationException,
           RemoteException
       {
@@ -155,6 +162,9 @@ public class JVereinPlugin extends AbstractPlugin
     ExtensionRegistry.register(new MyExtension(), "jverein.main");
     // this.umc = new UmsatzMessageConsumer();
     // Application.getMessagingFactory().registerMessageConsumer(this.umc);
+    MessageConsumer mc = new HelpConsumer();
+    Application.getMessagingFactory().getMessagingQueue("jameica.help.missing").registerMessageConsumer(
+        mc);
 
   }
 
@@ -167,6 +177,7 @@ public class JVereinPlugin extends AbstractPlugin
   {
     call(new ServiceCall()
     {
+
       public void call(JVereinDBService service) throws ApplicationException,
           RemoteException
       {
@@ -182,6 +193,7 @@ public class JVereinPlugin extends AbstractPlugin
   {
     call(new ServiceCall()
     {
+
       public void call(JVereinDBService service) throws ApplicationException,
           RemoteException
       {
@@ -198,8 +210,7 @@ public class JVereinPlugin extends AbstractPlugin
   {
     try
     {
-      getI18n()
-          .storeUntranslated(new FileOutputStream("/tmp/untranslated.txt"));
+      getI18n().storeUntranslated(new FileOutputStream("/tmp/untranslated.txt"));
     }
     catch (FileNotFoundException e)
     {
@@ -226,6 +237,7 @@ public class JVereinPlugin extends AbstractPlugin
    */
   private interface ServiceCall
   {
+
     /**
      * @param service
      * @throws ApplicationException
@@ -239,7 +251,7 @@ public class JVereinPlugin extends AbstractPlugin
    * Hilfsmethode zum bequemen Ausfuehren von Methoden auf dem Service.
    * 
    * @param call
-   *          der Call.
+   *        der Call.
    * @throws ApplicationException
    */
   private void call(ServiceCall call) throws ApplicationException
