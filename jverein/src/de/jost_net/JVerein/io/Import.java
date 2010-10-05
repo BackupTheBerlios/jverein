@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.30 $
- * $Date: 2010/07/25 18:44:24 $
+ * $Revision: 1.31 $
+ * $Date: 2010/10/05 05:51:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.30  2010/07/25 18:44:24  jost
+ * Revision 1.31  2010/10/05 05:51:16  jost
+ * Umbilos patch: Klare Fehlermeldung bei korrupter Importdatei im Bereich der Eigenschaften.
+ *
+ * Revision 1.30  2010-07-25 18:44:24  jost
  * Bugfix Zahlungsrhytmus
  *
  * Revision 1.29  2010/04/08 17:57:21  jost
@@ -379,18 +382,28 @@ public class Import
           zf.setFeld(results.getString(f.getName()));
           zf.store();
         }
-        for (String feld : eigenschaftenspalten)
+        
+        try 
         {
-          String eig = results.getString(feld);
-          if (eig.length() == 0)
-          {
-            continue;
-          }
-          Eigenschaften eigenschaften = (Eigenschaften) Einstellungen
-              .getDBService().createObject(Eigenschaften.class, null);
-          eigenschaften.setMitglied(m.getID());
-          eigenschaften.setEigenschaft(getEigenschaftID(eig));
-          eigenschaften.store();
+	        for (String feld : eigenschaftenspalten)
+	        {
+	          String eig = results.getString(feld);
+	          if (eig.length() == 0)
+	          {
+	            continue;
+	          }
+	          Eigenschaften eigenschaften = (Eigenschaften) Einstellungen
+	              .getDBService().createObject(Eigenschaften.class, null);
+	          eigenschaften.setMitglied(m.getID());
+	          eigenschaften.setEigenschaft(getEigenschaftID(eig));
+	          eigenschaften.store();
+	        }
+        }
+        catch (Exception e)
+        {
+        	  monitor.log(" Datensatz unvollständing (Eigenschaften) -> Import wird abgebrochen: ID= " + results.getString("Mitglieds_Nr") + " NAME= "
+      	            + results.getString("Nachname") + " " + e.getMessage());     
+        	  return;
         }
 
       }
