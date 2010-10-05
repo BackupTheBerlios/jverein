@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.44 $
- * $Date: 2010/09/01 05:57:49 $
+ * $Revision: 1.45 $
+ * $Date: 2010/10/05 05:53:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
- * Revision 1.44  2010/09/01 05:57:49  jost
+ * Revision 1.45  2010/10/05 05:53:16  jost
+ * Mitgliedskonto nur bei nicht neuen Datensätzen
+ *
+ * Revision 1.44  2010-09-01 05:57:49  jost
  * neu: Personalbogen
  *
  * Revision 1.43  2010-08-27 19:08:08  jost
@@ -276,11 +279,13 @@ public class MitgliedDetailView extends AbstractView
       ButtonArea buttonszus = new ButtonArea(tab4.getComposite(), 1);
       buttonszus.addButton(control.getZusatzbetragNeu());
     }
-    TabGroup tabMitgliedskonto = new TabGroup(folder, JVereinPlugin.getI18n()
-        .tr("Mitgliedskonto"));
-    controlMk.getMitgliedskontoTree(control.getMitglied()).paint(
-        tabMitgliedskonto.getComposite());
-
+    if (!control.getMitglied().isNewObject())
+    {
+      TabGroup tabMitgliedskonto = new TabGroup(folder, JVereinPlugin.getI18n()
+          .tr("Mitgliedskonto"));
+      controlMk.getMitgliedskontoTree(control.getMitglied()).paint(
+          tabMitgliedskonto.getComposite());
+    }
     if (Einstellungen.getEinstellung().getVermerke())
     {
       TabGroup tab5 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
