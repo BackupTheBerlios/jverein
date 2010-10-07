@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegelisteView.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/10/01 13:30:21 $
+ * $Revision: 1.8 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegelisteView.java,v $
- * Revision 1.7  2010/10/01 13:30:21  jost
+ * Revision 1.8  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.7  2010-10-01 13:30:21  jost
  * Neu: PDF-Ausgabe der Zusatzbuchungen
  *
  * Revision 1.6  2010-08-23 13:39:33  jost
@@ -89,4 +92,12 @@ public class ZusatzbetraegelisteView extends AbstractView
   {
   }
 
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Liste der Zusatzbeträge</span></p>"
+        + "<p>Anzeige der Zusatzbeträge. Filterung auf alle, aktive, noch nicht ausgeführte und zu einem "
+        + "bestimmten Datum ausgeführte Zusatzbeträge. Die angezeigte Liste kann als PDF-Dokument "
+        + "ausgegeben werden.</p></form>";
+  }
 }

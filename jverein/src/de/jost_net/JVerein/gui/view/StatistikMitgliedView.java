@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/StatistikMitgliedView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.10 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StatistikMitgliedView.java,v $
- * Revision 1.9  2010/08/23 13:39:32  jost
+ * Revision 1.10  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.9  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.8  2009/06/11 21:03:39  jost
@@ -76,5 +79,14 @@ public class StatistikMitgliedView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Statistik</span></p>"
+        + "<p>Durch eine Klick auf Start wird eine Statistik nach Altergruppen und nach "
+        + "Beitragsgruppen im PDF-Format erzeugt. Die Altersgruppen sind "
+        + "bei den Stammdaten vorzugeben.</p></form>";
   }
 }

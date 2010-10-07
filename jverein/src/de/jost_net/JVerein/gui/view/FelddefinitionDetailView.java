@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FelddefinitionDetailView.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.9 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -60,4 +60,6 @@ public class FelddefinitionDetailView extends AbstractView
   public void unbind() throws ApplicationException
   {
   }
+  // TODO getHelp()
+
 }

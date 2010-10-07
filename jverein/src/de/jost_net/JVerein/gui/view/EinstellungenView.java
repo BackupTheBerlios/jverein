@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.32 $
- * $Date: 2010/08/27 19:07:50 $
+ * $Revision: 1.33 $
+ * $Date: 2010/10/07 19:49:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.32  2010/08/27 19:07:50  jost
+ * Revision 1.33  2010/10/07 19:49:22  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.32  2010-08-27 19:07:50  jost
  * neu: Mitgliedsfoto
  *
  * Revision 1.31  2010-08-23 13:39:31  jost
@@ -269,5 +272,20 @@ public class EinstellungenView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Einstellungen</span></p>"
+        + "<p>Anzeige: In diesem Bereich kann gesteuert werden, welche Datenfelder "
+        + "angezeigt werden.</p>"
+        + "Beitragsmodell:"
+        + "<li>jährlich fester Beitrag</li>"
+        + "<li>halbjährlich fester Beitrag</li>"
+        + "<li>vierteljährlich fester Beitrag</li>"
+        + "<li>monatlich fester Beitrag</li>"
+        + "<li>Monatlicher Beitrag mit jährlicher, halbjährlicher, vierteljährlicher oder monatlicher Zahlungsweise.</li>"
+        + "</form>";
   }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KontoListView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/09/29 16:38:12 $
+ * $Revision: 1.10 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoListView.java,v $
- * Revision 1.9  2010/09/29 16:38:12  jost
+ * Revision 1.10  2010/10/07 19:49:23  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.9  2010-09-29 16:38:12  jost
  * Button umbenannt.
  *
  * Revision 1.8  2010-08-23 13:39:32  jost
@@ -73,5 +76,16 @@ public class KontoListView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Konten</span></p>"
+        + "<p>Konten können entweder von Hibuscus übernommen werden oder durch einen "
+        + "Klick auf neu aufgenommen werden.</p>"
+        + "<p>Durch einen Rechtsklick auf ein Konto kann entweder der Anfangsbestand des "
+        + "Kontos zu einem Zeitpunkt eingegeben werden oder das Konto kann gelöscht werden, "
+        + "sofern keine Buchungen für das Konto existieren.</p></form>";
   }
 }

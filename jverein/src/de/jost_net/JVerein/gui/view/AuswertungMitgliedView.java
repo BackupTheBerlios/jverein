@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/08/23 13:39:33 $
+ * $Revision: 1.14 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.13  2010/08/23 13:39:33  jost
+ * Revision 1.14  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.13  2010-08-23 13:39:33  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.12  2009/11/19 19:44:28  jost
@@ -88,7 +91,7 @@ public class AuswertungMitgliedView extends AbstractView
     {
       left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"), control
           .getEigenschaftenAuswahl());
-     }
+    }
 
     left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"), control
         .getGeburtsdatumvon());
@@ -129,5 +132,19 @@ public class AuswertungMitgliedView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Auswertung Mitglieder</span></p>"
+        + "<p>Der Mitgliederbestand kann nach Geburtsdatum, Eintrittsdatum, "
+        + "Austrittsdatum und Beitragsgruppen selektiert werden. Werden "
+        + "keine Angaben zum Austrittsdatum gemacht, werden nur Mitglieder "
+        + "ausgewertet, die nicht ausgetreten sind.</p>"
+        + "<p>Die Sortierung kann nach Name-Vorname, Eintrittsdatum oder "
+        + "Austrittsdatum erfolgen.</p>"
+        + "<p>Als Ausgabeformate stehen PDF und CSV zur Verfügung.</p>"
+        + "</form>";
   }
 }

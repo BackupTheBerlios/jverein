@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartListView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.10 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartListView.java,v $
- * Revision 1.9  2010/08/23 13:39:32  jost
+ * Revision 1.10  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.9  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.8  2009/08/19 20:59:22  jost
@@ -68,5 +71,16 @@ public class BuchungsartListView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Buchungsart</span></p>"
+        + "<p>Die Nummer und die Bezeichung der Buchungsart sind zu erfassen.</p>"
+        + "<p>Bei der Vergabe der Numern sollten Nummernkreise für Eingaben "
+        + "und Ausgaben gebildet werden. Beispielsweise die 1000er Nummern "
+        + "für Einnahmen und die 2000er Nummern für Ausgaben. Die Sortierung "
+        + "der Buchungsauswertung erfolgt nach diesen Nummern.</p>" + "</form>";
   }
 }

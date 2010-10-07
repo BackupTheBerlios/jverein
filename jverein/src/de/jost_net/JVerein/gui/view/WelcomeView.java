@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/WelcomeView.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:03:39 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WelcomeView.java,v $
+ * Revision 1.4  2010/10/07 19:49:23  jost
+ * Hilfe in die View verlagert.
+ *
  * Revision 1.3  2009/06/11 21:03:39  jost
  * Vorbereitung I18N
  *
@@ -46,4 +49,6 @@ public class WelcomeView extends AbstractView
   public void unbind() throws ApplicationException
   {
   }
+  // TODO getHelp()
+
 }

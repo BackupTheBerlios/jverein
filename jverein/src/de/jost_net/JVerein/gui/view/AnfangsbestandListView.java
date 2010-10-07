@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AnfangsbestandListView.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/08/23 13:39:31 $
+ * $Revision: 1.7 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandListView.java,v $
- * Revision 1.6  2010/08/23 13:39:31  jost
+ * Revision 1.7  2010/10/07 19:49:23  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.6  2010-08-23 13:39:31  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.5  2009/06/11 21:03:39  jost
@@ -61,5 +64,17 @@ public class AnfangsbestandListView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Anfangsbestände</span></p>"
+        + "<p>Für jedes Konto ist zu Beginn des Geschäfsjahres der Anfangsbestand zu "
+        + "speichern. Die Buchungen sind in chronologisch korrekter Reihenfolge vorzunehmen.</p> "
+        + "<p>Durch einen Doppelklick kann ein Anfangsbestand korrigiert werden. Mit einem "
+        + "Klick auf neu wird ein neuer Anfangsbestand aufgenommen. Durch einen Rechtsklick "
+        + "öffnet sich ein Kontextmenü, mit dem ein Anfangsbestand gelöscht werden kann.</p>"
+        + "</form>";
   }
 }

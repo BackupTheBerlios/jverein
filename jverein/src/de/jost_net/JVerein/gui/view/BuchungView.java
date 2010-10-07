@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.16 $
- * $Date: 2010/08/23 13:39:33 $
+ * $Revision: 1.17 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
- * Revision 1.16  2010/08/23 13:39:33  jost
+ * Revision 1.17  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.16  2010-08-23 13:39:33  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.15  2010-07-25 18:42:11  jost
@@ -136,5 +139,12 @@ public class BuchungView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Buchung</span></p>"
+        + "<p>Zuordnung einer Buchungsart zu einer Buchung.</p></form>";
   }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailVorlageDetailView.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailVorlageDetailView.java,v $
- * Revision 1.2  2010/08/23 13:39:32  jost
+ * Revision 1.3  2010/10/07 19:49:23  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.2  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.1  2010/02/01 21:00:49  jost
@@ -63,4 +66,6 @@ public class MailVorlageDetailView extends AbstractView
   public void unbind() throws ApplicationException
   {
   }
+  // TODO getHelp()
+
 }

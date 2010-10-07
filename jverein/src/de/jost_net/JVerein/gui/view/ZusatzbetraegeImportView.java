@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegeImportView.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/23 13:39:31 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegeImportView.java,v $
- * Revision 1.2  2010/08/23 13:39:31  jost
+ * Revision 1.3  2010/10/07 19:49:23  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.2  2010-08-23 13:39:31  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.1  2009/10/20 17:58:58  jost
@@ -65,4 +68,11 @@ public class ZusatzbetraegeImportView extends AbstractView
     buttons.addButton(button);
   }
 
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Zusatzbeträge importieren</span></p>"
+        + "<p>In anderen Programmen erzeugte Zusatzbeträge können importiert werden. Der Aufbau der "
+        + "Datei ist in der Hilfe beschrieben.</p></form>";
+  }
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsklasseListView.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/23 13:39:33 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseListView.java,v $
- * Revision 1.2  2010/08/23 13:39:33  jost
+ * Revision 1.3  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.2  2010-08-23 13:39:33  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.1  2009/09/10 18:18:22  jost
@@ -50,5 +53,14 @@ public class BuchungsklasseListView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Buchungsklasse</span></p>"
+        + "<p>Buchungsklassen dienen der Gruppierung von Buchungsarten. Z. B. können die "
+        + "Buchungsarten nach Ideeller Betrieb, Wirtschaftlicher Betrieb und Vermögen gruppiert werden.</p>"
+        + "<p>Die Buchungsklassen sind den Buchungsarten zuzuordnen.</p></form>";
   }
 }

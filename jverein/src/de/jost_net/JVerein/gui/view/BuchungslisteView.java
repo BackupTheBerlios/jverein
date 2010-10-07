@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungslisteView.java,v $
- * $Revision: 1.15 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.16 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungslisteView.java,v $
- * Revision 1.15  2010/08/23 13:39:32  jost
+ * Revision 1.16  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.15  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.14  2009/09/12 19:03:16  jost
@@ -123,5 +126,14 @@ public class BuchungslisteView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Buchungen</span></p>"
+        + "<p>Alle Buchungen aus dem vorgegebenen Zeitraum werden angezeigt. Durch einen "
+        + "Doppelklick auf eine Buchung kann die Buchungsart zugeordnet werden.</p>"
+        + "</form>";
   }
 }

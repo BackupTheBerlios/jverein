@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/SpendenbescheinigungListeView.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungListeView.java,v $
- * Revision 1.5  2010/08/23 13:39:32  jost
+ * Revision 1.6  2010/10/07 19:49:23  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.5  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.4  2009/06/11 21:03:39  jost
@@ -59,5 +62,12 @@ public class SpendenbescheinigungListeView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Spendenbescheinigungen</span></p>"
+        + "</form>";
   }
 }

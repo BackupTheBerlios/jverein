@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/StammdatenView.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.13 $
+ * $Date: 2010/10/07 19:49:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenView.java,v $
- * Revision 1.12  2010/08/23 13:39:32  jost
+ * Revision 1.13  2010/10/07 19:49:23  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.12  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.11  2009/07/24 20:23:07  jost
@@ -97,5 +100,15 @@ public class StammdatenView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Stammdaten</span></p>"
+        + "<li>Name: Name des Vereins</li>"
+        + "<li>Bankverbindung des Vereins für Abbuchungen</li>"
+        + "<li>Altersgruppen für die Statistik sind nach folgendem Muster einzugeben: 0-6,7-10,11-14,15-18,19-26,27-40,41-60,61-100 </li>"
+        + "</form>";
   }
 }

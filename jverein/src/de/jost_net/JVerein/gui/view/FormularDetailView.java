@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularDetailView.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/08/23 13:39:32 $
+ * $Revision: 1.8 $
+ * $Date: 2010/10/07 19:49:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularDetailView.java,v $
- * Revision 1.7  2010/08/23 13:39:32  jost
+ * Revision 1.8  2010/10/07 19:49:24  jost
+ * Hilfe in die View verlagert.
+ *
+ * Revision 1.7  2010-08-23 13:39:32  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.6  2009/07/24 20:21:34  jost
@@ -66,5 +69,15 @@ public class FormularDetailView extends AbstractView
 
   public void unbind() throws ApplicationException
   {
+  }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Formular</span></p>"
+        + "<p>Jedem Formuar ist ein eindeutiger Name zu geben. Die Art ist auszuwählen. "
+        + "Ein Dateiname ist bei der Neuaufnahme eines Formulares anzugeben oder wenn "
+        + "das Formular aktualisiert wird. Das Formular muss im PDF-Format vorliegen.</p>"
+        + "</form>";
   }
 }
