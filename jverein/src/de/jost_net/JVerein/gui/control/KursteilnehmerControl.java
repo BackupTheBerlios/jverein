@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.21 $
- * $Date: 2010/08/23 13:34:26 $
+ * $Revision: 1.22 $
+ * $Date: 2010/10/10 06:36:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
- * Revision 1.21  2010/08/23 13:34:26  jost
+ * Revision 1.22  2010/10/10 06:36:37  jost
+ * Vermeidung NPE
+ *
+ * Revision 1.21  2010-08-23 13:34:26  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.20  2009/07/24 20:18:31  jost
@@ -470,6 +473,10 @@ public class KursteilnehmerControl extends AbstractControl
     try
     {
       saveDefaults();
+      if (part == null)
+      {
+        return;
+      }
       part.removeAll();
       DBIterator kursteilnehmer = getIterator();
       while (kursteilnehmer.hasNext())
