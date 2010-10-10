@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/KontoauswahlInput.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/10 06:37:26 $
+ * $Revision: 1.7 $
+ * $Date: 2010/10/10 06:51:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoauswahlInput.java,v $
- * Revision 1.6  2010/10/10 06:37:26  jost
+ * Revision 1.7  2010/10/10 06:51:10  jost
+ * Korrekte Null-Wert-Behandlung
+ *
+ * Revision 1.6  2010-10-10 06:37:26  jost
  * Bugfix "leere Kontoauswahl".
  *
  * Revision 1.5  2010-09-16 18:12:30  jost
@@ -86,12 +89,17 @@ public class KontoauswahlInput
         KontoAuswahlDialog.POSITION_MOUSE, keinkonto);
     d.addCloseListener(new KontoListener());
 
-    if (konto == null && settings.getString("kontoid", null) != null)
+    String kontoid = settings.getString("kontoid", null);
+    if (kontoid.length() == 0)
+    {
+      kontoid = null;
+    }
+    if (konto == null && kontoid != null)
     {
       try
       {
         konto = (Konto) Einstellungen.getDBService().createObject(Konto.class,
-            settings.getString("kontoid", null));
+            kontoid);
       }
       catch (ObjectNotFoundException e)
       {
