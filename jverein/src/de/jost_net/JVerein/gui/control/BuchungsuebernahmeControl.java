@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/08/23 13:33:14 $
+ * $Revision: 1.13 $
+ * $Date: 2010/10/10 06:36:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
- * Revision 1.12  2010/08/23 13:33:14  jost
+ * Revision 1.13  2010/10/10 06:36:14  jost
+ * Bugfix "leere Kontoauswahl".
+ *
+ * Revision 1.12  2010-08-23 13:33:14  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.11  2009/12/17 19:23:50  jost
@@ -96,7 +99,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
     {
       return konto;
     }
-    konto = new KontoauswahlInput().getKontoAuswahl();
+    konto = new KontoauswahlInput().getKontoAuswahl(false);
     return konto;
   }
 
