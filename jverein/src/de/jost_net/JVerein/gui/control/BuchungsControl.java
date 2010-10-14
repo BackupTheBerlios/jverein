@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.27 $
- * $Date: 2010/10/10 06:35:51 $
+ * $Revision: 1.28 $
+ * $Date: 2010/10/14 18:26:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.27  2010/10/10 06:35:51  jost
+ * Revision 1.28  2010/10/14 18:26:37  jost
+ * Nach Neuaufnahme wird die Buchungs-ID sofort angezeigt.
+ *
+ * Revision 1.27  2010-10-10 06:35:51  jost
  * Bugfix "leere Kontoauswahl".
  *
  * Revision 1.26  2010-09-01 05:56:35  jost
@@ -611,6 +614,7 @@ public class BuchungsControl extends AbstractControl
         }
         b.setKommentar((String) getKommentar().getValue());
         b.store();
+        getID().setValue(b.getID());
         GUI.getStatusBar().setSuccessText("Buchung gespeichert");
       }
       catch (ApplicationException e)
