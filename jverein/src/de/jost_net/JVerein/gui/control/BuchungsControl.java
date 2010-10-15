@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.28 $
- * $Date: 2010/10/14 18:26:37 $
+ * $Revision: 1.29 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.28  2010/10/14 18:26:37  jost
+ * Revision 1.29  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.28  2010-10-14 18:26:37  jost
  * Nach Neuaufnahme wird die Buchungs-ID sofort angezeigt.
  *
  * Revision 1.27  2010-10-10 06:35:51  jost
@@ -149,6 +152,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class BuchungsControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private TablePart buchungsList;
@@ -248,8 +252,7 @@ public class BuchungsControl extends AbstractControl
     {
       return konto;
     }
-    konto = new KontoauswahlInput(getBuchung().getKonto())
-        .getKontoAuswahl(false);
+    konto = new KontoauswahlInput(getBuchung().getKonto()).getKontoAuswahl(false);
     if (withFocus)
     {
       konto.focus();
@@ -340,6 +343,7 @@ public class BuchungsControl extends AbstractControl
     this.datum.setText("Bitte Datum wählen");
     this.datum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) datum.getValue();
@@ -358,8 +362,7 @@ public class BuchungsControl extends AbstractControl
     {
       return mitgliedskonto;
     }
-    mitgliedskonto = new MitgliedskontoauswahlInput(getBuchung())
-        .getMitgliedskontoAuswahl();
+    mitgliedskonto = new MitgliedskontoauswahlInput(getBuchung()).getMitgliedskontoAuswahl();
     return mitgliedskonto;
   }
 
@@ -389,8 +392,7 @@ public class BuchungsControl extends AbstractControl
     {
       return buchungsart;
     }
-    DBIterator list = Einstellungen.getDBService()
-        .createList(Buchungsart.class);
+    DBIterator list = Einstellungen.getDBService().createList(Buchungsart.class);
     list.setOrder("ORDER BY nummer");
     buchungsart = new SelectInput(list, getBuchung().getBuchungsart());
     buchungsart.setValue(getBuchung().getBuchungsart());
@@ -415,8 +417,7 @@ public class BuchungsControl extends AbstractControl
     {
       return suchbuchungsart;
     }
-    DBIterator list = Einstellungen.getDBService()
-        .createList(Buchungsart.class);
+    DBIterator list = Einstellungen.getDBService().createList(Buchungsart.class);
     list.setOrder("ORDER BY nummer");
     ArrayList<Buchungsart> liste = new ArrayList<Buchungsart>();
     Buchungsart b = (Buchungsart) Einstellungen.getDBService().createObject(
@@ -447,6 +448,7 @@ public class BuchungsControl extends AbstractControl
     suchbuchungsart = new SelectInput(liste, b);
     suchbuchungsart.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Buchungsart ba = (Buchungsart) suchbuchungsart.getValue();
@@ -466,7 +468,7 @@ public class BuchungsControl extends AbstractControl
     return suchbuchungsart;
   }
 
-  public DateInput getVondatum() throws RemoteException
+  public DateInput getVondatum()
   {
     if (vondatum != null)
     {
@@ -487,6 +489,7 @@ public class BuchungsControl extends AbstractControl
     this.vondatum.setText("Bitte Anfangsdatum wählen");
     this.vondatum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) vondatum.getValue();
@@ -494,14 +497,13 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
-        settings
-            .setAttribute("vondatum", Einstellungen.DATEFORMAT.format(date));
+        settings.setAttribute("vondatum", Einstellungen.DATEFORMAT.format(date));
       }
     });
     return vondatum;
   }
 
-  public DateInput getBisdatum() throws RemoteException
+  public DateInput getBisdatum()
   {
     if (bisdatum != null)
     {
@@ -522,6 +524,7 @@ public class BuchungsControl extends AbstractControl
     this.bisdatum.setText("Bitte Anfangsdatum wählen");
     this.bisdatum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) bisdatum.getValue();
@@ -529,8 +532,7 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
-        settings
-            .setAttribute("bisdatum", Einstellungen.DATEFORMAT.format(date));
+        settings.setAttribute("bisdatum", Einstellungen.DATEFORMAT.format(date));
       }
     });
     return bisdatum;
@@ -540,7 +542,8 @@ public class BuchungsControl extends AbstractControl
   {
     Button b = new Button("PDF Einzelbuchungen", new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         starteAuswertung(true);
       }
@@ -553,7 +556,8 @@ public class BuchungsControl extends AbstractControl
   {
     Button b = new Button("PDF Summen", new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         starteAuswertung(false);
       }
@@ -566,7 +570,8 @@ public class BuchungsControl extends AbstractControl
   {
     Button b = new Button("&PDF Buchungsjournal", new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         starteAuswertungBuchungsjournal();
       }
@@ -649,11 +654,11 @@ public class BuchungsControl extends AbstractControl
     {
       b = (Buchungsart) suchbuchungsart.getValue();
     }
-    buchungen.addFilter("datum >= ?", new Object[] { vd });
-    buchungen.addFilter("datum <= ?", new Object[] { bd });
+    buchungen.addFilter("datum >= ?", new Object[] { vd});
+    buchungen.addFilter("datum <= ?", new Object[] { bd});
     if (k != null)
     {
-      buchungen.addFilter("konto = ?", new Object[] { k.getID() });
+      buchungen.addFilter("konto = ?", new Object[] { k.getID()});
     }
     if (b != null)
     {
@@ -663,7 +668,7 @@ public class BuchungsControl extends AbstractControl
       }
       else if (b.getArt() >= 0)
       {
-        buchungen.addFilter("buchungsart = ?", new Object[] { b.getID() });
+        buchungen.addFilter("buchungsart = ?", new Object[] { b.getID()});
       }
     }
     buchungen.setOrder("ORDER BY umsatzid DESC");
@@ -674,6 +679,7 @@ public class BuchungsControl extends AbstractControl
       buchungsList.addColumn("Nr", "id-int");
       buchungsList.addColumn("Konto", "konto", new Formatter()
       {
+
         public String format(Object o)
         {
           Konto k = (Konto) o;
@@ -719,14 +725,13 @@ public class BuchungsControl extends AbstractControl
       buchungsList.removeAll();
       while (buchungen.hasNext())
       {
-        buchungsList.addItem((Buchung) buchungen.next());
+        buchungsList.addItem(buchungen.next());
       }
     }
     return buchungsList;
   }
 
   private void starteAuswertung(boolean einzelbuchungen)
-      throws ApplicationException
   {
     DBIterator list;
     Date dVon = null;
@@ -755,21 +760,21 @@ public class BuchungsControl extends AbstractControl
       list = Einstellungen.getDBService().createList(Buchungsart.class);
       if (ba != null && ba.getArt() != -2)
       {
-        list.addFilter("id = ?", new Object[] { ba.getID() });
+        list.addFilter("id = ?", new Object[] { ba.getID()});
       }
       list.setOrder("ORDER BY nummer");
 
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("Ausgabedatei wählen.");
 
-      String path = settings.getString("lastdir", System
-          .getProperty("user.home"));
+      String path = settings.getString("lastdir",
+          System.getProperty("user.home"));
       if (path != null && path.length() > 0)
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("buchungen", Einstellungen.getEinstellung()
-          .getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("buchungen",
+          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 
@@ -789,7 +794,7 @@ public class BuchungsControl extends AbstractControl
     }
   }
 
-  private void starteAuswertungBuchungsjournal() throws ApplicationException
+  private void starteAuswertungBuchungsjournal()
   {
     DBIterator list;
     Date dVon = null;
@@ -813,29 +818,29 @@ public class BuchungsControl extends AbstractControl
       list = Einstellungen.getDBService().createList(Buchung.class);
       if (dVon != null)
       {
-        list.addFilter("datum >= ?", new Object[] { dVon });
+        list.addFilter("datum >= ?", new Object[] { dVon});
       }
       if (dBis != null)
       {
-        list.addFilter("datum <= ?", new Object[] { dBis });
+        list.addFilter("datum <= ?", new Object[] { dBis});
       }
       if (k != null)
       {
-        list.addFilter("konto = ?", new Object[] { k.getID() });
+        list.addFilter("konto = ?", new Object[] { k.getID()});
       }
       list.setOrder("ORDER BY datum, auszugsnummer, blattnummer, id");
 
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("Ausgabedatei wählen.");
 
-      String path = settings.getString("lastdir", System
-          .getProperty("user.home"));
+      String path = settings.getString("lastdir",
+          System.getProperty("user.home"));
       if (path != null && path.length() > 0)
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("buchungsjournal", Einstellungen
-          .getEinstellung().getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("buchungsjournal",
+          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 
@@ -861,6 +866,7 @@ public class BuchungsControl extends AbstractControl
   {
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
@@ -887,17 +893,11 @@ public class BuchungsControl extends AbstractControl
           GUI.getStatusBar().setErrorText(ae.getMessage());
           throw ae;
         }
-        catch (RemoteException re)
-        {
-          monitor.setStatusText(re.getMessage());
-          monitor.setStatus(ProgressMonitor.STATUS_ERROR);
-          GUI.getStatusBar().setErrorText(re.getMessage());
-          throw new ApplicationException(re);
-        }
       }
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()
@@ -913,6 +913,7 @@ public class BuchungsControl extends AbstractControl
   {
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
@@ -930,17 +931,11 @@ public class BuchungsControl extends AbstractControl
           GUI.getStatusBar().setErrorText(ae.getMessage());
           throw ae;
         }
-        catch (RemoteException re)
-        {
-          monitor.setStatusText(re.getMessage());
-          monitor.setStatus(ProgressMonitor.STATUS_ERROR);
-          GUI.getStatusBar().setErrorText(re.getMessage());
-          throw new ApplicationException(re);
-        }
       }
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()

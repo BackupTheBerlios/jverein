@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/DokumentationAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/04/05 16:07:36 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationAction.java,v $
- * Revision 1.3  2008/04/05 16:07:36  jost
+ * Revision 1.4  2010/10/15 09:58:02  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2008-04-05 16:07:36  jost
  * Bugfix Aufruf unter Windows
  *
  * Revision 1.2  2008/01/01 19:46:53  jost
@@ -33,23 +36,24 @@ import de.willuhn.util.ApplicationException;
 
 public class DokumentationAction implements Action
 {
-  public void handleAction(Object context) throws ApplicationException
+
+  public void handleAction(Object context)
   {
     final Object cont = context;
     GUI.getDisplay().asyncExec(new Runnable()
     {
+
       public void run()
       {
         try
         {
           if (cont instanceof String)
           {
-            new Program().handleAction((String) cont);
+            new Program().handleAction(cont);
           }
           else
           {
-            new Program()
-                .handleAction("http://www.jverein.de/index.php5?title=Dokumentation");
+            new Program().handleAction("http://www.jverein.de/index.php5?title=Dokumentation");
           }
         }
         catch (ApplicationException ae)

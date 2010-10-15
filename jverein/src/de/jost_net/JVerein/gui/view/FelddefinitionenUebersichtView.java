@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FelddefinitionenUebersichtView.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/10/07 19:49:22 $
+ * $Revision: 1.8 $
+ * $Date: 2010/10/15 09:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionenUebersichtView.java,v $
- * Revision 1.7  2010/10/07 19:49:22  jost
+ * Revision 1.8  2010/10/15 09:58:24  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.7  2010-10-07 19:49:22  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.6  2010-08-23 13:39:31  jost
@@ -41,10 +44,11 @@ import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
-import de.willuhn.util.ApplicationException;
 
 public class FelddefinitionenUebersichtView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Felddefinitionen"));
@@ -62,10 +66,6 @@ public class FelddefinitionenUebersichtView extends AbstractView
     // .getBeitragsgruppeTable());
     buttons.addButton(JVereinPlugin.getI18n().tr("&neu"),
         new FelddefinitionDetailAction(), null, false, "document-new.png");
-  }
-
-  public void unbind() throws ApplicationException
-  {
   }
 
   @Override

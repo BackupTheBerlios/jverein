@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/02/01 21:02:48 $
+ * $Revision: 1.14 $
+ * $Date: 2010/10/15 09:58:28 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportH2Impl.java,v $
- * Revision 1.13  2010/02/01 21:02:48  jost
+ * Revision 1.14  2010/10/15 09:58:28  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.13  2010-02-01 21:02:48  jost
  * Vermeidung Warnings.
  *
  * Revision 1.12  2009/11/17 21:02:38  jost
@@ -67,6 +70,7 @@ import de.willuhn.util.ApplicationException;
  */
 public class DBSupportH2Impl extends AbstractDBSupportImpl
 {
+
   private static final long serialVersionUID = 8429636916402991936L;
 
   // Mapper von Datenbank-Hash zu Versionsnummer
@@ -77,6 +81,7 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
     DBMAPPING.put("Bw0vbcBX5SInOkfnSb+DHA==", new Double(0.9));
   }
 
+  @SuppressWarnings("unchecked")
   public DBSupportH2Impl()
   {
     // H2-Datenbank verwendet uppercase Identifier
@@ -86,8 +91,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
 
     try
     {
-      Method m = (Method) Application.getClassLoader().load(
-          "org.h2.engine.Constants").getMethod("getVersion", (Class<?>[]) null);
+      Method m = Application.getClassLoader().load("org.h2.engine.Constants").getMethod(
+          "getVersion", (Class<?>[]) null);
       Logger.info("h2 version: " + m.invoke(null, (Object[]) null));
     }
     catch (Throwable t)
@@ -161,8 +166,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
   public String getJdbcUrl()
   {
     String url = "jdbc:h2:"
-        + Application.getPluginLoader().getPlugin(JVereinPlugin.class)
-            .getResources().getWorkPath() + "/h2db/jverein";
+        + Application.getPluginLoader().getPlugin(JVereinPlugin.class).getResources().getWorkPath()
+        + "/h2db/jverein";
 
     // if (JVereinDBService.SETTINGS.getBoolean("database.driver.h2.encryption",
     // true))
@@ -177,8 +182,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
     return "jverein";
   }
 
-  public void checkConsistency(Connection conn) throws RemoteException,
-      ApplicationException
+  @Override
+  public void checkConsistency(Connection conn) throws ApplicationException
   {
     if (!Application.inClientMode())
     {
@@ -191,8 +196,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
         // + File.separator + "sql.h2", Application.getCallback()
         // .getStartupMonitor());
 
-        new JVereinUpdateProvider(conn, Application.getCallback()
-            .getStartupMonitor());
+        new JVereinUpdateProvider(conn,
+            Application.getCallback().getStartupMonitor());
       }
       catch (Exception e2)
       {
@@ -208,6 +213,7 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
    * stattdessen nur einen Hinweistext mit den auszufuehrenden SQL-Scripts.
    * 
    */
+  @Override
   public void execute(Connection conn, File sqlScript) throws RemoteException
   {
     if (sqlScript == null)
@@ -226,7 +232,7 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
   /**
    * @see de.willuhn.jameica.hbci.rmi.DBSupport#getSQLTimestamp(java.lang.String)
    */
-  public String getSQLTimestamp(String content) throws RemoteException
+  public String getSQLTimestamp(String content)
   {
     // Nicht noetig
     // return MessageFormat.format("DATEDIFF('MS','1970-01-01 00:00',{0})", new
@@ -237,7 +243,7 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
   /**
    * @see de.willuhn.jameica.hbci.rmi.DBSupport#getInsertWithID()
    */
-  public boolean getInsertWithID() throws RemoteException
+  public boolean getInsertWithID()
   {
     return false;
   }
@@ -245,7 +251,7 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
   /**
    * @see de.willuhn.jameica.hbci.rmi.DBSupport#checkConnection(java.sql.Connection)
    */
-  public void checkConnection(Connection conn) throws RemoteException
+  public void checkConnection(Connection conn)
   {
     // brauchen wir bei nicht, da Embedded
   }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MailVorlagenAuswahlDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/02/01 20:59:26 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailVorlagenAuswahlDialog.java,v $
- * Revision 1.1  2010/02/01 20:59:26  jost
+ * Revision 1.2  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2010-02-01 20:59:26  jost
  * Neu: Einfache Mailfunktion
  *
  **********************************************************************/
@@ -45,6 +48,7 @@ public class MailVorlagenAuswahlDialog extends AbstractDialog
     setSize(550, 450);
   }
 
+  @Override
   protected void paint(Composite parent) throws Exception
   {
 
@@ -68,13 +72,14 @@ public class MailVorlagenAuswahlDialog extends AbstractDialog
     });
     b.addButton(JVereinPlugin.getI18n().tr("ohne Mail-Vorlage"), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+      public void handleAction(Object context)
       {
         close();
       }
     });
   }
 
+  @Override
   protected Object getData() throws Exception
   {
     return retval;

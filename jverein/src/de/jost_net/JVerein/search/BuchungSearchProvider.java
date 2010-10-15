@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/BuchungSearchProvider.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/02/25 18:57:48 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungSearchProvider.java,v $
- * Revision 1.1  2010/02/25 18:57:48  jost
+ * Revision 1.2  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2010-02-25 18:57:48  jost
  * Neu: Suche f. Buchungen
  *
  **********************************************************************/
@@ -34,13 +37,13 @@ import de.willuhn.util.ApplicationException;
  */
 public class BuchungSearchProvider implements SearchProvider
 {
+
   public String getName()
   {
     return JVereinPlugin.getI18n().tr("Buchung");
   }
 
-  public List<MyResult> search(String search) throws RemoteException,
-      ApplicationException
+  public List<MyResult> search(String search) throws RemoteException
   {
     if (search == null || search.length() == 0)
     {
@@ -49,11 +52,10 @@ public class BuchungSearchProvider implements SearchProvider
 
     String text = "%" + search.toLowerCase() + "%";
     DBIterator list = Einstellungen.getDBService().createList(Buchung.class);
-    list
-        .addFilter(
-            "LOWER(name) LIKE ? OR betrag like ? OR "
-                + "LOWER(zweck) LIKE ? OR LOWER(zweck2) LIKE ? OR LOWER(kommentar) LIKE ?",
-            new String[] { text, text, text, text, text });
+    list.addFilter(
+        "LOWER(name) LIKE ? OR betrag like ? OR "
+            + "LOWER(zweck) LIKE ? OR LOWER(zweck2) LIKE ? OR LOWER(kommentar) LIKE ?",
+        new String[] { text, text, text, text, text});
 
     ArrayList<MyResult> results = new ArrayList<MyResult>();
     while (list.hasNext())
@@ -68,6 +70,7 @@ public class BuchungSearchProvider implements SearchProvider
    */
   private class MyResult implements Result
   {
+
     private static final long serialVersionUID = -1685817053590491168L;
 
     private Buchung b = null;
@@ -77,7 +80,7 @@ public class BuchungSearchProvider implements SearchProvider
       this.b = b;
     }
 
-    public void execute() throws RemoteException, ApplicationException
+    public void execute() throws ApplicationException
     {
       new BuchungAction().handleAction(this.b);
     }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Spalte.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/11/29 13:18:17 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spalte.java,v $
- * Revision 1.1  2008/11/29 13:18:17  jost
+ * Revision 1.2  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2008-11-29 13:18:17  jost
  * Neu: Konfiguration der Spalten einer Tabelle
  *
  **********************************************************************/
@@ -45,6 +48,7 @@ public class Spalte
     this.align = align;
   }
 
+  @Override
   public boolean equals(Object arg0)
   {
     if (arg0 == null || !(arg0 instanceof Spalte))

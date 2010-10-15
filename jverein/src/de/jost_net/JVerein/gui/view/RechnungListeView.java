@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungListeView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/10/07 19:49:24 $
+ * $Revision: 1.10 $
+ * $Date: 2010/10/15 09:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungListeView.java,v $
- * Revision 1.9  2010/10/07 19:49:24  jost
+ * Revision 1.10  2010/10/15 09:58:24  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.9  2010-10-07 19:49:24  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.8  2010-08-23 13:39:33  jost
@@ -52,6 +55,8 @@ import de.willuhn.util.ApplicationException;
 
 public class RechnungListeView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle("Rechnungen");
@@ -59,12 +64,12 @@ public class RechnungListeView extends AbstractView
     final RechnungControl control = new RechnungControl(this);
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Filter"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck"), control
-        .getSuchverwendungszweck());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Eingabedatum von"), control
-        .getVondatum());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Eingabedatum bis"), control
-        .getBisdatum());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Verwendungszweck"),
+        control.getSuchverwendungszweck());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Eingabedatum von"),
+        control.getVondatum());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Eingabedatum bis"),
+        control.getBisdatum());
 
     control.getAbrechungList().paint(this.getParent());
 
@@ -73,7 +78,8 @@ public class RechnungListeView extends AbstractView
     buttons.addButton(JVereinPlugin.getI18n().tr("&drucken von/bis"),
         new Action()
         {
-          public void handleAction(Object context) throws ApplicationException
+
+          public void handleAction(Object context) 
           {
             GUI.startView(RechnungView.class.getName(), null);
           }
@@ -83,9 +89,6 @@ public class RechnungListeView extends AbstractView
         "help-browser.png");
   }
 
-  public void unbind() throws ApplicationException
-  {
-  }
   // TODO getHelp()
 
 }

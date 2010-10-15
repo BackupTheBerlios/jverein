@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationListener.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/11/29 13:14:10 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationListener.java,v $
- * Revision 1.4  2008/11/29 13:14:10  jost
+ * Revision 1.5  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2008-11-29 13:14:10  jost
  * Refactoring: Warnungen beseitigt.
  *
  * Revision 1.3  2008/01/31 20:35:45  jost
@@ -42,17 +45,16 @@ import de.willuhn.util.I18N;
  */
 public class McKoiToH2MigrationListener implements MessageConsumer
 {
+
   public boolean autoRegister()
   {
-    Settings s = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
-        .getResources().getSettings();
+    Settings s = Application.getPluginLoader().getPlugin(JVereinPlugin.class).getResources().getSettings();
     return s.getBoolean("migration.h2", true);
   }
 
-  @SuppressWarnings("unchecked")
   public Class[] getExpectedMessageTypes()
   {
-    return new Class[] { SystemMessage.class };
+    return new Class[] { SystemMessage.class};
   }
 
   public void handleMessage(Message message) throws Exception
@@ -68,24 +70,20 @@ public class McKoiToH2MigrationListener implements MessageConsumer
       return; // lief bereits
 
     // Checken, ob ueberhaupt die McKoi-Datenbank genutzt wird
-    String driver = JVereinDBService.SETTINGS
-        .getString("database.driver", null);
+    String driver = JVereinDBService.SETTINGS.getString("database.driver", null);
     if (driver == null || !driver.equals(DBSupportMcKoiImpl.class.getName()))
       return;
 
-    Settings s = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
-        .getResources().getSettings();
+    Settings s = Application.getPluginLoader().getPlugin(JVereinPlugin.class).getResources().getSettings();
     if (!s.getBoolean("migration.h2", true))
       return;
 
-    I18N i18n = Application.getPluginLoader().getPlugin(JVereinPlugin.class)
-        .getResources().getI18N();
+    I18N i18n = Application.getPluginLoader().getPlugin(JVereinPlugin.class).getResources().getI18N();
 
-    String text = i18n
-        .tr("Das Datenbank-Format von JVerein wurde umgestellt.\n"
-            + "Weitere Informationen zu diesem Thema unter\n\n"
-            + "http://www.jverein.de/index.php5?title=Migration_der_Datenbank_ins_H2-Format\n\n"
-            + "Möchten Sie jetzt die Übernahme der Daten in das neue Format durchführen?");
+    String text = i18n.tr("Das Datenbank-Format von JVerein wurde umgestellt.\n"
+        + "Weitere Informationen zu diesem Thema unter\n\n"
+        + "http://www.jverein.de/index.php5?title=Migration_der_Datenbank_ins_H2-Format\n\n"
+        + "Möchten Sie jetzt die Übernahme der Daten in das neue Format durchführen?");
     if (!Application.getCallback().askUser(text))
       return;
 

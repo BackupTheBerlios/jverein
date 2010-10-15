@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.46 $
- * $Date: 2010/07/26 08:05:53 $
+ * $Revision: 1.47 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
- * Revision 1.46  2010/07/26 08:05:53  jost
+ * Revision 1.47  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.46  2010-07-26 08:05:53  jost
  * - Mitgliedskonto für Zusatzbeträge
  * - Rechnungsinformationen und Manuelle Zahlungseingänge deaktiviert.
  *
@@ -199,6 +202,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class Abbuchung
 {
+
   public Abbuchung(AbbuchungParam param, ProgressMonitor monitor)
       throws Exception
   {
@@ -233,9 +237,9 @@ public class Abbuchung
     // Gegenbuchung für das Mitgliedskonto schreiben
     if (Einstellungen.getEinstellung().getMitgliedskonto())
     {
-      writeMitgliedskonto(null, new Date(), "Gegenbuchung", "", dtaus
-          .getSummeBetraegeDecimal().doubleValue()
-          * -1, abrl, true, getKonto(param));
+      writeMitgliedskonto(null, new Date(), "Gegenbuchung", "",
+          dtaus.getSummeBetraegeDecimal().doubleValue() * -1, abrl, true,
+          getKonto(param));
     }
 
     if (param.abbuchungsausgabe == Abrechnungsausgabe.HIBISCUS_EINZELBUCHUNGEN
@@ -244,7 +248,7 @@ public class Abbuchung
       buchenHibiscus(param);
     }
     monitor.log(JVereinPlugin.getI18n().tr("Anzahl Abrechnungen: {0}",
-        new String[] { dtaus.getAnzahlSaetze() + "" }));
+        new String[] { dtaus.getAnzahlSaetze() + ""}));
     monitor.log(JVereinPlugin.getI18n().tr("Gesamtsumme: {0} EUR",
         Einstellungen.DECIMALFORMAT.format(dtaus.getSummeBetraegeDecimal())));
     dtaus.close();
@@ -294,10 +298,10 @@ public class Abbuchung
 
       // Das Mitglied muss bereits eingetreten sein
       list.addFilter("(eintritt <= ? or eintritt is null) ",
-          new Object[] { new java.sql.Date(stichtag.getTime()) });
+          new Object[] { new java.sql.Date(stichtag.getTime())});
       // Das Mitglied darf noch nicht ausgetreten sein
       list.addFilter("(austritt is null or austritt > ?)",
-          new Object[] { new java.sql.Date(stichtag.getTime()) });
+          new Object[] { new java.sql.Date(stichtag.getTime())});
       // Beitragsfreie Mitglieder können auch unberücksichtigt bleiben.
       if (beitragsfrei.length() > 0)
       {
@@ -308,53 +312,51 @@ public class Abbuchung
       if (vondatum != null)
       {
         list.addFilter("eingabedatum >= ?", new Object[] { new java.sql.Date(
-            vondatum.getTime()) });
+            vondatum.getTime())});
       }
       if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH12631)
       {
         if (modus == Abrechnungsmodi.HAVIMO)
         {
-          list
-              .addFilter(
-                  "(zahlungsrhytmus = ? or zahlungsrhytmus = ? or zahlungsrhytmus = ?)",
-                  new Object[] { new Integer(Zahlungsrhytmus.HALBJAEHRLICH),
-                      new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
-                      new Integer(Zahlungsrhytmus.MONATLICH) });
+          list.addFilter(
+              "(zahlungsrhytmus = ? or zahlungsrhytmus = ? or zahlungsrhytmus = ?)",
+              new Object[] { new Integer(Zahlungsrhytmus.HALBJAEHRLICH),
+                  new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
+                  new Integer(Zahlungsrhytmus.MONATLICH)});
         }
         if (modus == Abrechnungsmodi.JAVIMO)
         {
-          list
-              .addFilter(
-                  "(zahlungsrhytmus = ? or zahlungsrhytmus = ? or zahlungsrhytmus = ?)",
-                  new Object[] { new Integer(Zahlungsrhytmus.JAEHRLICH),
-                      new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
-                      new Integer(Zahlungsrhytmus.MONATLICH) });
+          list.addFilter(
+              "(zahlungsrhytmus = ? or zahlungsrhytmus = ? or zahlungsrhytmus = ?)",
+              new Object[] { new Integer(Zahlungsrhytmus.JAEHRLICH),
+                  new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
+                  new Integer(Zahlungsrhytmus.MONATLICH)});
         }
         if (modus == Abrechnungsmodi.VIMO)
         {
           list.addFilter("(zahlungsrhytmus = ? or zahlungsrhytmus = ?)",
               new Object[] { new Integer(Zahlungsrhytmus.VIERTELJAEHRLICH),
-                  new Integer(Zahlungsrhytmus.MONATLICH) });
+                  new Integer(Zahlungsrhytmus.MONATLICH)});
         }
         if (modus == Abrechnungsmodi.MO)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
-              Zahlungsrhytmus.MONATLICH) });
+              Zahlungsrhytmus.MONATLICH)});
         }
         if (modus == Abrechnungsmodi.VI)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
-              Zahlungsrhytmus.VIERTELJAEHRLICH) });
+              Zahlungsrhytmus.VIERTELJAEHRLICH)});
         }
         if (modus == Abrechnungsmodi.HA)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
-              Zahlungsrhytmus.HALBJAEHRLICH) });
+              Zahlungsrhytmus.HALBJAEHRLICH)});
         }
         if (modus == Abrechnungsmodi.JA)
         {
           list.addFilter("zahlungsrhytmus = ?", new Object[] { new Integer(
-              Zahlungsrhytmus.JAEHRLICH) });
+              Zahlungsrhytmus.JAEHRLICH)});
         }
       }
       list.setOrder("ORDER BY name, vorname");
@@ -369,7 +371,7 @@ public class Abbuchung
         Double betr = new Double(0d);
         if (Einstellungen.getEinstellung().getBeitragsmodel() != Beitragsmodel.MONATLICH12631)
         {
-          betr = (Double) beitr.get(m.getBeitragsgruppeId() + "");
+          betr = beitr.get(m.getBeitragsgruppeId() + "");
         }
         else
         {
@@ -427,7 +429,7 @@ public class Abbuchung
 
   private void abbuchenZusatzbetraege(DtausDateiWriter dtaus,
       Abrechnungslauf abrl, Konto konto) throws NumberFormatException,
-      DtausException, IOException, ApplicationException
+      IOException, ApplicationException
   {
     DBIterator list = Einstellungen.getDBService().createList(
         Zusatzbetrag.class);
@@ -455,19 +457,18 @@ public class Abbuchung
         // .getBetrag()));
         // }
         if (z.getIntervall().intValue() != IntervallZusatzzahlung.KEIN
-            && (z.getEndedatum() == null || z.getFaelligkeit().getTime() <= z
-                .getEndedatum().getTime()))
+            && (z.getEndedatum() == null || z.getFaelligkeit().getTime() <= z.getEndedatum().getTime()))
         {
-          z.setFaelligkeit(Datum.addInterval(z.getFaelligkeit(), z
-              .getIntervall(), z.getEndedatum()));
+          z.setFaelligkeit(Datum.addInterval(z.getFaelligkeit(),
+              z.getIntervall()));
         }
         z.setAusfuehrung(Datum.getHeute());
         z.store();
         // writeAbrechungsdaten(m, z.getBuchungstext(), "", z.getBetrag());
         if (Einstellungen.getEinstellung().getMitgliedskonto())
         {
-          writeMitgliedskonto(m, new Date(), z.getBuchungstext(), "", z
-              .getBetrag(), abrl, m.getZahlungsweg() == Zahlungsweg.ABBUCHUNG,
+          writeMitgliedskonto(m, new Date(), z.getBuchungstext(), "",
+              z.getBetrag(), abrl, m.getZahlungsweg() == Zahlungsweg.ABBUCHUNG,
               konto);
         }
 
@@ -508,8 +509,7 @@ public class Abbuchung
             + ": Ungültige Kontonummer " + kt.getKonto());
       }
       dtaus.setCName(kt.getName());
-      dtaus
-          .setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
+      dtaus.setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
       dtaus.addCVerwendungszweck(kt.getVZweck1());
       dtaus.addCVerwendungszweck(kt.getVZweck2());
       try
@@ -531,6 +531,7 @@ public class Abbuchung
     new Dtaus2Pdf(dtaus, dtauspdf);
     GUI.getDisplay().asyncExec(new Runnable()
     {
+
       public void run()
       {
         try
@@ -551,8 +552,8 @@ public class Abbuchung
   {
     try
     {
-      DtausDateiParser parser = new DtausDateiParser(param.dtausfile
-          .getAbsolutePath());
+      DtausDateiParser parser = new DtausDateiParser(
+          param.dtausfile.getAbsolutePath());
       SammelLastschrift sl = null;
       CSatz c = parser.next();
       if (param.abbuchungsausgabe == Abrechnungsausgabe.HIBISCUS_SAMMELBUCHUNG)
@@ -614,11 +615,9 @@ public class Abbuchung
     if (!Einstellungen.checkAccountCRC(m.getBlz(), m.getKonto()))
     {
       throw new DtausException(
-          JVereinPlugin
-              .getI18n()
-              .tr(
-                  "BLZ/Kontonummer ({0}/{1}) ungültig. Bitte prüfen Sie Ihre Eingaben.",
-                  new String[] { m.getBlz(), m.getKonto() }));
+          JVereinPlugin.getI18n().tr(
+              "BLZ/Kontonummer ({0}/{1}) ungültig. Bitte prüfen Sie Ihre Eingaben.",
+              new String[] { m.getBlz(), m.getKonto()}));
     }
 
     try
@@ -639,9 +638,8 @@ public class Abbuchung
       throw new DtausException("Ungültige Kontonummer " + m.getKonto());
     }
     String name = m.getNameVorname();
-    String mitgliedname = (Einstellungen.getEinstellung()
-        .getExterneMitgliedsnummer() ? m.getExterneMitgliedsnummer() : m
-        .getID())
+    String mitgliedname = (Einstellungen.getEinstellung().getExterneMitgliedsnummer()
+        ? m.getExterneMitgliedsnummer() : m.getID())
         + "/" + name;
     if (mitgliedname.length() > 25)
     {
@@ -656,8 +654,7 @@ public class Abbuchung
       name = name.substring(0, 27);
     }
     dtaus.setCName(name);
-    dtaus
-        .setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
+    dtaus.setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
     dtaus.addCVerwendungszweck(verwendungszweck);
     dtaus.addCVerwendungszweck(mitgliedname);
     dtaus.writeCSatz();
@@ -714,8 +711,8 @@ public class Abbuchung
     {
       return null;
     }
-    Abrechnungslauf abrl = (Abrechnungslauf) Einstellungen.getDBService()
-        .createObject(Abrechnungslauf.class, null);
+    Abrechnungslauf abrl = (Abrechnungslauf) Einstellungen.getDBService().createObject(
+        Abrechnungslauf.class, null);
     abrl.setDatum(new Date());
     abrl.setAbbuchungsausgabe(param.abbuchungsausgabe);
     abrl.setDtausdruck(param.dtausprint);
@@ -780,7 +777,7 @@ public class Abbuchung
       return null;
     }
     DBIterator it = Einstellungen.getDBService().createList(Konto.class);
-    it.addFilter("nummer = ?", new String[] { param.stamm.getKonto() });
+    it.addFilter("nummer = ?", new String[] { param.stamm.getKonto()});
     if (it.size() != 1)
     {
       throw new ApplicationException("Konto " + param.stamm.getKonto()

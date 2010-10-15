@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/GeschlechtInput.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/29 19:43:16 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: GeschlechtInput.java,v $
- * Revision 1.2  2009/06/29 19:43:16  jost
+ * Revision 1.3  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2009-06-29 19:43:16  jost
  * Debug-Meldung entfernt.
  *
  * Revision 1.1  2009/06/21 08:53:12  jost
@@ -33,6 +36,7 @@ import de.willuhn.jameica.gui.input.SelectInput;
  */
 public class GeschlechtInput extends SelectInput
 {
+
   public static final String MAENNLICH = "m";
 
   public static final String WEIBLICH = "w";
@@ -51,13 +55,13 @@ public class GeschlechtInput extends SelectInput
     ArrayList<GeschlechtObject> l = new ArrayList<GeschlechtObject>();
     l.add(new GeschlechtObject(MAENNLICH));
     l.add(new GeschlechtObject(WEIBLICH));
-    return PseudoIterator.fromArray((GeschlechtObject[]) l
-        .toArray(new GeschlechtObject[l.size()]));
+    return PseudoIterator.fromArray(l.toArray(new GeschlechtObject[l.size()]));
   }
 
   /**
    * @see de.willuhn.jameica.gui.input.Input#getValue()
    */
+  @Override
   public Object getValue()
   {
     GeschlechtObject o = (GeschlechtObject) super.getValue();
@@ -73,6 +77,7 @@ public class GeschlechtInput extends SelectInput
    */
   private static class GeschlechtObject implements GenericObject
   {
+
     public String geschlecht;
 
     private String label = null;
@@ -100,22 +105,22 @@ public class GeschlechtInput extends SelectInput
       }
     }
 
-    public Object getAttribute(String arg0) throws RemoteException
+    public Object getAttribute(String arg0)
     {
       return label;
     }
 
-    public String[] getAttributeNames() throws RemoteException
+    public String[] getAttributeNames()
     {
-      return new String[] { "name" };
+      return new String[] { "name"};
     }
 
-    public String getID() throws RemoteException
+    public String getID()
     {
       return geschlecht;
     }
 
-    public String getPrimaryAttribute() throws RemoteException
+    public String getPrimaryAttribute()
     {
       return "name";
     }

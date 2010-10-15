@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedskontoMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/04 10:40:52 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoMenu.java,v $
- * Revision 1.2  2010/08/04 10:40:52  jost
+ * Revision 1.3  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-08-04 10:40:52  jost
  * Javadoc
  *
  * Revision 1.1  2010-07-25 18:36:03  jost
@@ -40,6 +43,7 @@ import de.willuhn.util.I18N;
  */
 public class MitgliedskontoMenu extends ContextMenu
 {
+
   private final static I18N i18n = JVereinPlugin.getI18n();
 
   /**
@@ -59,17 +63,19 @@ public class MitgliedskontoMenu extends ContextMenu
 
   private class MitgliedItem extends CheckedContextMenuItem
   {
+
     /**
      * @param text
      * @param action
      * @param optionale
-     *          Angabe eines Icons.
+     *        Angabe eines Icons.
      */
     private MitgliedItem(String text, Action action, String icon)
     {
       super(text, action, icon);
     }
 
+    @Override
     public boolean isEnabledFor(Object o)
     {
       if (o instanceof MitgliedskontoNode)
@@ -90,17 +96,19 @@ public class MitgliedskontoMenu extends ContextMenu
 
   private class SollItem extends CheckedContextMenuItem
   {
+
     /**
      * @param text
      * @param action
      * @param optionale
-     *          Angabe eines Icons.
+     *        Angabe eines Icons.
      */
     private SollItem(String text, Action action, String icon)
     {
       super(text, action, icon);
     }
 
+    @Override
     public boolean isEnabledFor(Object o)
     {
       if (o instanceof MitgliedskontoNode)
@@ -121,17 +129,19 @@ public class MitgliedskontoMenu extends ContextMenu
 
   private class SollOhneIstItem extends CheckedContextMenuItem
   {
+
     /**
      * @param text
      * @param action
      * @param optionale
-     *          Angabe eines Icons.
+     *        Angabe eines Icons.
      */
     private SollOhneIstItem(String text, Action action, String icon)
     {
       super(text, action, icon);
     }
 
+    @Override
     public boolean isEnabledFor(Object o)
     {
       if (o instanceof MitgliedskontoNode)
@@ -143,7 +153,7 @@ public class MitgliedskontoMenu extends ContextMenu
           try
           {
             it = Einstellungen.getDBService().createList(Buchung.class);
-            it.addFilter("mitgliedskonto = ?", new Object[] { mkn.getID() });
+            it.addFilter("mitgliedskonto = ?", new Object[] { mkn.getID()});
             if (it.size() == 0)
             {
               return true;
@@ -163,36 +173,4 @@ public class MitgliedskontoMenu extends ContextMenu
       return super.isEnabledFor(o);
     }
   }
-
-  private class IstItem extends CheckedContextMenuItem
-  {
-    /**
-     * @param text
-     * @param action
-     * @param optionale
-     *          Angabe eines Icons.
-     */
-    private IstItem(String text, Action action, String icon)
-    {
-      super(text, action, icon);
-    }
-
-    public boolean isEnabledFor(Object o)
-    {
-      if (o instanceof MitgliedskontoNode)
-      {
-        MitgliedskontoNode mkn = (MitgliedskontoNode) o;
-        if (mkn.getType() == MitgliedskontoNode.IST)
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      return super.isEnabledFor(o);
-    }
-  }
-
 }

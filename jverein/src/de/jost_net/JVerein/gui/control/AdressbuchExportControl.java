@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AdressbuchExportControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/08/23 13:30:06 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AdressbuchExportControl.java,v $
- * Revision 1.3  2010/08/23 13:30:06  jost
+ * Revision 1.4  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2010-08-23 13:30:06  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.2  2010/05/16 10:42:38  jost
@@ -50,6 +53,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class AdressbuchExportControl extends AbstractControl
 {
+
   private CheckboxInput nurEmail;
 
   private SelectInput encoding;
@@ -65,7 +69,7 @@ public class AdressbuchExportControl extends AbstractControl
     settings.setStoreWhenRead(true);
   }
 
-  public CheckboxInput getNurEmail() throws RemoteException
+  public CheckboxInput getNurEmail()
   {
     if (nurEmail != null)
     {
@@ -75,18 +79,18 @@ public class AdressbuchExportControl extends AbstractControl
     return nurEmail;
   }
 
-  public SelectInput getEncoding() throws RemoteException
+  public SelectInput getEncoding()
   {
     if (encoding != null)
     {
       return encoding;
     }
     encoding = new SelectInput(new Object[] { "Cp1250", "ISO8859_15_FDIS",
-        "UTF-8" }, settings.getString("encoding", "ISO8859_15_FDIS"));
+        "UTF-8"}, settings.getString("encoding", "ISO8859_15_FDIS"));
     return encoding;
   }
 
-  public TextInput getTrennzeichen() throws RemoteException
+  public TextInput getTrennzeichen()
   {
     if (trennzeichen != null)
     {
@@ -100,6 +104,7 @@ public class AdressbuchExportControl extends AbstractControl
   {
     Button button = new Button("&starten", new Action()
     {
+
       public void handleAction(Object context)
       {
 
@@ -127,14 +132,13 @@ public class AdressbuchExportControl extends AbstractControl
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Export-Datei auswählen.");
 
-    String path = settings
-        .getString("lastdir", System.getProperty("user.home"));
+    String path = settings.getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("adressbuchexport", Einstellungen
-        .getEinstellung().getDateinamenmuster(), "CSV").get());
+    fd.setFileName(new Dateiname("adressbuchexport",
+        Einstellungen.getEinstellung().getDateinamenmuster(), "CSV").get());
     final String file = fd.open();
 
     if (file == null || file.length() == 0)
@@ -153,6 +157,7 @@ public class AdressbuchExportControl extends AbstractControl
     settings.setAttribute("encoding", encoding);
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
@@ -195,6 +200,7 @@ public class AdressbuchExportControl extends AbstractControl
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/FormularAufbereitung.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/08/08 19:33:13 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAufbereitung.java,v $
- * Revision 1.5  2010/08/08 19:33:13  jost
+ * Revision 1.6  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2010-08-08 19:33:13  jost
  * Zusammenfassung der Rechnungen
  *
  * Revision 1.4  2009/09/21 18:19:29  jost
@@ -54,6 +57,7 @@ import de.willuhn.util.ApplicationException;
 
 public class FormularAufbereitung
 {
+
   private Document doc;
 
   private FileOutputStream fos;
@@ -103,7 +107,7 @@ public class FormularAufbereitung
 
       DBIterator it = Einstellungen.getDBService().createList(
           Formularfeld.class);
-      it.addFilter("formular = ?", new Object[] { formular.getID() });
+      it.addFilter("formular = ?", new Object[] { formular.getID()});
       while (it.hasNext())
       {
         goFormularfeld(contentByte, (Formularfeld) it.next(), map);
@@ -126,6 +130,7 @@ public class FormularAufbereitung
     fos.close();
     GUI.getDisplay().asyncExec(new Runnable()
     {
+
       public void run()
       {
         try
@@ -176,7 +181,7 @@ public class FormularAufbereitung
 
   private float mm2point(float mm)
   {
-    return (float) mm / 0.3514598f;
+    return mm / 0.3514598f;
   }
 
   private String getString(Object val)
@@ -191,23 +196,23 @@ public class FormularAufbereitung
       }
       if (o[0] instanceof String)
       {
-        for (Object ostr : (Object[]) o)
+        for (Object ostr : o)
         {
           stringVal += (String) ostr + "\n";
         }
       }
       if (o[0] instanceof Date)
       {
-        for (Object od : (Object[]) o)
+        for (Object od : o)
         {
           stringVal += Einstellungen.DATEFORMAT.format((Date) od) + "\n";
         }
       }
       if (o[0] instanceof Double)
       {
-        for (Object od : (Object[]) o)
+        for (Object od : o)
         {
-          stringVal += Einstellungen.DECIMALFORMAT.format((Double) od) + "\n";
+          stringVal += Einstellungen.DECIMALFORMAT.format(od) + "\n";
         }
         buendig = rechts;
       }
@@ -219,7 +224,7 @@ public class FormularAufbereitung
     }
     if (val instanceof Double)
     {
-      stringVal = Einstellungen.DECIMALFORMAT.format((Double) val);
+      stringVal = Einstellungen.DECIMALFORMAT.format(val);
       buendig = rechts;
     }
     if (val instanceof Date)

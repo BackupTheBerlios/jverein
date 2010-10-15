@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/07/24 20:18:03 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularControl.java,v $
- * Revision 1.4  2009/07/24 20:18:03  jost
+ * Revision 1.5  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2009-07-24 20:18:03  jost
  * Focus auf erstes Feld setzen.
  *
  * Revision 1.3  2008/11/30 18:56:54  jost
@@ -51,6 +54,7 @@ import de.willuhn.util.ApplicationException;
 
 public class FormularControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private TablePart formularList;
@@ -86,7 +90,7 @@ public class FormularControl extends AbstractControl
     {
       return bezeichnung;
     }
-    bezeichnung = new TextInput((String) getFormular().getBezeichnung(), 50);
+    bezeichnung = new TextInput(getFormular().getBezeichnung(), 50);
     if (withFocus)
     {
       bezeichnung.focus();
@@ -101,17 +105,17 @@ public class FormularControl extends AbstractControl
       return art;
     }
     art = new SelectInput(Formularart.getArray(), new Formularart(
-        (Integer) getFormular().getArt()));
+        getFormular().getArt()));
     return art;
   }
 
-  public FileInput getDatei() throws RemoteException
+  public FileInput getDatei()
   {
     if (datei != null)
     {
       return datei;
     }
-    datei = new FileInput("", false, new String[] { "*.pdf", "*.PDF" });
+    datei = new FileInput("", false, new String[] { "*.pdf", "*.PDF"});
     return datei;
   }
 
@@ -187,7 +191,7 @@ public class FormularControl extends AbstractControl
     formulare.setOrder("ORDER BY art, bezeichnung");
     while (formulare.hasNext())
     {
-      formularList.addItem((Formular) formulare.next());
+      formularList.addItem(formulare.next());
     }
   }
 

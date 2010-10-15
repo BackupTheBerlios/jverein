@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/EigenschaftenAuswahlDialog.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/04/08 17:56:56 $
+ * $Revision: 1.9 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenAuswahlDialog.java,v $
- * Revision 1.8  2010/04/08 17:56:56  jost
+ * Revision 1.9  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.8  2010-04-08 17:56:56  jost
  * Bugfix
  *
  * Revision 1.7  2010/03/27 20:10:05  jost
@@ -50,13 +53,13 @@ import de.willuhn.jameica.gui.parts.TreePart;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.logging.Logger;
-import de.willuhn.util.ApplicationException;
 
 /**
  * Dialog, zur Auswahl von Eigenschaften eines Mitglied.
  */
 public class EigenschaftenAuswahlDialog extends AbstractDialog
 {
+
   private MitgliedControl control;
 
   private String defaults = null;
@@ -67,11 +70,11 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
    * Eigenschaften oder Eigenschaftengruppen auswählen
    * 
    * @param modus
-   *          MODUS_EIGENSCHAFTEN oder MODUS_EIGENSCHAFTEN_UND_GRUPPEN
+   *        MODUS_EIGENSCHAFTEN oder MODUS_EIGENSCHAFTEN_UND_GRUPPEN
    * @param defaults
-   *          Liste der Eigenschaften-IDs durch Komma separiert.
+   *        Liste der Eigenschaften-IDs durch Komma separiert.
    */
-  public EigenschaftenAuswahlDialog(String defaults) throws RemoteException
+  public EigenschaftenAuswahlDialog(String defaults)
   {
     super(EigenschaftenAuswahlDialog.POSITION_CENTER);
     this.setSize(400, 400);
@@ -79,9 +82,10 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
     control = new MitgliedControl(null);
     this.setDefaults(defaults);
   }
-  
+
   /**
    * Speichert die Default-Werte.
+   * 
    * @param defaults
    */
   public void setDefaults(String defaults)
@@ -89,6 +93,7 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
     this.defaults = defaults != null ? defaults : "";
   }
 
+  @Override
   protected void paint(Composite parent) throws RemoteException
   {
     final TreePart tree = control.getEigenschaftenAuswahlTree(this.defaults);
@@ -101,7 +106,8 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
     ButtonArea buttons = new ButtonArea(parent, 2);
     buttons.addButton(i18n.tr(JVereinPlugin.getI18n().tr("OK")), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         try
         {
@@ -125,6 +131,7 @@ public class EigenschaftenAuswahlDialog extends AbstractDialog
     });
   }
 
+  @Override
   protected Object getData()
   {
     return retval;

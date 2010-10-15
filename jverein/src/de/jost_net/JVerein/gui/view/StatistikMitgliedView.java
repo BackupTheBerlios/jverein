@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/StatistikMitgliedView.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/10/07 19:49:24 $
+ * $Revision: 1.11 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StatistikMitgliedView.java,v $
- * Revision 1.10  2010/10/07 19:49:24  jost
+ * Revision 1.11  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.10  2010-10-07 19:49:24  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.9  2010-08-23 13:39:32  jost
@@ -53,10 +56,11 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
-import de.willuhn.util.ApplicationException;
 
 public class StatistikMitgliedView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Mitgliederstatistik"));
@@ -65,8 +69,8 @@ public class StatistikMitgliedView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Parameter"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Stichtag"), control
-        .getStichtag());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Stichtag"),
+        control.getStichtag());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 
@@ -75,10 +79,6 @@ public class StatistikMitgliedView extends AbstractView
         new DokumentationAction(), DokumentationUtil.STATISTIKMITGLIEDER,
         false, "help-browser.png");
     buttons.addButton(control.getStartStatistikButton());
-  }
-
-  public void unbind() throws ApplicationException
-  {
   }
 
   @Override

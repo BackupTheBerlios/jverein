@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FelddefinitionImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/01/01 20:11:12 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionImpl.java,v $
- * Revision 1.5  2010/01/01 20:11:12  jost
+ * Revision 1.6  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2010-01-01 20:11:12  jost
  * Typisierung der Zusatzfelder
  *
  * Revision 1.4  2009/06/11 21:04:23  jost
@@ -41,6 +44,7 @@ import de.willuhn.util.ApplicationException;
 public class FelddefinitionImpl extends AbstractDBObject implements
     Felddefinition
 {
+
   private static final long serialVersionUID = 1L;
 
   public FelddefinitionImpl() throws RemoteException
@@ -48,20 +52,25 @@ public class FelddefinitionImpl extends AbstractDBObject implements
     super();
   }
 
+  @Override
   protected String getTableName()
   {
     return "felddefinition";
   }
 
-  public String getPrimaryAttribute() throws RemoteException
+  @Override
+  public String getPrimaryAttribute()
   {
     return "id";
   }
 
-  protected void deleteCheck() throws ApplicationException
+  @Override
+  protected void deleteCheck()
   {
+    //
   }
 
+  @Override
   protected void insertCheck() throws ApplicationException
   {
     try
@@ -80,7 +89,7 @@ public class FelddefinitionImpl extends AbstractDBObject implements
         if (validChars.indexOf(c) == -1)
           throw new ApplicationException(JVereinPlugin.getI18n().tr(
               "Ungültiges Zeichen ({0}) im Feldnamen an Position {1}",
-              new String[] { c + "", i + "" }));
+              new String[] { c + "", i + ""}));
       }
       Mitglied m = (Mitglied) Einstellungen.getDBService().createObject(
           Mitglied.class, null);
@@ -109,13 +118,14 @@ public class FelddefinitionImpl extends AbstractDBObject implements
     }
   }
 
+  @Override
   protected void updateCheck() throws ApplicationException
   {
     insertCheck();
   }
 
-  @SuppressWarnings("unchecked")
-  protected Class getForeignObject(String arg0) throws RemoteException
+  @Override
+  protected Class getForeignObject(String arg0)
   {
     return null;
   }
@@ -176,6 +186,7 @@ public class FelddefinitionImpl extends AbstractDBObject implements
     setAttribute("laenge", laenge);
   }
 
+  @Override
   public Object getAttribute(String fieldName) throws RemoteException
   {
     return super.getAttribute(fieldName);

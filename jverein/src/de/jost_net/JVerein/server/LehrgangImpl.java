@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/LehrgangImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/04/13 11:41:02 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangImpl.java,v $
- * Revision 1.1  2009/04/13 11:41:02  jost
+ * Revision 1.2  2010/10/15 09:58:28  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2009-04-13 11:41:02  jost
  * Neu: Lehrgänge
  *
  **********************************************************************/
@@ -22,10 +25,10 @@ import de.jost_net.JVerein.rmi.Lehrgang;
 import de.jost_net.JVerein.rmi.Lehrgangsart;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.willuhn.datasource.db.AbstractDBObject;
-import de.willuhn.util.ApplicationException;
 
 public class LehrgangImpl extends AbstractDBObject implements Lehrgang
 {
+
   private static final long serialVersionUID = 380278347818535726L;
 
   public LehrgangImpl() throws RemoteException
@@ -33,26 +36,32 @@ public class LehrgangImpl extends AbstractDBObject implements Lehrgang
     super();
   }
 
+  @Override
   protected String getTableName()
   {
     return "lehrgang";
   }
 
-  public String getPrimaryAttribute() throws RemoteException
+  @Override
+  public String getPrimaryAttribute()
   {
     return "bezeichnung";
   }
 
-  protected void deleteCheck() throws ApplicationException
+  @Override
+  protected void deleteCheck()
   {
+    //
   }
 
-  protected void insertCheck() throws ApplicationException
+  @Override
+  protected void insertCheck()
   {
     updateCheck();
   }
 
-  protected void updateCheck() throws ApplicationException
+  @Override
+  protected void updateCheck()
   {
     // try
     // {
@@ -66,8 +75,8 @@ public class LehrgangImpl extends AbstractDBObject implements Lehrgang
     // }
   }
 
-  @SuppressWarnings("unchecked")
-  protected Class getForeignObject(String arg0) throws RemoteException
+  @Override
+  protected Class getForeignObject(String arg0)
   {
     if ("mitglied".equals(arg0))
     {
@@ -141,6 +150,7 @@ public class LehrgangImpl extends AbstractDBObject implements Lehrgang
     setAttribute("ergebnis", ergebnis);
   }
 
+  @Override
   public Object getAttribute(String fieldName) throws RemoteException
   {
     return super.getAttribute(fieldName);

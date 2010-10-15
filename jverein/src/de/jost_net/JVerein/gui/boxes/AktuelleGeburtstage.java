@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/Attic/AktuelleGeburtstage.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/07/14 07:28:31 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstage.java,v $
- * Revision 1.1  2009/07/14 07:28:31  jost
+ * Revision 1.2  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2009-07-14 07:28:31  jost
  * Neu: Box aktuelle Geburtstage
  *
  **********************************************************************/
@@ -52,11 +55,13 @@ public class AktuelleGeburtstage extends AbstractBox implements Box
         .getAktuelleGeburtstageList().paint(parent);
   }
 
+  @Override
   public boolean isActive()
   {
     return super.isActive();
   }
 
+  @Override
   public int getHeight()
   {
     return 180;

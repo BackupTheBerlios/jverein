@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/09/01 05:58:19 $
+ * $Revision: 1.14 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
- * Revision 1.13  2010/09/01 05:58:19  jost
+ * Revision 1.14  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.13  2010-09-01 05:58:19  jost
  * Bugfix numerische Sortierung
  *
  * Revision 1.12  2010-08-27 17:59:23  jost
@@ -66,6 +69,7 @@ import de.willuhn.util.ApplicationException;
 
 public class BuchungImpl extends AbstractDBObject implements Buchung
 {
+
   private static final long serialVersionUID = 1L;
 
   public BuchungImpl() throws RemoteException
@@ -73,21 +77,25 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
     super();
   }
 
+  @Override
   protected String getTableName()
   {
     return "buchung";
   }
 
-  public String getPrimaryAttribute() throws RemoteException
+  @Override
+  public String getPrimaryAttribute()
   {
     return "id";
   }
 
+  @Override
   protected void deleteCheck() throws ApplicationException
   {
     insertCheck();
   }
 
+  @Override
   protected void insertCheck() throws ApplicationException
   {
     try
@@ -118,20 +126,19 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
     if (ja != null)
     {
       throw new ApplicationException(
-          JVereinPlugin
-              .getI18n()
-              .tr(
-                  "Buchung kann nicht gespeichert werden. Zeitraum ist bereits abgeschlossen!"));
+          JVereinPlugin.getI18n().tr(
+              "Buchung kann nicht gespeichert werden. Zeitraum ist bereits abgeschlossen!"));
     }
   }
 
+  @Override
   protected void updateCheck() throws ApplicationException
   {
     insertCheck();
   }
 
-  @SuppressWarnings("unchecked")
-  protected Class getForeignObject(String field) throws RemoteException
+  @Override
+  protected Class getForeignObject(String field)
   {
     if ("buchungsart".equals(field))
     {
@@ -337,6 +344,7 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
     }
   }
 
+  @Override
   public Object getAttribute(String fieldName) throws RemoteException
   {
     if ("id-int".equals(fieldName))
@@ -374,8 +382,8 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
   {
     DBIterator it = Einstellungen.getDBService().createList(
         Jahresabschluss.class);
-    it.addFilter("von <= ?", new Object[] { (Date) getDatum() });
-    it.addFilter("bis >= ?", new Object[] { (Date) getDatum() });
+    it.addFilter("von <= ?", new Object[] { getDatum()});
+    it.addFilter("bis >= ?", new Object[] { getDatum()});
     if (it.hasNext())
     {
       Jahresabschluss ja = (Jahresabschluss) it.next();

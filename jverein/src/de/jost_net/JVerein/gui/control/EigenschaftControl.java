@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EigenschaftControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/11/23 20:39:34 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftControl.java,v $
- * Revision 1.2  2009/11/23 20:39:34  jost
+ * Revision 1.3  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2009-11-23 20:39:34  jost
  * Bugfix Lösch-Button
  *
  * Revision 1.1  2009/11/17 20:56:06  jost
@@ -42,6 +45,7 @@ import de.willuhn.util.ApplicationException;
 
 public class EigenschaftControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private TablePart eigenschaftList;
@@ -93,8 +97,8 @@ public class EigenschaftControl extends AbstractControl
     DBIterator list = Einstellungen.getDBService().createList(
         EigenschaftGruppe.class);
     list.setOrder("ORDER BY bezeichnung");
-    eigenschaftgruppe = new SelectInput(list, getEigenschaft()
-        .getEigenschaftGruppe());
+    eigenschaftgruppe = new SelectInput(list,
+        getEigenschaft().getEigenschaftGruppe());
     eigenschaftgruppe.setValue(getEigenschaft().getEigenschaftGruppe());
     eigenschaftgruppe.setAttribute("bezeichnung");
     eigenschaftgruppe.setPleaseChoose("Bitte auswählen");
@@ -159,7 +163,7 @@ public class EigenschaftControl extends AbstractControl
       eigenschaftList.removeAll();
       while (eigenschaften.hasNext())
       {
-        eigenschaftList.addItem((Eigenschaft) eigenschaften.next());
+        eigenschaftList.addItem(eigenschaften.next());
       }
     }
     return eigenschaftList;

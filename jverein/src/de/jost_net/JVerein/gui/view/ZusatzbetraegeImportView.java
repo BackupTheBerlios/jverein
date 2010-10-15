@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegeImportView.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/07 19:49:23 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegeImportView.java,v $
- * Revision 1.3  2010/10/07 19:49:23  jost
+ * Revision 1.4  2010/10/15 09:58:24  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2010-10-07 19:49:23  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.2  2010-08-23 13:39:31  jost
@@ -36,6 +39,7 @@ import de.willuhn.util.ApplicationException;
 
 public class ZusatzbetraegeImportView extends AbstractView
 {
+  @Override
   public void bind() throws Exception
   {
 

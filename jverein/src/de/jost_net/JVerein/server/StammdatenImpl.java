@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/StammdatenImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/06/11 21:04:24 $
+ * $Revision: 1.8 $
+ * $Date: 2010/10/15 09:58:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenImpl.java,v $
- * Revision 1.7  2009/06/11 21:04:24  jost
+ * Revision 1.8  2010/10/15 09:58:28  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.7  2009-06-11 21:04:24  jost
  * Vorbereitung I18N
  *
  * Revision 1.6  2008/11/29 13:17:11  jost
@@ -53,22 +56,26 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
     super();
   }
 
+  @Override
   protected String getTableName()
   {
     return "stammdaten";
   }
 
-  public String getPrimaryAttribute() throws RemoteException
+  @Override
+  public String getPrimaryAttribute()
   {
     return "id";
   }
 
+  @Override
   protected void deleteCheck() throws ApplicationException
   {
     throw new ApplicationException(JVereinPlugin.getI18n().tr(
         "Der Stammdatensatz darf nicht gelöscht werden"));
   }
 
+  @Override
   protected void insertCheck() throws ApplicationException
   {
     try
@@ -119,13 +126,14 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
     }
   }
 
+  @Override
   protected void updateCheck() throws ApplicationException
   {
     insertCheck();
   }
 
-  @SuppressWarnings("unchecked")
-  protected Class getForeignObject(String arg0) throws RemoteException
+  @Override
+  protected Class getForeignObject(String arg0) 
   {
     return null;
   }
@@ -200,6 +208,7 @@ public class StammdatenImpl extends AbstractDBObject implements Stammdaten
     setAttribute("altersjubilaeen", altersjubilaeen);
   }
 
+  @Override
   public Object getAttribute(String fieldName) throws RemoteException
   {
     return super.getAttribute(fieldName);

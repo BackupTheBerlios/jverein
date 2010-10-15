@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/IORegistry.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/02/01 21:01:30 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: IORegistry.java,v $
- * Revision 1.3  2010/02/01 21:01:30  jost
+ * Revision 1.4  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2010-02-01 21:01:30  jost
  * Vermeidung Warnings.
  *
  * Revision 1.2  2009/12/17 19:25:44  jost
@@ -47,7 +50,7 @@ public class IORegistry
    * Sucht im Classpath nach allen Filtern.
    * 
    * @param type
-   *          zu ladender Typ.
+   *        zu ladender Typ.
    * @return Liste der gefundenen Importer/Exporter.
    */
   private static synchronized ArrayList<?> load(Class<?> type)
@@ -94,8 +97,7 @@ public class IORegistry
   {
     if (type.getName().equals(IZusatzbetraegeImport.class.getName()))
     {
-      return (IZusatzbetraegeImport[]) zusatzbetraege
-          .toArray(new IZusatzbetraegeImport[zusatzbetraege.size()]);
+      return zusatzbetraege.toArray(new IZusatzbetraegeImport[zusatzbetraege.size()]);
     }
     throw new ClassNotFoundException("Klasse " + type.getCanonicalName()
         + " nicht gefunden.");

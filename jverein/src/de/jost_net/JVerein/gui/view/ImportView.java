@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/10/07 19:49:22 $
+ * $Revision: 1.12 $
+ * $Date: 2010/10/15 09:58:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportView.java,v $
- * Revision 1.11  2010/10/07 19:49:22  jost
+ * Revision 1.12  2010/10/15 09:58:23  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.11  2010-10-07 19:49:22  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.10  2010-08-23 13:39:31  jost
@@ -70,6 +73,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class ImportView extends AbstractView
 {
+  @Override
   public void bind() throws Exception
   {
 
@@ -176,6 +180,7 @@ public class ImportView extends AbstractView
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()
@@ -187,9 +192,6 @@ public class ImportView extends AbstractView
     Application.getController().start(t);
   }
 
-  public void unbind() throws ApplicationException
-  {
-  }
 
   @Override
   public String getHelp()

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsklasseSaldoControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/08/23 13:32:24 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoControl.java,v $
- * Revision 1.5  2010/08/23 13:32:24  jost
+ * Revision 1.6  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2010-08-23 13:32:24  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.4  2010/02/23 21:15:37  jost
@@ -58,6 +61,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class BuchungsklasseSaldoControl extends AbstractControl
 {
+
   private BuchungsklasseSaldoList saldoList;
 
   private DateInput datumvon;
@@ -119,6 +123,7 @@ public class BuchungsklasseSaldoControl extends AbstractControl
   {
     Button b = new Button("&PDF", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         starteAuswertung();
@@ -130,6 +135,7 @@ public class BuchungsklasseSaldoControl extends AbstractControl
 
   public void handleStore()
   {
+    //
   }
 
   public Part getSaldoList() throws ApplicationException
@@ -138,24 +144,24 @@ public class BuchungsklasseSaldoControl extends AbstractControl
     {
       if (getDatumvon().getValue() != null)
       {
-        settings.setAttribute("von", Einstellungen.DATEFORMAT
-            .format((Date) getDatumvon().getValue()));
+        settings.setAttribute("von",
+            Einstellungen.DATEFORMAT.format((Date) getDatumvon().getValue()));
       }
       if (getDatumvon().getValue() != null)
       {
-        settings.setAttribute("bis", Einstellungen.DATEFORMAT
-            .format((Date) getDatumbis().getValue()));
+        settings.setAttribute("bis",
+            Einstellungen.DATEFORMAT.format((Date) getDatumbis().getValue()));
       }
 
       if (saldoList == null)
       {
-        saldoList = new BuchungsklasseSaldoList(null, (Date) datumvon
-            .getValue(), (Date) datumbis.getValue());
+        saldoList = new BuchungsklasseSaldoList(null,
+            (Date) datumvon.getValue(), (Date) datumbis.getValue());
       }
       else
       {
-        settings.setAttribute("von", Einstellungen.DATEFORMAT
-            .format((Date) getDatumvon().getValue()));
+        settings.setAttribute("von",
+            Einstellungen.DATEFORMAT.format((Date) getDatumvon().getValue()));
 
         saldoList.setDatumvon((Date) datumvon.getValue());
         saldoList.setDatumbis((Date) datumbis.getValue());
@@ -168,10 +174,6 @@ public class BuchungsklasseSaldoControl extends AbstractControl
       }
     }
     catch (RemoteException e)
-    {
-      throw new ApplicationException("Fehler aufgetreten " + e.getMessage());
-    }
-    catch (ParseException e)
     {
       throw new ApplicationException("Fehler aufgetreten " + e.getMessage());
     }
@@ -189,14 +191,14 @@ public class BuchungsklasseSaldoControl extends AbstractControl
       //
       Settings settings = new Settings(this.getClass());
       //
-      String path = settings.getString("lastdir", System
-          .getProperty("user.home"));
+      String path = settings.getString("lastdir",
+          System.getProperty("user.home"));
       if (path != null && path.length() > 0)
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("buchungsklassensaldo", Einstellungen
-          .getEinstellung().getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("buchungsklassensaldo",
+          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 
@@ -215,11 +217,6 @@ public class BuchungsklasseSaldoControl extends AbstractControl
       throw new ApplicationException("Fehler beim Aufbau des Reports: "
           + e.getMessage());
     }
-    catch (ParseException e)
-    {
-      throw new ApplicationException("Fehler beim Aufbau des Reports: "
-          + e.getMessage());
-    }
   }
 
   private void auswertungSaldoPDF(
@@ -228,6 +225,7 @@ public class BuchungsklasseSaldoControl extends AbstractControl
   {
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
@@ -245,17 +243,11 @@ public class BuchungsklasseSaldoControl extends AbstractControl
           GUI.getStatusBar().setErrorText(ae.getMessage());
           throw ae;
         }
-        catch (RemoteException re)
-        {
-          monitor.setStatusText(re.getMessage());
-          monitor.setStatus(ProgressMonitor.STATUS_ERROR);
-          GUI.getStatusBar().setErrorText(re.getMessage());
-          throw new ApplicationException(re);
-        }
       }
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()

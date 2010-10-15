@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/PersonenartDialog.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:41 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: PersonenartDialog.java,v $
- * Revision 1.2  2009/06/11 21:02:41  jost
+ * Revision 1.3  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2009-06-11 21:02:41  jost
  * Vorbereitung I18N
  *
  * Revision 1.1  2009/04/25 05:29:03  jost
@@ -30,7 +33,6 @@ import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.jameica.system.OperationCanceledException;
-import de.willuhn.util.ApplicationException;
 
 /**
  * Ein Dialog, ueber den man die Personenart eines neuen Mitglieds auswählen
@@ -38,6 +40,7 @@ import de.willuhn.util.ApplicationException;
  */
 public class PersonenartDialog extends AbstractDialog
 {
+
   private final static String NATUERLICHE_PERSON = JVereinPlugin.getI18n().tr(
       "natürliche Person");
 
@@ -56,6 +59,7 @@ public class PersonenartDialog extends AbstractDialog
     setSize(450, 150);
   }
 
+  @Override
   protected void paint(Composite parent) throws Exception
   {
     LabelGroup options = new LabelGroup(parent, JVereinPlugin.getI18n().tr(
@@ -64,20 +68,23 @@ public class PersonenartDialog extends AbstractDialog
     ButtonArea b = new ButtonArea(parent, 2);
     b.addButton(JVereinPlugin.getI18n().tr("weiter"), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         close();
       }
     });
     b.addButton(JVereinPlugin.getI18n().tr("abbrechen"), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         throw new OperationCanceledException();
       }
     });
   }
 
+  @Override
   protected Object getData() throws Exception
   {
     return this.selected;
@@ -90,10 +97,11 @@ public class PersonenartDialog extends AbstractDialog
       return this.personenart;
     }
     this.personenart = new SelectInput(new Object[] { NATUERLICHE_PERSON,
-        JURISTISCHE_PERSON }, NATUERLICHE_PERSON);
+        JURISTISCHE_PERSON}, NATUERLICHE_PERSON);
     this.personenart.setName(JVereinPlugin.getI18n().tr("Personenart"));
     this.personenart.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         String s = (String) personenart.getValue();

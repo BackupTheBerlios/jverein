@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Jubilaeenliste.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/05/16 10:44:15 $
+ * $Revision: 1.9 $
+ * $Date: 2010/10/15 09:58:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Jubilaeenliste.java,v $
- * Revision 1.8  2010/05/16 10:44:15  jost
+ * Revision 1.9  2010/10/15 09:58:28  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.8  2010-05-16 10:44:15  jost
  * Einheitlicher Umgang mit ausgetretenen Mitgliedern
  *
  * Revision 1.7  2010/01/01 20:28:09  jost
@@ -66,8 +69,9 @@ import de.willuhn.util.ProgressMonitor;
 
 public class Jubilaeenliste
 {
+
   public Jubilaeenliste(final File file, ProgressMonitor monitor, Integer jahr,
-      String art) throws ApplicationException, RemoteException
+      String art) throws ApplicationException
   {
     try
     {
@@ -112,6 +116,7 @@ public class Jubilaeenliste
       }
       GUI.getDisplay().asyncExec(new Runnable()
       {
+
         public void run()
         {
           try
@@ -159,8 +164,7 @@ public class Jubilaeenliste
 
       addHeader(MitgliedControl.JUBELART_MITGLIEDSCHAFT, reporter);
 
-      DBIterator mitgl = Einstellungen.getDBService()
-          .createList(Mitglied.class);
+      DBIterator mitgl = Einstellungen.getDBService().createList(Mitglied.class);
       MitgliedUtils.setNurAktive(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
@@ -168,14 +172,14 @@ public class Jubilaeenliste
       cal.set(Calendar.MONTH, Calendar.JANUARY);
       cal.set(Calendar.DAY_OF_MONTH, 1);
       Date von = cal.getTime();
-      mitgl.addFilter("eintritt >= ?", new Object[] { new java.sql.Date(von
-          .getTime()) });
+      mitgl.addFilter("eintritt >= ?", new Object[] { new java.sql.Date(
+          von.getTime())});
 
       cal.set(Calendar.MONTH, Calendar.DECEMBER);
       cal.set(Calendar.DAY_OF_MONTH, 31);
       Date bis = cal.getTime();
-      mitgl.addFilter("eintritt <= ?", new Object[] { new java.sql.Date(bis
-          .getTime()) });
+      mitgl.addFilter("eintritt <= ?", new Object[] { new java.sql.Date(
+          bis.getTime())});
       mitgl.setOrder("order by eintritt");
 
       while (mitgl.hasNext())
@@ -208,23 +212,22 @@ public class Jubilaeenliste
 
       addHeader(MitgliedControl.JUBELART_ALTER, reporter);
 
-      DBIterator mitgl = Einstellungen.getDBService()
-          .createList(Mitglied.class);
-     MitgliedUtils.setNurAktive(mitgl);
+      DBIterator mitgl = Einstellungen.getDBService().createList(Mitglied.class);
+      MitgliedUtils.setNurAktive(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
       cal.add(Calendar.YEAR, jubi * -1);
       cal.set(Calendar.MONTH, Calendar.JANUARY);
       cal.set(Calendar.DAY_OF_MONTH, 1);
       Date von = cal.getTime();
-      mitgl.addFilter("geburtsdatum >= ?", new Object[] { new java.sql.Date(von
-          .getTime()) });
+      mitgl.addFilter("geburtsdatum >= ?", new Object[] { new java.sql.Date(
+          von.getTime())});
 
       cal.set(Calendar.MONTH, Calendar.DECEMBER);
       cal.set(Calendar.DAY_OF_MONTH, 31);
       Date bis = cal.getTime();
-      mitgl.addFilter("geburtsdatum <= ?", new Object[] { new java.sql.Date(bis
-          .getTime()) });
+      mitgl.addFilter("geburtsdatum <= ?", new Object[] { new java.sql.Date(
+          bis.getTime())});
       mitgl.setOrder("order by geburtsdatum");
 
       while (mitgl.hasNext())

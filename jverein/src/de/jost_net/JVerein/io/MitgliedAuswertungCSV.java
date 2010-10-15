@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.13 $
- * $Date: 2009/04/25 05:30:41 $
+ * $Revision: 1.14 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
- * Revision 1.13  2009/04/25 05:30:41  jost
+ * Revision 1.14  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.13  2009-04-25 05:30:41  jost
  * Neu: Juristische Personen  können als Mitglied gespeichert werden.
  *
  * Revision 1.12  2008/12/04 20:00:55  jost
@@ -56,7 +59,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -75,19 +77,17 @@ import de.willuhn.util.ProgressMonitor;
 
 public class MitgliedAuswertungCSV
 {
+
   public MitgliedAuswertungCSV(ArrayList<Mitglied> list, final File file,
-      ProgressMonitor monitor) throws ApplicationException, RemoteException
+      ProgressMonitor monitor) throws ApplicationException
   {
 
     try
     {
       PrintWriter out = new PrintWriter(new FileOutputStream(file));
-      out
-          .print("id;personenart;anrede;titel;name;vorname;adressierungszusatz;strasse;plz;ort;blz;konto;kontoinhaber;");
-      out
-          .print("geburtsdatum;geschlecht;telefonprivat;telefondienstlich;handy;email;");
-      out
-          .print("eintritt;beitragsgruppe;beitragsgruppetext;austritt;kuendigung");
+      out.print("id;personenart;anrede;titel;name;vorname;adressierungszusatz;strasse;plz;ort;blz;konto;kontoinhaber;");
+      out.print("geburtsdatum;geschlecht;telefonprivat;telefondienstlich;handy;email;");
+      out.print("eintritt;beitragsgruppe;beitragsgruppetext;austritt;kuendigung");
       DBIterator it = Einstellungen.getDBService().createList(
           Felddefinition.class);
       while (it.hasNext())
@@ -104,8 +104,7 @@ public class MitgliedAuswertungCSV
         monitor.setStatus(faelle);
         Mitglied m = list.get(i);
         out.print(m.getID() + ";");
-        out.print(m.getPersonenart(
-            ) + ";");
+        out.print(m.getPersonenart() + ";");
         out.print(m.getAnrede() + ";");
         out.print(m.getTitel() + ";");
         out.print(m.getName() + ";");
@@ -134,8 +133,8 @@ public class MitgliedAuswertungCSV
           Felddefinition fd = (Felddefinition) it.next();
           DBIterator it2 = Einstellungen.getDBService().createList(
               Zusatzfelder.class);
-          it2.addFilter("mitglied = ?", new Object[] { m.getID() });
-          it2.addFilter("felddefinition = ?", new Object[] { fd.getID() });
+          it2.addFilter("mitglied = ?", new Object[] { m.getID()});
+          it2.addFilter("felddefinition = ?", new Object[] { fd.getID()});
           if (it2.size() > 0)
           {
             Zusatzfelder zf = (Zusatzfelder) it2.next();
@@ -152,6 +151,7 @@ public class MitgliedAuswertungCSV
       out.close();
       GUI.getDisplay().asyncExec(new Runnable()
       {
+
         public void run()
         {
           try

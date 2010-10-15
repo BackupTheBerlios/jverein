@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.18 $
- * $Date: 2010/03/27 20:10:55 $
+ * $Revision: 1.19 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.18  2010/03/27 20:10:55  jost
+ * Revision 1.19  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.18  2010-03-27 20:10:55  jost
  * Bugfix Eigenschaftensuche
  *
  * Revision 1.17  2009/11/19 19:44:54  jost
@@ -84,6 +87,7 @@ import de.willuhn.logging.Logger;
 
 public class MitgliedQuery
 {
+
   private MitgliedControl control;
 
   private boolean and = false;
@@ -102,13 +106,11 @@ public class MitgliedQuery
     this.dialog = dialog;
   }
 
-  @SuppressWarnings("unchecked")
   public ArrayList get() throws RemoteException
   {
     return get("*");
   }
 
-  @SuppressWarnings("unchecked")
   public ArrayList get(String anfangsbuchstabe) throws RemoteException
   {
     final DBService service = Einstellungen.getDBService();
@@ -215,8 +217,7 @@ public class MitgliedQuery
         // Workaround für einen Bug in IntegerInput
       }
     }
-    Beitragsgruppe bg = (Beitragsgruppe) control.getBeitragsgruppeAusw()
-        .getValue();
+    Beitragsgruppe bg = (Beitragsgruppe) control.getBeitragsgruppeAusw().getValue();
     if (bg != null)
     {
       addCondition("beitragsgruppe = ? ");
@@ -245,13 +246,14 @@ public class MitgliedQuery
 
     ResultSetExtractor rs = new ResultSetExtractor()
     {
+
       public Object extract(ResultSet rs) throws RemoteException, SQLException
       {
         ArrayList<Mitglied> list = new ArrayList<Mitglied>();
         while (rs.next())
         {
-          list.add((Mitglied) service.createObject(Mitglied.class, rs
-              .getString(1)));
+          list.add((Mitglied) service.createObject(Mitglied.class,
+              rs.getString(1)));
         }
         return list;
       }
@@ -264,7 +266,7 @@ public class MitgliedQuery
       int tokcount = 0;
       while (st.hasMoreTokens())
       {
-        bedingungen.add((Object) st.nextToken());
+        bedingungen.add(st.nextToken());
         tokcount++;
       }
     }
@@ -312,8 +314,7 @@ public class MitgliedQuery
       if (Einstellungen.getEinstellung().getExterneMitgliedsnummer()
           && control.getSuchExterneMitgliedsnummer().getValue() != null)
       {
-        bedingungen.add((Integer) control.getSuchExterneMitgliedsnummer()
-            .getValue());
+        bedingungen.add( control.getSuchExterneMitgliedsnummer().getValue());
       }
     }
     catch (NullPointerException e)

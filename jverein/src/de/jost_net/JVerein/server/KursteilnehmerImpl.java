@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KursteilnehmerImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/20 12:33:53 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerImpl.java,v $
- * Revision 1.5  2009/06/20 12:33:53  jost
+ * Revision 1.6  2010/10/15 09:58:28  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2009-06-20 12:33:53  jost
  * Vereinheitlichung der Bezeichner
  *
  * Revision 1.4  2009/06/11 21:04:23  jost
@@ -40,6 +43,7 @@ import de.willuhn.util.ApplicationException;
 public class KursteilnehmerImpl extends AbstractDBObject implements
     Kursteilnehmer
 {
+
   private static final long serialVersionUID = 1L;
 
   public KursteilnehmerImpl() throws RemoteException
@@ -47,20 +51,25 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
     super();
   }
 
+  @Override
   protected String getTableName()
   {
     return "kursteilnehmer";
   }
 
-  public String getPrimaryAttribute() throws RemoteException
+  @Override
+  public String getPrimaryAttribute()
   {
     return "id";
   }
 
-  protected void deleteCheck() throws ApplicationException
+  @Override
+  protected void deleteCheck()
   {
+    //
   }
 
+  @Override
   protected void insertCheck() throws ApplicationException
   {
     try
@@ -115,6 +124,7 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
     }
   }
 
+  @Override
   protected void updateCheck() throws ApplicationException
   {
     try
@@ -130,8 +140,8 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
     }
   }
 
-  @SuppressWarnings("unchecked")
-  protected Class getForeignObject(String field) throws RemoteException
+  @Override
+  protected Class getForeignObject(String field)
   {
     return null;
   }
@@ -249,6 +259,7 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
     setAttribute("betrag", new Double(d));
   }
 
+  @Override
   public Object getAttribute(String fieldName) throws RemoteException
   {
     return super.getAttribute(fieldName);

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ZusatzbetraegeListeAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/12/22 21:07:17 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegeListeAction.java,v $
- * Revision 1.1  2008/12/22 21:07:17  jost
+ * Revision 1.2  2010/10/15 09:58:01  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2008-12-22 21:07:17  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
  * Revision 1.2  2007/02/23 20:26:00  jost
@@ -24,11 +27,11 @@ package de.jost_net.JVerein.gui.action;
 import de.jost_net.JVerein.gui.view.ZusatzbetraegelisteView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.util.ApplicationException;
 
 public class ZusatzbetraegeListeAction implements Action
 {
-  public void handleAction(Object context) throws ApplicationException
+
+  public void handleAction(Object context)
   {
     GUI.startView(ZusatzbetraegelisteView.class.getName(), null);
   }

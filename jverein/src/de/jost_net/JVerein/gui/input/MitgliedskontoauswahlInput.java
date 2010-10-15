@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/MitgliedskontoauswahlInput.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/09/12 19:59:55 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoauswahlInput.java,v $
- * Revision 1.2  2010/09/12 19:59:55  jost
+ * Revision 1.3  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-09-12 19:59:55  jost
  * Mitgliedskontoauswahl kann rückgängig gemacht werden.
  *
  * Revision 1.1  2010-07-25 18:35:17  jost
@@ -34,15 +37,12 @@ import de.willuhn.logging.Logger;
 
 public class MitgliedskontoauswahlInput
 {
+
   private DialogInput mitgliedskontoAuswahl = null;
 
   private Buchung buchung = null;
 
   private Mitgliedskonto konto = null;
-
-  public MitgliedskontoauswahlInput()
-  {
-  }
 
   public MitgliedskontoauswahlInput(Buchung buchung) throws RemoteException
   {
@@ -67,12 +67,10 @@ public class MitgliedskontoauswahlInput
         MitgliedskontoAuswahlDialog.POSITION_MOUSE, buchung);
     d.addCloseListener(new MitgliedskontoListener());
 
-    mitgliedskontoAuswahl = new DialogInput(konto != null ? konto.getMitglied()
-        .getNameVorname()
-        + ", "
-        + Einstellungen.DATEFORMAT.format(konto.getDatum())
-        + ", "
-        + Einstellungen.DECIMALFORMAT.format(konto.getBetrag()) : "", d);
+    mitgliedskontoAuswahl = new DialogInput(konto != null
+        ? konto.getMitglied().getNameVorname() + ", "
+            + Einstellungen.DATEFORMAT.format(konto.getDatum()) + ", "
+            + Einstellungen.DECIMALFORMAT.format(konto.getBetrag()) : "", d);
     mitgliedskontoAuswahl.disableClientControl();
     mitgliedskontoAuswahl.setValue(buchung.getMitgliedskonto());
     return mitgliedskontoAuswahl;
@@ -85,6 +83,7 @@ public class MitgliedskontoauswahlInput
    */
   private class MitgliedskontoListener implements Listener
   {
+
     /**
      * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
      */

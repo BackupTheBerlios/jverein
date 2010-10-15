@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/FirstStart.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/11 21:02:17 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FirstStart.java,v $
- * Revision 1.5  2009/06/11 21:02:17  jost
+ * Revision 1.6  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2009-06-11 21:02:17  jost
  * Vorbereitung I18N
  *
  * Revision 1.4  2009/05/31 12:26:26  jost
@@ -49,6 +52,7 @@ import de.willuhn.jameica.system.Application;
 public class FirstStart extends AbstractBox
 {
 
+  @Override
   public boolean isActive()
   {
     // Diese Box kann nur beim ersten Start ausgewaehlt/angezeigt werden.
@@ -70,6 +74,7 @@ public class FirstStart extends AbstractBox
     return JVereinPlugin.getI18n().tr("JVerein: Erste Schritte");
   }
 
+  @Override
   public boolean isEnabled()
   {
     // Diese Box kann nur beim ersten erfolgreichen Start ausgewaehlt/angezeigt
@@ -106,6 +111,7 @@ public class FirstStart extends AbstractBox
         new EinstellungenAction(), null);
   }
 
+  @Override
   public int getHeight()
   {
     return 160;

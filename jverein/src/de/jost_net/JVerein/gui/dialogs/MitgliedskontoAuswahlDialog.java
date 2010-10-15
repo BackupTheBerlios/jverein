@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MitgliedskontoAuswahlDialog.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/09/12 19:59:25 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoAuswahlDialog.java,v $
- * Revision 1.4  2010/09/12 19:59:25  jost
+ * Revision 1.5  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2010-09-12 19:59:25  jost
  * Mitgliedskontoauswahl kann rückgängig gemacht werden.
  *
  * Revision 1.3  2010-08-16 20:16:58  jost
@@ -26,8 +29,6 @@
 
 package de.jost_net.JVerein.gui.dialogs;
 
-import java.rmi.RemoteException;
-
 import org.eclipse.swt.widgets.Composite;
 
 import de.jost_net.JVerein.JVereinPlugin;
@@ -42,13 +43,13 @@ import de.willuhn.jameica.gui.parts.TablePart;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 import de.willuhn.jameica.system.OperationCanceledException;
-import de.willuhn.util.ApplicationException;
 
 /**
  * Ein Dialog, ueber den man ein Mitgliedskonto auswaehlen kann.
  */
 public class MitgliedskontoAuswahlDialog extends AbstractDialog
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private String text = null;
@@ -62,7 +63,6 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
   private Buchung buchung;
 
   public MitgliedskontoAuswahlDialog(int position, Buchung buchung)
-      throws RemoteException
   {
     super(position, true);
     settings = new de.willuhn.jameica.system.Settings(this.getClass());
@@ -75,6 +75,7 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
     control = new MitgliedskontoControl(null);
   }
 
+  @Override
   protected void paint(Composite parent) throws Exception
   {
     LabelGroup group = new LabelGroup(parent, JVereinPlugin.getI18n().tr(
@@ -92,7 +93,8 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
 
     Action action = new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context) 
       {
         if (context == null || !(context instanceof Mitgliedskonto))
         {
@@ -108,7 +110,8 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
     ButtonArea b = new ButtonArea(parent, 4);
     b.addButton(i18n.tr(JVereinPlugin.getI18n().tr("übernehmen")), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context) 
       {
         Object o = mitgliedskontolist.getSelection();
         if (o == null || !(o instanceof Mitgliedskonto))
@@ -121,7 +124,8 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
     }, null, true, "emblem-default.png");
     b.addButton(i18n.tr(JVereinPlugin.getI18n().tr("entfernen")), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         choosen = null;
         close();
@@ -132,7 +136,8 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
 
     b.addButton(i18n.tr("abbrechen"), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         throw new OperationCanceledException();
       }
@@ -145,6 +150,7 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
    * 
    * @see de.willuhn.jameica.gui.dialogs.AbstractDialog#getData()
    */
+  @Override
   protected Object getData() throws Exception
   {
     return choosen;

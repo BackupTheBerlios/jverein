@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/Attic/ManuellerZahlungseingangMenu.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/07/28 07:26:46 $
+ * $Revision: 1.7 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangMenu.java,v $
- * Revision 1.6  2010/07/28 07:26:46  jost
+ * Revision 1.7  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.6  2010-07-28 07:26:46  jost
  * deprecated
  *
  * Revision 1.5  2009/06/11 21:03:02  jost
@@ -42,6 +45,7 @@ import de.willuhn.jameica.gui.parts.TablePart;
  * Kontext-Menu zu den ManuellenZahlungseingängen.
  * @deprecated In Version 1.5 entfernen
  */
+@Deprecated
 public class ManuellerZahlungseingangMenu extends ContextMenu
 {
 

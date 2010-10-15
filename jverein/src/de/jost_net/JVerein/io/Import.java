@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.32 $
- * $Date: 2010/10/06 16:25:51 $
+ * $Revision: 1.33 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.32  2010/10/06 16:25:51  jost
+ * Revision 1.33  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.32  2010-10-06 16:25:51  jost
  * Patch von umbilo zum Import von Eigenschaftengruppen
  *
  * Revision 1.31  2010-10-05 05:51:16  jost
@@ -146,9 +149,11 @@ import de.willuhn.util.ProgressMonitor;
 
 public class Import
 {
+
   private static final String EIGENSCHAFT = "Eigenschaft_";
 
   private EigenschaftGruppe eigenschaftgruppe;
+
   private HashMap<String, String> HM_eigenschaftsgruppen = new HashMap<String, String>();
 
   public Import(String path, String file, ProgressMonitor monitor)
@@ -217,22 +222,22 @@ public class Import
 
       results = stmt.executeQuery("SELECT * FROM " + file.substring(0, pos));
 
-      eigenschaftgruppe = (EigenschaftGruppe) Einstellungen.getDBService()
-          .createObject(EigenschaftGruppe.class, null);
+      eigenschaftgruppe = (EigenschaftGruppe) Einstellungen.getDBService().createObject(
+          EigenschaftGruppe.class, null);
       eigenschaftgruppe.setBezeichnung("Noch nicht zugeordnet");
       eigenschaftgruppe.store();
 
       ArrayList<String> eigenschaftenspalten = getEigenschaftspalten(results);
-           
+
       for (String feld : eigenschaftenspalten)
       {
-          eigenschaftgruppe = (EigenschaftGruppe) Einstellungen.getDBService()
-          		.createObject(EigenschaftGruppe.class, null);
-          eigenschaftgruppe.setBezeichnung(feld);
-          eigenschaftgruppe.store();
-          HM_eigenschaftsgruppen.put(feld, eigenschaftgruppe.getID());         
-      }      
-      
+        eigenschaftgruppe = (EigenschaftGruppe) Einstellungen.getDBService().createObject(
+            EigenschaftGruppe.class, null);
+        eigenschaftgruppe.setBezeichnung(feld);
+        eigenschaftgruppe.store();
+        HM_eigenschaftsgruppen.put(feld, eigenschaftgruppe.getID());
+      }
+
       while (results.next())
       {
         anz++;
@@ -246,8 +251,8 @@ public class Import
         m.setID(results.getString("Mitglieds_Nr"));
         if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
         {
-          m.setExterneMitgliedsnummer(new Integer(results
-              .getString("Mitglieds_Nr")));
+          m.setExterneMitgliedsnummer(new Integer(
+              results.getString("Mitglieds_Nr")));
         }
         try
         {
@@ -308,9 +313,9 @@ public class Import
         try
         {
           zahlungsrhytmus = results.getString("Zahlungsrhytmus");
-          if (zahlungsrhytmus.length()== 0)
+          if (zahlungsrhytmus.length() == 0)
           {
-            zahlungsrhytmus="12";
+            zahlungsrhytmus = "12";
           }
         }
         catch (SQLException e)
@@ -361,8 +366,8 @@ public class Import
           }
         }
         m.setEintritt(eintritt);
-        Integer bg = new Integer(beitragsgruppen2.get(results
-            .getString("Beitragsart_1")));
+        Integer bg = new Integer(
+            beitragsgruppen2.get(results.getString("Beitragsart_1")));
         m.setBeitragsgruppe(bg);
         // beitragsart.setValue(results.getString("Beitragsart_1"));
         String austritt = results.getString("Austritt");
@@ -389,35 +394,37 @@ public class Import
         m.insert();
         for (Felddefinition f : zusfeld)
         {
-          Zusatzfelder zf = (Zusatzfelder) Einstellungen.getDBService()
-              .createObject(Zusatzfelder.class, null);
+          Zusatzfelder zf = (Zusatzfelder) Einstellungen.getDBService().createObject(
+              Zusatzfelder.class, null);
           zf.setMitglied(new Integer(m.getID()));
           zf.setFelddefinition(new Integer(f.getID()));
           zf.setFeld(results.getString(f.getName()));
           zf.store();
         }
-        
-        try 
+
+        try
         {
-	        for (String feld : eigenschaftenspalten)
-	        {
-	          String eig = results.getString(feld);
-	          if (eig.length() == 0)
-	          {
-	            continue;
-	          }
-	          Eigenschaften eigenschaften = (Eigenschaften) Einstellungen
-	              .getDBService().createObject(Eigenschaften.class, null);
-	          eigenschaften.setMitglied(m.getID());
-	          eigenschaften.setEigenschaft(getEigenschaftID(eig,feld));	         
-	          eigenschaften.store();
-	        }
+          for (String feld : eigenschaftenspalten)
+          {
+            String eig = results.getString(feld);
+            if (eig.length() == 0)
+            {
+              continue;
+            }
+            Eigenschaften eigenschaften = (Eigenschaften) Einstellungen.getDBService().createObject(
+                Eigenschaften.class, null);
+            eigenschaften.setMitglied(m.getID());
+            eigenschaften.setEigenschaft(getEigenschaftID(eig, feld));
+            eigenschaften.store();
+          }
         }
         catch (Exception e)
         {
-        	  monitor.log(" Datensatz unvollständing (Eigenschaften) -> Import wird abgebrochen: ID= " + results.getString("Mitglieds_Nr") + " NAME= "
-      	            + results.getString("Nachname") + " " + e.getMessage());     
-        	  return;
+          monitor.log(" Datensatz unvollständing (Eigenschaften) -> Import wird abgebrochen: ID= "
+              + results.getString("Mitglieds_Nr")
+              + " NAME= "
+              + results.getString("Nachname") + " " + e.getMessage());
+          return;
         }
 
       }
@@ -550,7 +557,6 @@ public class Import
     return true;
   }
 
-  @SuppressWarnings("unchecked")
   private HashMap<String, String> aufbauenBeitragsgruppenAusImport(String file,
       Statement stmt) throws SQLException, RemoteException,
       ApplicationException
@@ -568,8 +574,8 @@ public class Import
     HashMap<String, String> beitragsgruppen2 = new HashMap<String, String>();
     while (it.hasNext())
     {
-      Beitragsgruppe b = (Beitragsgruppe) Einstellungen.getDBService()
-          .createObject(Beitragsgruppe.class, null);
+      Beitragsgruppe b = (Beitragsgruppe) Einstellungen.getDBService().createObject(
+          Beitragsgruppe.class, null);
       String key = (String) it.next();
       b.setBezeichnung(key);
       Double betr = beitragsgruppen1.get(key);
@@ -584,9 +590,8 @@ public class Import
   {
     try
     {
-      DBIterator it = Einstellungen.getDBService()
-          .createList(Eigenschaft.class);
-      it.addFilter("bezeichnung = ?", new Object[] { eigenschaft });
+      DBIterator it = Einstellungen.getDBService().createList(Eigenschaft.class);
+      it.addFilter("bezeichnung = ?", new Object[] { eigenschaft});
       if (it.hasNext())
       {
         Eigenschaft eig = (Eigenschaft) it.next();
@@ -594,12 +599,13 @@ public class Import
       }
       else
       {
-        Eigenschaft eigenschaftneu = (Eigenschaft) Einstellungen.getDBService()
-            .createObject(Eigenschaft.class, null);
+        Eigenschaft eigenschaftneu = (Eigenschaft) Einstellungen.getDBService().createObject(
+            Eigenschaft.class, null);
         eigenschaftneu.setBezeichnung(eigenschaft);
-        eigenschaftneu.setEigenschaftGruppe(new Integer(eigenschaftgruppe
-            .getID()));
-        eigenschaftneu.setEigenschaftGruppe(new Integer(HM_eigenschaftsgruppen.get(feld)));                
+        eigenschaftneu.setEigenschaftGruppe(new Integer(
+            eigenschaftgruppe.getID()));
+        eigenschaftneu.setEigenschaftGruppe(new Integer(
+            HM_eigenschaftsgruppen.get(feld)));
         eigenschaftneu.store();
         return eigenschaftneu.getID();
       }

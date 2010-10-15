@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahresabschlussControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/09/13 18:41:49 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussControl.java,v $
- * Revision 1.2  2010/09/13 18:41:49  jost
+ * Revision 1.3  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-09-13 18:41:49  jost
  * Anfangsbestände beim Jahresabschluss setzen und bei der Löschung auch löschen.
  *
  * Revision 1.1  2008-06-28 16:56:55  jost
@@ -53,6 +56,7 @@ import de.willuhn.util.ApplicationException;
 
 public class JahresabschlussControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private TablePart jahresabschlussList;
@@ -140,7 +144,7 @@ public class JahresabschlussControl extends AbstractControl
     return bis;
   }
 
-  public DateInput getDatum() throws RemoteException
+  public DateInput getDatum()
   {
     if (datum != null)
     {
@@ -161,7 +165,7 @@ public class JahresabschlussControl extends AbstractControl
     return name;
   }
 
-  public CheckboxInput getAnfangsbestaende() throws RemoteException
+  public CheckboxInput getAnfangsbestaende()
   {
     if (anfangsbestaende != null)
     {
@@ -208,8 +212,8 @@ public class JahresabschlussControl extends AbstractControl
       ja.store();
       if ((Boolean) getAnfangsbestaende().getValue())
       {
-        JahressaldoList jsl = new JahressaldoList(null, new Geschaeftsjahr(ja
-            .getVon()));
+        JahressaldoList jsl = new JahressaldoList(null, new Geschaeftsjahr(
+            ja.getVon()));
         ArrayList<SaldoZeile> zeilen = jsl.getInfo();
         for (SaldoZeile z : zeilen)
         {
@@ -217,8 +221,8 @@ public class JahresabschlussControl extends AbstractControl
           if (ktonr.length() > 0)
           {
             Double endbestand = (Double) z.getAttribute("endbestand");
-            Anfangsbestand anf = (Anfangsbestand) Einstellungen.getDBService()
-                .createObject(Anfangsbestand.class, null);
+            Anfangsbestand anf = (Anfangsbestand) Einstellungen.getDBService().createObject(
+                Anfangsbestand.class, null);
             Konto konto = (Konto) z.getAttribute("konto");
             anf.setBetrag(endbestand);
             anf.setDatum(Datum.addTage(ja.getBis(), 1));
@@ -277,7 +281,7 @@ public class JahresabschlussControl extends AbstractControl
     jahresabschluesse.setOrder("ORDER BY von desc");
     while (jahresabschluesse.hasNext())
     {
-      jahresabschlussList.addItem((Jahresabschluss) jahresabschluesse.next());
+      jahresabschlussList.addItem(jahresabschluesse.next());
     }
   }
 

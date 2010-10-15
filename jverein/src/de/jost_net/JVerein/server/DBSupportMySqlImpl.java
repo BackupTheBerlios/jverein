@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportMySqlImpl.java,v $
- * $Revision: 1.9 $
- * $Date: 2009/12/12 16:26:30 $
+ * $Revision: 1.10 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Michael Trapp
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMySqlImpl.java,v $
- * Revision 1.9  2009/12/12 16:26:30  jost
+ * Revision 1.10  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.9  2009-12-12 16:26:30  jost
  * Kommentare entfernen.
  *
  * Revision 1.8  2009/11/17 21:03:03  jost
@@ -60,6 +63,7 @@ import de.willuhn.util.ApplicationException;
  */
 public class DBSupportMySqlImpl extends AbstractDBSupportImpl
 {
+
   private static final long serialVersionUID = 3516299482096025540L;
 
   /**
@@ -86,10 +90,9 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
    */
   public String getJdbcUrl()
   {
-    return JVereinDBService.SETTINGS
-        .getString(
-            "database.driver.mysql.jdbcurl",
-            "jdbc:mysql://localhost:3306/jverein?useUnicode=Yes&characterEncoding=ISO8859_1");
+    return JVereinDBService.SETTINGS.getString(
+        "database.driver.mysql.jdbcurl",
+        "jdbc:mysql://localhost:3306/jverein?useUnicode=Yes&characterEncoding=ISO8859_1");
   }
 
   /**
@@ -101,15 +104,15 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
         "database.driver.mysql.username", "jverein");
   }
 
-  public void checkConsistency(Connection conn) throws RemoteException,
-      ApplicationException
+  @Override
+  public void checkConsistency(Connection conn) throws ApplicationException
   {
     if (!Application.inClientMode())
     {
       try
       {
-        new JVereinUpdateProvider(conn, Application.getCallback()
-            .getStartupMonitor());
+        new JVereinUpdateProvider(conn,
+            Application.getCallback().getStartupMonitor());
       }
       catch (Exception e2)
       {
@@ -123,6 +126,7 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
   /**
    * 
    */
+  @Override
   public void execute(Connection conn, File sqlScript) throws RemoteException
   {
     if (sqlScript == null)
@@ -140,16 +144,16 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
   /**
    * @see de.willuhn.jameica.hbci.rmi.DBSupport#getSQLTimestamp(java.lang.String)
    */
-  public String getSQLTimestamp(String content) throws RemoteException
+  public String getSQLTimestamp(String content)
   {
     return MessageFormat.format("(UNIX_TIMESTAMP({0})*1000)",
-        new Object[] { content });
+        new Object[] { content});
   }
 
   /**
    * @see de.willuhn.jameica.hbci.rmi.DBSupport#getInsertWithID()
    */
-  public boolean getInsertWithID() throws RemoteException
+  public boolean getInsertWithID()
   {
     return false;
   }
@@ -194,7 +198,8 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
     }
   }
 
-  public int getTransactionIsolationLevel() throws RemoteException
+  @Override
+  public int getTransactionIsolationLevel() 
   {
     // damit sehen wir Datenbank-Updates durch andere
     // ohne vorher ein COMMIT machen zu muessen

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/JubilaeenParser.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/01/01 20:28:24 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JubilaeenParser.java,v $
- * Revision 1.2  2010/01/01 20:28:24  jost
+ * Revision 1.3  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-01-01 20:28:24  jost
  * Typo
  *
  * Revision 1.1  2007/12/22 08:27:02  jost
@@ -23,6 +26,7 @@ import java.util.Vector;
 
 public class JubilaeenParser
 {
+
   private Vector<Integer> elemente;
 
   private int ei = 0;
@@ -61,7 +65,7 @@ public class JubilaeenParser
 
   public int getNext()
   {
-    Integer i = (Integer) elemente.elementAt(ei);
+    Integer i = elemente.elementAt(ei);
     ei++;
     return i.intValue();
   }

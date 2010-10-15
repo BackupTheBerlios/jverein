@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/AbrechnungImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/07/25 18:46:31 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungImpl.java,v $
- * Revision 1.4  2010/07/25 18:46:31  jost
+ * Revision 1.5  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2010-07-25 18:46:31  jost
  * Neu: Mitgliedskonto
  *
  * Revision 1.3  2009/06/11 21:04:23  jost
@@ -43,20 +46,25 @@ public class AbrechnungImpl extends AbstractDBObject implements Abrechnung
     super();
   }
 
+  @Override
   protected String getTableName()
   {
     return "abrechnung";
   }
 
-  public String getPrimaryAttribute() throws RemoteException
+  @Override
+  public String getPrimaryAttribute() 
   {
     return "id";
   }
 
-  protected void deleteCheck() throws ApplicationException
+  @Override
+  protected void deleteCheck() 
   {
+    //
   }
 
+  @Override
   protected void insertCheck() throws ApplicationException
   {
     try
@@ -76,13 +84,14 @@ public class AbrechnungImpl extends AbstractDBObject implements Abrechnung
     }
   }
 
+  @Override
   protected void updateCheck() throws ApplicationException
   {
     insertCheck();
   }
 
-  @SuppressWarnings("unchecked")
-  protected Class getForeignObject(String arg0) throws RemoteException
+  @Override
+  protected Class getForeignObject(String arg0)
   {
     if ("mitglied".equals(arg0))
     {
@@ -152,6 +161,7 @@ public class AbrechnungImpl extends AbstractDBObject implements Abrechnung
     setAttribute("betrag", new Double(d));
   }
 
+  @Override
   public Object getAttribute(String fieldName) throws RemoteException
   {
     return super.getAttribute(fieldName);

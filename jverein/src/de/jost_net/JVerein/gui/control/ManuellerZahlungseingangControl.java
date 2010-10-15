@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/ManuellerZahlungseingangControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/07/28 07:26:02 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangControl.java,v $
- * Revision 1.4  2010/07/28 07:26:02  jost
+ * Revision 1.5  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2010-07-28 07:26:02  jost
  * deprecated
  *
  * Revision 1.3  2009/11/26 19:50:43  jost
@@ -47,6 +50,7 @@ import de.willuhn.util.ApplicationException;
 /**
  * @deprecated In Version 1.5 ausmustern
  */
+@Deprecated
 public class ManuellerZahlungseingangControl extends AbstractControl
 {
 

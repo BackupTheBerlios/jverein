@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KontoControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/09/19 16:14:31 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoControl.java,v $
- * Revision 1.3  2010/09/19 16:14:31  jost
+ * Revision 1.4  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2010-09-19 16:14:31  jost
  * Länge der Kontobezeichnung auf 255  Zeichen verlängert.
  *
  * Revision 1.2  2008/05/26 18:58:39  jost
@@ -45,6 +48,7 @@ import de.willuhn.util.ApplicationException;
 
 public class KontoControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private TablePart kontenList;
@@ -217,7 +221,7 @@ public class KontoControl extends AbstractControl
     konten.setOrder("ORDER BY nummer");
     while (konten.hasNext())
     {
-      kontenList.addItem((Konto) konten.next());
+      kontenList.addItem(konten.next());
     }
   }
 

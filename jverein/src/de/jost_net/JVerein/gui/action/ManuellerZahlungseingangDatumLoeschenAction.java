@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/ManuellerZahlungseingangDatumLoeschenAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/07/28 07:25:48 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangDatumLoeschenAction.java,v $
- * Revision 1.4  2010/07/28 07:25:48  jost
+ * Revision 1.5  2010/10/15 09:58:02  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2010-07-28 07:25:48  jost
  * deprecated
  *
  * Revision 1.3  2009/11/26 19:50:10  jost
@@ -42,6 +45,7 @@ import de.willuhn.util.ApplicationException;
  * Datum des Zahlungseingangs löschen.
  * @deprecated In Version 1.5 ausmustern
  */
+@Deprecated
 public class ManuellerZahlungseingangDatumLoeschenAction implements Action
 {
   private TablePart table;

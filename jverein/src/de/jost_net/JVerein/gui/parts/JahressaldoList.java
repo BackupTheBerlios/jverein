@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/JahressaldoList.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/06/11 21:03:24 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoList.java,v $
- * Revision 1.4  2009/06/11 21:03:24  jost
+ * Revision 1.5  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2009-06-11 21:03:24  jost
  * Vorbereitung I18N
  *
  * Revision 1.3  2009/03/01 18:00:20  jost
@@ -48,6 +51,7 @@ import de.willuhn.util.ApplicationException;
 
 public class JahressaldoList extends TablePart implements Part
 {
+
   private TablePart saldoList;
 
   private Geschaeftsjahr gj = null;
@@ -80,8 +84,7 @@ public class JahressaldoList extends TablePart implements Part
 
       if (saldoList == null)
       {
-        GenericIterator gi = PseudoIterator.fromArray((GenericObject[]) zeile
-            .toArray(new GenericObject[zeile.size()]));
+        GenericIterator gi = PseudoIterator.fromArray(zeile.toArray(new GenericObject[zeile.size()]));
 
         saldoList = new TablePart(gi, null);
         saldoList.addColumn(JVereinPlugin.getI18n().tr("Kontonummer"),
@@ -125,16 +128,10 @@ public class JahressaldoList extends TablePart implements Part
           "Fehler aufgetreten")
           + e.getMessage());
     }
-    catch (ParseException e)
-    {
-      throw new ApplicationException(JVereinPlugin.getI18n().tr(
-          "Fehler aufgetreten")
-          + e.getMessage());
-    }
     return saldoList;
   }
 
-  public ArrayList<SaldoZeile> getInfo() throws RemoteException, ParseException
+  public ArrayList<SaldoZeile> getInfo() throws RemoteException
   {
     ArrayList<SaldoZeile> zeile = new ArrayList<SaldoZeile>();
     Konto k = (Konto) Einstellungen.getDBService().createObject(Konto.class,
@@ -179,6 +176,7 @@ public class JahressaldoList extends TablePart implements Part
     this.gj = gj;
   }
 
+  @Override
   public void removeAll()
   {
     saldoList.removeAll();
@@ -189,6 +187,7 @@ public class JahressaldoList extends TablePart implements Part
     saldoList.addItem(sz);
   }
 
+  @Override
   public synchronized void paint(Composite parent) throws RemoteException
   {
     super.paint(parent);

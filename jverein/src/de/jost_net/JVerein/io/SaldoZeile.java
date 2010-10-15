@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/SaldoZeile.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/09/13 18:42:30 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SaldoZeile.java,v $
- * Revision 1.5  2010/09/13 18:42:30  jost
+ * Revision 1.6  2010/10/15 09:58:28  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2010-09-13 18:42:30  jost
  * Anfangsbestände beim Jahresabschluss setzen und bei der Löschung auch löschen.
  *
  * Revision 1.4  2009/09/16 20:57:24  jost
@@ -46,6 +49,7 @@ import de.willuhn.datasource.rmi.ResultSetExtractor;
  */
 public class SaldoZeile implements GenericObject
 {
+
   private Konto konto;
 
   private Double anfangsbestand;
@@ -76,9 +80,9 @@ public class SaldoZeile implements GenericObject
     this.konto = konto;
     DBService service = Einstellungen.getDBService();
     DBIterator anf = service.createList(Anfangsbestand.class);
-    anf.addFilter("konto = ? ", new Object[] { konto.getID() });
+    anf.addFilter("konto = ? ", new Object[] { konto.getID()});
     anf.addFilter("datum >= ? AND datum <= ?", new Object[] {
-        gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr() });
+        gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr()});
     if (anf.hasNext())
     {
       Anfangsbestand a = (Anfangsbestand) anf.next();
@@ -95,7 +99,8 @@ public class SaldoZeile implements GenericObject
 
     ResultSetExtractor rs = new ResultSetExtractor()
     {
-      public Object extract(ResultSet rs) throws RemoteException, SQLException
+
+      public Object extract(ResultSet rs) throws SQLException
       {
         if (!rs.next())
         {
@@ -106,13 +111,13 @@ public class SaldoZeile implements GenericObject
     };
     einnahmen = (Double) service.execute(sql, new Object[] {
         gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(),
-        konto.getID(), 0 }, rs);
+        konto.getID(), 0}, rs);
     ausgaben = (Double) service.execute(sql, new Object[] {
         gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(),
-        konto.getID(), 1 }, rs);
+        konto.getID(), 1}, rs);
     umbuchungen = (Double) service.execute(sql, new Object[] {
         gj.getBeginnGeschaeftsjahr(), gj.getEndeGeschaeftsjahr(),
-        konto.getID(), 2 }, rs);
+        konto.getID(), 2}, rs);
     endbestand = anfangsbestand + einnahmen + ausgaben + umbuchungen;
   }
 
@@ -157,10 +162,10 @@ public class SaldoZeile implements GenericObject
     throw new RemoteException("Ungültige Spaltenbezeichung: " + arg0);
   }
 
-  public String[] getAttributeNames() throws RemoteException
+  public String[] getAttributeNames()
   {
     return new String[] { "kontonummer", "kontobezeichnung", "anfangsbestand",
-        "einnahmen", "ausgaben", "umbuchungen", "endbestand", "bemerkung" };
+        "einnahmen", "ausgaben", "umbuchungen", "endbestand", "bemerkung"};
   }
 
   public String getID() throws RemoteException
@@ -168,7 +173,7 @@ public class SaldoZeile implements GenericObject
     return konto.getNummer();
   }
 
-  public String getPrimaryAttribute() throws RemoteException
+  public String getPrimaryAttribute()
   {
     return "kontonummer";
   }

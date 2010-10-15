@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/WelcomeView.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/07 19:49:23 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WelcomeView.java,v $
- * Revision 1.4  2010/10/07 19:49:23  jost
+ * Revision 1.5  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2010-10-07 19:49:23  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.3  2009/06/11 21:03:39  jost
@@ -28,7 +31,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.LabelGroup;
-import de.willuhn.util.ApplicationException;
 
 /**
  * JVerein-Begrüßungsbildschirm.
@@ -37,18 +39,17 @@ import de.willuhn.util.ApplicationException;
  */
 public class WelcomeView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(
         JVereinPlugin.getI18n().tr("Vereinsverwaltung unter Jamaica"));
-    LabelGroup group = new LabelGroup(this.getParent(), JVereinPlugin.getI18n()
-        .tr("welcome"));
+    LabelGroup group = new LabelGroup(this.getParent(),
+        JVereinPlugin.getI18n().tr("welcome"));
     group.addText(JVereinPlugin.getI18n().tr("Diese Seite ist leer"), false);
   }
 
-  public void unbind() throws ApplicationException
-  {
-  }
   // TODO getHelp()
 
 }

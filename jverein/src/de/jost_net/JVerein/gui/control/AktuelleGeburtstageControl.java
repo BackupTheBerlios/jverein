@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AktuelleGeburtstageControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/05/16 10:42:55 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageControl.java,v $
- * Revision 1.2  2010/05/16 10:42:55  jost
+ * Revision 1.3  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-05-16 10:42:55  jost
  * Einheitlicher Umgang mit ausgetretenen Mitgliedern
  *
  * Revision 1.1  2009/07/14 07:28:43  jost
@@ -38,6 +41,7 @@ import de.willuhn.jameica.system.Settings;
 
 public class AktuelleGeburtstageControl extends AbstractControl
 {
+
   private TablePart aktuelleGeburtstageList;
 
   private SelectInput vorher;
@@ -53,7 +57,7 @@ public class AktuelleGeburtstageControl extends AbstractControl
     settings.setStoreWhenRead(true);
   }
 
-  public SelectInput getVorher() throws RemoteException
+  public SelectInput getVorher()
   {
     if (vorher != null)
     {
@@ -68,7 +72,7 @@ public class AktuelleGeburtstageControl extends AbstractControl
     return vorher;
   }
 
-  public SelectInput getNachher() throws RemoteException
+  public SelectInput getNachher()
   {
     if (nachher != null)
     {
@@ -136,7 +140,7 @@ public class AktuelleGeburtstageControl extends AbstractControl
       aktuelleGeburtstageList.removeAll();
       while (geburtstage.hasNext())
       {
-        aktuelleGeburtstageList.addItem((Mitglied) geburtstage.next());
+        aktuelleGeburtstageList.addItem(geburtstage.next());
       }
     }
     return aktuelleGeburtstageList;

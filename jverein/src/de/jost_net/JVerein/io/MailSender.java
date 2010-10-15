@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MailSender.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/02/15 17:23:36 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailSender.java,v $
- * Revision 1.3  2010/02/15 17:23:36  jost
+ * Revision 1.4  2010/10/15 09:58:29  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2010-02-15 17:23:36  jost
  * Mail-Anhang implementiert
  *
  * Revision 1.2  2010/02/01 21:02:02  jost
@@ -53,6 +56,7 @@ import de.willuhn.logging.Logger;
 
 public class MailSender
 {
+
   private String smtp_host_name;
 
   private String smtp_port;
@@ -101,8 +105,7 @@ public class MailSender
     props.put("mail.smtp.port", smtp_port);
     if (smtp_ssl)
     {
-      java.security.Security
-          .addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+      java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
       props.setProperty("mail.smtp.socketFactory.class",
           "javax.net.ssl.SSLSocketFactory");
       props.setProperty("mail.smtp.socketFactory.fallback", "false");
@@ -175,6 +178,8 @@ public class MailSender
 
   private class SMTPAuthenticator extends Authenticator
   {
+
+    @Override
     public PasswordAuthentication getPasswordAuthentication()
     {
       String username = smtp_auth_user;
@@ -185,6 +190,7 @@ public class MailSender
 
   private class ByteArrayDataSource implements DataSource
   {
+
     private MailAnhang ma;
 
     public ByteArrayDataSource(MailAnhang ma)
@@ -225,7 +231,7 @@ public class MailSender
       return name;
     }
 
-    public OutputStream getOutputStream() throws IOException
+    public OutputStream getOutputStream()
     {
       return new ByteArrayOutputStream();
     }

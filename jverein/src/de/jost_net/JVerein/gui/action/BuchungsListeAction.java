@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungsListeAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/03/16 07:35:14 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsListeAction.java,v $
- * Revision 1.4  2008/03/16 07:35:14  jost
+ * Revision 1.5  2010/10/15 09:58:03  jost
+ * Code aufger‰umt
+ *
+ * Revision 1.4  2008-03-16 07:35:14  jost
  * Reaktivierung Buchf√ºhrung
  *
  * Revision 1.2  2007/02/23 20:25:42  jost
@@ -24,11 +27,11 @@ package de.jost_net.JVerein.gui.action;
 import de.jost_net.JVerein.gui.view.BuchungslisteView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.util.ApplicationException;
 
 public class BuchungsListeAction implements Action
 {
-  public void handleAction(Object context) throws ApplicationException
+
+  public void handleAction(Object context)
   {
     GUI.startView(BuchungslisteView.class.getName(), null);
   }

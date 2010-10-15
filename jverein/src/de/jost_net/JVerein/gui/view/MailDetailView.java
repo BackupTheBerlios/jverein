@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailDetailView.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/07 19:49:22 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailDetailView.java,v $
- * Revision 1.5  2010/10/07 19:49:22  jost
+ * Revision 1.6  2010/10/15 09:58:24  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2010-10-07 19:49:22  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.4  2010-08-23 13:39:31  jost
@@ -55,6 +58,8 @@ import de.willuhn.util.ApplicationException;
 
 public class MailDetailView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("JVerein-Mail"));
@@ -86,6 +91,7 @@ public class MailDetailView extends AbstractView
     comp3.setLayout(gl3);
     Button add = new Button("H&inzufügen", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         MailEmpfaengerAuswahlDialog mead = new MailEmpfaengerAuswahlDialog(
@@ -126,6 +132,7 @@ public class MailDetailView extends AbstractView
     comp5.setLayout(gl5);
     Button addAttachment = new Button("    &Anlage    ", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         FileDialog fd = new FileDialog(GUI.getShell(), SWT.OPEN);
@@ -136,10 +143,9 @@ public class MailDetailView extends AbstractView
         {
           try
           {
-            MailAnhang anh = (MailAnhang) Einstellungen.getDBService()
-                .createObject(MailAnhang.class, null);
-            anh.setDateiname(f.substring(f.lastIndexOf(System
-                .getProperty("file.separator")) + 1));
+            MailAnhang anh = (MailAnhang) Einstellungen.getDBService().createObject(
+                MailAnhang.class, null);
+            anh.setDateiname(f.substring(f.lastIndexOf(System.getProperty("file.separator")) + 1));
             File file = new File(f);
             FileInputStream fis = new FileInputStream(file);
             byte[] buffer = new byte[(int) file.length()];
@@ -193,9 +199,6 @@ public class MailDetailView extends AbstractView
   // buttons.addButton(control.getMailSendButton());
   // }
 
-  public void unbind() throws ApplicationException
-  {
-  }
   // TODO getHelp()
 
 }

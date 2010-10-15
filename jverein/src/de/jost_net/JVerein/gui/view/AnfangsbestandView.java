@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AnfangsbestandView.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/10/07 19:49:22 $
+ * $Revision: 1.9 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandView.java,v $
- * Revision 1.8  2010/10/07 19:49:22  jost
+ * Revision 1.9  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.8  2010-10-07 19:49:22  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.7  2010-08-23 13:39:31  jost
@@ -45,10 +48,11 @@ import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
-import de.willuhn.util.ApplicationException;
 
 public class AnfangsbestandView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Anfangsbestand"));
@@ -58,14 +62,14 @@ public class AnfangsbestandView extends AbstractView
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Anfangsbestand"));
     group.addLabelPair(JVereinPlugin.getI18n().tr("Konto"), control.getKonto());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Datum"), control
-        .getDatum(true));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Datum"),
+        control.getDatum(true));
     if (control.getAnfangsbestand().getID() != null)
     {
       control.getDatum(false).setEnabled(false);
     }
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"), control
-        .getBetrag());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"),
+        control.getBetrag());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
@@ -74,15 +78,12 @@ public class AnfangsbestandView extends AbstractView
         "help-browser.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         control.handleStore();
       }
     }, null, true, "document-save.png");
-  }
-
-  public void unbind() throws ApplicationException
-  {
   }
 
   @Override

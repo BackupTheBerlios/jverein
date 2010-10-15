@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungKursteilnehmerView.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/10/07 19:49:24 $
+ * $Revision: 1.9 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungKursteilnehmerView.java,v $
- * Revision 1.8  2010/10/07 19:49:24  jost
+ * Revision 1.9  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.8  2010-10-07 19:49:24  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.7  2010-08-23 13:39:32  jost
@@ -44,10 +47,11 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
-import de.willuhn.util.ApplicationException;
 
 public class AuswertungKursteilnehmerView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(
@@ -57,10 +61,10 @@ public class AuswertungKursteilnehmerView extends AbstractView
 
     LabelGroup grAbu = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Abbuchungsdatum"));
-    grAbu.addLabelPair(JVereinPlugin.getI18n().tr("von"), control
-        .getAbbuchungsdatumvon());
-    grAbu.addLabelPair(JVereinPlugin.getI18n().tr("bis"), control
-        .getAbbuchungsdatumbis());
+    grAbu.addLabelPair(JVereinPlugin.getI18n().tr("von"),
+        control.getAbbuchungsdatumvon());
+    grAbu.addLabelPair(JVereinPlugin.getI18n().tr("bis"),
+        control.getAbbuchungsdatumbis());
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
 
@@ -70,10 +74,6 @@ public class AuswertungKursteilnehmerView extends AbstractView
         false, "help-browser.png");
     buttons.addButton(control.getStartAuswertungButton());
 
-  }
-
-  public void unbind() throws ApplicationException
-  {
   }
 
   @Override

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsUebernahmeView.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/10/07 19:49:22 $
+ * $Revision: 1.12 $
+ * $Date: 2010/10/15 09:58:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsUebernahmeView.java,v $
- * Revision 1.11  2010/10/07 19:49:22  jost
+ * Revision 1.12  2010/10/15 09:58:23  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.11  2010-10-07 19:49:22  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.10  2010-08-23 13:39:31  jost
@@ -50,10 +53,11 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
-import de.willuhn.util.ApplicationException;
 
 public class BuchungsUebernahmeView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(
@@ -76,10 +80,6 @@ public class BuchungsUebernahmeView extends AbstractView
         new DokumentationAction(), DokumentationUtil.BUCHUNGENAUSHIBISCUS,
         false, "help-browser.png");
     buttons.addButton(control.getUebernahmeButton());
-  }
-
-  public void unbind() throws ApplicationException
-  {
   }
 
   @Override

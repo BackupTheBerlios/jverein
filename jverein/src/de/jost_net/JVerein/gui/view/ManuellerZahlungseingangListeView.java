@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/ManuellerZahlungseingangListeView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/10/07 19:49:24 $
+ * $Revision: 1.10 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ManuellerZahlungseingangListeView.java,v $
- * Revision 1.9  2010/10/07 19:49:24  jost
+ * Revision 1.10  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.9  2010-10-07 19:49:24  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.8  2010-08-23 13:39:33  jost
@@ -46,18 +49,19 @@ import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
-import de.willuhn.util.ApplicationException;
 
 /**
  * @deprecated In Version 1.5 ausmustern
  */
+@Deprecated
 public class ManuellerZahlungseingangListeView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(
-        JVereinPlugin.getI18n()
-            .tr("Überwachung des manuellen Zahlungseingangs"));
+        JVereinPlugin.getI18n().tr("Überwachung des manuellen Zahlungseingangs"));
 
     ManuellerZahlungseingangControl control = new ManuellerZahlungseingangControl(
         this);
@@ -71,9 +75,6 @@ public class ManuellerZahlungseingangListeView extends AbstractView
         false, "help-browser.png");
   }
 
-  public void unbind() throws ApplicationException
-  {
-  }
   // TODO getHelp()
 
 }

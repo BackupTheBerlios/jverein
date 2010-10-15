@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/Attic/RechnungControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2010/08/23 13:37:14 $
+ * $Revision: 1.17 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungControl.java,v $
- * Revision 1.16  2010/08/23 13:37:14  jost
+ * Revision 1.17  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.16  2010-08-23 13:37:14  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.15  2010-07-28 07:26:33  jost
@@ -102,8 +105,10 @@ import de.willuhn.util.ApplicationException;
 /**
  * @deprecated In Version 1.5 ausmustern
  */
+@Deprecated
 public class RechnungControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private DateInput datum = null;
@@ -159,6 +164,7 @@ public class RechnungControl extends AbstractControl
     this.datum.setText("Bitte Datum wählen");
     this.datum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) datum.getValue();
@@ -208,7 +214,7 @@ public class RechnungControl extends AbstractControl
     return betrag;
   }
 
-  public TextInput getSuchverwendungszweck() throws RemoteException
+  public TextInput getSuchverwendungszweck()
   {
     if (suchverwendungszweck != null)
     {
@@ -219,7 +225,7 @@ public class RechnungControl extends AbstractControl
     return suchverwendungszweck;
   }
 
-  public DateInput getVondatum() throws RemoteException
+  public DateInput getVondatum()
   {
     if (vondatum != null)
     {
@@ -231,6 +237,7 @@ public class RechnungControl extends AbstractControl
     this.vondatum.setText("Bitte Anfangsdatum wählen");
     this.vondatum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) vondatum.getValue();
@@ -244,7 +251,7 @@ public class RechnungControl extends AbstractControl
     return vondatum;
   }
 
-  public DateInput getBisdatum() throws RemoteException
+  public DateInput getBisdatum()
   {
     if (bisdatum != null)
     {
@@ -256,6 +263,7 @@ public class RechnungControl extends AbstractControl
     this.bisdatum.setText("Bitte Endedatum wählen");
     this.bisdatum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) bisdatum.getValue();
@@ -330,7 +338,7 @@ public class RechnungControl extends AbstractControl
       abrechnungsList.removeAll();
       while (abrechnungen.hasNext())
       {
-        abrechnungsList.addItem((Abrechnung) abrechnungen.next());
+        abrechnungsList.addItem(abrechnungen.next());
       }
     }
     return abrechnungsList;
@@ -345,23 +353,22 @@ public class RechnungControl extends AbstractControl
     try
     {
       abrechnungsList.removeAll();
-      DBIterator abr = Einstellungen.getDBService()
-          .createList(Abrechnung.class);
+      DBIterator abr = Einstellungen.getDBService().createList(Abrechnung.class);
       String suchV = (String) getSuchverwendungszweck().getValue();
       if (suchV != null && suchV.length() > 0)
       {
         abr.addFilter("(zweck1 like ? or zweck2 like ?)", new Object[] {
-            "%" + suchV + "%", "%" + suchV + "%" });
+            "%" + suchV + "%", "%" + suchV + "%"});
       }
       if (getVondatum().getValue() != null)
       {
-        abr.addFilter("datum >= ?", new Object[] { (Date) getVondatum()
-            .getValue() });
+        abr.addFilter("datum >= ?",
+            new Object[] { (Date) getVondatum().getValue()});
       }
       if (getBisdatum().getValue() != null)
       {
-        abr.addFilter("datum <= ?", new Object[] { (Date) getBisdatum()
-            .getValue() });
+        abr.addFilter("datum <= ?",
+            new Object[] { (Date) getBisdatum().getValue()});
       }
       while (abr.hasNext())
       {
@@ -379,6 +386,7 @@ public class RechnungControl extends AbstractControl
   {
     Button button = new Button("&starten", new Action()
     {
+
       public void handleAction(Object context)
       {
 
@@ -405,15 +413,14 @@ public class RechnungControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    String path = settings
-        .getString("lastdir", System.getProperty("user.home"));
+    String path = settings.getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("rechnung", "", Einstellungen.getEinstellung()
-        .getDateinamenmuster(), "PDF").get());
-    fd.setFilterExtensions(new String[] { "*.PDF" });
+    fd.setFileName(new Dateiname("rechnung", "",
+        Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
+    fd.setFilterExtensions(new String[] { "*.PDF"});
 
     String s = fd.open();
     if (s == null || s.length() == 0)
@@ -433,41 +440,40 @@ public class RechnungControl extends AbstractControl
     if (currentObject instanceof Abrechnung)
     {
       Abrechnung abr = (Abrechnung) currentObject;
-      aufbereitenFormular(abr, fo, file);
+      aufbereitenFormular(abr, fo);
     }
     if (currentObject instanceof Abrechnung[])
     {
       Abrechnung[] abrechnung = (Abrechnung[]) currentObject;
       for (Abrechnung abr : abrechnung)
       {
-        aufbereitenFormular(abr, fo, file);
+        aufbereitenFormular(abr, fo);
       }
     }
     if (currentObject == null)
     {
-      DBIterator abr = Einstellungen.getDBService()
-          .createList(Abrechnung.class);
+      DBIterator abr = Einstellungen.getDBService().createList(Abrechnung.class);
       if (getVondatum().getValue() != null)
       {
-        abr.addFilter("datum >= ?", new Object[] { (Date) getVondatum()
-            .getValue() });
+        abr.addFilter("datum >= ?",
+            new Object[] { (Date) getVondatum().getValue()});
       }
       if (getBisdatum().getValue() != null)
       {
-        abr.addFilter("datum <= ?", new Object[] { (Date) getBisdatum()
-            .getValue() });
+        abr.addFilter("datum <= ?",
+            new Object[] { (Date) getBisdatum().getValue()});
       }
       while (abr.hasNext())
       {
         Abrechnung ab = (Abrechnung) abr.next();
-        aufbereitenFormular(ab, fo, file);
+        aufbereitenFormular(ab, fo);
       }
     }
     fa.showFormular();
 
   }
 
-  private void aufbereitenFormular(Abrechnung abr, Formular fo, File file)
+  private void aufbereitenFormular(Abrechnung abr, Formular fo)
       throws RemoteException
   {
     HashMap<String, Object> map = new HashMap<String, Object>();
@@ -486,20 +492,18 @@ public class RechnungControl extends AbstractControl
     map.put(FormularfeldControl.ZAHLUNGSGRUND2, abr.getZweck2());
     map.put(FormularfeldControl.BETRAG, abr.getBetrag());
     map.put(FormularfeldControl.ID, m.getID());
-    map.put(FormularfeldControl.EXTERNEMITGLIEDSNUMMER, m
-        .getExterneMitgliedsnummer());
+    map.put(FormularfeldControl.EXTERNEMITGLIEDSNUMMER,
+        m.getExterneMitgliedsnummer());
     map.put(FormularfeldControl.ANREDE, m.getAnrede());
     map.put(FormularfeldControl.TITEL, m.getTitel());
     map.put(FormularfeldControl.NAME, m.getName());
     map.put(FormularfeldControl.VORNAME, m.getVorname());
-    map
-        .put(FormularfeldControl.ADRESSIERUNGSZUSATZ, m
-            .getAdressierungszusatz());
+    map.put(FormularfeldControl.ADRESSIERUNGSZUSATZ, m.getAdressierungszusatz());
     map.put(FormularfeldControl.STRASSE, m.getStrasse());
     map.put(FormularfeldControl.PLZ, m.getPlz());
     map.put(FormularfeldControl.ORT, m.getOrt());
-    map.put(FormularfeldControl.ZAHLUNGSRHYTMUS, new Zahlungsrhytmus(m
-        .getZahlungsrhytmus()).getText());
+    map.put(FormularfeldControl.ZAHLUNGSRHYTMUS, new Zahlungsrhytmus(
+        m.getZahlungsrhytmus()).getText());
     map.put(FormularfeldControl.BLZ, m.getBlz());
     map.put(FormularfeldControl.KONTO, m.getKonto());
     map.put(FormularfeldControl.KONTOINHABER, m.getKontoinhaber());
@@ -510,8 +514,8 @@ public class RechnungControl extends AbstractControl
     map.put(FormularfeldControl.HANDY, m.getHandy());
     map.put(FormularfeldControl.EMAIL, m.getEmail());
     map.put(FormularfeldControl.EINTRITT, m.getEintritt());
-    map.put(FormularfeldControl.BEITRAGSGRUPPE, m.getBeitragsgruppe()
-        .getBezeichnung());
+    map.put(FormularfeldControl.BEITRAGSGRUPPE,
+        m.getBeitragsgruppe().getBezeichnung());
     map.put(FormularfeldControl.AUSTRITT, m.getAustritt());
     map.put(FormularfeldControl.KUENDIGUNG, m.getKuendigung());
     String zahlungsweg = "";
@@ -535,8 +539,8 @@ public class RechnungControl extends AbstractControl
       }
     }
     map.put(FormularfeldControl.ZAHLUNGSWEG, zahlungsweg);
-    map.put(FormularfeldControl.TAGESDATUM, Einstellungen.DATEFORMAT
-        .format(new Date()));
+    map.put(FormularfeldControl.TAGESDATUM,
+        Einstellungen.DATEFORMAT.format(new Date()));
     // Date tmp = (Date) getBescheinigungsdatum().getValue();
     // String bescheinigungsdatum = Einstellungen.DATEFORMAT.format(tmp);
     // map.put("Bescheinigungsdatum", bescheinigungsdatum);
@@ -549,6 +553,7 @@ public class RechnungControl extends AbstractControl
 
   private class FilterListener implements Listener
   {
+
     public void handleEvent(Event event)
     {
       if (event.type != SWT.Selection && event.type != SWT.FocusOut)

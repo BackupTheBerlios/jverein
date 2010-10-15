@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AboutView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/10/07 19:49:24 $
+ * $Revision: 1.10 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AboutView.java,v $
- * Revision 1.9  2010/10/07 19:49:24  jost
+ * Revision 1.10  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.9  2010-10-07 19:49:24  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.8  2010-09-08 10:48:42  jost
@@ -60,17 +63,17 @@ public class AboutView extends AbstractDialog
     this.setTitle(JVereinPlugin.getI18n().tr("Über..."));
   }
 
+  @Override
   protected void paint(Composite parent) throws Exception
   {
     FormTextPart text = new FormTextPart();
-    text
-        .setText("<form><p><b>"
-            + JVereinPlugin.getI18n().tr(
-                "Plugin für die Vereinsverwaltung unter Jameica")
-            + "</b></p>"
-            + "<br/>Lizenz: GPL [ http://www.gnu.org/copyleft/gpl.html ]"
-            + "<br/><p>Copyright by Heiner Jostkleigrewe [ heiner@jverein.de ]</p>"
-            + "<p>http://www.jverein.de   Forum: http://www.jverein.de/forum</p></form>");
+    text.setText("<form><p><b>"
+        + JVereinPlugin.getI18n().tr(
+            "Plugin für die Vereinsverwaltung unter Jameica")
+        + "</b></p>"
+        + "<br/>Lizenz: GPL [ http://www.gnu.org/copyleft/gpl.html ]"
+        + "<br/><p>Copyright by Heiner Jostkleigrewe [ heiner@jverein.de ]</p>"
+        + "<p>http://www.jverein.de   Forum: http://www.jverein.de/forum</p></form>");
 
     text.paint(parent);
 
@@ -98,6 +101,7 @@ public class AboutView extends AbstractDialog
 
   }
 
+  @Override
   protected Object getData() throws Exception
   {
     return null;

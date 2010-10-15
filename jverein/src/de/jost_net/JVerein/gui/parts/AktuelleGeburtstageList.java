@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/AktuelleGeburtstageList.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/05/23 07:11:51 $
+ * $Revision: 1.7 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageList.java,v $
- * Revision 1.6  2010/05/23 07:11:51  jost
+ * Revision 1.7  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.6  2010-05-23 07:11:51  jost
  * Kontextmenü aufgenommen.
  *
  * Revision 1.5  2010/05/16 12:32:31  jost
@@ -129,12 +132,13 @@ public class AktuelleGeburtstageList extends TablePart implements Part
       aktuelleGeburtstageList.removeAll();
       while (geburtstage.hasNext())
       {
-        aktuelleGeburtstageList.addItem((Mitglied) geburtstage.next());
+        aktuelleGeburtstageList.addItem( geburtstage.next());
       }
     }
     return aktuelleGeburtstageList;
   }
 
+  @Override
   public synchronized void paint(Composite parent) throws RemoteException
   {
     super.paint(parent);

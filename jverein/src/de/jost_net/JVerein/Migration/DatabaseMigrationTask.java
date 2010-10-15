@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/DatabaseMigrationTask.java,v $
- * $Revision: 1.5 $
- * $Date: 2008/12/22 21:19:57 $
+ * $Revision: 1.6 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DatabaseMigrationTask.java,v $
- * Revision 1.5  2008/12/22 21:19:57  jost
+ * Revision 1.6  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.5  2008-12-22 21:19:57  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
  * Revision 1.4  2008/11/29 13:14:01  jost
@@ -57,6 +60,7 @@ import de.willuhn.util.ProgressMonitor;
  */
 public class DatabaseMigrationTask implements BackgroundTask
 {
+
   protected I18N i18n = Application.getPluginLoader().getPlugin(
       JVereinPlugin.class).getResources().getI18N();
 
@@ -141,26 +145,27 @@ public class DatabaseMigrationTask implements BackgroundTask
    * korrigieren.
    * 
    * @param object
-   *          das ggf noch zu korrigierende Objekt.
+   *        das ggf noch zu korrigierende Objekt.
    * @param monitor
-   *          Monitor.
+   *        Monitor.
    * @throws RemoteException
    */
+  @SuppressWarnings("unused")
   protected void fixObject(AbstractDBObject object, ProgressMonitor monitor)
       throws RemoteException
   {
+    //
   }
 
   /**
    * Kopiert eine einzelne Tabelle.
    * 
    * @param type
-   *          Objekttyp.
+   *        Objekttyp.
    * @param monitor
-   *          Monitor.
+   *        Monitor.
    * @throws Exception
    */
-  @SuppressWarnings("unchecked")
   protected void copy(Class type, ProgressMonitor monitor) throws Exception
   {
     monitor.setStatusText(i18n.tr("Kopiere " + type.getName()));
@@ -198,8 +203,7 @@ public class DatabaseMigrationTask implements BackgroundTask
             + ": " + BeanUtil.toString(from), e);
         if (to == null)
         {
-          monitor.log(i18n
-              .tr("Fehler beim Kopieren des Datensatzes, überspringe"));
+          monitor.log(i18n.tr("Fehler beim Kopieren des Datensatzes, überspringe"));
         }
         else
         {
@@ -207,7 +211,7 @@ public class DatabaseMigrationTask implements BackgroundTask
           {
             monitor.log(i18n.tr(
                 "  Fehler beim Kopieren von [ID: {0}]: {1}, überspringe",
-                new String[] { id, BeanUtil.toString(to) }));
+                new String[] { id, BeanUtil.toString(to)}));
             to.transactionRollback();
           }
           catch (Exception e2)

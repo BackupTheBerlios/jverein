@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/KursteilnehmerSearchProvider.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:04:24 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerSearchProvider.java,v $
- * Revision 1.3  2009/06/11 21:04:24  jost
+ * Revision 1.4  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2009-06-11 21:04:24  jost
  * Vorbereitung I18N
  *
  * Revision 1.2  2008/10/01 14:17:57  jost
@@ -40,13 +43,13 @@ import de.willuhn.util.ApplicationException;
  */
 public class KursteilnehmerSearchProvider implements SearchProvider
 {
+
   public String getName()
   {
     return JVereinPlugin.getI18n().tr("Kursteilnehmer");
   }
 
-  public List<MyResult> search(String search) throws RemoteException,
-      ApplicationException
+  public List<MyResult> search(String search) throws RemoteException
   {
     if (search == null || search.length() == 0)
     {
@@ -58,7 +61,7 @@ public class KursteilnehmerSearchProvider implements SearchProvider
         Kursteilnehmer.class);
     list.addFilter("LOWER(name) LIKE ? OR " + "LOWER(vzweck1) LIKE ? OR "
         + "vzweck2 LIKE ? OR " + "blz LIKE ? OR " + "konto LIKE ?",
-        new String[] { text, text, text, text, text });
+        new String[] { text, text, text, text, text});
 
     ArrayList<MyResult> results = new ArrayList<MyResult>();
     while (list.hasNext())
@@ -73,6 +76,7 @@ public class KursteilnehmerSearchProvider implements SearchProvider
    */
   private class MyResult implements Result
   {
+
     private static final long serialVersionUID = -1685817053590491168L;
 
     private Kursteilnehmer k = null;
@@ -82,7 +86,7 @@ public class KursteilnehmerSearchProvider implements SearchProvider
       this.k = k;
     }
 
-    public void execute() throws RemoteException, ApplicationException
+    public void execute() throws ApplicationException
     {
       new KursteilnehmerDetailAction().handleAction(this.k);
     }

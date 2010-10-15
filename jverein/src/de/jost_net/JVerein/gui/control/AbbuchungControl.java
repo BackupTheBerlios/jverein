@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.23 $
- * $Date: 2010/08/23 13:29:08 $
+ * $Revision: 1.24 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
- * Revision 1.23  2010/08/23 13:29:08  jost
+ * Revision 1.24  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.23  2010-08-23 13:29:08  jost
  * Optimierung Tastatursteuerung
  *
  * Revision 1.22  2010-07-25 18:30:07  jost
@@ -117,6 +120,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class AbbuchungControl extends AbstractControl
 {
+
   private AbbuchungsmodusInput modus;
 
   private DateInput stichtag = null;
@@ -151,6 +155,7 @@ public class AbbuchungControl extends AbstractControl
     modus = new AbbuchungsmodusInput(Abrechnungsmodi.KEINBEITRAG);
     modus.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Integer m = ((Integer) modus.getValue());
@@ -169,7 +174,7 @@ public class AbbuchungControl extends AbstractControl
     return modus;
   }
 
-  public DateInput getStichtag() throws RemoteException
+  public DateInput getStichtag()
   {
     if (stichtag != null)
     {
@@ -181,6 +186,7 @@ public class AbbuchungControl extends AbstractControl
     this.stichtag.setText("Bitte Stichtag für die Abrechnung wählen");
     this.stichtag.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) stichtag.getValue();
@@ -194,7 +200,7 @@ public class AbbuchungControl extends AbstractControl
     return stichtag;
   }
 
-  public DateInput getVondatum() throws RemoteException
+  public DateInput getVondatum()
   {
     if (vondatum != null)
     {
@@ -207,6 +213,7 @@ public class AbbuchungControl extends AbstractControl
     this.vondatum.setEnabled(false);
     this.vondatum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) vondatum.getValue();
@@ -219,7 +226,7 @@ public class AbbuchungControl extends AbstractControl
     return vondatum;
   }
 
-  public TextInput getZahlungsgrund() throws RemoteException
+  public TextInput getZahlungsgrund()
   {
     if (zahlungsgrund != null)
     {
@@ -231,7 +238,7 @@ public class AbbuchungControl extends AbstractControl
     return zahlungsgrund;
   }
 
-  public CheckboxInput getZusatzbetrag() throws RemoteException
+  public CheckboxInput getZusatzbetrag()
   {
     if (zusatzbetrag != null)
     {
@@ -242,7 +249,7 @@ public class AbbuchungControl extends AbstractControl
     return zusatzbetrag;
   }
 
-  public CheckboxInput getKursteilnehmer() throws RemoteException
+  public CheckboxInput getKursteilnehmer()
   {
     if (kursteilnehmer != null)
     {
@@ -253,7 +260,7 @@ public class AbbuchungControl extends AbstractControl
     return kursteilnehmer;
   }
 
-  public CheckboxInput getDtausPrint() throws RemoteException
+  public CheckboxInput getDtausPrint()
   {
     if (dtausprint != null)
     {
@@ -263,7 +270,7 @@ public class AbbuchungControl extends AbstractControl
     return dtausprint;
   }
 
-  public SelectInput getAbbuchungsausgabe() throws RemoteException
+  public SelectInput getAbbuchungsausgabe()
   {
     if (ausgabe != null)
     {
@@ -279,6 +286,7 @@ public class AbbuchungControl extends AbstractControl
   {
     Button button = new Button("&starten", new Action()
     {
+
       public void handleAction(Object context)
       {
 
@@ -304,8 +312,7 @@ public class AbbuchungControl extends AbstractControl
     File dtausfile;
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
     settings.setAttribute("zusatzbetraege", (Boolean) zusatzbetrag.getValue());
-    settings
-        .setAttribute("kursteilnehmer", (Boolean) kursteilnehmer.getValue());
+    settings.setAttribute("kursteilnehmer", (Boolean) kursteilnehmer.getValue());
     settings.setAttribute("dtausprint", (Boolean) dtausprint.getValue());
     Abrechnungsausgabe aa = (Abrechnungsausgabe) ausgabe.getValue();
     settings.setAttribute("abrechnungsausgabe", aa.getKey());
@@ -323,15 +330,7 @@ public class AbbuchungControl extends AbstractControl
     Date vondatum = null;
     if (modus != Abrechnungsmodi.KEINBEITRAG)
     {
-      try
-      {
-        vondatum = (Date) getVondatum().getValue();
-      }
-      catch (RemoteException e)
-      {
-        // nichts tun
-      }
-
+      vondatum = (Date) getVondatum().getValue();
       if (modus == Abrechnungsmodi.EINGETRETENEMITGLIEDER && vondatum == null)
       {
         throw new ApplicationException("von-Datum fehlt");
@@ -343,29 +342,22 @@ public class AbbuchungControl extends AbstractControl
       }
     }
     Integer ausgabe;
-    try
-    {
-      aa = (Abrechnungsausgabe) this.getAbbuchungsausgabe().getValue();
-      ausgabe = aa.getKey();
-    }
-    catch (RemoteException e2)
-    {
-      throw new ApplicationException("Interner Fehler");
-    }
+    aa = (Abrechnungsausgabe) this.getAbbuchungsausgabe().getValue();
+    ausgabe = aa.getKey();
 
     if (ausgabe == Abrechnungsausgabe.DTAUS)
     {
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("DTAUS-Ausgabedatei wählen.");
 
-      String path = settings.getString("lastdir", System
-          .getProperty("user.home"));
+      String path = settings.getString("lastdir",
+          System.getProperty("user.home"));
       if (path != null && path.length() > 0)
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("abbuchung", Einstellungen.getEinstellung()
-          .getDateinamenmuster(), "TXT").get());
+      fd.setFileName(new Dateiname("abbuchung",
+          Einstellungen.getEinstellung().getDateinamenmuster(), "TXT").get());
       String file = fd.open();
 
       if (file == null || file.length() == 0)
@@ -395,14 +387,14 @@ public class AbbuchungControl extends AbstractControl
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("PDF-Ausgabedatei wählen");
 
-      String path = settings.getString("lastdir", System
-          .getProperty("user.home"));
+      String path = settings.getString("lastdir",
+          System.getProperty("user.home"));
       if (path != null && path.length() > 0)
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("abbuchung", Einstellungen.getEinstellung()
-          .getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("abbuchung",
+          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
       pdffile = fd.open();
     }
 
@@ -419,6 +411,7 @@ public class AbbuchungControl extends AbstractControl
     }
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
@@ -454,6 +447,7 @@ public class AbbuchungControl extends AbstractControl
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()

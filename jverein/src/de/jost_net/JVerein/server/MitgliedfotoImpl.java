@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedfotoImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/27 19:09:46 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedfotoImpl.java,v $
- * Revision 1.2  2010/08/27 19:09:46  jost
+ * Revision 1.3  2010/10/15 09:58:28  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-08-27 19:09:46  jost
  * neu: Mitgliedsfoto
  *
  * Revision 1.1  2010-08-26 11:14:57  jost
@@ -23,7 +26,6 @@ import java.rmi.RemoteException;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedfoto;
 import de.willuhn.datasource.db.AbstractDBObject;
-import de.willuhn.util.ApplicationException;
 
 public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
 {
@@ -42,25 +44,25 @@ public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
   }
 
   @Override
-  public String getPrimaryAttribute() throws RemoteException
+  public String getPrimaryAttribute()
   {
     return "id";
   }
 
   @Override
-  protected void deleteCheck() throws ApplicationException
+  protected void deleteCheck()
   {
     //
   }
 
   @Override
-  protected void insertCheck() throws ApplicationException
+  protected void insertCheck()
   {
     updateCheck();
   }
 
   @Override
-  protected void updateCheck() throws ApplicationException
+  protected void updateCheck()
   {
     //
   }

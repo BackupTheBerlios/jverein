@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedskontoMahnungAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/08/16 20:16:02 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoMahnungAction.java,v $
- * Revision 1.1  2010/08/16 20:16:02  jost
+ * Revision 1.2  2010/10/15 09:58:01  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2010-08-16 20:16:02  jost
  * Neu: Mahnung
  *
  **********************************************************************/
@@ -19,11 +22,11 @@ import de.jost_net.JVerein.gui.view.MitgliedskontoMahnungView;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.util.ApplicationException;
 
 public class MitgliedskontoMahnungAction implements Action
 {
-  public void handleAction(Object context) throws ApplicationException
+
+  public void handleAction(Object context)
   {
     if (context != null && context instanceof Mitgliedskonto)
     {

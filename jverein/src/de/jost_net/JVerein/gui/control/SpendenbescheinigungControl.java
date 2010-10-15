@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/01/03 08:58:22 $
+ * $Revision: 1.13 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
- * Revision 1.12  2010/01/03 08:58:22  jost
+ * Revision 1.13  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.12  2010-01-03 08:58:22  jost
  * Logo für PDF-Ausgabe
  *
  * Revision 1.11  2009/07/24 20:19:31  jost
@@ -89,6 +92,7 @@ import de.willuhn.util.ApplicationException;
 
 public class SpendenbescheinigungControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private TablePart spbList;
@@ -142,7 +146,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return zeile1;
     }
-    zeile1 = new TextInput((String) getSpendenbescheinigung().getZeile1(), 40);
+    zeile1 = new TextInput(getSpendenbescheinigung().getZeile1(), 40);
     if (withFocus)
     {
       zeile1.focus();
@@ -156,7 +160,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return zeile2;
     }
-    zeile2 = new TextInput((String) getSpendenbescheinigung().getZeile2(), 40);
+    zeile2 = new TextInput(getSpendenbescheinigung().getZeile2(), 40);
     return zeile2;
   }
 
@@ -166,7 +170,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return zeile3;
     }
-    zeile3 = new TextInput((String) getSpendenbescheinigung().getZeile3(), 40);
+    zeile3 = new TextInput(getSpendenbescheinigung().getZeile3(), 40);
     return zeile3;
   }
 
@@ -176,7 +180,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return zeile4;
     }
-    zeile4 = new TextInput((String) getSpendenbescheinigung().getZeile4(), 40);
+    zeile4 = new TextInput(getSpendenbescheinigung().getZeile4(), 40);
     return zeile4;
   }
 
@@ -186,7 +190,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return zeile5;
     }
-    zeile5 = new TextInput((String) getSpendenbescheinigung().getZeile5(), 40);
+    zeile5 = new TextInput(getSpendenbescheinigung().getZeile5(), 40);
     return zeile5;
   }
 
@@ -196,7 +200,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return zeile6;
     }
-    zeile6 = new TextInput((String) getSpendenbescheinigung().getZeile6(), 40);
+    zeile6 = new TextInput(getSpendenbescheinigung().getZeile6(), 40);
     return zeile6;
   }
 
@@ -206,7 +210,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return zeile7;
     }
-    zeile7 = new TextInput((String) getSpendenbescheinigung().getZeile7(), 40);
+    zeile7 = new TextInput(getSpendenbescheinigung().getZeile7(), 40);
     return zeile7;
   }
 
@@ -216,8 +220,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return spendedatum;
     }
-    spendedatum = new DateInput((Date) getSpendenbescheinigung()
-        .getSpendedatum());
+    spendedatum = new DateInput(getSpendenbescheinigung().getSpendedatum());
     return spendedatum;
   }
 
@@ -227,8 +230,8 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return bescheinigungsdatum;
     }
-    bescheinigungsdatum = new DateInput((Date) getSpendenbescheinigung()
-        .getBescheinigungsdatum());
+    bescheinigungsdatum = new DateInput(
+        getSpendenbescheinigung().getBescheinigungsdatum());
     return bescheinigungsdatum;
   }
 
@@ -238,7 +241,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return betrag;
     }
-    betrag = new DecimalInput((Double) getSpendenbescheinigung().getBetrag(),
+    betrag = new DecimalInput(getSpendenbescheinigung().getBetrag(),
         Einstellungen.DECIMALFORMAT);
     return betrag;
   }
@@ -264,8 +267,8 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return ersatzaufwendungen;
     }
-    ersatzaufwendungen = new CheckboxInput(getSpendenbescheinigung()
-        .getErsatzAufwendungen());
+    ersatzaufwendungen = new CheckboxInput(
+        getSpendenbescheinigung().getErsatzAufwendungen());
     return ersatzaufwendungen;
   }
 
@@ -309,6 +312,7 @@ public class SpendenbescheinigungControl extends AbstractControl
   {
     Button b = new Button("PDF", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         try
@@ -336,15 +340,14 @@ public class SpendenbescheinigungControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    String path = settings
-        .getString("lastdir", System.getProperty("user.home"));
+    String path = settings.getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("spendenbescheinigung", "", Einstellungen
-        .getEinstellung().getDateinamenmuster(), "PDF").get());
-    fd.setFilterExtensions(new String[] { "*.PDF" });
+    fd.setFileName(new Dateiname("spendenbescheinigung", "",
+        Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
+    fd.setFilterExtensions(new String[] { "*.PDF"});
 
     String s = fd.open();
     if (s == null || s.length() == 0)
@@ -368,8 +371,7 @@ public class SpendenbescheinigungControl extends AbstractControl
         + (String) getZeile6().getValue() + "\n"
         + (String) getZeile7().getValue() + "\n";
     map.put("Empfänger", empfaenger);
-    String betrag = Einstellungen.DECIMALFORMAT.format((Double) getBetrag()
-        .getValue());
+    String betrag = Einstellungen.DECIMALFORMAT.format(getBetrag().getValue());
     map.put("Betrag", "*" + betrag + "* Euro");
     Double dWert = (Double) getBetrag().getValue();
     try
@@ -391,8 +393,8 @@ public class SpendenbescheinigungControl extends AbstractControl
     map.put("Spendedatum", spendedatum);
     String tagesdatum = Einstellungen.DATEFORMAT.format(new Date());
     map.put("Tagesdatum", tagesdatum);
-    map.put("ErsatzAufwendungen",
-        ((Boolean) ersatzaufwendungen.getValue() ? "X" : ""));
+    map.put("ErsatzAufwendungen", ((Boolean) ersatzaufwendungen.getValue()
+        ? "X" : ""));
     FormularAufbereitung fa = new FormularAufbereitung(file);
     fa.writeForm(fo, map);
     fa.showFormular();
@@ -402,8 +404,7 @@ public class SpendenbescheinigungControl extends AbstractControl
   public Part getSpendenbescheinigungList() throws RemoteException
   {
     DBService service = Einstellungen.getDBService();
-    DBIterator spendenbescheinigungen = service
-        .createList(Spendenbescheinigung.class);
+    DBIterator spendenbescheinigungen = service.createList(Spendenbescheinigung.class);
     spendenbescheinigungen.setOrder("ORDER BY bescheinigungsdatum desc");
 
     spbList = new TablePart(spendenbescheinigungen,
@@ -432,12 +433,12 @@ public class SpendenbescheinigungControl extends AbstractControl
   public void refreshTable() throws RemoteException
   {
     spbList.removeAll();
-    DBIterator spendenbescheinigungen = Einstellungen.getDBService()
-        .createList(Spendenbescheinigung.class);
+    DBIterator spendenbescheinigungen = Einstellungen.getDBService().createList(
+        Spendenbescheinigung.class);
     spendenbescheinigungen.setOrder("ORDER BY bescheinigungsdatum desc");
     while (spendenbescheinigungen.hasNext())
     {
-      spbList.addItem((Spendenbescheinigung) spendenbescheinigungen.next());
+      spbList.addItem(spendenbescheinigungen.next());
     }
   }
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/KontoList.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:03:24 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoList.java,v $
- * Revision 1.2  2009/06/11 21:03:24  jost
+ * Revision 1.3  2010/10/15 09:58:25  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2009-06-11 21:03:24  jost
  * Vorbereitung I18N
  *
  * Revision 1.1  2008/05/22 06:51:59  jost
@@ -57,6 +60,7 @@ public class KontoList extends TablePart implements Part
   /**
    * @see de.willuhn.jameica.gui.Part#paint(org.eclipse.swt.widgets.Composite)
    */
+  @Override
   public synchronized void paint(Composite parent) throws RemoteException
   {
     super.paint(parent);

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationTask.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/11/29 13:14:18 $
+ * $Revision: 1.4 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationTask.java,v $
- * Revision 1.3  2008/11/29 13:14:18  jost
+ * Revision 1.4  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.3  2008-11-29 13:14:18  jost
  * Refactoring: Warnungen beseitigt.
  *
  * Revision 1.2  2008/01/01 12:36:16  jost
@@ -41,6 +44,7 @@ import de.willuhn.util.ProgressMonitor;
  */
 public class McKoiToH2MigrationTask extends DatabaseMigrationTask
 {
+  @Override
   public void run(ProgressMonitor monitor) throws ApplicationException
   {
     // Checken, ob die Migration schon lief
@@ -90,13 +94,14 @@ public class McKoiToH2MigrationTask extends DatabaseMigrationTask
     new FileClose().handleAction(null);
   }
 
+  @Override
   protected void fixObject(AbstractDBObject object, ProgressMonitor monitor)
       throws RemoteException
   {
     super.fixObject(object, monitor);
   }
 
-  @SuppressWarnings("unchecked")
+  @Override
   protected void copy(Class type, ProgressMonitor monitor) throws Exception
   {
     super.copy(type, monitor);

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.89 $
- * $Date: 2010/09/09 18:50:07 $
+ * $Revision: 1.90 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.89  2010/09/09 18:50:07  jost
+ * Revision 1.90  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.89  2010-09-09 18:50:07  jost
  * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
  *
  * Revision 1.88  2010-09-06 17:46:14  jost
@@ -378,6 +381,7 @@ import de.willuhn.util.ProgressMonitor;
 
 public class MitgliedControl extends AbstractControl
 {
+
   private IntegerInput externemitgliedsnummer;
 
   private Input anrede;
@@ -559,6 +563,8 @@ public class MitgliedControl extends AbstractControl
 
     name = new SearchInput()
     {
+
+      @Override
       public List<?> startSearch(String text)
       {
         try
@@ -569,8 +575,8 @@ public class MitgliedControl extends AbstractControl
           }
           ResultSetExtractor rs = new ResultSetExtractor()
           {
-            public Object extract(ResultSet rs) throws RemoteException,
-                SQLException
+
+            public Object extract(ResultSet rs) throws SQLException
             {
               List<String> namen = new ArrayList<String>();
               while (rs.next())
@@ -583,7 +589,7 @@ public class MitgliedControl extends AbstractControl
           String sql = "select name from mitglied where name like ? "
               + "group by name order by name";
           return (List<?>) Einstellungen.getDBService().execute(sql,
-              new Object[] { text }, rs);
+              new Object[] { text}, rs);
         }
         catch (Exception e)
         {
@@ -614,6 +620,8 @@ public class MitgliedControl extends AbstractControl
 
     vorname = new SearchInput()
     {
+
+      @Override
       public List<?> startSearch(String text)
       {
         try
@@ -624,8 +632,8 @@ public class MitgliedControl extends AbstractControl
           }
           ResultSetExtractor rs = new ResultSetExtractor()
           {
-            public Object extract(ResultSet rs) throws RemoteException,
-                SQLException
+
+            public Object extract(ResultSet rs) throws SQLException
             {
               List<String> vornamen = new ArrayList<String>();
               while (rs.next())
@@ -638,7 +646,7 @@ public class MitgliedControl extends AbstractControl
           String sql = "select vorname from mitglied where vorname like ? "
               + "group by vorname order by vorname";
           return (List<?>) Einstellungen.getDBService().execute(sql,
-              new Object[] { text }, rs);
+              new Object[] { text}, rs);
         }
         catch (Exception e)
         {
@@ -678,6 +686,8 @@ public class MitgliedControl extends AbstractControl
 
     strasse = new SearchInput()
     {
+
+      @Override
       public List<?> startSearch(String text)
       {
         try
@@ -688,8 +698,8 @@ public class MitgliedControl extends AbstractControl
           }
           ResultSetExtractor rs = new ResultSetExtractor()
           {
-            public Object extract(ResultSet rs) throws RemoteException,
-                SQLException
+
+            public Object extract(ResultSet rs) throws SQLException
             {
               List<String> strassen = new ArrayList<String>();
               while (rs.next())
@@ -702,7 +712,7 @@ public class MitgliedControl extends AbstractControl
           String sql = "select strasse from mitglied where strasse like ? "
               + "group by strasse order by strasse";
           return (List<?>) Einstellungen.getDBService().execute(sql,
-              new Object[] { text }, rs);
+              new Object[] { text}, rs);
         }
         catch (Exception e)
         {
@@ -731,6 +741,7 @@ public class MitgliedControl extends AbstractControl
     plz.setName("PLZ");
     plz.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         if (event.type == SWT.FocusOut)
@@ -782,10 +793,10 @@ public class MitgliedControl extends AbstractControl
     this.geburtsdatum.setName("Geburtsdatum");
     this.geburtsdatum.setTitle("Geburtsdatum");
     this.geburtsdatum.setText("Bitte Geburtsdatum wählen");
-    this.geburtsdatum.setMandatory(Einstellungen.getEinstellung()
-        .getGeburtsdatumPflicht());
+    this.geburtsdatum.setMandatory(Einstellungen.getEinstellung().getGeburtsdatumPflicht());
     this.geburtsdatum.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) geburtsdatum.getValue();
@@ -830,6 +841,7 @@ public class MitgliedControl extends AbstractControl
     zahlungsweg.setName("Zahlungsweg");
     zahlungsweg.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Zahlungsweg z = (Zahlungsweg) zahlungsweg.getValue();
@@ -854,8 +866,8 @@ public class MitgliedControl extends AbstractControl
     else
     {
       zahlungsrhytmus = new SelectInput(Zahlungsrhytmus.getArray(),
-          new Zahlungsrhytmus(Einstellungen.getEinstellung()
-              .getZahlungsrhytmus()));
+          new Zahlungsrhytmus(
+              Einstellungen.getEinstellung().getZahlungsrhytmus()));
     }
     zahlungsrhytmus.setName("Zahlungsrhytmus");
     return zahlungsrhytmus;
@@ -876,6 +888,7 @@ public class MitgliedControl extends AbstractControl
     l.handleEvent(null); // Einmal initial ausfuehren
     blz.addListener(new Listener()
     {
+
       public void handleEvent(Event arg0)
       {
         try
@@ -906,6 +919,7 @@ public class MitgliedControl extends AbstractControl
         || getMitglied().getZahlungsweg().intValue() == Zahlungsweg.ABBUCHUNG);
     konto.addListener(new Listener()
     {
+
       public void handleEvent(Event arg0)
       {
         try
@@ -1008,10 +1022,10 @@ public class MitgliedControl extends AbstractControl
     this.eintritt.setTitle("Eintrittsdatum");
     this.eintritt.setName("Eintrittsdatum");
     this.eintritt.setText("Bitte Eintrittsdatum wählen");
-    this.eintritt.setMandatory(Einstellungen.getEinstellung()
-        .getEintrittsdatumPflicht());
+    this.eintritt.setMandatory(Einstellungen.getEinstellung().getEintrittsdatumPflicht());
     this.eintritt.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) eintritt.getValue();
@@ -1061,8 +1075,8 @@ public class MitgliedControl extends AbstractControl
           }
           else if (bg.getBeitragsArt() == ArtBeitragsart.FAMILIE_ZAHLER)
           {
-            zahler.setValue((Mitglied) Einstellungen.getDBService()
-                .createObject(Mitglied.class, ""));
+            zahler.setValue(Einstellungen.getDBService().createObject(
+                Mitglied.class, ""));
             getMitglied().setZahlerID(null);
             zahler.setEnabled(false);
           }
@@ -1149,14 +1163,15 @@ public class MitgliedControl extends AbstractControl
     {
       suche = getMitglied().getZahlerID().toString();
     }
-    Mitglied zahlmitglied = (Mitglied) Einstellungen.getDBService()
-        .createObject(Mitglied.class, suche);
+    Mitglied zahlmitglied = (Mitglied) Einstellungen.getDBService().createObject(
+        Mitglied.class, suche);
 
     zahler = new SelectInput(zhl, zahlmitglied);
     zahler.setAttribute("namevorname");
     zahler.setPleaseChoose("Bitte auswählen");
     zahler.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         if (event.type != SWT.Selection)
@@ -1211,6 +1226,7 @@ public class MitgliedControl extends AbstractControl
     this.austritt.setText("Bitte Austrittsdatum wählen");
     this.austritt.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) austritt.getValue();
@@ -1237,6 +1253,7 @@ public class MitgliedControl extends AbstractControl
     this.kuendigung.setText("Bitte Kündigungsdatum wählen");
     this.kuendigung.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) kuendigung.getValue();
@@ -1278,7 +1295,7 @@ public class MitgliedControl extends AbstractControl
       return foto;
     }
     DBIterator it = Einstellungen.getDBService().createList(Mitgliedfoto.class);
-    it.addFilter("mitglied = ?", new Object[] { mitglied.getID() });
+    it.addFilter("mitglied = ?", new Object[] { mitglied.getID()});
     Mitgliedfoto fo = null;
     if (it.size() > 0)
     {
@@ -1321,8 +1338,8 @@ public class MitgliedControl extends AbstractControl
       {
         DBIterator it2 = Einstellungen.getDBService().createList(
             Zusatzfelder.class);
-        it2.addFilter("mitglied=?", new Object[] { getMitglied().getID() });
-        it2.addFilter("felddefinition=?", new Object[] { fd.getID() });
+        it2.addFilter("mitglied=?", new Object[] { getMitglied().getID()});
+        it2.addFilter("felddefinition=?", new Object[] { fd.getID()});
         if (it2.size() > 0)
         {
           zf.setMitglied(Integer.parseInt(getMitglied().getID()));
@@ -1416,8 +1433,7 @@ public class MitgliedControl extends AbstractControl
     zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
     zusatzbetraegeList.addColumn("aktiv", "aktiv", new JaNeinFormatter());
-    zusatzbetraegeList
-        .setContextMenu(new ZusatzbetraegeMenu(zusatzbetraegeList));
+    zusatzbetraegeList.setContextMenu(new ZusatzbetraegeMenu(zusatzbetraegeList));
     return zusatzbetraegeList;
   }
 
@@ -1469,7 +1485,7 @@ public class MitgliedControl extends AbstractControl
     return lehrgaengeList;
   }
 
-  public DateInput getGeburtsdatumvon() throws RemoteException
+  public DateInput getGeburtsdatumvon()
   {
     if (geburtsdatumvon != null)
     {
@@ -1485,7 +1501,7 @@ public class MitgliedControl extends AbstractControl
       }
       catch (ParseException e)
       {
-        d = null;
+        //
       }
     }
     this.geburtsdatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
@@ -1493,6 +1509,7 @@ public class MitgliedControl extends AbstractControl
     this.geburtsdatumvon.setText("Beginn des Geburtszeitraumes");
     this.geburtsdatumvon.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) geburtsdatumvon.getValue();
@@ -1505,7 +1522,7 @@ public class MitgliedControl extends AbstractControl
     return geburtsdatumvon;
   }
 
-  public DateInput getGeburtsdatumbis() throws RemoteException
+  public DateInput getGeburtsdatumbis()
   {
     if (geburtsdatumbis != null)
     {
@@ -1521,7 +1538,7 @@ public class MitgliedControl extends AbstractControl
       }
       catch (ParseException e)
       {
-        d = null;
+        //
       }
     }
     this.geburtsdatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
@@ -1529,6 +1546,7 @@ public class MitgliedControl extends AbstractControl
     this.geburtsdatumbis.setText("Ende des Geburtszeitraumes");
     this.geburtsdatumbis.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) geburtsdatumbis.getValue();
@@ -1541,7 +1559,7 @@ public class MitgliedControl extends AbstractControl
     return geburtsdatumbis;
   }
 
-  public DateInput getEintrittvon() throws RemoteException
+  public DateInput getEintrittvon()
   {
     if (eintrittvon != null)
     {
@@ -1557,7 +1575,7 @@ public class MitgliedControl extends AbstractControl
       }
       catch (ParseException e)
       {
-        d = null;
+        //
       }
     }
     this.eintrittvon = new DateInput(d, Einstellungen.DATEFORMAT);
@@ -1565,6 +1583,7 @@ public class MitgliedControl extends AbstractControl
     this.eintrittvon.setText("Beginn des Eintrittszeitraumes");
     this.eintrittvon.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) eintrittvon.getValue();
@@ -1582,7 +1601,7 @@ public class MitgliedControl extends AbstractControl
     return eintrittbis != null;
   }
 
-  public DateInput getEintrittbis() throws RemoteException
+  public DateInput getEintrittbis()
   {
     if (eintrittbis != null)
     {
@@ -1598,7 +1617,7 @@ public class MitgliedControl extends AbstractControl
       }
       catch (ParseException e)
       {
-        d = null;
+        //
       }
     }
     this.eintrittbis = new DateInput(d, Einstellungen.DATEFORMAT);
@@ -1606,6 +1625,7 @@ public class MitgliedControl extends AbstractControl
     this.eintrittbis.setText("Ende des Eintrittszeitraumes");
     this.eintrittbis.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) eintrittbis.getValue();
@@ -1618,7 +1638,7 @@ public class MitgliedControl extends AbstractControl
     return eintrittbis;
   }
 
-  public DateInput getAustrittvon() throws RemoteException
+  public DateInput getAustrittvon() 
   {
     if (austrittvon != null)
     {
@@ -1634,7 +1654,7 @@ public class MitgliedControl extends AbstractControl
       }
       catch (ParseException e)
       {
-        d = null;
+       //
       }
     }
     this.austrittvon = new DateInput(d, Einstellungen.DATEFORMAT);
@@ -1642,6 +1662,7 @@ public class MitgliedControl extends AbstractControl
     this.austrittvon.setText("Beginn des Austrittszeitraumes");
     this.austrittvon.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) austrittvon.getValue();
@@ -1659,7 +1680,7 @@ public class MitgliedControl extends AbstractControl
     return austrittbis != null;
   }
 
-  public DateInput getAustrittbis() throws RemoteException
+  public DateInput getAustrittbis() 
   {
     if (austrittbis != null)
     {
@@ -1675,7 +1696,7 @@ public class MitgliedControl extends AbstractControl
       }
       catch (ParseException e)
       {
-        d = null;
+        //
       }
     }
     this.austrittbis = new DateInput(d, Einstellungen.DATEFORMAT);
@@ -1683,6 +1704,7 @@ public class MitgliedControl extends AbstractControl
     this.austrittbis.setText("Ende des Austrittszeitraumes");
     this.austrittbis.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) austrittbis.getValue();
@@ -1695,7 +1717,7 @@ public class MitgliedControl extends AbstractControl
     return austrittbis;
   }
 
-  public DateInput getStichtag() throws RemoteException
+  public DateInput getStichtag() 
   {
     if (stichtag != null)
     {
@@ -1709,6 +1731,7 @@ public class MitgliedControl extends AbstractControl
     this.stichtag.setTitle("Stichtag");
     this.stichtag.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         Date date = (Date) stichtag.getValue();
@@ -1721,7 +1744,7 @@ public class MitgliedControl extends AbstractControl
     return stichtag;
   }
 
-  public SelectInput getJubeljahr() throws RemoteException
+  public SelectInput getJubeljahr() 
   {
     if (jubeljahr != null)
     {
@@ -1739,13 +1762,13 @@ public class MitgliedControl extends AbstractControl
     return jubeljahr;
   }
 
-  public SelectInput getJubelArt() throws RemoteException
+  public SelectInput getJubelArt()
   {
     if (jubelart != null)
     {
       return jubelart;
     }
-    String[] ja = { JUBELART_MITGLIEDSCHAFT, JUBELART_ALTER };
+    String[] ja = { JUBELART_MITGLIEDSCHAFT, JUBELART_ALTER};
     jubelart = new SelectInput(ja, JUBELART_MITGLIEDSCHAFT);
     return jubelart;
   }
@@ -1766,8 +1789,8 @@ public class MitgliedControl extends AbstractControl
       }
       try
       {
-        Eigenschaft ei = (Eigenschaft) Einstellungen.getDBService()
-            .createObject(Eigenschaft.class, stt.nextToken());
+        Eigenschaft ei = (Eigenschaft) Einstellungen.getDBService().createObject(
+            Eigenschaft.class, stt.nextToken());
         text += ei.getBezeichnung();
       }
       catch (ObjectNotFoundException e)
@@ -1778,6 +1801,7 @@ public class MitgliedControl extends AbstractControl
     eigenschaftenabfrage = new DialogInput(text, d);
     eigenschaftenabfrage.addListener(new Listener()
     {
+
       public void handleEvent(Event event)
       {
         d.setDefaults(settings.getString("mitglied.eigenschaften", ""));
@@ -1786,25 +1810,25 @@ public class MitgliedControl extends AbstractControl
     return eigenschaftenabfrage;
   }
 
-  public Input getAusgabe() throws RemoteException
+  public Input getAusgabe() 
   {
     if (ausgabe != null)
     {
       return ausgabe;
     }
-    String[] ausg = { "PDF", "CSV" };
+    String[] ausg = { "PDF", "CSV"};
     ausgabe = new SelectInput(ausg, "PDF");
     return ausgabe;
   }
 
-  public Input getSortierung() throws RemoteException
+  public Input getSortierung() 
   {
     if (sortierung != null)
     {
       return sortierung;
     }
     String[] sort = { "Name, Vorname", "Eintrittsdatum", "Geburtsdatum",
-        "Geburtstagsliste" };
+        "Geburtstagsliste"};
     sortierung = new SelectInput(sort, "Name, Vorname");
     return sortierung;
   }
@@ -1814,7 +1838,7 @@ public class MitgliedControl extends AbstractControl
     return status != null;
   }
 
-  public IntegerInput getSuchExterneMitgliedsnummer() throws RemoteException
+  public IntegerInput getSuchExterneMitgliedsnummer() 
   {
     if (suchexternemitgliedsnummer != null)
     {
@@ -1824,14 +1848,14 @@ public class MitgliedControl extends AbstractControl
     return suchexternemitgliedsnummer;
   }
 
-  public Input getMitgliedStatus() throws RemoteException
+  public Input getMitgliedStatus() 
   {
     if (status != null)
     {
       return status;
     }
     status = new SelectInput(new String[] { "Angemeldet", "Abgemeldet",
-        "An- und Abgemeldete" }, settings.getString("status.mitglied",
+        "An- und Abgemeldete"}, settings.getString("status.mitglied",
         "Angemeldete"));
     return status;
   }
@@ -1840,6 +1864,7 @@ public class MitgliedControl extends AbstractControl
   {
     Button b = new Button("&starten", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         try
@@ -1862,6 +1887,7 @@ public class MitgliedControl extends AbstractControl
   {
     Button b = new Button("&starten", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         try
@@ -1882,6 +1908,7 @@ public class MitgliedControl extends AbstractControl
   {
     Button b = new Button("&Start", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         try
@@ -1942,8 +1969,8 @@ public class MitgliedControl extends AbstractControl
   {
     if (status != null)
     {
-      settings.setAttribute("status.mitglied", (String) getMitgliedStatus()
-          .getValue());
+      settings.setAttribute("status.mitglied",
+          (String) getMitgliedStatus().getValue());
     }
 
     if (geburtsdatumvon != null)
@@ -1979,8 +2006,8 @@ public class MitgliedControl extends AbstractControl
       Date tmp = (Date) getEintrittvon().getValue();
       if (tmp != null)
       {
-        settings.setAttribute("mitglied.eintrittvon", Einstellungen.DATEFORMAT
-            .format(tmp));
+        settings.setAttribute("mitglied.eintrittvon",
+            Einstellungen.DATEFORMAT.format(tmp));
       }
       else
       {
@@ -1993,8 +2020,8 @@ public class MitgliedControl extends AbstractControl
       Date tmp = (Date) getEintrittbis().getValue();
       if (tmp != null)
       {
-        settings.setAttribute("mitglied.eintrittbis", Einstellungen.DATEFORMAT
-            .format(tmp));
+        settings.setAttribute("mitglied.eintrittbis",
+            Einstellungen.DATEFORMAT.format(tmp));
       }
       else
       {
@@ -2007,8 +2034,8 @@ public class MitgliedControl extends AbstractControl
       Date tmp = (Date) getAustrittvon().getValue();
       if (tmp != null)
       {
-        settings.setAttribute("mitglied.austrittvon", Einstellungen.DATEFORMAT
-            .format(tmp));
+        settings.setAttribute("mitglied.austrittvon",
+            Einstellungen.DATEFORMAT.format(tmp));
       }
       else
       {
@@ -2021,8 +2048,8 @@ public class MitgliedControl extends AbstractControl
       Date tmp = (Date) getAustrittbis().getValue();
       if (tmp != null)
       {
-        settings.setAttribute("mitglied.austrittbis", Einstellungen.DATEFORMAT
-            .format(tmp));
+        settings.setAttribute("mitglied.austrittbis",
+            Einstellungen.DATEFORMAT.format(tmp));
       }
       else
       {
@@ -2050,8 +2077,7 @@ public class MitgliedControl extends AbstractControl
 
     if (beitragsgruppeausw != null)
     {
-      Beitragsgruppe tmpbg = (Beitragsgruppe) getBeitragsgruppeAusw()
-          .getValue();
+      Beitragsgruppe tmpbg = (Beitragsgruppe) getBeitragsgruppeAusw().getValue();
       if (tmpbg != null)
       {
         settings.setAttribute("mitglied.beitragsgruppe", tmpbg.getID());
@@ -2136,7 +2162,7 @@ public class MitgliedControl extends AbstractControl
         HashMap<String, Boolean> pflichtgruppen = new HashMap<String, Boolean>();
         DBIterator it = Einstellungen.getDBService().createList(
             EigenschaftGruppe.class);
-        it.addFilter("pflicht = ?", new Object[] { "TRUE" });
+        it.addFilter("pflicht = ?", new Object[] { "TRUE"});
         while (it.hasNext())
         {
           EigenschaftGruppe eg = (EigenschaftGruppe) it.next();
@@ -2159,8 +2185,8 @@ public class MitgliedControl extends AbstractControl
         {
           if (!pflichtgruppen.get(key))
           {
-            EigenschaftGruppe eg = (EigenschaftGruppe) Einstellungen
-                .getDBService().createObject(EigenschaftGruppe.class, key);
+            EigenschaftGruppe eg = (EigenschaftGruppe) Einstellungen.getDBService().createObject(
+                EigenschaftGruppe.class, key);
             throw new ApplicationException("In der Eigenschaftengruppe \""
                 + eg.getBezeichnung() + "\" fehlt ein Eintrag!");
           }
@@ -2190,8 +2216,7 @@ public class MitgliedControl extends AbstractControl
       {
         if (externemitgliedsnummer != null)
         {
-          m.setExterneMitgliedsnummer((Integer) getExterneMitgliedsnummer()
-              .getValue());
+          m.setExterneMitgliedsnummer((Integer) getExterneMitgliedsnummer().getValue());
         }
       }
       else
@@ -2207,17 +2232,17 @@ public class MitgliedControl extends AbstractControl
       m.setKonto((String) getKonto().getValue());
       m.setKontoinhaber((String) getKontoinhaber().getValue());
       m.setKuendigung((Date) getKuendigung().getValue());
-      m.setName((String) getName(false).getText());
+      m.setName(getName(false).getText());
       m.setOrt((String) getOrt().getValue());
       m.setPlz((String) getPlz().getValue());
-      m.setStrasse((String) getStrasse().getText());
+      m.setStrasse( getStrasse().getText());
       m.setTelefondienstlich((String) getTelefondienstlich().getValue());
       m.setTelefonprivat((String) getTelefonprivat().getValue());
       m.setHandy((String) getHandy().getValue());
       m.setTitel((String) getTitel().getValue());
       m.setVermerk1((String) getVermerk1().getValue());
       m.setVermerk2((String) getVermerk2().getValue());
-      m.setVorname((String) getVorname().getText());
+      m.setVorname(getVorname().getText());
       if (m.getID() == null)
       {
         m.setEingabedatum();
@@ -2229,7 +2254,7 @@ public class MitgliedControl extends AbstractControl
         Mitgliedfoto f = null;
         DBIterator it = Einstellungen.getDBService().createList(
             Mitgliedfoto.class);
-        it.addFilter("mitglied = ?", new Object[] { m.getID() });
+        it.addFilter("mitglied = ?", new Object[] { m.getID()});
         if (it.size() > 0)
         {
           f = (Mitgliedfoto) it.next();
@@ -2258,7 +2283,7 @@ public class MitgliedControl extends AbstractControl
         {
           DBIterator it = Einstellungen.getDBService().createList(
               Eigenschaften.class);
-          it.addFilter("mitglied = ?", new Object[] { getMitglied().getID() });
+          it.addFilter("mitglied = ?", new Object[] { getMitglied().getID()});
           while (it.hasNext())
           {
             Eigenschaften ei = (Eigenschaften) it.next();
@@ -2272,8 +2297,8 @@ public class MitgliedControl extends AbstractControl
             EigenschaftenNode node = (EigenschaftenNode) o1;
             if (node.getNodeType() == EigenschaftenNode.EIGENSCHAFTEN)
             {
-              Eigenschaften eig = (Eigenschaften) Einstellungen.getDBService()
-                  .createObject(Eigenschaften.class, null);
+              Eigenschaften eig = (Eigenschaften) Einstellungen.getDBService().createObject(
+                  Eigenschaften.class, null);
               eig.setEigenschaft(node.getEigenschaft().getID());
               eig.setMitglied(getMitglied().getID());
               eig.store();
@@ -2289,13 +2314,13 @@ public class MitgliedControl extends AbstractControl
           // Felddefinition ermitteln
           DBIterator it0 = Einstellungen.getDBService().createList(
               Felddefinition.class);
-          it0.addFilter("label = ?", new Object[] { ti.getName() });
+          it0.addFilter("label = ?", new Object[] { ti.getName()});
           Felddefinition fd = (Felddefinition) it0.next();
           // Ist bereits ein Datensatz für diese Definiton vorhanden ?
           DBIterator it = Einstellungen.getDBService().createList(
               Zusatzfelder.class);
-          it.addFilter("mitglied =?", new Object[] { m.getID() });
-          it.addFilter("felddefinition=?", new Object[] { fd.getID() });
+          it.addFilter("mitglied =?", new Object[] { m.getID()});
+          it.addFilter("felddefinition=?", new Object[] { fd.getID()});
           Zusatzfelder zf = null;
           if (it.size() > 0)
           {
@@ -2361,6 +2386,8 @@ public class MitgliedControl extends AbstractControl
     eigenschaftenAuswahlTree.setCheckable(true);
     eigenschaftenAuswahlTree.addSelectionListener(new Listener()
     {
+
+      @SuppressWarnings("unchecked")
       public void handleEvent(Event event)
       {
         // "o" ist das Objekt, welches gerade markiert
@@ -2390,8 +2417,8 @@ public class MitgliedControl extends AbstractControl
           }
           List children = PseudoIterator.asList(o.getChildren());
           boolean b = event.detail > 0;
-          eigenschaftenAuswahlTree.setChecked(children
-              .toArray(new Object[children.size()]), b);
+          eigenschaftenAuswahlTree.setChecked(
+              children.toArray(new Object[children.size()]), b);
         }
         catch (RemoteException e)
         {
@@ -2477,16 +2504,16 @@ public class MitgliedControl extends AbstractControl
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("Ausgabedatei wählen.");
 
-      String path = settings.getString("lastdir", System
-          .getProperty("user.home"));
+      String path = settings.getString("lastdir",
+          System.getProperty("user.home"));
       if (path != null && path.length() > 0)
       {
         fd.setFilterPath(path);
       }
       String ausgformat = (String) ausgabe.getValue();
-      fd.setFileName(new Dateiname("auswertung", dateinamensort, Einstellungen
-          .getEinstellung().getDateinamenmuster(), ausgformat).get());
-      fd.setFilterExtensions(new String[] { "*." + ausgformat });
+      fd.setFileName(new Dateiname("auswertung", dateinamensort,
+          Einstellungen.getEinstellung().getDateinamenmuster(), ausgformat).get());
+      fd.setFilterExtensions(new String[] { "*." + ausgformat});
 
       String s = fd.open();
       if (s == null || s.length() == 0)
@@ -2517,17 +2544,16 @@ public class MitgliedControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    fd.setFilterExtensions(new String[] { "*.PDF" });
+    fd.setFilterExtensions(new String[] { "*.PDF"});
     Settings settings = new Settings(this.getClass());
 
-    String path = settings
-        .getString("lastdir", System.getProperty("user.home"));
+    String path = settings.getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("statistik", Einstellungen.getEinstellung()
-        .getDateinamenmuster(), "PDF").get());
+    fd.setFileName(new Dateiname("statistik",
+        Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
 
     String s = fd.open();
 
@@ -2545,24 +2571,15 @@ public class MitgliedControl extends AbstractControl
 
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
-        try
-        {
-          new MitgliederStatistik(file, monitor, sticht);
-        }
-        catch (RemoteException e)
-        {
-          e.printStackTrace();
-        }
-        catch (ApplicationException e)
-        {
-          e.printStackTrace();
-        }
+        new MitgliederStatistik(file, monitor, sticht);
       }
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()
@@ -2578,10 +2595,9 @@ public class MitgliedControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    fd.setFilterExtensions(new String[] { "*.PDF" });
+    fd.setFilterExtensions(new String[] { "*.PDF"});
     Settings settings = new Settings(this.getClass());
-    String path = settings
-        .getString("lastdir", System.getProperty("user.home"));
+    String path = settings.getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
@@ -2606,20 +2622,15 @@ public class MitgliedControl extends AbstractControl
 
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
-        try
-        {
-          new Jubilaeenliste(file, monitor, jahr, art);
-        }
-        catch (RemoteException e)
-        {
-          e.printStackTrace();
-        }
+        new Jubilaeenliste(file, monitor, jahr, art);
       }
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()
@@ -2636,6 +2647,7 @@ public class MitgliedControl extends AbstractControl
   {
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
@@ -2666,6 +2678,7 @@ public class MitgliedControl extends AbstractControl
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()
@@ -2681,6 +2694,7 @@ public class MitgliedControl extends AbstractControl
   {
     BackgroundTask t = new BackgroundTask()
     {
+
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
@@ -2698,17 +2712,11 @@ public class MitgliedControl extends AbstractControl
           GUI.getStatusBar().setErrorText(ae.getMessage());
           throw ae;
         }
-        catch (RemoteException re)
-        {
-          monitor.setStatusText(re.getMessage());
-          monitor.setStatus(ProgressMonitor.STATUS_ERROR);
-          GUI.getStatusBar().setErrorText(re.getMessage());
-          throw new ApplicationException(re);
-        }
       }
 
       public void interrupt()
       {
+        //
       }
 
       public boolean isInterrupted()
@@ -2725,6 +2733,7 @@ public class MitgliedControl extends AbstractControl
    */
   private class BLZListener implements Listener
   {
+
     public void handleEvent(Event event)
     {
       try
@@ -2744,6 +2753,8 @@ public class MitgliedControl extends AbstractControl
    */
   private class EigenschaftenListener implements Listener
   {
+
+    @SuppressWarnings("unchecked")
     public void handleEvent(Event event)
     {
       if (event == null || event.data == null)
@@ -2778,6 +2789,7 @@ public class MitgliedControl extends AbstractControl
 
   public class EigenschaftTreeFormatter implements TreeFormatter
   {
+
     public void format(TreeItem item)
     {
       EigenschaftenNode eigenschaftitem = (EigenschaftenNode) item.getData();

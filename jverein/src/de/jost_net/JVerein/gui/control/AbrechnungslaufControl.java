@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbrechnungslaufControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/07/25 18:30:44 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufControl.java,v $
- * Revision 1.2  2010/07/25 18:30:44  jost
+ * Revision 1.3  2010/10/15 09:58:27  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-07-25 18:30:44  jost
  * Finetuning
  *
  * Revision 1.1  2010/05/18 20:19:04  jost
@@ -40,6 +43,7 @@ import de.willuhn.jameica.gui.parts.TablePart;
 
 public class AbrechnungslaufControl extends AbstractControl
 {
+
   private de.willuhn.jameica.system.Settings settings;
 
   private Abrechnungslauf abrl;
@@ -101,32 +105,10 @@ public class AbrechnungslaufControl extends AbstractControl
       abrechnungslaufList.removeAll();
       while (abrechnungslaeufe.hasNext())
       {
-        abrechnungslaufList.addItem((Abrechnungslauf) abrechnungslaeufe.next());
+        abrechnungslaufList.addItem(abrechnungslaeufe.next());
       }
     }
     return abrechnungslaufList;
   }
 
-  private void refresh()
-  {
-    if (abrechnungslaufList == null)
-    {
-      return;
-    }
-    try
-    {
-      abrechnungslaufList.removeAll();
-      DBIterator abrl = Einstellungen.getDBService().createList(
-          Abrechnungslauf.class);
-      while (abrl.hasNext())
-      {
-        Abrechnungslauf abl = (Abrechnungslauf) abrl.next();
-        abrechnungslaufList.addItem(abl);
-      }
-    }
-    catch (RemoteException e1)
-    {
-      e1.printStackTrace();
-    }
-  }
 }

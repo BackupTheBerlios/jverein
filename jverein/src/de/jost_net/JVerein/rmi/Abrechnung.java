@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Attic/Abrechnung.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/07/28 07:27:54 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/15 09:58:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnung.java,v $
- * Revision 1.2  2010/07/28 07:27:54  jost
+ * Revision 1.3  2010/10/15 09:58:30  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.2  2010-07-28 07:27:54  jost
  * deprecated
  *
  * Revision 1.1  2008/08/10 12:37:39  jost
@@ -27,6 +30,7 @@ import de.willuhn.datasource.rmi.DBObject;
 /**
  * @deprecated In Version 1.5 ausmustern
  */
+@Deprecated
 public interface Abrechnung extends DBObject
 {
   public String getID() throws RemoteException;

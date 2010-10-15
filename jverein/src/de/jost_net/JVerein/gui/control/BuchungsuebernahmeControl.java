@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/10/10 06:36:14 $
+ * $Revision: 1.14 $
+ * $Date: 2010/10/15 09:58:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
- * Revision 1.13  2010/10/10 06:36:14  jost
+ * Revision 1.14  2010/10/15 09:58:26  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.13  2010-10-10 06:36:14  jost
  * Bugfix "leere Kontoauswahl".
  *
  * Revision 1.12  2010-08-23 13:33:14  jost
@@ -80,6 +83,7 @@ import de.willuhn.util.ApplicationException;
 
 public class BuchungsuebernahmeControl extends AbstractControl
 {
+
   private Settings settings = null;
 
   private DialogInput konto = null;
@@ -107,6 +111,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
   {
     Button button = new Button("Suchen", new Action()
     {
+
       public void handleAction(Object context) throws ApplicationException
       {
         try
@@ -127,7 +132,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
   {
     Button button = new Button("&Übernahme", new Action()
     {
-      @SuppressWarnings("unchecked")
+
       public void handleAction(Object context) throws ApplicationException
       {
         try
@@ -187,7 +192,8 @@ public class BuchungsuebernahmeControl extends AbstractControl
 
     ResultSetExtractor rs = new ResultSetExtractor()
     {
-      public Object extract(ResultSet rs) throws RemoteException, SQLException
+
+      public Object extract(ResultSet rs) throws SQLException
       {
         if (!rs.next())
         {
@@ -200,14 +206,14 @@ public class BuchungsuebernahmeControl extends AbstractControl
 
     try
     {
-      DBService hibservice = (DBService) Application.getServiceFactory()
-          .lookup(HBCI.class, "database");
+      DBService hibservice = (DBService) Application.getServiceFactory().lookup(
+          HBCI.class, "database");
       DBIterator hibbuchungen = hibservice.createList(Umsatz.class);
       if (maximum.intValue() > 0)
       {
         hibbuchungen.addFilter("id >" + maximum);
       }
-      hibbuchungen.addFilter("konto_id = ?", new Object[] { hibid });
+      hibbuchungen.addFilter("konto_id = ?", new Object[] { hibid});
       hibbuchungen.setOrder("ORDER BY id");
 
       if (buchungsList == null)
@@ -231,7 +237,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
         buchungsList.removeAll();
         while (hibbuchungen.hasNext())
         {
-          buchungsList.addItem((Umsatz) hibbuchungen.next());
+          buchungsList.addItem(hibbuchungen.next());
         }
       }
     }

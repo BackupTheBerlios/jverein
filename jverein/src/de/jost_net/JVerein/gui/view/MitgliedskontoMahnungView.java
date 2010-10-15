@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoMahnungView.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/07 19:49:22 $
+ * $Revision: 1.5 $
+ * $Date: 2010/10/15 09:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoMahnungView.java,v $
- * Revision 1.4  2010/10/07 19:49:22  jost
+ * Revision 1.5  2010/10/15 09:58:24  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.4  2010-10-07 19:49:22  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.3  2010-09-14 06:19:22  jost
@@ -33,10 +36,11 @@ import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
-import de.willuhn.util.ApplicationException;
 
 public class MitgliedskontoMahnungView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Mahnung"));
@@ -47,13 +51,13 @@ public class MitgliedskontoMahnungView extends AbstractView
         "Parameter"));
     if (this.getCurrentObject() == null)
     {
-      group.addLabelPair(JVereinPlugin.getI18n().tr("von Datum"), control
-          .getVondatum(MitgliedskontoControl.DATUM_MAHNUNG));
-      group.addLabelPair(JVereinPlugin.getI18n().tr("bis Datum"), control
-          .getBisdatum(MitgliedskontoControl.DATUM_MAHNUNG));
+      group.addLabelPair(JVereinPlugin.getI18n().tr("von Datum"),
+          control.getVondatum(MitgliedskontoControl.DATUM_MAHNUNG));
+      group.addLabelPair(JVereinPlugin.getI18n().tr("bis Datum"),
+          control.getBisdatum(MitgliedskontoControl.DATUM_MAHNUNG));
     }
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Formular"), control
-        .getFormular(Formularart.MAHNUNG));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Formular"),
+        control.getFormular(Formularart.MAHNUNG));
     control.getDifferenz("Fehlbetrag");
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
@@ -62,10 +66,6 @@ public class MitgliedskontoMahnungView extends AbstractView
         new DokumentationAction(), DokumentationUtil.MAHNUNG, false,
         "help-browser.png");
     buttons.addButton(control.getStartMahnungButton(this.getCurrentObject()));
-  }
-
-  public void unbind() throws ApplicationException
-  {
   }
 
   @Override

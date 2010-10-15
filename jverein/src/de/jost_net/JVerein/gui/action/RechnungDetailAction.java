@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/RechnungDetailAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/09/16 18:27:00 $
+ * $Revision: 1.2 $
+ * $Date: 2010/10/15 09:58:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungDetailAction.java,v $
- * Revision 1.1  2008/09/16 18:27:00  jost
+ * Revision 1.2  2010/10/15 09:58:02  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.1  2008-09-16 18:27:00  jost
  * Neu: Rechnung
  *
  **********************************************************************/
@@ -19,11 +22,11 @@ import de.jost_net.JVerein.gui.view.RechnungDetailView;
 import de.jost_net.JVerein.rmi.Abrechnung;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.util.ApplicationException;
 
 public class RechnungDetailAction implements Action
 {
-  public void handleAction(Object context) throws ApplicationException
+
+  public void handleAction(Object context)
   {
     Abrechnung a = null;
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungslisteView.java,v $
- * $Revision: 1.16 $
- * $Date: 2010/10/07 19:49:24 $
+ * $Revision: 1.17 $
+ * $Date: 2010/10/15 09:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungslisteView.java,v $
- * Revision 1.16  2010/10/07 19:49:24  jost
+ * Revision 1.17  2010/10/15 09:58:24  jost
+ * Code aufgeräumt
+ *
+ * Revision 1.16  2010-10-07 19:49:24  jost
  * Hilfe in die View verlagert.
  *
  * Revision 1.15  2010-08-23 13:39:32  jost
@@ -70,10 +73,11 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
-import de.willuhn.util.ApplicationException;
 
 public class BuchungslisteView extends AbstractView
 {
+
+  @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Liste der Buchungen"));
@@ -82,19 +86,20 @@ public class BuchungslisteView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Suche Buchungen"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Konto"), control
-        .getSuchKonto());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungsart"), control
-        .getSuchBuchungsart());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("von Datum"), control
-        .getVondatum());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("bis Datum"), control
-        .getBisdatum());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Konto"),
+        control.getSuchKonto());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungsart"),
+        control.getSuchBuchungsart());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("von Datum"),
+        control.getVondatum());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("bis Datum"),
+        control.getBisdatum());
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 1);
     Button button = new Button("&suchen", new Action()
     {
-      public void handleAction(Object context) throws ApplicationException
+
+      public void handleAction(Object context)
       {
         try
         {
@@ -122,10 +127,6 @@ public class BuchungslisteView extends AbstractView
     buttons2.addButton(JVereinPlugin.getI18n().tr("neu"),
         new BuchungNeuAction(), null, false, "document-new.png");
 
-  }
-
-  public void unbind() throws ApplicationException
-  {
   }
 
   @Override
