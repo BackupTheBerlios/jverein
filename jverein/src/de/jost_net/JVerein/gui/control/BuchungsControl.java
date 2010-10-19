@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.29 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.30 $
+ * $Date: 2010/10/19 18:12:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.29  2010/10/15 09:58:27  jost
+ * Revision 1.30  2010/10/19 18:12:22  jost
+ * Sortierung der Buchungsart nach Alphabet
+ *
+ * Revision 1.29  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.28  2010-10-14 18:26:37  jost
@@ -393,7 +396,7 @@ public class BuchungsControl extends AbstractControl
       return buchungsart;
     }
     DBIterator list = Einstellungen.getDBService().createList(Buchungsart.class);
-    list.setOrder("ORDER BY nummer");
+    list.setOrder("ORDER BY bezeichnung");
     buchungsart = new SelectInput(list, getBuchung().getBuchungsart());
     buchungsart.setValue(getBuchung().getBuchungsart());
     buchungsart.setAttribute("bezeichnung");
