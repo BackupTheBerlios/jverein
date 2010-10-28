@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.29 $
- * $Date: 2010/08/27 19:07:06 $
+ * $Revision: 1.30 $
+ * $Date: 2010/10/28 19:13:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.29  2010/08/27 19:07:06  jost
+ * Revision 1.30  2010/10/28 19:13:07  jost
+ * Neu: Wohnsitzstaat
+ *
+ * Revision 1.29  2010-08-27 19:07:06  jost
  * neu: Mitgliedsfoto
  *
  * Revision 1.28  2010-08-25 11:52:42  jost
@@ -145,6 +148,8 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput mitgliedskonto;
 
   private CheckboxInput mitgliedfoto;
+
+  private CheckboxInput auslandsadressen;
 
   private CheckboxInput manuellezahlungen;
 
@@ -319,6 +324,17 @@ public class EinstellungControl extends AbstractControl
     mitgliedfoto = new CheckboxInput(Einstellungen.getEinstellung()
         .getMitgliedfoto());
     return mitgliedfoto;
+  }
+
+  public CheckboxInput getAuslandsadressen() throws RemoteException
+  {
+    if (auslandsadressen != null)
+    {
+      return auslandsadressen;
+    }
+    auslandsadressen = new CheckboxInput(Einstellungen.getEinstellung()
+        .getAuslandsadressen());
+    return auslandsadressen;
   }
 
   public CheckboxInput getManuelleZahlungen() throws RemoteException
@@ -611,6 +627,7 @@ public class EinstellungControl extends AbstractControl
       e.setJuristischePersonen((Boolean) juristischepersonen.getValue());
       e.setMitgliedskonto((Boolean) mitgliedskonto.getValue());
       e.setMitgliedfoto((Boolean) mitgliedfoto.getValue());
+      e.setAuslandsadressen((Boolean) auslandsadressen.getValue());
       e.setManuelleZahlungen((Boolean) manuellezahlungen.getValue());
       e.setRechnungen13((Boolean) rechnungen13.getValue());
       e.setRechnungTextAbbuchung((String) rechnungtextabbuchung.getValue());

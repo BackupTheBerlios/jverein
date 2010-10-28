@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularfeldControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.12 $
+ * $Date: 2010/10/28 19:13:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldControl.java,v $
- * Revision 1.11  2010/10/15 09:58:26  jost
+ * Revision 1.12  2010/10/28 19:13:19  jost
+ * Neu: Wohnsitzstaat
+ *
+ * Revision 1.11  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.10  2010-08-16 20:16:16  jost
@@ -126,6 +129,8 @@ public class FormularfeldControl extends AbstractControl
 
   public static final String ORT = "Ort";
 
+  public static final String STAAT = "Staat";
+
   public static final String ZAHLUNGSRHYTMUS = "Zahlungsrhytmus";
 
   public static final String BLZ = "Bankleitzahl";
@@ -213,6 +218,7 @@ public class FormularfeldControl extends AbstractControl
       namen.add(STRASSE);
       namen.add(PLZ);
       namen.add(ORT);
+      namen.add("STAAT");
       namen.add(ZAHLUNGSRHYTMUS);
       namen.add(BLZ);
       namen.add(KONTO);
@@ -321,7 +327,7 @@ public class FormularfeldControl extends AbstractControl
   {
     DBService service = Einstellungen.getDBService();
     DBIterator formularfelder = service.createList(Formularfeld.class);
-    formularfelder.addFilter("formular = ?", new Object[] { formular.getID()});
+    formularfelder.addFilter("formular = ?", new Object[] { formular.getID() });
     formularfelder.setOrder("ORDER BY x, y");
 
     formularfelderList = new TablePart(formularfelder, new FormularfeldAction());
@@ -343,7 +349,7 @@ public class FormularfeldControl extends AbstractControl
     formularfelderList.removeAll();
     DBIterator formularfelder = Einstellungen.getDBService().createList(
         Formularfeld.class);
-    formularfelder.addFilter("formular = ?", new Object[] { formular.getID()});
+    formularfelder.addFilter("formular = ?", new Object[] { formular.getID() });
     formularfelder.setOrder("ORDER BY x, y");
     while (formularfelder.hasNext())
     {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.34 $
- * $Date: 2010/10/25 20:31:49 $
+ * $Revision: 1.35 $
+ * $Date: 2010/10/28 19:15:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.34  2010/10/25 20:31:49  jost
+ * Revision 1.35  2010/10/28 19:15:05  jost
+ * Neu: Wohnsitzstaat
+ *
+ * Revision 1.34  2010-10-25 20:31:49  jost
  * Neu: Vermerk 1 und Vermerk2
  *
  * Revision 1.33  2010-10-15 09:58:29  jost
@@ -289,6 +292,15 @@ public class Import
         }
         m.setPlz(results.getString("Plz"));
         m.setOrt(results.getString("Ort"));
+        try
+        {
+          m.setStaat(results.getString("Staat"));
+        }
+        catch (SQLException e)
+        {
+          m.setStaat(null);
+        }
+
         m.setGeburtsdatum(results.getString("Geburtsdatum"));
         m.setGeschlecht(results.getString("Geschlecht"));
         m.setBlz(results.getString("Bankleitzahl"));

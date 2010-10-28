@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/08/27 19:08:41 $
+ * $Revision: 1.14 $
+ * $Date: 2010/10/28 19:15:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
- * Revision 1.13  2010/08/27 19:08:41  jost
+ * Revision 1.14  2010/10/28 19:15:50  jost
+ * Neu: Wohnsitzstaat
+ *
+ * Revision 1.13  2010-08-27 19:08:41  jost
  * neu: Mitgliedsfoto
  *
  * Revision 1.12  2009/10/20 18:01:17  jost
@@ -101,6 +104,10 @@ public interface Mitglied extends DBObject
   public String getOrt() throws RemoteException;
 
   public void setOrt(String ort) throws RemoteException;
+
+  public String getStaat() throws RemoteException;
+
+  public void setStaat(String staat) throws RemoteException;
 
   public Integer getZahlungsweg() throws RemoteException;
 

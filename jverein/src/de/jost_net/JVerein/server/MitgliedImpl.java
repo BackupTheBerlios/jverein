@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.32 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.33 $
+ * $Date: 2010/10/28 19:16:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.32  2010/10/15 09:58:28  jost
+ * Revision 1.33  2010/10/28 19:16:52  jost
+ * Neu: Wohnsitzstaat
+ *
+ * Revision 1.32  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.31  2010-09-15 20:44:26  jost
@@ -254,9 +257,11 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       if (!Einstellungen.checkAccountCRC(getBlz(), getKonto()))
       {
         throw new ApplicationException(
-            JVereinPlugin.getI18n().tr(
-                "BLZ/Kontonummer ({0}/{1}) ungültig. Bitte prüfen Sie Ihre Eingaben.",
-                new String[] { getBlz(), getKonto()}));
+            JVereinPlugin
+                .getI18n()
+                .tr(
+                    "BLZ/Kontonummer ({0}/{1}) ungültig. Bitte prüfen Sie Ihre Eingaben.",
+                    new String[] { getBlz(), getKonto() }));
       }
     }
     if (getZahlungsrhytmus() != 12 && getZahlungsrhytmus() != 6
@@ -280,8 +285,10 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
         if (famang.hasNext())
         {
           throw new ApplicationException(
-              JVereinPlugin.getI18n().tr(
-                  "Dieses Mitglied zahlt noch für andere Mitglieder. Zunächst Beitragsart der Angehörigen ändern!"));
+              JVereinPlugin
+                  .getI18n()
+                  .tr(
+                      "Dieses Mitglied zahlt noch für andere Mitglieder. Zunächst Beitragsart der Angehörigen ändern!"));
         }
       }
     }
@@ -416,6 +423,16 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public void setOrt(String ort) throws RemoteException
   {
     setAttribute("ort", ort);
+  }
+
+  public String getStaat() throws RemoteException
+  {
+    return (String) getAttribute("staat");
+  }
+
+  public void setStaat(String staat) throws RemoteException
+  {
+    setAttribute("staat", staat.toUpperCase());
   }
 
   public Integer getZahlungsweg() throws RemoteException
@@ -711,11 +728,11 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       DBIterator it = Einstellungen.getDBService().createList(
           Felddefinition.class);
-      it.addFilter("name = ?", new Object[] { fieldName.substring(13)});
+      it.addFilter("name = ?", new Object[] { fieldName.substring(13) });
       Felddefinition fd = (Felddefinition) it.next();
       it = Einstellungen.getDBService().createList(Zusatzfelder.class);
       it.addFilter("felddefinition = ? AND mitglied = ?", new Object[] {
-          fd.getID(), getID()});
+          fd.getID(), getID() });
       if (it.hasNext())
       {
         Zusatzfelder zf = (Zusatzfelder) it.next();

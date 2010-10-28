@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.15 $
- * $Date: 2010/08/27 19:08:23 $
+ * $Revision: 1.16 $
+ * $Date: 2010/10/28 19:15:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.15  2010/08/27 19:08:23  jost
+ * Revision 1.16  2010/10/28 19:15:36  jost
+ * Neu: Wohnsitzstaat
+ *
+ * Revision 1.15  2010-08-27 19:08:23  jost
  * neu: Mitgliedsfoto
  *
  * Revision 1.14  2010-08-10 18:07:02  jost
@@ -112,6 +115,11 @@ public interface Einstellung extends DBObject
   public void setMitgliedfoto(Boolean mitgliedfoto) throws RemoteException;
 
   public boolean getMitgliedfoto() throws RemoteException;
+
+  public void setAuslandsadressen(Boolean auslandsadressen)
+      throws RemoteException;
+
+  public boolean getAuslandsadressen() throws RemoteException;
 
   public void setManuelleZahlungen(Boolean manuellezahlungen)
       throws RemoteException;
