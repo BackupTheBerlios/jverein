@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.26 $
- * $Date: 2010/10/15 09:58:24 $
+ * $Revision: 1.27 $
+ * $Date: 2010/10/30 11:30:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
- * Revision 1.26  2010/10/15 09:58:24  jost
+ * Revision 1.27  2010/10/30 11:30:53  jost
+ * Neu: Sterbetag
+ *
+ * Revision 1.26  2010-10-15 09:58:24  jost
  * Code aufgeräumt
  *
  * Revision 1.25  2010-10-07 19:49:22  jost
@@ -147,7 +150,7 @@ public class MitgliederSucheView extends AbstractView
 
   private final String[] b = { "A", "Ä", "B", "C", "D", "E", "F", "G", "H",
       "I", "J", "K", "L", "M", "N", "O", "Ö", "P", "Q", "R", "S", "T", "U",
-      "Ü", "V", "W", "X", "Y", "Z", "*"};
+      "Ü", "V", "W", "X", "Y", "Z", "*" };
 
   @Override
   public void bind() throws Exception
@@ -167,12 +170,13 @@ public class MitgliederSucheView extends AbstractView
         return new Long(rs.getLong(1));
       }
     };
-    Long anzahlbeitragsgruppe = (Long) service.execute(sql, new Object[] {}, rs);
+    Long anzahlbeitragsgruppe = (Long) service
+        .execute(sql, new Object[] {}, rs);
     if (anzahlbeitragsgruppe.longValue() == 0)
     {
       new LabelInput(JVereinPlugin.getI18n().tr(
           "Noch keine Beitragsgruppe erfaßt. Bitte unter "
-              + "Plugins|JVerein|Beitragsgruppe erfassen.")).paint(getParent());
+              + "Administration|Beitragsgruppen erfassen.")).paint(getParent());
     }
 
     rs = new ResultSetExtractor()
@@ -187,13 +191,14 @@ public class MitgliederSucheView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Filter"));
-    ColumnLayout cl = new ColumnLayout(group.getComposite(), 2);
+    ColumnLayout cl = new ColumnLayout(group.getComposite(), 3);
 
     SimpleContainer left = new SimpleContainer(cl.getComposite());
     Input mitglstat = control.getMitgliedStatus();
     mitglstat.addListener(new FilterListener(control));
     left.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedschaft"), mitglstat);
-    IntegerInput suchexternemitgliedsnummer = control.getSuchExterneMitgliedsnummer();
+    IntegerInput suchexternemitgliedsnummer = control
+        .getSuchExterneMitgliedsnummer();
     suchexternemitgliedsnummer.addListener(new FilterListener(control));
     if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
     {
@@ -215,21 +220,30 @@ public class MitgliederSucheView extends AbstractView
     left.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsgruppe"),
         mitglbeitragsgruppe);
 
-    SimpleContainer right = new SimpleContainer(cl.getComposite());
-
+    SimpleContainer middle = new SimpleContainer(cl.getComposite());
     DateInput mitglgebdatvon = control.getGeburtsdatumvon();
     mitglgebdatvon.addListener(new FilterListener(control));
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"),
+    middle.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"),
         mitglgebdatvon);
     DateInput mitglgebdatbis = control.getGeburtsdatumbis();
     mitglgebdatbis.addListener(new FilterListener(control));
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"),
+    middle.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"),
         mitglgebdatbis);
     SelectInput mitglgeschlecht = control.getGeschlecht();
     mitglgeschlecht.setMandatory(false);
     mitglgeschlecht.addListener(new FilterListener(control));
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Geschlecht"),
+    middle.addLabelPair(JVereinPlugin.getI18n().tr("Geschlecht"),
         mitglgeschlecht);
+
+    SimpleContainer right = new SimpleContainer(cl.getComposite());
+    DateInput mitglsterbedatvon = control.getSterbedatumvon();
+    mitglsterbedatvon.addListener(new FilterListener(control));
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum von"),
+        mitglsterbedatvon);
+    DateInput mitglsterbedatbis = control.getSterbedatumbis();
+    mitglsterbedatbis.addListener(new FilterListener(control));
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum bis"),
+        mitglsterbedatbis);
 
     settings = new Settings(this.getClass());
     settings.setStoreWhenRead(true);
@@ -332,8 +346,16 @@ public class MitgliederSucheView extends AbstractView
       {
         return;
       }
-      int si = folder.getSelectionIndex();
-      TabRefresh(control, si);
+
+      try
+      {
+        int si = folder.getSelectionIndex();
+        TabRefresh(control, si);
+      }
+      catch (NullPointerException e)
+      {
+        return;
+      }
     }
   }
 

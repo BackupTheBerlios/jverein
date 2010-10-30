@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.19 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.20 $
+ * $Date: 2010/10/30 11:31:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.19  2010/10/15 09:58:29  jost
+ * Revision 1.20  2010/10/30 11:31:38  jost
+ * Neu: Sterbetag
+ *
+ * Revision 1.19  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.18  2010-03-27 20:10:55  jost
@@ -171,6 +174,15 @@ public class MitgliedQuery
     {
       addCondition("geburtsdatum <= ?");
     }
+
+    if (control.getSterbedatumvon().getValue() != null)
+    {
+      addCondition("sterbetag >= ?");
+    }
+    if (control.getSterbedatumbis().getValue() != null)
+    {
+      addCondition("sterbetag <= ?");
+    }
     if (control.getGeschlecht().getText() != null
         && !control.getGeschlecht().getText().equals("Bitte auswählen"))
     {
@@ -196,7 +208,9 @@ public class MitgliedQuery
         {
           addCondition("austritt <= ?");
         }
-        if (control.getAustrittvon().getValue() == null
+        if (control.getSterbedatumvon() == null
+            && control.getSterbedatumbis() == null
+            && control.getAustrittvon().getValue() == null
             && control.getAustrittbis().getValue() == null)
         {
           addCondition("(austritt is null or austritt > current_date())");
@@ -217,7 +231,8 @@ public class MitgliedQuery
         // Workaround für einen Bug in IntegerInput
       }
     }
-    Beitragsgruppe bg = (Beitragsgruppe) control.getBeitragsgruppeAusw().getValue();
+    Beitragsgruppe bg = (Beitragsgruppe) control.getBeitragsgruppeAusw()
+        .getValue();
     if (bg != null)
     {
       addCondition("beitragsgruppe = ? ");
@@ -252,8 +267,8 @@ public class MitgliedQuery
         ArrayList<Mitglied> list = new ArrayList<Mitglied>();
         while (rs.next())
         {
-          list.add((Mitglied) service.createObject(Mitglied.class,
-              rs.getString(1)));
+          list.add((Mitglied) service.createObject(Mitglied.class, rs
+              .getString(1)));
         }
         return list;
       }
@@ -278,6 +293,16 @@ public class MitgliedQuery
     if (control.getGeburtsdatumbis().getValue() != null)
     {
       Date d = (Date) control.getGeburtsdatumbis().getValue();
+      bedingungen.add(new java.sql.Date(d.getTime()));
+    }
+    if (control.getSterbedatumvon().getValue() != null)
+    {
+      Date d = (Date) control.getSterbedatumvon().getValue();
+      bedingungen.add(new java.sql.Date(d.getTime()));
+    }
+    if (control.getSterbedatumbis().getValue() != null)
+    {
+      Date d = (Date) control.getSterbedatumbis().getValue();
       bedingungen.add(new java.sql.Date(d.getTime()));
     }
     if (control.getGeschlecht().getText() != null
@@ -314,7 +339,7 @@ public class MitgliedQuery
       if (Einstellungen.getEinstellung().getExterneMitgliedsnummer()
           && control.getSuchExterneMitgliedsnummer().getValue() != null)
       {
-        bedingungen.add( control.getSuchExterneMitgliedsnummer().getValue());
+        bedingungen.add(control.getSuchExterneMitgliedsnummer().getValue());
       }
     }
     catch (NullPointerException e)

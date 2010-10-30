@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/10/28 19:15:50 $
+ * $Revision: 1.15 $
+ * $Date: 2010/10/30 11:31:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
- * Revision 1.14  2010/10/28 19:15:50  jost
+ * Revision 1.15  2010/10/30 11:31:51  jost
+ * Neu: Sterbetag
+ *
+ * Revision 1.14  2010-10-28 19:15:50  jost
  * Neu: Wohnsitzstaat
  *
  * Revision 1.13  2010-08-27 19:08:41  jost
@@ -186,6 +189,12 @@ public interface Mitglied extends DBObject
   public void setKuendigung(Date kuendigung) throws RemoteException;
 
   public void setKuendigung(String kuendigung) throws RemoteException;
+
+  public Date getSterbetag() throws RemoteException;
+
+  public void setSterbetag(Date sterbetag) throws RemoteException;
+
+  public void setSterbetag(String sterbetag) throws RemoteException;
 
   public String getVermerk1() throws RemoteException;
 

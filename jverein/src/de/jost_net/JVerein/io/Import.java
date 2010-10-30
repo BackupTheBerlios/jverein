@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.35 $
- * $Date: 2010/10/28 19:15:05 $
+ * $Revision: 1.36 $
+ * $Date: 2010/10/30 11:31:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.35  2010/10/28 19:15:05  jost
+ * Revision 1.36  2010/10/30 11:31:08  jost
+ * Neu: Sterbetag
+ *
+ * Revision 1.35  2010-10-28 19:15:05  jost
  * Neu: Wohnsitzstaat
  *
  * Revision 1.34  2010-10-25 20:31:49  jost
@@ -302,6 +305,14 @@ public class Import
         }
 
         m.setGeburtsdatum(results.getString("Geburtsdatum"));
+        try
+        {
+          m.setSterbetag(results.getString("Sterbetag"));
+        }
+        catch (SQLException e)
+        {
+          // Nichts tun
+        }
         m.setGeschlecht(results.getString("Geschlecht"));
         m.setBlz(results.getString("Bankleitzahl"));
         m.setKonto(results.getString("Kontonummer"));

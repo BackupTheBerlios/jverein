@@ -109,6 +109,13 @@
 		<td>in Abh‰ngigkeit von den Einstellungen</td>
 	</tr>
 	<tr>
+		<td>Sterbetag</td>
+		<td>Format TT.MM.JJJJ</td>
+		<td>10</td>
+		<td>ja</td>
+		<td>ja</td>
+	</tr>
+	<tr>
 		<td>Geschlecht</td>
 		<td>m oder w</td>
 		<td>1</td>
@@ -256,7 +263,10 @@ Mitglieds_Nr;Anrede;Titel;Nachname;Vorname;Straﬂe;Plz;Ort;Geburtsdatum;Geschlech
 	
 	<!-- 
     $Log: administration_import.php,v $
-    Revision 1.11  2010/10/28 19:17:10  jost
+    Revision 1.12  2010/10/30 11:32:40  jost
+    Neu: Sterbetag
+
+    Revision 1.11  2010-10-28 19:17:10  jost
     Neu: Wohnsitzstaat
 
     Revision 1.10  2010-10-25 20:32:00  jost

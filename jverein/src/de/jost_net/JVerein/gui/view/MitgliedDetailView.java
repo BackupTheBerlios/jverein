@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.48 $
- * $Date: 2010/10/28 19:14:53 $
+ * $Revision: 1.49 $
+ * $Date: 2010/10/30 11:30:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
- * Revision 1.48  2010/10/28 19:14:53  jost
+ * Revision 1.49  2010/10/30 11:30:12  jost
+ * Neu: Sterbetag
+ *
+ * Revision 1.48  2010-10-28 19:14:53  jost
  * Neu: Wohnsitzstaat
  *
  * Revision 1.47  2010-10-15 09:58:24  jost
@@ -266,6 +269,7 @@ public class MitgliedDetailView extends AbstractView
     tab3.addInput(control.getBeitragsgruppe());
     tab3.addInput(control.getAustritt());
     tab3.addInput(control.getKuendigung());
+    tab3.addInput(control.getSterbetag());
     DBIterator it = Einstellungen.getDBService().createList(
         Beitragsgruppe.class);
     it.addFilter("beitragsart = 1 or beitragsart = 2");

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.15 $
+ * $Date: 2010/10/30 11:31:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
- * Revision 1.14  2010/10/15 09:58:28  jost
+ * Revision 1.15  2010/10/30 11:31:23  jost
+ * Neu: Sterbetag
+ *
+ * Revision 1.14  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.13  2010-10-03 09:48:20  jost
@@ -89,8 +92,8 @@ public class MitgliedAuswertungPDF
     try
     {
       FileOutputStream fos = new FileOutputStream(file);
-      Reporter report = new Reporter(fos, monitor, "Mitglieder", subtitle,
-          list.size(), 50, 10, 20, 15);
+      Reporter report = new Reporter(fos, monitor, "Mitglieder", subtitle, list
+          .size(), 50, 10, 20, 15);
 
       report.addHeaderColumn("Name", Element.ALIGN_CENTER, 100,
           Color.LIGHT_GRAY);
@@ -98,7 +101,8 @@ public class MitgliedAuswertungPDF
           130, Color.LIGHT_GRAY);
       report.addHeaderColumn("Geburts- datum", Element.ALIGN_CENTER, 30,
           Color.LIGHT_GRAY);
-      report.addHeaderColumn("Eintritt / \nAustritt / \nKündigung",
+      report.addHeaderColumn(
+          "Eintritt / \nAustritt / \nKündigung /\nSterbedatum",
           Element.ALIGN_CENTER, 30, Color.LIGHT_GRAY);
       report.addHeaderColumn("Beitragsgruppe /\nEigenschaften",
           Element.ALIGN_CENTER, 60, Color.LIGHT_GRAY);
@@ -152,6 +156,10 @@ public class MitgliedAuswertungPDF
         {
           zelle += "\n" + Einstellungen.DATEFORMAT.format(m.getKuendigung());
         }
+        if (m.getSterbetag() != null)
+        {
+          zelle += "\n" + Einstellungen.DATEFORMAT.format(m.getSterbetag());
+        }
         report.addColumn(zelle, Element.ALIGN_LEFT);
         String beitragsgruppebemerkung = m.getBeitragsgruppe().getBezeichnung();
         // if (m.getVermerk1() != null)
@@ -164,7 +172,7 @@ public class MitgliedAuswertungPDF
         // }
         DBIterator it = Einstellungen.getDBService().createList(
             Eigenschaften.class);
-        it.addFilter("mitglied = ?", new Object[] { m.getID()});
+        it.addFilter("mitglied = ?", new Object[] { m.getID() });
         if (it.size() > 0)
         {
           beitragsgruppebemerkung += "\n";
@@ -180,8 +188,8 @@ public class MitgliedAuswertungPDF
       }
       report.closeTable();
 
-      report.add(new Paragraph("Anzahl Mitglieder: " + list.size(),
-          FontFactory.getFont(FontFactory.HELVETICA, 8)));
+      report.add(new Paragraph("Anzahl Mitglieder: " + list.size(), FontFactory
+          .getFont(FontFactory.HELVETICA, 8)));
 
       report.close();
       monitor.setStatusText("Auswertung fertig. " + list.size() + " Sätze.");
@@ -227,7 +235,7 @@ public class MitgliedAuswertungPDF
    * Gibt einen Leerstring aus, falls der Text null ist.
    * 
    * @param text
-   *        der Text.
+   *          der Text.
    * @return der Text oder Leerstring - niemals null.
    */
   // private String notNull(String text)

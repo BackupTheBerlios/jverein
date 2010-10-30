@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.15 $
- * $Date: 2010/10/15 09:58:24 $
+ * $Revision: 1.16 $
+ * $Date: 2010/10/30 11:29:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.15  2010/10/15 09:58:24  jost
+ * Revision 1.16  2010/10/30 11:29:54  jost
+ * Neu: Sterbetag
+ *
+ * Revision 1.15  2010-10-15 09:58:24  jost
  * Code aufgeräumt
  *
  * Revision 1.14  2010-10-07 19:49:24  jost
@@ -93,37 +96,42 @@ public class AuswertungMitgliedView extends AbstractView
         DBSupportH2Impl.class.getName()).equals(
         DBSupportMcKoiImpl.class.getName()))
     {
-      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"),
-          control.getEigenschaftenAuswahl());
+      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"), control
+          .getEigenschaftenAuswahl());
     }
 
-    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"),
-        control.getGeburtsdatumvon());
-    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"),
-        control.getGeburtsdatumbis());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"), control
+        .getGeburtsdatumvon());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"), control
+        .getGeburtsdatumbis());
+
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum von"), control
+        .getSterbedatumvon());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum bis"), control
+        .getSterbedatumbis());
 
     SelectInput inpGeschlecht = control.getGeschlecht();
     inpGeschlecht.setMandatory(false);
     left.addLabelPair(JVereinPlugin.getI18n().tr("Geschlecht"), inpGeschlecht);
 
     SimpleContainer right = new SimpleContainer(cl.getComposite());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt von"),
-        control.getEintrittvon());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt bis"),
-        control.getEintrittbis());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt von"), control
+        .getEintrittvon());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt bis"), control
+        .getEintrittbis());
 
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt von"),
-        control.getAustrittvon());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt bis"),
-        control.getAustrittbis());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt von"), control
+        .getAustrittvon());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt bis"), control
+        .getAustrittbis());
 
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsgruppe"),
-        control.getBeitragsgruppeAusw());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsgruppe"), control
+        .getBeitragsgruppeAusw());
 
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Ausgabe"),
-        control.getAusgabe());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Sortierung"),
-        control.getSortierung());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Ausgabe"), control
+        .getAusgabe());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Sortierung"), control
+        .getSortierung());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 
