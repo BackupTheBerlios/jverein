@@ -45,6 +45,7 @@
     			<li>Mitglieder im Ausland: Unter Einstellungen kann jetzt ein entsprechendes Häkchen gesetzt werden. Anschließend kann der Staat beim Mitglied erfasst werden.</li>
 				<li>Sterbetag aufgenommen.</li>
 				<li>Bugfix bei leerer/neuer Datenbank.</li>
+				<li>Zusatzbeträge-Import: Im Fehlerfall wird der Name des Mitglieds mit ausgegeben.</li>
     		</ul>
 
 	   	<li>Version 1.3.2 vom 18.05.2010</li>
@@ -522,7 +523,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.79  2010/10/30 11:32:51  jost
+    Revision 1.80  2010/10/30 11:54:28  jost
+    *** empty log message ***
+
+    Revision 1.79  2010-10-30 11:32:51  jost
     Neu: Sterbetag
 
     Revision 1.78  2010-10-28 19:17:22  jost
