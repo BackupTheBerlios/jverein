@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/DefaultZusatzbetraegeImport.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/10/30 11:53:25 $
+ * $Revision: 1.3 $
+ * $Date: 2010/10/31 17:53:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DefaultZusatzbetraegeImport.java,v $
- * Revision 1.2  2010/10/30 11:53:25  jost
+ * Revision 1.3  2010/10/31 17:53:08  jost
+ * Logging
+ *
+ * Revision 1.2  2010-10-30 11:53:25  jost
  * Name des Mitglieds wird beim Fehler mit ausgegeben.
  *
  * Revision 1.1  2009/10/20 18:00:03  jost
@@ -33,6 +36,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.willuhn.datasource.rmi.DBIterator;
+import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 import de.willuhn.util.ProgressMonitor;
 
@@ -175,7 +179,7 @@ public class DefaultZusatzbetraegeImport implements IZusatzbetraegeImport
     catch (Exception e)
     {
       monitor.log(" nicht importiert: " + e.getMessage());
-      e.printStackTrace();
+      Logger.error("Fehler", e);
     }
   }
 
