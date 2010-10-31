@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.34 $
- * $Date: 2010/10/30 11:32:27 $
+ * $Revision: 1.35 $
+ * $Date: 2010/10/31 17:53:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.34  2010/10/30 11:32:27  jost
+ * Revision 1.35  2010/10/31 17:53:52  jost
+ * Vermeidung NPE
+ *
+ * Revision 1.34  2010-10-30 11:32:27  jost
  * Neu: Sterbetag
  *
  * Revision 1.33  2010-10-28 19:16:52  jost
@@ -439,7 +442,11 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
 
   public void setStaat(String staat) throws RemoteException
   {
-    setAttribute("staat", staat.toUpperCase());
+    if (staat != null)
+    {
+      staat = staat.toUpperCase();
+    }
+    setAttribute("staat", staat);
   }
 
   public Integer getZahlungsweg() throws RemoteException
