@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.36 $
- * $Date: 2010/10/30 11:31:08 $
+ * $Revision: 1.37 $
+ * $Date: 2010/10/31 17:53:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,11 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.36  2010/10/30 11:31:08  jost
+ * Revision 1.37  2010/10/31 17:53:28  jost
+ * Vermeidung NPE
+ * Logging
+ *
+ * Revision 1.36  2010-10-30 11:31:08  jost
  * Neu: Sterbetag
  *
  * Revision 1.35  2010-10-28 19:15:05  jost
@@ -481,7 +485,7 @@ public class Import
     catch (Exception e)
     {
       monitor.log(" nicht importiert: " + e.getMessage());
-      e.printStackTrace();
+      Logger.error("Fehler", e);
     }
   }
 
