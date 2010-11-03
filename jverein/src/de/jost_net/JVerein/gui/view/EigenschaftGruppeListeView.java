@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeListeView.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:25 $
+ * $Revision: 1.6 $
+ * $Date: 2010/11/03 21:32:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeListeView.java,v $
- * Revision 1.5  2010/10/15 09:58:25  jost
+ * Revision 1.6  2010/11/03 21:32:44  jost
+ * Redakt.
+ *
+ * Revision 1.5  2010-10-15 09:58:25  jost
  * Code aufgeräumt
  *
  * Revision 1.4  2010-10-07 19:49:23  jost
@@ -43,7 +46,7 @@ public class EigenschaftGruppeListeView extends AbstractView
   @Override
   public void bind() throws Exception
   {
-    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Eigenschaften Gruppe"));
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Eigenschaften Gruppen"));
 
     EigenschaftGruppeControl control = new EigenschaftGruppeControl(this);
 
