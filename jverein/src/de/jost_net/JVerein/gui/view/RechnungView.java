@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/RechnungView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/10/15 09:58:23 $
+ * $Revision: 1.10 $
+ * $Date: 2010/11/04 20:00:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: RechnungView.java,v $
- * Revision 1.9  2010/10/15 09:58:23  jost
+ * Revision 1.10  2010/11/04 20:00:43  jost
+ * Hinweis auf den Wegfall
+ *
+ * Revision 1.9  2010-10-15 09:58:23  jost
  * Code aufgeräumt
  *
  * Revision 1.8  2010-10-07 19:49:22  jost
@@ -100,7 +103,7 @@ public class RechnungView extends AbstractView
   @Override
   public void bind() throws Exception
   {
-    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Rechnung"));
+    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Rechnung  - wird ab Version 1.5 nicht mehr unterstützt"));
 
     final RechnungControl control = new RechnungControl(this);
 
