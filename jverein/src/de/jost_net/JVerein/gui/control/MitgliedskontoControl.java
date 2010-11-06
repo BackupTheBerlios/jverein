@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/10/28 19:14:05 $
+ * $Revision: 1.14 $
+ * $Date: 2010/11/06 20:13:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.13  2010/10/28 19:14:05  jost
+ * Revision 1.14  2010/11/06 20:13:06  jost
+ * Bugfix SQL-Statement (Fehlbetrag)
+ *
+ * Revision 1.13  2010-10-28 19:14:05  jost
  * Neu: Wohnsitzstaat
  *
  * Revision 1.12  2010-10-15 09:58:26  jost
@@ -485,7 +488,7 @@ public class MitgliedskontoControl extends AbstractControl
         settings.setAttribute(datumverwendung + "datumbis", "");
       }
     }
-    String sql = "select  mitgliedskonto.*, sum(distinct(mitgliedskonto.betrag)) sollsumme, "
+    String sql = "select  mitgliedskonto.*, sum(mitgliedskonto.betrag) sollsumme, "
         + "sum(buchung.betrag)  istsumme,mitglied.name, mitglied.vorname from mitgliedskonto "
         + "join mitglied on (mitgliedskonto.mitglied = mitglied.id) "
         + "left join buchung  on (buchung.mitgliedskonto = mitgliedskonto.id ) ";
