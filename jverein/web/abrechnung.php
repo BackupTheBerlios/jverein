@@ -1,6 +1,5 @@
 <? include ("frame.inc"); ?>
     <h1>Abrechung</h1>
-	<p>ab Version 1.1 verfügbar</p>
 	<p>Die Abrechnung wird mit dem untenstehenden Bildschirm initiiert. Es können</p>
 	<ul>
 		<li>Mitgliedsbeiträge je nach <a href="dokumentationbeitragsmodelle.php">Beitragsmodell</a></li>
@@ -32,6 +31,9 @@
         
     <!-- 
     $Log: abrechnung.php,v $
+    Revision 1.3  2010/11/07 07:12:15  jost
+    Versionshinweise entfernt.
+
     Revision 1.2  2009/11/05 20:07:02  jost
     Hinweis auf 'manuellen Zahlungseingang' aufgenommen.
 

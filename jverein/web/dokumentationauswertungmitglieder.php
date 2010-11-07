@@ -12,12 +12,15 @@
 		<li> Geburtsmonat und -jahr (Geburtstagliste). Hinweis: Runde Geburtstage können in der 
 			<a href="dokumentationauswertungjubilaeen.php">Jubiläumsliste</a> ausgegeben werden.</li>
 	</ul>
-	<p>Ab Version 1.1: Sofern <a href="administration_felddefinitionen.php">Zusatzfelder definiert</a> 
+	<p>Sofern <a href="administration_felddefinitionen.php">Zusatzfelder definiert</a> 
 	    wurden, werden die in die CSV-Datei exportiert.</p>
     <img src='images/Auswertung.jpg' class='screenshot'>
    
     <!-- 
     $Log: dokumentationauswertungmitglieder.php,v $
+    Revision 1.3  2010/11/07 07:15:06  jost
+    Versionshinweise entfernt.
+
     Revision 1.2  2009/09/10 15:51:43  jost
     *** empty log message ***
 

@@ -5,10 +5,13 @@
 		<li><a href="dokumentationauswertungjubilaeen.php">Jubiläen</a></li>
 		<li><a href="dokumentationauswertungkursteilnehmer.php">Kursteilnehmer</a></li>
 		<li><a href="dokumentationauswertungstatistik.php">Statistik</a></li>
-		<li><a href="dokumentationauswertungadressbuchexport.php">Adressbuch-Export</a>(ab Version 1.2)</li>
+		<li><a href="dokumentationauswertungadressbuchexport.php">Adressbuch-Export</a></li>
 	</ul>
 	<!-- 
     $Log: dokumentationauswertung.php,v $
+    Revision 1.2  2010/11/07 07:14:06  jost
+    Versionshinweise entfernt.
+
     Revision 1.1  2009/05/08 14:46:22  jost
     shtml - php
 
