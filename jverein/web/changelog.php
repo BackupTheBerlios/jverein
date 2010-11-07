@@ -112,7 +112,7 @@
     			<li>Bugfix: Löschen von Mitgliedern mit Zusatzfeldern.</li>
     			<li>Neu: Juristische Personen (Firmen, Organisationen, Behörden) können als Mitglied gespeichert werden.</li>
     			<li>Neu: <a href="lehrgaenge.php">Lehrgänge</a> </li>
-    			<li>Zusätzliche Felder zur Rechnungserstelltung. 
+    			<li>Zusätzliche Felder zur Rechnungserstellung. 
     				Siehe #<a href="https://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15062&amp;group_id=7335">15062</a></li>
     			<li>Bugfix "Fehler nach Löschung einer Beitragsgruppe". Bug #<a href="https://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15301&amp;group_id=7335">15301</a></li>
     			<li>Mitgliederstatistik: Bugfix Altersgruppen und Berücksichtigung des Eintrittsdatums.</li>
@@ -523,7 +523,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.80  2010/10/30 11:54:28  jost
+    Revision 1.81  2010/11/07 07:13:26  jost
+    Tippfehler
+
+    Revision 1.80  2010-10-30 11:54:28  jost
     *** empty log message ***
 
     Revision 1.79  2010-10-30 11:32:51  jost
