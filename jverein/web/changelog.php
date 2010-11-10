@@ -1,7 +1,7 @@
 <? include ("frame.inc"); ?>
     <h1>Changelog</h1>
     <ul>
-	   	<li>Version 1.4.0 (noch nicht freigegeben)</li>
+	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
     			<li>Box der aktuellen Geburtstage: Durch Doppelklick kann das Mitglied direkt bearbeitet werden. 
     				Das Kontextmenü steht ebenfalls zur Verfügung.Zusätzlich Telefonnummern und 
@@ -523,7 +523,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.81  2010/11/07 07:13:26  jost
+    Revision 1.82  2010/11/10 18:18:05  jost
+    *** empty log message ***
+
+    Revision 1.81  2010-11-07 07:13:26  jost
     Tippfehler
 
     Revision 1.80  2010-10-30 11:54:28  jost
