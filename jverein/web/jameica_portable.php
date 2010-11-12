@@ -1,4 +1,5 @@
 <? include ("frame.inc"); ?>
+	<h1>Nicht mehr aktuell - wird momentan aktualisiert</h1>
     <h1>Jameica + Plugins "portable"</h1>
 	<p>Autor: Marco Hügel, Links aktualisiert von Guido (mfc)</p>
 	<p></p>
@@ -135,6 +136,9 @@
 	
 	<!-- 
     $Log: jameica_portable.php,v $
+    Revision 1.4  2010/11/12 12:29:05  jost
+    *** empty log message ***
+
     Revision 1.3  2010/05/20 18:37:23  jost
     *** empty log message ***
 
