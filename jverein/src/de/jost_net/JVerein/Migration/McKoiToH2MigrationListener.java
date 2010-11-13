@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationListener.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:30 $
+ * $Revision: 1.6 $
+ * $Date: 2010/11/13 09:27:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationListener.java,v $
- * Revision 1.5  2010/10/15 09:58:30  jost
+ * Revision 1.6  2010/11/13 09:27:22  jost
+ * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
+ *
+ * Revision 1.5  2010-10-15 09:58:30  jost
  * Code aufgeräumt
  *
  * Revision 1.4  2008-11-29 13:14:10  jost
@@ -52,7 +55,7 @@ public class McKoiToH2MigrationListener implements MessageConsumer
     return s.getBoolean("migration.h2", true);
   }
 
-  public Class[] getExpectedMessageTypes()
+  public Class<?>[] getExpectedMessageTypes()
   {
     return new Class[] { SystemMessage.class};
   }

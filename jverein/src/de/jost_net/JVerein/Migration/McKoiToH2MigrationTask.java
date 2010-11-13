@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationTask.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:30 $
+ * $Revision: 1.5 $
+ * $Date: 2010/11/13 09:27:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationTask.java,v $
- * Revision 1.4  2010/10/15 09:58:30  jost
+ * Revision 1.5  2010/11/13 09:27:36  jost
+ * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
+ *
+ * Revision 1.4  2010-10-15 09:58:30  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2008-11-29 13:14:18  jost
@@ -102,7 +105,7 @@ public class McKoiToH2MigrationTask extends DatabaseMigrationTask
   }
 
   @Override
-  protected void copy(Class type, ProgressMonitor monitor) throws Exception
+  protected void copy(Class<?> type, ProgressMonitor monitor) throws Exception
   {
     super.copy(type, monitor);
   }
