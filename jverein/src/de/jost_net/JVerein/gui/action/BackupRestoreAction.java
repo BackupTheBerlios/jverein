@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupRestoreAction.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/10/15 09:58:03 $
+ * $Revision: 1.9 $
+ * $Date: 2010/11/13 09:21:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupRestoreAction.java,v $
- * Revision 1.8  2010/10/15 09:58:03  jost
+ * Revision 1.9  2010/11/13 09:21:13  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.8  2010-10-15 09:58:03  jost
  * Code aufgeräumt
  *
  * Revision 1.7  2010-05-24 14:59:19  jost
@@ -100,7 +103,7 @@ public class BackupRestoreAction implements Action
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.OPEN);
     fd.setFileName("jverein-"
         + BackupCreateAction.DATEFORMAT.format(new Date()) + ".xml");
-    fd.setFilterExtensions(new String[] { "*.xml"});
+    fd.setFilterExtensions(new String[] { "*.xml" });
     fd.setText(JVereinPlugin.getI18n().tr(
         "Bitte wählen Sie die Backup-Datei aus"));
     String f = fd.open();
@@ -132,8 +135,8 @@ public class BackupRestoreAction implements Action
 
         try
         {
-          EigenschaftGruppe eg = (EigenschaftGruppe) Einstellungen.getDBService().createObject(
-              EigenschaftGruppe.class, "1");
+          EigenschaftGruppe eg = (EigenschaftGruppe) Einstellungen
+              .getDBService().createObject(EigenschaftGruppe.class, "1");
           eg.delete();
         }
         catch (RemoteException e1)
@@ -152,10 +155,10 @@ public class BackupRestoreAction implements Action
             public GenericObject create(String type, String id, Map values)
                 throws Exception
             {
-              AbstractDBObject object = (AbstractDBObject) Einstellungen.getDBService().createObject(
-                  loader.loadClass(type), null);
+              AbstractDBObject object = (AbstractDBObject) Einstellungen
+                  .getDBService().createObject(loader.loadClass(type), null);
               object.setID(id);
-              Iterator i = values.keySet().iterator();
+              Iterator<?> i = values.keySet().iterator();
               while (i.hasNext())
               {
                 String name = (String) i.next();
@@ -179,7 +182,7 @@ public class BackupRestoreAction implements Action
                   + o.getID() + ", skipping", e);
               monitor.log(JVereinPlugin.getI18n().tr(
                   " {0} fehlerhaft: {1}, überspringe ",
-                  new String[] { BeanUtil.toString(o), e.getMessage()}));
+                  new String[] { BeanUtil.toString(o), e.getMessage() }));
             }
             if (count++ % 100 == 0)
             {
@@ -187,7 +190,8 @@ public class BackupRestoreAction implements Action
             }
           }
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
-          monitor.setStatusText(JVereinPlugin.getI18n().tr("Backup importiert"));
+          monitor
+              .setStatusText(JVereinPlugin.getI18n().tr("Backup importiert"));
           monitor.setPercentComplete(100);
         }
         catch (Exception e)
