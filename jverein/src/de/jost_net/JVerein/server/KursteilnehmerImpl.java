@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KursteilnehmerImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.7 $
+ * $Date: 2010/11/13 09:30:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerImpl.java,v $
- * Revision 1.6  2010/10/15 09:58:28  jost
+ * Revision 1.7  2010/11/13 09:30:50  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.6  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.5  2009-06-20 12:33:53  jost
@@ -141,7 +144,7 @@ public class KursteilnehmerImpl extends AbstractDBObject implements
   }
 
   @Override
-  protected Class getForeignObject(String field)
+  protected Class<?> getForeignObject(String field)
   {
     return null;
   }

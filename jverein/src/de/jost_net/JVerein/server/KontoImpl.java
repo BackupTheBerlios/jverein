@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.9 $
+ * $Date: 2010/11/13 09:30:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoImpl.java,v $
- * Revision 1.8  2010/10/15 09:58:28  jost
+ * Revision 1.9  2010/11/13 09:30:50  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.8  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.7  2010-09-28 18:31:15  jost
@@ -132,7 +135,7 @@ public class KontoImpl extends AbstractDBObject implements Konto
   }
 
   @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     return null;
   }

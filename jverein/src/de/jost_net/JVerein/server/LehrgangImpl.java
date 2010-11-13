@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/LehrgangImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.3 $
+ * $Date: 2010/11/13 09:30:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangImpl.java,v $
- * Revision 1.2  2010/10/15 09:58:28  jost
+ * Revision 1.3  2010/11/13 09:30:50  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.2  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.1  2009-04-13 11:41:02  jost
@@ -76,7 +79,7 @@ public class LehrgangImpl extends AbstractDBObject implements Lehrgang
   }
 
   @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     if ("mitglied".equals(arg0))
     {

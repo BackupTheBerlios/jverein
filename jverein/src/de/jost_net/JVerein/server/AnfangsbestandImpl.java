@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AnfangsbestandImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.8 $
+ * $Date: 2010/11/13 09:29:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandImpl.java,v $
- * Revision 1.7  2010/10/15 09:58:28  jost
+ * Revision 1.8  2010/11/13 09:29:03  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.7  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.6  2009-06-11 21:04:23  jost
@@ -134,12 +137,13 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
   {
     try
     {
-      Date beginngeschaeftsjahr = Einstellungen.DATEFORMAT.parse(Einstellungen.getEinstellung().getBeginnGeschaeftsjahr()
+      Date beginngeschaeftsjahr = Einstellungen.DATEFORMAT.parse(Einstellungen
+          .getEinstellung().getBeginnGeschaeftsjahr()
           + "2009");
       DBIterator it = Einstellungen.getDBService().createList(
           Anfangsbestand.class);
-      it.addFilter("konto = ?", new Object[] { getKonto().getID()});
-      it.addFilter("datum >= ?", new Object[] { getDatum()});
+      it.addFilter("konto = ?", new Object[] { getKonto().getID() });
+      it.addFilter("datum >= ?", new Object[] { getDatum() });
       it.setOrder("order by datum desc");
       if (it.size() > 0)
       {
@@ -149,7 +153,7 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
             Einstellungen.DATEFORMAT.format(anf.getDatum())));
       }
       it = Einstellungen.getDBService().createList(Anfangsbestand.class);
-      it.addFilter("konto = ?", new Object[] { getKonto().getID()});
+      it.addFilter("konto = ?", new Object[] { getKonto().getID() });
       if (it.size() == 0)
       {
         return;
@@ -164,8 +168,10 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
         return;
       }
       throw new ApplicationException(
-          JVereinPlugin.getI18n().tr(
-              "Tag und Monat müssen mit dem Beginn des Geschäftsjahres übereinstimmen."));
+          JVereinPlugin
+              .getI18n()
+              .tr(
+                  "Tag und Monat müssen mit dem Beginn des Geschäftsjahres übereinstimmen."));
     }
     catch (ParseException e)
     {
@@ -175,7 +181,7 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
   }
 
   @Override
-  protected Class getForeignObject(String field)
+  protected Class<?> getForeignObject(String field)
   {
     if ("konto".equals(field))
     {
@@ -241,8 +247,8 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
   {
     DBIterator it = Einstellungen.getDBService().createList(
         Jahresabschluss.class);
-    it.addFilter("von <= ?", new Object[] { getDatum()});
-    it.addFilter("bis >= ?", new Object[] { getDatum()});
+    it.addFilter("von <= ?", new Object[] { getDatum() });
+    it.addFilter("bis >= ?", new Object[] { getDatum() });
     if (it.hasNext())
     {
       Jahresabschluss ja = (Jahresabschluss) it.next();

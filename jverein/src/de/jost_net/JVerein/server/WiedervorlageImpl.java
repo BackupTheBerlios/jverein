@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/WiedervorlageImpl.java,v $
- *  * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:27 $
+ *  * $Revision: 1.5 $
+ * $Date: 2010/11/13 09:31:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageImpl.java,v $
- * Revision 1.4  2010/10/15 09:58:27  jost
+ * Revision 1.5  2010/11/13 09:31:24  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.4  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2009-06-11 21:04:23  jost
@@ -51,7 +54,7 @@ public class WiedervorlageImpl extends AbstractDBObject implements
   }
 
   @Override
-  public String getPrimaryAttribute() 
+  public String getPrimaryAttribute()
   {
     return "id";
   }
@@ -94,7 +97,7 @@ public class WiedervorlageImpl extends AbstractDBObject implements
   }
 
   @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     if ("mitglied".equals(arg0))
     {

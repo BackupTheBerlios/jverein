@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzbetragImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.5 $
+ * $Date: 2010/11/13 09:31:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragImpl.java,v $
- * Revision 1.4  2010/10/15 09:58:27  jost
+ * Revision 1.5  2010/11/13 09:31:24  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.4  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2009-06-11 21:04:23  jost
@@ -79,7 +82,7 @@ public class ZusatzbetragImpl extends AbstractDBObject implements Zusatzbetrag
   }
 
   @Override
-  protected void deleteCheck() 
+  protected void deleteCheck()
   {
     //
   }
@@ -151,7 +154,7 @@ public class ZusatzbetragImpl extends AbstractDBObject implements Zusatzbetrag
   }
 
   @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     if ("mitglied".equals(arg0))
     {

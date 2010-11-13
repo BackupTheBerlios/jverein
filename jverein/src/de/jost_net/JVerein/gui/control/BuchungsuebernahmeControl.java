@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.15 $
+ * $Date: 2010/11/13 09:23:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
- * Revision 1.14  2010/10/15 09:58:26  jost
+ * Revision 1.15  2010/11/13 09:23:27  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.14  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.13  2010-10-10 06:36:14  jost
@@ -137,7 +140,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
       {
         try
         {
-          List buchungen = buchungsList.getItems();
+          List<?> buchungen = buchungsList.getItems();
           for (int i = 0; i < buchungen.size(); i++)
           {
             Umsatz u = (Umsatz) buchungen.get(i);
@@ -206,14 +209,14 @@ public class BuchungsuebernahmeControl extends AbstractControl
 
     try
     {
-      DBService hibservice = (DBService) Application.getServiceFactory().lookup(
-          HBCI.class, "database");
+      DBService hibservice = (DBService) Application.getServiceFactory()
+          .lookup(HBCI.class, "database");
       DBIterator hibbuchungen = hibservice.createList(Umsatz.class);
       if (maximum.intValue() > 0)
       {
         hibbuchungen.addFilter("id >" + maximum);
       }
-      hibbuchungen.addFilter("konto_id = ?", new Object[] { hibid});
+      hibbuchungen.addFilter("konto_id = ?", new Object[] { hibid });
       hibbuchungen.setOrder("ORDER BY id");
 
       if (buchungsList == null)

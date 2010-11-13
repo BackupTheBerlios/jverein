@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BeitragsgruppeImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.7 $
+ * $Date: 2010/11/13 09:29:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeImpl.java,v $
- * Revision 1.6  2010/10/15 09:58:27  jost
+ * Revision 1.7  2010/11/13 09:29:22  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.6  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.5  2009-06-11 21:04:24  jost
@@ -98,7 +101,7 @@ public class BeitragsgruppeImpl extends AbstractDBObject implements
   }
 
   @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     return null;
   }

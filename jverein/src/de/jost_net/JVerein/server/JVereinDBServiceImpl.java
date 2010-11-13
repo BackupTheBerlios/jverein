@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JVereinDBServiceImpl.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.14 $
+ * $Date: 2010/11/13 09:30:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinDBServiceImpl.java,v $
- * Revision 1.13  2010/10/15 09:58:28  jost
+ * Revision 1.14  2010/11/13 09:30:16  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.13  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.12  2009-11-17 21:04:07  jost
@@ -98,7 +101,7 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
     Logger.info("loading database driver: " + driverClass);
     try
     {
-      Class c = Application.getClassLoader().load(driverClass);
+      Class<?> c = Application.getClassLoader().load(driverClass);
       this.driver = (DBSupport) c.newInstance();
     }
     catch (Throwable t)
@@ -174,7 +177,6 @@ public class JVereinDBServiceImpl extends DBServiceImpl implements
     // this.driver.execute(getConnection(), file);
   }
 
-  @SuppressWarnings("unused")
   public void update(Version oldVersion, Version newVersion)
       throws RemoteException
   {

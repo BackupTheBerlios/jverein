@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.7 $
+ * $Date: 2010/11/13 09:24:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
- * Revision 1.6  2010/10/15 09:58:26  jost
+ * Revision 1.7  2010/11/13 09:24:44  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.6  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.5  2010-10-01 13:30:08  jost
@@ -365,7 +368,8 @@ public class ZusatzbetragControl extends AbstractControl
       Zusatzbetrag z = getZusatzbetrag();
       z.setFaelligkeit((Date) getFaelligkeit().getValue());
       z.setStartdatum((Date) getStartdatum(false).getValue());
-      IntervallZusatzzahlung iz = (IntervallZusatzzahlung) getIntervall().getValue();
+      IntervallZusatzzahlung iz = (IntervallZusatzzahlung) getIntervall()
+          .getValue();
       z.setIntervall(iz.getKey());
       z.setEndedatum((Date) getEndedatum().getValue());
       z.setBuchungstext((String) getBuchungstext().getValue());
@@ -473,7 +477,7 @@ public class ZusatzbetragControl extends AbstractControl
       {
         Date d = Einstellungen.DATEFORMAT.parse(this.ausfuehrungSuch.getText());
         java.sql.Date sqd = new java.sql.Date(d.getTime());
-        zusatzbetraege.addFilter("ausfuehrung = ?", new Object[] { sqd});
+        zusatzbetraege.addFilter("ausfuehrung = ?", new Object[] { sqd });
       }
       catch (ParseException e)
       {
@@ -486,8 +490,8 @@ public class ZusatzbetragControl extends AbstractControl
 
   private void nichtAktiveEliminieren(TablePart table) throws RemoteException
   {
-    List li = table.getItems();
-    Iterator it = li.iterator();
+    List<?> li = table.getItems();
+    Iterator<?> it = li.iterator();
     while (it.hasNext())
     {
       Zusatzbetrag z = (Zusatzbetrag) it.next();
@@ -524,14 +528,15 @@ public class ZusatzbetragControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    String path = settings.getString("lastdir", System.getProperty("user.home"));
+    String path = settings
+        .getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("zusatzbetraege", "",
-        Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
-    fd.setFilterExtensions(new String[] { "*.PDF"});
+    fd.setFileName(new Dateiname("zusatzbetraege", "", Einstellungen
+        .getEinstellung().getDateinamenmuster(), "PDF").get());
+    fd.setFilterExtensions(new String[] { "*.PDF" });
 
     String s = fd.open();
     if (s == null || s.length() == 0)

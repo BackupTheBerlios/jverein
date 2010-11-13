@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedfotoImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.4 $
+ * $Date: 2010/11/13 09:31:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedfotoImpl.java,v $
- * Revision 1.3  2010/10/15 09:58:28  jost
+ * Revision 1.4  2010/11/13 09:31:24  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.3  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2010-08-27 19:09:46  jost
@@ -68,7 +71,7 @@ public class MitgliedfotoImpl extends AbstractDBObject implements Mitgliedfoto
   }
 
   @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     return null;
   }

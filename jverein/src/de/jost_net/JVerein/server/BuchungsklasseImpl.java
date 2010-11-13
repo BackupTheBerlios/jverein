@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungsklasseImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.3 $
+ * $Date: 2010/11/13 09:29:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseImpl.java,v $
- * Revision 1.2  2010/10/15 09:58:27  jost
+ * Revision 1.3  2010/11/13 09:29:39  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.2  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.1  2009-09-10 18:19:58  jost
@@ -86,7 +89,7 @@ public class BuchungsklasseImpl extends AbstractDBObject implements
   }
 
    @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     return null;
   }

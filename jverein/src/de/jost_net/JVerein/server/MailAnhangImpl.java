@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MailAnhangImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.3 $
+ * $Date: 2010/11/13 09:30:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailAnhangImpl.java,v $
- * Revision 1.2  2010/10/15 09:58:27  jost
+ * Revision 1.3  2010/11/13 09:30:50  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.2  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.1  2010-02-15 17:24:31  jost
@@ -79,7 +82,7 @@ public class MailAnhangImpl extends AbstractDBObject implements MailAnhang,
   }
 
   @Override
-  protected Class getForeignObject(String arg0)
+  protected Class<?> getForeignObject(String arg0)
   {
     if ("mail".equals(arg0))
     {

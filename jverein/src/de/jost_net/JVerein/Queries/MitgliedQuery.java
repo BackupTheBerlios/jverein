@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.20 $
- * $Date: 2010/10/30 11:31:38 $
+ * $Revision: 1.21 $
+ * $Date: 2010/11/13 09:27:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.20  2010/10/30 11:31:38  jost
+ * Revision 1.21  2010/11/13 09:27:53  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.20  2010-10-30 11:31:38  jost
  * Neu: Sterbetag
  *
  * Revision 1.19  2010-10-15 09:58:29  jost
@@ -109,12 +112,12 @@ public class MitgliedQuery
     this.dialog = dialog;
   }
 
-  public ArrayList get() throws RemoteException
+  public ArrayList<?> get() throws RemoteException
   {
     return get("*");
   }
 
-  public ArrayList get(String anfangsbuchstabe) throws RemoteException
+  public ArrayList<?> get(String anfangsbuchstabe) throws RemoteException
   {
     final DBService service = Einstellungen.getDBService();
 
@@ -350,7 +353,7 @@ public class MitgliedQuery
     {
       bedingungen.add(new Integer(bg.getID()));
     }
-    return (ArrayList) service.execute(sql, bedingungen.toArray(), rs);
+    return (ArrayList<?>) service.execute(sql, bedingungen.toArray(), rs);
   }
 
   private void addCondition(String condition)

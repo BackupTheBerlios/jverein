@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.35 $
- * $Date: 2010/10/31 17:53:52 $
+ * $Revision: 1.36 $
+ * $Date: 2010/11/13 09:31:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.35  2010/10/31 17:53:52  jost
+ * Revision 1.36  2010/11/13 09:31:24  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.35  2010-10-31 17:53:52  jost
  * Vermeidung NPE
  *
  * Revision 1.34  2010-10-30 11:32:27  jost
@@ -321,7 +324,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   }
 
   @Override
-  protected Class getForeignObject(String field)
+  protected Class<?> getForeignObject(String field)
   {
     if ("beitragsgruppe".equals(field))
     {
