@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.16 $
- * $Date: 2010/10/28 19:15:36 $
+ * $Revision: 1.17 $
+ * $Date: 2010/11/13 09:28:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.16  2010/10/28 19:15:36  jost
+ * Revision 1.17  2010/11/13 09:28:09  jost
+ * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
+ *
+ * Revision 1.16  2010-10-28 19:15:36  jost
  * Neu: Wohnsitzstaat
  *
  * Revision 1.15  2010-08-27 19:08:23  jost
@@ -121,15 +124,6 @@ public interface Einstellung extends DBObject
 
   public boolean getAuslandsadressen() throws RemoteException;
 
-  public void setManuelleZahlungen(Boolean manuellezahlungen)
-      throws RemoteException;
-
-  public boolean getManuelleZahlungen() throws RemoteException;
-
-  public void setRechnungen13(Boolean rechnungen13) throws RemoteException;
-
-  public boolean getRechnungen13() throws RemoteException;
-
   public void setRechnungTextAbbuchung(String rechnungtextabbuchung)
       throws RemoteException;
 
@@ -173,21 +167,6 @@ public interface Einstellung extends DBObject
   public String getBeginnGeschaeftsjahr() throws RemoteException;
 
   public void setBeginnGeschaeftsjahr(String beginngeschaeftsjahr)
-      throws RemoteException;
-
-  public boolean getRechnungFuerAbbuchung() throws RemoteException;
-
-  public void setRechnungFuerAbbuchung(Boolean rechnungfuerabbuchung)
-      throws RemoteException;
-
-  public boolean getRechnungFuerUeberweisung() throws RemoteException;
-
-  public void setRechnungFuerUeberweisung(Boolean rechnungfuerueberweisung)
-      throws RemoteException;
-
-  public boolean getRechnungFuerBarzahlung() throws RemoteException;
-
-  public void setRechnungFuerBarzahlung(Boolean rechnungfuerbarzahlung)
       throws RemoteException;
 
   public String getSmtpServer() throws RemoteException;
