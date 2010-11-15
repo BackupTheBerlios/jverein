@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/AltersgruppenParser.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.6 $
+ * $Date: 2010/11/15 21:29:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AltersgruppenParser.java,v $
- * Revision 1.5  2010/10/15 09:58:28  jost
+ * Revision 1.6  2010/11/15 21:29:31  jost
+ * Leerzeichen werden ignoriert.
+ *
+ * Revision 1.5  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.4  2009-06-11 21:03:52  jost
@@ -33,6 +36,7 @@ import java.util.Vector;
 import org.eclipse.swt.graphics.Point;
 
 import de.jost_net.JVerein.JVereinPlugin;
+import de.willuhn.util.ApplicationException;
 
 public class AltersgruppenParser
 {
@@ -48,7 +52,8 @@ public class AltersgruppenParser
     Vector<String> gruppen = new Vector<String>();
     while (stt.hasMoreElements())
     {
-      gruppen.addElement(stt.nextToken());
+      String token = stt.nextToken().trim();
+      gruppen.addElement(token);
     }
     // Schritt 2: Zerlegen der Gruppen in ihre einzelnen Elemente
     elemente = new Vector<String>();
@@ -59,9 +64,9 @@ public class AltersgruppenParser
       {
         throw new RuntimeException(JVereinPlugin.getI18n().tr(
             "Ungültige Altersgruppe: {0}}",
-            new String[] { gruppen.elementAt(i)}));
+            new String[] { gruppen.elementAt(i) }));
       }
-      elemente.addElement(stt.nextToken());
+      elemente.addElement(stt.nextToken().trim());
       elemente.addElement(stt.nextToken());
     }
   }
@@ -78,16 +83,24 @@ public class AltersgruppenParser
     }
   }
 
-  public Point getNext()
+  public Point getNext() throws ApplicationException
   {
     Point p = new Point(getValue(), getValue());
     return p;
   }
 
-  private int getValue()
+  private int getValue() throws ApplicationException
   {
-    int value = Integer.parseInt(elemente.elementAt(ei));
-    ei++;
-    return value;
+    try
+    {
+      int value = Integer.parseInt(elemente.elementAt(ei).trim());
+      ei++;
+      return value;
+    }
+    catch (NumberFormatException e)
+    {
+      throw new ApplicationException("Fehler in den Altergruppen "
+          + e.getMessage());
+    }
   }
 }
