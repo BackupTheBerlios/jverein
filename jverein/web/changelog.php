@@ -5,6 +5,7 @@
     		<ul>
     			<li>Manuelle Zahlungseingänge und Rechnungen (bis 1.3) entfernt.</li>
     			<li>Bugfix beim Import von Zusatzfeldern. Bislang wurde nur der Datentyp "Zeichenfolge" korrekt importiert.</li>
+    			<li>Bugfix beim Import. Sortierung der Daten ist nicht mehr erforderlich.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -528,7 +529,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.84  2010/11/17 17:00:53  jost
+    Revision 1.85  2010/11/17 18:06:28  jost
+    Sortierung ist nicht mehr erforderlich.
+
+    Revision 1.84  2010-11-17 17:00:53  jost
     Bugfix beim Import von Zusatzfeldern.
 
     Revision 1.83  2010-11-13 09:32:17  jost
