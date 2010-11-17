@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.38 $
- * $Date: 2010/11/13 09:26:41 $
+ * $Revision: 1.39 $
+ * $Date: 2010/11/17 17:00:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.38  2010/11/13 09:26:41  jost
+ * Revision 1.39  2010/11/17 17:00:29  jost
+ * Bugfix beim Import von Zusatzfeldern.
+ *
+ * Revision 1.38  2010-11-13 09:26:41  jost
  * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
  *
  * Revision 1.37  2010-10-31 17:53:28  jost
@@ -132,6 +135,7 @@ package de.jost_net.JVerein.io;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -139,6 +143,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -146,6 +151,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.keys.Datentyp;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Eigenschaft;
@@ -446,7 +452,88 @@ public class Import
               .createObject(Zusatzfelder.class, null);
           zf.setMitglied(new Integer(m.getID()));
           zf.setFelddefinition(new Integer(f.getID()));
-          zf.setFeld(results.getString(f.getName()));
+          String inhalt = results.getString(f.getName());
+          switch (f.getDatentyp())
+          {
+            case Datentyp.DATUM:
+              if (inhalt.length() > 0)
+              {
+                try
+                {
+                  zf.setFeldDatum(Einstellungen.DATEFORMAT.parse(inhalt));
+                }
+                catch (ParseException e)
+                {
+                  throw new ApplicationException(m.getNameVorname()
+                      + ": ungültiges Datumsformat " + f.getName() + ": "
+                      + inhalt);
+                }
+              }
+              else
+              {
+                zf.setFeldDatum(null);
+              }
+              break;
+            case Datentyp.GANZZAHL:
+              if (inhalt.length() > 0)
+              {
+                try
+                {
+                  zf.setFeldGanzzahl(Integer.parseInt(inhalt));
+                }
+                catch (NumberFormatException e)
+                {
+                  throw new ApplicationException(m.getNameVorname()
+                      + ": ungültiges Datenformat " + f.getName() + ": "
+                      + inhalt);
+                }
+              }
+              else
+              {
+                zf.setFeldGanzzahl(null);
+              }
+              break;
+            case Datentyp.JANEIN:
+              if (inhalt.equalsIgnoreCase("true")
+                  || inhalt.equalsIgnoreCase("ja"))
+              {
+                zf.setFeldJaNein(true);
+              }
+              else if (inhalt.equalsIgnoreCase("false")
+                  || inhalt.equalsIgnoreCase("nein"))
+              {
+                zf.setFeldJaNein(false);
+              }
+              else
+              {
+                throw new ApplicationException(m.getNameVorname()
+                    + ": ungültiges Datenformat " + f.getName() + ": " + inhalt);
+              }
+              break;
+            case Datentyp.WAEHRUNG:
+              inhalt = inhalt.replace(",", ".");
+              if (inhalt.length() > 0)
+              {
+                try
+                {
+                  zf.setFeldWaehrung(new BigDecimal(inhalt));
+                }
+                catch (NumberFormatException e)
+                {
+                  throw new ApplicationException(m.getNameVorname()
+                      + ": ungültiges Datenformat " + f.getName() + ": "
+                      + inhalt);
+                }
+              }
+              else
+              {
+                zf.setFeldGanzzahl(null);
+              }
+              break;
+            case Datentyp.ZEICHENFOLGE:
+              zf.setFeld(results.getString(f.getName()));
+              break;
+          }
           zf.store();
         }
 
