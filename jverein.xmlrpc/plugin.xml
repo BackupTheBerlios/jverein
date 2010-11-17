@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<plugin name="jverein.xmlrpc" version="1.0"
+	class="de.jost_net.JVerein.xmlrpc.Plugin" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.willuhn.de/schema/jameica-plugin-1.0.xsd">
+
+	<description>Meta-Plugin, welches JVerein um XML-RPC-Funktionalitaet erweitert</description>
+	<homepage>http://www.jverein.de</homepage>
+	<license>GPL - http://www.gnu.org/copyleft/gpl.html</license>
+
+	 
+	<requires jameica="1.10+">
+		   
+		<import plugin="jameica.xmlrpc" version="1.1+" />
+		   
+		<import plugin="jverein" version="1.5+" />
+		 
+	</requires>
+
+	<classfinder>
+		<include>jverein\.xmlrpc\.jar</include>
+		<include>.*\.class</include>
+	</classfinder>
+
+	<services>
+		<service name="beitragsgruppe" depends="" autostart="true"
+			class="de.jost_net.JVerein.xmlrpc.rmi.BeitragsgruppeService" />
+		<service name="einstellung" depends="" autostart="true"
+			class="de.jost_net.JVerein.xmlrpc.rmi.EinstellungService" />
+		<service name="stammdaten" depends="" autostart="true"
+			class="de.jost_net.JVerein.xmlrpc.rmi.StammdatenService" />
+	</services>
+</plugin>
+
