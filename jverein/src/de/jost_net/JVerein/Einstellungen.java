@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.23 $
- * $Date: 2010/11/13 09:20:04 $
+ * $Revision: 1.24 $
+ * $Date: 2010/11/17 16:59:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
- * Revision 1.23  2010/11/13 09:20:04  jost
+ * Revision 1.24  2010/11/17 16:59:50  jost
+ * Strikte Prüfung beim Datum-Parsen.
+ *
+ * Revision 1.23  2010-11-13 09:20:04  jost
  * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
  *
  * Revision 1.22  2010/01/21 21:36:47  jost
@@ -153,6 +156,7 @@ public class Einstellungen
     NODATE.setTime(cal.getTimeInMillis());
     DECIMALFORMAT.setMinimumFractionDigits(2);
     DECIMALFORMAT.setMaximumFractionDigits(2);
+    DATEFORMAT.setLenient(false);
     try
     {
       einstellung = (Einstellung) getDBService().createObject(
