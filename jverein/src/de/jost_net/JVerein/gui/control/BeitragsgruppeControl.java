@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BeitragsgruppeControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2009/07/24 20:16:56 $
+ * $Revision: 1.16 $
+ * $Date: 2010/11/17 04:49:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeControl.java,v $
+ * Revision 1.16  2010/11/17 04:49:31  jost
+ * Erster Code zum Thema Arbeitseinsatz
+ *
  * Revision 1.15  2009/07/24 20:16:56  jost
  * Focus auf erstes Feld setzen.
  *
@@ -92,6 +95,10 @@ public class BeitragsgruppeControl extends AbstractControl
 
   private Beitragsgruppe beitrag;
 
+  private DecimalInput arbeitseinsatzstunden;
+
+  private DecimalInput arbeitseinsatzbetrag;
+
   public BeitragsgruppeControl(AbstractView view)
   {
     super(view);
@@ -144,6 +151,28 @@ public class BeitragsgruppeControl extends AbstractControl
     return beitragsart;
   }
 
+  public DecimalInput getArbeitseinsatzStunden() throws RemoteException
+  {
+    if (arbeitseinsatzstunden != null)
+    {
+      return arbeitseinsatzstunden;
+    }
+    arbeitseinsatzstunden = new DecimalInput(getBeitragsgruppe()
+        .getArbeitseinsatzStunden(), new DecimalFormat("###,###.##"));
+    return arbeitseinsatzstunden;
+  }
+
+  public DecimalInput getArbeitseinsatzBetrag() throws RemoteException
+  {
+    if (arbeitseinsatzbetrag != null)
+    {
+      return arbeitseinsatzbetrag;
+    }
+    arbeitseinsatzbetrag = new DecimalInput(getBeitragsgruppe()
+        .getArbeitseinsatzBetrag(), new DecimalFormat("###,###.##"));
+    return arbeitseinsatzbetrag;
+  }
+
   public void handleStore()
   {
     try
@@ -154,6 +183,10 @@ public class BeitragsgruppeControl extends AbstractControl
       b.setBetrag(d.doubleValue());
       ArtBeitragsart ba = (ArtBeitragsart) getBeitragsArt().getValue();
       b.setBeitragsArt(ba.getKey());
+      d = (Double) getArbeitseinsatzStunden().getValue();
+      b.setArbeitseinsatzStunden(d.doubleValue());
+      d = (Double) getArbeitseinsatzBetrag().getValue();
+      b.setArbeitseinsatzBetrag(d.doubleValue());
       b.store();
       GUI.getStatusBar().setSuccessText(
           JVereinPlugin.getI18n().tr("Beitragsgruppe gespeichert"));
@@ -184,6 +217,15 @@ public class BeitragsgruppeControl extends AbstractControl
     beitragsgruppeList.addColumn("Bezeichnung", "bezeichnung");
     beitragsgruppeList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
+    if (Einstellungen.getEinstellung().getArbeitseinsatz())
+    {
+      beitragsgruppeList.addColumn("Arbeitseinsatz-Stunden",
+          "arbeitseinsatzstunden", new CurrencyFormatter("",
+              Einstellungen.DECIMALFORMAT));
+      beitragsgruppeList.addColumn("Arbeitseinsatz-Betrag",
+          "arbeitseinsatzbetrag", new CurrencyFormatter("",
+              Einstellungen.DECIMALFORMAT));
+    }
     beitragsgruppeList.setContextMenu(new BeitragsgruppeMenu());
     return beitragsgruppeList;
   }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Beitragsgruppe.java,v $
- * $Revision: 1.4 $
- * $Date: 2008/01/25 16:06:28 $
+ * $Revision: 1.5 $
+ * $Date: 2010/11/17 04:51:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Beitragsgruppe.java,v $
+ * Revision 1.5  2010/11/17 04:51:54  jost
+ * Erster Code zum Thema Arbeitseinsatz
+ *
  * Revision 1.4  2008/01/25 16:06:28  jost
  * Neu: Eigenschaften des Mitgliedes
  *
@@ -43,4 +46,14 @@ public interface Beitragsgruppe extends DBObject
   public int getBeitragsArt() throws RemoteException;
 
   public void setBeitragsArt(int art) throws RemoteException;
+
+  public double getArbeitseinsatzStunden() throws RemoteException;
+
+  public void setArbeitseinsatzStunden(double arbeitseinsatzStunden)
+      throws RemoteException;
+
+  public double getArbeitseinsatzBetrag() throws RemoteException;
+
+  public void setArbeitseinsatzBetrag(double arbeitseinsatzBetrag)
+      throws RemoteException;
 }

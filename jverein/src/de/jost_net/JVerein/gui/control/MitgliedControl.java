@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.92 $
- * $Date: 2010/10/30 11:29:32 $
+ * $Revision: 1.93 $
+ * $Date: 2010/11/17 04:50:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.92  2010/10/30 11:29:32  jost
+ * Revision 1.93  2010/11/17 04:50:00  jost
+ * Erster Code zum Thema Arbeitseinsatz
+ *
+ * Revision 1.92  2010-10-30 11:29:32  jost
  * Neu: Sterbetag
  *
  * Revision 1.91  2010-10-28 19:13:34  jost
@@ -313,6 +316,7 @@ import org.eclipse.swt.widgets.TreeItem;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.Queries.MitgliedQuery;
+import de.jost_net.JVerein.gui.action.ArbeitseinsatzAction;
 import de.jost_net.JVerein.gui.action.LehrgangAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
@@ -320,6 +324,7 @@ import de.jost_net.JVerein.gui.action.ZusatzbetraegeAction;
 import de.jost_net.JVerein.gui.dialogs.EigenschaftenAuswahlDialog;
 import de.jost_net.JVerein.gui.formatter.JaNeinFormatter;
 import de.jost_net.JVerein.gui.input.GeschlechtInput;
+import de.jost_net.JVerein.gui.menu.ArbeitseinsatzMenu;
 import de.jost_net.JVerein.gui.menu.LehrgangMenu;
 import de.jost_net.JVerein.gui.menu.MitgliedMenu;
 import de.jost_net.JVerein.gui.menu.WiedervorlageMenu;
@@ -333,6 +338,7 @@ import de.jost_net.JVerein.keys.ArtBeitragsart;
 import de.jost_net.JVerein.keys.Datentyp;
 import de.jost_net.JVerein.keys.Zahlungsrhytmus;
 import de.jost_net.JVerein.keys.Zahlungsweg;
+import de.jost_net.JVerein.rmi.Arbeitseinsatz;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Eigenschaft;
 import de.jost_net.JVerein.rmi.EigenschaftGruppe;
@@ -503,6 +509,9 @@ public class MitgliedControl extends AbstractControl
 
   // Liste der Wiedervorlagen
   private TablePart wiedervorlageList;
+
+  // Liste der Arbeitseinsätze
+  private TablePart arbeitseinsatzList;
 
   // Liste der Lehrgänge
   private TablePart lehrgaengeList;
@@ -1515,6 +1524,32 @@ public class MitgliedControl extends AbstractControl
     return wiedervorlageList;
   }
 
+  public Part getArbeitseinsatzTable() throws RemoteException
+  {
+    if (arbeitseinsatzList != null)
+    {
+      return arbeitseinsatzList;
+    }
+    DBService service = Einstellungen.getDBService();
+    DBIterator arbeitseinsaetze = service.createList(Arbeitseinsatz.class);
+    arbeitseinsaetze.addFilter("mitglied = " + getMitglied().getID());
+    arbeitseinsaetze.setOrder("ORDER by datum desc");
+    arbeitseinsatzList = new TablePart(arbeitseinsaetze,
+        new ArbeitseinsatzAction(mitglied));
+    arbeitseinsatzList.setRememberColWidths(true);
+    arbeitseinsatzList.setRememberOrder(true);
+    arbeitseinsatzList.setContextMenu(new ArbeitseinsatzMenu());
+
+    arbeitseinsatzList.addColumn("Datum", "datum", new DateFormatter(
+        Einstellungen.DATEFORMAT));
+    arbeitseinsatzList.addColumn("Stunden", "stunden", new CurrencyFormatter(
+        "", Einstellungen.DECIMALFORMAT));
+    arbeitseinsatzList.addColumn("Bemerkung", "bemerkung");
+    // wiedervorlageList.setContextMenu(new
+    // WiedervorlageMenu(wiedervorlageList));
+    return arbeitseinsatzList;
+  }
+
   public Part getLehrgaengeTable() throws RemoteException
   {
     if (lehrgaengeList != null)
@@ -2064,6 +2099,12 @@ public class MitgliedControl extends AbstractControl
   public Button getWiedervorlageNeu()
   {
     return new Button("Neu", new WiedervorlageAction(getMitglied()), null,
+        false, "document-new.png");
+  }
+
+  public Button getArbeitseinsatzNeu()
+  {
+    return new Button("Neu", new ArbeitseinsatzAction(getMitglied()), null,
         false, "document-new.png");
   }
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.24 $
- * $Date: 2010/10/15 09:58:24 $
+ * $Revision: 1.25 $
+ * $Date: 2010/11/17 04:50:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
- * Revision 1.24  2010/10/15 09:58:24  jost
+ * Revision 1.25  2010/11/17 04:50:57  jost
+ * Erster Code zum Thema Arbeitseinsatz
+ *
+ * Revision 1.24  2010-10-15 09:58:24  jost
  * Code aufgeräumt
  *
  * Revision 1.23  2010-10-01 16:18:18  jost
@@ -94,6 +97,8 @@ public class DokumentationUtil
       + "dokumentationauswertungadressbuchexport.php";
 
   public static final String ABRECHNUNG = PRE + "abrechnung.php";
+
+  public static final String ARBEITSEINSATZ = PRE + "arbeitseinsatz.php";
 
   public static final String RECHNUNG = PRE + "mitgliedskonto.php#rechnung";
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeDetailView.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/10/15 09:58:24 $
+ * $Revision: 1.15 $
+ * $Date: 2010/11/17 04:50:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDetailView.java,v $
- * Revision 1.14  2010/10/15 09:58:24  jost
+ * Revision 1.15  2010/11/17 04:50:41  jost
+ * Erster Code zum Thema Arbeitseinsatz
+ *
+ * Revision 1.14  2010-10-15 09:58:24  jost
  * Code aufgeräumt
  *
  * Revision 1.13  2010-10-07 19:49:24  jost
@@ -54,6 +57,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeSucheAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
@@ -77,12 +81,22 @@ public class BeitragsgruppeDetailView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Beitrag"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"),
-        control.getBezeichnung(true));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"),
-        control.getBetrag());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsart"),
-        control.getBeitragsArt());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"), control
+        .getBezeichnung(true));
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"), control
+        .getBetrag());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsart"), control
+        .getBeitragsArt());
+
+    if (Einstellungen.getEinstellung().getArbeitseinsatz())
+    {
+      LabelGroup groupAe = new LabelGroup(getParent(), JVereinPlugin.getI18n()
+          .tr("Arbeitseinsatz"));
+      groupAe.addLabelPair(JVereinPlugin.getI18n().tr("Stunden"), control
+          .getArbeitseinsatzStunden());
+      groupAe.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"), control
+          .getArbeitseinsatzBetrag());
+    }
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.17 $
- * $Date: 2010/11/13 09:28:09 $
+ * $Revision: 1.18 $
+ * $Date: 2010/11/17 04:52:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.17  2010/11/13 09:28:09  jost
+ * Revision 1.18  2010/11/17 04:52:09  jost
+ * Erster Code zum Thema Arbeitseinsatz
+ *
+ * Revision 1.17  2010-11-13 09:28:09  jost
  * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
  *
  * Revision 1.16  2010-10-28 19:15:36  jost
@@ -123,6 +126,10 @@ public interface Einstellung extends DBObject
       throws RemoteException;
 
   public boolean getAuslandsadressen() throws RemoteException;
+
+  public void setArbeitseinsatz(Boolean arbeitseinsatz) throws RemoteException;
+
+  public boolean getArbeitseinsatz() throws RemoteException;
 
   public void setRechnungTextAbbuchung(String rechnungtextabbuchung)
       throws RemoteException;

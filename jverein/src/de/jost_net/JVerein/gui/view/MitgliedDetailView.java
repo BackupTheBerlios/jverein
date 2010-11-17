@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.49 $
- * $Date: 2010/10/30 11:30:12 $
+ * $Revision: 1.50 $
+ * $Date: 2010/11/17 04:51:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
- * Revision 1.49  2010/10/30 11:30:12  jost
+ * Revision 1.50  2010/11/17 04:51:26  jost
+ * Erster Code zum Thema Arbeitseinsatz
+ *
+ * Revision 1.49  2010-10-30 11:30:12  jost
  * Neu: Sterbetag
  *
  * Revision 1.48  2010-10-28 19:14:53  jost
@@ -360,6 +363,14 @@ public class MitgliedDetailView extends AbstractView
       TabGroup tab10 = new TabGroup(folder, JVereinPlugin.getI18n().tr("Foto"));
       tab10.addLabelPair("Foto", control.getFoto());
     }
+    if (Einstellungen.getEinstellung().getArbeitseinsatz())
+    {
+      TabGroup tabArbEins = new TabGroup(folder, JVereinPlugin.getI18n().tr(
+          "Arbeitseinsatz"));
+      control.getArbeitseinsatzTable().paint(tabArbEins.getComposite());
+      ButtonArea buttonswvl = new ButtonArea(tabArbEins.getComposite(), 1);
+      buttonswvl.addButton(control.getArbeitseinsatzNeu());
+    }
 
     if (tabindex != -1)
     {
@@ -407,7 +418,7 @@ public class MitgliedDetailView extends AbstractView
     return "<form><p><span color=\"header\" font=\"header\">Mitglied</span></p>"
         + "<li>Anrede: Herrn, Frau ...</li>"
         + "<li>Titel: Dr., Prof. Dr., ...</li>"
-        +"<li>Sofern Auslandsadressen erfasst werden sollen, ist das unter Einstellungen anzuhaken. Dann kann auch der Wohnungsstaat eingegeben werden.</li>"
+        + "<li>Sofern Auslandsadressen erfasst werden sollen, ist das unter Einstellungen anzuhaken. Dann kann auch der Wohnungsstaat eingegeben werden.</li>"
         + "<li>Adressierungszusatz: z. B. bei Lieschen Müller</li>"
         + "<li>Kontoinhaber: Falls das Mitglied nicht Kontoinhaber ist, können die entsprechenden Daten eingegeben werden.</li>"
         + "<li>Austritt: Das laut Satzung gültige Austrittsdatum.</li>"
