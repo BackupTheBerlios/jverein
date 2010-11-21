@@ -6,6 +6,7 @@
     			<li>Manuelle Zahlungseingänge und Rechnungen (bis 1.3) entfernt.</li>
     			<li>Bugfix beim Import von Zusatzfeldern. Bislang wurde nur der Datentyp "Zeichenfolge" korrekt importiert.</li>
     			<li>Bugfix beim Import. Sortierung der Daten ist nicht mehr erforderlich.</li>
+    			<li>Mitgliedsstatus in die Mitgliedsauswertung aufgenommen.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -529,7 +530,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.85  2010/11/17 18:06:28  jost
+    Revision 1.86  2010/11/21 21:11:07  jost
+    Mitgliedsstatus in die Auswertung aufgenommen.
+
+    Revision 1.85  2010-11-17 18:06:28  jost
     Sortierung ist nicht mehr erforderlich.
 
     Revision 1.84  2010-11-17 17:00:53  jost

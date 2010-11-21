@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.16 $
- * $Date: 2010/10/30 11:29:54 $
+ * $Revision: 1.17 $
+ * $Date: 2010/11/21 21:09:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.16  2010/10/30 11:29:54  jost
+ * Revision 1.17  2010/11/21 21:09:39  jost
+ * Mitgliedsstatus in die Auswertung aufgenommen.
+ *
+ * Revision 1.16  2010-10-30 11:29:54  jost
  * Neu: Sterbetag
  *
  * Revision 1.15  2010-10-15 09:58:24  jost
@@ -69,6 +72,7 @@ import de.jost_net.JVerein.server.DBSupportH2Impl;
 import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
+import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.ColumnLayout;
@@ -91,6 +95,9 @@ public class AuswertungMitgliedView extends AbstractView
 
     ColumnLayout cl = new ColumnLayout(group.getComposite(), 2);
     SimpleContainer left = new SimpleContainer(cl.getComposite());
+
+    Input mitglstat = control.getMitgliedStatus();
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedschaft"), mitglstat);
 
     if (!JVereinDBService.SETTINGS.getString("database.driver",
         DBSupportH2Impl.class.getName()).equals(
