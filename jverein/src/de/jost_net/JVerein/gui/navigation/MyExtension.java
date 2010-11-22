@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.34 $
- * $Date: 2010/11/13 09:25:41 $
+ * $Revision: 1.35 $
+ * $Date: 2010/11/22 20:59:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
- * Revision 1.34  2010/11/13 09:25:41  jost
+ * Revision 1.35  2010/11/22 20:59:44  jost
+ * Arbeitseinsatzüberprüfung
+ *
+ * Revision 1.34  2010-11-13 09:25:41  jost
  * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
  *
  * Revision 1.33  2010-11-03 21:28:26  jost
@@ -118,6 +121,7 @@ import de.jost_net.JVerein.gui.action.AbbuchungAction;
 import de.jost_net.JVerein.gui.action.AboutAction;
 import de.jost_net.JVerein.gui.action.AdressbuchExportAction;
 import de.jost_net.JVerein.gui.action.AnfangsbestandListAction;
+import de.jost_net.JVerein.gui.action.ArbeitseinsatzUeberpruefungAction;
 import de.jost_net.JVerein.gui.action.AuswertungKursteilnehmerAction;
 import de.jost_net.JVerein.gui.action.AuswertungMitgliedAction;
 import de.jost_net.JVerein.gui.action.BackupCreateAction;
@@ -190,6 +194,13 @@ public class MyExtension implements Extension
         jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
             "Mahnungen"), new MitgliedskontoMahnungAction(), "rechnung.png"));
       }
+      if (Einstellungen.getEinstellung().getArbeitseinsatz())
+      {
+        jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
+            "Arbeitseinsätze prüfen"), new ArbeitseinsatzUeberpruefungAction(),
+            "shovel.png"));
+      }
+
       if (Einstellungen.getEinstellung().getZusatzbetrag())
       {
         jverein.addChild(new MyItem(jverein, JVereinPlugin.getI18n().tr(
