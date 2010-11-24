@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.40 $
- * $Date: 2010/11/17 18:05:54 $
+ * $Revision: 1.41 $
+ * $Date: 2010/11/24 21:57:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.40  2010/11/17 18:05:54  jost
+ * Revision 1.41  2010/11/24 21:57:00  jost
+ * Mitglieds_nr reaktiviert.
+ *
+ * Revision 1.40  2010-11-17 18:05:54  jost
  * Sortierung ist nicht mehr erforderlich.
  *
  * Revision 1.39  2010-11-17 17:00:29  jost
@@ -271,7 +274,7 @@ public class Import
         Mitglied m = (Mitglied) Einstellungen.getDBService().createObject(
             Mitglied.class, null);
 
-        // m.setID(results.getString("Mitglieds_Nr"));
+        m.setID(results.getString("Mitglieds_Nr"));
         if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
         {
           m.setExterneMitgliedsnummer(new Integer(results
