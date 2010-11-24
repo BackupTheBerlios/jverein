@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/ArbeitseinsatzUeberpruefungList.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/22 21:00:04 $
+ * $Revision: 1.2 $
+ * $Date: 2010/11/24 21:56:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzUeberpruefungList.java,v $
- * Revision 1.1  2010/11/22 21:00:04  jost
+ * Revision 1.2  2010/11/24 21:56:31  jost
+ * nur angemeldete Mitglieder
+ *
+ * Revision 1.1  2010-11-22 21:00:04  jost
  * Initial Commit
  *
  **********************************************************************/
@@ -110,7 +113,7 @@ public class ArbeitseinsatzUeberpruefungList extends TablePart implements Part
     String sql = "select mitglied.id as id, arbeitseinsatzstunden  sollstunden, beitragsgruppe.arbeitseinsatzbetrag as betrag, sum(stunden)  iststunden from mitglied "
         + "  join beitragsgruppe on mitglied.beitragsgruppe = beitragsgruppe.id "
         + "  left join arbeitseinsatz on mitglied.id = arbeitseinsatz.mitglied and year(arbeitseinsatz.datum) = ? "
-        + "where  ";
+        + "where  (mitglied.eintritt is null or year(mitglied.eintritt) <= ?) and (mitglied.austritt is null or year(mitglied.austritt) > ?) and";
 
     if (schluessel == ArbeitseinsatzUeberpruefungInput.MINDERLEISTUNG)
     {
@@ -147,7 +150,7 @@ public class ArbeitseinsatzUeberpruefungList extends TablePart implements Part
       }
     };
     return (ArrayList<ArbeitseinsatzZeile>) Einstellungen.getDBService()
-        .execute(sql, new Object[] { jahr }, rs);
+        .execute(sql, new Object[] { jahr, jahr, jahr }, rs);
   }
 
   @Override
