@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzbetragImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/13 09:31:24 $
+ * $Revision: 1.6 $
+ * $Date: 2010/11/25 19:34:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragImpl.java,v $
- * Revision 1.5  2010/11/13 09:31:24  jost
+ * Revision 1.6  2010/11/25 19:34:04  jost
+ * Bugfix bei Zusatzbeträgen ohne Intervall
+ *
+ * Revision 1.5  2010-11-13 09:31:24  jost
  * Warnings entfernt.
  *
  * Revision 1.4  2010-10-15 09:58:27  jost
@@ -278,10 +281,16 @@ public class ZusatzbetragImpl extends AbstractDBObject implements Zusatzbetrag
       // Ist das Ausführungsdatum gesetzt?
       if (getAusfuehrung() == null)
       {
-        // nein: Dann ausführen
-        return true;
+        if (getFaelligkeit().getTime() <= Datum.getHeute().getTime())
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
-      else
+      else 
       {
         // ja: nicht mehr ausführen
         return false;
