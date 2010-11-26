@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/TerminePart.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/25 15:11:45 $
+ * $Revision: 1.2 $
+ * $Date: 2010/11/26 08:11:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,17 +9,22 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: TerminePart.java,v $
- * Revision 1.1  2010/11/25 15:11:45  jost
+ * Revision 1.2  2010/11/26 08:11:06  jost
+ * Änderung von Olaf übernommen.
+ *
+ * Revision 1.1  2010-11-25 15:11:45  jost
  * Initial Commit
  *
  **********************************************************************/
-
 
 package de.jost_net.JVerein.gui.parts;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.willuhn.jameica.gui.calendar.AppointmentProvider;
 import de.willuhn.jameica.gui.calendar.CalendarPart;
+import de.willuhn.jameica.hbci.HBCI;
+import de.willuhn.jameica.plugin.AbstractPlugin;
+import de.willuhn.jameica.plugin.PluginLoader;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ClassFinder;
@@ -35,11 +40,17 @@ public class TerminePart extends CalendarPart
     // Wir laden automatisch die Termin-Provider.
     try
     {
-      ClassFinder finder = Application.getPluginLoader().getPlugin(
-          JVereinPlugin.class).getResources().getClassLoader().getClassFinder();
+      PluginLoader loader = Application.getPluginLoader();
+      AbstractPlugin plugin = loader.getPlugin(JVereinPlugin.class);
+      ClassFinder finder = plugin.getResources().getClassLoader().getClassFinder();
+
       Class[] classes = finder.findImplementors(AppointmentProvider.class);
       for (Class c : classes)
       {
+        // Checken, ob die Klasse zu Hibiscus gehoert
+        AbstractPlugin p = loader.findByClass(c);
+        if (p == null || p != plugin)
+          continue; // Gehoert nicht zu uns.
         try
         {
           addAppointmentProvider((AppointmentProvider) c.newInstance());
