@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/PersonalbogenAction.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/11/27 00:59:20 $
+ * $Revision: 1.10 $
+ * $Date: 2010/11/27 17:56:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: PersonalbogenAction.java,v $
- * Revision 1.9  2010/11/27 00:59:20  jost
+ * Revision 1.10  2010/11/27 17:56:10  jost
+ * Warnung entfernt.
+ *
+ * Revision 1.9  2010-11-27 00:59:20  jost
  * Bugfix Eigenschaften
  *
  * Revision 1.8  2010-10-30 11:28:54  jost
@@ -152,8 +155,6 @@ public class PersonalbogenAction implements Action
     settings.setAttribute("lastdir", file.getParent());
     BackgroundTask t = new BackgroundTask()
     {
-
-      @SuppressWarnings("unchecked")
       public void run(ProgressMonitor monitor) throws ApplicationException
       {
         try
