@@ -15,11 +15,16 @@
     <h2>Arbeitseinsätze kontrollieren</h2>
     <p>Die Arbeitseinsätze können ausgewertet werden. Dabei werden Minder-, Normal- und Mehrleistungen überprüft:</p>    
     <img src='images/ArbeitseinsaetzeKontrollieren.png' class='screenshot'>
-    
+    <p>Die Daten in der Liste können entweder im PDF- oder CSV-Format ausgegeben werden. Die CSV-Daten können als
+    Serienbriefdatenquelle mit beliebigen Textverarbeitungen z. B. zur Erzeugung von Mahnungen zur Erledigung der Arbeit
+    verwendet werden. Weiterhin ist die Generierung von Zusatzbeträgen zur weiteren Abrechnung möglich.</p>
     
     <!-- 
     $Log: arbeitseinsatz.php,v $
-    Revision 1.1  2010/11/22 21:28:50  jost
+    Revision 1.2  2010/11/27 17:58:26  jost
+    *** empty log message ***
+
+    Revision 1.1  2010-11-22 21:28:50  jost
     *** empty log message ***
 
     -->

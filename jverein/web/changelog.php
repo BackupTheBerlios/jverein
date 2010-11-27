@@ -9,6 +9,8 @@
     			<li>Mitgliedsstatus in die Mitgliedsauswertung aufgenommen.</li>
     			<li>Zusatzbeträge: Bugfix bei Buchungen ohne Intervall wird jetzt das Fälligkeitsdatum korrekt behandelt.</li>
     			<li>Personalbogen: Bugfix Eigenschaften.</li>
+    			<li>Terminübersicht Geburtstage und Wiedervorlagen.</li>
+    			<li>Arbeitseinsätze</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -532,7 +534,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.88  2010/11/27 01:00:49  jost
+    Revision 1.89  2010/11/27 18:00:01  jost
+    *** empty log message ***
+
+    Revision 1.88  2010-11-27 01:00:49  jost
     *** empty log message ***
 
     Revision 1.87  2010-11-25 19:35:20  jost

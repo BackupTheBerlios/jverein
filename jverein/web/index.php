@@ -29,6 +29,7 @@
         <li>Zusatzzahlungen (einmalig und wiederkehrend)</li>
         <li>Individuelle Zusatzfelder</li>
         <li>Lehrgänge</li>
+        <li>Arbeitseinsätze (ab Version 1.5)</li>
      </ul>
      <p>Es können neben natürlichen Personen auch juristische Personen (Firmen, Organisationen, Behörden) als Mitglieder
      	gespeichert werden.</p>
@@ -79,7 +80,10 @@
 	   
 	<!-- 
     $Log: index.php,v $
-    Revision 1.41  2010/11/15 19:24:10  jost
+    Revision 1.42  2010/11/27 18:02:44  jost
+    *** empty log message ***
+
+    Revision 1.41  2010-11-15 19:24:10  jost
     *** empty log message ***
 
     Revision 1.40  2010-11-15 19:13:54  jost
