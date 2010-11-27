@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeDetailView.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/11/03 21:32:25 $
+ * $Revision: 1.7 $
+ * $Date: 2010/11/27 19:28:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeDetailView.java,v $
- * Revision 1.6  2010/11/03 21:32:25  jost
+ * Revision 1.7  2010/11/27 19:28:55  jost
+ * Optional: max. eine Eigenschaft auswählbar
+ *
+ * Revision 1.6  2010-11-03 21:32:25  jost
  * Redakt.
  *
  * Revision 1.5  2010-10-15 09:58:25  jost
@@ -53,10 +56,12 @@ public class EigenschaftGruppeDetailView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Eigenschaften-Gruppe"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"),
-        control.getBezeichnung());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Pflicht"),
-        control.getPflicht());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Bezeichnung"), control
+        .getBezeichnung());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Pflicht"), control
+        .getPflicht());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Maximal 1 Eigenschaft"),
+        control.getMax1());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));

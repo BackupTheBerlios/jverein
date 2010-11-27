@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftGruppeImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/11/13 09:29:39 $
+ * $Revision: 1.5 $
+ * $Date: 2010/11/27 19:29:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeImpl.java,v $
- * Revision 1.4  2010/11/13 09:29:39  jost
+ * Revision 1.5  2010/11/27 19:29:35  jost
+ * Optional: max. eine Eigenschaft auswählbar
+ *
+ * Revision 1.4  2010-11-13 09:29:39  jost
  * Warnings entfernt.
  *
  * Revision 1.3  2010-10-15 09:58:27  jost
@@ -87,7 +90,7 @@ public class EigenschaftGruppeImpl extends AbstractDBObject implements
   }
 
   @Override
-  protected Class<?> getForeignObject(String arg0) 
+  protected Class<?> getForeignObject(String arg0)
   {
     return null;
   }
@@ -110,6 +113,16 @@ public class EigenschaftGruppeImpl extends AbstractDBObject implements
   public void setPflicht(Boolean pflicht) throws RemoteException
   {
     setAttribute("pflicht", pflicht);
+  }
+
+  public boolean getMax1() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("max1"));
+  }
+
+  public void setMax1(Boolean max1) throws RemoteException
+  {
+    setAttribute("max1", max1);
   }
 
 }
