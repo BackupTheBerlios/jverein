@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/WiedervorlageAppointmentProvider.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/25 15:11:23 $
+ * $Revision: 1.2 $
+ * $Date: 2010/11/27 10:56:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageAppointmentProvider.java,v $
- * Revision 1.1  2010/11/25 15:11:23  jost
+ * Revision 1.2  2010/11/27 10:56:05  jost
+ * Link zum Mitglied
+ *
+ * Revision 1.1  2010-11-25 15:11:23  jost
  * Initial Commit
  *
  **********************************************************************/
@@ -25,7 +28,7 @@ import org.eclipse.swt.graphics.RGB;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.gui.action.WiedervorlageListeAction;
+import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.rmi.Wiedervorlage;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.calendar.Appointment;
@@ -54,10 +57,10 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
       Calendar cal = Calendar.getInstance();
       cal.setTime(from);
       if (from != null)
-        list.addFilter("datum >= ?", new Object[] { new java.sql.Date(
-            from.getTime())});
-      list.addFilter("datum <= ?", new Object[] { new java.sql.Date(
-          to.getTime())});
+        list.addFilter("datum >= ?", new Object[] { new java.sql.Date(from
+            .getTime()) });
+      list.addFilter("datum <= ?", new Object[] { new java.sql.Date(to
+          .getTime()) });
       list.setOrder("ORDER BY day(datum)");
 
       List<Appointment> result = new LinkedList<Appointment>();
@@ -100,7 +103,14 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
      */
     public void execute()
     {
-      new WiedervorlageListeAction().handleAction(this.w);
+      try
+      {
+        new MitgliedDetailAction().handleAction(w.getMitglied());
+      }
+      catch (Exception e)
+      {
+        Logger.error("Fehler", e);
+      }
     }
 
     /**
