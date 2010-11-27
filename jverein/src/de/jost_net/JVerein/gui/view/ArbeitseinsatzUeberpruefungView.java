@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ArbeitseinsatzUeberpruefungView.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/22 21:00:20 $
+ * $Revision: 1.2 $
+ * $Date: 2010/11/27 10:56:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzUeberpruefungView.java,v $
- * Revision 1.1  2010/11/22 21:00:20  jost
+ * Revision 1.2  2010/11/27 10:56:48  jost
+ * PDF-Ausgabe
+ *
+ * Revision 1.1  2010-11-22 21:00:20  jost
  * Initial Commit
  *
  **********************************************************************/
@@ -61,8 +64,9 @@ public class ArbeitseinsatzUeberpruefungView extends AbstractView
         "Arbeitseinsätze"));
     group2.addPart(control.getArbeitseinsatzUeberpruefungList());
 
-    ButtonArea buttons2 = new ButtonArea(this.getParent(), 2);
+    ButtonArea buttons2 = new ButtonArea(this.getParent(), 3);
     buttons2.addButton(new Back(false));
+    buttons2.addButton(control.getPDFAusgabeButton());
     buttons2.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.ARBEITSEINSATZ, false,
         "help-browser.png");
