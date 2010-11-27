@@ -29,8 +29,8 @@
 	<li><a href="mitgliedskonto.php">Mitgliedskonto</a></li>
 	<li><a href="kursteilnehmer.php">Kursteilnehmer</a></li>
 	<li><a href="abrechnung.php">Abrechnung</a></li>
-	<li><a href="mitgliedskonto.php">Mitgliedskonto (inkl. Rechnung und Mahnung) ab Version 1.4</a></li>
-	<li><a href="arbeitseinsatz.php">Arbeitseinsätze überprüfen ab Version 1.5</a></li>
+	<li><a href="mitgliedskonto.php>Mitgliedskonto (inkl. Rechnung und Mahnung) ab Version 1.4</a></li>
+	<li><a href="arbeitseinsatz.php>Arbeitseinsätze überprüfen ab Version 1.5</a></li>
 	<li><a href="zusatzbetraege.php">Zusatzbeiträge</a></li>
 	<li><a href="zusatzbetraege_import.php">Zusatzbeiträge importieren </a></li>
 	<li><a href="manuelle_zahlungseingaenge.php">Manuelle Zahlungseingänge (bis Version 1.3)</a></li>
@@ -67,10 +67,7 @@
 
     <!-- 
     $Log: dokumentation.php,v $
-    Revision 1.16  2010/11/27 18:04:54  jost
-    *** empty log message ***
-
-    Revision 1.15  2010-11-27 17:58:45  jost
+    Revision 1.15  2010/11/27 17:58:45  jost
     *** empty log message ***
 
     Revision 1.14  2010-11-07 07:13:47  jost
