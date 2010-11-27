@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ArbeitseinsatzControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/11/27 15:20:29 $
+ * $Revision: 1.5 $
+ * $Date: 2010/11/27 17:56:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzControl.java,v $
- * Revision 1.4  2010/11/27 15:20:29  jost
+ * Revision 1.5  2010/11/27 17:56:37  jost
+ * Generierung von Zusatzzahlungen.
+ *
+ * Revision 1.4  2010-11-27 15:20:29  jost
  * CSV-Ausgabe
  *
  * Revision 1.3  2010-11-27 10:56:21  jost
@@ -50,8 +53,10 @@ import de.jost_net.JVerein.gui.input.ArbeitseinsatzUeberpruefungInput;
 import de.jost_net.JVerein.gui.parts.ArbeitseinsatzUeberpruefungList;
 import de.jost_net.JVerein.io.ArbeitseinsatzZeile;
 import de.jost_net.JVerein.io.Reporter;
+import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Arbeitseinsatz;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.util.Dateiname;
 import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
@@ -273,6 +278,28 @@ public class ArbeitseinsatzControl extends AbstractControl
     return b;
   }
 
+  public Button getZusatzbetraegeAusgabeButton()
+  {
+    Button b = new Button("&Zusatzbeträge generieren", new Action()
+    {
+
+      public void handleAction(Object context) throws ApplicationException
+      {
+        try
+        {
+          starteZusatzbetragGenerierung();
+        }
+        catch (RemoteException e)
+        {
+          Logger.error(e.getMessage());
+          throw new ApplicationException(
+              "Fehler beim der Zusatzbetragsgenerierung");
+        }
+      }
+    }, null, true, "zusatzbetraege.png");
+    return b;
+  }
+
   private void startePDFAuswertung() throws RemoteException,
       ApplicationException
   {
@@ -480,6 +507,65 @@ public class ArbeitseinsatzControl extends AbstractControl
             }
           }
         });
+
+      }
+
+      public void interrupt()
+      {
+        //
+      }
+
+      public boolean isInterrupted()
+      {
+        return false;
+      }
+    };
+    Application.getController().start(t);
+
+  }
+
+  private void starteZusatzbetragGenerierung() throws RemoteException,
+      ApplicationException
+  {
+    final GenericIterator it = getIterator();
+    final int jahr = (Integer) getSuchJahr().getValue();
+
+    BackgroundTask t = new BackgroundTask()
+    {
+
+      public void run(ProgressMonitor monitor) throws ApplicationException
+      {
+        try
+        {
+          while (it.hasNext())
+          {
+            ArbeitseinsatzZeile z = (ArbeitseinsatzZeile) it.next();
+            Zusatzbetrag zb = (Zusatzbetrag) Einstellungen.getDBService()
+                .createObject(Zusatzbetrag.class, null);
+            Double betrag = (Double) z.getAttribute("gesamtbetrag");
+            betrag = betrag * -1;
+            zb.setBetrag(betrag);
+            zb.setBuchungstext("Arbeitseinsatz " + jahr);
+            zb.setFaelligkeit(new Date());
+            zb.setStartdatum(new Date());
+            zb.setIntervall(IntervallZusatzzahlung.KEIN);
+            zb.setMitglied(new Integer((String) z.getAttribute("mitgliedid")));
+            zb.store();
+          }
+          monitor.setPercentComplete(100);
+          monitor.setStatus(ProgressMonitor.STATUS_DONE);
+          GUI.getStatusBar().setSuccessText(
+              "Generierung Zusatzbeträge gestartet");
+          GUI.getCurrentView().reload();
+        }
+        catch (Exception e)
+        {
+          Logger.error("Fehler", e);
+          monitor.setStatusText(e.getMessage());
+          monitor.setStatus(ProgressMonitor.STATUS_ERROR);
+          GUI.getStatusBar().setErrorText(e.getMessage());
+          throw new ApplicationException(e);
+        }
 
       }
 
