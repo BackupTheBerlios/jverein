@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ArbeitseinsatzControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/27 17:56:37 $
+ * $Revision: 1.6 $
+ * $Date: 2010/12/04 18:33:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzControl.java,v $
- * Revision 1.5  2010/11/27 17:56:37  jost
+ * Revision 1.6  2010/12/04 18:33:38  jost
+ * aktuelles Datum wird per default vorgegeben.
+ *
+ * Revision 1.5  2010-11-27 17:56:37  jost
  * Generierung von Zusatzzahlungen.
  *
  * Revision 1.4  2010-11-27 15:20:29  jost
@@ -125,7 +128,10 @@ public class ArbeitseinsatzControl extends AbstractControl
     }
 
     Date d = getArbeitseinsatz().getDatum();
-
+    if (d == null)
+    {
+      d = new Date();
+    }
     this.datum = new DateInput(d, Einstellungen.DATEFORMAT);
     this.datum.setTitle("Datum");
     this.datum.setText("Datum Arbeitseinsatz wählen");
