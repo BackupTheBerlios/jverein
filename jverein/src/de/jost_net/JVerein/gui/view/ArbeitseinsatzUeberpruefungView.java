@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ArbeitseinsatzUeberpruefungView.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/11/27 17:57:53 $
+ * $Revision: 1.5 $
+ * $Date: 2010/12/04 18:34:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzUeberpruefungView.java,v $
- * Revision 1.4  2010/11/27 17:57:53  jost
+ * Revision 1.5  2010/12/04 18:34:20  jost
+ * Tabelle scrolled jetzt
+ *
+ * Revision 1.4  2010-11-27 17:57:53  jost
  * Generierung von Zusatzzahlungen.
  *
  * Revision 1.3  2010-11-27 15:20:41  jost
@@ -38,6 +41,7 @@ import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
+import de.willuhn.jameica.gui.util.ScrolledContainer;
 import de.willuhn.util.ApplicationException;
 
 public class ArbeitseinsatzUeberpruefungView extends AbstractView
@@ -86,7 +90,8 @@ public class ArbeitseinsatzUeberpruefungView extends AbstractView
 
     LabelGroup group2 = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Arbeitseinsätze"));
-    group2.addPart(control.getArbeitseinsatzUeberpruefungList());
+    ScrolledContainer sc = new ScrolledContainer(group2.getComposite());
+    sc.addPart(control.getArbeitseinsatzUeberpruefungList());
 
     ButtonArea buttons2 = new ButtonArea(this.getParent(), 5);
     buttons2.addButton(new Back(false));
