@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.27 $
- * $Date: 2010/12/05 12:28:26 $
+ * $Revision: 1.28 $
+ * $Date: 2010/12/12 08:07:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
- * Revision 1.27  2010/12/05 12:28:26  jost
+ * Revision 1.28  2010/12/12 08:07:58  jost
+ * Neu: Speicherung von Dokumenten
+ *
+ * Revision 1.27  2010-12-05 12:28:26  jost
  * Vorbereitung Dokumenten-Speicherung
  *
  * Revision 1.26  2010-10-15 09:58:29  jost
@@ -97,6 +100,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.List;
 import java.util.Locale;
 
 import de.jost_net.JVerein.gui.navigation.MyExtension;
@@ -104,9 +108,11 @@ import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.jost_net.JVerein.server.JVereinDBServiceImpl;
 import de.jost_net.JVerein.util.HelpConsumer;
 import de.willuhn.jameica.gui.extension.ExtensionRegistry;
+import de.willuhn.jameica.messaging.LookupService;
 import de.willuhn.jameica.messaging.MessageConsumer;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.jameica.plugin.Version;
+import de.willuhn.jameica.services.ArchiveService;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.Settings;
 import de.willuhn.logging.Logger;
@@ -173,8 +179,7 @@ public class JVereinPlugin extends AbstractPlugin
     Application.getMessagingFactory().getMessagingQueue("jameica.help.missing")
         .registerMessageConsumer(mc);
 
-    // Application.getBootLoader().getBootable(ArchiveService.class);
-
+    Application.getBootLoader().getBootable(ArchiveService.class);
   }
 
   /**
@@ -307,5 +312,23 @@ public class JVereinPlugin extends AbstractPlugin
   public static I18N getI18n()
   {
     return i18n;
+  }
+
+  public static boolean isArchiveServiceActive()
+  {
+    if (Application.getPluginLoader().getPlugin(
+        "de.willuhn.jameica.messaging.Plugin") != null)
+    {
+      Logger.info("Archiv-Plugin ist lokal installiert");
+      return true;
+    }
+    String uri = LookupService
+        .lookup("tcp:de.willuhn.jameica.messaging.Plugin.connector.tcp");
+    if (uri != null)
+    {
+      Logger.info("Archiv-Plugin im LAN gefunden: " + uri);
+      return true;
+    }
+    return false;
   }
 }
