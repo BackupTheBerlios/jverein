@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.28 $
- * $Date: 2010/12/12 08:07:58 $
+ * $Revision: 1.29 $
+ * $Date: 2010/12/12 08:10:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
- * Revision 1.28  2010/12/12 08:07:58  jost
+ * Revision 1.29  2010/12/12 08:10:59  jost
+ * Überflüssigen Import entfernt.
+ *
+ * Revision 1.28  2010-12-12 08:07:58  jost
  * Neu: Speicherung von Dokumenten
  *
  * Revision 1.27  2010-12-05 12:28:26  jost
@@ -100,7 +103,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.List;
 import java.util.Locale;
 
 import de.jost_net.JVerein.gui.navigation.MyExtension;
