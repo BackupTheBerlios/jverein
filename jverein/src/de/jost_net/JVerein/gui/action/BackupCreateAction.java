@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/11/13 09:20:22 $
+ * $Revision: 1.12 $
+ * $Date: 2010/12/12 17:18:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
- * Revision 1.11  2010/11/13 09:20:22  jost
+ * Revision 1.12  2010/12/12 17:18:56  jost
+ * Neue Tabellen aufgenommen.
+ *
+ * Revision 1.11  2010-11-13 09:20:22  jost
  * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
  *
  * Revision 1.10  2010-10-15 09:58:01  jost
@@ -63,7 +66,9 @@ import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.MailVorlage;
 import de.jost_net.JVerein.server.AbrechnungslaufImpl;
 import de.jost_net.JVerein.server.AnfangsbestandImpl;
+import de.jost_net.JVerein.server.ArbeitseinsatzImpl;
 import de.jost_net.JVerein.server.BeitragsgruppeImpl;
+import de.jost_net.JVerein.server.BuchungDokumentImpl;
 import de.jost_net.JVerein.server.BuchungImpl;
 import de.jost_net.JVerein.server.BuchungsartImpl;
 import de.jost_net.JVerein.server.BuchungsklasseImpl;
@@ -111,9 +116,10 @@ public class BackupCreateAction implements Action
   Class<?>[] tab = { StammdatenImpl.class, EinstellungImpl.class,
       AbrechnungslaufImpl.class, BeitragsgruppeImpl.class,
       BuchungsklasseImpl.class, BuchungsartImpl.class, KontoImpl.class,
-      MitgliedImpl.class, MitgliedskontoImpl.class, BuchungImpl.class,
-      FelddefinitionImpl.class, SpendenbescheinigungImpl.class,
-      FormularImpl.class, FormularfeldImpl.class, EigenschaftGruppeImpl.class,
+      MitgliedImpl.class, MitgliedskontoImpl.class, ArbeitseinsatzImpl.class,
+      BuchungDokumentImpl.class, BuchungImpl.class, FelddefinitionImpl.class,
+      SpendenbescheinigungImpl.class, FormularImpl.class,
+      FormularfeldImpl.class, EigenschaftGruppeImpl.class,
       EigenschaftImpl.class, EigenschaftenImpl.class, AnfangsbestandImpl.class,
       JahresabschlussImpl.class, KursteilnehmerImpl.class,
       WiedervorlageImpl.class, ZusatzbetragImpl.class, ZusatzfelderImpl.class,
@@ -183,7 +189,7 @@ public class BackupCreateAction implements Action
 
           for (Class<?> clazz : tab)
           {
-             backup(clazz, writer, monitor);
+            backup(clazz, writer, monitor);
             monitor.addPercentComplete(100 / tab.length);
           }
 
