@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportMySqlImpl.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.11 $
+ * $Date: 2010/12/13 19:58:28 $
  * $Author: jost $
  *
  * Copyright (c) by Michael Trapp
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DBSupportMySqlImpl.java,v $
- * Revision 1.10  2010/10/15 09:58:27  jost
+ * Revision 1.11  2010/12/13 19:58:28  jost
+ * Patch von Colin zur Performancesteigerung.
+ *
+ * Revision 1.10  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.9  2009-12-12 16:26:30  jost
@@ -158,17 +161,24 @@ public class DBSupportMySqlImpl extends AbstractDBSupportImpl
     return false;
   }
 
+  private long lastCheck = 0;
+ 
   /**
    * @see de.willuhn.jameica.hbci.rmi.DBSupport#checkConnection(java.sql.Connection)
    */
   public void checkConnection(Connection conn) throws RemoteException
   {
+   long newCheck = System.currentTimeMillis();
+   if ((newCheck - lastCheck) < (10 * 1000L))
+     return; // Wir checken hoechstens aller 10 Sekunden
+      
     Statement s = null;
     ResultSet rs = null;
     try
     {
       s = conn.createStatement();
       rs = s.executeQuery("select 1");
+      lastCheck = newCheck;
     }
     catch (SQLException e)
     {
