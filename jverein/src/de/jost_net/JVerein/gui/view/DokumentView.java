@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentView.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/12/12 08:13:14 $
+ * $Revision: 1.2 $
+ * $Date: 2010/12/14 21:42:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentView.java,v $
- * Revision 1.1  2010/12/12 08:13:14  jost
+ * Revision 1.2  2010/12/14 21:42:03  jost
+ * Neu: Speicherung von Dokumenten
+ *
+ * Revision 1.1  2010-12-12 08:13:14  jost
  * Neu: Speicherung von Dokumenten
  *
  **********************************************************************/
@@ -27,13 +30,19 @@ import de.willuhn.jameica.gui.util.ScrolledContainer;
 
 public class DokumentView extends AbstractView
 {
+  private String verzeichnis;
+
+  public DokumentView(String verzeichnis)
+  {
+    this.verzeichnis = verzeichnis;
+  }
 
   @Override
   public void bind() throws Exception
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Dokument"));
 
-    final DokumentControl control = new DokumentControl(this);
+    final DokumentControl control = new DokumentControl(this, verzeichnis);
 
     ScrolledContainer scrolled = new ScrolledContainer(getParent());
 
@@ -50,7 +59,7 @@ public class DokumentView extends AbstractView
     buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGEN, false,
         "help-browser.png");
-     buttons.addButton(control.getSpeichernButton("buchungen."));
+    buttons.addButton(control.getSpeichernButton(verzeichnis + "."));
   }
 
   @Override

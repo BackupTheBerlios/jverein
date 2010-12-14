@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/DokumentControl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/12/12 08:11:17 $
+ * $Revision: 1.2 $
+ * $Date: 2010/12/14 21:41:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentControl.java,v $
- * Revision 1.1  2010/12/12 08:11:17  jost
+ * Revision 1.2  2010/12/14 21:41:41  jost
+ * Neu: Speicherung von Dokumenten
+ *
+ * Revision 1.1  2010-12-12 08:11:17  jost
  * Neu: Speicherung von Dokumenten
  *
  **********************************************************************/
@@ -65,11 +68,14 @@ public class DokumentControl extends AbstractControl
 
   private Button speichernButton;
 
+  private String verzeichnis;
+
   // private de.willuhn.jameica.system.Settings settings;
 
-  public DokumentControl(AbstractView view)
+  public DokumentControl(AbstractView view, String verzeichnis)
   {
     super(view);
+    this.verzeichnis = verzeichnis;
     // settings = new de.willuhn.jameica.system.Settings(this.getClass());
     // settings.setStoreWhenRead(true);
   }
@@ -140,7 +146,7 @@ public class DokumentControl extends AbstractControl
 
       public void handleAction(Object context) throws ApplicationException
       {
-        GUI.startView(new DokumentView(), doc);
+        GUI.startView(new DokumentView(verzeichnis), doc);
       }
     }, null);
     return neuButton;

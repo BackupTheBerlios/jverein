@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.51 $
- * $Date: 2010/12/14 21:31:54 $
+ * $Revision: 1.52 $
+ * $Date: 2010/12/14 21:42:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
- * Revision 1.51  2010/12/14 21:31:54  jost
+ * Revision 1.52  2010/12/14 21:42:18  jost
+ * Neu: Speicherung von Dokumenten
+ *
+ * Revision 1.51  2010-12-14 21:31:54  jost
  * Neu: Speicherung von Dokumenten
  *
  * Revision 1.50  2010-11-17 04:51:26  jost
@@ -386,7 +389,7 @@ public class MitgliedDetailView extends AbstractView
       MitgliedDokument mido = (MitgliedDokument) Einstellungen.getDBService()
           .createObject(MitgliedDokument.class, null);
       mido.setReferenz(new Integer(control.getMitglied().getID()));
-      DokumentControl dcontrol = new DokumentControl(this);
+      DokumentControl dcontrol = new DokumentControl(this, "mitglieder");
       grDokument.addPart(dcontrol.getDokumenteList(mido));
       ButtonArea butts = new ButtonArea(grDokument.getComposite(), 1);
       butts.addButton(dcontrol.getNeuButton(mido));
