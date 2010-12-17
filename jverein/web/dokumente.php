@@ -21,7 +21,7 @@
 	zur Verfügung. Zur Installation werden die Installationsdateien in das plugins-Verzeichnis von Jameica entpackt.</p>
 
 	<h2>Allgemein</h2>
-	<p>Zu Mitgliedern (noch nicht realisiert, 12.2010) und Buchungen können Dokumente beliebiger Art
+	<p>Zu Mitgliedern und Buchungen können Dokumente beliebiger Art
 	und Anzahl gespeichert werden. Die Funktionalität steht nach der Installation der zusätzlichen 
 	Plugins ohne weitere Konfiguration zur Verfügung.</p> 
 	
@@ -43,7 +43,10 @@
     
     <!-- 
     $Log: dokumente.php,v $
-    Revision 1.1  2010/12/12 17:28:09  jost
+    Revision 1.2  2010/12/17 19:07:31  jost
+    *** empty log message ***
+
+    Revision 1.1  2010-12-12 17:28:09  jost
     Neu: Speicherung von Dokumenten
 
     -->
