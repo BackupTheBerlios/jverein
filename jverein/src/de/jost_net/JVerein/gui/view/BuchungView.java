@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.21 $
- * $Date: 2010/12/14 21:41:52 $
+ * $Revision: 1.22 $
+ * $Date: 2010/12/17 13:41:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
- * Revision 1.21  2010/12/14 21:41:52  jost
+ * Revision 1.22  2010/12/17 13:41:10  jost
+ * Vermeidung NPE
+ *
+ * Revision 1.21  2010-12-14 21:41:52  jost
  * Neu: Speicherung von Dokumenten
  *
  * Revision 1.20  2010-12-12 12:44:17  jost
@@ -142,13 +145,16 @@ public class BuchungView extends AbstractView
       LabelGroup grDokument = new LabelGroup(scrolled.getComposite(),
           "Dokumente");
       Buchung bu = (Buchung) control.getCurrentObject();
-      BuchungDokument budo = (BuchungDokument) Einstellungen.getDBService()
-          .createObject(BuchungDokument.class, null);
-      budo.setReferenz(new Integer(bu.getID()));
-      DokumentControl dcontrol = new DokumentControl(this, "buchungen");
-      grDokument.addPart(dcontrol.getDokumenteList(budo));
-      ButtonArea butts = new ButtonArea(grDokument.getComposite(), 1);
-      butts.addButton(dcontrol.getNeuButton(budo));
+      if (!bu.isNewObject())
+      {
+        BuchungDokument budo = (BuchungDokument) Einstellungen.getDBService()
+            .createObject(BuchungDokument.class, null);
+        budo.setReferenz(new Integer(bu.getID()));
+        DokumentControl dcontrol = new DokumentControl(this, "buchungen");
+        grDokument.addPart(dcontrol.getDokumenteList(budo));
+        ButtonArea butts = new ButtonArea(grDokument.getComposite(), 1);
+        butts.addButton(dcontrol.getNeuButton(budo));
+      }
     }
 
     ButtonArea buttons = new ButtonArea(scrolled.getComposite(), 4);
