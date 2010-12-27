@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/07/25 18:45:51 $
+ * $Revision: 1.10 $
+ * $Date: 2010/12/27 13:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchung.java,v $
- * Revision 1.9  2010/07/25 18:45:51  jost
+ * Revision 1.10  2010/12/27 13:58:24  jost
+ * Splitid
+ *
+ * Revision 1.9  2010-07-25 18:45:51  jost
  * Neu: Mitgliedskonto
  *
  * Revision 1.8  2008/12/03 22:00:50  jost
@@ -110,8 +113,13 @@ public interface Buchung extends DBObject
   public void setMitgliedskonto(Mitgliedskonto mitgliedskonto)
       throws RemoteException;
 
-  public void setMitgliedskontoID(Integer mitgliedskonto) throws RemoteException;
+  public void setMitgliedskontoID(Integer mitgliedskonto)
+      throws RemoteException;
 
   public Jahresabschluss getJahresabschluss() throws RemoteException;
+
+  public Integer getSplitId() throws RemoteException;
+
+  public void setSplitId(Integer splitid) throws RemoteException;
 
 }
