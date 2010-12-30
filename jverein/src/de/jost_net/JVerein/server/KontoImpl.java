@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/11/13 09:30:50 $
+ * $Revision: 1.10 $
+ * $Date: 2010/12/30 18:55:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoImpl.java,v $
- * Revision 1.9  2010/11/13 09:30:50  jost
+ * Revision 1.10  2010/12/30 18:55:52  jost
+ * Colins Patch zur MySQL-Performance-Steigerung
+ *
+ * Revision 1.9  2010-11-13 09:30:50  jost
  * Warnings entfernt.
  *
  * Revision 1.8  2010-10-15 09:58:28  jost
@@ -207,6 +210,17 @@ public class KontoImpl extends AbstractDBObject implements Konto
         gj.getEndeGeschaeftsjahr() });
     konten.setOrder("order by bezeichnung");
     return konten;
+  }
+  public void delete() throws RemoteException, ApplicationException
+  {
+    super.delete();
+    Cache.get(Konto.class, false).remove(this); // Aus Cache loeschen
+  }
+ 
+  public void store() throws RemoteException, ApplicationException
+  {
+    super.store();
+    Cache.get(Konto.class, false).put(this); // Cache aktualisieren
   }
 
 }
