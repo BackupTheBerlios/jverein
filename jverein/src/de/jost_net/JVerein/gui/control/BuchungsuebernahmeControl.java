@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2010/11/13 09:23:27 $
+ * $Revision: 1.16 $
+ * $Date: 2010/12/31 16:44:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
- * Revision 1.15  2010/11/13 09:23:27  jost
+ * Revision 1.16  2010/12/31 16:44:13  jost
+ * Bug 17827 gefixed
+ *
+ * Revision 1.15  2010-11-13 09:23:27  jost
  * Warnings entfernt.
  *
  * Revision 1.14  2010-10-15 09:58:26  jost
@@ -106,7 +109,8 @@ public class BuchungsuebernahmeControl extends AbstractControl
     {
       return konto;
     }
-    konto = new KontoauswahlInput().getKontoAuswahl(false);
+    String kontoid = settings.getString("kontoid", "");
+    konto = new KontoauswahlInput().getKontoAuswahl(false, kontoid);
     return konto;
   }
 
@@ -120,6 +124,8 @@ public class BuchungsuebernahmeControl extends AbstractControl
         try
         {
           getBuchungsList();
+          Konto k = (Konto) getKonto().getValue();
+          settings.setAttribute("kontoid", k.getID());
         }
         catch (RemoteException e)
         {

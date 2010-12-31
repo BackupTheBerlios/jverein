@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/KontoauswahlInput.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/10/11 20:32:40 $
+ * $Revision: 1.9 $
+ * $Date: 2010/12/31 16:44:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoauswahlInput.java,v $
- * Revision 1.8  2010/10/11 20:32:40  jost
+ * Revision 1.9  2010/12/31 16:44:26  jost
+ * Bug 17827 gefixed
+ *
+ * Revision 1.8  2010-10-11 20:32:40  jost
  * Vermeidung NPE
  *
  * Revision 1.7  2010-10-10 06:51:10  jost
@@ -81,7 +84,8 @@ public class KontoauswahlInput
    * @return Auswahl-Feld.
    * @throws RemoteException
    */
-  public DialogInput getKontoAuswahl(boolean keinkonto) throws RemoteException
+  public DialogInput getKontoAuswahl(boolean keinkonto, String kontoid)
+      throws RemoteException
   {
     if (kontoAuswahl != null)
     {
@@ -92,7 +96,6 @@ public class KontoauswahlInput
         KontoAuswahlDialog.POSITION_MOUSE, keinkonto);
     d.addCloseListener(new KontoListener());
 
-    String kontoid = settings.getString("kontoid", null);
     if (kontoid == null || kontoid.length() == 0)
     {
       kontoid = null;
@@ -138,8 +141,8 @@ public class KontoauswahlInput
           konto = null;
           try
           {
-            getKontoAuswahl(keinkonto).setText("");
-            getKontoAuswahl(keinkonto).setComment("");
+            getKontoAuswahl(keinkonto, "").setText("");
+            getKontoAuswahl(keinkonto, "").setComment("");
             settings.setAttribute("kontoid", "");
           }
           catch (RemoteException e)
@@ -153,8 +156,8 @@ public class KontoauswahlInput
       try
       {
         String b = konto.getBezeichnung();
-        getKontoAuswahl(keinkonto).setText(konto.getNummer());
-        getKontoAuswahl(keinkonto).setComment(b == null ? "" : b);
+        getKontoAuswahl(keinkonto, "").setText(konto.getNummer());
+        getKontoAuswahl(keinkonto, "").setComment(b == null ? "" : b);
         settings.setAttribute("kontoid", konto.getID());
       }
       catch (RemoteException er)
