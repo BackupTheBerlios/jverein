@@ -45,6 +45,10 @@
           <p>Beispiel: jameica.bat -f c:/meinejameicadaten</p>
           <p>siehe auch <a href='http://jameica.berlios.de/doku.php?id=support:install#optionale_startparameter'>Jameica-Doku</a>.
     <a name='internet'></a>
+          <p>Unter Windows kann mit einem rechten Mausklick auf das Jameica-Icon &gt; Eigenschaften folgendes Bild geöffnet
+             werden:</p>
+          <img src='../images/jameicasuiteeigenschaften.png' class='screenshot'>
+          <p>Im Feld Ziel wird der Schalter -f VERZEICHNIS wie angegeben verändert.</p>
     <p>Q: Kann JVerein übers Netzwerk betrieben werden?<br>
        A: JVerein kann seine Daten in einer MySQL-Datenbank speichern. Siehe auch 
           <a href='http://www.jverein.de/dokumentationmysql.php'>MySQL-Support</a>.
@@ -61,7 +65,10 @@
           gestellt werden. Darin kann auch ohne Probleme gesucht werden.</p> 
     <!-- 
     $Log: faq.php,v $
-    Revision 1.7  2010/10/04 14:32:55  jost
+    Revision 1.8  2011/01/04 21:15:58  jost
+    *** empty log message ***
+
+    Revision 1.7  2010-10-04 14:32:55  jost
     *** empty log message ***
 
     Revision 1.6  2010-10-01 09:06:16  jost
