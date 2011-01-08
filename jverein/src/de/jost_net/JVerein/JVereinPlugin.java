@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinPlugin.java,v $
- * $Revision: 1.29 $
- * $Date: 2010/12/12 08:10:59 $
+ * $Revision: 1.30 $
+ * $Date: 2011/01/08 15:55:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinPlugin.java,v $
- * Revision 1.29  2010/12/12 08:10:59  jost
+ * Revision 1.30  2011/01/08 15:55:48  jost
+ * Einstellungen: Dokumentenspeicherung
+ *
+ * Revision 1.29  2010-12-12 08:10:59  jost
  * Überflüssigen Import entfernt.
  *
  * Revision 1.28  2010-12-12 08:07:58  jost
@@ -316,8 +319,12 @@ public class JVereinPlugin extends AbstractPlugin
     return i18n;
   }
 
-  public static boolean isArchiveServiceActive()
+  public static boolean isArchiveServiceActive() throws RemoteException
   {
+    if (!Einstellungen.getEinstellung().getDokumentenspeicherung())
+    {
+      return false;
+    }
     if (Application.getPluginLoader().getPlugin(
         "de.willuhn.jameica.messaging.Plugin") != null)
     {
