@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Attic/StammdatenImpl.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/12/12 12:44:37 $
+ * $Revision: 1.11 $
+ * $Date: 2011/01/08 15:59:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: StammdatenImpl.java,v $
- * Revision 1.10  2010/12/12 12:44:37  jost
+ * Revision 1.11  2011/01/08 15:59:15  jost
+ * Überflüssigen Import entfernt.
+ *
+ * Revision 1.10  2010-12-12 12:44:37  jost
  * Zusätzliche Plausi.
  *
  * Revision 1.9  2010-11-13 09:31:24  jost
@@ -43,7 +46,6 @@
 package de.jost_net.JVerein.server;
 
 import java.rmi.RemoteException;
-import java.text.ParseException;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
