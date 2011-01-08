@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.31 $
- * $Date: 2010/12/31 16:44:02 $
+ * $Revision: 1.32 $
+ * $Date: 2011/01/08 10:44:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.31  2010/12/31 16:44:02  jost
+ * Revision 1.32  2011/01/08 10:44:41  jost
+ * Erzeugung Sollbuchung bei Zuordnung des Mitgliedskontos
+ *
+ * Revision 1.31  2010-12-31 16:44:02  jost
  * Bug 17827 gefixed
  *
  * Revision 1.30  2010-10-19 18:12:22  jost
@@ -125,9 +128,11 @@ import de.jost_net.JVerein.gui.menu.BuchungMenu;
 import de.jost_net.JVerein.io.BuchungAuswertungPDFEinzelbuchungen;
 import de.jost_net.JVerein.io.BuchungAuswertungPDFSummen;
 import de.jost_net.JVerein.io.BuchungsjournalPDF;
+import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Buchungsart;
 import de.jost_net.JVerein.rmi.Konto;
+import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
 import de.jost_net.JVerein.util.Dateiname;
 import de.willuhn.datasource.GenericObject;
@@ -623,7 +628,25 @@ public class BuchungsControl extends AbstractControl
         {
           if (mitgliedskonto.getValue() != null)
           {
-            b.setMitgliedskonto((Mitgliedskonto) mitgliedskonto.getValue());
+            if (mitgliedskonto.getValue() instanceof Mitgliedskonto)
+            {
+              b.setMitgliedskonto((Mitgliedskonto) mitgliedskonto.getValue());
+            }
+            else if (mitgliedskonto.getValue() instanceof Mitglied)
+            {
+              Mitglied mitglied = (Mitglied) mitgliedskonto.getValue();
+              Mitgliedskonto mk = (Mitgliedskonto) Einstellungen.getDBService()
+                  .createObject(Mitgliedskonto.class, null);
+              mk.setBetrag(b.getBetrag());
+              mk.setDatum(b.getDatum());
+              mk.setMitglied(mitglied);
+              mk.setZahlungsweg(Zahlungsweg.ÜBERWEISUNG);
+              mk.setZweck1(b.getZweck());
+              mk.setZweck2(b.getZweck2());
+              mk.store();
+              b.setMitgliedskonto(mk);
+              mitgliedskonto.setValue(mk);
+            }
           }
           else
           {
