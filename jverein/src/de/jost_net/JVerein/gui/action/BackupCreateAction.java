@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/12/12 17:18:56 $
+ * $Revision: 1.13 $
+ * $Date: 2011/01/09 14:28:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
- * Revision 1.12  2010/12/12 17:18:56  jost
+ * Revision 1.13  2011/01/09 14:28:37  jost
+ * Stammdaten in die Einstellungen verschoben.
+ *
+ * Revision 1.12  2010-12-12 17:18:56  jost
  * Neue Tabellen aufgenommen.
  *
  * Revision 1.11  2010-11-13 09:20:22  jost
@@ -88,7 +91,6 @@ import de.jost_net.JVerein.server.MailAnhangImpl;
 import de.jost_net.JVerein.server.MitgliedImpl;
 import de.jost_net.JVerein.server.MitgliedskontoImpl;
 import de.jost_net.JVerein.server.SpendenbescheinigungImpl;
-import de.jost_net.JVerein.server.StammdatenImpl;
 import de.jost_net.JVerein.server.WiedervorlageImpl;
 import de.jost_net.JVerein.server.ZusatzbetragImpl;
 import de.jost_net.JVerein.server.ZusatzfelderImpl;
@@ -113,10 +115,10 @@ public class BackupCreateAction implements Action
 {
 
   // Die Versionstabelle wird nicht mit kopiert
-  Class<?>[] tab = { StammdatenImpl.class, EinstellungImpl.class,
-      AbrechnungslaufImpl.class, BeitragsgruppeImpl.class,
-      BuchungsklasseImpl.class, BuchungsartImpl.class, KontoImpl.class,
-      MitgliedImpl.class, MitgliedskontoImpl.class, ArbeitseinsatzImpl.class,
+  Class<?>[] tab = { EinstellungImpl.class, AbrechnungslaufImpl.class,
+      BeitragsgruppeImpl.class, BuchungsklasseImpl.class,
+      BuchungsartImpl.class, KontoImpl.class, MitgliedImpl.class,
+      MitgliedskontoImpl.class, ArbeitseinsatzImpl.class,
       BuchungDokumentImpl.class, BuchungImpl.class, FelddefinitionImpl.class,
       SpendenbescheinigungImpl.class, FormularImpl.class,
       FormularfeldImpl.class, EigenschaftGruppeImpl.class,

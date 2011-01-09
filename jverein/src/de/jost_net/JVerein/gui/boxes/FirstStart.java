@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/FirstStart.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/15 09:58:30 $
+ * $Revision: 1.7 $
+ * $Date: 2011/01/09 14:29:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FirstStart.java,v $
- * Revision 1.6  2010/10/15 09:58:30  jost
+ * Revision 1.7  2011/01/09 14:29:04  jost
+ * Stammdaten in die Einstellungen verschoben.
+ *
+ * Revision 1.6  2010-10-15 09:58:30  jost
  * Code aufger‰umt
  *
  * Revision 1.5  2009-06-11 21:02:17  jost
@@ -38,7 +41,6 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeSucheAction;
 import de.jost_net.JVerein.gui.action.EinstellungenAction;
-import de.jost_net.JVerein.gui.action.StammdatenAction;
 import de.willuhn.jameica.gui.boxes.AbstractBox;
 import de.willuhn.jameica.gui.parts.FormTextPart;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -86,29 +88,24 @@ public class FirstStart extends AbstractBox
   public void paint(Composite parent) throws RemoteException
   {
     FormTextPart text = new FormTextPart();
-    text
-        .setText("<form><p><span color=\"header\" font=\"header\">"
-            + JVereinPlugin.getI18n().tr("Herzlich willkommen")
-            + "</span></p>"
-            + "<p>"
-            + JVereinPlugin
-                .getI18n()
-                .tr(
-                    "JVerein wird zum ersten Mal gestartet. Die Stammdaten des Vereins "
-                        + "(Name, eigene Bankverbindung) "
-                        + "und die Beitragsgruppe(n) sind zu erfassen. Auﬂerdem kann das "
-                        + "Verhalten von JVerein durch die Einstellungen beeinflusst werden.")
-            + "</p></form>");
+    text.setText("<form><p><span color=\"header\" font=\"header\">"
+        + JVereinPlugin.getI18n().tr("Herzlich willkommen")
+        + "</span></p>"
+        + "<p>"
+        + JVereinPlugin
+            .getI18n()
+            .tr("JVerein wird zum ersten Mal gestartet. Die allgemeinen Daten des Vereins "
+                + "(Name, eigene Bankverbindung) sowie Parameter zur Steuerung des Verhaltens von JVerein "
+                + "sind in den Einstellung zu erfassen. Auﬂerdem sind Beitragsgruppen zur erfassen. ")
+        + "</p></form>");
 
     text.paint(parent);
 
-    ButtonArea buttons = new ButtonArea(parent, 3);
-    buttons.addButton(JVereinPlugin.getI18n().tr("Stammdaten"),
-        new StammdatenAction(), null, true);
-    buttons.addButton(JVereinPlugin.getI18n().tr("Beitragsgruppen"),
-        new BeitragsgruppeSucheAction(), null);
+    ButtonArea buttons = new ButtonArea(parent, 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Einstellungen"),
         new EinstellungenAction(), null);
+    buttons.addButton(JVereinPlugin.getI18n().tr("Beitragsgruppen"),
+        new BeitragsgruppeSucheAction(), null);
   }
 
   @Override

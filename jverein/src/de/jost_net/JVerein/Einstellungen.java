@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.24 $
- * $Date: 2010/11/17 16:59:50 $
+ * $Revision: 1.25 $
+ * $Date: 2011/01/09 14:28:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
- * Revision 1.24  2010/11/17 16:59:50  jost
+ * Revision 1.25  2011/01/09 14:28:14  jost
+ * Stammdaten in die Einstellungen verschoben.
+ *
+ * Revision 1.24  2010-11-17 16:59:50  jost
  * Strikte Prüfung beim Datum-Parsen.
  *
  * Revision 1.23  2010-11-13 09:20:04  jost
@@ -95,7 +98,6 @@ import java.util.Date;
 import de.jost_net.JVerein.keys.Beitragsmodel;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Einstellung;
-import de.jost_net.JVerein.rmi.Stammdaten;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.messaging.QueryMessage;
@@ -243,8 +245,8 @@ public class Einstellungen
   public final static boolean checkAccountCRC(String blz, String kontonummer)
   {
     QueryMessage q = new QueryMessage(blz + ":" + kontonummer);
-    Application.getMessagingFactory().getMessagingQueue(
-        "hibiscus.query.accountcrc").sendSyncMessage(q);
+    Application.getMessagingFactory()
+        .getMessagingQueue("hibiscus.query.accountcrc").sendSyncMessage(q);
     Object data = q.getData();
 
     // Wenn wir keine oder eine ungueltige Antwort erhalten haben,
@@ -265,8 +267,8 @@ public class Einstellungen
   public final static String getNameForBLZ(String blz)
   {
     QueryMessage q = new QueryMessage(blz);
-    Application.getMessagingFactory().getMessagingQueue(
-        "hibiscus.query.bankname").sendSyncMessage(q);
+    Application.getMessagingFactory()
+        .getMessagingQueue("hibiscus.query.bankname").sendSyncMessage(q);
     Object data = q.getData();
 
     // wenn wir nicht zurueckerhalten haben oder die Nachricht
@@ -292,14 +294,14 @@ public class Einstellungen
 
   public static boolean isFirstStart()
   {
-    boolean bstamm = false;
+    boolean beigen = false;
     boolean bbeitragsgruppe = false;
     try
     {
-      DBIterator st = getDBService().createList(Stammdaten.class);
+      DBIterator st = getDBService().createList(Einstellung.class);
       if (st.size() > 0)
       {
-        bstamm = true;
+        beigen = true;
       }
       DBIterator bg = getDBService().createList(Beitragsgruppe.class);
       if (bg.size() > 0)
@@ -311,7 +313,7 @@ public class Einstellungen
     {
       e.printStackTrace();
     }
-    return !bstamm || !bbeitragsgruppe;
+    return !beigen || !bbeitragsgruppe;
   }
 
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Jubilaeenliste.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.10 $
+ * $Date: 2011/01/09 14:31:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Jubilaeenliste.java,v $
- * Revision 1.9  2010/10/15 09:58:28  jost
+ * Revision 1.10  2011/01/09 14:31:13  jost
+ * Stammdaten in die Einstellungen verschoben.
+ *
+ * Revision 1.9  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.8  2010-05-16 10:44:15  jost
@@ -56,7 +59,6 @@ import com.lowagie.text.Paragraph;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.rmi.Mitglied;
-import de.jost_net.JVerein.rmi.Stammdaten;
 import de.jost_net.JVerein.server.MitgliedUtils;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
@@ -78,27 +80,15 @@ public class Jubilaeenliste
       FileOutputStream fos = new FileOutputStream(file);
       Reporter reporter = new Reporter(fos, monitor, art + " " + jahr, "", 3);
 
-      Stammdaten stamm = null;
       try
       {
-        DBIterator list = Einstellungen.getDBService().createList(
-            Stammdaten.class);
-        if (list.size() > 0)
-        {
-          stamm = (Stammdaten) list.next();
-        }
-        else
-        {
-          throw new RemoteException("keine Stammdaten gespeichert");
-        }
-
         if (art.equals(MitgliedControl.JUBELART_MITGLIEDSCHAFT))
         {
-          mitgliedschaft(reporter, stamm, jahr);
+          mitgliedschaft(reporter, jahr);
         }
         else if (art.equals(MitgliedControl.JUBELART_ALTER))
         {
-          alter(reporter, stamm, jahr);
+          alter(reporter, jahr);
         }
 
         reporter.close();
@@ -151,10 +141,11 @@ public class Jubilaeenliste
 
   }
 
-  private void mitgliedschaft(Reporter reporter, Stammdaten stamm, int jahr)
+  private void mitgliedschaft(Reporter reporter, int jahr)
       throws RemoteException, RuntimeException, DocumentException
   {
-    JubilaeenParser jp = new JubilaeenParser(stamm.getJubilaeen());
+    JubilaeenParser jp = new JubilaeenParser(Einstellungen.getEinstellung()
+        .getJubilaeen());
     while (jp.hasNext())
     {
       int jubi = jp.getNext();
@@ -164,7 +155,8 @@ public class Jubilaeenliste
 
       addHeader(MitgliedControl.JUBELART_MITGLIEDSCHAFT, reporter);
 
-      DBIterator mitgl = Einstellungen.getDBService().createList(Mitglied.class);
+      DBIterator mitgl = Einstellungen.getDBService()
+          .createList(Mitglied.class);
       MitgliedUtils.setNurAktive(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
@@ -172,14 +164,14 @@ public class Jubilaeenliste
       cal.set(Calendar.MONTH, Calendar.JANUARY);
       cal.set(Calendar.DAY_OF_MONTH, 1);
       Date von = cal.getTime();
-      mitgl.addFilter("eintritt >= ?", new Object[] { new java.sql.Date(
-          von.getTime())});
+      mitgl.addFilter("eintritt >= ?",
+          new Object[] { new java.sql.Date(von.getTime()) });
 
       cal.set(Calendar.MONTH, Calendar.DECEMBER);
       cal.set(Calendar.DAY_OF_MONTH, 31);
       Date bis = cal.getTime();
-      mitgl.addFilter("eintritt <= ?", new Object[] { new java.sql.Date(
-          bis.getTime())});
+      mitgl.addFilter("eintritt <= ?",
+          new Object[] { new java.sql.Date(bis.getTime()) });
       mitgl.setOrder("order by eintritt");
 
       while (mitgl.hasNext())
@@ -199,10 +191,11 @@ public class Jubilaeenliste
 
   }
 
-  private void alter(Reporter reporter, Stammdaten stamm, int jahr)
-      throws RemoteException, RuntimeException, DocumentException
+  private void alter(Reporter reporter, int jahr) throws RemoteException,
+      RuntimeException, DocumentException
   {
-    JubilaeenParser jp = new JubilaeenParser(stamm.getAltersjubilaeen());
+    JubilaeenParser jp = new JubilaeenParser(Einstellungen.getEinstellung()
+        .getAltersjubilaeen());
     while (jp.hasNext())
     {
       int jubi = jp.getNext();
@@ -212,7 +205,8 @@ public class Jubilaeenliste
 
       addHeader(MitgliedControl.JUBELART_ALTER, reporter);
 
-      DBIterator mitgl = Einstellungen.getDBService().createList(Mitglied.class);
+      DBIterator mitgl = Einstellungen.getDBService()
+          .createList(Mitglied.class);
       MitgliedUtils.setNurAktive(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
@@ -220,14 +214,14 @@ public class Jubilaeenliste
       cal.set(Calendar.MONTH, Calendar.JANUARY);
       cal.set(Calendar.DAY_OF_MONTH, 1);
       Date von = cal.getTime();
-      mitgl.addFilter("geburtsdatum >= ?", new Object[] { new java.sql.Date(
-          von.getTime())});
+      mitgl.addFilter("geburtsdatum >= ?",
+          new Object[] { new java.sql.Date(von.getTime()) });
 
       cal.set(Calendar.MONTH, Calendar.DECEMBER);
       cal.set(Calendar.DAY_OF_MONTH, 31);
       Date bis = cal.getTime();
-      mitgl.addFilter("geburtsdatum <= ?", new Object[] { new java.sql.Date(
-          bis.getTime())});
+      mitgl.addFilter("geburtsdatum <= ?",
+          new Object[] { new java.sql.Date(bis.getTime()) });
       mitgl.setOrder("order by geburtsdatum");
 
       while (mitgl.hasNext())
