@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2010/12/31 16:44:13 $
+ * $Revision: 1.17 $
+ * $Date: 2011/01/11 17:41:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
- * Revision 1.16  2010/12/31 16:44:13  jost
+ * Revision 1.17  2011/01/11 17:41:10  jost
+ * Keine Vormerkposten übernehmen.
+ *
+ * Revision 1.16  2010-12-31 16:44:13  jost
  * Bug 17827 gefixed
  *
  * Revision 1.15  2010-11-13 09:23:27  jost
@@ -150,19 +153,22 @@ public class BuchungsuebernahmeControl extends AbstractControl
           for (int i = 0; i < buchungen.size(); i++)
           {
             Umsatz u = (Umsatz) buchungen.get(i);
-            Buchung b = (Buchung) Einstellungen.getDBService().createObject(
-                Buchung.class, null);
-            b.setUmsatzid(new Integer(u.getID()));
-            b.setKonto((Konto) getKonto().getValue());
-            b.setName(u.getGegenkontoName());
-            b.setBetrag(u.getBetrag());
-            b.setZweck(u.getZweck());
-            b.setZweck2(u.getZweck2());
-            b.setDatum(u.getDatum());
-            b.setArt(u.getArt());
-            b.setKommentar(u.getKommentar());
-            b.store();
-            buchungsList.removeItem(u);
+            if ((u.getFlags() & Umsatz.FLAG_NOTBOOKED) == 0)
+            {
+              Buchung b = (Buchung) Einstellungen.getDBService().createObject(
+                  Buchung.class, null);
+              b.setUmsatzid(new Integer(u.getID()));
+              b.setKonto((Konto) getKonto().getValue());
+              b.setName(u.getGegenkontoName());
+              b.setBetrag(u.getBetrag());
+              b.setZweck(u.getZweck());
+              b.setZweck2(u.getZweck2());
+              b.setDatum(u.getDatum());
+              b.setArt(u.getArt());
+              b.setKommentar(u.getKommentar());
+              b.store();
+              buchungsList.removeItem(u);
+            }
           }
           GUI.getStatusBar().setSuccessText("Daten übernommen");
           GUI.getCurrentView().reload();
