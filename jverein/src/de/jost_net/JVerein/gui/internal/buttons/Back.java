@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/internal/buttons/Attic/Back.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/08/23 13:37:38 $
+ * $Revision: 1.2 $
+ * $Date: 2011/01/15 09:46:50 $
  * $Author: jost $
  * $Locker:  $
  * $State: Exp $
@@ -37,7 +37,7 @@ public class Back extends Button
    */
   public Back(boolean isDefault)
   {
-    super(Application.getI18n().tr("&Zurück"),
+    super(Application.getI18n().tr("Zurück"),
         new de.willuhn.jameica.gui.internal.action.Back(), null, isDefault,
         "go-previous.png");
   }
@@ -45,7 +45,10 @@ public class Back extends Button
 
 /**********************************************************************
  * $Log: Back.java,v $
- * Revision 1.1  2010/08/23 13:37:38  jost
+ * Revision 1.2  2011/01/15 09:46:50  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.1  2010-08-23 13:37:38  jost
  * Optimierung Tastatursteuerung
  * Revision 1.1 2009/01/20 10:51:51 willuhn
  * 

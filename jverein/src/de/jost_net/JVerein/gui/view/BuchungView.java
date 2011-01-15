@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungView.java,v $
- * $Revision: 1.23 $
- * $Date: 2010/12/31 17:06:35 $
+ * $Revision: 1.24 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungView.java,v $
- * Revision 1.23  2010/12/31 17:06:35  jost
+ * Revision 1.24  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.23  2010-12-31 17:06:35  jost
  * Redakt.
  *
  * Revision 1.22  2010-12-17 13:41:10  jost
@@ -162,12 +165,12 @@ public class BuchungView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(scrolled.getComposite(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGEN, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&neu"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
         new BuchungNeuAction(), null, false, "document-new.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
 
       public void handleAction(Object context)

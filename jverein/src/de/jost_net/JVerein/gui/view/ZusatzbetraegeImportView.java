@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetraegeImportView.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:24 $
+ * $Revision: 1.5 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetraegeImportView.java,v $
- * Revision 1.4  2010/10/15 09:58:24  jost
+ * Revision 1.5  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.4  2010-10-15 09:58:24  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2010-10-07 19:49:23  jost
@@ -47,10 +50,10 @@ public class ZusatzbetraegeImportView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ZUSATZBETRAEGEIMPORT,
         false, "help-browser.png");
-    Button button = new Button(JVereinPlugin.getI18n().tr("&importieren"),
+    Button button = new Button(JVereinPlugin.getI18n().tr("importieren"),
         new Action()
         {
           public void handleAction(Object context) throws ApplicationException

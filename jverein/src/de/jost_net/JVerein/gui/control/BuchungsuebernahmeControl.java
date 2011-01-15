@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsuebernahmeControl.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/01/11 17:41:10 $
+ * $Revision: 1.18 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsuebernahmeControl.java,v $
- * Revision 1.17  2011/01/11 17:41:10  jost
+ * Revision 1.18  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.17  2011-01-11 17:41:10  jost
  * Keine Vormerkposten übernehmen.
  *
  * Revision 1.16  2010-12-31 16:44:13  jost
@@ -142,7 +145,7 @@ public class BuchungsuebernahmeControl extends AbstractControl
 
   public Button getUebernahmeButton()
   {
-    Button button = new Button("&Übernahme", new Action()
+    Button button = new Button("Übernahme", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException

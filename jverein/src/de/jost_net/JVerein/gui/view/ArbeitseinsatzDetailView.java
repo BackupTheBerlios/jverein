@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ArbeitseinsatzDetailView.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/17 04:50:29 $
+ * $Revision: 1.2 $
+ * $Date: 2011/01/15 09:46:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzDetailView.java,v $
- * Revision 1.1  2010/11/17 04:50:29  jost
+ * Revision 1.2  2011/01/15 09:46:47  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.1  2010-11-17 04:50:29  jost
  * Erster Code zum Thema Arbeitseinsatz
  *
  **********************************************************************/
@@ -44,10 +47,10 @@ public class ArbeitseinsatzDetailView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ARBEITSEINSATZ, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
       public void handleAction(Object context)
       {

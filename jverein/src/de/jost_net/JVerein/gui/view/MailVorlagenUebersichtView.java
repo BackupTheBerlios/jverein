@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailVorlagenUebersichtView.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:25 $
+ * $Revision: 1.5 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailVorlagenUebersichtView.java,v $
- * Revision 1.4  2010/10/15 09:58:25  jost
+ * Revision 1.5  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.4  2010-10-15 09:58:25  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2010-10-07 19:49:24  jost
@@ -47,10 +50,10 @@ public class MailVorlagenUebersichtView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.MAIL, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&neu"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
         new MailVorlageDetailAction(), null, false, "document-new.png");
   }
 

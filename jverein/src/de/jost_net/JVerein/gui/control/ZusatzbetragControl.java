@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/11/27 10:56:35 $
+ * $Revision: 1.9 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
- * Revision 1.8  2010/11/27 10:56:35  jost
+ * Revision 1.9  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.8  2010-11-27 10:56:35  jost
  * Redakt.
  *
  * Revision 1.7  2010-11-13 09:24:44  jost
@@ -507,7 +510,7 @@ public class ZusatzbetragControl extends AbstractControl
 
   public Button getPDFAusgabeButton()
   {
-    Button b = new Button("&PDF-Ausgabe", new Action()
+    Button b = new Button("PDF-Ausgabe", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException

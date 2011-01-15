@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ArbeitseinsatzControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/12/04 18:33:38 $
+ * $Revision: 1.7 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzControl.java,v $
- * Revision 1.6  2010/12/04 18:33:38  jost
+ * Revision 1.7  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.6  2010-12-04 18:33:38  jost
  * aktuelles Datum wird per default vorgegeben.
  *
  * Revision 1.5  2010-11-27 17:56:37  jost
@@ -242,7 +245,7 @@ public class ArbeitseinsatzControl extends AbstractControl
 
   public Button getPDFAusgabeButton()
   {
-    Button b = new Button("&PDF-Ausgabe", new Action()
+    Button b = new Button("PDF-Ausgabe", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException
@@ -264,7 +267,7 @@ public class ArbeitseinsatzControl extends AbstractControl
 
   public Button getCSVAusgabeButton()
   {
-    Button b = new Button("&CSV-Ausgabe", new Action()
+    Button b = new Button("CSV-Ausgabe", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException
@@ -286,7 +289,7 @@ public class ArbeitseinsatzControl extends AbstractControl
 
   public Button getZusatzbetraegeAusgabeButton()
   {
-    Button b = new Button("&Zusatzbeträge generieren", new Action()
+    Button b = new Button("Zusatzbeträge generieren", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException

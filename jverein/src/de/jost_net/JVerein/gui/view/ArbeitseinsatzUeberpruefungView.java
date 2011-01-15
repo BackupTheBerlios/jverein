@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ArbeitseinsatzUeberpruefungView.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/12/04 18:34:20 $
+ * $Revision: 1.6 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzUeberpruefungView.java,v $
- * Revision 1.5  2010/12/04 18:34:20  jost
+ * Revision 1.6  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.5  2010-12-04 18:34:20  jost
  * Tabelle scrolled jetzt
  *
  * Revision 1.4  2010-11-27 17:57:53  jost
@@ -77,7 +80,7 @@ public class ArbeitseinsatzUeberpruefungView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Auswertung"), aui);
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 1);
-    Button button = new Button(JVereinPlugin.getI18n().tr("&suchen"),
+    Button button = new Button(JVereinPlugin.getI18n().tr("suchen"),
         new Action()
         {
 
@@ -98,7 +101,7 @@ public class ArbeitseinsatzUeberpruefungView extends AbstractView
     buttons2.addButton(control.getPDFAusgabeButton());
     buttons2.addButton(control.getCSVAusgabeButton());
     buttons2.addButton(control.getZusatzbetraegeAusgabeButton());
-    buttons2.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons2.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ARBEITSEINSATZ, false,
         "help-browser.png");
   }

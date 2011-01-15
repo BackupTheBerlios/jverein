@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailDetailView.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/15 09:58:24 $
+ * $Revision: 1.7 $
+ * $Date: 2011/01/15 09:46:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailDetailView.java,v $
- * Revision 1.6  2010/10/15 09:58:24  jost
+ * Revision 1.7  2011/01/15 09:46:47  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.6  2010-10-15 09:58:24  jost
  * Code aufgeräumt
  *
  * Revision 1.5  2010-10-07 19:49:22  jost
@@ -89,7 +92,7 @@ public class MailDetailView extends AbstractView
     GridLayout gl3 = new GridLayout();
     gl3.marginWidth = 0;
     comp3.setLayout(gl3);
-    Button add = new Button("H&inzufügen", new Action()
+    Button add = new Button("Hinzufügen", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException
@@ -130,7 +133,7 @@ public class MailDetailView extends AbstractView
     GridLayout gl5 = new GridLayout();
     gl5.marginWidth = 0;
     comp5.setLayout(gl5);
-    Button addAttachment = new Button("    &Anlage    ", new Action()
+    Button addAttachment = new Button("    Anlage    ", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException
@@ -165,7 +168,7 @@ public class MailDetailView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.MAIL, false,
         "help-browser.png");
     buttons.addButton(control.getMailSpeichernButton());

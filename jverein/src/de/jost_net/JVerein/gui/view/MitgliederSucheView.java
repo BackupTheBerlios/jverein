@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.27 $
- * $Date: 2010/10/30 11:30:53 $
+ * $Revision: 1.28 $
+ * $Date: 2011/01/15 09:46:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
- * Revision 1.27  2010/10/30 11:30:53  jost
+ * Revision 1.28  2011/01/15 09:46:47  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.27  2010-10-30 11:30:53  jost
  * Neu: Sterbetag
  *
  * Revision 1.26  2010-10-15 09:58:24  jost
@@ -290,12 +293,12 @@ public class MitgliederSucheView extends AbstractView
     }
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.MITGLIED, false,
         "help-browser.png");
     if (anzahlbeitragsgruppe > 0)
     {
-      buttons.addButton(JVereinPlugin.getI18n().tr("&neu"),
+      buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
           new MitgliedDetailAction(), null, false, "document-new.png");
     }
   }

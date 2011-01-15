@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeDetailView.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/11/27 19:28:55 $
+ * $Revision: 1.8 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeDetailView.java,v $
- * Revision 1.7  2010/11/27 19:28:55  jost
+ * Revision 1.8  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.7  2010-11-27 19:28:55  jost
  * Optional: max. eine Eigenschaft auswählbar
  *
  * Revision 1.6  2010-11-03 21:32:25  jost
@@ -65,12 +68,12 @@ public class EigenschaftGruppeDetailView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.EIGENSCHAFTGRUPPE, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("s&uche"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("suche"),
         new EigenschaftGruppeListeAction(), null, false, "system-search.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
 
       public void handleAction(Object context)

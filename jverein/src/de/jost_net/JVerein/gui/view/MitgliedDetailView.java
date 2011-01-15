@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedDetailView.java,v $
- * $Revision: 1.53 $
- * $Date: 2010/12/19 21:09:54 $
+ * $Revision: 1.54 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailView.java,v $
- * Revision 1.53  2010/12/19 21:09:54  jost
+ * Revision 1.54  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.53  2010-12-19 21:09:54  jost
  * Sterbetag nur für juristische Personen
  *
  * Revision 1.52  2010-12-14 21:42:18  jost
@@ -427,12 +430,12 @@ public class MitgliedDetailView extends AbstractView
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.MITGLIED, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&neu"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
         new MitgliedDetailAction(), null, false, "document-new.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&löschen"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("löschen"),
         new MitgliedDeleteAction(), control.getCurrentObject(), false,
         "user-trash.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
 
       public void handleAction(Object context)

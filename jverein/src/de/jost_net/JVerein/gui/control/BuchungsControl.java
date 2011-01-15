@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.32 $
- * $Date: 2011/01/08 10:44:41 $
+ * $Revision: 1.33 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.32  2011/01/08 10:44:41  jost
+ * Revision 1.33  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.32  2011-01-08 10:44:41  jost
  * Erzeugung Sollbuchung bei Zuordnung des Mitgliedskontos
  *
  * Revision 1.31  2010-12-31 16:44:02  jost
@@ -585,7 +588,7 @@ public class BuchungsControl extends AbstractControl
 
   public Button getStartAuswertungBuchungsjournalButton()
   {
-    Button b = new Button("&PDF Buchungsjournal", new Action()
+    Button b = new Button("PDF Buchungsjournal", new Action()
     {
 
       public void handleAction(Object context)

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.26 $
- * $Date: 2010/10/15 09:58:24 $
+ * $Revision: 1.27 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
- * Revision 1.26  2010/10/15 09:58:24  jost
+ * Revision 1.27  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.26  2010-10-15 09:58:24  jost
  * Code aufgeräumt
  *
  * Revision 1.25  2010-10-07 19:49:24  jost
@@ -175,10 +178,10 @@ public class AbbuchungView extends AbstractView
     buttons.addButton(new Back(false));
     if (Einstellungen.getEinstellung().getMitgliedskonto())
     {
-      buttons.addButton("&Rückgängig", new AbrechnunslaufListAction(), null,
+      buttons.addButton("Rückgängig", new AbrechnunslaufListAction(), null,
           false, "edit-undo.png");
     }
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ABRECHNUNG, false,
         "help-browser.png");
     buttons.addButton(control.getStartButton());

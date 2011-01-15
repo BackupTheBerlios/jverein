@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2011/01/08 10:44:56 $
+ * $Revision: 1.17 $
+ * $Date: 2011/01/15 09:46:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.16  2011/01/08 10:44:56  jost
+ * Revision 1.17  2011/01/15 09:46:50  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.16  2011-01-08 10:44:56  jost
  * Erzeugung Sollbuchung bei Zuordnung des Mitgliedskontos
  *
  * Revision 1.15  2010-12-17 19:05:03  jost
@@ -659,7 +662,7 @@ public class MitgliedskontoControl extends AbstractControl
 
   public Button getStartRechnungButton(final Object currentObject)
   {
-    Button button = new Button("&starten", new Action()
+    Button button = new Button("starten", new Action()
     {
 
       public void handleAction(Object context)
@@ -772,7 +775,7 @@ public class MitgliedskontoControl extends AbstractControl
 
   public Button getStartMahnungButton(final Object currentObject)
   {
-    Button button = new Button("&starten", new Action()
+    Button button = new Button("starten", new Action()
     {
 
       public void handleAction(Object context)

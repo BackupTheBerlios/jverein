@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularDetailView.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/10/15 09:58:23 $
+ * $Revision: 1.10 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularDetailView.java,v $
- * Revision 1.9  2010/10/15 09:58:23  jost
+ * Revision 1.10  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.9  2010-10-15 09:58:23  jost
  * Code aufgeräumt
  *
  * Revision 1.8  2010-10-07 19:49:24  jost
@@ -59,10 +62,10 @@ public class FormularDetailView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.FORMULARE, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
 
       public void handleAction(Object context)

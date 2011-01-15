@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartView.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/10/15 09:58:25 $
+ * $Revision: 1.15 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartView.java,v $
- * Revision 1.14  2010/10/15 09:58:25  jost
+ * Revision 1.15  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.14  2010-10-15 09:58:25  jost
  * Code aufgeräumt
  *
  * Revision 1.13  2010-10-07 19:49:24  jost
@@ -84,11 +87,11 @@ public class BuchungsartView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 3);
 
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGSARTEN, false,
         "help-browser.png");
 
-    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
 
       public void handleAction(Object context)

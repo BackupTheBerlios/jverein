@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentView.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/12/14 21:42:03 $
+ * $Revision: 1.3 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentView.java,v $
- * Revision 1.2  2010/12/14 21:42:03  jost
+ * Revision 1.3  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.2  2010-12-14 21:42:03  jost
  * Neu: Speicherung von Dokumenten
  *
  * Revision 1.1  2010-12-12 08:13:14  jost
@@ -56,7 +59,7 @@ public class DokumentView extends AbstractView
         .getBemerkung());
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGEN, false,
         "help-browser.png");
     buttons.addButton(control.getSpeichernButton(verzeichnis + "."));

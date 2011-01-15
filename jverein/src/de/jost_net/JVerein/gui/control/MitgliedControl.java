@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.97 $
- * $Date: 2010/12/06 16:01:37 $
+ * $Revision: 1.98 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.97  2010/12/06 16:01:37  jost
+ * Revision 1.98  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.97  2010-12-06 16:01:37  jost
  * Skalierung nicht unter Windows.
  *
  * Revision 1.96  2010-12-05 08:15:41  jost
@@ -2036,7 +2039,7 @@ public class MitgliedControl extends AbstractControl
 
   public Button getStartAuswertungButton()
   {
-    Button b = new Button("&starten", new Action()
+    Button b = new Button("starten", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException
@@ -2059,7 +2062,7 @@ public class MitgliedControl extends AbstractControl
 
   public Button getStartStatistikButton()
   {
-    Button b = new Button("&starten", new Action()
+    Button b = new Button("starten", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException
@@ -2080,7 +2083,7 @@ public class MitgliedControl extends AbstractControl
 
   public Button getStartJubilaeenButton()
   {
-    Button b = new Button("&Start", new Action()
+    Button b = new Button("Start", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException

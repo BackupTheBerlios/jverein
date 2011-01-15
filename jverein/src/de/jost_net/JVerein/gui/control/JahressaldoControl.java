@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.12 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
- * Revision 1.11  2010/10/15 09:58:26  jost
+ * Revision 1.12  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.11  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.10  2010-08-23 13:33:40  jost
@@ -129,7 +132,7 @@ public class JahressaldoControl extends AbstractControl
 
   public Button getStartAuswertungButton()
   {
-    Button b = new Button("&PDF", new Action()
+    Button b = new Button("PDF", new Action()
     {
 
       public void handleAction(Object context) throws ApplicationException

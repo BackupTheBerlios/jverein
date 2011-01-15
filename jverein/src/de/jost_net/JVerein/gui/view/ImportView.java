@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ImportView.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/10/15 09:58:23 $
+ * $Revision: 1.13 $
+ * $Date: 2011/01/15 09:46:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportView.java,v $
- * Revision 1.12  2010/10/15 09:58:23  jost
+ * Revision 1.13  2011/01/15 09:46:47  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.12  2010-10-15 09:58:23  jost
  * Code aufgeräumt
  *
  * Revision 1.11  2010-10-07 19:49:22  jost
@@ -81,10 +84,10 @@ public class ImportView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.IMPORT, false,
         "help-browser.png");
-    Button button = new Button(JVereinPlugin.getI18n().tr("&importieren"),
+    Button button = new Button(JVereinPlugin.getI18n().tr("importieren"),
         new Action()
         {
           public void handleAction(Object context) throws ApplicationException
@@ -191,7 +194,6 @@ public class ImportView extends AbstractView
 
     Application.getController().start(t);
   }
-
 
   @Override
   public String getHelp()

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.17 $
- * $Date: 2010/11/21 21:09:39 $
+ * $Revision: 1.18 $
+ * $Date: 2011/01/15 09:46:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.17  2010/11/21 21:09:39  jost
+ * Revision 1.18  2011/01/15 09:46:49  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.17  2010-11-21 21:09:39  jost
  * Mitgliedsstatus in die Auswertung aufgenommen.
  *
  * Revision 1.16  2010-10-30 11:29:54  jost
@@ -143,7 +146,7 @@ public class AuswertungMitgliedView extends AbstractView
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.AUSWERTUNGMITGLIEDER,
         false, "help-browser.png");
     buttons.addButton(control.getStartAuswertungButton());

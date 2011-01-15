@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeListeView.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/11/03 21:32:44 $
+ * $Revision: 1.7 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeListeView.java,v $
- * Revision 1.6  2010/11/03 21:32:44  jost
+ * Revision 1.7  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.6  2010-11-03 21:32:44  jost
  * Redakt.
  *
  * Revision 1.5  2010-10-15 09:58:25  jost
@@ -54,13 +57,13 @@ public class EigenschaftGruppeListeView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.EIGENSCHAFTGRUPPE, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&löschen"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("löschen"),
         new EigenschaftGruppeDeleteAction(),
         control.getEigenschaftGruppeList(), false, "user-trash.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&neu"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
         new EigenschaftGruppeDetailAction(true), null, false,
         "document-new.png");
   }

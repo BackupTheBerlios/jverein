@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KontoListView.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/10/15 09:58:25 $
+ * $Revision: 1.12 $
+ * $Date: 2011/01/15 09:46:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoListView.java,v $
- * Revision 1.11  2010/10/15 09:58:25  jost
+ * Revision 1.12  2011/01/15 09:46:48  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.11  2010-10-15 09:58:25  jost
  * Code aufgeräumt
  *
  * Revision 1.10  2010-10-07 19:49:23  jost
@@ -69,12 +72,12 @@ public class KontoListView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.KONTEN, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("Hibiscus-Konten-&Import"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hibiscus-Konten-Import"),
         new HibiscusKontenImportAction(control), null, false, "go.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&neu"), new KontoAction(),
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu"), new KontoAction(),
         null, false, "document-new.png");
   }
 

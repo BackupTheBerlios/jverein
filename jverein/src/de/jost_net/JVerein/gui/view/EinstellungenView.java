@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.39 $
- * $Date: 2011/01/09 14:30:00 $
+ * $Revision: 1.40 $
+ * $Date: 2011/01/15 09:46:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.39  2011/01/09 14:30:00  jost
+ * Revision 1.40  2011/01/15 09:46:47  jost
+ * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
+ *
+ * Revision 1.39  2011-01-09 14:30:00  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.38  2011-01-08 15:56:17  jost
@@ -292,10 +295,10 @@ public class EinstellungenView extends AbstractView
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(new Back(false));
-    buttons.addButton(JVereinPlugin.getI18n().tr("&Hilfe"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.EINSTELLUNGEN, false,
         "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("&speichern"), new Action()
+    buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
 
       public void handleAction(Object context)
