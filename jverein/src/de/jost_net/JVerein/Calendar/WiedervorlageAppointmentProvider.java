@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/WiedervorlageAppointmentProvider.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/11/27 10:56:05 $
+ * $Revision: 1.3 $
+ * $Date: 2011/01/20 18:26:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageAppointmentProvider.java,v $
- * Revision 1.2  2010/11/27 10:56:05  jost
+ * Revision 1.3  2011/01/20 18:26:31  jost
+ * AppointmentCode Hibiscus -> Jameica
+ *
+ * Revision 1.2  2010-11-27 10:56:05  jost
  * Link zum Mitglied
  *
  * Revision 1.1  2010-11-25 15:11:23  jost
@@ -57,10 +60,10 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
       Calendar cal = Calendar.getInstance();
       cal.setTime(from);
       if (from != null)
-        list.addFilter("datum >= ?", new Object[] { new java.sql.Date(from
-            .getTime()) });
-      list.addFilter("datum <= ?", new Object[] { new java.sql.Date(to
-          .getTime()) });
+        list.addFilter("datum >= ?",
+            new Object[] { new java.sql.Date(from.getTime()) });
+      list.addFilter("datum <= ?",
+          new Object[] { new java.sql.Date(to.getTime()) });
       list.setOrder("ORDER BY day(datum)");
 
       List<Appointment> result = new LinkedList<Appointment>();
@@ -168,5 +171,30 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
     {
       return new RGB(122, 122, 122);
     }
+
+    /**
+     * @see de.willuhn.jameica.gui.calendar.AbstractAppointment#getUid()
+     */
+    public String getUid()
+    {
+      try
+      {
+        return "jverein.wiedervorlage." + w.getID();
+      }
+      catch (RemoteException re)
+      {
+        Logger.error("unable to create uid", re);
+        return "*Error*";
+      }
+    }
+
+    /**
+     * @see de.willuhn.jameica.gui.calendar.AbstractAppointment#hasAlarm()
+     */
+    public boolean hasAlarm()
+    {
+      return false;
+    }
+
   }
 }

@@ -1,8 +1,9 @@
 package de.jost_net.JVerein.Calendar;
+
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/MitgliedAppointmentProvider.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/25 15:11:15 $
+ * $Revision: 1.2 $
+ * $Date: 2011/01/20 18:26:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -10,7 +11,10 @@ package de.jost_net.JVerein.Calendar;
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAppointmentProvider.java,v $
- * Revision 1.1  2010/11/25 15:11:15  jost
+ * Revision 1.2  2011/01/20 18:26:15  jost
+ * AppointmentCode Hibiscus -> Jameica
+ *
+ * Revision 1.1  2010-11-25 15:11:15  jost
  * Initial Commit
  *
  **********************************************************************/
@@ -55,7 +59,7 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
       cal.setTime(from);
       if (from != null)
         list.addFilter("month(geburtsdatum)= ?",
-            new Object[] { cal.get(Calendar.MONTH) + 1});
+            new Object[] { cal.get(Calendar.MONTH) + 1 });
       list.setOrder("ORDER BY day(geburtsdatum)");
 
       List<Appointment> result = new LinkedList<Appointment>();
@@ -169,5 +173,30 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
     {
       return new RGB(122, 122, 122);
     }
+
+    /**
+     * @see de.willuhn.jameica.gui.calendar.AbstractAppointment#getUid()
+     */
+    public String getUid()
+    {
+      try
+      {
+        return "jverein.mitglied." + m.getID();
+      }
+      catch (RemoteException re)
+      {
+        Logger.error("unable to create uid", re);
+        return "*Error*";
+      }
+    }
+
+    /**
+     * @see de.willuhn.jameica.gui.calendar.AbstractAppointment#hasAlarm()
+     */
+    public boolean hasAlarm()
+    {
+      return false;
+    }
   }
+
 }
