@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.15 $
- * $Date: 2010/10/30 11:31:51 $
+ * $Revision: 1.16 $
+ * $Date: 2011/01/27 22:24:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
- * Revision 1.15  2010/10/30 11:31:51  jost
+ * Revision 1.16  2011/01/27 22:24:16  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.15  2010-10-30 11:31:51  jost
  * Neu: Sterbetag
  *
  * Revision 1.14  2010-10-28 19:15:50  jost
@@ -70,6 +73,10 @@ public interface Mitglied extends DBObject
   public Integer getExterneMitgliedsnummer() throws RemoteException;
 
   public void setID(String id) throws RemoteException;
+
+  public void setAdresstyp(Integer adresstyp) throws RemoteException;
+
+  public Adresstyp getAdresstyp() throws RemoteException;
 
   public String getPersonenart() throws RemoteException;
 

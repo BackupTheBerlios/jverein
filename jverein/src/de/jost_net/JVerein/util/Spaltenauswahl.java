@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Spaltenauswahl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.4 $
+ * $Date: 2011/01/27 22:26:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spaltenauswahl.java,v $
- * Revision 1.3  2010/10/15 09:58:29  jost
+ * Revision 1.4  2011/01/27 22:26:15  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.3  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2009-06-11 21:04:24  jost
@@ -51,28 +54,31 @@ public abstract class Spaltenauswahl
   }
 
   public void add(String spaltenbezeichnung, String spaltenname,
-      boolean defaultvalue)
+      boolean defaultvalue, boolean nurMitglied)
   {
-    spalten.add(new Spalte(spaltenbezeichnung, spaltenname,
-        settings.getBoolean(tabelle + "." + spaltenname, defaultvalue)));
+    spalten.add(new Spalte(spaltenbezeichnung, spaltenname, settings
+        .getBoolean(tabelle + "." + spaltenname, defaultvalue), nurMitglied));
   }
 
   public void add(String spaltenbezeichnung, String spaltenname,
-      boolean defaultvalue, Formatter formatter, int align)
+      boolean defaultvalue, Formatter formatter, int align, boolean nurMitglied)
   {
-    spalten.add(new Spalte(spaltenbezeichnung, spaltenname,
-        settings.getBoolean(tabelle + "." + spaltenname, defaultvalue),
-        formatter, align));
+    spalten.add(new Spalte(spaltenbezeichnung, spaltenname, settings
+        .getBoolean(tabelle + "." + spaltenname, defaultvalue), formatter,
+        align, nurMitglied));
   }
 
-  public void setColumns(TablePart part)
+  public void setColumns(TablePart part, int adresstyp)
   {
     for (Spalte spalte : spalten)
     {
       if (spalte.isChecked())
       {
-        part.addColumn(spalte.getSpaltenbezeichnung(), spalte.getSpaltenname(),
-            spalte.getFormatter());
+        if ((adresstyp == 1) || adresstyp != 1 && spalte.isNurAdressen())
+        {
+          part.addColumn(spalte.getSpaltenbezeichnung(),
+              spalte.getSpaltenname(), spalte.getFormatter());
+        }
       }
     }
   }
@@ -93,8 +99,8 @@ public abstract class Spaltenauswahl
     spaltendefinitionList.paint(parent);
     for (int i = 0; i < spalten.size(); ++i)
     {
-      spaltendefinitionList.setChecked(spalten.get(i),
-          spalten.get(i).isChecked());
+      spaltendefinitionList.setChecked(spalten.get(i), spalten.get(i)
+          .isChecked());
     }
 
     return spaltendefinitionList;

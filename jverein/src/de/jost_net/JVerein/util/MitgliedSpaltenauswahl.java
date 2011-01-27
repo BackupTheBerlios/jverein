@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/MitgliedSpaltenauswahl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/01/01 20:12:34 $
+ * $Revision: 1.7 $
+ * $Date: 2011/01/27 22:25:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSpaltenauswahl.java,v $
+ * Revision 1.7  2011/01/27 22:25:48  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
  * Revision 1.6  2010/01/01 20:12:34  jost
  * Typisierung der Zusatzfelder
  *
@@ -50,43 +53,44 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
   public MitgliedSpaltenauswahl()
   {
     super("mitglied");
-    add("ID", "id", false);
+    add("ID", "id", false, true);
     add(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
-        "externemitgliedsnummer", false);
-    add(JVereinPlugin.getI18n().tr("Anrede"), "anrede", false);
-    add(JVereinPlugin.getI18n().tr("Titel"), "titel", false);
-    add(JVereinPlugin.getI18n().tr("Name"), "name", true);
-    add(JVereinPlugin.getI18n().tr("Vorname"), "vorname", true);
+        "externemitgliedsnummer", false, false);
+    add(JVereinPlugin.getI18n().tr("Anrede"), "anrede", false, true);
+    add(JVereinPlugin.getI18n().tr("Titel"), "titel", false, true);
+    add(JVereinPlugin.getI18n().tr("Name"), "name", true, true);
+    add(JVereinPlugin.getI18n().tr("Vorname"), "vorname", true, true);
     add(JVereinPlugin.getI18n().tr("Adressierungszusatz"),
-        "adressierungszusatz", false);
-    add(JVereinPlugin.getI18n().tr("Straße"), "strasse", true);
-    add(JVereinPlugin.getI18n().tr("PLZ"), "plz", false);
-    add(JVereinPlugin.getI18n().tr("Ort"), "ort", true);
+        "adressierungszusatz", false, true);
+    add(JVereinPlugin.getI18n().tr("Straße"), "strasse", true, true);
+    add(JVereinPlugin.getI18n().tr("PLZ"), "plz", false, true);
+    add(JVereinPlugin.getI18n().tr("Ort"), "ort", true, true);
     add(JVereinPlugin.getI18n().tr("Zahlungsweg"), "zahlungsweg", false,
-        new ZahlungswegFormatter(), Column.ALIGN_LEFT);
+        new ZahlungswegFormatter(), Column.ALIGN_LEFT, false);
     add(JVereinPlugin.getI18n().tr("Zahlungsrhytmus"), "zahlungsrhytmus",
-        false, new ZahlungsrhytmusFormatter(), Column.ALIGN_LEFT);
-    add(JVereinPlugin.getI18n().tr("BLZ"), "blz", false);
-    add(JVereinPlugin.getI18n().tr("Konto"), "konto", false);
-    add(JVereinPlugin.getI18n().tr("Kontoinhaber"), "kontoinhaber", false);
+        false, new ZahlungsrhytmusFormatter(), Column.ALIGN_LEFT, false);
+    add(JVereinPlugin.getI18n().tr("BLZ"), "blz", false, true);
+    add(JVereinPlugin.getI18n().tr("Konto"), "konto", false, true);
+    add(JVereinPlugin.getI18n().tr("Kontoinhaber"), "kontoinhaber", false, true);
     add(JVereinPlugin.getI18n().tr("Geburtsdatum"), "geburtsdatum", true,
-        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
-    add(JVereinPlugin.getI18n().tr("Geschlecht"), "geschlecht", false);
-    add(JVereinPlugin.getI18n().tr("Telefon privat"), "telefonprivat", true);
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO, true);
+    add(JVereinPlugin.getI18n().tr("Geschlecht"), "geschlecht", false, true);
+    add(JVereinPlugin.getI18n().tr("Telefon privat"), "telefonprivat", true,
+        true);
     add(JVereinPlugin.getI18n().tr("Telefon dienstlich"), "telefondienstlich",
-        false);
-    add(JVereinPlugin.getI18n().tr("Handy"), "handy", false);
-    add(JVereinPlugin.getI18n().tr("Email"), "email", false);
+        false, true);
+    add(JVereinPlugin.getI18n().tr("Handy"), "handy", false, true);
+    add(JVereinPlugin.getI18n().tr("Email"), "email", false, true);
     add(JVereinPlugin.getI18n().tr("Eintritt"), "eintritt", true,
-        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO, false);
     add(JVereinPlugin.getI18n().tr("Beitragsgruppe"), "beitragsgruppe", false,
-        new BeitragsgruppeFormatter(), Column.ALIGN_LEFT);
+        new BeitragsgruppeFormatter(), Column.ALIGN_LEFT, false);
     add(JVereinPlugin.getI18n().tr("Austritt"), "austritt", true,
-        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO, false);
     add(JVereinPlugin.getI18n().tr("Kündigung"), "kuendigung", false,
-        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO, false);
     add(JVereinPlugin.getI18n().tr("Eingabedatum"), "eingabedatum", false,
-        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+        new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO, true);
     try
     {
       DBIterator it = Einstellungen.getDBService().createList(
@@ -98,19 +102,20 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
         {
           case Datentyp.DATUM:
             add(fd.getLabel(), "zusatzfelder." + fd.getName(), false,
-                new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO);
+                new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO,
+                true);
             break;
           case Datentyp.WAEHRUNG:
             add(fd.getLabel(), "zusatzfelder." + fd.getName(), false,
                 new CurrencyFormatter("", Einstellungen.DECIMALFORMAT),
-                Column.ALIGN_AUTO);
+                Column.ALIGN_AUTO, true);
             break;
           case Datentyp.JANEIN:
             add(fd.getLabel(), "zusatzfelder." + fd.getName(), false,
-                new JaNeinFormatter(), Column.ALIGN_AUTO);
+                new JaNeinFormatter(), Column.ALIGN_AUTO, true);
             break;
           default:
-            add(fd.getLabel(), "zusatzfelder." + fd.getName(), false);
+            add(fd.getLabel(), "zusatzfelder." + fd.getName(), false, true);
             break;
         }
       }

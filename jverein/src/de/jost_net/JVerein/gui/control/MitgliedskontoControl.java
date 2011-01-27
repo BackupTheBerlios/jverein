@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/01/15 09:46:50 $
+ * $Revision: 1.18 $
+ * $Date: 2011/01/27 22:19:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.17  2011/01/15 09:46:50  jost
+ * Revision 1.18  2011/01/27 22:19:04  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.17  2011-01-15 09:46:50  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.16  2011-01-08 10:44:56  jost
@@ -97,6 +100,7 @@ import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.Dateiname;
 import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
@@ -485,6 +489,7 @@ public class MitgliedskontoControl extends AbstractControl
     this.action = action;
     DBIterator mitglieder = Einstellungen.getDBService().createList(
         Mitglied.class);
+    MitgliedUtils.setMitglied(mitglieder);
     if (suchname2 != null && suchname2.getValue() != null)
     {
       String where = "";

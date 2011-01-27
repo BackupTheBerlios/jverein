@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/AktuelleGeburtstageList.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.8 $
+ * $Date: 2011/01/27 22:19:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageList.java,v $
- * Revision 1.7  2010/10/15 09:58:26  jost
+ * Revision 1.8  2011/01/27 22:19:52  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.7  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.6  2010-05-23 07:11:51  jost
@@ -64,6 +67,7 @@ public class AktuelleGeburtstageList extends TablePart implements Part
     DBService service = Einstellungen.getDBService();
     DBIterator geburtstage = service.createList(Mitglied.class);
     MitgliedUtils.setNurAktive(geburtstage);
+    MitgliedUtils.setMitglied(geburtstage);
     String filter = "";
     Calendar cal = Calendar.getInstance();
     int vorher = 0;

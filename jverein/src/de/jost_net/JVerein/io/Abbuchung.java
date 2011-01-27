@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.49 $
- * $Date: 2011/01/09 14:30:24 $
+ * $Revision: 1.50 $
+ * $Date: 2011/01/27 22:23:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
- * Revision 1.49  2011/01/09 14:30:24  jost
+ * Revision 1.50  2011/01/27 22:23:13  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.49  2011-01-09 14:30:24  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.48  2010-12-16 19:07:15  jost
@@ -188,6 +191,7 @@ import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
+import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.Datum;
 import de.jost_net.OBanToo.Dtaus.CSatz;
 import de.jost_net.OBanToo.Dtaus.Dtaus2Pdf;
@@ -301,6 +305,7 @@ public class Abbuchung
     {
       // Alle Mitglieder lesen
       list = Einstellungen.getDBService().createList(Mitglied.class);
+      MitgliedUtils.setMitglied(list);
 
       // Das Mitglied muss bereits eingetreten sein
       list.addFilter("(eintritt <= ? or eintritt is null) ",

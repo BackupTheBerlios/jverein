@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Jubilaeenliste.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/01/09 14:31:13 $
+ * $Revision: 1.11 $
+ * $Date: 2011/01/27 22:23:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Jubilaeenliste.java,v $
- * Revision 1.10  2011/01/09 14:31:13  jost
+ * Revision 1.11  2011/01/27 22:23:40  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.10  2011-01-09 14:31:13  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.9  2010-10-15 09:58:28  jost
@@ -158,6 +161,7 @@ public class Jubilaeenliste
       DBIterator mitgl = Einstellungen.getDBService()
           .createList(Mitglied.class);
       MitgliedUtils.setNurAktive(mitgl);
+      MitgliedUtils.setMitglied(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
       cal.add(Calendar.YEAR, jubi * -1);
@@ -208,6 +212,7 @@ public class Jubilaeenliste
       DBIterator mitgl = Einstellungen.getDBService()
           .createList(Mitglied.class);
       MitgliedUtils.setNurAktive(mitgl);
+      MitgliedUtils.setMitglied(mitgl);
       Calendar cal = Calendar.getInstance();
       cal.set(Calendar.YEAR, jahr);
       cal.add(Calendar.YEAR, jubi * -1);

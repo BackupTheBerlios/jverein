@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.21 $
- * $Date: 2010/11/13 09:27:53 $
+ * $Revision: 1.22 $
+ * $Date: 2011/01/27 22:23:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.21  2010/11/13 09:27:53  jost
+ * Revision 1.22  2011/01/27 22:23:51  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.21  2010-11-13 09:27:53  jost
  * Warnings entfernt.
  *
  * Revision 1.20  2010-10-30 11:31:38  jost
@@ -112,12 +115,13 @@ public class MitgliedQuery
     this.dialog = dialog;
   }
 
-  public ArrayList<?> get() throws RemoteException
+  public ArrayList<?> get(int adresstyp) throws RemoteException
   {
-    return get("*");
+    return get("*", adresstyp);
   }
 
-  public ArrayList<?> get(String anfangsbuchstabe) throws RemoteException
+  public ArrayList<?> get(String anfangsbuchstabe, int adresstyp)
+      throws RemoteException
   {
     final DBService service = Einstellungen.getDBService();
 
@@ -128,15 +132,16 @@ public class MitgliedQuery
       sql += ", month(geburtsdatum), day(geburtsdatum) ";
     }
     sql += "from mitglied ";
+    addCondition("adresstyp = " + adresstyp);
     if (control.isMitgliedStatusAktiv())
     {
-      if (control.getMitgliedStatus().getValue().equals(
-          JVereinPlugin.getI18n().tr("Angemeldet")))
+      if (control.getMitgliedStatus().getValue()
+          .equals(JVereinPlugin.getI18n().tr("Angemeldet")))
       {
         addCondition("(austritt is null or austritt > current_date())");
       }
-      else if (control.getMitgliedStatus().getValue().equals(
-          JVereinPlugin.getI18n().tr("Abgemeldet")))
+      else if (control.getMitgliedStatus().getValue()
+          .equals(JVereinPlugin.getI18n().tr("Abgemeldet")))
       {
         addCondition("austritt is not null and austritt <= current_date()");
       }
@@ -270,8 +275,8 @@ public class MitgliedQuery
         ArrayList<Mitglied> list = new ArrayList<Mitglied>();
         while (rs.next())
         {
-          list.add((Mitglied) service.createObject(Mitglied.class, rs
-              .getString(1)));
+          list.add((Mitglied) service.createObject(Mitglied.class,
+              rs.getString(1)));
         }
         return list;
       }
