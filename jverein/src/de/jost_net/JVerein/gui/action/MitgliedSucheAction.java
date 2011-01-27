@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedSucheAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.5 $
+ * $Date: 2011/01/27 22:17:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSucheAction.java,v $
+ * Revision 1.5  2011/01/27 22:17:19  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
  * Revision 1.4  2009/06/11 21:02:05  jost
  * Vorbereitung I18N
  *
@@ -24,11 +27,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
-import java.rmi.RemoteException;
-
-import de.jost_net.JVerein.Einstellungen;
-import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.gui.view.MitgliederSucheView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.util.ApplicationException;
@@ -36,28 +35,13 @@ import de.willuhn.util.ApplicationException;
 public class MitgliedSucheAction implements Action
 {
 
+  public MitgliedSucheAction()
+  {
+  }
+
   public void handleAction(Object context) throws ApplicationException
   {
-    Mitglied m = null;
-    if (context != null && context instanceof Mitglied)
-    {
-      m = (Mitglied) context;
-    }
-    else
-    {
-      try
-      {
-        m = (Mitglied) Einstellungen.getDBService().createObject(
-            Mitglied.class, null);
-      }
-      catch (RemoteException e)
-      {
-        throw new ApplicationException(JVereinPlugin.getI18n().tr(
-            "kann kein Objekt vom Typ Mitglied erzeugen"));
-      }
-    }
-    GUI.startView(de.jost_net.JVerein.gui.view.MitgliederSucheView.class
-        .getName(), m);
+    GUI.startView(MitgliederSucheView.class.getName(), null);
   }
 
 }

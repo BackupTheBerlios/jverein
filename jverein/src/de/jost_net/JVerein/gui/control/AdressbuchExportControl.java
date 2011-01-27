@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AdressbuchExportControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.6 $
+ * $Date: 2011/01/27 22:17:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AdressbuchExportControl.java,v $
- * Revision 1.5  2011/01/15 09:46:49  jost
+ * Revision 1.6  2011/01/27 22:17:50  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.5  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.4  2010-10-15 09:58:26  jost
@@ -89,7 +92,7 @@ public class AdressbuchExportControl extends AbstractControl
       return encoding;
     }
     encoding = new SelectInput(new Object[] { "Cp1250", "ISO8859_15_FDIS",
-        "UTF-8"}, settings.getString("encoding", "ISO8859_15_FDIS"));
+        "UTF-8" }, settings.getString("encoding", "ISO8859_15_FDIS"));
     return encoding;
   }
 
@@ -135,13 +138,14 @@ public class AdressbuchExportControl extends AbstractControl
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Export-Datei auswählen.");
 
-    String path = settings.getString("lastdir", System.getProperty("user.home"));
+    String path = settings
+        .getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("adressbuchexport",
-        Einstellungen.getEinstellung().getDateinamenmuster(), "CSV").get());
+    fd.setFileName(new Dateiname("adressbuchexport", Einstellungen
+        .getEinstellung().getDateinamenmuster(), "CSV").get());
     final String file = fd.open();
 
     if (file == null || file.length() == 0)
@@ -168,6 +172,7 @@ public class AdressbuchExportControl extends AbstractControl
           DBIterator it = Einstellungen.getDBService().createList(
               Mitglied.class);
           MitgliedUtils.setNurAktive(it);
+          MitgliedUtils.setMitglied(it);
           if (isNurEmail)
           {
             it.addFilter("email is not null and length(email)>0");

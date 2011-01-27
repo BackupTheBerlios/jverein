@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AktuelleGeburtstageControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.4 $
+ * $Date: 2011/01/27 22:18:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageControl.java,v $
- * Revision 1.3  2010/10/15 09:58:26  jost
+ * Revision 1.4  2011/01/27 22:18:19  jost
+ * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
+ *
+ * Revision 1.3  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2010-05-16 10:42:55  jost
@@ -91,6 +94,7 @@ public class AktuelleGeburtstageControl extends AbstractControl
   {
     DBService service = Einstellungen.getDBService();
     DBIterator geburtstage = service.createList(Mitglied.class);
+    MitgliedUtils.setMitglied(geburtstage);
     String filter = "";
     Calendar cal = Calendar.getInstance();
     int vorher = 3;
@@ -128,9 +132,9 @@ public class AktuelleGeburtstageControl extends AbstractControl
           "name");
       aktuelleGeburtstageList.addColumn(JVereinPlugin.getI18n().tr("Vorname"),
           "vorname");
-      aktuelleGeburtstageList.addColumn(JVereinPlugin.getI18n().tr(
-          "Geburtsdatum"), "geburtsdatum", new DateFormatter(
-          Einstellungen.DATEFORMAT));
+      aktuelleGeburtstageList.addColumn(
+          JVereinPlugin.getI18n().tr("Geburtsdatum"), "geburtsdatum",
+          new DateFormatter(Einstellungen.DATEFORMAT));
       aktuelleGeburtstageList.setRememberColWidths(true);
       aktuelleGeburtstageList.setRememberOrder(true);
       aktuelleGeburtstageList.setSummary(true);
