@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.100 $
- * $Date: 2011/01/27 22:18:52 $
+ * $Revision: 1.101 $
+ * $Date: 2011/01/28 13:24:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.100  2011/01/27 22:18:52  jost
+ * Revision 1.101  2011/01/28 13:24:35  jost
+ * Bugfix
+ *
+ * Revision 1.100  2011-01-27 22:18:52  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.99  2011-01-19 22:06:43  jost
@@ -2440,6 +2443,15 @@ public class MitgliedControl extends AbstractControl
 
       }
 
+      if (adresstyp != null)
+      {
+        Adresstyp at = (Adresstyp) getAdresstyp().getValue();
+        m.setAdresstyp(new Integer(at.getID()));
+      }
+      else
+      {
+        m.setAdresstyp(1);
+      }
       m.setAdressierungszusatz((String) getAdressierungszusatz().getValue());
       m.setAustritt((Date) getAustritt().getValue());
       m.setAnrede((String) getAnrede().getValue());
