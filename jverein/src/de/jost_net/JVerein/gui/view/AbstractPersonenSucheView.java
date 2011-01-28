@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/AbstractPersonenSucheView.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/01/27 22:21:37 $
+ * $Revision: 1.2 $
+ * $Date: 2011/01/28 09:18:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractPersonenSucheView.java,v $
- * Revision 1.1  2011/01/27 22:21:37  jost
+ * Revision 1.2  2011/01/28 09:18:30  jost
+ * Korrekte Detailaction
+ *
+ * Revision 1.1  2011-01-27 22:21:37  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.28  2011-01-15 09:46:47  jost
@@ -147,7 +150,7 @@ public abstract class AbstractPersonenSucheView extends AbstractView
 
   private final String[] b = { "A", "Ä", "B", "C", "D", "E", "F", "G", "H",
       "I", "J", "K", "L", "M", "N", "O", "Ö", "P", "Q", "R", "S", "T", "U",
-      "Ü", "V", "W", "X", "Y", "Z", "*" };
+      "Ü", "V", "W", "X", "Y", "Z", "*"};
 
   @Override
   public void bind() throws Exception
@@ -169,8 +172,7 @@ public abstract class AbstractPersonenSucheView extends AbstractView
         return new Long(rs.getLong(1));
       }
     };
-    Long anzahlbeitragsgruppe = (Long) service
-        .execute(sql, new Object[] {}, rs);
+    Long anzahlbeitragsgruppe = (Long) service.execute(sql, new Object[] {}, rs);
     if (anzahlbeitragsgruppe.longValue() == 0)
     {
       new LabelInput(JVereinPlugin.getI18n().tr(
@@ -239,8 +241,8 @@ public abstract class AbstractPersonenSucheView extends AbstractView
         "help-browser.png");
     if (anzahlbeitragsgruppe > 0)
     {
-      buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
-          new MitgliedDetailAction(), null, false, "document-new.png");
+      buttons.addButton(JVereinPlugin.getI18n().tr("neu"), getDetailAction(),
+          null, false, "document-new.png");
     }
   }
 
