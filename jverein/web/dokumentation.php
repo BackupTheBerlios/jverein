@@ -4,6 +4,7 @@
 	<li><a href="dokumentationallinone.php">All-in-One</a></li>
 	<li><a href="jameica_startseite.php">Jameica-Startseite</a></li>
 	<li><a href="mitglied.php">Mitglieder</a></li>
+	<li><a href="adressen.php">Adressen (ab Version 1.5)</a></li>
 	<li><a href="mitgliedskonto.php">Mitgliedskonto</a></li>
 	<li><a href="kursteilnehmer.php">Kursteilnehmer</a></li>
 	<li><a href="abrechnung.php">Abrechnung</a></li>
@@ -48,6 +49,7 @@
 		<li><a href="administration_einstellungen.php">Einstellungen</a></li>
 		<li><a href="administration_felddefinitionen.php">Felddefinitionen</a></li>
 		<li><a href="administration_formulare.php">Formulare</a></li>
+		<li><a href="administration_adresstypen.php">Adresstypen (ab Version 1.5)</a></li>
 		<li><a href="administration_erweitert.php">Erweitert</a>
 		<ul>
 			<li><a href="administration_erweitert.php#backup_erstellen">Diagnosebackup
@@ -69,7 +71,13 @@
 
     <!-- 
     $Log: dokumentation.php,v $
-    Revision 1.17  2010/12/12 19:06:59  jost
+    Revision 1.19  2011/01/29 19:33:38  jost
+    *** empty log message ***
+
+    Revision 1.18  2011-01-29 19:31:58  jost
+    *** empty log message ***
+
+    Revision 1.17  2010-12-12 19:06:59  jost
     Neu: Speicherung von Dokumenten
 
     Revision 1.16  2010-11-27 18:04:54  jost
