@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.26 $
- * $Date: 2011/01/27 22:22:31 $
+ * $Revision: 1.27 $
+ * $Date: 2011/01/29 19:31:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
- * Revision 1.26  2011/01/27 22:22:31  jost
+ * Revision 1.27  2011/01/29 19:31:10  jost
+ * Doku Adressen
+ *
+ * Revision 1.26  2011-01-27 22:22:31  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.25  2010-11-17 04:50:57  jost
@@ -95,6 +98,8 @@ public class DokumentationUtil
 {
 
   private static final String PRE = "http://www.jverein.de/";
+
+  public static final String ADRESSEN = PRE + "adressen.php";
 
   public static final String ADRESSBUCHEXPORT = PRE
       + "dokumentationauswertungadressbuchexport.php";
