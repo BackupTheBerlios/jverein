@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.18 $
- * $Date: 2011/01/27 22:19:04 $
+ * $Revision: 1.19 $
+ * $Date: 2011/01/29 07:40:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.18  2011/01/27 22:19:04  jost
+ * Revision 1.19  2011/01/29 07:40:31  jost
+ * Mitgliedskonto für Spender
+ *
+ * Revision 1.18  2011-01-27 22:19:04  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.17  2011-01-15 09:46:50  jost
@@ -489,21 +492,15 @@ public class MitgliedskontoControl extends AbstractControl
     this.action = action;
     DBIterator mitglieder = Einstellungen.getDBService().createList(
         Mitglied.class);
-    MitgliedUtils.setMitglied(mitglieder);
+    MitgliedUtils.setMitgliedOderSpender(mitglieder);
     if (suchname2 != null && suchname2.getValue() != null)
     {
       String where = "";
       ArrayList<String> object = new ArrayList<String>();
       StringTokenizer tok = new StringTokenizer((String) suchname2.getValue(),
           " ,-");
-      int count = 0;
       while (tok.hasMoreElements())
       {
-        if (count > 0)
-        {
-          where += "OR ";
-        }
-        count++;
         where += "upper(name) like upper(?) or upper(vorname) like upper(?) ";
         String o = tok.nextToken();
         object.add(o);
