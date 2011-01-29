@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.102 $
- * $Date: 2011/01/29 19:29:48 $
+ * $Revision: 1.103 $
+ * $Date: 2011/01/29 20:34:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.102  2011/01/29 19:29:48  jost
+ * Revision 1.103  2011/01/29 20:34:16  jost
+ * Verzögerungszeit für Suchfelder
+ *
+ * Revision 1.102  2011-01-29 19:29:48  jost
  * Feinschliff
  *
  * Revision 1.101  2011-01-28 13:24:35  jost
@@ -699,7 +702,7 @@ public class MitgliedControl extends AbstractControl
     name.setValue(getMitglied().getName());
     name.setName("Name");
     name.setMaxLength(40);
-    name.setDelay(1000);
+    name.setDelay(Einstellungen.getEinstellung().getDelaytime());
     name.setMandatory(true);
     name.setSearchString("");
     if (withFocus)
@@ -756,7 +759,7 @@ public class MitgliedControl extends AbstractControl
     vorname.setValue(getMitglied().getVorname());
     vorname.setName("Vorname");
     vorname.setMaxLength(40);
-    vorname.setDelay(1000);
+    vorname.setDelay(Einstellungen.getEinstellung().getDelaytime());
     vorname.setSearchString("");
     vorname.setMandatory(true);
     return vorname;
@@ -823,7 +826,7 @@ public class MitgliedControl extends AbstractControl
     strasse.setText("bla");
     strasse.setName("Straße");
     strasse.setMaxLength(40);
-    strasse.setDelay(1000);
+    strasse.setDelay(Einstellungen.getEinstellung().getDelaytime());
     strasse.setSearchString("");
 
     return strasse;

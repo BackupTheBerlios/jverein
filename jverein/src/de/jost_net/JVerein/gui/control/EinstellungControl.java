@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.34 $
- * $Date: 2011/01/09 14:29:18 $
+ * $Revision: 1.35 $
+ * $Date: 2011/01/29 20:34:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.34  2011/01/09 14:29:18  jost
+ * Revision 1.35  2011/01/29 20:34:00  jost
+ * Verzögerungszeit für Suchfelder
+ *
+ * Revision 1.34  2011-01-09 14:29:18  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.33  2011-01-08 15:56:03  jost
@@ -215,6 +218,8 @@ public class EinstellungControl extends AbstractControl
   private Input jubilaeen;
 
   private Input altersjubilaeen;
+
+  private IntegerInput delaytime;
 
   private Settings settings;
 
@@ -652,6 +657,17 @@ public class EinstellungControl extends AbstractControl
     return altersjubilaeen;
   }
 
+  public IntegerInput getDelaytime() throws RemoteException
+  {
+    if (delaytime != null)
+    {
+      return delaytime;
+    }
+    delaytime = new IntegerInput(new Integer(Einstellungen.getEinstellung()
+        .getDelaytime()));
+    return delaytime;
+  }
+
   public TablePart getSpaltendefinitionTable(Composite parent)
       throws RemoteException
   {
@@ -727,6 +743,8 @@ public class EinstellungControl extends AbstractControl
       e.setAltersgruppen((String) getAltersgruppen().getValue());
       e.setJubilaeen((String) getJubilaeen().getValue());
       e.setAltersjubilaeen((String) getAltersjubilaeen().getValue());
+      Integer delay = (Integer) delaytime.getValue();
+      e.setDelaytime(delay);
       e.store();
       spalten.save();
       GUI.getStatusBar().setSuccessText("Einstellungen gespeichert");

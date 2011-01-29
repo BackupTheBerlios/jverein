@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.20 $
- * $Date: 2011/01/09 14:31:47 $
+ * $Revision: 1.21 $
+ * $Date: 2011/01/29 20:32:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.20  2011/01/09 14:31:47  jost
+ * Revision 1.21  2011/01/29 20:32:52  jost
+ * Verzögerungszeit für Suchfelder
+ *
+ * Revision 1.20  2011-01-09 14:31:47  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.19  2011-01-08 15:56:31  jost
@@ -244,4 +247,7 @@ public interface Einstellung extends DBObject
 
   public void setAltersjubilaeen(String altersjubilaeen) throws RemoteException;
 
+  public int getDelaytime() throws RemoteException;
+
+  public void setDelaytime(int delaytime) throws RemoteException;
 }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.23 $
- * $Date: 2011/01/09 14:32:11 $
+ * $Revision: 1.24 $
+ * $Date: 2011/01/29 20:33:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.23  2011/01/09 14:32:11  jost
+ * Revision 1.24  2011/01/29 20:33:14  jost
+ * Verzögerungszeit für Suchfelder
+ *
+ * Revision 1.23  2011-01-09 14:32:11  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.22  2011-01-08 15:56:44  jost
@@ -667,6 +670,23 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setAltersjubilaeen(String altersjubilaeen) throws RemoteException
   {
     setAttribute("altersjubilaeen", altersjubilaeen);
+  }
+
+  public int getDelaytime() throws RemoteException
+  {
+    try
+    {
+      return (Integer) getAttribute("delaytime");
+    }
+    catch (NullPointerException e)
+    {
+      return 1000;
+    }
+  }
+
+  public void setDelaytime(int delaytime) throws RemoteException
+  {
+    setAttribute("delaytime", delaytime);
   }
 
   @Override

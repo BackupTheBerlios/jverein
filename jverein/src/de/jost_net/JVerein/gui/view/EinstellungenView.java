@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.40 $
- * $Date: 2011/01/15 09:46:47 $
+ * $Revision: 1.41 $
+ * $Date: 2011/01/29 20:32:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.40  2011/01/15 09:46:47  jost
+ * Revision 1.41  2011/01/29 20:32:34  jost
+ * Verzögerungszeit für Suchfelder
+ *
+ * Revision 1.40  2011-01-15 09:46:47  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.39  2011-01-09 14:30:00  jost
@@ -218,6 +221,11 @@ public class EinstellungenView extends AbstractView
     right.addLabelPair(
         JVereinPlugin.getI18n().tr("aktuelle Geburtstage - Tage nachher"),
         control.getAktuelleGeburtstageNachher());
+    right
+        .addLabelPair(
+            JVereinPlugin.getI18n().tr(
+                "Verzögerungszeit Suche (in Millisekunden)"),
+            control.getDelaytime());
     right.addHeadline("* "
         + JVereinPlugin.getI18n().tr("Änderung erfordert Neustart"));
 
