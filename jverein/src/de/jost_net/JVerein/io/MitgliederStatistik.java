@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliederStatistik.java,v $
- * $Revision: 1.12 $
- * $Date: 2011/01/27 22:25:09 $
+ * $Revision: 1.13 $
+ * $Date: 2011/01/29 07:10:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederStatistik.java,v $
- * Revision 1.12  2011/01/27 22:25:09  jost
+ * Revision 1.13  2011/01/29 07:10:49  jost
+ * Bugfix. Über 100-jährige wurden in der Summe nicht berücksichtigt.
+ *
+ * Revision 1.12  2011-01-27 22:25:09  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.11  2011-01-09 14:31:23  jost
@@ -116,7 +119,7 @@ public class MitgliederStatistik
         Point p = ap.getNext();
         addAltersgruppe(reporter, p.x, p.y, stichtag);
       }
-      addAltersgruppe(reporter, 0, 100, stichtag);
+      addAltersgruppe(reporter, 0, 199, stichtag);
       reporter.closeTable();
 
       Paragraph pBeitragsgruppen = new Paragraph("\nBeitragsgruppen",
@@ -200,7 +203,7 @@ public class MitgliederStatistik
   private void addAltersgruppe(Reporter reporter, int von, int bis,
       Date stichtag) throws RemoteException
   {
-    if (von == 0 && bis == 100)
+    if (von == 0 && bis == 199)
     {
       reporter.addColumn("Insgesamt", Element.ALIGN_LEFT);
     }

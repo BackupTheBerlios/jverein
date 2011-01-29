@@ -19,6 +19,7 @@
     			<li>Erzeugung Sollbuchung bei Zuordnung des Mitgliedskontos.</li>
     			<li>Stammdaten des Vereins in die Einstellungen verschoben.</li>
     			<li>Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.</li>
+					<li>Bugfix in der Altersstatistik. Über 100-jährige wurden in der Summe nicht berücksichtigt.Siehe <a href='http://www.jverein.de/forum/viewtopic.php?f=5&t=339'>Forum</a>.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -542,7 +543,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.98  2011/01/15 09:47:14  jost
+    Revision 1.99  2011/01/29 07:11:03  jost
+    Bugfix. Über 100-jährige wurden in der Summe nicht berücksichtigt.
+
+    Revision 1.98  2011-01-15 09:47:14  jost
     *** empty log message ***
 
     Revision 1.97  2011-01-09 14:32:23  jost
