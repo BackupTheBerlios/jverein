@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.21 $
- * $Date: 2011/01/29 20:32:52 $
+ * $Revision: 1.22 $
+ * $Date: 2011/01/30 08:28:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.21  2011/01/29 20:32:52  jost
+ * Revision 1.22  2011/01/30 08:28:30  jost
+ * Neu: Zusatzadressen
+ *
+ * Revision 1.21  2011-01-29 20:32:52  jost
  * Verzögerungszeit für Suchfelder
  *
  * Revision 1.20  2011-01-09 14:31:47  jost
@@ -142,6 +145,10 @@ public interface Einstellung extends DBObject
   public void setMitgliedfoto(Boolean mitgliedfoto) throws RemoteException;
 
   public boolean getMitgliedfoto() throws RemoteException;
+
+  public void setZusatzadressen(Boolean zusatzadressen) throws RemoteException;
+
+  public boolean getZusatzadressen() throws RemoteException;
 
   public void setAuslandsadressen(Boolean auslandsadressen)
       throws RemoteException;

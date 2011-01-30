@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.24 $
- * $Date: 2011/01/29 20:33:14 $
+ * $Revision: 1.25 $
+ * $Date: 2011/01/30 08:28:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.24  2011/01/29 20:33:14  jost
+ * Revision 1.25  2011/01/30 08:28:42  jost
+ * Neu: Zusatzadressen
+ *
+ * Revision 1.24  2011-01-29 20:33:14  jost
  * Verzögerungszeit für Suchfelder
  *
  * Revision 1.23  2011-01-09 14:32:11  jost
@@ -354,6 +357,16 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setMitgliedfoto(Boolean mitgliedfoto) throws RemoteException
   {
     setAttribute("mitgliedfoto", new Boolean(mitgliedfoto));
+  }
+
+  public boolean getZusatzadressen() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("zusatzadressen"));
+  }
+
+  public void setZusatzadressen(Boolean zusatzadressen) throws RemoteException
+  {
+    setAttribute("zusatzadressen", new Boolean(zusatzadressen));
   }
 
   public boolean getAuslandsadressen() throws RemoteException

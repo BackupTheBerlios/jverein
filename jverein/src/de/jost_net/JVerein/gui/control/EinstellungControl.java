@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.35 $
- * $Date: 2011/01/29 20:34:00 $
+ * $Revision: 1.36 $
+ * $Date: 2011/01/30 08:27:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.35  2011/01/29 20:34:00  jost
+ * Revision 1.36  2011/01/30 08:27:42  jost
+ * Neu: Zusatzadressen
+ *
+ * Revision 1.35  2011-01-29 20:34:00  jost
  * Verzögerungszeit für Suchfelder
  *
  * Revision 1.34  2011-01-09 14:29:18  jost
@@ -172,6 +175,8 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput mitgliedskonto;
 
   private CheckboxInput mitgliedfoto;
+
+  private CheckboxInput zusatzadressen;
 
   private CheckboxInput auslandsadressen;
 
@@ -391,6 +396,17 @@ public class EinstellungControl extends AbstractControl
     mitgliedfoto = new CheckboxInput(Einstellungen.getEinstellung()
         .getMitgliedfoto());
     return mitgliedfoto;
+  }
+
+  public CheckboxInput getZusatzadressen() throws RemoteException
+  {
+    if (zusatzadressen != null)
+    {
+      return zusatzadressen;
+    }
+    zusatzadressen = new CheckboxInput(Einstellungen.getEinstellung()
+        .getZusatzadressen());
+    return zusatzadressen;
   }
 
   public CheckboxInput getAuslandsadressen() throws RemoteException
@@ -707,6 +723,7 @@ public class EinstellungControl extends AbstractControl
       e.setJuristischePersonen((Boolean) juristischepersonen.getValue());
       e.setMitgliedskonto((Boolean) mitgliedskonto.getValue());
       e.setMitgliedfoto((Boolean) mitgliedfoto.getValue());
+      e.setZusatzadressen((Boolean) zusatzadressen.getValue());
       e.setAuslandsadressen((Boolean) auslandsadressen.getValue());
       e.setArbeitseinsatz((Boolean) arbeitseinsatz.getValue());
       e.setDokumentenspeicherung((Boolean) dokumentenspeicherung.getValue());

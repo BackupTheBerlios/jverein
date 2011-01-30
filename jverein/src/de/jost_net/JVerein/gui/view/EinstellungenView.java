@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.41 $
- * $Date: 2011/01/29 20:32:34 $
+ * $Revision: 1.42 $
+ * $Date: 2011/01/30 08:28:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.41  2011/01/29 20:32:34  jost
+ * Revision 1.42  2011/01/30 08:28:18  jost
+ * Neu: Zusatzadressen
+ *
+ * Revision 1.41  2011-01-29 20:32:34  jost
  * Verzögerungszeit für Suchfelder
  *
  * Revision 1.40  2011-01-15 09:46:47  jost
@@ -199,14 +202,15 @@ public class EinstellungenView extends AbstractView
         "Kursteilnehmer anzeigen" + "*"), control.getKursteilnehmer());
     left.addLabelPair(JVereinPlugin.getI18n().tr("Lehrgänge anzeigen" + "*"),
         control.getLehrgaenge());
-    SimpleContainer right = new SimpleContainer(cols1.getComposite());
-    right.addLabelPair(
-        JVereinPlugin.getI18n().tr("Juristische Personen erlaubt"),
-        control.getJuristischePersonen());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonten *"),
+    left.addLabelPair(JVereinPlugin.getI18n()
+        .tr("Juristische Personen erlaubt"), control.getJuristischePersonen());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedskonten *"),
         control.getMitgliedskonto());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedsfoto *"),
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Mitgliedsfoto *"),
         control.getMitgliedfoto());
+    SimpleContainer right = new SimpleContainer(cols1.getComposite());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("zusätzliche Adressen *"),
+        control.getZusatzadressen());
     right.addLabelPair(JVereinPlugin.getI18n().tr("Auslandsadressen *"),
         control.getAuslandsadressen());
     right.addLabelPair(JVereinPlugin.getI18n().tr("Arbeitseinsatz *"),

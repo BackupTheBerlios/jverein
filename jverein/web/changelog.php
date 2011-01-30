@@ -21,6 +21,8 @@
     			<li>Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.</li>
 					<li>Bugfix in der Altersstatistik. Über 100-jährige wurden in der Summe nicht berücksichtigt.Siehe <a href='http://www.jverein.de/forum/viewtopic.php?f=5&t=339'>Forum</a>.</li>
 					<li>In den Einstellungen im Tab Anzeige kann jetzt die Verzögerungszeit für die Suchfelder Name, Vorname und Strasse der Mitglieder und Adressen eingestellt werden.</li>
+					<li>Speicherung zusätzlicher Adressen (u. a. Spender/innen) ermöglicht.</li>
+					<li>Buchungen können jetzt auch dem "Mitgliedskonto" eines Spenders zugewiesen werden.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -544,7 +546,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.100  2011/01/29 20:34:35  jost
+    Revision 1.101  2011/01/30 08:29:09  jost
+    Neu: Zusatzadressen
+
+    Revision 1.100  2011-01-29 20:34:35  jost
     Verzögerungszeit für Suchfelder
 
     Revision 1.99  2011-01-29 07:11:03  jost
