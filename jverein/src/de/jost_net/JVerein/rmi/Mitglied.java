@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.16 $
- * $Date: 2011/01/27 22:24:16 $
+ * $Revision: 1.17 $
+ * $Date: 2011/01/30 10:30:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
- * Revision 1.16  2011/01/27 22:24:16  jost
+ * Revision 1.17  2011/01/30 10:30:12  jost
+ * Datum der letzten Änderung wird gespeichert
+ *
+ * Revision 1.16  2011-01-27 22:24:16  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.15  2010-10-30 11:31:51  jost
@@ -216,6 +219,10 @@ public interface Mitglied extends DBObject
   public void setEingabedatum() throws RemoteException;
 
   public Date getEingabedatum() throws RemoteException;
+
+  public void setLetzteAenderung() throws RemoteException;
+
+  public Date getLetzteAenderung() throws RemoteException;
 
   public String getNameVorname() throws RemoteException;
 

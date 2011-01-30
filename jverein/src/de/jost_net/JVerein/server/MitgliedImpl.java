@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.37 $
- * $Date: 2011/01/27 22:24:57 $
+ * $Revision: 1.38 $
+ * $Date: 2011/01/30 10:30:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.37  2011/01/27 22:24:57  jost
+ * Revision 1.38  2011/01/30 10:30:37  jost
+ * Datum der letzten Änderung wird gespeichert
+ *
+ * Revision 1.37  2011-01-27 22:24:57  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.36  2010-11-13 09:31:24  jost
@@ -726,6 +729,16 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public Date getEingabedatum() throws RemoteException
   {
     return (Date) getAttribute("eingabedatum");
+  }
+
+  public void setLetzteAenderung() throws RemoteException
+  {
+    setAttribute("letzteaenderung", new Date());
+  }
+
+  public Date getLetzteAenderung() throws RemoteException
+  {
+    return (Date) getAttribute("letzteaenderung");
   }
 
   /**

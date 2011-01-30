@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/MitgliedSpaltenauswahl.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/01/27 22:25:48 $
+ * $Revision: 1.8 $
+ * $Date: 2011/01/30 10:30:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSpaltenauswahl.java,v $
- * Revision 1.7  2011/01/27 22:25:48  jost
+ * Revision 1.8  2011/01/30 10:30:48  jost
+ * Datum der letzten Änderung wird gespeichert
+ *
+ * Revision 1.7  2011-01-27 22:25:48  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.6  2010/01/01 20:12:34  jost
@@ -91,6 +94,9 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
         new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO, false);
     add(JVereinPlugin.getI18n().tr("Eingabedatum"), "eingabedatum", false,
         new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO, true);
+    add(JVereinPlugin.getI18n().tr("letzte Änderung"), "letzteaenderung",
+        false, new DateFormatter(Einstellungen.DATEFORMAT), Column.ALIGN_AUTO,
+        true);
     try
     {
       DBIterator it = Einstellungen.getDBService().createList(
