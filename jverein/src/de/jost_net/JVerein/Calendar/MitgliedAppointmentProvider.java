@@ -2,8 +2,8 @@ package de.jost_net.JVerein.Calendar;
 
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/MitgliedAppointmentProvider.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/01/20 18:26:15 $
+ * $Revision: 1.3 $
+ * $Date: 2011/01/30 22:57:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -11,7 +11,10 @@ package de.jost_net.JVerein.Calendar;
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAppointmentProvider.java,v $
- * Revision 1.2  2011/01/20 18:26:15  jost
+ * Revision 1.3  2011/01/30 22:57:33  jost
+ * Bugfix
+ *
+ * Revision 1.2  2011-01-20 18:26:15  jost
  * AppointmentCode Hibiscus -> Jameica
  *
  * Revision 1.1  2010-11-25 15:11:15  jost
@@ -55,20 +58,32 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
     try
     {
       DBIterator list = Einstellungen.getDBService().createList(Mitglied.class);
-      Calendar cal = Calendar.getInstance();
-      cal.setTime(from);
-      if (from != null)
-        list.addFilter("month(geburtsdatum)= ?",
-            new Object[] { cal.get(Calendar.MONTH) + 1 });
-      list.setOrder("ORDER BY day(geburtsdatum)");
+      list.addFilter("geburtsdatum is not null");
+      Calendar calf = Calendar.getInstance();
+      Calendar calt = Calendar.getInstance();
+      Calendar calm = Calendar.getInstance();
 
       List<Appointment> result = new LinkedList<Appointment>();
       while (list.hasNext())
       {
         Mitglied m = (Mitglied) list.next();
-        if (m.getGeburtsdatum() != null)
+        calm.setTime(m.getGeburtsdatum());
+        calf.setTime(from);
+        calf.set(Calendar.DAY_OF_MONTH, calm.get(Calendar.DAY_OF_MONTH));
+        calf.set(Calendar.MONTH, calm.get(Calendar.MONTH));
+        calt.setTime(to);
+        calt.set(Calendar.DAY_OF_MONTH, calm.get(Calendar.DAY_OF_MONTH));
+        calt.set(Calendar.MONTH, calm.get(Calendar.MONTH));
+
+        if (calf.getTime().after(from) && calf.getTime().before(to))
         {
-          result.add(new MyAppointment(m, cal.get(Calendar.YEAR)));
+          result.add(new MyAppointment(m, calf.getTime(), calf
+              .get(Calendar.YEAR) - calm.get(Calendar.YEAR)));
+        }
+        if (calt.getTime().after(from) && calt.getTime().before(to))
+        {
+          result.add(new MyAppointment(m, calt.getTime(), calt
+              .get(Calendar.YEAR) - calm.get(Calendar.YEAR)));
         }
       }
       return result;
@@ -96,12 +111,15 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
 
     private Mitglied m = null;
 
-    private int year = 0;
+    private Date datum = null;
 
-    private MyAppointment(Mitglied m, int year)
+    private int alter = -1;
+
+    private MyAppointment(Mitglied m, Date datum, int alter)
     {
       this.m = m;
-      this.year = year;
+      this.datum = datum;
+      this.alter = alter;
     }
 
     /**
@@ -117,18 +135,7 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
      */
     public Date getDate()
     {
-      try
-      {
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(m.getGeburtsdatum().getTime());
-        cal.set(Calendar.YEAR, year);
-        return cal.getTime();
-      }
-      catch (Exception e)
-      {
-        Logger.error("unable to read date", e);
-      }
-      return null;
+      return datum;
     }
 
     /**
@@ -138,7 +145,8 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
     {
       try
       {
-        return i18n.tr("Geburtstag von {0}", m.getNameVorname());
+        return i18n.tr("{0}. Geburtstag von {1}", alter + "",
+            m.getNameVorname());
       }
       catch (RemoteException re)
       {
@@ -154,10 +162,8 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
     {
       try
       {
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(m.getGeburtsdatum().getTime());
-        return i18n.tr("{0}. Geburtstag von {1}", year - cal.get(Calendar.YEAR)
-            + "", m.getNameVorname());
+        return i18n.tr("{0}. Geburtstag von {1}", alter + "",
+            m.getNameVorname());
       }
       catch (RemoteException re)
       {
