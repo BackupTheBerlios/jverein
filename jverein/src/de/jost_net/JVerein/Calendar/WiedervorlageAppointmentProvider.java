@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/WiedervorlageAppointmentProvider.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/01/20 18:26:31 $
+ * $Revision: 1.4 $
+ * $Date: 2011/01/31 17:13:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageAppointmentProvider.java,v $
- * Revision 1.3  2011/01/20 18:26:31  jost
+ * Revision 1.4  2011/01/31 17:13:17  jost
+ * *** empty log message ***
+ *
+ * Revision 1.3  2011-01-20 18:26:31  jost
  * AppointmentCode Hibiscus -> Jameica
  *
  * Revision 1.2  2010-11-27 10:56:05  jost
@@ -139,7 +142,7 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
     {
       try
       {
-        return i18n.tr(w.getVermerk());
+        return i18n.tr("Wiedervorlage:" + w.getVermerk());
       }
       catch (RemoteException re)
       {
@@ -169,7 +172,7 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
      */
     public RGB getColor()
     {
-      return new RGB(122, 122, 122);
+      return new RGB(31, 32, 255);
     }
 
     /**

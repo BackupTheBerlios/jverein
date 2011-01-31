@@ -2,8 +2,8 @@ package de.jost_net.JVerein.Calendar;
 
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/MitgliedAppointmentProvider.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/01/30 22:57:33 $
+ * $Revision: 1.4 $
+ * $Date: 2011/01/31 17:13:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -11,7 +11,10 @@ package de.jost_net.JVerein.Calendar;
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAppointmentProvider.java,v $
- * Revision 1.3  2011/01/30 22:57:33  jost
+ * Revision 1.4  2011/01/31 17:13:04  jost
+ * *** empty log message ***
+ *
+ * Revision 1.3  2011-01-30 22:57:33  jost
  * Bugfix
  *
  * Revision 1.2  2011-01-20 18:26:15  jost
@@ -80,7 +83,7 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
           result.add(new MyAppointment(m, calf.getTime(), calf
               .get(Calendar.YEAR) - calm.get(Calendar.YEAR)));
         }
-        if (calt.getTime().after(from) && calt.getTime().before(to))
+        else if (calt.getTime().after(from) && calt.getTime().before(to))
         {
           result.add(new MyAppointment(m, calt.getTime(), calt
               .get(Calendar.YEAR) - calm.get(Calendar.YEAR)));
@@ -177,7 +180,7 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
      */
     public RGB getColor()
     {
-      return new RGB(122, 122, 122);
+      return new RGB(255, 178, 31);
     }
 
     /**
