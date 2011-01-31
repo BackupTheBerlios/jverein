@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/MailEmpfaenger.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/02/01 21:02:25 $
+ * $Revision: 1.2 $
+ * $Date: 2011/01/31 20:58:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailEmpfaenger.java,v $
- * Revision 1.1  2010/02/01 21:02:25  jost
+ * Revision 1.2  2011/01/31 20:58:31  jost
+ * Mehrere Empfänger mit gleicher Adresse
+ *
+ * Revision 1.1  2010-02-01 21:02:25  jost
  * Neu: Einfache Mailfunktion
  *
  **********************************************************************/
@@ -30,17 +33,6 @@ public interface MailEmpfaenger extends DBObject
    * ID der zugehörigen Mail
    */
   public void setMail(Mail mail) throws RemoteException;
-
-  /**
-   * "Hart kodierte"-Mailadresse
-   */
-  public String getAdresse() throws RemoteException;
-
-  /**
-   * "Hart kodierte"-Mailadresse
-   */
-
-  public void setAdresse(String adresse) throws RemoteException;
 
   /**
    * Mitglied ist Mail-Empfänger

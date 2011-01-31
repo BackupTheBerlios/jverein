@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MailEmpfaengerImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/11/13 09:30:50 $
+ * $Revision: 1.4 $
+ * $Date: 2011/01/31 20:59:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailEmpfaengerImpl.java,v $
- * Revision 1.3  2010/11/13 09:30:50  jost
+ * Revision 1.4  2011/01/31 20:59:04  jost
+ * Mehrere Empfänger mit gleicher Adresse
+ *
+ * Revision 1.3  2010-11-13 09:30:50  jost
  * Warnings entfernt.
  *
  * Revision 1.2  2010-10-15 09:58:27  jost
@@ -107,16 +110,6 @@ public class MailEmpfaengerImpl extends AbstractDBObject implements
     setAttribute("mail", mail);
   }
 
-  public String getAdresse() throws RemoteException
-  {
-    return (String) getAttribute("adresse");
-  }
-
-  public void setAdresse(String adresse) throws RemoteException
-  {
-    setAttribute("adresse", adresse);
-  }
-
   public Mitglied getMitglied() throws RemoteException
   {
     return (Mitglied) getAttribute("mitglied");
@@ -129,11 +122,7 @@ public class MailEmpfaengerImpl extends AbstractDBObject implements
 
   public String getMailAdresse() throws RemoteException
   {
-    if (getMitglied() != null)
-    {
-      return getMitglied().getEmail();
-    }
-    return getAdresse();
+    return getMitglied().getEmail();
   }
 
   @Override
@@ -161,7 +150,7 @@ public class MailEmpfaengerImpl extends AbstractDBObject implements
   {
     try
     {
-      return getMailAdresse().compareTo(o.getMailAdresse());
+      return getMitglied().getID().compareTo(o.getMitglied().getID());
     }
     catch (RemoteException e)
     {
