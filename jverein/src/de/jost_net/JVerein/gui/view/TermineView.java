@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/TermineView.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/25 15:11:52 $
+ * $Revision: 1.2 $
+ * $Date: 2011/01/31 17:13:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: TermineView.java,v $
- * Revision 1.1  2010/11/25 15:11:52  jost
+ * Revision 1.2  2011/01/31 17:13:34  jost
+ * Hilfe aufgenommen.
+ *
+ * Revision 1.1  2010-11-25 15:11:52  jost
  * Initial Commit
  *
  **********************************************************************/
@@ -63,4 +66,14 @@ public class TermineView extends AbstractView
   {
     currentDate = this.termine.getCurrentDate();
   }
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Termine</span></p>"
+        + "<p>Auf den gewünschten Termin klicken, um die Detailansicht zu öffnen.</p>"
+        + "<p><b>Tipp:</b> Orangefarbener Text steht für Geburtstage und blauer für Wiedervorlagen.</p>"
+        + "</form>";
+  }
+
 }
