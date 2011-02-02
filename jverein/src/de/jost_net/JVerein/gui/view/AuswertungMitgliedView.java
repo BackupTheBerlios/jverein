@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.18 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.19 $
+ * $Date: 2011/02/02 22:00:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.18  2011/01/15 09:46:49  jost
+ * Revision 1.19  2011/02/02 22:00:10  jost
+ * Auswertung erweitert um den Parameter "ohne EMail"
+ *
+ * Revision 1.18  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.17  2010-11-21 21:09:39  jost
@@ -106,42 +109,45 @@ public class AuswertungMitgliedView extends AbstractView
         DBSupportH2Impl.class.getName()).equals(
         DBSupportMcKoiImpl.class.getName()))
     {
-      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"), control
-          .getEigenschaftenAuswahl());
+      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"),
+          control.getEigenschaftenAuswahl());
     }
 
-    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"), control
-        .getGeburtsdatumvon());
-    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"), control
-        .getGeburtsdatumbis());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"),
+        control.getGeburtsdatumvon());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"),
+        control.getGeburtsdatumbis());
 
-    left.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum von"), control
-        .getSterbedatumvon());
-    left.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum bis"), control
-        .getSterbedatumbis());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum von"),
+        control.getSterbedatumvon());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum bis"),
+        control.getSterbedatumbis());
 
     SelectInput inpGeschlecht = control.getGeschlecht();
     inpGeschlecht.setMandatory(false);
     left.addLabelPair(JVereinPlugin.getI18n().tr("Geschlecht"), inpGeschlecht);
 
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Ohne Mailadresse"),
+        control.getOhneMail());
+
     SimpleContainer right = new SimpleContainer(cl.getComposite());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt von"), control
-        .getEintrittvon());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt bis"), control
-        .getEintrittbis());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt von"),
+        control.getEintrittvon());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Eintritt bis"),
+        control.getEintrittbis());
 
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt von"), control
-        .getAustrittvon());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt bis"), control
-        .getAustrittbis());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt von"),
+        control.getAustrittvon());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Austritt bis"),
+        control.getAustrittbis());
 
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsgruppe"), control
-        .getBeitragsgruppeAusw());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsgruppe"),
+        control.getBeitragsgruppeAusw());
 
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Ausgabe"), control
-        .getAusgabe());
-    right.addLabelPair(JVereinPlugin.getI18n().tr("Sortierung"), control
-        .getSortierung());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Ausgabe"),
+        control.getAusgabe());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("Sortierung"),
+        control.getSortierung());
 
     ButtonArea buttons = new ButtonArea(getParent(), 4);
 

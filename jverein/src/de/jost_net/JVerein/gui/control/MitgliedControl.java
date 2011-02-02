@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.104 $
- * $Date: 2011/01/30 10:29:59 $
+ * $Revision: 1.105 $
+ * $Date: 2011/02/02 21:59:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.104  2011/01/30 10:29:59  jost
+ * Revision 1.105  2011/02/02 21:59:14  jost
+ * Auswertung erweitert um den Parameter "ohne EMail"
+ *
+ * Revision 1.104  2011-01-30 10:29:59  jost
  * Datum der letzten Änderung wird gespeichert
  *
  * Revision 1.103  2011-01-29 20:34:16  jost
@@ -538,6 +541,8 @@ public class MitgliedControl extends AbstractControl
   private DialogInput eigenschaftenabfrage;
 
   private IntegerInput suchexternemitgliedsnummer;
+
+  private CheckboxInput ohneMail;
 
   private Mitglied mitglied;
 
@@ -2104,6 +2109,16 @@ public class MitgliedControl extends AbstractControl
         "An- und Abgemeldete" }, settings.getString("status.mitglied",
         "Angemeldete"));
     return status;
+  }
+
+  public CheckboxInput getOhneMail()
+  {
+    if (ohneMail != null)
+    {
+      return ohneMail;
+    }
+    ohneMail = new CheckboxInput(false);
+    return ohneMail;
   }
 
   public Button getStartAuswertungButton()

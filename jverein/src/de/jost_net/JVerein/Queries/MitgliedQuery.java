@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.22 $
- * $Date: 2011/01/27 22:23:51 $
+ * $Revision: 1.23 $
+ * $Date: 2011/02/02 22:00:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.22  2011/01/27 22:23:51  jost
+ * Revision 1.23  2011/02/02 22:00:26  jost
+ * Auswertung erweitert um den Parameter "ohne EMail"
+ *
+ * Revision 1.22  2011-01-27 22:23:51  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.21  2010-11-13 09:27:53  jost
@@ -145,6 +148,10 @@ public class MitgliedQuery
       {
         addCondition("austritt is not null and austritt <= current_date()");
       }
+    }
+    if ((Boolean) control.getOhneMail().getValue())
+    {
+      addCondition("(email is null or length(email) = 0)");
     }
     String eigenschaften = "";
     eigenschaften = control.getEigenschaftenString();
