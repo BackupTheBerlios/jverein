@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.20 $
- * $Date: 2011/02/02 16:23:35 $
+ * $Revision: 1.21 $
+ * $Date: 2011/02/02 21:59:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.20  2011/02/02 16:23:35  jost
+ * Revision 1.21  2011/02/02 21:59:41  jost
+ * Status von "Differenz" wird gespeichert.
+ *
+ * Revision 1.20  2011-02-02 16:23:35  jost
  * Status von "Differenz" wird gespeichert.
  *
  * Revision 1.19  2011-01-29 07:40:31  jost
@@ -354,6 +357,19 @@ public class MitgliedskontoControl extends AbstractControl
     }
     differenz = new SelectInput(new Object[] { "egal", "Fehlbetrag",
         "Überzahlung" }, settings.getString("differenz", "egal"));
+    differenz.setName("Differenz");
+    differenz.addListener(new FilterListener());
+    return differenz;
+  }
+
+  public SelectInput getDifferenz(String defaultvalue)
+  {
+    if (differenz != null)
+    {
+      return differenz;
+    }
+    differenz = new SelectInput(new Object[] { "egal", "Fehlbetrag",
+        "Überzahlung" }, defaultvalue);
     differenz.setName("Differenz");
     differenz.addListener(new FilterListener());
     return differenz;
