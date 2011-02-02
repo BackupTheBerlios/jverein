@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoListeView.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.9 $
+ * $Date: 2011/02/02 16:23:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoListeView.java,v $
- * Revision 1.8  2011/01/15 09:46:48  jost
+ * Revision 1.9  2011/02/02 16:23:50  jost
+ * Status von "Differenz" wird gespeichert.
+ *
+ * Revision 1.8  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.7  2010-10-15 09:58:24  jost
@@ -63,7 +66,7 @@ public class MitgliedskontoListeView extends AbstractView
         control.getVondatum(MitgliedskontoControl.DATUM_MITGLIEDSKONTO));
     group.addLabelPair("bis",
         control.getBisdatum(MitgliedskontoControl.DATUM_MITGLIEDSKONTO));
-    group.addLabelPair("Differenz", control.getDifferenz("egal"));
+    group.addLabelPair("Differenz", control.getDifferenz());
 
     control.getMitgliedskontoList(new MitgliedDetailAction(),
         new Mitgliedskonto2Menu()).paint(this.getParent());

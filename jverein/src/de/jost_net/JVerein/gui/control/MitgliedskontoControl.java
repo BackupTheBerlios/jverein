@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.19 $
- * $Date: 2011/01/29 07:40:31 $
+ * $Revision: 1.20 $
+ * $Date: 2011/02/02 16:23:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.19  2011/01/29 07:40:31  jost
+ * Revision 1.20  2011/02/02 16:23:35  jost
+ * Status von "Differenz" wird gespeichert.
+ *
+ * Revision 1.19  2011-01-29 07:40:31  jost
  * Mitgliedskonto für Spender
  *
  * Revision 1.18  2011-01-27 22:19:04  jost
@@ -343,14 +346,14 @@ public class MitgliedskontoControl extends AbstractControl
     return bisdatum;
   }
 
-  public SelectInput getDifferenz(String defaultval)
+  public SelectInput getDifferenz()
   {
     if (differenz != null)
     {
       return differenz;
     }
     differenz = new SelectInput(new Object[] { "egal", "Fehlbetrag",
-        "Überzahlung" }, defaultval);
+        "Überzahlung" }, settings.getString("differenz", "egal"));
     differenz.setName("Differenz");
     differenz.addListener(new FilterListener());
     return differenz;
@@ -456,6 +459,7 @@ public class MitgliedskontoControl extends AbstractControl
   {
     this.action = action;
     GenericIterator mitgliedskonten = getMitgliedskontoIterator();
+    settings.setAttribute("differenz", (String) getDifferenz().getValue());
     if (mitgliedskontoList == null)
     {
       mitgliedskontoList = new TablePart(mitgliedskonten, action);
