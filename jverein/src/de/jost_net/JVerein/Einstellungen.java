@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.25 $
- * $Date: 2011/01/09 14:28:14 $
+ * $Revision: 1.26 $
+ * $Date: 2011/02/03 22:46:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
- * Revision 1.25  2011/01/09 14:28:14  jost
+ * Revision 1.26  2011/02/03 22:46:12  jost
+ * Sofortige Übernahme der Änderungen
+ *
+ * Revision 1.25  2011-01-09 14:28:14  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.24  2010-11-17 16:59:50  jost
@@ -103,6 +106,7 @@ import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.messaging.QueryMessage;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.Settings;
+import de.willuhn.logging.Logger;
 
 /**
  * Diese Klasse speichert einige Einstellungen für dieses Plugin.
@@ -199,9 +203,7 @@ public class Einstellungen
       }
       catch (RemoteException e1)
       {
-        // Satz konnte nicht erzeugt werden.
-        // TODO Muss noch geloggt werden.
-        e1.printStackTrace();
+        Logger.error("Fehler", e1);
       }
     }
 
@@ -280,6 +282,11 @@ public class Einstellungen
   public static Einstellung getEinstellung()
   {
     return einstellung;
+  }
+
+  public static void setEinstellung(Einstellung einst)
+  {
+    einstellung = einst;
   }
 
   /**
