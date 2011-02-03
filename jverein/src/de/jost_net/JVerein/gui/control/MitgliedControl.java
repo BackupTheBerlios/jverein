@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.105 $
- * $Date: 2011/02/02 21:59:14 $
+ * $Revision: 1.106 $
+ * $Date: 2011/02/03 22:01:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.105  2011/02/02 21:59:14  jost
+ * Revision 1.106  2011/02/03 22:01:51  jost
+ * Bugfix Kontextmenu
+ *
+ * Revision 1.105  2011-02-02 21:59:14  jost
  * Auswertung erweitert um den Parameter "ohne EMail"
  *
  * Revision 1.104  2011-01-30 10:29:59  jost
@@ -2219,7 +2222,7 @@ public class MitgliedControl extends AbstractControl
     part = new TablePart(new MitgliedQuery(this, true).get(anfangsbuchstabe,
         atyp), detailaction);
     new MitgliedSpaltenauswahl().setColumns(part, atyp);
-    part.setContextMenu(new MitgliedMenu());
+    part.setContextMenu(new MitgliedMenu(detailaction));
     part.setMulti(true);
     part.setRememberColWidths(true);
     part.setRememberOrder(true);

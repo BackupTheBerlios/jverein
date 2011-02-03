@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedMenu.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/09/01 05:57:20 $
+ * $Revision: 1.8 $
+ * $Date: 2011/02/03 22:02:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedMenu.java,v $
- * Revision 1.7  2010/09/01 05:57:20  jost
+ * Revision 1.8  2011/02/03 22:02:08  jost
+ * Bugfix Kontextmenu
+ *
+ * Revision 1.7  2010-09-01 05:57:20  jost
  * neu: Personalbogen
  *
  * Revision 1.6  2010/02/01 20:59:57  jost
@@ -35,10 +38,10 @@ package de.jost_net.JVerein.gui.menu;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.MitgliedDeleteAction;
-import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.MitgliedMailSendenAction;
 import de.jost_net.JVerein.gui.action.PersonalbogenAction;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungAction;
+import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.CheckedSingleContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
@@ -52,10 +55,10 @@ public class MitgliedMenu extends ContextMenu
   /**
    * Erzeugt ein Kontext-Menu für die Liste der Mitglieder.
    */
-  public MitgliedMenu()
+  public MitgliedMenu(Action detailaction)
   {
     addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
-        "bearbeiten"), new MitgliedDetailAction(), "edit.png"));
+        "bearbeiten"), detailaction, "edit.png"));
     addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
         "löschen..."), new MitgliedDeleteAction(), "user-trash.png"));
     addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(

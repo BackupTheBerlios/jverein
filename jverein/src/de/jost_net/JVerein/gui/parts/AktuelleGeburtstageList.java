@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/AktuelleGeburtstageList.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/01/27 22:19:52 $
+ * $Revision: 1.9 $
+ * $Date: 2011/02/03 22:02:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageList.java,v $
- * Revision 1.8  2011/01/27 22:19:52  jost
+ * Revision 1.9  2011/02/03 22:02:21  jost
+ * Bugfix Kontextmenu
+ *
+ * Revision 1.8  2011-01-27 22:19:52  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.7  2010-10-15 09:58:26  jost
@@ -115,18 +118,19 @@ public class AktuelleGeburtstageList extends TablePart implements Part
           "name");
       aktuelleGeburtstageList.addColumn(JVereinPlugin.getI18n().tr("Vorname"),
           "vorname");
-      aktuelleGeburtstageList.addColumn(JVereinPlugin.getI18n().tr(
-          "Geburtsdatum"), "geburtsdatum", new DateFormatter(
-          Einstellungen.DATEFORMAT));
+      aktuelleGeburtstageList.addColumn(
+          JVereinPlugin.getI18n().tr("Geburtsdatum"), "geburtsdatum",
+          new DateFormatter(Einstellungen.DATEFORMAT));
       aktuelleGeburtstageList.addColumn(
           JVereinPlugin.getI18n().tr("Tel. priv"), "telefonprivat");
-      aktuelleGeburtstageList.addColumn(JVereinPlugin.getI18n().tr(
-          "Tel. dienstlich"), "telefondienstlich");
+      aktuelleGeburtstageList.addColumn(
+          JVereinPlugin.getI18n().tr("Tel. dienstlich"), "telefondienstlich");
       aktuelleGeburtstageList.addColumn(JVereinPlugin.getI18n().tr("Handy"),
           "handy");
       aktuelleGeburtstageList.addColumn(JVereinPlugin.getI18n().tr("Email"),
           "email");
-      aktuelleGeburtstageList.setContextMenu(new MitgliedMenu());
+      aktuelleGeburtstageList.setContextMenu(new MitgliedMenu(
+          new MitgliedDetailAction()));
       aktuelleGeburtstageList.setRememberColWidths(true);
       aktuelleGeburtstageList.setRememberOrder(true);
       aktuelleGeburtstageList.setSummary(true);
@@ -136,7 +140,7 @@ public class AktuelleGeburtstageList extends TablePart implements Part
       aktuelleGeburtstageList.removeAll();
       while (geburtstage.hasNext())
       {
-        aktuelleGeburtstageList.addItem( geburtstage.next());
+        aktuelleGeburtstageList.addItem(geburtstage.next());
       }
     }
     return aktuelleGeburtstageList;
