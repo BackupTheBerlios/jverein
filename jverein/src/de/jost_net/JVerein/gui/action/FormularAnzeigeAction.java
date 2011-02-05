@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularAnzeigeAction.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/08/10 15:58:14 $
+ * $Revision: 1.11 $
+ * $Date: 2011/02/05 17:38:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAnzeigeAction.java,v $
- * Revision 1.10  2010/08/10 15:58:14  jost
+ * Revision 1.11  2011/02/05 17:38:30  jost
+ * Bugfix: Korrekte Positionierung des Betragsfeldes.
+ *
+ * Revision 1.10  2010-08-10 15:58:14  jost
  * neues Feld Zahlungsgrund
  *
  * Revision 1.9  2010-08-08 19:31:44  jost
@@ -111,8 +114,8 @@ public class FormularAnzeigeAction implements Action
       map.put(FormularfeldControl.KUENDIGUNG, new Date());
       map.put(FormularfeldControl.ZAHLUNGSWEG,
           "Abbuchung von Konto 1234567, BLZ: 10020030");
-      map.put(FormularfeldControl.TAGESDATUM, Einstellungen.DATEFORMAT
-          .format(new Date()));
+      map.put(FormularfeldControl.TAGESDATUM,
+          Einstellungen.DATEFORMAT.format(new Date()));
 
       map.put("Spendedatum", "15.12.2008");
       map.put("Buchungsdatum", new Date());

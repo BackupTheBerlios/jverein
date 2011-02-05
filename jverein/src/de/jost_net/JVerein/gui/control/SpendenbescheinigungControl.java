@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.14 $
+ * $Date: 2011/02/05 17:39:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
- * Revision 1.13  2010/10/15 09:58:26  jost
+ * Revision 1.14  2011/02/05 17:39:06  jost
+ * Bugfix: Korrekte Positionierung des Betragsfeldes.
+ *
+ * Revision 1.13  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.12  2010-01-03 08:58:22  jost
@@ -230,8 +233,8 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return bescheinigungsdatum;
     }
-    bescheinigungsdatum = new DateInput(
-        getSpendenbescheinigung().getBescheinigungsdatum());
+    bescheinigungsdatum = new DateInput(getSpendenbescheinigung()
+        .getBescheinigungsdatum());
     return bescheinigungsdatum;
   }
 
@@ -267,8 +270,8 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       return ersatzaufwendungen;
     }
-    ersatzaufwendungen = new CheckboxInput(
-        getSpendenbescheinigung().getErsatzAufwendungen());
+    ersatzaufwendungen = new CheckboxInput(getSpendenbescheinigung()
+        .getErsatzAufwendungen());
     return ersatzaufwendungen;
   }
 
@@ -340,14 +343,15 @@ public class SpendenbescheinigungControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    String path = settings.getString("lastdir", System.getProperty("user.home"));
+    String path = settings
+        .getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("spendenbescheinigung", "",
-        Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
-    fd.setFilterExtensions(new String[] { "*.PDF"});
+    fd.setFileName(new Dateiname("spendenbescheinigung", "", Einstellungen
+        .getEinstellung().getDateinamenmuster(), "PDF").get());
+    fd.setFilterExtensions(new String[] { "*.PDF" });
 
     String s = fd.open();
     if (s == null || s.length() == 0)
@@ -371,8 +375,7 @@ public class SpendenbescheinigungControl extends AbstractControl
         + (String) getZeile6().getValue() + "\n"
         + (String) getZeile7().getValue() + "\n";
     map.put("Empfänger", empfaenger);
-    String betrag = Einstellungen.DECIMALFORMAT.format(getBetrag().getValue());
-    map.put("Betrag", "*" + betrag + "* Euro");
+    map.put("Betrag", getBetrag().getValue());
     Double dWert = (Double) getBetrag().getValue();
     try
     {
@@ -393,8 +396,8 @@ public class SpendenbescheinigungControl extends AbstractControl
     map.put("Spendedatum", spendedatum);
     String tagesdatum = Einstellungen.DATEFORMAT.format(new Date());
     map.put("Tagesdatum", tagesdatum);
-    map.put("ErsatzAufwendungen", ((Boolean) ersatzaufwendungen.getValue()
-        ? "X" : ""));
+    map.put("ErsatzAufwendungen",
+        ((Boolean) ersatzaufwendungen.getValue() ? "X" : ""));
     FormularAufbereitung fa = new FormularAufbereitung(file);
     fa.writeForm(fo, map);
     fa.showFormular();
@@ -404,7 +407,8 @@ public class SpendenbescheinigungControl extends AbstractControl
   public Part getSpendenbescheinigungList() throws RemoteException
   {
     DBService service = Einstellungen.getDBService();
-    DBIterator spendenbescheinigungen = service.createList(Spendenbescheinigung.class);
+    DBIterator spendenbescheinigungen = service
+        .createList(Spendenbescheinigung.class);
     spendenbescheinigungen.setOrder("ORDER BY bescheinigungsdatum desc");
 
     spbList = new TablePart(spendenbescheinigungen,
@@ -433,8 +437,8 @@ public class SpendenbescheinigungControl extends AbstractControl
   public void refreshTable() throws RemoteException
   {
     spbList.removeAll();
-    DBIterator spendenbescheinigungen = Einstellungen.getDBService().createList(
-        Spendenbescheinigung.class);
+    DBIterator spendenbescheinigungen = Einstellungen.getDBService()
+        .createList(Spendenbescheinigung.class);
     spendenbescheinigungen.setOrder("ORDER BY bescheinigungsdatum desc");
     while (spendenbescheinigungen.hasNext())
     {
