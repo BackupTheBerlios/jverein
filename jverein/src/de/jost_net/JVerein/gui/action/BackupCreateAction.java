@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.13 $
- * $Date: 2011/01/09 14:28:37 $
+ * $Revision: 1.14 $
+ * $Date: 2011/02/06 10:23:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
- * Revision 1.13  2011/01/09 14:28:37  jost
+ * Revision 1.14  2011/02/06 10:23:32  jost
+ * weitere Tabellen aufgenommen.
+ *
+ * Revision 1.13  2011-01-09 14:28:37  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.12  2010-12-12 17:18:56  jost
@@ -64,10 +67,13 @@ import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.Adresstyp;
 import de.jost_net.JVerein.rmi.Mail;
 import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.MailVorlage;
+import de.jost_net.JVerein.rmi.Mitgliedfoto;
 import de.jost_net.JVerein.server.AbrechnungslaufImpl;
+import de.jost_net.JVerein.server.AdresstypImpl;
 import de.jost_net.JVerein.server.AnfangsbestandImpl;
 import de.jost_net.JVerein.server.ArbeitseinsatzImpl;
 import de.jost_net.JVerein.server.BeitragsgruppeImpl;
@@ -88,6 +94,7 @@ import de.jost_net.JVerein.server.KursteilnehmerImpl;
 import de.jost_net.JVerein.server.LehrgangImpl;
 import de.jost_net.JVerein.server.LehrgangsartImpl;
 import de.jost_net.JVerein.server.MailAnhangImpl;
+import de.jost_net.JVerein.server.MitgliedDokumentImpl;
 import de.jost_net.JVerein.server.MitgliedImpl;
 import de.jost_net.JVerein.server.MitgliedskontoImpl;
 import de.jost_net.JVerein.server.SpendenbescheinigungImpl;
@@ -115,10 +122,11 @@ public class BackupCreateAction implements Action
 {
 
   // Die Versionstabelle wird nicht mit kopiert
-  Class<?>[] tab = { EinstellungImpl.class, AbrechnungslaufImpl.class,
-      BeitragsgruppeImpl.class, BuchungsklasseImpl.class,
-      BuchungsartImpl.class, KontoImpl.class, MitgliedImpl.class,
-      MitgliedskontoImpl.class, ArbeitseinsatzImpl.class,
+  Class<?>[] tab = { AdresstypImpl.class, EinstellungImpl.class,
+      AbrechnungslaufImpl.class, BeitragsgruppeImpl.class,
+      BuchungsklasseImpl.class, BuchungsartImpl.class, KontoImpl.class,
+      MitgliedImpl.class, MitgliedskontoImpl.class, ArbeitseinsatzImpl.class,
+      MitgliedDokumentImpl.class, Mitgliedfoto.class,
       BuchungDokumentImpl.class, BuchungImpl.class, FelddefinitionImpl.class,
       SpendenbescheinigungImpl.class, FormularImpl.class,
       FormularfeldImpl.class, EigenschaftGruppeImpl.class,
