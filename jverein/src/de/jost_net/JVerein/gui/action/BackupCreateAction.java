@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.14 $
- * $Date: 2011/02/06 10:23:32 $
+ * $Revision: 1.15 $
+ * $Date: 2011/02/06 10:33:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
- * Revision 1.14  2011/02/06 10:23:32  jost
+ * Revision 1.15  2011/02/06 10:33:42  jost
+ * überflüssigen import entfernt.
+ *
+ * Revision 1.14  2011-02-06 10:23:32  jost
  * weitere Tabellen aufgenommen.
  *
  * Revision 1.13  2011-01-09 14:28:37  jost
@@ -67,7 +70,6 @@ import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.rmi.Adresstyp;
 import de.jost_net.JVerein.rmi.Mail;
 import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.MailVorlage;
