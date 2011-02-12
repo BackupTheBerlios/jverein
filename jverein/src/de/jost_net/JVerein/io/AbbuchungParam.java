@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/AbbuchungParam.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/01/09 14:31:00 $
+ * $Revision: 1.11 $
+ * $Date: 2011/02/12 09:37:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungParam.java,v $
- * Revision 1.10  2011/01/09 14:31:00  jost
+ * Revision 1.11  2011/02/12 09:37:24  jost
+ * Vorbereitung kompakte Abbuchung
+ *
+ * Revision 1.10  2011-01-09 14:31:00  jost
  * Stammdaten in die Einstellungen verschoben.
  *
  * Revision 1.9  2009/06/11 21:03:52  jost
@@ -75,6 +78,8 @@ public class AbbuchungParam
 
   public final Boolean kursteilnehmer;
 
+  public final Boolean kompakteabbuchung;
+
   public final Boolean dtausprint;
 
   public final File dtausfile;
@@ -97,6 +102,7 @@ public class AbbuchungParam
     verwendungszweck = (String) ac.getZahlungsgrund().getValue();
     zusatzbetraege = (Boolean) ac.getZusatzbetrag().getValue();
     kursteilnehmer = (Boolean) ac.getKursteilnehmer().getValue();
+    kompakteabbuchung = (Boolean) ac.getKompakteAbbuchung().getValue();
     dtausprint = (Boolean) ac.getDtausPrint().getValue();
     this.pdffile = pdffile;
     this.dtausfile = dtausfile;
