@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Geschaeftsjahr.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.6 $
+ * $Date: 2011/02/12 09:44:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Geschaeftsjahr.java,v $
- * Revision 1.5  2010/10/15 09:58:29  jost
+ * Revision 1.6  2011/02/12 09:44:07  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.5  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.4  2008-11-16 16:59:30  jost
@@ -45,8 +48,7 @@ public class Geschaeftsjahr
   public Geschaeftsjahr(int jahr) throws ParseException, RemoteException
   {
     beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getEinstellung()
-        .getBeginnGeschaeftsjahr()
-        + jahr);
+        .getBeginnGeschaeftsjahr() + jahr);
     Calendar cal = Calendar.getInstance();
     cal.setTime(beginnGeschaeftsjahr);
     beginnGeschaeftsjahrjahr = cal.get(Calendar.YEAR);
@@ -65,14 +67,12 @@ public class Geschaeftsjahr
     Calendar cal = Calendar.getInstance();
     cal.setTime(datum);
     beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getEinstellung()
-        .getBeginnGeschaeftsjahr()
-        + cal.get(Calendar.YEAR));
+        .getBeginnGeschaeftsjahr() + cal.get(Calendar.YEAR));
     if (datum.before(beginnGeschaeftsjahr))
     {
       cal.add(Calendar.YEAR, -1);
       beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getEinstellung()
-          .getBeginnGeschaeftsjahr()
-          + cal.get(Calendar.YEAR));
+          .getBeginnGeschaeftsjahr() + cal.get(Calendar.YEAR));
     }
     cal.add(Calendar.YEAR, 1);
     cal.add(Calendar.DAY_OF_MONTH, -1);
@@ -97,7 +97,7 @@ public class Geschaeftsjahr
   @Override
   public String toString()
   {
-    return Einstellungen.DATEFORMAT.format(beginnGeschaeftsjahr) + " - "
-        + Einstellungen.DATEFORMAT.format(endeGeschaeftsjahr);
+    return new JVDateFormatTTMMJJJJ().format(beginnGeschaeftsjahr) + " - "
+        + new JVDateFormatTTMMJJJJ().format(endeGeschaeftsjahr);
   }
 }

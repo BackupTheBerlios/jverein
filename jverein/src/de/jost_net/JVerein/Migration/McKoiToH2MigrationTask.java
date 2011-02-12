@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Migration/Attic/McKoiToH2MigrationTask.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/13 09:27:36 $
+ * $Revision: 1.6 $
+ * $Date: 2011/02/12 09:41:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: McKoiToH2MigrationTask.java,v $
- * Revision 1.5  2010/11/13 09:27:36  jost
+ * Revision 1.6  2011/02/12 09:41:37  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.5  2010-11-13 09:27:36  jost
  * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
  *
  * Revision 1.4  2010-10-15 09:58:30  jost
@@ -35,6 +38,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.jost_net.JVerein.server.DBSupportH2Impl;
 import de.jost_net.JVerein.server.JVereinDBServiceImpl;
+import de.jost_net.JVerein.util.JVDateFormatTIMESTAMP;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.jameica.gui.internal.action.FileClose;
 import de.willuhn.jameica.system.Application;
@@ -52,8 +56,8 @@ public class McKoiToH2MigrationTask extends DatabaseMigrationTask
   {
     // Checken, ob die Migration schon lief
     if (SETTINGS.getString("migration.mckoi-to-h2", null) != null)
-      throw new ApplicationException(i18n
-          .tr("Datenmigration bereits durchgeführt"));
+      throw new ApplicationException(
+          i18n.tr("Datenmigration bereits durchgeführt"));
 
     try
     {
@@ -74,8 +78,8 @@ public class McKoiToH2MigrationTask extends DatabaseMigrationTask
     super.run(monitor);
 
     // Datum der Migration speichern
-    SETTINGS.setAttribute("migration.mckoi-to-h2", Einstellungen.TIMESTAMPFORMAT
-        .format(new Date()));
+    SETTINGS.setAttribute("migration.mckoi-to-h2",
+        new JVDateFormatTIMESTAMP().format(new Date()));
 
     // Datenbank-Treiber umstellen
     JVereinDBService.SETTINGS.setAttribute("database.driver",

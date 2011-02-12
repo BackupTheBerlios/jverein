@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailDetailView.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/01/15 09:46:47 $
+ * $Revision: 1.8 $
+ * $Date: 2011/02/12 09:36:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailDetailView.java,v $
- * Revision 1.7  2011/01/15 09:46:47  jost
+ * Revision 1.8  2011/02/12 09:36:46  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.7  2011-01-15 09:46:47  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.6  2010-10-15 09:58:24  jost
@@ -146,15 +149,17 @@ public class MailDetailView extends AbstractView
         {
           try
           {
-            MailAnhang anh = (MailAnhang) Einstellungen.getDBService().createObject(
-                MailAnhang.class, null);
-            anh.setDateiname(f.substring(f.lastIndexOf(System.getProperty("file.separator")) + 1));
+            MailAnhang anh = (MailAnhang) Einstellungen.getDBService()
+                .createObject(MailAnhang.class, null);
+            anh.setDateiname(f.substring(f.lastIndexOf(System
+                .getProperty("file.separator")) + 1));
             File file = new File(f);
             FileInputStream fis = new FileInputStream(file);
             byte[] buffer = new byte[(int) file.length()];
             fis.read(buffer);
             anh.setAnhang(buffer);
             control.addAnhang(anh);
+            fis.close();
           }
           catch (Exception e)
           {

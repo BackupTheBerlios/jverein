@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AbrechnungslaufImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/11/13 09:28:32 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:42:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufImpl.java,v $
- * Revision 1.4  2010/11/13 09:28:32  jost
+ * Revision 1.5  2011/02/12 09:42:14  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.4  2010-11-13 09:28:32  jost
  * Warnings entfernt.
  *
  * Revision 1.3  2010-10-15 09:58:27  jost
@@ -32,6 +35,7 @@ import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Abrechnungslauf;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.db.AbstractDBObject;
 
 public class AbrechnungslaufImpl extends AbstractDBObject implements
@@ -199,7 +203,7 @@ public class AbrechnungslaufImpl extends AbstractDBObject implements
    */
   public String getIDText() throws RemoteException
   {
-    return getID() + " vom " + Einstellungen.DATEFORMAT.format(getDatum());
+    return getID() + " vom " + new JVDateFormatTTMMJJJJ().format(getDatum());
   }
 
   @Override

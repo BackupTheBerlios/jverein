@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliederStatistik.java,v $
- * $Revision: 1.13 $
- * $Date: 2011/01/29 07:10:49 $
+ * $Revision: 1.14 $
+ * $Date: 2011/02/12 09:40:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederStatistik.java,v $
- * Revision 1.13  2011/01/29 07:10:49  jost
+ * Revision 1.14  2011/02/12 09:40:02  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.13  2011-01-29 07:10:49  jost
  * Bugfix. Über 100-jährige wurden in der Summe nicht berücksichtigt.
  *
  * Revision 1.12  2011-01-27 22:25:09  jost
@@ -72,6 +75,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.server.MitgliedUtils;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
@@ -93,7 +97,7 @@ public class MitgliederStatistik
       String subtitle = "";
       if (stichtag != null)
       {
-        subtitle = "Stichtag: " + Einstellungen.DATEFORMAT.format(stichtag);
+        subtitle = "Stichtag: " + new JVDateFormatTTMMJJJJ().format(stichtag);
       }
       Reporter reporter = new Reporter(fos, monitor, "Mitgliederstatistik",
           subtitle, 3);
@@ -269,11 +273,11 @@ public class MitgliederStatistik
     calBis.add(Calendar.YEAR, von * -1);
     calBis.set(Calendar.MONTH, Calendar.DECEMBER);
     calBis.set(Calendar.DAY_OF_MONTH, 31);
-    java.sql.Date bd = new java.sql.Date(calBis.getTimeInMillis());
 
     DBIterator list = Einstellungen.getDBService().createList(Mitglied.class);
     list.addFilter("geburtsdatum >= ?", new Object[] { vd });
-    list.addFilter("geburtsdatum <= ?", new Object[] { bd });
+    list.addFilter("geburtsdatum <= ?",
+        new Object[] { new java.sql.Date(calBis.getTimeInMillis()) });
     MitgliedUtils.setNurAktive(list, stichtag);
     MitgliedUtils.setMitglied(list);
     list.addFilter("(eintritt is null or eintritt <= ?)",

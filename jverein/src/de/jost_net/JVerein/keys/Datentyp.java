@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Datentyp.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/01/01 18:39:24 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/12 09:41:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Datentyp.java,v $
+ * Revision 1.2  2011/02/12 09:41:26  jost
+ * Statische Codeanalyse mit Findbugs
+ *
  * Revision 1.1  2010/01/01 18:39:24  jost
  * Typisierung der Zusatzfelder
  *
@@ -84,12 +87,18 @@ public class Datentyp
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof Formularart)
+    if (obj instanceof Datentyp)
     {
       Datentyp v = (Datentyp) obj;
       return (getKey() == v.getKey());
     }
     return false;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return datentyp;
   }
 
   @Override

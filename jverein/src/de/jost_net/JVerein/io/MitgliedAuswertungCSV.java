@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungCSV.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.15 $
+ * $Date: 2011/02/12 09:39:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungCSV.java,v $
- * Revision 1.14  2010/10/15 09:58:29  jost
+ * Revision 1.15  2011/02/12 09:39:40  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.14  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.13  2009-04-25 05:30:41  jost
@@ -66,6 +69,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
@@ -133,8 +137,8 @@ public class MitgliedAuswertungCSV
           Felddefinition fd = (Felddefinition) it.next();
           DBIterator it2 = Einstellungen.getDBService().createList(
               Zusatzfelder.class);
-          it2.addFilter("mitglied = ?", new Object[] { m.getID()});
-          it2.addFilter("felddefinition = ?", new Object[] { fd.getID()});
+          it2.addFilter("mitglied = ?", new Object[] { m.getID() });
+          it2.addFilter("felddefinition = ?", new Object[] { fd.getID() });
           if (it2.size() > 0)
           {
             Zusatzfelder zf = (Zusatzfelder) it2.next();
@@ -188,7 +192,7 @@ public class MitgliedAuswertungCSV
    */
   private String formatDate(Date d)
   {
-    return d == null ? "" : Einstellungen.DATEFORMAT.format(d);
+    return d == null ? "" : new JVDateFormatTTMMJJJJ().format(d);
   }
 
 }

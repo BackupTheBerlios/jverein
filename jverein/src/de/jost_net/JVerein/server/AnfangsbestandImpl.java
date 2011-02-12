@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AnfangsbestandImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/11/13 09:29:03 $
+ * $Revision: 1.9 $
+ * $Date: 2011/02/12 09:42:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandImpl.java,v $
- * Revision 1.8  2010/11/13 09:29:03  jost
+ * Revision 1.9  2011/02/12 09:42:33  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.8  2010-11-13 09:29:03  jost
  * Warnings entfernt.
  *
  * Revision 1.7  2010-10-15 09:58:28  jost
@@ -46,6 +49,7 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Anfangsbestand;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
 import de.jost_net.JVerein.rmi.Konto;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
@@ -137,9 +141,9 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
   {
     try
     {
-      Date beginngeschaeftsjahr = Einstellungen.DATEFORMAT.parse(Einstellungen
-          .getEinstellung().getBeginnGeschaeftsjahr()
-          + "2009");
+      Date beginngeschaeftsjahr = new JVDateFormatTTMMJJJJ()
+          .parse(Einstellungen.getEinstellung().getBeginnGeschaeftsjahr()
+              + "2009");
       DBIterator it = Einstellungen.getDBService().createList(
           Anfangsbestand.class);
       it.addFilter("konto = ?", new Object[] { getKonto().getID() });
@@ -150,7 +154,7 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
         Anfangsbestand anf = (Anfangsbestand) it.next();
         throw new ApplicationException(JVereinPlugin.getI18n().tr(
             "Datum muss nach dem {0} liegen",
-            Einstellungen.DATEFORMAT.format(anf.getDatum())));
+            new JVDateFormatTTMMJJJJ().format(anf.getDatum())));
       }
       it = Einstellungen.getDBService().createList(Anfangsbestand.class);
       it.addFilter("konto = ?", new Object[] { getKonto().getID() });
@@ -170,8 +174,7 @@ public class AnfangsbestandImpl extends AbstractDBObject implements
       throw new ApplicationException(
           JVereinPlugin
               .getI18n()
-              .tr(
-                  "Tag und Monat müssen mit dem Beginn des Geschäftsjahres übereinstimmen."));
+              .tr("Tag und Monat müssen mit dem Beginn des Geschäftsjahres übereinstimmen."));
     }
     catch (ParseException e)
     {

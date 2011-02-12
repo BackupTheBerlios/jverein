@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/WiedervorlageImpl.java,v $
- *  * $Revision: 1.5 $
- * $Date: 2010/11/13 09:31:24 $
+ *  * $Revision: 1.6 $
+ * $Date: 2011/02/12 09:43:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageImpl.java,v $
- * Revision 1.5  2010/11/13 09:31:24  jost
+ * Revision 1.6  2011/02/12 09:43:37  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.5  2010-11-13 09:31:24  jost
  * Warnings entfernt.
  *
  * Revision 1.4  2010-10-15 09:58:27  jost
@@ -113,7 +116,7 @@ public class WiedervorlageImpl extends AbstractDBObject implements
 
   public void setMitglied(int mitglied) throws RemoteException
   {
-    setAttribute("mitglied", new Integer(mitglied));
+    setAttribute("mitglied", Integer.valueOf(mitglied));
   }
 
   public Date getDatum() throws RemoteException

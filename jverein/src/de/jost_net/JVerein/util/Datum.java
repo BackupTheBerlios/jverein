@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Datum.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.7 $
+ * $Date: 2011/02/12 09:44:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Datum.java,v $
- * Revision 1.6  2010/10/15 09:58:29  jost
+ * Revision 1.7  2011/02/12 09:44:06  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.6  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.5  2010-09-13 18:43:13  jost
@@ -28,6 +31,7 @@ import java.util.Date;
 
 public class Datum
 {
+
   /**
    * Berechnung der Differenz in Monaten zwischen 2 Daten. Die Tagesangaben
    * bleiben unberücksichtigt.

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Abrechnungsmodi.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/05/18 20:23:26 $
+ * $Revision: 1.3 $
+ * $Date: 2011/02/12 09:41:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnungsmodi.java,v $
+ * Revision 1.3  2011/02/12 09:41:11  jost
+ * Statische Codeanalyse mit Findbugs
+ *
  * Revision 1.2  2010/05/18 20:23:26  jost
  * Überflüssige Imports entfernt.
  *
@@ -112,12 +115,18 @@ public class Abrechnungsmodi
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof Formularart)
+    if (obj instanceof Abrechnungsmodi)
     {
       Abrechnungsmodi v = (Abrechnungsmodi) obj;
       return (getKey() == v.getKey());
     }
     return false;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return abrechnungsmodus;
   }
 
   @Override

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungsartImpl.java,v $
- * $Revision: 1.11 $
- * $Date: 2010/11/13 09:29:39 $
+ * $Revision: 1.12 $
+ * $Date: 2011/02/12 09:42:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartImpl.java,v $
- * Revision 1.11  2010/11/13 09:29:39  jost
+ * Revision 1.12  2011/02/12 09:42:33  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.11  2010-11-13 09:29:39  jost
  * Warnings entfernt.
  *
  * Revision 1.10  2010-10-15 09:58:28  jost
@@ -140,7 +143,7 @@ public class BuchungsartImpl extends AbstractDBObject implements Buchungsart
 
   public void setNummer(int i) throws RemoteException
   {
-    setAttribute("nummer", new Integer(i));
+    setAttribute("nummer", Integer.valueOf(i));
   }
 
   public int getArt() throws RemoteException

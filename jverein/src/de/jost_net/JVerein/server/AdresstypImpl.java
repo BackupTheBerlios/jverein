@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AdresstypImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/01/27 22:24:30 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/12 09:42:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AdresstypImpl.java,v $
- * Revision 1.1  2011/01/27 22:24:30  jost
+ * Revision 1.2  2011/02/12 09:42:33  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.1  2011-01-27 22:24:30  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  **********************************************************************/
@@ -103,7 +106,7 @@ public class AdresstypImpl extends AbstractDBObject implements Adresstyp
 
   public void setJVereinid(int jvereinid) throws RemoteException
   {
-    setAttribute("jvereinid", new Integer(jvereinid));
+    setAttribute("jvereinid", Integer.valueOf(jvereinid));
   }
 
   @Override

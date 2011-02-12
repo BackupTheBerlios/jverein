@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MailSender.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:39:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailSender.java,v $
- * Revision 1.4  2010/10/15 09:58:29  jost
+ * Revision 1.5  2011/02/12 09:39:26  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.4  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2010-02-15 17:23:36  jost
@@ -105,7 +108,8 @@ public class MailSender
     props.put("mail.smtp.port", smtp_port);
     if (smtp_ssl)
     {
-      java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+      java.security.Security
+          .addProvider(new com.sun.net.ssl.internal.ssl.Provider());
       props.setProperty("mail.smtp.socketFactory.class",
           "javax.net.ssl.SSLSocketFactory");
       props.setProperty("mail.smtp.socketFactory.fallback", "false");
@@ -188,7 +192,7 @@ public class MailSender
     }
   }
 
-  private class ByteArrayDataSource implements DataSource
+  private static class ByteArrayDataSource implements DataSource
   {
 
     private MailAnhang ma;

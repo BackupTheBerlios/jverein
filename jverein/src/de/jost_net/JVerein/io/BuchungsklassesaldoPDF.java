@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklassesaldoPDF.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.7 $
+ * $Date: 2011/02/12 09:38:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklassesaldoPDF.java,v $
- * Revision 1.6  2010/10/15 09:58:29  jost
+ * Revision 1.7  2011/02/12 09:38:38  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.6  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.5  2010-05-02 06:09:32  jost
@@ -41,7 +44,7 @@ import java.util.Date;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 
-import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
 import de.willuhn.jameica.messaging.StatusBarMessage;
@@ -60,8 +63,8 @@ public class BuchungsklassesaldoPDF
     try
     {
       FileOutputStream fos = new FileOutputStream(file);
-      String subtitle = Einstellungen.DATEFORMAT.format(datumvon) + " - "
-          + Einstellungen.DATEFORMAT.format(datumbis);
+      String subtitle = new JVDateFormatTTMMJJJJ().format(datumvon) + " - "
+          + new JVDateFormatTTMMJJJJ().format(datumbis);
       Reporter reporter = new Reporter(fos, monitor, "Buchungsklassen-Saldo",
           subtitle, zeile.size());
       makeHeader(reporter);

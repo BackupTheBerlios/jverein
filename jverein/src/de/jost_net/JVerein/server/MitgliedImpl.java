@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.39 $
- * $Date: 2011/02/02 22:00:50 $
+ * $Revision: 1.40 $
+ * $Date: 2011/02/12 09:43:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.39  2011/02/02 22:00:50  jost
+ * Revision 1.40  2011/02/12 09:43:37  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.39  2011-02-02 22:00:50  jost
  * Bugfix "externe Mitgliedsnummer"
  *
  * Revision 1.38  2011-01-30 10:30:37  jost
@@ -145,6 +148,7 @@ import de.jost_net.JVerein.rmi.Mitgliedfoto;
 import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.util.Checker;
 import de.jost_net.JVerein.util.IbanBicCalc;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
@@ -849,7 +853,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
 
     try
     {
-      d = Einstellungen.DATEFORMAT.parse(datum);
+      d = new JVDateFormatTTMMJJJJ().parse(datum);
     }
     catch (Exception e)
     {

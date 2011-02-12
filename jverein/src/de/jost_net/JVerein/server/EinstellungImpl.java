@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.25 $
- * $Date: 2011/01/30 08:28:42 $
+ * $Revision: 1.26 $
+ * $Date: 2011/02/12 09:42:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.25  2011/01/30 08:28:42  jost
+ * Revision 1.26  2011/02/12 09:42:54  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.25  2011-01-30 08:28:42  jost
  * Neu: Zusatzadressen
  *
  * Revision 1.24  2011-01-29 20:33:14  jost
@@ -160,7 +163,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
       }
       try
       {
-        Integer.parseInt(getKonto());
+        Long.parseLong(getKonto());
       }
       catch (NumberFormatException e)
       {
@@ -253,7 +256,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setGeburtsdatumPflicht(Boolean geburtsdatumpflicht)
       throws RemoteException
   {
-    setAttribute("geburtsdatumpflicht", new Boolean(geburtsdatumpflicht));
+    setAttribute("geburtsdatumpflicht", Boolean.valueOf(geburtsdatumpflicht));
   }
 
   public boolean getEintrittsdatumPflicht() throws RemoteException
@@ -264,7 +267,8 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setEintrittsdatumPflicht(Boolean eintrittsdatumpflicht)
       throws RemoteException
   {
-    setAttribute("eintrittsdatumpflicht", new Boolean(eintrittsdatumpflicht));
+    setAttribute("eintrittsdatumpflicht",
+        Boolean.valueOf(eintrittsdatumpflicht));
   }
 
   public boolean getKommunikationsdaten() throws RemoteException
@@ -275,7 +279,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setKommunikationsdaten(Boolean kommunikationsdaten)
       throws RemoteException
   {
-    setAttribute("kommunikationsdaten", new Boolean(kommunikationsdaten));
+    setAttribute("kommunikationsdaten", Boolean.valueOf(kommunikationsdaten));
   }
 
   public boolean getZusatzbetrag() throws RemoteException
@@ -285,7 +289,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setZusatzbetrag(Boolean zusatzabbuchung) throws RemoteException
   {
-    setAttribute("zusatzabbuchung", new Boolean(zusatzabbuchung));
+    setAttribute("zusatzabbuchung", Boolean.valueOf(zusatzabbuchung));
   }
 
   public boolean getVermerke() throws RemoteException
@@ -295,7 +299,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setVermerke(Boolean vermerke) throws RemoteException
   {
-    setAttribute("vermerke", new Boolean(vermerke));
+    setAttribute("vermerke", Boolean.valueOf(vermerke));
   }
 
   public boolean getWiedervorlage() throws RemoteException
@@ -305,7 +309,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setWiedervorlage(Boolean wiedervorlage) throws RemoteException
   {
-    setAttribute("wiedervorlage", new Boolean(wiedervorlage));
+    setAttribute("wiedervorlage", Boolean.valueOf(wiedervorlage));
   }
 
   public boolean getKursteilnehmer() throws RemoteException
@@ -315,7 +319,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setKursteilnehmer(Boolean kursteilnehmer) throws RemoteException
   {
-    setAttribute("kursteilnehmer", new Boolean(kursteilnehmer));
+    setAttribute("kursteilnehmer", Boolean.valueOf(kursteilnehmer));
   }
 
   public boolean getLehrgaenge() throws RemoteException
@@ -325,7 +329,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException
   {
-    setAttribute("lehrgaenge", new Boolean(lehrgaenge));
+    setAttribute("lehrgaenge", Boolean.valueOf(lehrgaenge));
   }
 
   public boolean getJuristischePersonen() throws RemoteException
@@ -336,7 +340,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setJuristischePersonen(Boolean juristischepersonen)
       throws RemoteException
   {
-    setAttribute("juristischepersonen", new Boolean(juristischepersonen));
+    setAttribute("juristischepersonen", Boolean.valueOf(juristischepersonen));
   }
 
   public boolean getMitgliedskonto() throws RemoteException
@@ -346,7 +350,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setMitgliedskonto(Boolean mitgliedskonto) throws RemoteException
   {
-    setAttribute("mitgliedskonto", new Boolean(mitgliedskonto));
+    setAttribute("mitgliedskonto", Boolean.valueOf(mitgliedskonto));
   }
 
   public boolean getMitgliedfoto() throws RemoteException
@@ -356,7 +360,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setMitgliedfoto(Boolean mitgliedfoto) throws RemoteException
   {
-    setAttribute("mitgliedfoto", new Boolean(mitgliedfoto));
+    setAttribute("mitgliedfoto", Boolean.valueOf(mitgliedfoto));
   }
 
   public boolean getZusatzadressen() throws RemoteException
@@ -366,7 +370,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setZusatzadressen(Boolean zusatzadressen) throws RemoteException
   {
-    setAttribute("zusatzadressen", new Boolean(zusatzadressen));
+    setAttribute("zusatzadressen", Boolean.valueOf(zusatzadressen));
   }
 
   public boolean getAuslandsadressen() throws RemoteException
@@ -377,7 +381,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setAuslandsadressen(Boolean auslandsadressen)
       throws RemoteException
   {
-    setAttribute("auslandsadressen", new Boolean(auslandsadressen));
+    setAttribute("auslandsadressen", Boolean.valueOf(auslandsadressen));
   }
 
   public boolean getArbeitseinsatz() throws RemoteException
@@ -387,7 +391,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 
   public void setArbeitseinsatz(Boolean arbeitseinsatz) throws RemoteException
   {
-    setAttribute("arbeitseinsatz", new Boolean(arbeitseinsatz));
+    setAttribute("arbeitseinsatz", Boolean.valueOf(arbeitseinsatz));
   }
 
   public boolean getDokumentenspeicherung() throws RemoteException
@@ -398,7 +402,8 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setDokumentenspeicherung(Boolean dokumentenspeicherung)
       throws RemoteException
   {
-    setAttribute("dokumentenspeicherung", new Boolean(dokumentenspeicherung));
+    setAttribute("dokumentenspeicherung",
+        Boolean.valueOf(dokumentenspeicherung));
   }
 
   public String getRechnungTextAbbuchung() throws RemoteException
@@ -456,7 +461,8 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setExterneMitgliedsnummer(Boolean externemitgliedsnummer)
       throws RemoteException
   {
-    setAttribute("externemitgliedsnummer", new Boolean(externemitgliedsnummer));
+    setAttribute("externemitgliedsnummer",
+        Boolean.valueOf(externemitgliedsnummer));
   }
 
   public Integer getAktuelleGeburtstageVorher() throws RemoteException
@@ -527,7 +533,7 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setUpdateDiagInfos(Boolean updatediaginfos)
       throws RemoteException
   {
-    setAttribute("updatediaginfos", new Boolean(updatediaginfos));
+    setAttribute("updatediaginfos", Boolean.valueOf(updatediaginfos));
   }
 
   public Date getUpdateLastCheck() throws RemoteException

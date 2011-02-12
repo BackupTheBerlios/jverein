@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/FormularfeldImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/13 09:30:16 $
+ * $Revision: 1.6 $
+ * $Date: 2011/02/12 09:43:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldImpl.java,v $
- * Revision 1.5  2010/11/13 09:30:16  jost
+ * Revision 1.6  2011/02/12 09:43:04  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.5  2010-11-13 09:30:16  jost
  * Warnings entfernt.
  *
  * Revision 1.4  2010-10-15 09:58:27  jost
@@ -167,7 +170,7 @@ public class FormularfeldImpl extends AbstractDBObject implements Formularfeld
     Integer ret = (Integer) getAttribute("fontsize");
     if (ret == null)
     {
-      ret = new Integer(10);
+      ret = Integer.valueOf(10);
     }
     return ret;
   }
@@ -182,7 +185,7 @@ public class FormularfeldImpl extends AbstractDBObject implements Formularfeld
     Integer ret = (Integer) getAttribute("fontstyle");
     if (ret == null)
     {
-      ret = new Integer(SWT.NORMAL);
+      ret = Integer.valueOf(SWT.NORMAL);
     }
     return ret;
   }

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/FormularAufbereitung.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/12/02 21:05:48 $
+ * $Revision: 1.8 $
+ * $Date: 2011/02/12 09:39:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAufbereitung.java,v $
- * Revision 1.7  2010/12/02 21:05:48  jost
+ * Revision 1.8  2011/02/12 09:39:02  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.7  2010-12-02 21:05:48  jost
  * Bugfix Integer
  *
  * Revision 1.6  2010-10-15 09:58:29  jost
@@ -51,6 +54,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Formularfeld;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
@@ -190,7 +194,7 @@ public class FormularAufbereitung
 
   private String getString(Object val)
   {
-    String stringVal = "";
+    StringBuilder stringVal = new StringBuilder();
     if (val instanceof Object[])
     {
       Object[] o = (Object[]) val;
@@ -202,21 +206,24 @@ public class FormularAufbereitung
       {
         for (Object ostr : o)
         {
-          stringVal += (String) ostr + "\n";
+          stringVal.append((String) ostr);
+          stringVal.append("\n");
         }
       }
       if (o[0] instanceof Date)
       {
         for (Object od : o)
         {
-          stringVal += Einstellungen.DATEFORMAT.format((Date) od) + "\n";
+          stringVal.append(new JVDateFormatTTMMJJJJ().format((Date) od));
+          stringVal.append("\n");
         }
       }
       if (o[0] instanceof Double)
       {
         for (Object od : o)
         {
-          stringVal += Einstellungen.DECIMALFORMAT.format(od) + "\n";
+          stringVal.append(Einstellungen.DECIMALFORMAT.format(od));
+          stringVal.append("\n");
         }
         buendig = rechts;
       }
@@ -224,22 +231,23 @@ public class FormularAufbereitung
     }
     if (val instanceof String)
     {
-      stringVal = (String) val;
+      stringVal = new StringBuilder((String) val);
     }
     if (val instanceof Double)
     {
-      stringVal = Einstellungen.DECIMALFORMAT.format(val);
+      stringVal = new StringBuilder(Einstellungen.DECIMALFORMAT.format(val));
       buendig = rechts;
     }
     if (val instanceof Integer)
     {
-      stringVal = val.toString();
+      stringVal = new StringBuilder(val.toString());
       buendig = rechts;
     }
     if (val instanceof Date)
     {
-      stringVal = Einstellungen.DATEFORMAT.format((Date) val);
+      stringVal = new StringBuilder(
+          new JVDateFormatTTMMJJJJ().format((Date) val));
     }
-    return stringVal;
+    return stringVal.toString();
   }
 }

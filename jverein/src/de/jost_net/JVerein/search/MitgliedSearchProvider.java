@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/MitgliedSearchProvider.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:30 $
+ * $Revision: 1.6 $
+ * $Date: 2011/02/12 09:42:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSearchProvider.java,v $
- * Revision 1.5  2010/10/15 09:58:30  jost
+ * Revision 1.6  2011/02/12 09:42:02  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.5  2010-10-15 09:58:30  jost
  * Code aufgeräumt
  *
  * Revision 1.4  2009-06-11 21:04:24  jost
@@ -35,6 +38,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.search.Result;
 import de.willuhn.jameica.search.SearchProvider;
@@ -65,7 +69,7 @@ public class MitgliedSearchProvider implements SearchProvider
     DBIterator list = Einstellungen.getDBService().createList(Mitglied.class);
     list.addFilter("LOWER(name) LIKE ? OR " + "LOWER(vorname) LIKE ? OR "
         + "ort LIKE ? OR " + "blz LIKE ? OR " + "konto LIKE ?", new String[] {
-        text, text, text, text, text});
+        text, text, text, text, text });
 
     ArrayList results = new ArrayList();
     while (list.hasNext())
@@ -78,7 +82,7 @@ public class MitgliedSearchProvider implements SearchProvider
   /**
    * Hilfsklasse fuer die formatierte Anzeige der Ergebnisse.
    */
-  private class MyResult implements Result
+  private static class MyResult implements Result
   {
 
     private static final long serialVersionUID = -1084818772620611937L;
@@ -103,7 +107,7 @@ public class MitgliedSearchProvider implements SearchProvider
             + ", "
             + m.getAnschrift()
             + (m.getGeburtsdatum() != null ? ", "
-                + Einstellungen.DATEFORMAT.format(m.getGeburtsdatum()) : "")
+                + new JVDateFormatTTMMJJJJ().format(m.getGeburtsdatum()) : "")
             + (m.getKonto() != null ? ", "
                 + JVereinPlugin.getI18n().tr("Konto") + ": " + m.getKonto()
                 + ", " + JVereinPlugin.getI18n().tr("BLZ") + ": " + m.getBlz()

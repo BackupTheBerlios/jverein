@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Formularart.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/08/16 20:17:58 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:41:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Formularart.java,v $
- * Revision 1.4  2010/08/16 20:17:58  jost
+ * Revision 1.5  2011/02/12 09:41:26  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.4  2010-08-16 20:17:58  jost
  * Neu: Mahnung
  *
  * Revision 1.3  2009/06/11 21:04:03  jost
@@ -89,6 +92,12 @@ public class Formularart
       return (getKey() == v.getKey());
     }
     return false;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return formularart;
   }
 
   @Override
