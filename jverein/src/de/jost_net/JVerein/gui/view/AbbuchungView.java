@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.27 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.28 $
+ * $Date: 2011/02/12 09:36:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
- * Revision 1.27  2011/01/15 09:46:49  jost
+ * Revision 1.28  2011/02/12 09:36:03  jost
+ * Stammdaten -> Einstellungen
+ *
+ * Revision 1.27  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.26  2010-10-15 09:58:24  jost
@@ -94,17 +97,12 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.AbrechnunslaufListAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.AbbuchungControl;
 import de.jost_net.JVerein.gui.internal.buttons.Back;
-import de.willuhn.datasource.rmi.DBService;
-import de.willuhn.datasource.rmi.ResultSetExtractor;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -117,23 +115,15 @@ public class AbbuchungView extends AbstractView
   @Override
   public void bind() throws Exception
   {
-    String sql = "select count(*) from stammdaten";
-    DBService service = Einstellungen.getDBService();
-    ResultSetExtractor rs = new ResultSetExtractor()
-    {
-
-      public Object extract(ResultSet rs) throws SQLException
-      {
-        rs.next();
-        return new Long(rs.getLong(1));
-      }
-    };
-    Long anzahl = (Long) service.execute(sql, new Object[] {}, rs);
-    if (anzahl.longValue() == 0)
+    if (Einstellungen.getEinstellung().getName() == null
+        || Einstellungen.getEinstellung().getName().length() == 0
+        || Einstellungen.getEinstellung().getKonto() == null
+        || Einstellungen.getEinstellung().getKonto().length() == 0)
     {
       throw new ApplicationException(
-          JVereinPlugin.getI18n().tr(
-              "Stammdaten fehlen. Bitte unter Plugins|JVerein|Stammdaten erfassen."));
+          JVereinPlugin
+              .getI18n()
+              .tr("Name des Vereins oder Bankverbindung fehlt.Bitte unter Administration|Einstellungen erfassen."));
     }
 
     GUI.getView().setTitle("Abrechnung");
@@ -159,6 +149,8 @@ public class AbbuchungView extends AbstractView
     }
     group.addLabelPair(JVereinPlugin.getI18n().tr("Kursteilnehmer"),
         control.getKursteilnehmer());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Kompakte Abbuchung"),
+        control.getKompakteAbbuchung());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Dtaus-Datei drucken"),
         control.getDtausPrint());
 
@@ -169,10 +161,12 @@ public class AbbuchungView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Abbuchungsausgabe"),
         control.getAbbuchungsausgabe());
     group.addSeparator();
-    group.addText(
-        JVereinPlugin.getI18n().tr(
-            "*) für die Berechnung, ob ein Mitglied bereits eingetreten oder ausgetreten ist. "
-                + "Üblicherweise 1.1. des Jahres."), true);
+    group
+        .addText(
+            JVereinPlugin
+                .getI18n()
+                .tr("*) für die Berechnung, ob ein Mitglied bereits eingetreten oder ausgetreten ist. "
+                    + "Üblicherweise 1.1. des Jahres."), true);
 
     ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
