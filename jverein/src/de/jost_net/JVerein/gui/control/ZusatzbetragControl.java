@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.10 $
+ * $Date: 2011/02/12 09:33:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
- * Revision 1.9  2011/01/15 09:46:49  jost
+ * Revision 1.10  2011/02/12 09:33:27  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.9  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.8  2010-11-27 10:56:35  jost
@@ -98,6 +101,7 @@ import de.jost_net.JVerein.keys.IntervallZusatzzahlung;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
@@ -175,7 +179,7 @@ public class ZusatzbetragControl extends AbstractControl
 
     Date d = getZusatzbetrag().getFaelligkeit();
 
-    this.faelligkeit = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.faelligkeit = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.faelligkeit.setTitle("Fälligkeit");
     this.faelligkeit.setText("Bitte Fälligkeitsdatum wählen");
     this.faelligkeit.addListener(new Listener()
@@ -224,7 +228,7 @@ public class ZusatzbetragControl extends AbstractControl
     }
 
     Date d = getZusatzbetrag().getStartdatum();
-    this.startdatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.startdatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.startdatum.setTitle("Startdatum");
     this.startdatum.setText("Bitte Startdatum wählen");
     this.startdatum.addListener(new Listener()
@@ -256,7 +260,7 @@ public class ZusatzbetragControl extends AbstractControl
     Integer i = getZusatzbetrag().getIntervall();
     if (i == null)
     {
-      i = new Integer(0);
+      i = Integer.valueOf(0);
     }
     this.intervall = new SelectInput(IntervallZusatzzahlung.getArray(),
         new IntervallZusatzzahlung(i));
@@ -271,7 +275,7 @@ public class ZusatzbetragControl extends AbstractControl
     }
 
     Date d = getZusatzbetrag().getEndedatum();
-    this.endedatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.endedatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.endedatum.setTitle("Startdatum");
     this.endedatum.setText("Bitte Startdatum wählen");
     this.endedatum.addListener(new Listener()
@@ -298,7 +302,7 @@ public class ZusatzbetragControl extends AbstractControl
 
     Date d = getZusatzbetrag().getAusfuehrung();
 
-    this.ausfuehrung = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.ausfuehrung = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.ausfuehrung.setTitle("Ausführung");
     this.ausfuehrung.setText("Bitte Ausführungsdatum wählen");
     this.ausfuehrung.addListener(new Listener()
@@ -340,7 +344,7 @@ public class ZusatzbetragControl extends AbstractControl
       {
         while (rs.next())
         {
-          werte.addElement(Einstellungen.DATEFORMAT.format(rs.getDate(1)));
+          werte.addElement(new JVDateFormatTTMMJJJJ().format(rs.getDate(1)));
         }
         return null;
       }
@@ -427,14 +431,14 @@ public class ZusatzbetragControl extends AbstractControl
         }
       });
       zusatzbetraegeList.addColumn("Startdatum", "startdatum",
-          new DateFormatter(Einstellungen.DATEFORMAT));
+          new DateFormatter(new JVDateFormatTTMMJJJJ()));
       zusatzbetraegeList.addColumn("nächste Fälligkeit", "faelligkeit",
-          new DateFormatter(Einstellungen.DATEFORMAT));
+          new DateFormatter(new JVDateFormatTTMMJJJJ()));
       zusatzbetraegeList.addColumn("letzte Ausführung", "ausfuehrung",
-          new DateFormatter(Einstellungen.DATEFORMAT));
+          new DateFormatter(new JVDateFormatTTMMJJJJ()));
       zusatzbetraegeList.addColumn("Intervall", "intervalltext");
       zusatzbetraegeList.addColumn("Endedatum", "endedatum", new DateFormatter(
-          Einstellungen.DATEFORMAT));
+          new JVDateFormatTTMMJJJJ()));
       zusatzbetraegeList.addColumn("Buchungstext", "buchungstext");
       zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter(
           "", Einstellungen.DECIMALFORMAT));
@@ -481,7 +485,7 @@ public class ZusatzbetragControl extends AbstractControl
     {
       try
       {
-        Date d = Einstellungen.DATEFORMAT.parse(this.ausfuehrungSuch.getText());
+        Date d = new JVDateFormatTTMMJJJJ().parse(this.ausfuehrungSuch.getText());
         java.sql.Date sqd = new java.sql.Date(d.getTime());
         zusatzbetraege.addFilter("ausfuehrung = ?", new Object[] { sqd });
       }

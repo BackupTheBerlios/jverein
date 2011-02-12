@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/DokumentControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/12/14 21:41:41 $
+ * $Revision: 1.3 $
+ * $Date: 2011/02/12 09:29:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentControl.java,v $
- * Revision 1.2  2010/12/14 21:41:41  jost
+ * Revision 1.3  2011/02/12 09:29:59  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.2  2010-12-14 21:41:41  jost
  * Neu: Speicherung von Dokumenten
  *
  * Revision 1.1  2010-12-12 08:11:17  jost
@@ -35,6 +38,7 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.menu.DokumentMenu;
 import de.jost_net.JVerein.gui.view.DokumentView;
 import de.jost_net.JVerein.rmi.AbstractDokument;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -101,7 +105,7 @@ public class DokumentControl extends AbstractControl
     {
       d = new Date();
     }
-    this.datum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.datum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.datum.setTitle("Datum");
     this.datum.setText("Bitte Datum wählen");
     this.datum.addListener(new Listener()
@@ -201,8 +205,8 @@ public class DokumentControl extends AbstractControl
       // Dokument speichern
       String locverz = verzeichnis + doc.getReferenz();
       QueryMessage qm = new QueryMessage(locverz, fis);
-      Application.getMessagingFactory().getMessagingQueue(
-          "jameica.messaging.put").sendSyncMessage(qm);
+      Application.getMessagingFactory()
+          .getMessagingQueue("jameica.messaging.put").sendSyncMessage(qm);
       // Satz in die DB schreiben
       doc.setBemerkung((String) getBemerkung().getValue());
       String uuid = qm.getData().toString();
@@ -213,8 +217,8 @@ public class DokumentControl extends AbstractControl
       Map<String, String> map = new HashMap<String, String>();
       map.put("filename", file.getName());
       qm = new QueryMessage(uuid, map);
-      Application.getMessagingFactory().getMessagingQueue(
-          "jameica.messaging.putmeta").sendMessage(qm);
+      Application.getMessagingFactory()
+          .getMessagingQueue("jameica.messaging.putmeta").sendMessage(qm);
       speichernButton.setEnabled(false);
       GUI.getStatusBar().setSuccessText(
           JVereinPlugin.getI18n().tr("Dokument gespeichert"));
@@ -237,8 +241,7 @@ public class DokumentControl extends AbstractControl
     docs.setOrder("ORDER BY datum desc");
 
     docsList = new TablePart(docs, null /* new KontoAction() */);
-    docsList.addColumn("Datum", "datum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+    docsList.addColumn("Datum", "datum", new DateFormatter(new JVDateFormatTTMMJJJJ()));
     docsList.addColumn("Bemerkung", "bemerkung");
     docsList.setRememberColWidths(true);
     docsList.setContextMenu(new DokumentMenu());

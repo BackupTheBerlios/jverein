@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/LehrgangControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/22 18:13:30 $
+ * $Revision: 1.3 $
+ * $Date: 2011/02/12 09:31:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangControl.java,v $
+ * Revision 1.3  2011/02/12 09:31:26  jost
+ * Statische Codeanalyse mit Findbugs
+ *
  * Revision 1.2  2009/06/22 18:13:30  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -27,6 +30,7 @@ import org.eclipse.swt.widgets.Listener;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Lehrgang;
 import de.jost_net.JVerein.rmi.Lehrgangsart;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -107,7 +111,7 @@ public class LehrgangControl extends AbstractControl
 
     Date d = getLehrgang().getVon();
 
-    this.von = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.von = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.von.setTitle("Datum");
     this.von.setText("Bitte (Beginn-)Datum wählen");
     this.von.addListener(new Listener()
@@ -133,7 +137,7 @@ public class LehrgangControl extends AbstractControl
 
     Date d = getLehrgang().getBis();
 
-    this.bis = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.bis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.bis.setTitle("Datum");
     this.bis.setText("Bitte Ende-Datum wählen");
     this.bis.addListener(new Listener()

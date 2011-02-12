@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedskontoMenu.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.4 $
+ * $Date: 2011/02/12 09:34:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoMenu.java,v $
- * Revision 1.3  2010/10/15 09:58:29  jost
+ * Revision 1.4  2011/02/12 09:34:29  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.3  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2010-08-04 10:40:52  jost
@@ -61,14 +64,14 @@ public class MitgliedskontoMenu extends ContextMenu
         "accessories-calculator.png"));
   }
 
-  private class MitgliedItem extends CheckedContextMenuItem
+  private static class MitgliedItem extends CheckedContextMenuItem
   {
 
     /**
      * @param text
      * @param action
      * @param optionale
-     *        Angabe eines Icons.
+     *          Angabe eines Icons.
      */
     private MitgliedItem(String text, Action action, String icon)
     {
@@ -94,14 +97,14 @@ public class MitgliedskontoMenu extends ContextMenu
     }
   }
 
-  private class SollItem extends CheckedContextMenuItem
+  private static class SollItem extends CheckedContextMenuItem
   {
 
     /**
      * @param text
      * @param action
      * @param optionale
-     *        Angabe eines Icons.
+     *          Angabe eines Icons.
      */
     private SollItem(String text, Action action, String icon)
     {
@@ -127,14 +130,14 @@ public class MitgliedskontoMenu extends ContextMenu
     }
   }
 
-  private class SollOhneIstItem extends CheckedContextMenuItem
+  private static class SollOhneIstItem extends CheckedContextMenuItem
   {
 
     /**
      * @param text
      * @param action
      * @param optionale
-     *        Angabe eines Icons.
+     *          Angabe eines Icons.
      */
     private SollOhneIstItem(String text, Action action, String icon)
     {
@@ -153,7 +156,7 @@ public class MitgliedskontoMenu extends ContextMenu
           try
           {
             it = Einstellungen.getDBService().createList(Buchung.class);
-            it.addFilter("mitgliedskonto = ?", new Object[] { mkn.getID()});
+            it.addFilter("mitgliedskonto = ?", new Object[] { mkn.getID() });
             if (it.size() == 0)
             {
               return true;

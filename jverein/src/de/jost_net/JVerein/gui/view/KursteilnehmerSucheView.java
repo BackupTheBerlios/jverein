@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KursteilnehmerSucheView.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/01/15 09:46:47 $
+ * $Revision: 1.12 $
+ * $Date: 2011/02/12 09:36:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerSucheView.java,v $
- * Revision 1.11  2011/01/15 09:46:47  jost
+ * Revision 1.12  2011/02/12 09:36:28  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.11  2011-01-15 09:46:47  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.10  2010-10-15 09:58:23  jost
@@ -79,7 +82,7 @@ public class KursteilnehmerSucheView extends AbstractView
       public Object extract(ResultSet rs) throws SQLException
       {
         rs.next();
-        return new Long(rs.getLong(1));
+        return Long.valueOf(rs.getLong(1));
       }
     };
     Long anzahl = (Long) service.execute(sql, new Object[] {}, rs);

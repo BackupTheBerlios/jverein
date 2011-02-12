@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/WiedervorlageAppointmentProvider.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/01/31 17:13:17 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:24:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageAppointmentProvider.java,v $
- * Revision 1.4  2011/01/31 17:13:17  jost
+ * Revision 1.5  2011/02/12 09:24:04  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.4  2011-01-31 17:13:17  jost
  * *** empty log message ***
  *
  * Revision 1.3  2011-01-20 18:26:31  jost
@@ -94,7 +97,7 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
   /**
    * Hilfsklasse zum Anzeigen und Oeffnen des Appointments.
    */
-  private class MyAppointment implements Appointment
+  private static class MyAppointment implements Appointment
   {
 
     private Wiedervorlage w = null;

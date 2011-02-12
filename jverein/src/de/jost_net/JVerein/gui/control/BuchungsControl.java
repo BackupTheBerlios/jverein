@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.34 $
- * $Date: 2011/01/30 10:12:40 $
+ * $Revision: 1.35 $
+ * $Date: 2011/02/12 09:29:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.34  2011/01/30 10:12:40  jost
+ * Revision 1.35  2011/02/12 09:29:22  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.34  2011-01-30 10:12:40  jost
  * Textsuche implementiert
  *
  * Revision 1.33  2011-01-15 09:46:49  jost
@@ -141,6 +144,7 @@ import de.jost_net.JVerein.rmi.Konto;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
@@ -258,7 +262,7 @@ public class BuchungsControl extends AbstractControl
     Integer ui = getBuchung().getUmsatzid();
     if (ui == null)
     {
-      ui = new Integer(0);
+      ui = Integer.valueOf(0);
     }
     umsatzid = new IntegerInput(ui);
     umsatzid.setEnabled(false);
@@ -290,7 +294,7 @@ public class BuchungsControl extends AbstractControl
     Integer i = getBuchung().getAuszugsnummer();
     if (i == null)
     {
-      i = new Integer(0);
+      i = Integer.valueOf(0);
     }
     auszugsnummer = new IntegerInput(i);
     return auszugsnummer;
@@ -305,7 +309,7 @@ public class BuchungsControl extends AbstractControl
     Integer i = getBuchung().getBlattnummer();
     if (i == null)
     {
-      i = new Integer(0);
+      i = Integer.valueOf(0);
     }
     blattnummer = new IntegerInput(i);
     return blattnummer;
@@ -359,7 +363,7 @@ public class BuchungsControl extends AbstractControl
       return datum;
     }
     Date d = getBuchung().getDatum();
-    this.datum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.datum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.datum.setTitle("Datum");
     this.datum.setText("Bitte Datum wählen");
     this.datum.addListener(new Listener()
@@ -512,14 +516,14 @@ public class BuchungsControl extends AbstractControl
     Date d = null;
     try
     {
-      d = Einstellungen.DATEFORMAT.parse(settings.getString("vondatum",
-          "01.01.2006"));
+      d = new JVDateFormatTTMMJJJJ()
+          .parse(settings.getString("vondatum", "01.01.2006"));
     }
     catch (ParseException e)
     {
       //
     }
-    this.vondatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.vondatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.vondatum.setTitle("Anfangsdatum");
     this.vondatum.setText("Bitte Anfangsdatum wählen");
     this.vondatum.addListener(new Listener()
@@ -532,7 +536,7 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
-        settings.setAttribute("vondatum", Einstellungen.DATEFORMAT.format(date));
+        settings.setAttribute("vondatum", new JVDateFormatTTMMJJJJ().format(date));
       }
     });
     return vondatum;
@@ -547,14 +551,14 @@ public class BuchungsControl extends AbstractControl
     Date d = null;
     try
     {
-      d = Einstellungen.DATEFORMAT.parse(settings.getString("bisdatum",
-          "31.12.2006"));
+      d = new JVDateFormatTTMMJJJJ()
+          .parse(settings.getString("bisdatum", "31.12.2006"));
     }
     catch (ParseException e)
     {
       //
     }
-    this.bisdatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.bisdatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.bisdatum.setTitle("Anfangsdatum");
     this.bisdatum.setText("Bitte Anfangsdatum wählen");
     this.bisdatum.addListener(new Listener()
@@ -567,7 +571,7 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
-        settings.setAttribute("bisdatum", Einstellungen.DATEFORMAT.format(date));
+        settings.setAttribute("bisdatum", new JVDateFormatTTMMJJJJ().format(date));
       }
     });
     return bisdatum;
@@ -774,7 +778,7 @@ public class BuchungsControl extends AbstractControl
         }
       });
       buchungsList.addColumn("Datum", "datum", new DateFormatter(
-          Einstellungen.DATEFORMAT));
+          new JVDateFormatTTMMJJJJ()));
       buchungsList.addColumn("Auszug", "auszugsnummer");
       buchungsList.addColumn("Blatt", "blattnummer");
       buchungsList.addColumn("Name", "name");

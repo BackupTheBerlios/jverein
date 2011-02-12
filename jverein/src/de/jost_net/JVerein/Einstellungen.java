@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.26 $
- * $Date: 2011/02/03 22:46:12 $
+ * $Revision: 1.27 $
+ * $Date: 2011/02/12 09:23:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
- * Revision 1.26  2011/02/03 22:46:12  jost
+ * Revision 1.27  2011/02/12 09:23:28  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.26  2011-02-03 22:46:12  jost
  * Sofortige Übernahme der Änderungen
  *
  * Revision 1.25  2011-01-09 14:28:14  jost
@@ -122,19 +125,8 @@ public class Einstellungen
 
   private static Settings settings = new Settings(Einstellungen.class);
 
-  /**
-   * Datums-Format dd.MM.yyyy.
-   */
-  public static DateFormat DATEFORMAT = new SimpleDateFormat("dd.MM.yyyy");
-
   public static DateFormat DATETIMEFORMAT = new SimpleDateFormat(
       "dd.MM.yyyy HH:mm:ss");
-
-  /**
-   * Timestamp-Format dd.MM.yyyy HH:mm.
-   */
-  public static DateFormat TIMESTAMPFORMAT = new SimpleDateFormat(
-      "dd.MM.yyyy HH:mm");
 
   /**
    * Our decimal formatter.
@@ -162,7 +154,6 @@ public class Einstellungen
     NODATE.setTime(cal.getTimeInMillis());
     DECIMALFORMAT.setMinimumFractionDigits(2);
     DECIMALFORMAT.setMaximumFractionDigits(2);
-    DATEFORMAT.setLenient(false);
     try
     {
       einstellung = (Einstellung) getDBService().createObject(

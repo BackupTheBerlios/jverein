@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ArbeitseinsatzControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.8 $
+ * $Date: 2011/02/12 09:28:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzControl.java,v $
- * Revision 1.7  2011/01/15 09:46:49  jost
+ * Revision 1.8  2011/02/12 09:28:58  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.7  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.6  2010-12-04 18:33:38  jost
@@ -64,6 +67,7 @@ import de.jost_net.JVerein.rmi.Arbeitseinsatz;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Zusatzbetrag;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.pseudo.PseudoIterator;
@@ -135,7 +139,7 @@ public class ArbeitseinsatzControl extends AbstractControl
     {
       d = new Date();
     }
-    this.datum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.datum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.datum.setTitle("Datum");
     this.datum.setText("Datum Arbeitseinsatz wählen");
     this.datum.addListener(new Listener()

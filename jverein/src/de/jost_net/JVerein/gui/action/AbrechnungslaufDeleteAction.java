@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AbrechnungslaufDeleteAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/09/06 13:24:40 $
+ * $Revision: 1.4 $
+ * $Date: 2011/02/12 09:24:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufDeleteAction.java,v $
- * Revision 1.3  2010/09/06 13:24:40  jost
+ * Revision 1.4  2011/02/12 09:24:30  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.3  2010-09-06 13:24:40  jost
  * Überflüssigen Code entfernt.
  *
  * Revision 1.2  2010-08-21 08:43:41  jost
@@ -29,6 +32,7 @@ import de.jost_net.JVerein.rmi.Abrechnungslauf;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -72,8 +76,9 @@ public class AbrechnungslaufDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr(
-            "Fehler beim Löschen eines Abrechnungslaufes"), e);
+        Logger.error(
+            JVereinPlugin.getI18n().tr(
+                "Fehler beim Löschen eines Abrechnungslaufes"), e);
         return;
       }
       DBIterator it = Einstellungen.getDBService().createList(Buchung.class);
@@ -88,7 +93,7 @@ public class AbrechnungslaufDeleteAction implements Action
         {
           throw new ApplicationException(JVereinPlugin.getI18n().tr(
               "Buchung wurde bereits am {0} von {1} abgeschlossen.",
-              new String[] { Einstellungen.DATEFORMAT.format(ja.getDatum()),
+              new String[] { new JVDateFormatTTMMJJJJ().format(ja.getDatum()),
                   ja.getName() }));
         }
         b.setMitgliedskontoID(null);

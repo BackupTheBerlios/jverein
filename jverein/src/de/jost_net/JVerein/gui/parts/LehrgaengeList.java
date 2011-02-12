@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/LehrgaengeList.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:25 $
+ * $Revision: 1.4 $
+ * $Date: 2011/02/12 09:35:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgaengeList.java,v $
- * Revision 1.3  2010/10/15 09:58:25  jost
+ * Revision 1.4  2011/02/12 09:35:15  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.3  2010-10-15 09:58:25  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2009-06-11 21:03:24  jost
@@ -31,6 +34,7 @@ import de.jost_net.JVerein.gui.action.LehrgangAction;
 import de.jost_net.JVerein.gui.menu.LehrgangMenu;
 import de.jost_net.JVerein.rmi.Lehrgang;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.Action;
@@ -78,9 +82,9 @@ public class LehrgaengeList extends TablePart implements Part
             }
           });
       lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("von/am"), "von",
-          new DateFormatter(Einstellungen.DATEFORMAT));
+          new DateFormatter(new JVDateFormatTTMMJJJJ()));
       lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("bis"), "bis",
-          new DateFormatter(Einstellungen.DATEFORMAT));
+          new DateFormatter(new JVDateFormatTTMMJJJJ()));
       lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("Veranstalter"),
           "veranstalter");
       lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("Ergebnis"),

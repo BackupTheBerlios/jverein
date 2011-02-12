@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsklasseSaldoControl.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.8 $
+ * $Date: 2011/02/12 09:29:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsklasseSaldoControl.java,v $
- * Revision 1.7  2011/01/15 09:46:49  jost
+ * Revision 1.8  2011/02/12 09:29:33  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.7  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.6  2010-10-15 09:58:26  jost
@@ -49,6 +52,7 @@ import de.jost_net.JVerein.gui.parts.BuchungsklasseSaldoList;
 import de.jost_net.JVerein.io.BuchungsklasseSaldoZeile;
 import de.jost_net.JVerein.io.BuchungsklassesaldoPDF;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -90,14 +94,14 @@ public class BuchungsklasseSaldoControl extends AbstractControl
     Date d = new Date();
     try
     {
-      d = Einstellungen.DATEFORMAT.parse(settings.getString("von", "01.01"
-          + cal.get(Calendar.YEAR)));
+      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("von",
+          "01.01" + cal.get(Calendar.YEAR)));
     }
     catch (ParseException e)
     {
       //
     }
-    datumvon = new DateInput(d, Einstellungen.DATEFORMAT);
+    datumvon = new DateInput(d, new JVDateFormatTTMMJJJJ());
     return datumvon;
   }
 
@@ -111,14 +115,14 @@ public class BuchungsklasseSaldoControl extends AbstractControl
     Date d = new Date();
     try
     {
-      d = Einstellungen.DATEFORMAT.parse(settings.getString("bis", "31.12."
-          + cal.get(Calendar.YEAR)));
+      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("bis",
+          "31.12." + cal.get(Calendar.YEAR)));
     }
     catch (ParseException e)
     {
       //
     }
-    datumbis = new DateInput(d, Einstellungen.DATEFORMAT);
+    datumbis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     return datumbis;
   }
 
@@ -148,12 +152,12 @@ public class BuchungsklasseSaldoControl extends AbstractControl
       if (getDatumvon().getValue() != null)
       {
         settings.setAttribute("von",
-            Einstellungen.DATEFORMAT.format((Date) getDatumvon().getValue()));
+            new JVDateFormatTTMMJJJJ().format((Date) getDatumvon().getValue()));
       }
       if (getDatumvon().getValue() != null)
       {
         settings.setAttribute("bis",
-            Einstellungen.DATEFORMAT.format((Date) getDatumbis().getValue()));
+            new JVDateFormatTTMMJJJJ().format((Date) getDatumbis().getValue()));
       }
 
       if (saldoList == null)
@@ -164,7 +168,7 @@ public class BuchungsklasseSaldoControl extends AbstractControl
       else
       {
         settings.setAttribute("von",
-            Einstellungen.DATEFORMAT.format((Date) getDatumvon().getValue()));
+            new JVDateFormatTTMMJJJJ().format((Date) getDatumvon().getValue()));
 
         saldoList.setDatumvon((Date) datumvon.getValue());
         saldoList.setDatumbis((Date) datumbis.getValue());
@@ -200,8 +204,8 @@ public class BuchungsklasseSaldoControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("buchungsklassensaldo",
-          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("buchungsklassensaldo", Einstellungen
+          .getEinstellung().getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 

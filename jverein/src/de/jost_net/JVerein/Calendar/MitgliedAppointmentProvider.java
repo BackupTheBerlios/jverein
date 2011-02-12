@@ -2,8 +2,8 @@ package de.jost_net.JVerein.Calendar;
 
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/MitgliedAppointmentProvider.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/01/31 17:13:04 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:23:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -11,7 +11,10 @@ package de.jost_net.JVerein.Calendar;
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAppointmentProvider.java,v $
- * Revision 1.4  2011/01/31 17:13:04  jost
+ * Revision 1.5  2011/02/12 09:23:50  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.4  2011-01-31 17:13:04  jost
  * *** empty log message ***
  *
  * Revision 1.3  2011-01-30 22:57:33  jost
@@ -109,7 +112,7 @@ public class MitgliedAppointmentProvider implements AppointmentProvider
   /**
    * Hilfsklasse zum Anzeigen und Oeffnen des Appointments.
    */
-  private class MyAppointment implements Appointment
+  private static class MyAppointment implements Appointment
   {
 
     private Mitglied m = null;

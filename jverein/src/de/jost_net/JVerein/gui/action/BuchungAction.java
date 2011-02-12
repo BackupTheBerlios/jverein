@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungAction.java,v $
- * $Revision: 1.7 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.8 $
+ * $Date: 2011/02/12 09:25:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungAction.java,v $
+ * Revision 1.8  2011/02/12 09:25:28  jost
+ * Statische Codeanalyse mit Findbugs
+ *
  * Revision 1.7  2009/06/11 21:02:05  jost
  * Vorbereitung I18N
  *
@@ -37,6 +40,7 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.view.BuchungView;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.util.ApplicationException;
@@ -57,7 +61,7 @@ public class BuchungAction implements Action
         {
           throw new ApplicationException(JVereinPlugin.getI18n().tr(
               "Buchung wurde bereits am {0} von {1} abgeschlossen.",
-              new String[] { Einstellungen.DATEFORMAT.format(ja.getDatum()),
+              new String[] { new JVDateFormatTTMMJJJJ().format(ja.getDatum()),
                   ja.getName() }));
         }
       }

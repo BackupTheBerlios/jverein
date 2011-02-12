@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/AktuelleGeburtstageList.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/02/03 22:02:21 $
+ * $Revision: 1.10 $
+ * $Date: 2011/02/12 09:34:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AktuelleGeburtstageList.java,v $
- * Revision 1.9  2011/02/03 22:02:21  jost
+ * Revision 1.10  2011/02/12 09:34:43  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.9  2011-02-03 22:02:21  jost
  * Bugfix Kontextmenu
  *
  * Revision 1.8  2011-01-27 22:19:52  jost
@@ -50,6 +53,7 @@ import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.menu.MitgliedMenu;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.server.MitgliedUtils;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.Part;
@@ -71,7 +75,7 @@ public class AktuelleGeburtstageList extends TablePart implements Part
     DBIterator geburtstage = service.createList(Mitglied.class);
     MitgliedUtils.setNurAktive(geburtstage);
     MitgliedUtils.setMitglied(geburtstage);
-    String filter = "";
+    StringBuffer filter = new StringBuffer();
     Calendar cal = Calendar.getInstance();
     int vorher = 0;
     int nachher = 0;
@@ -90,10 +94,14 @@ public class AktuelleGeburtstageList extends TablePart implements Part
     {
       if (filter.length() > 0)
       {
-        filter += " OR ";
+        filter.append(" OR ");
       }
-      filter += "(month(geburtsdatum) = " + (cal.get(Calendar.MONTH) + 1)
-          + " AND day(geburtsdatum) = " + cal.get(Calendar.DAY_OF_MONTH) + ")";
+      filter.append("(month(geburtsdatum) = ");
+      filter.append(cal.get(Calendar.MONTH) + 1);
+      filter.append(" AND day(geburtsdatum) = ");
+      filter.append(cal.get(Calendar.DAY_OF_MONTH));
+      filter.append(")");
+      ;
       cal.add(Calendar.DAY_OF_MONTH, 1);
     }
 
@@ -101,13 +109,16 @@ public class AktuelleGeburtstageList extends TablePart implements Part
     {
       if (filter.length() > 0)
       {
-        filter += " OR ";
+        filter.append(" OR ");
       }
-      filter += "(month(geburtsdatum) = " + (cal.get(Calendar.MONTH) + 1)
-          + " AND day(geburtsdatum) = " + cal.get(Calendar.DAY_OF_MONTH) + ")";
+      filter.append("(month(geburtsdatum) = ");
+      filter.append(cal.get(Calendar.MONTH) + 1);
+      filter.append(" AND day(geburtsdatum) = ");
+      filter.append(Calendar.DAY_OF_MONTH);
+      filter.append(")");
       cal.add(Calendar.DAY_OF_MONTH, 1);
     }
-    geburtstage.addFilter(filter);
+    geburtstage.addFilter(filter.toString());
     geburtstage.setOrder("ORDER BY month(geburtsdatum), day(geburtsdatum)");
 
     if (aktuelleGeburtstageList == null)
@@ -120,7 +131,7 @@ public class AktuelleGeburtstageList extends TablePart implements Part
           "vorname");
       aktuelleGeburtstageList.addColumn(
           JVereinPlugin.getI18n().tr("Geburtsdatum"), "geburtsdatum",
-          new DateFormatter(Einstellungen.DATEFORMAT));
+          new DateFormatter(new JVDateFormatTTMMJJJJ()));
       aktuelleGeburtstageList.addColumn(
           JVereinPlugin.getI18n().tr("Tel. priv"), "telefonprivat");
       aktuelleGeburtstageList.addColumn(

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.21 $
- * $Date: 2011/02/02 21:59:41 $
+ * $Revision: 1.22 $
+ * $Date: 2011/02/12 09:32:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.21  2011/02/02 21:59:41  jost
+ * Revision 1.22  2011/02/12 09:32:16  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.21  2011-02-02 21:59:41  jost
  * Status von "Differenz" wird gespeichert.
  *
  * Revision 1.20  2011-02-02 16:23:35  jost
@@ -111,6 +114,7 @@ import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
 import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.GenericIterator;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.pseudo.PseudoIterator;
@@ -192,8 +196,6 @@ public class MitgliedskontoControl extends AbstractControl
 
   private Action action;
 
-  private ContextMenu menu;
-
   public MitgliedskontoControl(AbstractView view)
   {
     super(view);
@@ -220,7 +222,7 @@ public class MitgliedskontoControl extends AbstractControl
 
     Date d = getMitgliedskonto().getDatum();
 
-    this.datum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.datum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.datum.setTitle("Datum");
     this.datum.setText("Bitte Datum wählen");
     this.datum.addListener(new Listener()
@@ -307,7 +309,7 @@ public class MitgliedskontoControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
@@ -315,7 +317,7 @@ public class MitgliedskontoControl extends AbstractControl
       }
     }
 
-    this.vondatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.vondatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.vondatum.setTitle("Anfangsdatum");
     this.vondatum.setText("Bitte Anfangsdatum wählen");
     vondatum.addListener(new FilterListener());
@@ -335,14 +337,14 @@ public class MitgliedskontoControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.bisdatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.bisdatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.bisdatum.setTitle("Endedatum");
     this.bisdatum.setText("Bitte Endedatum wählen");
     bisdatum.addListener(new FilterListener());
@@ -449,7 +451,7 @@ public class MitgliedskontoControl extends AbstractControl
     };
     mitgliedskontoTree.addColumn("Name, Vorname", "name");
     mitgliedskontoTree.addColumn("Datum", "datum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     mitgliedskontoTree.addColumn("Zweck1", "zweck1");
     mitgliedskontoTree.addColumn("Zweck2", "zweck2");
     mitgliedskontoTree.addColumn("Zahlungsweg", "zahlungsweg",
@@ -480,7 +482,7 @@ public class MitgliedskontoControl extends AbstractControl
     {
       mitgliedskontoList = new TablePart(mitgliedskonten, action);
       mitgliedskontoList.addColumn("Datum", "datum", new DateFormatter(
-          Einstellungen.DATEFORMAT));
+          new JVDateFormatTTMMJJJJ()));
       mitgliedskontoList.addColumn("Abrechnungslauf", "abrechnungslauf");
       mitgliedskontoList.addColumn("Name", "mitglied");
       mitgliedskontoList.addColumn("Zweck1", "zweck1");
@@ -515,18 +517,19 @@ public class MitgliedskontoControl extends AbstractControl
     MitgliedUtils.setMitgliedOderSpender(mitglieder);
     if (suchname2 != null && suchname2.getValue() != null)
     {
-      String where = "";
+      StringBuffer where = new StringBuffer();
       ArrayList<String> object = new ArrayList<String>();
       StringTokenizer tok = new StringTokenizer((String) suchname2.getValue(),
           " ,-");
       while (tok.hasMoreElements())
       {
-        where += "upper(name) like upper(?) or upper(vorname) like upper(?) ";
+        where
+            .append("upper(name) like upper(?) or upper(vorname) like upper(?) ");
         String o = tok.nextToken();
         object.add(o);
         object.add(o);
       }
-      mitglieder.addFilter(where, object.toArray());
+      mitglieder.addFilter(where.toString(), object.toArray());
     }
     mitglieder.setOrder("order by name, vorname");
     if (mitgliedskontoList2 == null)
@@ -563,7 +566,7 @@ public class MitgliedskontoControl extends AbstractControl
       if (d1 != null)
       {
         settings.setAttribute(datumverwendung + "datumvon",
-            Einstellungen.DATEFORMAT.format(d1));
+            new JVDateFormatTTMMJJJJ().format(d1));
         vd = new java.sql.Date(d1.getTime());
       }
       else
@@ -577,7 +580,7 @@ public class MitgliedskontoControl extends AbstractControl
       if (d1 != null)
       {
         settings.setAttribute(datumverwendung + "datumbis",
-            Einstellungen.DATEFORMAT.format(d1));
+            new JVDateFormatTTMMJJJJ().format(d1));
         bd = new java.sql.Date(d1.getTime());
       }
       else
@@ -754,7 +757,7 @@ public class MitgliedskontoControl extends AbstractControl
         if (d != null)
         {
           settings.setAttribute(datumverwendung + "datumvon",
-              Einstellungen.DATEFORMAT.format(d));
+              new JVDateFormatTTMMJJJJ().format(d));
         }
 
         it.addFilter("datum >= ?", new Object[] { d });
@@ -769,7 +772,7 @@ public class MitgliedskontoControl extends AbstractControl
         if (d != null)
         {
           settings.setAttribute(datumverwendung + "datumbis",
-              Einstellungen.DATEFORMAT.format(d));
+              new JVDateFormatTTMMJJJJ().format(d));
         }
         it.addFilter("datum <= ?", new Object[] { d });
       }
@@ -1008,7 +1011,7 @@ public class MitgliedskontoControl extends AbstractControl
     }
     map.put(FormularfeldControl.ZAHLUNGSWEG, zahlungsweg);
     map.put(FormularfeldControl.TAGESDATUM,
-        Einstellungen.DATEFORMAT.format(new Date()));
+        new JVDateFormatTTMMJJJJ().format(new Date()));
 
     fa.writeForm(fo, map);
   }
@@ -1103,7 +1106,7 @@ public class MitgliedskontoControl extends AbstractControl
       {
         try
         {
-          getMitgliedskontoList(action, menu);
+          getMitgliedskontoList(action, null);
         }
         catch (RemoteException e)
         {
@@ -1113,7 +1116,7 @@ public class MitgliedskontoControl extends AbstractControl
     }
   }
 
-  public class MitgliedskontoTreeFormatter implements TreeFormatter
+  public static class MitgliedskontoTreeFormatter implements TreeFormatter
   {
 
     public void format(TreeItem item)

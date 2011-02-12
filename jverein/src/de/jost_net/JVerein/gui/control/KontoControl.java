@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KontoControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:30:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoControl.java,v $
- * Revision 1.4  2010/10/15 09:58:27  jost
+ * Revision 1.5  2011/02/12 09:30:56  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.4  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2010-09-19 16:14:31  jost
@@ -31,6 +34,7 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.KontoAction;
 import de.jost_net.JVerein.gui.menu.KontoMenu;
 import de.jost_net.JVerein.rmi.Konto;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -108,8 +112,7 @@ public class KontoControl extends AbstractControl
     {
       return eroeffnung;
     }
-    eroeffnung = new DateInput(getKonto().getEroeffnung(),
-        Einstellungen.DATEFORMAT);
+    eroeffnung = new DateInput(getKonto().getEroeffnung(), new JVDateFormatTTMMJJJJ());
     return eroeffnung;
   }
 
@@ -119,8 +122,7 @@ public class KontoControl extends AbstractControl
     {
       return aufloesung;
     }
-    aufloesung = new DateInput(getKonto().getAufloesung(),
-        Einstellungen.DATEFORMAT);
+    aufloesung = new DateInput(getKonto().getAufloesung(), new JVDateFormatTTMMJJJJ());
     return aufloesung;
   }
 
@@ -204,9 +206,9 @@ public class KontoControl extends AbstractControl
       }
     }, false, Column.ALIGN_LEFT);
     kontenList.addColumn("Konto-Eröffnung", "eroeffnung", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     kontenList.addColumn("Konto-Auflösung", "aufloesung", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     kontenList.setRememberColWidths(true);
     kontenList.setContextMenu(new KontoMenu());
     kontenList.setRememberOrder(true);

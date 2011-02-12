@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/MitgliedskontoauswahlInput.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/01/08 10:45:40 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:34:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoauswahlInput.java,v $
- * Revision 1.4  2011/01/08 10:45:40  jost
+ * Revision 1.5  2011/02/12 09:34:09  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.4  2011-01-08 10:45:40  jost
  * Erzeugung Sollbuchung bei Zuordnung des Mitgliedskontos
  *
  * Revision 1.3  2010-10-15 09:58:29  jost
@@ -35,6 +38,7 @@ import de.jost_net.JVerein.gui.dialogs.MitgliedskontoAuswahlDialog;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.DialogInput;
 import de.willuhn.logging.Logger;
@@ -76,9 +80,8 @@ public class MitgliedskontoauswahlInput
     mitgliedskontoAuswahl = new DialogInput(konto != null ? konto.getMitglied()
         .getNameVorname()
         + ", "
-        + Einstellungen.DATEFORMAT.format(konto.getDatum())
-        + ", "
-        + Einstellungen.DECIMALFORMAT.format(konto.getBetrag()) : "", d);
+        + new JVDateFormatTTMMJJJJ().format(konto.getDatum())
+        + ", " + Einstellungen.DECIMALFORMAT.format(konto.getBetrag()) : "", d);
     mitgliedskontoAuswahl.disableClientControl();
     mitgliedskontoAuswahl.setValue(buchung.getMitgliedskonto());
     return mitgliedskontoAuswahl;
@@ -125,7 +128,7 @@ public class MitgliedskontoauswahlInput
         {
           konto = (Mitgliedskonto) event.data;
           b = konto.getMitglied().getNameVorname() + ", "
-              + Einstellungen.DATEFORMAT.format(konto.getDatum()) + ", "
+              + new JVDateFormatTTMMJJJJ().format(konto.getDatum()) + ", "
               + Einstellungen.DECIMALFORMAT.format(konto.getBetrag());
         }
         else if (event.data instanceof Mitglied)

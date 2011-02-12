@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AnfangsbestandControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.6 $
+ * $Date: 2011/02/12 09:28:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AnfangsbestandControl.java,v $
- * Revision 1.5  2010/10/15 09:58:27  jost
+ * Revision 1.6  2011/02/12 09:28:44  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.5  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.4  2009-07-27 15:21:44  jost
@@ -35,6 +38,7 @@ import de.jost_net.JVerein.gui.action.AnfangsbestandDetailAction;
 import de.jost_net.JVerein.gui.menu.AnfangsbestandMenu;
 import de.jost_net.JVerein.rmi.Anfangsbestand;
 import de.jost_net.JVerein.rmi.Konto;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -127,8 +131,8 @@ public class AnfangsbestandControl extends AbstractControl
     {
       Anfangsbestand a = getAnfangsbestand();
       DBIterator konten = Einstellungen.getDBService().createList(Konto.class);
-      konten.addFilter("nummer = ?",
-          new Object[] { (String) getKonto().getValue()});
+      konten.addFilter("nummer = ?", new Object[] { (String) getKonto()
+          .getValue() });
       if (konten.size() == 0)
       {
         throw new RemoteException("Konto nicht gefunden");
@@ -167,7 +171,7 @@ public class AnfangsbestandControl extends AbstractControl
         new AnfangsbestandDetailAction());
     anfangsbestandList.addColumn("Konto", "kontotext");
     anfangsbestandList.addColumn("Datum", "datum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     anfangsbestandList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
     anfangsbestandList.setRememberColWidths(true);

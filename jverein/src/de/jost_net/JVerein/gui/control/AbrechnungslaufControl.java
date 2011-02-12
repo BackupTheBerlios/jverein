@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbrechnungslaufControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:27 $
+ * $Revision: 1.4 $
+ * $Date: 2011/02/12 09:28:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufControl.java,v $
- * Revision 1.3  2010/10/15 09:58:27  jost
+ * Revision 1.4  2011/02/12 09:28:11  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.3  2010-10-15 09:58:27  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2010-07-25 18:30:44  jost
@@ -32,6 +35,7 @@ import de.jost_net.JVerein.gui.formatter.AbrechnungsmodusFormatter;
 import de.jost_net.JVerein.gui.formatter.JaNeinFormatter;
 import de.jost_net.JVerein.gui.menu.AbrechnungslaufMenu;
 import de.jost_net.JVerein.rmi.Abrechnungslauf;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
@@ -83,13 +87,13 @@ public class AbrechnungslaufControl extends AbstractControl
       abrechnungslaufList = new TablePart(abrechnungslaeufe, null);
       abrechnungslaufList.addColumn("Nr", "nr");
       abrechnungslaufList.addColumn("Datum", "datum", new DateFormatter(
-          Einstellungen.DATEFORMAT));
+          new JVDateFormatTTMMJJJJ()));
       abrechnungslaufList.addColumn("Modus", "modus",
           new AbrechnungsmodusFormatter(), false, Column.ALIGN_LEFT);
       abrechnungslaufList.addColumn("Stichtag", "stichtag", new DateFormatter(
-          Einstellungen.DATEFORMAT));
+          new JVDateFormatTTMMJJJJ()));
       abrechnungslaufList.addColumn("Eingabedatum", "eingabedatum",
-          new DateFormatter(Einstellungen.DATEFORMAT));
+          new DateFormatter(new JVDateFormatTTMMJJJJ()));
       abrechnungslaufList.addColumn("Zahlungsgrund", "zahlungsgrund");
       abrechnungslaufList.addColumn("Zusatzbeträge", "zusatzbetraege",
           new JaNeinFormatter());

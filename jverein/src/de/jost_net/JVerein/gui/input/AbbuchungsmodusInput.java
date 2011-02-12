@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/AbbuchungsmodusInput.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.11 $
+ * $Date: 2011/02/12 09:33:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungsmodusInput.java,v $
- * Revision 1.10  2010/10/15 09:58:29  jost
+ * Revision 1.11  2011/02/12 09:33:56  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.10  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.9  2010-04-25 13:54:45  jost
@@ -106,7 +109,8 @@ public class AbbuchungsmodusInput extends SelectInput
       l.add(new AbbuchungsmodusObject(Abrechnungsmodi.MO));
       l.add(new AbbuchungsmodusObject(Abrechnungsmodi.EINGETRETENEMITGLIEDER));
     }
-    return PseudoIterator.fromArray(l.toArray(new AbbuchungsmodusObject[l.size()]));
+    return PseudoIterator.fromArray(l.toArray(new AbbuchungsmodusObject[l
+        .size()]));
   }
 
   /**
@@ -118,9 +122,9 @@ public class AbbuchungsmodusInput extends SelectInput
     AbbuchungsmodusObject o = (AbbuchungsmodusObject) super.getValue();
     if (o == null)
     {
-      return new Integer(Abrechnungsmodi.JAEHRLICH);
+      return Integer.valueOf(Abrechnungsmodi.JAEHRLICH);
     }
-    return new Integer(o.abbuchungsmodus);
+    return Integer.valueOf(o.abbuchungsmodus);
   }
 
   /**
@@ -146,7 +150,7 @@ public class AbbuchungsmodusInput extends SelectInput
 
     public String[] getAttributeNames()
     {
-      return new String[] { "name"};
+      return new String[] { "name" };
     }
 
     public String getID()

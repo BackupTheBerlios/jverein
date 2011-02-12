@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/ImportDialog.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.4 $
+ * $Date: 2011/02/12 09:33:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ImportDialog.java,v $
- * Revision 1.3  2010/10/15 09:58:26  jost
+ * Revision 1.4  2011/02/12 09:33:39  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.3  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2010-02-01 20:59:00  jost
@@ -77,8 +80,8 @@ public class ImportDialog extends AbstractDialog
   {
     LabelGroup group = new LabelGroup(parent,
         i18n.tr("Auswahl des Import-Filters"));
-    group.addText(
-        i18n.tr("Bitte wählen Sie das gewünschte Dateiformat für den Import aus"),
+    group.addText(i18n
+        .tr("Bitte wählen Sie das gewünschte Dateiformat für den Import aus"),
         true);
 
     Input formats = getImporterList();
@@ -264,7 +267,7 @@ public class ImportDialog extends AbstractDialog
   /**
    * Hilfsklasse zur Anzeige der Importer.
    */
-  private class Imp implements GenericObject
+  private static class Imp implements GenericObject
   {
 
     private Importer importer = null;
@@ -287,7 +290,7 @@ public class ImportDialog extends AbstractDialog
      */
     public String[] getAttributeNames()
     {
-      return new String[] { "name"};
+      return new String[] { "name" };
     }
 
     /**

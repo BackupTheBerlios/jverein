@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungDeleteAction.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/08/21 08:44:07 $
+ * $Revision: 1.9 $
+ * $Date: 2011/02/12 09:26:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungDeleteAction.java,v $
- * Revision 1.8  2010/08/21 08:44:07  jost
+ * Revision 1.9  2011/02/12 09:26:00  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.8  2010-08-21 08:44:07  jost
  * Bugfix: Keine Löschung, wenn Buchung bereits abgeschlossen.
  *
  * Revision 1.7  2009/12/17 19:21:53  jost
@@ -35,10 +38,10 @@ package de.jost_net.JVerein.gui.action;
 
 import java.rmi.RemoteException;
 
-import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.jost_net.JVerein.rmi.Jahresabschluss;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.YesNoDialog;
@@ -90,8 +93,8 @@ public class BuchungDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr(
-            "Fehler beim Löschen der Buchung"), e);
+        Logger.error(
+            JVereinPlugin.getI18n().tr("Fehler beim Löschen der Buchung"), e);
         return;
       }
       for (Buchung bu : b)
@@ -101,7 +104,7 @@ public class BuchungDeleteAction implements Action
         {
           throw new ApplicationException(JVereinPlugin.getI18n().tr(
               "Buchung wurde bereits am {0} von {1} abgeschlossen.",
-              new String[] { Einstellungen.DATEFORMAT.format(ja.getDatum()),
+              new String[] { new JVDateFormatTTMMJJJJ().format(ja.getDatum()),
                   ja.getName() }));
         }
         bu.delete();

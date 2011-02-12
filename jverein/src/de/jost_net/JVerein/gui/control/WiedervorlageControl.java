@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/WiedervorlageControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2009/07/27 15:25:34 $
+ * $Revision: 1.5 $
+ * $Date: 2011/02/12 09:33:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageControl.java,v $
+ * Revision 1.5  2011/02/12 09:33:14  jost
+ * Statische Codeanalyse mit Findbugs
+ *
  * Revision 1.4  2009/07/27 15:25:34  jost
  * Focus auf erstes Feld setzen.
  *
@@ -30,8 +33,8 @@ import java.util.Date;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.rmi.Wiedervorlage;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -75,7 +78,7 @@ public class WiedervorlageControl extends AbstractControl
 
     Date d = getWiedervorlage().getDatum();
 
-    this.datum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.datum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.datum.setTitle("Datum");
     this.datum.setText("Bitte Wiedervorlagedatum wählen");
     this.datum.addListener(new Listener()
@@ -116,7 +119,7 @@ public class WiedervorlageControl extends AbstractControl
 
     Date d = getWiedervorlage().getErledigung();
 
-    this.erledigung = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.erledigung = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.erledigung.setTitle("Erledigung");
     this.erledigung.setText("Bitte Erledigungsdatum wählen");
     this.erledigung.addListener(new Listener()

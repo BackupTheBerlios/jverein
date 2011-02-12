@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.37 $
- * $Date: 2011/02/03 22:46:31 $
+ * $Revision: 1.38 $
+ * $Date: 2011/02/12 09:30:21 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.37  2011/02/03 22:46:31  jost
+ * Revision 1.38  2011/02/12 09:30:21  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.37  2011-02-03 22:46:31  jost
  * Sofortige Übernahme der Änderungen
  *
  * Revision 1.36  2011-01-30 08:27:42  jost
@@ -682,7 +685,7 @@ public class EinstellungControl extends AbstractControl
     {
       return delaytime;
     }
-    delaytime = new IntegerInput(new Integer(Einstellungen.getEinstellung()
+    delaytime = new IntegerInput(Integer.valueOf(Einstellungen.getEinstellung()
         .getDelaytime()));
     return delaytime;
   }

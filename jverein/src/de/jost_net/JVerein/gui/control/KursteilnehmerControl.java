@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KursteilnehmerControl.java,v $
- * $Revision: 1.24 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.25 $
+ * $Date: 2011/02/12 09:31:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerControl.java,v $
- * Revision 1.24  2011/01/15 09:46:49  jost
+ * Revision 1.25  2011/02/12 09:31:13  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.24  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.23  2010-10-15 09:58:26  jost
@@ -105,6 +108,7 @@ import de.jost_net.JVerein.gui.menu.KursteilnehmerMenu;
 import de.jost_net.JVerein.io.Reporter;
 import de.jost_net.JVerein.rmi.Kursteilnehmer;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
@@ -262,7 +266,7 @@ public class KursteilnehmerControl extends AbstractControl
       return geburtsdatum;
     }
     Date d = getKursteilnehmer().getGeburtsdatum();
-    this.geburtsdatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.geburtsdatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.geburtsdatum.setTitle("Geburtsdatum");
     this.geburtsdatum.setText("Bitte Geburtsdatum wählen");
     this.geburtsdatum.addListener(new Listener()
@@ -317,14 +321,14 @@ public class KursteilnehmerControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.eingabedatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.eingabedatumvon = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.eingabedatumvon.setTitle("Eingabedatum");
     this.eingabedatumvon.setText("Beginn des Eingabe-Zeitraumes");
     this.eingabedatumvon.addListener(new Listener()
@@ -355,14 +359,14 @@ public class KursteilnehmerControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.eingabedatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.eingabedatumbis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.eingabedatumbis.setTitle("Eingabedatum");
     this.eingabedatumbis.setText("Ende des Eingabe-Zeitraumes");
     this.eingabedatumbis.addListener(new Listener()
@@ -393,14 +397,14 @@ public class KursteilnehmerControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.abbuchungsdatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.abbuchungsdatumvon = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.abbuchungsdatumvon.setTitle("Abbuchungsdatum");
     this.abbuchungsdatumvon.setText("Beginn des Abbuchungszeitraumes");
     this.abbuchungsdatumvon.addListener(new Listener()
@@ -430,14 +434,14 @@ public class KursteilnehmerControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.abbuchungsdatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.abbuchungsdatumbis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.abbuchungsdatumbis.setTitle("Abbuchungsdatum");
     this.abbuchungsdatumbis.setText("Ende des Abbuchungszeitraumes");
     this.abbuchungsdatumbis.addListener(new Listener()
@@ -470,9 +474,9 @@ public class KursteilnehmerControl extends AbstractControl
     part.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
     part.addColumn("Eingabedatum", "eingabedatum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     part.addColumn("Abbuchungsdatum", "abbudatum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     part.setContextMenu(new KursteilnehmerMenu(part));
 
     return part;
@@ -534,7 +538,7 @@ public class KursteilnehmerControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("eingabedatum.von",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -548,7 +552,7 @@ public class KursteilnehmerControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("eingabedatum.bis",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -562,7 +566,7 @@ public class KursteilnehmerControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("abbuchungsdatum.von",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -576,7 +580,7 @@ public class KursteilnehmerControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("abbuchungsdatum.bis",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -650,17 +654,17 @@ public class KursteilnehmerControl extends AbstractControl
       if (abbuchungsdatumvon.getValue() != null)
       {
         Date d = (Date) abbuchungsdatumvon.getValue();
-        subtitle += "Abbuchungsdatum von " + Einstellungen.DATEFORMAT.format(d)
+        subtitle += "Abbuchungsdatum von " + new JVDateFormatTTMMJJJJ().format(d)
             + "  ";
-        list.addFilter("abbudatum >= ?", new Object[] { new java.sql.Date(
-            d.getTime())});
+        list.addFilter("abbudatum >= ?",
+            new Object[] { new java.sql.Date(d.getTime()) });
       }
       if (abbuchungsdatumbis.getValue() != null)
       {
         Date d = (Date) abbuchungsdatumbis.getValue();
-        subtitle += " bis " + Einstellungen.DATEFORMAT.format(d) + "  ";
-        list.addFilter("abbudatum <= ?", new Object[] { new java.sql.Date(
-            d.getTime())});
+        subtitle += " bis " + new JVDateFormatTTMMJJJJ().format(d) + "  ";
+        list.addFilter("abbudatum <= ?",
+            new Object[] { new java.sql.Date(d.getTime()) });
       }
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("Ausgabedatei wählen.");
@@ -673,8 +677,8 @@ public class KursteilnehmerControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("kursteilnehmer",
-          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("kursteilnehmer", Einstellungen
+          .getEinstellung().getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 
@@ -797,17 +801,18 @@ public class KursteilnehmerControl extends AbstractControl
     String suchN = (String) getSuchname().getValue();
     if (suchN != null && suchN.length() > 0)
     {
-      kursteilnehmer.addFilter("name like ?", new Object[] { "%" + suchN + "%"});
+      kursteilnehmer.addFilter("name like ?",
+          new Object[] { "%" + suchN + "%" });
     }
     if (getEingabedatumvon().getValue() != null)
     {
       kursteilnehmer.addFilter("eingabedatum >= ?",
-          new Object[] { (Date) getEingabedatumvon().getValue()});
+          new Object[] { (Date) getEingabedatumvon().getValue() });
     }
     if (getEingabedatumbis().getValue() != null)
     {
       kursteilnehmer.addFilter("eingabedatum <= ?",
-          new Object[] { (Date) getEingabedatumbis().getValue()});
+          new Object[] { (Date) getEingabedatumbis().getValue() });
     }
     return kursteilnehmer;
   }

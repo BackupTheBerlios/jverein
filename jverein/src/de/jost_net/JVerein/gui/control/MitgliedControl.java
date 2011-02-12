@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.106 $
- * $Date: 2011/02/03 22:01:51 $
+ * $Revision: 1.107 $
+ * $Date: 2011/02/12 09:31:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.106  2011/02/03 22:01:51  jost
+ * Revision 1.107  2011/02/12 09:31:51  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.106  2011-02-03 22:01:51  jost
  * Bugfix Kontextmenu
  *
  * Revision 1.105  2011-02-02 21:59:14  jost
@@ -394,6 +397,7 @@ import de.jost_net.JVerein.server.EigenschaftenNode;
 import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.IbanBicCalc;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.jost_net.JVerein.util.MitgliedSpaltenauswahl;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.datasource.GenericObjectNode;
@@ -912,7 +916,7 @@ public class MitgliedControl extends AbstractControl
     {
       d = null;
     }
-    this.geburtsdatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.geburtsdatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.geburtsdatum.setName("Geburtsdatum");
     this.geburtsdatum.setTitle("Geburtsdatum");
     this.geburtsdatum.setText("Bitte Geburtsdatum wählen");
@@ -1142,7 +1146,7 @@ public class MitgliedControl extends AbstractControl
     {
       d = null;
     }
-    this.eintritt = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.eintritt = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.eintritt.setTitle("Eintrittsdatum");
     this.eintritt.setName("Eintrittsdatum");
     this.eintritt.setText("Bitte Eintrittsdatum wählen");
@@ -1263,7 +1267,7 @@ public class MitgliedControl extends AbstractControl
       return zahler;
     }
 
-    String cond = "";
+    StringBuffer cond = new StringBuffer();
 
     // Beitragsgruppen ermitteln, die Zahler für andere Mitglieder sind
     DBIterator bg = Einstellungen.getDBService().createList(
@@ -1273,13 +1277,14 @@ public class MitgliedControl extends AbstractControl
     {
       if (cond.length() > 0)
       {
-        cond += " OR ";
+        cond.append(" OR ");
       }
       Beitragsgruppe beitragsgruppe = (Beitragsgruppe) bg.next();
-      cond += "beitragsgruppe = " + beitragsgruppe.getID();
+      cond.append("beitragsgruppe = ");
+      cond.append(beitragsgruppe.getID());
     }
     DBIterator zhl = Einstellungen.getDBService().createList(Mitglied.class);
-    zhl.addFilter(cond);
+    zhl.addFilter(cond.toString());
     MitgliedUtils.setNurAktive(zhl);
     MitgliedUtils.setMitglied(zhl);
     zhl.setOrder("ORDER BY name, vorname");
@@ -1346,7 +1351,7 @@ public class MitgliedControl extends AbstractControl
     }
     Date d = getMitglied().getAustritt();
 
-    this.austritt = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.austritt = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.austritt.setTitle("Austrittsdatum");
     this.austritt.setName("Austrittsdatum");
     this.austritt.setText("Bitte Austrittsdatum wählen");
@@ -1373,7 +1378,7 @@ public class MitgliedControl extends AbstractControl
     }
     Date d = getMitglied().getKuendigung();
 
-    this.kuendigung = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.kuendigung = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.kuendigung.setName("Kündigungsdatum");
     this.kuendigung.setTitle("Kündigungsdatum");
     this.kuendigung.setText("Bitte Kündigungsdatum wählen");
@@ -1400,7 +1405,7 @@ public class MitgliedControl extends AbstractControl
     }
     Date d = getMitglied().getSterbetag();
 
-    this.sterbetag = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.sterbetag = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.sterbetag.setName("Sterbetag");
     this.sterbetag.setTitle("Sterbetag");
     this.sterbetag.setText("Bitte Sterbetag wählen");
@@ -1506,7 +1511,7 @@ public class MitgliedControl extends AbstractControl
           break;
         case Datentyp.DATUM:
           Date d = zf.getFeldDatum();
-          DateInput di = new DateInput(d, Einstellungen.DATEFORMAT);
+          DateInput di = new DateInput(d, new JVDateFormatTTMMJJJJ());
           di.setName(fd.getLabel());
           di.setTitle(fd.getLabel());
           di.setText("Bitte " + fd.getLabel() + " wählen");
@@ -1574,14 +1579,14 @@ public class MitgliedControl extends AbstractControl
     zusatzbetraegeList.setRememberOrder(true);
 
     zusatzbetraegeList.addColumn("Startdatum", "startdatum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     zusatzbetraegeList.addColumn("nächste Fälligkeit", "faelligkeit",
-        new DateFormatter(Einstellungen.DATEFORMAT));
+        new DateFormatter(new JVDateFormatTTMMJJJJ()));
     zusatzbetraegeList.addColumn("letzte Ausführung", "ausfuehrung",
-        new DateFormatter(Einstellungen.DATEFORMAT));
+        new DateFormatter(new JVDateFormatTTMMJJJJ()));
     zusatzbetraegeList.addColumn("Intervall", "intervalltext");
     zusatzbetraegeList.addColumn("Endedatum", "endedatum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     zusatzbetraegeList.addColumn("Buchungstext", "buchungstext");
     zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter("",
         Einstellungen.DECIMALFORMAT));
@@ -1606,10 +1611,10 @@ public class MitgliedControl extends AbstractControl
     wiedervorlageList.setRememberOrder(true);
 
     wiedervorlageList.addColumn("Datum", "datum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     wiedervorlageList.addColumn("Vermerk", "vermerk");
     wiedervorlageList.addColumn("Erledigung", "erledigung", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     wiedervorlageList.setContextMenu(new WiedervorlageMenu(wiedervorlageList));
     return wiedervorlageList;
   }
@@ -1631,7 +1636,7 @@ public class MitgliedControl extends AbstractControl
     arbeitseinsatzList.setContextMenu(new ArbeitseinsatzMenu());
 
     arbeitseinsatzList.addColumn("Datum", "datum", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     arbeitseinsatzList.addColumn("Stunden", "stunden", new CurrencyFormatter(
         "", Einstellungen.DECIMALFORMAT));
     arbeitseinsatzList.addColumn("Bemerkung", "bemerkung");
@@ -1656,9 +1661,9 @@ public class MitgliedControl extends AbstractControl
 
     lehrgaengeList.addColumn("Lehrgangsart", "lehrgangsart");
     lehrgaengeList.addColumn("von/am", "von", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     lehrgaengeList.addColumn("bis", "bis", new DateFormatter(
-        Einstellungen.DATEFORMAT));
+        new JVDateFormatTTMMJJJJ()));
     lehrgaengeList.addColumn("Veranstalter", "veranstalter");
     lehrgaengeList.addColumn("Ergebnis", "ergebnis");
     lehrgaengeList.setContextMenu(new LehrgangMenu());
@@ -1677,14 +1682,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.geburtsdatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.geburtsdatumvon = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.geburtsdatumvon.setTitle("Geburtsdatum");
     this.geburtsdatumvon.setText("Beginn des Geburtszeitraumes");
     this.geburtsdatumvon.addListener(new Listener()
@@ -1714,14 +1719,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.geburtsdatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.geburtsdatumbis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.geburtsdatumbis.setTitle("Geburtsdatum");
     this.geburtsdatumbis.setText("Ende des Geburtszeitraumes");
     this.geburtsdatumbis.addListener(new Listener()
@@ -1751,14 +1756,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.sterbedatumvon = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.sterbedatumvon = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.sterbedatumvon.setTitle("Sterbedatum");
     this.sterbedatumvon.setText("Beginn des Sterbezeitraumes");
     this.sterbedatumvon.addListener(new Listener()
@@ -1788,14 +1793,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.sterbedatumbis = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.sterbedatumbis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.sterbedatumbis.setTitle("Sterbedatum");
     this.sterbedatumbis.setText("Ende des Sterbezeitraumes");
     this.sterbedatumbis.addListener(new Listener()
@@ -1825,14 +1830,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.eintrittvon = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.eintrittvon = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.eintrittvon.setTitle("Eintrittsdatum");
     this.eintrittvon.setText("Beginn des Eintrittszeitraumes");
     this.eintrittvon.addListener(new Listener()
@@ -1867,14 +1872,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.eintrittbis = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.eintrittbis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.eintrittbis.setTitle("Eintrittsdatum");
     this.eintrittbis.setText("Ende des Eintrittszeitraumes");
     this.eintrittbis.addListener(new Listener()
@@ -1904,14 +1909,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.austrittvon = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.austrittvon = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.austrittvon.setTitle("Austrittsdatum");
     this.austrittvon.setText("Beginn des Austrittszeitraumes");
     this.austrittvon.addListener(new Listener()
@@ -1946,14 +1951,14 @@ public class MitgliedControl extends AbstractControl
     {
       try
       {
-        d = Einstellungen.DATEFORMAT.parse(tmp);
+        d = new JVDateFormatTTMMJJJJ().parse(tmp);
       }
       catch (ParseException e)
       {
         //
       }
     }
-    this.austrittbis = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.austrittbis = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.austrittbis.setTitle("Austrittsdatum");
     this.austrittbis.setText("Ende des Austrittszeitraumes");
     this.austrittbis.addListener(new Listener()
@@ -1981,7 +1986,7 @@ public class MitgliedControl extends AbstractControl
     cal.set(Calendar.MONTH, Calendar.DECEMBER);
     cal.set(Calendar.DAY_OF_MONTH, 31);
     Date d = new Date(cal.getTimeInMillis());
-    this.stichtag = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.stichtag = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.stichtag.setTitle("Stichtag");
     this.stichtag.addListener(new Listener()
     {
@@ -2034,25 +2039,25 @@ public class MitgliedControl extends AbstractControl
     d.addCloseListener(new EigenschaftenListener());
 
     StringTokenizer stt = new StringTokenizer(tmp, ",");
-    String text = "";
+    StringBuilder text = new StringBuilder();
     while (stt.hasMoreElements())
     {
       if (text.length() > 0)
       {
-        text += ", ";
+        text.append(", ");
       }
       try
       {
         Eigenschaft ei = (Eigenschaft) Einstellungen.getDBService()
             .createObject(Eigenschaft.class, stt.nextToken());
-        text += ei.getBezeichnung();
+        text.append(ei.getBezeichnung());
       }
       catch (ObjectNotFoundException e)
       {
         //
       }
     }
-    eigenschaftenabfrage = new DialogInput(text, d);
+    eigenschaftenabfrage = new DialogInput(text.toString(), d);
     eigenschaftenabfrage.addListener(new Listener()
     {
 
@@ -2249,7 +2254,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.geburtsdatumvon",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2263,7 +2268,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.geburtsdatumbis",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2277,7 +2282,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.sterbedatumvon",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2291,7 +2296,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.sterbedatumbis",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2305,7 +2310,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.eintrittvon",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2319,7 +2324,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.eintrittbis",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2333,7 +2338,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.austrittvon",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2347,7 +2352,7 @@ public class MitgliedControl extends AbstractControl
       if (tmp != null)
       {
         settings.setAttribute("mitglied.austrittbis",
-            Einstellungen.DATEFORMAT.format(tmp));
+            new JVDateFormatTTMMJJJJ().format(tmp));
       }
       else
       {
@@ -2357,7 +2362,7 @@ public class MitgliedControl extends AbstractControl
 
     if (eigenschaftenAuswahlTree != null)
     {
-      String tmp = "";
+      StringBuffer tmp = new StringBuffer();
       for (Object o : eigenschaftenAuswahlTree.getItems())
       {
         EigenschaftenNode node = (EigenschaftenNode) o;
@@ -2365,12 +2370,12 @@ public class MitgliedControl extends AbstractControl
         {
           if (tmp.length() > 0)
           {
-            tmp += ",";
+            tmp.append(",");
           }
-          tmp += node.getEigenschaft().getID();
+          tmp.append(node.getEigenschaft().getID());
         }
       }
-      settings.setAttribute("mitglied.eigenschaften", tmp);
+      settings.setAttribute("mitglied.eigenschaften", tmp.toString());
     }
 
     if (beitragsgruppeausw != null)
@@ -2422,7 +2427,7 @@ public class MitgliedControl extends AbstractControl
         while (it.hasNext())
         {
           EigenschaftGruppe eg = (EigenschaftGruppe) it.next();
-          pflichtgruppen.put(eg.getID(), new Boolean(false));
+          pflichtgruppen.put(eg.getID(), Boolean.valueOf(false));
         }
         for (Object o1 : eigenschaftenTree.getItems())
         {
@@ -2432,8 +2437,8 @@ public class MitgliedControl extends AbstractControl
             if (node.getNodeType() == EigenschaftenNode.EIGENSCHAFTEN)
             {
               Eigenschaft ei = (Eigenschaft) node.getObject();
-              pflichtgruppen.put(ei.getEigenschaftGruppeId() + "", new Boolean(
-                  true));
+              pflichtgruppen.put(ei.getEigenschaftGruppeId() + "",
+                  Boolean.valueOf(true));
             }
           }
         }
@@ -2454,7 +2459,7 @@ public class MitgliedControl extends AbstractControl
         while (it.hasNext())
         {
           EigenschaftGruppe eg = (EigenschaftGruppe) it.next();
-          max1gruppen.put(eg.getID(), new Boolean(false));
+          max1gruppen.put(eg.getID(), Boolean.valueOf(false));
         }
         for (Object o1 : eigenschaftenTree.getItems())
         {
@@ -2477,7 +2482,7 @@ public class MitgliedControl extends AbstractControl
                 else
                 {
                   max1gruppen.put(ei.getEigenschaftGruppe().getID(),
-                      new Boolean(true));
+                      Boolean.valueOf(true));
                 }
               }
             }
@@ -2726,45 +2731,49 @@ public class MitgliedControl extends AbstractControl
       if (geburtsdatumvon.getValue() != null)
       {
         Date d = (Date) geburtsdatumvon.getValue();
-        subtitle += "Geburtsdatum von " + Einstellungen.DATEFORMAT.format(d)
+        subtitle += "Geburtsdatum von " + new JVDateFormatTTMMJJJJ().format(d)
             + "  ";
       }
       if (geburtsdatumbis.getValue() != null)
       {
         Date d = (Date) geburtsdatumbis.getValue();
-        subtitle += "Geburtsdatum bis " + Einstellungen.DATEFORMAT.format(d)
+        subtitle += "Geburtsdatum bis " + new JVDateFormatTTMMJJJJ().format(d)
             + "  ";
       }
       if (eintrittvon.getValue() != null)
       {
         Date d = (Date) eintrittvon.getValue();
-        subtitle += "Eintritt von " + Einstellungen.DATEFORMAT.format(d) + "  ";
+        subtitle += "Eintritt von " + new JVDateFormatTTMMJJJJ().format(d)
+            + "  ";
       }
       if (eintrittbis.getValue() != null)
       {
         Date d = (Date) eintrittbis.getValue();
-        subtitle += "Eintritt bis " + Einstellungen.DATEFORMAT.format(d) + "  ";
+        subtitle += "Eintritt bis " + new JVDateFormatTTMMJJJJ().format(d)
+            + "  ";
       }
       if (austrittvon.getValue() != null)
       {
         Date d = (Date) austrittvon.getValue();
-        subtitle += "Austritt von " + Einstellungen.DATEFORMAT.format(d) + "  ";
+        subtitle += "Austritt von " + new JVDateFormatTTMMJJJJ().format(d)
+            + "  ";
       }
       if (austrittbis.getValue() != null)
       {
         Date d = (Date) austrittbis.getValue();
-        subtitle += "Austritt bis " + Einstellungen.DATEFORMAT.format(d) + "  ";
+        subtitle += "Austritt bis " + new JVDateFormatTTMMJJJJ().format(d)
+            + "  ";
       }
       if (sterbedatumvon.getValue() != null)
       {
         Date d = (Date) sterbedatumvon.getValue();
-        subtitle += "Sterbetag von " + Einstellungen.DATEFORMAT.format(d)
+        subtitle += "Sterbetag von " + new JVDateFormatTTMMJJJJ().format(d)
             + "  ";
       }
       if (sterbedatumbis.getValue() != null)
       {
         Date d = (Date) sterbedatumbis.getValue();
-        subtitle += "Sterbedatum bis " + Einstellungen.DATEFORMAT.format(d)
+        subtitle += "Sterbedatum bis " + new JVDateFormatTTMMJJJJ().format(d)
             + "  ";
       }
       if (getMitgliedStatus().getValue().equals(
@@ -3064,32 +3073,32 @@ public class MitgliedControl extends AbstractControl
         return;
       }
       ArrayList<Object> sel = (ArrayList<Object>) event.data;
-      String id = "";
-      String text = "";
+      StringBuilder id = new StringBuilder();
+      StringBuilder text = new StringBuilder();
       for (Object o : sel)
       {
         if (text.length() > 0)
         {
-          id += ",";
-          text += ", ";
+          id.append(",");
+          text.append(", ");
         }
         EigenschaftenNode node = (EigenschaftenNode) o;
         try
         {
-          id += node.getEigenschaft().getID();
-          text += node.getEigenschaft().getBezeichnung();
+          id.append(node.getEigenschaft().getID());
+          text.append(node.getEigenschaft().getBezeichnung());
         }
         catch (RemoteException e)
         {
           Logger.error("Fehler", e);
         }
       }
-      eigenschaftenabfrage.setText(text);
-      settings.setAttribute("mitglied.eigenschaften", id);
+      eigenschaftenabfrage.setText(text.toString());
+      settings.setAttribute("mitglied.eigenschaften", id.toString());
     }
   }
 
-  public class EigenschaftTreeFormatter implements TreeFormatter
+  public static class EigenschaftTreeFormatter implements TreeFormatter
   {
 
     public void format(TreeItem item)
@@ -3115,7 +3124,7 @@ public class MitgliedControl extends AbstractControl
     }
   }
 
-  class EigenschaftListener implements Listener
+  static class EigenschaftListener implements Listener
   {
 
     private TreePart tree;

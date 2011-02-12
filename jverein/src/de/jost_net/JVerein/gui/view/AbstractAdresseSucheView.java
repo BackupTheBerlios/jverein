@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseSucheView.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/01/29 19:30:09 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/12 09:36:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseSucheView.java,v $
- * Revision 1.1  2011/01/29 19:30:09  jost
+ * Revision 1.2  2011/02/12 09:36:15  jost
+ * Statische Codeanalyse mit Findbugs
+ *
+ * Revision 1.1  2011-01-29 19:30:09  jost
  * Feinschliff
  *
  * Revision 1.2  2011-01-28 09:18:30  jost
@@ -173,7 +176,7 @@ public abstract class AbstractAdresseSucheView extends AbstractView
       public Object extract(ResultSet rs) throws SQLException
       {
         rs.next();
-        return new Long(rs.getLong(1));
+        return Long.valueOf(rs.getLong(1));
       }
     };
     Long anzahlbeitragsgruppe = (Long) service
@@ -190,7 +193,7 @@ public abstract class AbstractAdresseSucheView extends AbstractView
       public Object extract(ResultSet rs) throws SQLException
       {
         rs.next();
-        return new Long(rs.getLong(1));
+        return Long.valueOf(rs.getLong(1));
       }
     };
 
