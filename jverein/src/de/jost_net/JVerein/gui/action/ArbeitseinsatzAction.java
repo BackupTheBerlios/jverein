@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ArbeitseinsatzAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/17 04:48:29 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/12 14:51:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzAction.java,v $
- * Revision 1.1  2010/11/17 04:48:29  jost
+ * Revision 1.2  2011/02/12 14:51:48  jost
+ * Warnung wenn bei einem neuen Mitglied ein neuer Satz aufgenommen werden soll.
+ *
+ * Revision 1.1  2010-11-17 04:48:29  jost
  * Erster Code zum Thema Arbeitseinsatz
  *
  **********************************************************************/
@@ -52,6 +55,12 @@ public class ArbeitseinsatzAction implements Action
             Arbeitseinsatz.class, null);
         if (m != null)
         {
+          if (m.getID() == null)
+          {
+            throw new ApplicationException(
+                "Neues Mitglied bitte erst speichern. Dann können Arbeitseinsätze aufgenommen werden.");
+          }
+
           aeins.setMitglied(new Integer(m.getID()).intValue());
         }
       }
