@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.25 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.26 $
+ * $Date: 2011/02/12 09:27:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,11 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
- * Revision 1.25  2011/01/15 09:46:49  jost
+ * Revision 1.26  2011/02/12 09:27:50  jost
+ * Statische Codeanalyse mit Findbugs
+ * Vorbereitung kompakte Abbuchung
+ *
+ * Revision 1.25  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.24  2010-10-15 09:58:26  jost
@@ -105,6 +109,7 @@ import de.jost_net.JVerein.io.AbbuchungParam;
 import de.jost_net.JVerein.keys.Abrechnungsausgabe;
 import de.jost_net.JVerein.keys.Abrechnungsmodi;
 import de.jost_net.JVerein.util.Dateiname;
+import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -135,6 +140,8 @@ public class AbbuchungControl extends AbstractControl
   private CheckboxInput zusatzbetrag;
 
   private CheckboxInput kursteilnehmer;
+
+  private CheckboxInput kompakteabbuchung;
 
   private CheckboxInput dtausprint;
 
@@ -184,7 +191,7 @@ public class AbbuchungControl extends AbstractControl
       return stichtag;
     }
     Date d = null;
-    this.stichtag = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.stichtag = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.stichtag.setTitle("Stichtag für die Abrechnung");
     this.stichtag.setText("Bitte Stichtag für die Abrechnung wählen");
     this.stichtag.addListener(new Listener()
@@ -210,7 +217,7 @@ public class AbbuchungControl extends AbstractControl
       return vondatum;
     }
     Date d = null;
-    this.vondatum = new DateInput(d, Einstellungen.DATEFORMAT);
+    this.vondatum = new DateInput(d, new JVDateFormatTTMMJJJJ());
     this.vondatum.setTitle("Anfangsdatum Abrechung");
     this.vondatum.setText("Bitte Anfangsdatum der Abrechnung wählen");
     this.vondatum.setEnabled(false);
@@ -261,6 +268,17 @@ public class AbbuchungControl extends AbstractControl
     kursteilnehmer = new CheckboxInput(settings.getBoolean("kursteilnehmer",
         false));
     return kursteilnehmer;
+  }
+
+  public CheckboxInput getKompakteAbbuchung()
+  {
+    if (kompakteabbuchung != null)
+    {
+      return kompakteabbuchung;
+    }
+    kompakteabbuchung = new CheckboxInput(settings.getBoolean(
+        "kompakteabbuchung", false));
+    return kompakteabbuchung;
   }
 
   public CheckboxInput getDtausPrint()
@@ -315,7 +333,10 @@ public class AbbuchungControl extends AbstractControl
     File dtausfile;
     settings.setAttribute("zahlungsgrund", (String) zahlungsgrund.getValue());
     settings.setAttribute("zusatzbetraege", (Boolean) zusatzbetrag.getValue());
-    settings.setAttribute("kursteilnehmer", (Boolean) kursteilnehmer.getValue());
+    settings
+        .setAttribute("kursteilnehmer", (Boolean) kursteilnehmer.getValue());
+    settings.setAttribute("kompakteabbuchung",
+        (Boolean) kompakteabbuchung.getValue());
     settings.setAttribute("dtausprint", (Boolean) dtausprint.getValue());
     Abrechnungsausgabe aa = (Abrechnungsausgabe) ausgabe.getValue();
     settings.setAttribute("abrechnungsausgabe", aa.getKey());
@@ -359,8 +380,8 @@ public class AbbuchungControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("abbuchung",
-          Einstellungen.getEinstellung().getDateinamenmuster(), "TXT").get());
+      fd.setFileName(new Dateiname("abbuchung", Einstellungen.getEinstellung()
+          .getDateinamenmuster(), "TXT").get());
       String file = fd.open();
 
       if (file == null || file.length() == 0)
@@ -396,8 +417,8 @@ public class AbbuchungControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("abbuchung",
-          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("abbuchung", Einstellungen.getEinstellung()
+          .getDateinamenmuster(), "PDF").get());
       pdffile = fd.open();
     }
 
@@ -423,8 +444,8 @@ public class AbbuchungControl extends AbstractControl
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
           GUI.getStatusBar().setSuccessText(
-              "Abbuchungsdatei geschrieben: "
-                  + abupar.dtausfile.getAbsolutePath());
+              "Abrechung durchgeführt., Abbuchungsdatei "
+                  + abupar.dtausfile.getAbsolutePath() + " geschrieben.");
           GUI.getCurrentView().reload();
         }
         catch (ApplicationException ae)
@@ -437,8 +458,9 @@ public class AbbuchungControl extends AbstractControl
         catch (Exception e)
         {
           monitor.setStatus(ProgressMonitor.STATUS_ERROR);
-          Logger.error("error while reading objects from "
-              + abupar.dtausfile.getAbsolutePath(), e);
+          Logger.error(
+              "error while reading objects from "
+                  + abupar.dtausfile.getAbsolutePath(), e);
           ApplicationException ae = new ApplicationException(
               "Fehler beim erstellen der Abbuchungsdatei: "
                   + abupar.dtausfile.getAbsolutePath(), e);
