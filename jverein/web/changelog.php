@@ -32,6 +32,7 @@
 					<li>Neu: PDF-Liste der Buchungsarten</li>
 					<li>Bugfix: Änderungen an den Einstellungen werden sofort wirksam.</li>
 					<li>Bugfix: Bei den Spendenbescheinigungen wird der Betrag wie in der Vorschau positioniert.</li>
+					<li>Warnung bei der Neuaufnahme von Arbeitseinsätzen, Lehrgängen, Wiedervorlagen und Zusatzbeträgen, wenn das neue Mitglied noch nicht gespeichert ist.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -555,7 +556,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.107  2011/02/12 09:44:39  jost
+    Revision 1.108  2011/02/12 22:53:16  jost
+    *** empty log message ***
+
+    Revision 1.107  2011-02-12 09:44:39  jost
     *** empty log message ***
 
     Revision 1.106  2011-02-03 22:48:34  jost
