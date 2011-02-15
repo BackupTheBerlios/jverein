@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/02/12 09:42:33 $
+ * $Revision: 1.18 $
+ * $Date: 2011/02/15 20:55:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
- * Revision 1.17  2011/02/12 09:42:33  jost
+ * Revision 1.18  2011/02/15 20:55:45  jost
+ * Colins Patch zur Performancesteigerung
+ *
+ * Revision 1.17  2011-02-12 09:42:33  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.16  2010-12-27 13:58:44  jost
@@ -151,15 +154,7 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
   @Override
   protected Class<?> getForeignObject(String field)
   {
-    if ("buchungsart".equals(field))
-    {
-      return Buchungsart.class;
-    }
-    else if ("konto".equals(field))
-    {
-      return Konto.class;
-    }
-    else if ("mitgliedskonto".equals(field))
+    if ("mitgliedskonto".equals(field))
     {
       return Mitgliedskonto.class;
     }
@@ -183,7 +178,12 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
 
   public Konto getKonto() throws RemoteException
   {
-    return (Konto) getAttribute("konto");
+    Integer i = (Integer) super.getAttribute("konto");
+    if (i == null)
+      return null; // Keine Buchungsart zugeordnet
+
+    Cache cache = Cache.get(Konto.class, true);
+    return (Konto) cache.get(i);
   }
 
   public void setKonto(Konto konto) throws RemoteException
@@ -291,7 +291,12 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
 
   public Buchungsart getBuchungsart() throws RemoteException
   {
-    return (Buchungsart) getAttribute("buchungsart");
+    Integer i = (Integer) super.getAttribute("buchungsart");
+    if (i == null)
+      return null; // Keine Buchungsart zugeordnet
+   
+    Cache cache = Cache.get(Buchungsart.class, true);
+    return (Buchungsart) cache.get(i);
   }
 
   public int getBuchungsartId() throws RemoteException
@@ -371,6 +376,12 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
       }
     }
 
+    if ("buchungsart".equals(fieldName))
+      return getBuchungsart();
+   
+    if ("konto".equals(fieldName))
+      return getKonto();
+   
     return super.getAttribute(fieldName);
   }
 

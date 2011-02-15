@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/12/30 18:55:52 $
+ * $Revision: 1.11 $
+ * $Date: 2011/02/15 20:55:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoImpl.java,v $
- * Revision 1.10  2010/12/30 18:55:52  jost
+ * Revision 1.11  2011/02/15 20:55:45  jost
+ * Colins Patch zur Performancesteigerung
+ *
+ * Revision 1.10  2010-12-30 18:55:52  jost
  * Colins Patch zur MySQL-Performance-Steigerung
  *
  * Revision 1.9  2010-11-13 09:30:50  jost
@@ -193,12 +196,6 @@ public class KontoImpl extends AbstractDBObject implements Konto
     setAttribute("hibiscusid", id);
   }
 
-  @Override
-  public Object getAttribute(String fieldName) throws RemoteException
-  {
-    return super.getAttribute(fieldName);
-  }
-
   public DBIterator getKontenEinesJahres(Geschaeftsjahr gj)
       throws RemoteException
   {
@@ -211,6 +208,7 @@ public class KontoImpl extends AbstractDBObject implements Konto
     konten.setOrder("order by bezeichnung");
     return konten;
   }
+  
   public void delete() throws RemoteException, ApplicationException
   {
     super.delete();
@@ -222,5 +220,4 @@ public class KontoImpl extends AbstractDBObject implements Konto
     super.store();
     Cache.get(Konto.class, false).put(this); // Cache aktualisieren
   }
-
 }
