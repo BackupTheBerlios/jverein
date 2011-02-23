@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.51 $
- * $Date: 2011/02/12 09:36:59 $
+ * $Revision: 1.52 $
+ * $Date: 2011/02/23 18:01:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
- * Revision 1.51  2011/02/12 09:36:59  jost
+ * Revision 1.52  2011/02/23 18:01:45  jost
+ * Ersten Code für die kompakte Abbuchung wieder entfernt.
+ *
+ * Revision 1.51  2011-02-12 09:36:59  jost
  * Statische Codeanalyse mit Findbugs
  * Vorbereitung kompakte Abbuchung
  *
@@ -223,7 +226,6 @@ public class Abbuchung
   {
     FileOutputStream out = new FileOutputStream(param.dtausfile);
 
-    XLastschriften lastschriften = new XLastschriften();
     this.param = param;
     // Vorbereitung: A-Satz bestücken und schreiben
     DtausDateiWriter dtaus = new DtausDateiWriter(out);
@@ -236,10 +238,10 @@ public class Abbuchung
 
     Abrechnungslauf abrl = getAbrechnungslauf();
     Konto konto = getKonto();
-    abrechnenMitglieder(dtaus, lastschriften, monitor, abrl, konto);
+    abrechnenMitglieder(dtaus, monitor, abrl, konto);
     if (param.zusatzbetraege)
     {
-      abbuchenZusatzbetraege(dtaus, lastschriften, abrl, konto);
+      abbuchenZusatzbetraege(dtaus, abrl, konto);
     }
     if (param.kursteilnehmer)
     {
@@ -275,8 +277,8 @@ public class Abbuchung
   }
 
   private void abrechnenMitglieder(DtausDateiWriter dtaus,
-      XLastschriften lastschriften, ProgressMonitor monitor,
-      Abrechnungslauf abrl, Konto konto) throws Exception
+      ProgressMonitor monitor, Abrechnungslauf abrl, Konto konto)
+      throws Exception
   {
     // Ermittlung der beitragsfreien Beitragsgruppen
     StringBuilder beitragsfrei = new StringBuilder();
@@ -427,7 +429,7 @@ public class Abbuchung
         {
           try
           {
-            writeCSatz(dtaus, lastschriften, m, betr);
+            writeCSatz(dtaus, m, betr);
           }
           catch (Exception e)
           {
@@ -440,8 +442,8 @@ public class Abbuchung
   }
 
   private void abbuchenZusatzbetraege(DtausDateiWriter dtaus,
-      XLastschriften lastschriften, Abrechnungslauf abrl, Konto konto)
-      throws NumberFormatException, IOException, ApplicationException
+      Abrechnungslauf abrl, Konto konto) throws NumberFormatException,
+      IOException, ApplicationException
   {
     DBIterator list = Einstellungen.getDBService().createList(
         Zusatzbetrag.class);
@@ -455,7 +457,7 @@ public class Abbuchung
         {
           try
           {
-            writeCSatz(dtaus, lastschriften, m, new Double(z.getBetrag()));
+            writeCSatz(dtaus, m, new Double(z.getBetrag()));
           }
           catch (Exception e)
           {
@@ -615,12 +617,9 @@ public class Abbuchung
     }
   }
 
-  private void writeCSatz(DtausDateiWriter dtaus, XLastschriften lastschriften,
-      Mitglied m, Double betr) throws DtausException, NumberFormatException,
-      IOException
+  private void writeCSatz(DtausDateiWriter dtaus, Mitglied m, Double betr)
+      throws DtausException, NumberFormatException, IOException
   {
-    XLastschrift lastschrift = new XLastschrift();
-    lastschrift.setBetrag(betr.doubleValue());
     dtaus.setCBetragInEuro(betr.doubleValue());
     if (!Einstellungen.checkAccountCRC(m.getBlz(), m.getKonto()))
     {
@@ -634,7 +633,6 @@ public class Abbuchung
     try
     {
       dtaus.setCBLZEndbeguenstigt(Integer.parseInt(m.getBlz()));
-      lastschrift.setBlz(Integer.parseInt(m.getBlz()));
     }
     catch (NumberFormatException e)
     {
@@ -644,7 +642,6 @@ public class Abbuchung
     try
     {
       dtaus.setCKonto(Long.parseLong(m.getKonto()));
-      lastschrift.setKonto(Integer.parseInt(m.getKonto()));
     }
     catch (NumberFormatException e)
     {
@@ -668,7 +665,6 @@ public class Abbuchung
       name = name.substring(0, 27);
     }
     dtaus.setCName(name);
-    lastschrift.addZahlungspflichtigen(name);
     dtaus
         .setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
     dtaus.addCVerwendungszweck(param.verwendungszweck);
@@ -679,15 +675,7 @@ public class Abbuchung
     {
       vzweck = vzweck.substring(0, 27);
     }
-    lastschrift.addVerwendungszweck(vzweck);
-    if (param.kompakteabbuchung)
-    {
-      lastschriften.add(lastschrift);
-    }
-    else
-    {
-      dtaus.writeCSatz();
-    }
+    dtaus.writeCSatz();
   }
 
   private Abrechnungslauf getAbrechnungslauf() throws RemoteException,
