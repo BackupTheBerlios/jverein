@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/XLastschrift.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/02/12 09:40:32 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/23 18:02:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: XLastschrift.java,v $
- * Revision 1.1  2011/02/12 09:40:32  jost
+ * Revision 1.2  2011/02/23 18:02:27  jost
+ * Neu: Kompakte Abbuchung
+ *
+ * Revision 1.1  2011-02-12 09:40:32  jost
  * Vorbereitung kompakte Abbuchung
  *
  **********************************************************************/
@@ -28,7 +31,7 @@ public class XLastschrift
 
   private int blz;
 
-  private int konto;
+  private long konto;
 
   public final static DecimalFormat DECIMALFORMAT = new DecimalFormat(
       "###,##0.00");
@@ -45,6 +48,11 @@ public class XLastschrift
   public String getZahlungspflichtigen(int pos)
   {
     return this.zahlungspflichtiger.get(pos);
+  }
+
+  public int getAnzahlZahlungspflichtige()
+  {
+    return this.zahlungspflichtiger.size();
   }
 
   public void addVerwendungszweck(String verwendungszweck)
@@ -101,12 +109,12 @@ public class XLastschrift
     return this.blz;
   }
 
-  public void setKonto(int konto)
+  public void setKonto(long konto)
   {
     this.konto = konto;
   }
 
-  public int getKonto()
+  public long getKonto()
   {
     return this.konto;
   }
@@ -119,7 +127,10 @@ public class XLastschrift
   public void add(XLastschrift ls)
   {
     betrag = betrag + ls.getBetrag();
-    addVerwendungszweck(ls.getVerwendungszweck(0));
+    for (int i = 0; i < ls.getAnzahlVerwendungszwecke(); i++)
+    {
+      addVerwendungszweck(ls.getVerwendungszweck(i));
+    }
   }
 
   public String toString()

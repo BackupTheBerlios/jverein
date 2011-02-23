@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/XLastschriften.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/02/12 09:40:32 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/23 18:02:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: XLastschriften.java,v $
- * Revision 1.1  2011/02/12 09:40:32  jost
+ * Revision 1.2  2011/02/23 18:02:42  jost
+ * Neu: Kompakte Abbuchung
+ *
+ * Revision 1.1  2011-02-12 09:40:32  jost
  * Vorbereitung kompakte Abbuchung
  *
  **********************************************************************/
@@ -75,11 +78,16 @@ public class XLastschriften
     for (String key : comp.keySet())
     {
       ArrayList<XLastschrift> lastliste = comp.get(key);
+      int anzvzw = 0;
+      for (XLastschrift last:lastliste)
+      {
+        anzvzw+=last.getAnzahlVerwendungszwecke();
+      }
       if (lastliste.size() == 1)
       {
         lastschriften.add(lastliste.get(0));
       }
-      else if (lastliste.size() > 15)
+      else if (anzvzw > 15)
       {
         for (XLastschrift l : lastliste)
         {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/XLastschriftenTest.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/02/12 09:40:32 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/23 18:02:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: XLastschriftenTest.java,v $
- * Revision 1.1  2011/02/12 09:40:32  jost
+ * Revision 1.2  2011/02/23 18:02:53  jost
+ * Neu: Kompakte Abbuchung
+ *
+ * Revision 1.1  2011-02-12 09:40:32  jost
  * Vorbereitung kompakte Abbuchung
  *
  **********************************************************************/
@@ -28,8 +31,9 @@ public class XLastschriftenTest extends TestCase
     assertEquals(100d, ls.getLastschriften().get(0).getBetrag());
     assertEquals("Nora Nolte", ls.getLastschriften().get(0)
         .getZahlungspflichtigen(0));
-    assertEquals("Beitrag 2011 Nora", ls.getLastschriften().get(0)
+    assertEquals("Mitgliedsbeitrag 2011", ls.getLastschriften().get(0)
         .getVerwendungszweck(0));
+    assertEquals("Nora", ls.getLastschriften().get(0).getVerwendungszweck(1));
   }
 
   public void test02()
@@ -44,14 +48,14 @@ public class XLastschriftenTest extends TestCase
     assertEquals(150d, ls.getLastschriften().get(0).getBetrag());
     assertEquals("Name Zahlungspflichtiger", "Nora Nolte", ls
         .getLastschriften().get(0).getZahlungspflichtigen(0));
-    assertEquals("Beitrag 2011 Nora    100,00", ls.getLastschriften().get(0)
+    assertEquals("Mitgliedsbeitrag 201 100,00", ls.getLastschriften().get(0)
         .getVerwendungszweck(0));
     assertEquals(27, ls.getLastschriften().get(0).getVerwendungszweck(0)
         .length());
-    assertEquals("Zusatzbetrag Nora     20,00", ls.getLastschriften().get(0)
-        .getVerwendungszweck(1));
-    assertEquals("Zusatzbetrag Wintertu 30,00", ls.getLastschriften().get(0)
+    assertEquals("Zusatzbetrag 1        20,00", ls.getLastschriften().get(0)
         .getVerwendungszweck(2));
+    assertEquals("Zusatzbetrag Wintertu 30,00", ls.getLastschriften().get(0)
+        .getVerwendungszweck(4));
     assertEquals(150d, ls.getSummeLastschriften());
   }
 
@@ -76,7 +80,8 @@ public class XLastschriftenTest extends TestCase
   {
     XLastschrift l = getDefaultLastschrift();
     l.setBetrag(100);
-    l.addVerwendungszweck("Beitrag 2011 Nora");
+    l.addVerwendungszweck("Mitgliedsbeitrag 2011");
+    l.addVerwendungszweck("Nora");
     return l;
   }
 
@@ -84,7 +89,8 @@ public class XLastschriftenTest extends TestCase
   {
     XLastschrift l = getDefaultLastschrift();
     l.setBetrag(20);
-    l.addVerwendungszweck("Zusatzbetrag Nora");
+    l.addVerwendungszweck("Zusatzbetrag 1");
+    l.addVerwendungszweck("Nora");
     return l;
   }
 
@@ -92,7 +98,8 @@ public class XLastschriftenTest extends TestCase
   {
     XLastschrift l = getDefaultLastschrift();
     l.setBetrag(30);
-    l.addVerwendungszweck("Zusatzbetrag Winterturnier Nora");
+    l.addVerwendungszweck("Zusatzbetrag Winterturnier");
+    l.addVerwendungszweck("Nora");
     return l;
   }
 
