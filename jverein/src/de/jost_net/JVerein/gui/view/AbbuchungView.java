@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.28 $
- * $Date: 2011/02/12 09:36:03 $
+ * $Revision: 1.29 $
+ * $Date: 2011/02/23 18:01:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
- * Revision 1.28  2011/02/12 09:36:03  jost
+ * Revision 1.29  2011/02/23 18:01:04  jost
+ * Zum Test: Parallele Nutzung der alten und der neuen Abrechnung.
+ *
+ * Revision 1.28  2011-02-12 09:36:03  jost
  * Stammdaten -> Einstellungen
  *
  * Revision 1.27  2011-01-15 09:46:49  jost
@@ -132,6 +135,7 @@ public class AbbuchungView extends AbstractView
 
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Parameter"));
+    group.addLabelPair("Test neue Abbuchung", control.getNeueAbbuchung());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Modus"),
         control.getAbbuchungsmodus());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Stichtag"),
