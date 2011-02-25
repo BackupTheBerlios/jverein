@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Abrechnung.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/02/23 18:02:03 $
+ * $Revision: 1.2 $
+ * $Date: 2011/02/25 15:00:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnung.java,v $
- * Revision 1.1  2011/02/23 18:02:03  jost
+ * Revision 1.2  2011/02/25 15:00:19  jost
+ * Bugfix Verwendungszwecke bei der Übergabe an Hibiscus
+ *
+ * Revision 1.1  2011-02-23 18:02:03  jost
  * Neu: Kompakte Abbuchung
  *
  * Revision 1.51  2011-02-12 09:36:59  jost
@@ -612,9 +615,9 @@ public class Abrechnung
           if (c.getAnzahlVerwendungszwecke() > 2)
           {
             String[] weiterzwecke = new String[c.getAnzahlVerwendungszwecke() - 2];
-            for (int i = 3; i < c.getAnzahlVerwendungszwecke(); i++)
+            for (int i = 3; i <= c.getAnzahlVerwendungszwecke(); i++)
             {
-              weiterzwecke[i - 2] = c.getVerwendungszweck(i);
+              weiterzwecke[i - 3] = c.getVerwendungszweck(i);
             }
             o.setWeitereVerwendungszwecke(weiterzwecke);
           }
