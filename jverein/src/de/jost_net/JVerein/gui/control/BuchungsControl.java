@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.35 $
- * $Date: 2011/02/12 09:29:22 $
+ * $Revision: 1.36 $
+ * $Date: 2011/02/26 15:53:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.35  2011/02/12 09:29:22  jost
+ * Revision 1.36  2011/02/26 15:53:28  jost
+ * Bugfix Mitgliedskontoauswahl bei neuer Buchung, mehrfacher Mitgliedskontoauswahl
+ *
+ * Revision 1.35  2011-02-12 09:29:22  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.34  2011-01-30 10:12:40  jost
@@ -393,11 +396,11 @@ public class BuchungsControl extends AbstractControl
 
   public DialogInput getMitgliedskonto() throws RemoteException
   {
-    if (mitgliedskonto != null)
-    {
-      return mitgliedskonto;
-    }
-    mitgliedskonto = new MitgliedskontoauswahlInput(getBuchung())
+    // if (mitgliedskonto != null)
+    // {
+    // return mitgliedskonto;
+    // }
+    mitgliedskonto = new MitgliedskontoauswahlInput(getBuchung(), this)
         .getMitgliedskontoAuswahl();
     return mitgliedskonto;
   }
@@ -516,8 +519,8 @@ public class BuchungsControl extends AbstractControl
     Date d = null;
     try
     {
-      d = new JVDateFormatTTMMJJJJ()
-          .parse(settings.getString("vondatum", "01.01.2006"));
+      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("vondatum",
+          "01.01.2006"));
     }
     catch (ParseException e)
     {
@@ -536,7 +539,8 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
-        settings.setAttribute("vondatum", new JVDateFormatTTMMJJJJ().format(date));
+        settings.setAttribute("vondatum",
+            new JVDateFormatTTMMJJJJ().format(date));
       }
     });
     return vondatum;
@@ -551,8 +555,8 @@ public class BuchungsControl extends AbstractControl
     Date d = null;
     try
     {
-      d = new JVDateFormatTTMMJJJJ()
-          .parse(settings.getString("bisdatum", "31.12.2006"));
+      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("bisdatum",
+          "31.12.2006"));
     }
     catch (ParseException e)
     {
@@ -571,7 +575,8 @@ public class BuchungsControl extends AbstractControl
         {
           return;
         }
-        settings.setAttribute("bisdatum", new JVDateFormatTTMMJJJJ().format(date));
+        settings.setAttribute("bisdatum",
+            new JVDateFormatTTMMJJJJ().format(date));
       }
     });
     return bisdatum;
