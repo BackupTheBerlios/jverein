@@ -35,6 +35,10 @@
 					<li>Warnung bei der Neuaufnahme von Arbeitseinsätzen, Lehrgängen, Wiedervorlagen und Zusatzbeträgen, wenn das neue Mitglied noch nicht gespeichert ist.</li>
 					<li>Colins Patch zur MySQL-Performancesteigerung.</li>
 					<li>Neu: Kompakte Abbuchung. Zusammenfassung von mehreren Abbuchungen zu einer Bankverbindung.</li>
+					<hr>
+					<li>Die Änderungen ab hier wurden nach Upload der Entwicklerversion 269 vorgenommen.</li>
+					<li>##Bugfix Mitgliedskontoauswahl bei neuer Buchung, mehrfacher Mitgliedskontoauswahl</li>
+    			<li>Buchungsarten kann jetzt auch die Eigenschaft "Spende" gegeben werden.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -558,7 +562,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.110  2011/02/23 18:06:45  jost
+    Revision 1.111  2011/02/27 19:00:02  jost
+    *** empty log message ***
+
+    Revision 1.110  2011-02-23 18:06:45  jost
     *** empty log message ***
 
     Revision 1.109  2011-02-15 20:59:28  jost
