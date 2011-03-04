@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Abrechnung.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/02/25 15:00:19 $
+ * $Revision: 1.3 $
+ * $Date: 2011/03/04 16:16:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnung.java,v $
- * Revision 1.2  2011/02/25 15:00:19  jost
+ * Revision 1.3  2011/03/04 16:16:23  jost
+ * Weitere Verwendungszwecke (Mail von Danzelot vom 3.3.2011)
+ *
+ * Revision 1.2  2011-02-25 15:00:19  jost
  * Bugfix Verwendungszwecke bei der Übergabe an Hibiscus
  *
  * Revision 1.1  2011-02-23 18:02:03  jost
@@ -632,6 +635,16 @@ public class Abrechnung
           o.setBetrag(c.getBetragInEuro());
           o.setZweck(c.getVerwendungszweck(1));
           o.setZweck2(c.getVerwendungszweck(2));
+          if (c.getAnzahlVerwendungszwecke() > 2)
+          {
+            final String[] weiterzwecke = new String[c
+                .getAnzahlVerwendungszwecke() - 2];
+            for (int i = 3; i <= c.getAnzahlVerwendungszwecke(); i++)
+            {
+              weiterzwecke[i - 3] = c.getVerwendungszweck(i);
+            }
+            o.setWeitereVerwendungszwecke(weiterzwecke);
+          }
           o.setGegenkontoName(c.getNameEmpfaenger());
           o.setGegenkontoBLZ(c.getBlzEndbeguenstigt() + "");
           o.setGegenkontoNummer(c.getKontonummer() + "");
