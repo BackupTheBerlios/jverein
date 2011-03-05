@@ -39,6 +39,7 @@
 					<li>Die Änderungen ab hier wurden nach Upload der Entwicklerversion 269 vorgenommen.</li>
 					<li>##Bugfix Mitgliedskontoauswahl bei neuer Buchung, mehrfacher Mitgliedskontoauswahl</li>
     			<li>Buchungsarten kann jetzt auch die Eigenschaft "Spende" gegeben werden.</li>
+					<li>Bugfix bei der Umschlüsselung eines Mitgliedes von einer Beitragsart mit der Art Familie/Angehöriger in eine andere Beitragsart.</a>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -562,7 +563,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.111  2011/02/27 19:00:02  jost
+    Revision 1.112  2011/03/05 11:13:14  jost
+    *** empty log message ***
+
+    Revision 1.111  2011-02-27 19:00:02  jost
     *** empty log message ***
 
     Revision 1.110  2011-02-23 18:06:45  jost
