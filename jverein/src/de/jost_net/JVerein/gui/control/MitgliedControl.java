@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.107 $
- * $Date: 2011/02/12 09:31:51 $
+ * $Revision: 1.108 $
+ * $Date: 2011/03/05 11:12:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.107  2011/02/12 09:31:51  jost
+ * Revision 1.108  2011/03/05 11:12:58  jost
+ * Bugfix bei der Umschlüsselung eines Mitgliedes von einer Beitragsart mit der Art Familie/Angehöriger in eine andere Beitragsart.
+ *
+ * Revision 1.107  2011-02-12 09:31:51  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.106  2011-02-03 22:01:51  jost
@@ -2508,7 +2511,12 @@ public class MitgliedControl extends AbstractControl
       {
         try
         {
-          m.setBeitragsgruppe(new Integer(o.getID()));
+          Beitragsgruppe bg = (Beitragsgruppe)o;
+          m.setBeitragsgruppe(new Integer(bg.getID()));
+          if (bg.getBeitragsArt()!=ArtBeitragsart.FAMILIE_ANGEHOERIGER)
+          {
+            m.setZahlerID(null);
+          }
         }
         catch (NullPointerException e)
         {
