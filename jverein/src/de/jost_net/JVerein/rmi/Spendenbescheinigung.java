@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Spendenbescheinigung.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/01/26 18:48:21 $
+ * $Revision: 1.3 $
+ * $Date: 2011/03/07 21:08:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spendenbescheinigung.java,v $
+ * Revision 1.3  2011/03/07 21:08:24  jost
+ * Neu:  Automatische Spendenbescheinigungen; Referenz zum Mitglied aufgenommen
+ *
  * Revision 1.2  2009/01/26 18:48:21  jost
  * Neu: Ersatz Aufwendungen
  *
@@ -73,4 +76,13 @@ public interface Spendenbescheinigung extends DBObject
 
   public void setErsatzAufwendungen(Boolean ersatzaufwendungen)
       throws RemoteException;
+
+  public Mitglied getMitglied() throws RemoteException;
+
+  public int getMitgliedID() throws RemoteException;
+
+  public void setMitglied(Mitglied mitglied) throws RemoteException;
+
+  public void setMitgliedID(Integer mitglied) throws RemoteException;
+
 }
