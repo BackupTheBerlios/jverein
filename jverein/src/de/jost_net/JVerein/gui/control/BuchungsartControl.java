@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.18 $
- * $Date: 2011/02/03 22:32:24 $
+ * $Revision: 1.19 $
+ * $Date: 2011/03/07 21:03:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
- * Revision 1.18  2011/02/03 22:32:24  jost
+ * Revision 1.19  2011/03/07 21:03:51  jost
+ * Neu:  Automatische Spendenbescheinigungen: Eigenschaft Spende aufgenommen
+ *
+ * Revision 1.18  2011-02-03 22:32:24  jost
  * Neu: Liste der Buchungsarten
  *
  * Revision 1.17  2010-08-24 17:40:16  jost
@@ -75,6 +78,7 @@ import com.lowagie.text.Element;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BuchungsartAction;
+import de.jost_net.JVerein.gui.formatter.JaNeinFormatter;
 import de.jost_net.JVerein.gui.menu.BuchungsartMenu;
 import de.jost_net.JVerein.io.Reporter;
 import de.jost_net.JVerein.keys.ArtBuchungsart;
@@ -90,6 +94,7 @@ import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.formatter.Formatter;
+import de.willuhn.jameica.gui.input.CheckboxInput;
 import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.input.IntegerInput;
 import de.willuhn.jameica.gui.input.SelectInput;
@@ -118,6 +123,8 @@ public class BuchungsartControl extends AbstractControl
   private SelectInput art;
 
   private SelectInput buchungsklasse;
+
+  private CheckboxInput spende;
 
   private Buchungsart buchungsart;
 
@@ -173,6 +180,16 @@ public class BuchungsartControl extends AbstractControl
     return art;
   }
 
+  public CheckboxInput getSpende() throws RemoteException
+  {
+    if (spende != null)
+    {
+      return spende;
+    }
+    spende = new CheckboxInput(getBuchungsart().getSpende());
+    return spende;
+  }
+
   public Input getBuchungsklasse() throws RemoteException
   {
     if (buchungsklasse != null)
@@ -210,6 +227,8 @@ public class BuchungsartControl extends AbstractControl
       {
         b.setBuchungsklasse(null);
       }
+      b.setSpende((Boolean) spende.getValue());
+
       try
       {
         b.store();
@@ -263,6 +282,7 @@ public class BuchungsartControl extends AbstractControl
       }
     }, false, Column.ALIGN_LEFT);
     buchungsartList.addColumn("Buchungsklasse", "buchungsklasse");
+    buchungsartList.addColumn("Spende", "spende", new JaNeinFormatter());
     buchungsartList.setContextMenu(new BuchungsartMenu());
     buchungsartList.setRememberColWidths(true);
     buchungsartList.setRememberOrder(true);
@@ -337,6 +357,8 @@ public class BuchungsartControl extends AbstractControl
               Color.LIGHT_GRAY);
           reporter.addHeaderColumn("Buchungsklasse", Element.ALIGN_LEFT, 80,
               Color.LIGHT_GRAY);
+          reporter.addHeaderColumn("Spende", Element.ALIGN_CENTER, 10,
+              Color.LIGHT_GRAY);
           reporter.createHeader();
           while (it.hasNext())
           {
@@ -366,6 +388,7 @@ public class BuchungsartControl extends AbstractControl
             {
               reporter.addColumn("", Element.ALIGN_LEFT);
             }
+            reporter.addColumn(b.getSpende());
             reporter.setNextRecord();
           }
           reporter.closeTable();

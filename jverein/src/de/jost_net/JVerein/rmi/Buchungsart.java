@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchungsart.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/09/10 18:19:20 $
+ * $Revision: 1.7 $
+ * $Date: 2011/03/07 21:07:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchungsart.java,v $
+ * Revision 1.7  2011/03/07 21:07:52  jost
+ * Neu:  Automatische Spendenbescheinigungen: Eigenschaft Spende aufgenommen
+ *
  * Revision 1.6  2009/09/10 18:19:20  jost
  * neu: Buchungsklassen
  *
@@ -50,5 +53,9 @@ public interface Buchungsart extends DBObject
   public int getBuchungsklasseId() throws RemoteException;
 
   public void setBuchungsklasse(Integer buchungsklasse) throws RemoteException;
+
+  public boolean getSpende() throws RemoteException;
+
+  public void setSpende(Boolean spende) throws RemoteException;
 
 }

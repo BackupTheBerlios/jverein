@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartView.java,v $
- * $Revision: 1.15 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.16 $
+ * $Date: 2011/03/07 21:04:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartView.java,v $
- * Revision 1.15  2011/01/15 09:46:48  jost
+ * Revision 1.16  2011/03/07 21:04:45  jost
+ * Neu:  Automatische Spendenbescheinigungen: Eigenschaft Spende aufgenommen
+ *
+ * Revision 1.15  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.14  2010-10-15 09:58:25  jost
@@ -83,6 +86,9 @@ public class BuchungsartView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Art"), control.getArt());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungsklasse"),
         control.getBuchungsklasse());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Spende"),
+        control.getSpende());
+    // TODO Jo Dokumentation nachpflegen
 
     ButtonArea buttons = new ButtonArea(getParent(), 3);
 
