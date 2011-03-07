@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/12/27 13:58:24 $
+ * $Revision: 1.11 $
+ * $Date: 2011/03/07 21:07:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Buchung.java,v $
- * Revision 1.10  2010/12/27 13:58:24  jost
+ * Revision 1.11  2011/03/07 21:07:28  jost
+ * Neu:  Automatische Spendenbescheinigungen: Referenz zur Spendenbescheinigung aufgenommen.
+ *
+ * Revision 1.10  2010-12-27 13:58:24  jost
  * Splitid
  *
  * Revision 1.9  2010-07-25 18:45:51  jost
@@ -122,4 +125,8 @@ public interface Buchung extends DBObject
 
   public void setSplitId(Integer splitid) throws RemoteException;
 
+  public Spendenbescheinigung getSpendenbescheinigung() throws RemoteException;
+
+  public void setSpendenbescheinigungId(Integer spendenbescheinigung)
+      throws RemoteException;
 }
