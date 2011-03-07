@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/SpendenbescheinigungListeView.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.9 $
+ * $Date: 2011/03/07 21:05:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungListeView.java,v $
- * Revision 1.8  2011/01/15 09:46:48  jost
+ * Revision 1.9  2011/03/07 21:05:48  jost
+ * Neu:  Automatische Spendenbescheinigungen
+ *
+ * Revision 1.8  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.7  2010-10-15 09:58:25  jost
@@ -39,6 +42,7 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungAction;
+import de.jost_net.JVerein.gui.action.*;
 import de.jost_net.JVerein.gui.control.SpendenbescheinigungControl;
 import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
@@ -51,19 +55,23 @@ public class SpendenbescheinigungListeView extends AbstractView
   @Override
   public void bind() throws Exception
   {
-    GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Spendenbescheinigungen"));
+    GUI.getView()
+        .setTitle(JVereinPlugin.getI18n().tr("Spendenbescheinigungen"));
 
     SpendenbescheinigungControl control = new SpendenbescheinigungControl(this);
 
     control.getSpendenbescheinigungList().paint(this.getParent());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
+    ButtonArea buttons = new ButtonArea(this.getParent(), 4);
     buttons.addButton(new Back(false));
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.SPENDENBESCHEINIGUNG,
         false, "help-browser.png");
-    buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu (manuell)"),
         new SpendenbescheinigungAction(), null, false, "document-new.png");
+    buttons.addButton(JVereinPlugin.getI18n().tr("neu (automatisch)"),
+        new SpendenbescheinigungAutoNeuAction(), null, false,
+        "document-new.png");
   }
 
   @Override
