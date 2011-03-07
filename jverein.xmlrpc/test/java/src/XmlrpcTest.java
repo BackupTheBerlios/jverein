@@ -19,9 +19,9 @@ public class XmlrpcTest
   {
     XmlrpcTest test = new XmlrpcTest();
     XmlRpcClient client = test.get(args[0]);
-    new Stammdaten(client);
     new Einstellung(client);
     new Beitragsgruppe(client);
+    new Mitglied(client);
   }
 
   private XmlRpcClient get(String passwd) throws Exception
@@ -33,6 +33,7 @@ public class XmlrpcTest
     config.setBasicPassword(passwd);
     config.setBasicUserName("admin");
     config.setServerURL(new URL(url));
+    config.setEnabledForExceptions(true);
 
     if (url.startsWith("https"))
       disableCertCheck();

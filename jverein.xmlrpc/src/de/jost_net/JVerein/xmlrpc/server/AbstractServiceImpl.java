@@ -1,13 +1,16 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.xmlrpc/src/de/jost_net/JVerein/xmlrpc/server/AbstractServiceImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/17 20:51:15 $
+ * $Revision: 1.2 $
+ * $Date: 2011/03/07 21:11:59 $
  * $Author: jost $
- * $Locker:  $
- * $State: Exp $
  *
- * Copyright (c) by willuhn.webdesign
+ * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
+ * heiner@jverein.de
+ * www.jverein.de
+ * $Log: AbstractServiceImpl.java,v $
+ * Revision 1.2  2011/03/07 21:11:59  jost
+ * *** empty log message ***
  *
  **********************************************************************/
 
@@ -30,8 +33,8 @@ public abstract class AbstractServiceImpl extends UnicastRemoteObject implements
 {
   private static final long serialVersionUID = 4985312151338631127L;
 
-  protected final static I18N i18n = Application.getPluginLoader().getPlugin(
-      Plugin.class).getResources().getI18N();
+  protected final static I18N i18n = Application.getPluginLoader()
+      .getPlugin(Plugin.class).getResources().getI18N();
 
   private boolean started = false;
 

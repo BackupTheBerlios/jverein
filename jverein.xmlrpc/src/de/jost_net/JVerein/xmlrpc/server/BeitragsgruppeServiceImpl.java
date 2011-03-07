@@ -1,17 +1,19 @@
-package de.jost_net.JVerein.xmlrpc.server;
-
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.xmlrpc/src/de/jost_net/JVerein/xmlrpc/server/BeitragsgruppeServiceImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/17 20:51:15 $
+ * $Revision: 1.2 $
+ * $Date: 2011/03/07 21:15:20 $
  * $Author: jost $
- * $Locker:  $
- * $State: Exp $
  *
- * Copyright (c) by willuhn.webdesign
+ * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
+ * heiner@jverein.de
+ * www.jverein.de
+ * $Log: BeitragsgruppeServiceImpl.java,v $
+ * Revision 1.2  2011/03/07 21:15:20  jost
+ * *** empty log message ***
  *
  **********************************************************************/
+package de.jost_net.JVerein.xmlrpc.server;
 
 import java.rmi.RemoteException;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ import de.jost_net.JVerein.xmlrpc.rmi.BeitragsgruppeService;
 import de.willuhn.datasource.rmi.DBIterator;
 
 /**
- * Implementierung des Umsatz-Service.
+ * Implementierung des Beitragsgruppen-Services.
  */
 public class BeitragsgruppeServiceImpl extends AbstractServiceImpl implements
     BeitragsgruppeService
