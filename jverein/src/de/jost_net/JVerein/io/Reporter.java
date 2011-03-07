@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/02/12 09:40:16 $
+ * $Revision: 1.18 $
+ * $Date: 2011/03/07 21:06:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Reporter.java,v $
- * Revision 1.17  2011/02/12 09:40:16  jost
+ * Revision 1.18  2011/03/07 21:06:17  jost
+ * Neue Methode f. booleans
+ *
+ * Revision 1.17  2011-02-12 09:40:16  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.16  2010-10-15 09:58:29  jost
@@ -253,6 +256,14 @@ public class Reporter
   public void addColumn(String text, int align, Color backgroundcolor)
   {
     addColumn(getDetailCell(text, align, backgroundcolor));
+  }
+
+  /**
+   * Fuegt eine neue Zelle mit einem boolean-Value zur Tabelle hinzu
+   */
+  public void addColumn(boolean value)
+  {
+    addColumn(value ? "X" : "", Element.ALIGN_CENTER, Color.WHITE);
   }
 
   /**
