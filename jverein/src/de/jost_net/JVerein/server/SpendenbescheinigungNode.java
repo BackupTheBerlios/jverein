@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/SpendenbescheinigungNode.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/03/07 21:10:06 $
+ * $Revision: 1.2 $
+ * $Date: 2011/03/09 22:16:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungNode.java,v $
- * Revision 1.1  2011/03/07 21:10:06  jost
+ * Revision 1.2  2011/03/09 22:16:59  jost
+ * Einschränkung auf ein Jahr.
+ *
+ * Revision 1.1  2011-03-07 21:10:06  jost
  * Neu:  Automatische Spendenbescheinigungen
  *
  **********************************************************************/
@@ -53,7 +56,7 @@ public class SpendenbescheinigungNode implements GenericObjectNode
 
   private int nodetype = NONE;
 
-  public SpendenbescheinigungNode() throws RemoteException
+  public SpendenbescheinigungNode(final int jahr) throws RemoteException
   {
     childrens = new ArrayList<GenericObjectNode>();
     nodetype = ROOT;
@@ -74,21 +77,22 @@ public class SpendenbescheinigungNode implements GenericObjectNode
         + "    JOIN buchungsart on buchung.buchungsart = buchungsart.id "
         + "    join mitgliedskonto on buchung.mitgliedskonto = mitgliedskonto.id "
         + "    join mitglied on mitgliedskonto.mitglied = mitglied.id "
-        + "  where buchungsart.spende = 'TRUE' and buchung.spendenbescheinigung is null and buchung.mitgliedskonto is not null "
+        + "  where year(buchung.datum) = ? and buchungsart.spende = 'TRUE' and buchung.spendenbescheinigung is null and buchung.mitgliedskonto is not null "
         + "  group by mitglied.name, mitglied.vorname, mitglied.id "
         + "  order by mitglied.name, mitglied.vorname, mitglied.id ";
     ArrayList<String> idliste = (ArrayList<String>) Einstellungen
-        .getDBService().execute(sql, new Object[] {}, rs);
+        .getDBService().execute(sql, new Object[] { jahr }, rs);
 
     for (String id : idliste)
     {
       Mitglied m = (Mitglied) Einstellungen.getDBService().createObject(
           Mitglied.class, id);
-      childrens.add(new SpendenbescheinigungNode(m));
+      childrens.add(new SpendenbescheinigungNode(m, jahr));
     }
   }
 
-  private SpendenbescheinigungNode(Mitglied mitglied) throws RemoteException
+  private SpendenbescheinigungNode(Mitglied mitglied, final int jahr)
+      throws RemoteException
   {
     this.mitglied = mitglied;
 
@@ -110,10 +114,11 @@ public class SpendenbescheinigungNode implements GenericObjectNode
     String sql = "select buchung.id, buchung.datum from buchung "
         + "    JOIN buchungsart on buchung.buchungsart = buchungsart.id "
         + "    join mitgliedskonto on buchung.mitgliedskonto = mitgliedskonto.id "
-        + "  where buchungsart.spende = 'TRUE' and mitgliedskonto.mitglied = ? and buchung.spendenbescheinigung is null and buchung.mitgliedskonto is not null "
+        + "  where year(buchung.datum) = ? and buchungsart.spende = 'TRUE' and mitgliedskonto.mitglied = ? and buchung.spendenbescheinigung is null and buchung.mitgliedskonto is not null "
         + "  order by buchung.datum";
     ArrayList<String> idliste = (ArrayList<String>) Einstellungen
-        .getDBService().execute(sql, new Object[] { mitglied.getID() }, rs);
+        .getDBService().execute(sql, new Object[] { jahr, mitglied.getID() },
+            rs);
 
     for (String id : idliste)
     {
