@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.26 $
- * $Date: 2011/02/12 09:42:54 $
+ * $Revision: 1.27 $
+ * $Date: 2011/03/10 20:35:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.26  2011/02/12 09:42:54  jost
+ * Revision 1.27  2011/03/10 20:35:03  jost
+ * Neu: Einstellungen f. Spendenbescheinigung
+ *
+ * Revision 1.26  2011-02-12 09:42:54  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.25  2011-01-30 08:28:42  jost
@@ -226,6 +229,103 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setName(String name) throws RemoteException
   {
     setAttribute("name", name);
+  }
+
+  public String getStrasse() throws RemoteException
+  {
+    return (String) getAttribute("strasse");
+  }
+
+  public void setStrasse(String strasse) throws RemoteException
+  {
+    setAttribute("strasse", strasse);
+  }
+
+  public String getPlz() throws RemoteException
+  {
+    return (String) getAttribute("plz");
+  }
+
+  public void setPlz(String plz) throws RemoteException
+  {
+    setAttribute("plz", plz);
+  }
+
+  public String getOrt() throws RemoteException
+  {
+    return (String) getAttribute("ort");
+  }
+
+  public void setOrt(String ort) throws RemoteException
+  {
+    setAttribute("ort", ort);
+  }
+
+  public String getFinanzamt() throws RemoteException
+  {
+    return (String) getAttribute("finanzamt");
+  }
+
+  public void setFinanzamt(String finanzamt) throws RemoteException
+  {
+    setAttribute("finanzamt", finanzamt);
+  }
+
+  public String getSteuernummer() throws RemoteException
+  {
+    return (String) getAttribute("steuernummer");
+  }
+
+  public void setSteuernummer(String steuernummer) throws RemoteException
+  {
+    setAttribute("steuernummer", steuernummer);
+  }
+
+  public Date getBescheiddatum() throws RemoteException
+  {
+    Date d = (Date) getAttribute("bescheiddatum");
+    if (d == null)
+    {
+      return new Date();
+    }
+    return d;
+  }
+
+  public void setBescheiddatum(Date bescheiddatum) throws RemoteException
+  {
+    setAttribute("bescheiddatum", bescheiddatum);
+  }
+
+  public boolean getVorlaeufig() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("vorlaeufig"));
+  }
+
+  public void setVorlaeufig(Boolean vorlaeufig) throws RemoteException
+  {
+    setAttribute("vorlaeufig", Boolean.valueOf(vorlaeufig));
+  }
+
+  public String getBeguenstigterzweck() throws RemoteException
+  {
+    return (String) getAttribute("beguenstigterzweck");
+  }
+
+  public void setBeguenstigterzweck(String beguenstigterzweck)
+      throws RemoteException
+  {
+    setAttribute("beguenstigterzweck", beguenstigterzweck);
+  }
+
+  public boolean getMitgliedsbetraege() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("mitgliedsbeitraege"));
+  }
+
+  public void setMitgliedsbeitraege(Boolean mitgliedsbeitraege)
+      throws RemoteException
+  {
+    setAttribute("mitgliedsbeitraege", Boolean.valueOf(mitgliedsbeitraege));
   }
 
   public String getBlz() throws RemoteException
@@ -530,26 +630,6 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
     setAttribute("mitgliedskontoistzahlung", mitgliedskontoistzahlung);
   }
 
-  public void setUpdateDiagInfos(Boolean updatediaginfos)
-      throws RemoteException
-  {
-    setAttribute("updatediaginfos", Boolean.valueOf(updatediaginfos));
-  }
-
-  public Date getUpdateLastCheck() throws RemoteException
-  {
-    Date d = (Date) getAttribute("updatelastcheck");
-    if (d == null)
-    {
-      return new Date();
-    }
-    return d;
-  }
-
-  public void setUpdateLastCheck(Date updatelastcheck) throws RemoteException
-  {
-    setAttribute("updatelastcheck", updatelastcheck);
-  }
 
   public String getSmtpServer() throws RemoteException
   {

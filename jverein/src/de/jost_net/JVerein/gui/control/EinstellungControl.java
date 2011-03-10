@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.38 $
- * $Date: 2011/02/12 09:30:21 $
+ * $Revision: 1.39 $
+ * $Date: 2011/03/10 20:34:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.38  2011/02/12 09:30:21  jost
+ * Revision 1.39  2011/03/10 20:34:23  jost
+ * Neu: Einstellungen f. Spendenbescheinigung
+ *
+ * Revision 1.38  2011-02-12 09:30:21  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.37  2011-02-03 22:46:31  jost
@@ -127,6 +130,7 @@
 package de.jost_net.JVerein.gui.control;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -142,6 +146,7 @@ import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.CheckboxInput;
+import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.input.IntegerInput;
 import de.willuhn.jameica.gui.input.PasswordInput;
@@ -155,6 +160,24 @@ import de.willuhn.util.ApplicationException;
 public class EinstellungControl extends AbstractControl
 {
   private Input name;
+
+  private Input strasse;
+
+  private Input plz;
+
+  private Input ort;
+
+  private TextInput finanzamt;
+
+  private TextInput steuernummer;
+
+  private DateInput bescheiddatum;
+
+  private CheckboxInput vorlaeufig;
+
+  private TextInput beguenstigterzweck;
+
+  private CheckboxInput mitgliedsbetraege;
 
   private Input blz;
 
@@ -256,6 +279,101 @@ public class EinstellungControl extends AbstractControl
       name.focus();
     }
     return name;
+  }
+
+  public Input getStrasse() throws RemoteException
+  {
+    if (strasse != null)
+    {
+      return strasse;
+    }
+    strasse = new TextInput(Einstellungen.getEinstellung().getStrasse(), 30);
+    return strasse;
+  }
+
+  public Input getPlz() throws RemoteException
+  {
+    if (plz != null)
+    {
+      return plz;
+    }
+    plz = new TextInput(Einstellungen.getEinstellung().getStrasse(), 5);
+    return plz;
+  }
+
+  public Input getOrt() throws RemoteException
+  {
+    if (ort != null)
+    {
+      return ort;
+    }
+    ort = new TextInput(Einstellungen.getEinstellung().getOrt(), 30);
+    return ort;
+  }
+
+  public TextInput getFinanzamt() throws RemoteException
+  {
+    if (finanzamt != null)
+    {
+      return finanzamt;
+    }
+    finanzamt = new TextInput(Einstellungen.getEinstellung().getFinanzamt(), 30);
+    return finanzamt;
+  }
+
+  public TextInput getSteuernummer() throws RemoteException
+  {
+    if (steuernummer != null)
+    {
+      return steuernummer;
+    }
+    steuernummer = new TextInput(Einstellungen.getEinstellung()
+        .getSteuernummer(), 30);
+    return steuernummer;
+  }
+
+  public DateInput getBescheiddatum() throws RemoteException
+  {
+    if (bescheiddatum != null)
+    {
+      return bescheiddatum;
+    }
+    bescheiddatum = new DateInput(Einstellungen.getEinstellung()
+        .getBescheiddatum());
+    return bescheiddatum;
+  }
+
+  public CheckboxInput getVorlaeufig() throws RemoteException
+  {
+    if (vorlaeufig != null)
+    {
+      return vorlaeufig;
+    }
+    vorlaeufig = new CheckboxInput(Einstellungen.getEinstellung()
+        .getVorlaeufig());
+    return vorlaeufig;
+  }
+
+  public TextInput getBeguenstigterzweck() throws RemoteException
+  {
+    if (beguenstigterzweck != null)
+    {
+      return beguenstigterzweck;
+    }
+    beguenstigterzweck = new TextInput(Einstellungen.getEinstellung()
+        .getBeguenstigterzweck(), 30);
+    return beguenstigterzweck;
+  }
+
+  public CheckboxInput getMitgliedsbetraege() throws RemoteException
+  {
+    if (mitgliedsbetraege != null)
+    {
+      return mitgliedsbetraege;
+    }
+    mitgliedsbetraege = new CheckboxInput(Einstellungen.getEinstellung()
+        .getMitgliedsbetraege());
+    return mitgliedsbetraege;
   }
 
   public Input getBlz() throws RemoteException
@@ -716,6 +834,15 @@ public class EinstellungControl extends AbstractControl
       Einstellung e = Einstellungen.getEinstellung();
       e.setID();
       e.setName((String) getName(false).getValue());
+      e.setStrasse((String) getStrasse().getValue());
+      e.setPlz((String) getPlz().getValue());
+      e.setOrt((String) getOrt().getValue());
+      e.setFinanzamt((String) getFinanzamt().getValue());
+      e.setSteuernummer((String) getSteuernummer().getValue());
+      e.setBescheiddatum((Date) getBescheiddatum().getValue());
+      e.setVorlaeufig((Boolean) getVorlaeufig().getValue());
+      e.setBeguenstigterzweck((String) getBeguenstigterzweck().getValue());
+      e.setMitgliedsbeitraege((Boolean) getMitgliedsbetraege().getValue());
       e.setBlz((String) getBlz().getValue());
       e.setKonto((String) getKonto().getValue());
       e.setGeburtsdatumPflicht((Boolean) geburtsdatumpflicht.getValue());
