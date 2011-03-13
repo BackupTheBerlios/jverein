@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Spendenbescheinigung.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/03/07 21:08:24 $
+ * $Revision: 1.4 $
+ * $Date: 2011/03/13 13:49:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spendenbescheinigung.java,v $
- * Revision 1.3  2011/03/07 21:08:24  jost
+ * Revision 1.4  2011/03/13 13:49:41  jost
+ * Neu: Sachspenden.
+ *
+ * Revision 1.3  2011-03-07 21:08:24  jost
  * Neu:  Automatische Spendenbescheinigungen; Referenz zum Mitglied aufgenommen
  *
  * Revision 1.2  2009/01/26 18:48:21  jost
@@ -28,6 +31,10 @@ import de.willuhn.datasource.rmi.DBObject;
 
 public interface Spendenbescheinigung extends DBObject
 {
+  public int getSpendenart() throws RemoteException;
+
+  public void setSpendenart(int spendenart) throws RemoteException;
+
   public String getZeile1() throws RemoteException;
 
   public void setZeile1(String zeile) throws RemoteException;
@@ -84,5 +91,19 @@ public interface Spendenbescheinigung extends DBObject
   public void setMitglied(Mitglied mitglied) throws RemoteException;
 
   public void setMitgliedID(Integer mitglied) throws RemoteException;
+
+  public String getBezeichnungSachzuwendung() throws RemoteException;
+
+  public void setBezeichnungSachzuwendung(String bezeichungsachzuwendung)
+      throws RemoteException;
+
+  public int getHerkunftSpende() throws RemoteException;
+
+  public void setHerkunftSpende(int herkunftspende) throws RemoteException;
+
+  public boolean getUnterlagenWertermittlung() throws RemoteException;
+
+  public void setUnterlagenWertermittlung(Boolean unterlagenwertermittlung)
+      throws RemoteException;
 
 }
