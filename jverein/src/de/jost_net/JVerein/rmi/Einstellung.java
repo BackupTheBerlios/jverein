@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.23 $
- * $Date: 2011/03/10 20:34:50 $
+ * $Revision: 1.24 $
+ * $Date: 2011/03/13 13:49:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.23  2011/03/10 20:34:50  jost
+ * Revision 1.24  2011/03/13 13:49:05  jost
+ * Zusätzliches Feld f. Sachspendenbescheinigungen.
+ *
+ * Revision 1.23  2011-03-10 20:34:50  jost
  * Neu: Einstellungen f. Spendenbescheinigung
  *
  * Revision 1.22  2011-01-30 08:28:30  jost
@@ -123,6 +126,10 @@ public interface Einstellung extends DBObject
   public boolean getVorlaeufig() throws RemoteException;
 
   public void setVorlaeufig(Boolean vorlaeufig) throws RemoteException;
+
+  public Date getVorlaeufigab() throws RemoteException;
+
+  public void setVorlaeufigab(Date vorlaeufigab) throws RemoteException;
 
   public String getBeguenstigterzweck() throws RemoteException;
 

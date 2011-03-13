@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.43 $
- * $Date: 2011/03/10 20:34:37 $
+ * $Revision: 1.44 $
+ * $Date: 2011/03/13 13:47:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.43  2011/03/10 20:34:37  jost
+ * Revision 1.44  2011/03/13 13:47:01  jost
+ * Zusätzliches Feld f. Sachspendenbescheinigungen.
+ *
+ * Revision 1.43  2011-03-10 20:34:37  jost
  * Neu: Einstellungen f. Spendenbescheinigung
  *
  * Revision 1.42  2011-01-30 08:28:18  jost
@@ -194,6 +197,8 @@ public class EinstellungenView extends AbstractView
         control.getBescheiddatum());
     tabAllgemein.addLabelPair(JVereinPlugin.getI18n()
         .tr("vorläufiger Bescheid"), control.getVorlaeufig());
+    tabAllgemein.addLabelPair(JVereinPlugin.getI18n().tr("Vorläufig ab"),
+        control.getVorlaeufigab());
     tabAllgemein.addLabelPair(JVereinPlugin.getI18n().tr("begünstigter Zweck"),
         control.getBeguenstigterzweck());
     tabAllgemein.addLabelPair(
