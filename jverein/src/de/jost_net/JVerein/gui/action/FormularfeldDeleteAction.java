@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularfeldDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.3 $
+ * $Date: 2011/03/13 18:30:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldDeleteAction.java,v $
+ * Revision 1.3  2011/03/13 18:30:09  jost
+ * redakt. Kommentare
+ *
  * Revision 1.2  2009/06/11 21:02:05  jost
  * Vorbereitung I18N
  *
@@ -30,7 +33,7 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Loeschen eines Formularfeldes
+ * Löschen eines Formularfeldes
  */
 public class FormularfeldDeleteAction implements Action
 {

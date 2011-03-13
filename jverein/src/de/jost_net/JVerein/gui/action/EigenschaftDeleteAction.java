@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/EigenschaftDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/11/23 20:38:36 $
+ * $Revision: 1.3 $
+ * $Date: 2011/03/13 18:29:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftDeleteAction.java,v $
+ * Revision 1.3  2011/03/13 18:29:17  jost
+ * redakt. Kommentare
+ *
  * Revision 1.2  2009/11/23 20:38:36  jost
  * Bugfix Lösch-Button
  *
@@ -30,7 +33,7 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Loeschen einer Eigenschaft.
+ * Löschen einer Eigenschaft.
  */
 public class EigenschaftDeleteAction implements Action
 {

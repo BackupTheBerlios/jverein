@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BeitragsgruppeDeleteAction.java,v $
- * $Revision: 1.6 $
- * $Date: 2009/06/22 18:11:51 $
+ * $Revision: 1.7 $
+ * $Date: 2011/03/13 18:28:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDeleteAction.java,v $
+ * Revision 1.7  2011/03/13 18:28:26  jost
+ * redakt. Kommentare
+ *
  * Revision 1.6  2009/06/22 18:11:51  jost
  * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
  *
@@ -45,7 +48,7 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Loeschen einer Beitragsgruppe
+ * Löschen einer Beitragsgruppe
  */
 public class BeitragsgruppeDeleteAction implements Action
 {

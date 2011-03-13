@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/HibiscusKontenImportAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/07/24 20:16:30 $
+ * $Revision: 1.4 $
+ * $Date: 2011/03/13 18:30:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: HibiscusKontenImportAction.java,v $
+ * Revision 1.4  2011/03/13 18:30:23  jost
+ * redakt. Kommentare
+ *
  * Revision 1.3  2009/07/24 20:16:30  jost
  * Überflüssige Imports entfernt.
  *
@@ -35,7 +38,7 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Loeschen einer Buchungsart.
+ * Hibiscus-Konten importieren
  */
 public class HibiscusKontenImportAction implements Action
 {
@@ -50,7 +53,7 @@ public class HibiscusKontenImportAction implements Action
   {
     if (context == null)
     {
-      // 1) Wir zeigen einen Dialog an, in dem der User das Konto auswaehlt
+      // 1) Wir zeigen einen Dialog an, in dem der User das Konto auswählt
       KontoAuswahlDialog d = new KontoAuswahlDialog(
           KontoAuswahlDialog.POSITION_CENTER);
       try

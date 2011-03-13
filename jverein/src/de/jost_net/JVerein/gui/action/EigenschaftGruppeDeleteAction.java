@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/EigenschaftGruppeDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/11/23 20:39:07 $
+ * $Revision: 1.3 $
+ * $Date: 2011/03/13 18:29:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeDeleteAction.java,v $
+ * Revision 1.3  2011/03/13 18:29:33  jost
+ * redakt. Kommentare
+ *
  * Revision 1.2  2009/11/23 20:39:07  jost
  * Bugfix Lösch-Button
  *
@@ -30,7 +33,7 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Loeschen einer EigenschaftGruppe.
+ * Löschen einer EigenschaftGruppe.
  */
 public class EigenschaftGruppeDeleteAction implements Action
 {

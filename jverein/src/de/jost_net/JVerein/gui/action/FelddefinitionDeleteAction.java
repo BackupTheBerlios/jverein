@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FelddefinitionDeleteAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/01/01 18:35:45 $
+ * $Revision: 1.5 $
+ * $Date: 2011/03/13 18:29:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FelddefinitionDeleteAction.java,v $
+ * Revision 1.5  2011/03/13 18:29:46  jost
+ * redakt. Kommentare
+ *
  * Revision 1.4  2010/01/01 18:35:45  jost
  * Daten bei den Mitgliedern werden nach Rückfrage gelöscht.
  *
@@ -39,7 +42,7 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Loeschen einer Felddefiniton
+ * Löschen einer Felddefiniton
  */
 public class FelddefinitionDeleteAction implements Action
 {
