@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/JahresabschlussDeleteAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/09/13 18:41:33 $
+ * $Revision: 1.4 $
+ * $Date: 2011/03/14 18:30:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahresabschlussDeleteAction.java,v $
- * Revision 1.3  2010/09/13 18:41:33  jost
+ * Revision 1.4  2011/03/14 18:30:37  jost
+ * redakt. Kommentare
+ *
+ * Revision 1.3  2010-09-13 18:41:33  jost
  * Anfangsbestände beim Jahresabschluss setzen und bei der Löschung auch löschen.
  *
  * Revision 1.2  2009/06/11 21:02:05  jost
@@ -37,7 +40,7 @@ import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
 /**
- * Loeschen eines Jahresabschlusses
+ * Löschen eines Jahresabschlusses
  */
 public class JahresabschlussDeleteAction implements Action
 {
