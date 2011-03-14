@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeDetailView.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/01/30 08:28:07 $
+ * $Revision: 1.18 $
+ * $Date: 2011/03/14 19:23:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDetailView.java,v $
- * Revision 1.17  2011/01/30 08:28:07  jost
+ * Revision 1.18  2011/03/14 19:23:47  jost
+ * Tippfehler beseitigt.
+ *
+ * Revision 1.17  2011-01-30 08:28:07  jost
  * Neu: Zusatzadressen
  *
  * Revision 1.16  2011-01-15 09:46:49  jost
@@ -132,7 +135,7 @@ public class BeitragsgruppeDetailView extends AbstractView
     return "<form><p><span color=\"header\" font=\"header\">Beitragsgruppe</span></p>"
         + "<p>Die Bezeichung und die Höhe des Beitrages sind zu erfassen.</p>"
         + "<p>Durch die Kennzeichnung als Familientarif können dem Mitglied die Mitglieder "
-        + "zugeordnet, die zur Famlie gehören.</p>" + "</form>";
+        + "zugeordnet, die zur Familie gehören.</p>" + "</form>";
   }
 
   public void unbind() throws ApplicationException
