@@ -45,7 +45,10 @@
 					<li>Neu: Spendenbescheinigung für Sachspenden</li>
 					<hr>
 					<li>Die Änderungen ab hier wurden nach Upload der Entwicklerversion 271 vorgenommen.</li>
-					<li>Automatische Spendenbescheinigung: Bugfix Spendenart</li>
+					<li>##Automatische Spendenbescheinigung: Bugfix Spendenart</li>
+					<hr>
+					<li>Die Änderungen ab hier wurden nach Upload der Entwicklerversion 272 vorgenommen.</li>
+					<li>##Bugfix Update MySQL-DB</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -569,7 +572,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.114  2011/03/14 18:32:36  jost
+    Revision 1.115  2011/03/15 07:27:40  jost
+    *** empty log message ***
+
+    Revision 1.114  2011-03-14 18:32:36  jost
     *** empty log message ***
 
     Revision 1.113  2011-03-13 13:50:59  jost
