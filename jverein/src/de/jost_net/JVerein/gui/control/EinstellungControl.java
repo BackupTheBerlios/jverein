@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.40 $
- * $Date: 2011/03/13 13:43:36 $
+ * $Revision: 1.41 $
+ * $Date: 2011/03/17 19:00:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.40  2011/03/13 13:43:36  jost
+ * Revision 1.41  2011/03/17 19:00:48  jost
+ * Bugfix Feldname
+ *
+ * Revision 1.40  2011-03-13 13:43:36  jost
  * Zusätzliches Feld f. Sachspendenbescheinigungen.
  *
  * Revision 1.39  2011-03-10 20:34:23  jost
@@ -302,7 +305,7 @@ public class EinstellungControl extends AbstractControl
     {
       return plz;
     }
-    plz = new TextInput(Einstellungen.getEinstellung().getStrasse(), 5);
+    plz = new TextInput(Einstellungen.getEinstellung().getPlz(), 5);
     return plz;
   }
 
