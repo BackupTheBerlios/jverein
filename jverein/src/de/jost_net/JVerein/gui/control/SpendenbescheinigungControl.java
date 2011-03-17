@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2011/03/13 13:44:46 $
+ * $Revision: 1.17 $
+ * $Date: 2011/03/17 19:46:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
- * Revision 1.16  2011/03/13 13:44:46  jost
+ * Revision 1.17  2011/03/17 19:46:01  jost
+ * überflüssigen import entfernt.
+ *
+ * Revision 1.16  2011-03-13 13:44:46  jost
  * Neu: Spendenbescheinigungen als Standardformular
  * Neu: Spendenbescheinigung für Sachspenden.
  *
@@ -90,7 +93,6 @@ import de.jost_net.JVerein.keys.HerkunftSpende;
 import de.jost_net.JVerein.keys.Spendenart;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Spendenbescheinigung;
-import de.jost_net.JVerein.server.SpendenbescheinigungNode;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
