@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.24 $
- * $Date: 2011/03/13 13:49:05 $
+ * $Revision: 1.25 $
+ * $Date: 2011/03/17 19:46:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.24  2011/03/13 13:49:05  jost
+ * Revision 1.25  2011/03/17 19:46:44  jost
+ * Aktuelle Geburtstage und Wiedervorlage ausgemustert. Ersatz durch die neue Terminübersicht.
+ *
+ * Revision 1.24  2011-03-13 13:49:05  jost
  * Zusätzliches Feld f. Sachspendenbescheinigungen.
  *
  * Revision 1.23  2011-03-10 20:34:50  jost
@@ -232,16 +235,6 @@ public interface Einstellung extends DBObject
   public boolean getExterneMitgliedsnummer() throws RemoteException;
 
   public void setExterneMitgliedsnummer(Boolean externemitgliedsnummer)
-      throws RemoteException;
-
-  public Integer getAktuelleGeburtstageVorher() throws RemoteException;
-
-  public void setAktuelleGeburtstageVorher(Integer vorher)
-      throws RemoteException;
-
-  public Integer getAktuelleGeburtstageNachher() throws RemoteException;
-
-  public void setAktuelleGeburtstageNachher(Integer vorher)
       throws RemoteException;
 
   public int getBeitragsmodel() throws RemoteException;

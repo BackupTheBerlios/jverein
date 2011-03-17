@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.xmlrpc/src/de/jost_net/JVerein/xmlrpc/server/EinstellungServiceImpl.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/03/07 21:12:25 $
+ * $Revision: 1.3 $
+ * $Date: 2011/03/17 19:50:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungServiceImpl.java,v $
- * Revision 1.2  2011/03/07 21:12:25  jost
+ * Revision 1.3  2011/03/17 19:50:55  jost
+ * Aktuelle Geburtstage und Wiedervorlage ausgemustert. Ersatz durch die neue Terminübersicht.
+ *
+ * Revision 1.2  2011-03-07 21:12:25  jost
  * *** empty log message ***
  *
  **********************************************************************/
@@ -30,10 +33,6 @@ public class EinstellungServiceImpl extends AbstractServiceImpl implements
     EinstellungService
 {
   private static final long serialVersionUID = 6930948263993044492L;
-
-  public static final String AKTUELLEGEBURTSTAGENACHHER = "einstellung.aktuellegeburtstagenachher";
-
-  public static final String AKTUELLEGEBURTSTAGEVORHER = "einstellung.aktuellegeburtstagevorher";
 
   public static final String ARBEITSEINSATZ = "einstellung.arbeitseinsatz";
 
@@ -106,9 +105,6 @@ public class EinstellungServiceImpl extends AbstractServiceImpl implements
   {
     Einstellung einst = Einstellungen.getEinstellung();
     Map<String, Object> retval = new HashMap<String, Object>();
-    retval.put(AKTUELLEGEBURTSTAGENACHHER,
-        einst.getAktuelleGeburtstageNachher());
-    retval.put(AKTUELLEGEBURTSTAGEVORHER, einst.getAktuelleGeburtstageVorher());
     retval.put(ARBEITSEINSATZ, einst.getArbeitseinsatz());
     retval.put(AUSLANDSADRESSEN, einst.getAuslandsadressen());
     retval.put(BEGINNGESCHAEFTSJAHR, einst.getBeginnGeschaeftsjahr());

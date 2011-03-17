@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.28 $
- * $Date: 2011/03/13 13:49:55 $
+ * $Revision: 1.29 $
+ * $Date: 2011/03/17 19:46:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.28  2011/03/13 13:49:55  jost
+ * Revision 1.29  2011/03/17 19:46:56  jost
+ * Aktuelle Geburtstage und Wiedervorlage ausgemustert. Ersatz durch die neue Terminübersicht.
+ *
+ * Revision 1.28  2011-03-13 13:49:55  jost
  * Zusätzliches Feld f. Sachspendenbescheinigungen.
  *
  * Revision 1.27  2011-03-10 20:35:03  jost
@@ -581,28 +584,6 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   {
     setAttribute("externemitgliedsnummer",
         Boolean.valueOf(externemitgliedsnummer));
-  }
-
-  public Integer getAktuelleGeburtstageVorher() throws RemoteException
-  {
-    return (Integer) getAttribute("aktuellegeburtstagevorher");
-  }
-
-  public void setAktuelleGeburtstageVorher(Integer vorher)
-      throws RemoteException
-  {
-    setAttribute("aktuellegeburtstagevorher", vorher);
-  }
-
-  public Integer getAktuelleGeburtstageNachher() throws RemoteException
-  {
-    return (Integer) getAttribute("aktuellegeburtstagenachher");
-  }
-
-  public void setAktuelleGeburtstageNachher(Integer nachher)
-      throws RemoteException
-  {
-    setAttribute("aktuellegeburtstagenachher", nachher);
   }
 
   public int getBeitragsmodel() throws RemoteException

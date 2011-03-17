@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.44 $
- * $Date: 2011/03/13 13:47:01 $
+ * $Revision: 1.45 $
+ * $Date: 2011/03/17 19:46:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.44  2011/03/13 13:47:01  jost
+ * Revision 1.45  2011/03/17 19:46:31  jost
+ * Aktuelle Geburtstage und Wiedervorlage ausgemustert. Ersatz durch die neue Terminübersicht.
+ *
+ * Revision 1.44  2011-03-13 13:47:01  jost
  * Zusätzliches Feld f. Sachspendenbescheinigungen.
  *
  * Revision 1.43  2011-03-10 20:34:37  jost
@@ -247,12 +250,6 @@ public class EinstellungenView extends AbstractView
         control.getDokumentenspeicherung());
     right.addLabelPair(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
         control.getExterneMitgliedsnummer());
-    right.addLabelPair(
-        JVereinPlugin.getI18n().tr("aktuelle Geburtstage - Tage vorher"),
-        control.getAktuelleGeburtstageVorher());
-    right.addLabelPair(
-        JVereinPlugin.getI18n().tr("aktuelle Geburtstage - Tage nachher"),
-        control.getAktuelleGeburtstageNachher());
     right
         .addLabelPair(
             JVereinPlugin.getI18n().tr(
