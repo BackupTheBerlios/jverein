@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/01/27 22:21:21 $
+ * $Revision: 1.2 $
+ * $Date: 2011/03/18 19:36:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.1  2011/01/27 22:21:21  jost
+ * Revision 1.2  2011/03/18 19:36:08  jost
+ * Neu: Mailversand
+ *
+ * Revision 1.1  2011-01-27 22:21:21  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.54  2011-01-15 09:46:48  jost
@@ -192,6 +195,7 @@ import de.jost_net.JVerein.gui.action.AdresseDetailAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MitgliedDeleteAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
+import de.jost_net.JVerein.gui.action.MitgliedMailSendenAction;
 import de.jost_net.JVerein.gui.action.PersonalbogenAction;
 import de.jost_net.JVerein.gui.control.DokumentControl;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
@@ -436,7 +440,7 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       }
     });
 
-    ButtonArea buttons = new ButtonArea(getParent(), 7);
+    ButtonArea buttons = new ButtonArea(getParent(), 8);
     buttons.addButton(new Back(false));
     if (isMitgliedDetail())
     {
@@ -446,6 +450,8 @@ public abstract class AbstractAdresseDetailView extends AbstractView
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.MITGLIED, false,
         "help-browser.png");
+    buttons.addButton("Mail", new MitgliedMailSendenAction(),
+        getCurrentObject(), false, "mail-message-new.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("neu"),
         isMitgliedDetail() ? new MitgliedDetailAction()
             : new AdresseDetailAction(), null, false, "document-new.png");
