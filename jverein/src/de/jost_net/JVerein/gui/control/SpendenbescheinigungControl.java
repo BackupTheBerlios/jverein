@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/03/17 19:46:01 $
+ * $Revision: 1.18 $
+ * $Date: 2011/03/18 19:15:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
- * Revision 1.17  2011/03/17 19:46:01  jost
+ * Revision 1.18  2011/03/18 19:15:27  jost
+ * redakt.
+ *
+ * Revision 1.17  2011-03-17 19:46:01  jost
  * überflüssigen import entfernt.
  *
  * Revision 1.16  2011-03-13 13:44:46  jost
@@ -541,7 +544,7 @@ public class SpendenbescheinigungControl extends AbstractControl
             + "bezeichneten Körperschaften, Personenvereinigungen oder Vermögensmassen\n",
         10);
 
-    rpt.addHeaderColumn("Name und Anschrift des Zuwendenden)",
+    rpt.addHeaderColumn("Name und Anschrift des Zuwendenden",
         Element.ALIGN_CENTER, 100, Color.LIGHT_GRAY);
     rpt.createHeader();
     String zuwendender = (String) getZeile1(false).getValue() + "\n"
