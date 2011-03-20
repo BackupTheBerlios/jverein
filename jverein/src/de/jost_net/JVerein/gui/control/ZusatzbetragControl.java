@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/02/12 09:33:27 $
+ * $Revision: 1.11 $
+ * $Date: 2011/03/20 12:05:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
- * Revision 1.10  2011/02/12 09:33:27  jost
+ * Revision 1.11  2011/03/20 12:05:01  jost
+ * Bug #17793 Sortierung nach Namen aufgenommen.
+ *
+ * Revision 1.10  2011-02-12 09:33:27  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.9  2011-01-15 09:46:49  jost
@@ -469,6 +472,8 @@ public class ZusatzbetragControl extends AbstractControl
   {
     DBIterator zusatzbetraege = Einstellungen.getDBService().createList(
         Zusatzbetrag.class);
+    zusatzbetraege.join("mitglied");
+    zusatzbetraege.addFilter("zusatzabbuchung.mitglied = mitglied.id");
     if (this.ausfuehrungSuch.getText().equals("Alle"))
     {
       // nichts tun
@@ -485,7 +490,8 @@ public class ZusatzbetragControl extends AbstractControl
     {
       try
       {
-        Date d = new JVDateFormatTTMMJJJJ().parse(this.ausfuehrungSuch.getText());
+        Date d = new JVDateFormatTTMMJJJJ().parse(this.ausfuehrungSuch
+            .getText());
         java.sql.Date sqd = new java.sql.Date(d.getTime());
         zusatzbetraege.addFilter("ausfuehrung = ?", new Object[] { sqd });
       }
@@ -494,7 +500,8 @@ public class ZusatzbetragControl extends AbstractControl
         e.printStackTrace();
       }
     }
-    zusatzbetraege.setOrder("ORDER BY ausfuehrung DESC, faelligkeit DESC");
+    zusatzbetraege
+        .setOrder("ORDER BY ausfuehrung DESC, faelligkeit DESC, name");
     return zusatzbetraege;
   }
 
