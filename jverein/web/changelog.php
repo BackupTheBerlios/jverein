@@ -54,6 +54,7 @@
 					<li>Die Boxen "aktuelle Geburtstage" und "Wiedervorlagen" für die Startseite entfernt. Ersatz ist die neue Terminübersicht.</li>
 					<li>Neue Box "Termine" für die Startseite erstellt</li>
 					<li>##Spendenbescheinigung: Anzeige nach der Erstellung</li>
+					<li>Bugfix Diagnose-Backup</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -577,7 +578,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.118  2011/03/20 06:39:37  jost
+    Revision 1.119  2011/03/20 08:47:00  jost
+    *** empty log message ***
+
+    Revision 1.118  2011-03-20 06:39:37  jost
     *** empty log message ***
 
     Revision 1.117  2011-03-18 19:17:27  jost
