@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupRestoreAction.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/02/12 09:25:05 $
+ * $Revision: 1.11 $
+ * $Date: 2011/03/20 08:45:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupRestoreAction.java,v $
- * Revision 1.10  2011/02/12 09:25:05  jost
+ * Revision 1.11  2011/03/20 08:45:32  jost
+ * Bugfix Diagnose-Backup
+ *
+ * Revision 1.10  2011-02-12 09:25:05  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.9  2010-11-13 09:21:13  jost
@@ -57,6 +60,7 @@ import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.rmi.Adresstyp;
 import de.jost_net.JVerein.rmi.EigenschaftGruppe;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.util.JVDateFormatJJJJMMTT;
@@ -98,6 +102,15 @@ public class BackupRestoreAction implements Action
         dialog.open();
         return;
       }
+
+      // Vom System eingefügte Sätze löschen. Ansonsten gibt es duplicate keys
+      it = Einstellungen.getDBService().createList(Adresstyp.class);
+      while (it.hasNext())
+      {
+        Adresstyp a = (Adresstyp) it.next();
+        a.delete();
+      }
+
     }
     catch (Exception e1)
     {
