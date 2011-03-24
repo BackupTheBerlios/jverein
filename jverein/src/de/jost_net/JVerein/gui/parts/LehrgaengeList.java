@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/LehrgaengeList.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:35:15 $
+ * $Revision: 1.5 $
+ * $Date: 2011/03/24 22:24:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgaengeList.java,v $
- * Revision 1.4  2011/02/12 09:35:15  jost
+ * Revision 1.5  2011/03/24 22:24:08  jost
+ * Lehrgangsart in die Übersicht aufgenommen.
+ *
+ * Revision 1.4  2011-02-12 09:35:15  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.3  2010-10-15 09:58:25  jost
@@ -81,6 +84,7 @@ public class LehrgaengeList extends TablePart implements Part
               return name;
             }
           });
+      lehrgaengeList.addColumn("Lehrgangsart", "lehrgangsart");
       lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("von/am"), "von",
           new DateFormatter(new JVDateFormatTTMMJJJJ()));
       lehrgaengeList.addColumn(JVereinPlugin.getI18n().tr("bis"), "bis",
