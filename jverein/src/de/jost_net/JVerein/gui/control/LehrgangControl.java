@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/LehrgangControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/02/12 09:31:26 $
+ * $Revision: 1.4 $
+ * $Date: 2011/03/25 12:34:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangControl.java,v $
- * Revision 1.3  2011/02/12 09:31:26  jost
+ * Revision 1.4  2011/03/25 12:34:44  jost
+ * Vermeidung NPE
+ *
+ * Revision 1.3  2011-02-12 09:31:26  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.2  2009/06/22 18:13:30  jost
@@ -88,9 +91,12 @@ public class LehrgangControl extends AbstractControl
         Lehrgangsart la = (Lehrgangsart) lehrgangsart.getValue();
         try
         {
-          getVon().setValue(la.getVon());
-          getBis().setValue(la.getBis());
-          getVeranstalter().setValue(la.getVeranstalter());
+          if (la != null)
+          {
+            getVon().setValue(la.getVon());
+            getBis().setValue(la.getBis());
+            getVeranstalter().setValue(la.getVeranstalter());
+          }
         }
         catch (RemoteException e)
         {
