@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.40 $
- * $Date: 2011/02/12 09:43:37 $
+ * $Revision: 1.41 $
+ * $Date: 2011/03/25 14:03:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.40  2011/02/12 09:43:37  jost
+ * Revision 1.41  2011/03/25 14:03:04  jost
+ * Plausi Geburtsdatum
+ *
+ * Revision 1.40  2011-02-12 09:43:37  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.39  2011-02-02 22:00:50  jost
@@ -134,6 +137,7 @@
 package de.jost_net.JVerein.server;
 
 import java.rmi.RemoteException;
+import java.util.Calendar;
 import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
@@ -232,6 +236,24 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
           "Bitte Geburtsdatum eingeben"));
+    }
+    if (getAdresstyp().getJVereinid() == 1 && getPersonenart().equals("n")
+        && Einstellungen.getEinstellung().getGeburtsdatumPflicht())
+    {
+      Calendar cal1 = Calendar.getInstance();
+      cal1.setTime(getGeburtsdatum());
+      Calendar cal2 = Calendar.getInstance();
+      if (cal1.after(cal2))
+      {
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Geburtsdatum liegt in der Zukunft"));
+      }
+      cal2.add(Calendar.YEAR, -150);
+      if (cal1.before(cal2))
+      {
+        throw new ApplicationException(JVereinPlugin.getI18n().tr(
+            "Ist das Mitglied wirklich älter als 150 Jahre?"));
+      }
     }
     if (getPersonenart().equals("n") && getGeschlecht() == null)
     {
