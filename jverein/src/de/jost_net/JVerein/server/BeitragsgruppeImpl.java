@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BeitragsgruppeImpl.java,v $
- * $Revision: 1.8 $
- * $Date: 2010/11/17 04:52:36 $
+ * $Revision: 1.9 $
+ * $Date: 2011/03/26 15:48:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeImpl.java,v $
- * Revision 1.8  2010/11/17 04:52:36  jost
+ * Revision 1.9  2011/03/26 15:48:26  jost
+ * Buchungsart bei der Abbuchung direkt in den Istsatz schreiben.
+ *
+ * Revision 1.8  2010-11-17 04:52:36  jost
  * Erster Code zum Thema Arbeitseinsatz
  *
  * Revision 1.7  2010-11-13 09:29:22  jost
@@ -40,6 +43,7 @@ import java.rmi.RemoteException;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
+import de.jost_net.JVerein.rmi.Buchungsart;
 import de.willuhn.datasource.db.AbstractDBObject;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
@@ -106,6 +110,10 @@ public class BeitragsgruppeImpl extends AbstractDBObject implements
   @Override
   protected Class<?> getForeignObject(String arg0)
   {
+    if (arg0.equals("buchungsart"))
+    {
+      return Buchungsart.class;
+    }
     return null;
   }
 
@@ -173,6 +181,16 @@ public class BeitragsgruppeImpl extends AbstractDBObject implements
       return 0;
     }
     return d.doubleValue();
+  }
+
+  public void setBuchungsart(Buchungsart buchungsart) throws RemoteException
+  {
+    setAttribute("buchungsart", buchungsart);
+  }
+
+  public Buchungsart getBuchungsart() throws RemoteException
+  {
+    return (Buchungsart) getAttribute("buchungsart");
   }
 
   public void setArbeitseinsatzBetrag(double arbeitseinsatzBetrag)

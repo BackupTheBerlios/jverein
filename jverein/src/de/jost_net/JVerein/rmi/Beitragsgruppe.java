@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Beitragsgruppe.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/17 04:51:54 $
+ * $Revision: 1.6 $
+ * $Date: 2011/03/26 15:48:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Beitragsgruppe.java,v $
- * Revision 1.5  2010/11/17 04:51:54  jost
+ * Revision 1.6  2011/03/26 15:48:15  jost
+ * Buchungsart bei der Abbuchung direkt in den Istsatz schreiben.
+ *
+ * Revision 1.5  2010-11-17 04:51:54  jost
  * Erster Code zum Thema Arbeitseinsatz
  *
  * Revision 1.4  2008/01/25 16:06:28  jost
@@ -56,4 +59,9 @@ public interface Beitragsgruppe extends DBObject
 
   public void setArbeitseinsatzBetrag(double arbeitseinsatzBetrag)
       throws RemoteException;
+
+  public Buchungsart getBuchungsart() throws RemoteException;
+
+  public void setBuchungsart(Buchungsart buchungsart) throws RemoteException;
+
 }
