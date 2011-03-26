@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BeitragsgruppeDetailView.java,v $
- * $Revision: 1.18 $
- * $Date: 2011/03/14 19:23:47 $
+ * $Revision: 1.19 $
+ * $Date: 2011/03/26 15:47:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BeitragsgruppeDetailView.java,v $
- * Revision 1.18  2011/03/14 19:23:47  jost
+ * Revision 1.19  2011/03/26 15:47:45  jost
+ * *** empty log message ***
+ *
+ * Revision 1.18  2011-03-14 19:23:47  jost
  * Tippfehler beseitigt.
  *
  * Revision 1.17  2011-01-30 08:28:07  jost
@@ -101,6 +104,8 @@ public class BeitragsgruppeDetailView extends AbstractView
         control.getBetrag());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Beitragsart"),
         control.getBeitragsArt());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungsart"),
+        control.getBuchungsart());
 
     if (Einstellungen.getEinstellung().getArbeitseinsatz())
     {
