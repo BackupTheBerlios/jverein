@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2011/03/20 19:18:19 $
+ * $Revision: 1.13 $
+ * $Date: 2011/03/28 18:07:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.12  2011/03/20 19:18:19  jost
+ * Revision 1.13  2011/03/28 18:07:14  jost
+ * Überflüssigen Code entfernt.
+ *
+ * Revision 1.12  2011-03-20 19:18:19  jost
  * Formatierung von Datumsfeldern und Beträgen.
  *
  * Revision 1.11  2011-01-27 22:18:35  jost
@@ -84,7 +87,6 @@ import de.willuhn.jameica.gui.input.TextAreaInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.Button;
 import de.willuhn.jameica.gui.parts.TablePart;
-import de.willuhn.jameica.hbci.HBCI;
 import de.willuhn.jameica.system.Application;
 import de.willuhn.jameica.system.BackgroundTask;
 import de.willuhn.logging.Logger;
