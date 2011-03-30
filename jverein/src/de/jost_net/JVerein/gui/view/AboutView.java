@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AboutView.java,v $
- * $Revision: 1.10 $
- * $Date: 2010/10/15 09:58:25 $
+ * $Revision: 1.11 $
+ * $Date: 2011/03/30 10:13:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AboutView.java,v $
- * Revision 1.10  2010/10/15 09:58:25  jost
+ * Revision 1.11  2011/03/30 10:13:11  jost
+ * Bild eingefügt
+ *
+ * Revision 1.10  2010-10-15 09:58:25  jost
  * Code aufgeräumt
  *
  * Revision 1.9  2010-10-07 19:49:24  jost
@@ -42,15 +45,19 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.rmi.Version;
+import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.dialogs.AbstractDialog;
 import de.willuhn.jameica.gui.input.LabelInput;
 import de.willuhn.jameica.gui.parts.FormTextPart;
 import de.willuhn.jameica.gui.util.LabelGroup;
+import de.willuhn.jameica.gui.util.SWTUtil;
 import de.willuhn.jameica.plugin.AbstractPlugin;
 import de.willuhn.jameica.system.Application;
 
@@ -60,12 +67,16 @@ public class AboutView extends AbstractDialog
   public AboutView(int position)
   {
     super(position);
+    this.setSize(335, 500);
     this.setTitle(JVereinPlugin.getI18n().tr("Über..."));
   }
 
   @Override
   protected void paint(Composite parent) throws Exception
   {
+    Label l = GUI.getStyleFactory().createLabel(parent, SWT.BORDER);
+    l.setImage(SWTUtil.getImage("JVerein.png"));
+
     FormTextPart text = new FormTextPart();
     text.setText("<form><p><b>"
         + JVereinPlugin.getI18n().tr(
@@ -73,7 +84,8 @@ public class AboutView extends AbstractDialog
         + "</b></p>"
         + "<br/>Lizenz: GPL [ http://www.gnu.org/copyleft/gpl.html ]"
         + "<br/><p>Copyright by Heiner Jostkleigrewe [ heiner@jverein.de ]</p>"
-        + "<p>http://www.jverein.de   Forum: http://www.jverein.de/forum</p></form>");
+        + "<p>web: http://www.jverein.de</p>"+
+        "<p>Forum: http://www.jverein.de/forum</p></form>");
 
     text.paint(parent);
 
