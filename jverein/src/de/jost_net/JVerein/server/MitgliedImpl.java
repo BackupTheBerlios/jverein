@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.41 $
- * $Date: 2011/03/25 14:03:04 $
+ * $Revision: 1.42 $
+ * $Date: 2011/04/02 15:20:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.41  2011/03/25 14:03:04  jost
+ * Revision 1.42  2011/04/02 15:20:26  jost
+ * Nicht gefüllte Ganzzahl-Zusatzfelder werden jetzt mit 0 angezeigt. Dadurch wird die korrekte Sortierung in der Mitgliederübersicht gewährleistet.
+ *
+ * Revision 1.41  2011-03-25 14:03:04  jost
  * Plausi Geburtsdatum
  *
  * Revision 1.40  2011-02-12 09:43:37  jost
@@ -863,7 +866,13 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       }
       else
       {
-        return "";
+        switch (fd.getDatentyp())
+        {
+          case Datentyp.GANZZAHL:
+            return 0;
+          default:
+            return "";
+        }
       }
     }
     return super.getAttribute(fieldName);
