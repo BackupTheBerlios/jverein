@@ -64,6 +64,7 @@
 					<li>Beitragsgruppen können jetzt Buchungsarten zugewiesen werden. Diese werden bei der Verwendung des Mitgliedskontos bei der Abrechung (z. Z. nur neue Version) in die Istsätze der Abbuchungsbeträge geschrieben.</li>
 					<li>Zusatzbeträge: In den Verwendungszweck können nur noch die für DTAUS zulässigen Zeichen eingegeben werden.</li>
     		  <li>Keine Abrechnung von Zusatzbeträgen bei ausgetretenen Mitgliedern</li>
+    		  <li>Korrekte Sortierung von Ganzzahl-Zusatzfeldern in der Mitgliederübersicht.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -587,7 +588,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.127  2011/03/31 18:04:05  jost
+    Revision 1.128  2011/04/02 16:49:28  jost
+    Korrekt jetzt auch mit Null-Werten
+
+    Revision 1.127  2011-03-31 18:04:05  jost
     *** empty log message ***
 
     Revision 1.126  2011-03-28 18:09:46  jost
