@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.53 $
- * $Date: 2011/03/23 22:02:48 $
+ * $Revision: 1.54 $
+ * $Date: 2011/04/03 07:44:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
- * Revision 1.53  2011/03/23 22:02:48  jost
+ * Revision 1.54  2011/04/03 07:44:46  jost
+ * Bugfix DTAUS mit äöüß
+ *
+ * Revision 1.53  2011-03-23 22:02:48  jost
  * Überflüssigen Code auskommentiert.
  *
  * Revision 1.52  2011-02-23 18:01:45  jost
@@ -655,18 +658,12 @@ public class Abbuchung
         .getExterneMitgliedsnummer() ? m.getExterneMitgliedsnummer() : m
         .getID())
         + "/" + name;
-    if (mitgliedname.length() > 27)
-    {
-      mitgliedname = mitgliedname.substring(0, 27);
-    }
+      mitgliedname =dtaus27(mitgliedname);
     if (m.getKontoinhaber().length() > 0)
     {
       name = m.getKontoinhaber();
     }
-    if (name.length() > 27)
-    {
-      name = name.substring(0, 27);
-    }
+    name = dtaus27(name);
     dtaus.setCName(name);
     dtaus
         .setCTextschluessel(CSatz.TS_LASTSCHRIFT_EINZUGSERMAECHTIGUNGSVERFAHREN);
@@ -765,4 +762,24 @@ public class Abbuchung
     return k;
   }
 
+  private String dtaus27(String in)
+  {
+    String out = in;
+    if (in.length() > 27)
+    {
+      out = in.substring(0, 27);
+    }
+    int lae = out.length();
+    for (int i = 0; i < out.length(); i++)
+    {
+      Character c = out.charAt(i);
+      if (c.equals('Ä') || c.equals('Ö') || c.equals('Ü') || c.equals('ä')
+          || c.equals('ö') || c.equals('ü') || c.equals('ß'))
+      {
+        lae--;
+      }
+    }
+    out = out.substring(0, lae);
+    return out;
+  }
 }
