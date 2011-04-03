@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2011/03/31 09:55:35 $
+ * $Revision: 1.14 $
+ * $Date: 2011/04/03 14:34:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
- * Revision 1.13  2011/03/31 09:55:35  jost
+ * Revision 1.14  2011/04/03 14:34:01  jost
+ * Bugfix Ausführungsdatum
+ *
+ * Revision 1.13  2011-03-31 09:55:35  jost
  * Bug #18038
  *
  * Revision 1.12  2011-03-28 18:08:12  jost
@@ -251,7 +254,7 @@ public class ZusatzbetragControl extends AbstractControl
         {
           return;
         }
-        faelligkeit.setValue(date);
+        startdatum.setValue(date);
       }
     });
     if (withFocus)
