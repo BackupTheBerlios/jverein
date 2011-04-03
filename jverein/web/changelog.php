@@ -67,6 +67,7 @@
     		  <li>Korrekte Sortierung von Ganzzahl-Zusatzfeldern in der Mitgliederübersicht.</li>
     		  <li>Neu: Filter für die Lehrgangsübersicht.</li>
     		  <li>Bugfix Abrechnung DTAUS mit äöüß größer 27 Stellen.</li>
+    		  <li>Beim Versand von Mails können die Zusatzfelder mit $zusatzfeld.ZUSATZFELDNAME ausgegeben werden.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -590,7 +591,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.129  2011/04/03 07:46:33  jost
+    Revision 1.130  2011/04/03 10:02:15  jost
+    Ausgabe der Zusatzfelder
+
+    Revision 1.129  2011-04-03 07:46:33  jost
     Bugfix DTAUS mit äöüß
 
     Revision 1.128  2011-04-02 16:49:28  jost

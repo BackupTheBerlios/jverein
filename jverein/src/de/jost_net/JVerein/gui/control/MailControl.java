@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.13 $
- * $Date: 2011/03/28 18:07:14 $
+ * $Revision: 1.14 $
+ * $Date: 2011/04/03 10:02:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.13  2011/03/28 18:07:14  jost
+ * Revision 1.14  2011/04/03 10:02:03  jost
+ * Ausgabe der Zusatzfelder
+ *
+ * Revision 1.13  2011-03-28 18:07:14  jost
  * Überflüssigen Code entfernt.
  *
  * Revision 1.12  2011-03-20 19:18:19  jost
@@ -58,6 +61,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.TreeSet;
 
 import org.apache.velocity.VelocityContext;
@@ -69,10 +73,13 @@ import de.jost_net.JVerein.gui.menu.MailAnhangMenu;
 import de.jost_net.JVerein.gui.menu.MailAuswahlMenu;
 import de.jost_net.JVerein.gui.menu.MailMenu;
 import de.jost_net.JVerein.io.MailSender;
+import de.jost_net.JVerein.keys.Datentyp;
+import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mail;
 import de.jost_net.JVerein.rmi.MailAnhang;
 import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.Mitglied;
+import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -342,6 +349,36 @@ public class MailControl extends AbstractControl
             context.put("email", empf.getMailAdresse());
             context.put("empf", empf.getMitglied());
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            HashMap<String, String> zusatzf = new HashMap<String, String>();
+            DBIterator itzus = Einstellungen.getDBService().createList(
+                Zusatzfelder.class);
+            itzus.addFilter("mitglied = ? ", new Object[] { empf.getMitglied()
+                .getID() });
+            while (itzus.hasNext())
+            {
+              Zusatzfelder z = (Zusatzfelder) itzus.next();
+              Felddefinition fd = z.getFelddefinition();
+              switch (fd.getDatentyp())
+              {
+                case Datentyp.DATUM:
+                  zusatzf.put(fd.getName(), sdf.format(z.getFeldDatum()));
+                  break;
+                case Datentyp.JANEIN:
+                  zusatzf.put(fd.getName(), z.getFeldJaNein() ? "X" : " ");
+                  break;
+                case Datentyp.GANZZAHL:
+                  zusatzf.put(fd.getName(), z.getFeldGanzzahl() + "");
+                  break;
+                case Datentyp.WAEHRUNG:
+                  zusatzf.put(fd.getName(),
+                      Einstellungen.DECIMALFORMAT.format(z.getFeldWaehrung()));
+                  break;
+                case Datentyp.ZEICHENFOLGE:
+                  zusatzf.put(fd.getName(), z.getFeld());
+                  break;
+              }
+              context.put("zusatzfeld", zusatzf);
+            }
             context.put("tagesdatum", sdf.format(new Date()));
             sdf.applyPattern("MM.yyyy");
             context.put("aktuellermonat", sdf.format(new Date()));
