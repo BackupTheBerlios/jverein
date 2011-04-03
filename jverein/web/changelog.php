@@ -68,6 +68,7 @@
     		  <li>Neu: Filter für die Lehrgangsübersicht.</li>
     		  <li>Bugfix Abrechnung DTAUS mit äöüß größer 27 Stellen.</li>
     		  <li>Beim Versand von Mails können die Zusatzfelder mit $zusatzfeld.ZUSATZFELDNAME ausgegeben werden.</li>
+    		  <li>Bugfix Zusatzbeträge nächste Fälligkeit.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -591,7 +592,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.130  2011/04/03 10:02:15  jost
+    Revision 1.131  2011/04/03 14:34:52  jost
+    *** empty log message ***
+
+    Revision 1.130  2011-04-03 10:02:15  jost
     Ausgabe der Zusatzfelder
 
     Revision 1.129  2011-04-03 07:46:33  jost
