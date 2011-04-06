@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2011/04/03 10:02:03 $
+ * $Revision: 1.15 $
+ * $Date: 2011/04/06 16:28:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.14  2011/04/03 10:02:03  jost
+ * Revision 1.15  2011/04/06 16:28:50  jost
+ * Neu: Starttls
+ *
+ * Revision 1.14  2011-04-03 10:02:03  jost
  * Ausgabe der Zusatzfelder
  *
  * Revision 1.13  2011-03-28 18:07:14  jost
@@ -334,7 +337,8 @@ public class MailControl extends AbstractControl
               Einstellungen.getEinstellung().getSmtpAuthUser(), Einstellungen
                   .getEinstellung().getSmtpAuthPwd(), Einstellungen
                   .getEinstellung().getSmtpFromAddress(), Einstellungen
-                  .getEinstellung().getSmtpSsl());
+                  .getEinstellung().getSmtpSsl(), Einstellungen
+                  .getEinstellung().getSmtpStarttls());
 
           Velocity.init();
           Logger.debug("preparing velocity context");
