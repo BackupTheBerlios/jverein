@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.30 $
- * $Date: 2011/04/07 19:15:33 $
+ * $Revision: 1.31 $
+ * $Date: 2011/04/07 19:34:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
- * Revision 1.30  2011/04/07 19:15:33  jost
+ * Revision 1.31  2011/04/07 19:34:54  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.30  2011-04-07 19:15:33  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.29  2011-02-23 18:01:04  jost
@@ -108,7 +111,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.AbrechnunslaufListAction;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.AbbuchungControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
