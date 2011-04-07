@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.46 $
- * $Date: 2011/04/06 16:29:04 $
+ * $Revision: 1.47 $
+ * $Date: 2011/04/07 19:30:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.46  2011/04/06 16:29:04  jost
+ * Revision 1.47  2011/04/07 19:30:11  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.46  2011-04-06 16:29:04  jost
  * Neu: Starttls
  *
  * Revision 1.45  2011-03-17 19:46:31  jost
@@ -152,7 +155,6 @@ import org.eclipse.swt.widgets.TabFolder;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.EinstellungControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -334,8 +336,7 @@ public class EinstellungenView extends AbstractView
     grStatistik.addLabelPair(JVereinPlugin.getI18n().tr("Altersjubiläen"),
         control.getAltersjubilaeen());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 3);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.EINSTELLUNGEN, false,
         "help-browser.png");

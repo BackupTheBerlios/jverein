@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ArbeitseinsatzUeberpruefungView.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.7 $
+ * $Date: 2011/04/07 19:28:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzUeberpruefungView.java,v $
- * Revision 1.6  2011/01/15 09:46:48  jost
+ * Revision 1.7  2011/04/07 19:28:47  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.6  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.5  2010-12-04 18:34:20  jost
@@ -37,7 +40,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.ArbeitseinsatzControl;
 import de.jost_net.JVerein.gui.input.ArbeitseinsatzUeberpruefungInput;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -63,8 +65,8 @@ public class ArbeitseinsatzUeberpruefungView extends AbstractView
     butZusatzbetrage = control.getZusatzbetraegeAusgabeButton();
     LabelGroup group = new LabelGroup(getParent(), JVereinPlugin.getI18n().tr(
         "Filter"));
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Jahr"), control
-        .getSuchJahr());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Jahr"),
+        control.getSuchJahr());
     aui = control.getAuswertungSchluessel();
     aui.addListener(new Listener()
     {
@@ -96,8 +98,7 @@ public class ArbeitseinsatzUeberpruefungView extends AbstractView
     ScrolledContainer sc = new ScrolledContainer(group2.getComposite());
     sc.addPart(control.getArbeitseinsatzUeberpruefungList());
 
-    ButtonArea buttons2 = new ButtonArea(this.getParent(), 5);
-    buttons2.addButton(new Back(false));
+    ButtonArea buttons2 = new ButtonArea(this.getParent(), 4);
     buttons2.addButton(control.getPDFAusgabeButton());
     buttons2.addButton(control.getCSVAusgabeButton());
     buttons2.addButton(control.getZusatzbetraegeAusgabeButton());

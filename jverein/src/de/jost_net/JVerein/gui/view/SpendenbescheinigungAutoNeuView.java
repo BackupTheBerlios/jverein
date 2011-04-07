@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/SpendenbescheinigungAutoNeuView.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/03/09 22:16:41 $
+ * $Revision: 1.3 $
+ * $Date: 2011/04/07 19:35:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungAutoNeuView.java,v $
- * Revision 1.2  2011/03/09 22:16:41  jost
+ * Revision 1.3  2011/04/07 19:35:47  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.2  2011-03-09 22:16:41  jost
  * Einschränkung auf ein Jahr.
  *
  * Revision 1.1  2011-03-07 21:05:05  jost
@@ -21,7 +24,6 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.SpendenbescheinigungAutoNeuControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -46,8 +48,7 @@ public class SpendenbescheinigungAutoNeuView extends AbstractView
 
     control.getSpendenbescheinigungTree().paint(this.getParent());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(control.getSpendenbescheinigungErstellenButton());
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.SPENDENBESCHEINIGUNG,

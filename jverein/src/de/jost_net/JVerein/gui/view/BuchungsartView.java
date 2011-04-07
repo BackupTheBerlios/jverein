@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartView.java,v $
- * $Revision: 1.16 $
- * $Date: 2011/03/07 21:04:45 $
+ * $Revision: 1.17 $
+ * $Date: 2011/04/07 19:30:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartView.java,v $
- * Revision 1.16  2011/03/07 21:04:45  jost
+ * Revision 1.17  2011/04/07 19:30:12  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.16  2011-03-07 21:04:45  jost
  * Neu:  Automatische Spendenbescheinigungen: Eigenschaft Spende aufgenommen
  *
  * Revision 1.15  2011-01-15 09:46:48  jost
@@ -60,7 +63,6 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.BuchungsartControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -90,16 +92,12 @@ public class BuchungsartView extends AbstractView
         control.getSpende());
     // TODO Jo Dokumentation nachpflegen
 
-    ButtonArea buttons = new ButtonArea(getParent(), 3);
-
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGSARTEN, false,
         "help-browser.png");
-
     buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
-
       public void handleAction(Object context)
       {
         control.handleStore();

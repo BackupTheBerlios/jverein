@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseSucheView.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/02/12 09:36:15 $
+ * $Revision: 1.3 $
+ * $Date: 2011/04/07 19:25:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseSucheView.java,v $
- * Revision 1.2  2011/02/12 09:36:15  jost
+ * Revision 1.3  2011/04/07 19:25:41  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.2  2011-02-12 09:36:15  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.1  2011-01-29 19:30:09  jost
@@ -244,8 +247,7 @@ public abstract class AbstractAdresseSucheView extends AbstractView
         }
       });
     }
-    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(getHilfeButton());
     if (anzahlbeitragsgruppe > 0)
     {

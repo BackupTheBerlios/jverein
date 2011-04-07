@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoRechnungView.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.8 $
+ * $Date: 2011/04/07 19:35:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoRechnungView.java,v $
- * Revision 1.7  2011/01/15 09:46:48  jost
+ * Revision 1.8  2011/04/07 19:35:47  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.7  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.6  2010-10-15 09:58:24  jost
@@ -36,7 +39,6 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MitgliedskontoControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.keys.Formularart;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -66,8 +68,7 @@ public class MitgliedskontoRechnungView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Formular"),
         control.getFormular(Formularart.RECHNUNG));
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.RECHNUNG, false,
         "help-browser.png");

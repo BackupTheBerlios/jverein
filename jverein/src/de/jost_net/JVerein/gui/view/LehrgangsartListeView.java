@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/LehrgangsartListeView.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.7 $
+ * $Date: 2011/04/07 19:34:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangsartListeView.java,v $
- * Revision 1.6  2011/01/15 09:46:48  jost
+ * Revision 1.7  2011/04/07 19:34:54  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.6  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.5  2010-10-15 09:58:24  jost
@@ -34,7 +37,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.LehrgangsartAction;
 import de.jost_net.JVerein.gui.control.LehrgangsartControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -51,8 +53,7 @@ public class LehrgangsartListeView extends AbstractView
 
     control.getLehrgangsartList().paint(this.getParent());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.LEHRGANG, false,
         "help-browser.png");

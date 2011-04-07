@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetragView.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.11 $
+ * $Date: 2011/04/07 19:35:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragView.java,v $
- * Revision 1.10  2011/01/15 09:46:48  jost
+ * Revision 1.11  2011/04/07 19:35:47  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.10  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.9  2010-10-15 09:58:25  jost
@@ -61,7 +64,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.ZusatzbetraegeDeleteAction;
 import de.jost_net.JVerein.gui.control.ZusatzbetragControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
@@ -92,8 +94,7 @@ public class ZusatzbetragView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"),
         control.getBetrag());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 4);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(getParent(), 3);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ZUSATZBETRAEGE, false,
         "help-browser.png");

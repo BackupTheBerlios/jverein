@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentView.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.4 $
+ * $Date: 2011/04/07 19:30:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentView.java,v $
- * Revision 1.3  2011/01/15 09:46:48  jost
+ * Revision 1.4  2011/04/07 19:30:12  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.3  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.2  2010-12-14 21:42:03  jost
@@ -24,7 +27,6 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.DokumentControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -51,14 +53,13 @@ public class DokumentView extends AbstractView
 
     LabelGroup grDokument = new LabelGroup(scrolled.getComposite(),
         JVereinPlugin.getI18n().tr("Dokument"));
-    grDokument.addLabelPair(JVereinPlugin.getI18n().tr("Datei"), control
-        .getDatei());
-    grDokument.addLabelPair(JVereinPlugin.getI18n().tr("Datum"), control
-        .getDatum());
-    grDokument.addLabelPair(JVereinPlugin.getI18n().tr("Bemerkung"), control
-        .getBemerkung());
-    ButtonArea buttons = new ButtonArea(getParent(), 3);
-    buttons.addButton(new Back(false));
+    grDokument.addLabelPair(JVereinPlugin.getI18n().tr("Datei"),
+        control.getDatei());
+    grDokument.addLabelPair(JVereinPlugin.getI18n().tr("Datum"),
+        control.getDatum());
+    grDokument.addLabelPair(JVereinPlugin.getI18n().tr("Bemerkung"),
+        control.getBemerkung());
+    ButtonArea buttons = new ButtonArea(getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.BUCHUNGEN, false,
         "help-browser.png");

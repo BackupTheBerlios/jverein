@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.19 $
- * $Date: 2011/02/02 22:00:10 $
+ * $Revision: 1.20 $
+ * $Date: 2011/04/07 19:28:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.19  2011/02/02 22:00:10  jost
+ * Revision 1.20  2011/04/07 19:28:47  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.19  2011-02-02 22:00:10  jost
  * Auswertung erweitert um den Parameter "ohne EMail"
  *
  * Revision 1.18  2011-01-15 09:46:49  jost
@@ -72,7 +75,6 @@ package de.jost_net.JVerein.gui.view;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.jost_net.JVerein.server.DBSupportH2Impl;
 import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
@@ -149,9 +151,7 @@ public class AuswertungMitgliedView extends AbstractView
     right.addLabelPair(JVereinPlugin.getI18n().tr("Sortierung"),
         control.getSortierung());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 4);
-
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.AUSWERTUNGMITGLIEDER,
         false, "help-browser.png");

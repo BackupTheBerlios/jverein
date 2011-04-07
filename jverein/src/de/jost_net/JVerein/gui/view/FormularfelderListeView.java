@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularfelderListeView.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/01/15 09:46:48 $
+ * $Revision: 1.10 $
+ * $Date: 2011/04/07 19:30:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfelderListeView.java,v $
- * Revision 1.9  2011/01/15 09:46:48  jost
+ * Revision 1.10  2011/04/07 19:30:12  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.9  2011-01-15 09:46:48  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.8  2010-10-15 09:58:24  jost
@@ -44,7 +47,6 @@ import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.FormularAnzeigeAction;
 import de.jost_net.JVerein.gui.action.FormularfeldAction;
 import de.jost_net.JVerein.gui.control.FormularfeldControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.rmi.Formular;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
@@ -62,8 +64,7 @@ public class FormularfelderListeView extends AbstractView
         (Formular) getCurrentObject());
     control.getFormularfeldList().paint(this.getParent());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 4);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.FORMULARE, false,
         "help-browser.png");

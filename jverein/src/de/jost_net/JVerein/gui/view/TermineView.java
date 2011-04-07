@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/TermineView.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/01/31 17:13:34 $
+ * $Revision: 1.3 $
+ * $Date: 2011/04/07 19:35:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: TermineView.java,v $
- * Revision 1.2  2011/01/31 17:13:34  jost
+ * Revision 1.3  2011/04/07 19:35:48  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.2  2011-01-31 17:13:34  jost
  * Hilfe aufgenommen.
  *
  * Revision 1.1  2010-11-25 15:11:52  jost
@@ -24,8 +27,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.parts.TerminePart;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.internal.buttons.Back;
-import de.willuhn.jameica.gui.parts.ButtonArea;
 import de.willuhn.util.I18N;
 
 /**
@@ -46,16 +47,11 @@ public class TermineView extends AbstractView
   @Override
   public void bind() throws Exception
   {
-
     GUI.getView().setTitle(i18n.tr("Termine"));
 
     this.termine = new TerminePart();
     this.termine.setCurrentDate(currentDate);
     this.termine.paint(getParent());
-
-    ButtonArea buttons = new ButtonArea();
-    buttons.addButton(new Back(false));
-    buttons.paint(getParent());
   }
 
   /**

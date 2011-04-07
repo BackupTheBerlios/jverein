@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/KursteilnehmerSucheView.java,v $
- * $Revision: 1.12 $
- * $Date: 2011/02/12 09:36:28 $
+ * $Revision: 1.13 $
+ * $Date: 2011/04/07 19:34:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerSucheView.java,v $
- * Revision 1.12  2011/02/12 09:36:28  jost
+ * Revision 1.13  2011/04/07 19:34:53  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.12  2011-02-12 09:36:28  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.11  2011-01-15 09:46:47  jost
@@ -56,7 +59,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.KursteilnehmerDetailAction;
 import de.jost_net.JVerein.gui.control.KursteilnehmerControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
 import de.willuhn.jameica.gui.AbstractView;
@@ -100,8 +102,7 @@ public class KursteilnehmerSucheView extends AbstractView
     {
       control.getKursteilnehmerTable().paint(getParent());
     }
-    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.KURSTEILNEHMER, false,
         "help-browser.png");

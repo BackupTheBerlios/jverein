@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailVorlagenUebersichtView.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.6 $
+ * $Date: 2011/04/07 19:34:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailVorlagenUebersichtView.java,v $
- * Revision 1.5  2011/01/15 09:46:49  jost
+ * Revision 1.6  2011/04/07 19:34:54  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.5  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.4  2010-10-15 09:58:25  jost
@@ -31,7 +34,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MailVorlageDetailAction;
 import de.jost_net.JVerein.gui.control.MailVorlageControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -48,8 +50,7 @@ public class MailVorlagenUebersichtView extends AbstractView
 
     control.getMailVorlageTable().paint(this.getParent());
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 4);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.MAIL, false,
         "help-browser.png");

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/03/18 19:36:08 $
+ * $Revision: 1.3 $
+ * $Date: 2011/04/07 19:22:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.2  2011/03/18 19:36:08  jost
+ * Revision 1.3  2011/04/07 19:22:20  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.2  2011-03-18 19:36:08  jost
  * Neu: Mailversand
  *
  * Revision 1.1  2011-01-27 22:21:21  jost
@@ -200,7 +203,6 @@ import de.jost_net.JVerein.gui.action.PersonalbogenAction;
 import de.jost_net.JVerein.gui.control.DokumentControl;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.gui.control.MitgliedskontoControl;
-import de.jost_net.JVerein.gui.internal.buttons.Back;
 import de.jost_net.JVerein.keys.Beitragsmodel;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.JVereinDBService;
@@ -440,8 +442,7 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       }
     });
 
-    ButtonArea buttons = new ButtonArea(getParent(), 8);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(getParent(), 7);
     if (isMitgliedDetail())
     {
       buttons.addButton(new Button("Personalbogen", new PersonalbogenAction(),
