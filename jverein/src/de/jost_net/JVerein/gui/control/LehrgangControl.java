@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/LehrgangControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/04/03 07:36:13 $
+ * $Revision: 1.6 $
+ * $Date: 2011/04/07 19:36:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: LehrgangControl.java,v $
- * Revision 1.5  2011/04/03 07:36:13  jost
+ * Revision 1.6  2011/04/07 19:36:18  jost
+ * überflüssiges Import-Statement
+ *
+ * Revision 1.5  2011-04-03 07:36:13  jost
  * Neu: Filter für die Lehrgangsübersicht
  *
  * Revision 1.4  2011-03-25 12:34:44  jost
@@ -44,7 +47,6 @@ import de.jost_net.JVerein.rmi.Lehrgangsart;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
-import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.jameica.gui.AbstractControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
