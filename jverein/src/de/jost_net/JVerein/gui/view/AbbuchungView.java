@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbbuchungView.java,v $
- * $Revision: 1.29 $
- * $Date: 2011/02/23 18:01:04 $
+ * $Revision: 1.30 $
+ * $Date: 2011/04/07 19:15:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungView.java,v $
- * Revision 1.29  2011/02/23 18:01:04  jost
+ * Revision 1.30  2011/04/07 19:15:33  jost
+ * Neue Zurückbutton-Mimik aus Jameica
+ *
+ * Revision 1.29  2011-02-23 18:01:04  jost
  * Zum Test: Parallele Nutzung der alten und der neuen Abrechnung.
  *
  * Revision 1.28  2011-02-12 09:36:03  jost
@@ -172,8 +175,7 @@ public class AbbuchungView extends AbstractView
                 .tr("*) für die Berechnung, ob ein Mitglied bereits eingetreten oder ausgetreten ist. "
                     + "Üblicherweise 1.1. des Jahres."), true);
 
-    ButtonArea buttons = new ButtonArea(this.getParent(), 4);
-    buttons.addButton(new Back(false));
+    ButtonArea buttons = new ButtonArea(this.getParent(), 3);
     if (Einstellungen.getEinstellung().getMitgliedskonto())
     {
       buttons.addButton("Rückgängig", new AbrechnunslaufListAction(), null,
