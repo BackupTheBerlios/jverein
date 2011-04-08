@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MailSender.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/04/06 16:29:22 $
+ * $Revision: 1.7 $
+ * $Date: 2011/04/08 22:23:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailSender.java,v $
- * Revision 1.6  2011/04/06 16:29:22  jost
+ * Revision 1.7  2011/04/08 22:23:46  jost
+ * Bugfix Encoding
+ *
+ * Revision 1.6  2011-04-06 16:29:22  jost
  * Neu: Starttls
  *
  * Revision 1.5  2011-02-12 09:39:26  jost
@@ -36,6 +39,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 import java.util.Properties;
 import java.util.TreeSet;
@@ -146,6 +150,7 @@ public class MailSender
       session.setDebug(false);
     }
     Message msg = new MimeMessage(session);
+    msg.setHeader("Content-Encoding", Charset.defaultCharset().toString());
 
     InternetAddress addressFrom = new InternetAddress(smtp_from_address);
     msg.setFrom(addressFrom);
@@ -167,6 +172,7 @@ public class MailSender
     else
     {
       BodyPart messageBodyPart = new MimeBodyPart();
+      messageBodyPart.addHeader("Content-Encoding", Charset.defaultCharset().toString());
       // Fill the message
       messageBodyPart.setText(text);
 
