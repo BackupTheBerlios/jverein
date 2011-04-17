@@ -16,7 +16,6 @@
 	<? include ("abrechnung.php"); ?>
 	<? include ("zusatzbetraege.php"); ?>
 	<? include ("zusatzbetraege_import.php"); ?>
-	<? include ("manuelle_zahlungseingaenge.php"); ?>
 	<? include ("wiedervorlage.php"); ?>
 	<? include ("lehrgaenge.php"); ?>
 	<? include ("spendenbescheinigung.php"); ?>
@@ -43,7 +42,10 @@
 
     <!-- 
     $Log: dokumentationallinone.php,v $
-    Revision 1.10  2011/04/17 17:56:45  jost
+    Revision 1.11  2011/04/17 17:58:17  jost
+    *** empty log message ***
+
+    Revision 1.10  2011-04-17 17:56:45  jost
     *** empty log message ***
 
     Revision 1.9  2010-11-03 11:57:37  jost
