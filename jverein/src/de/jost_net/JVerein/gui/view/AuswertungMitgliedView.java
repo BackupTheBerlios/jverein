@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.20 $
- * $Date: 2011/04/07 19:28:47 $
+ * $Revision: 1.21 $
+ * $Date: 2011/04/17 06:38:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.20  2011/04/07 19:28:47  jost
+ * Revision 1.21  2011/04/17 06:38:50  jost
+ * Neu: Mitglieder-Selektion nach Zusatzfeldern
+ *
+ * Revision 1.20  2011-04-07 19:28:47  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.19  2011-02-02 22:00:10  jost
@@ -72,6 +75,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
@@ -114,7 +118,11 @@ public class AuswertungMitgliedView extends AbstractView
       left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"),
           control.getEigenschaftenAuswahl());
     }
-
+    if (Einstellungen.getEinstellung().hasZusatzfelder())
+    {
+      left.addLabelPair(JVereinPlugin.getI18n().tr("Zusatzfelder"),
+          control.getZusatzfelderAuswahl());
+    }
     left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum von"),
         control.getGeburtsdatumvon());
     left.addLabelPair(JVereinPlugin.getI18n().tr("Geburtsdatum bis"),

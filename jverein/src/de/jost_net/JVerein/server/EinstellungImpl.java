@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.30 $
- * $Date: 2011/04/06 16:29:54 $
+ * $Revision: 1.31 $
+ * $Date: 2011/04/17 06:40:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.30  2011/04/06 16:29:54  jost
+ * Revision 1.31  2011/04/17 06:40:37  jost
+ * Neu: Mitglieder-Selektion nach Zusatzfeldern
+ *
+ * Revision 1.30  2011-04-06 16:29:54  jost
  * Neu: Starttls
  *
  * Revision 1.29  2011-03-17 19:46:56  jost
@@ -111,7 +114,9 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.io.AltersgruppenParser;
 import de.jost_net.JVerein.io.JubilaeenParser;
 import de.jost_net.JVerein.rmi.Einstellung;
+import de.jost_net.JVerein.rmi.Felddefinition;
 import de.willuhn.datasource.db.AbstractDBObject;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
@@ -119,6 +124,12 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
 {
 
   private static final long serialVersionUID = 3513343626868776722L;
+
+  /**
+   * Variable, in der gespeichert wird, ob für den Verein Zusatzfelder vorhanden
+   * sind.
+   */
+  private Boolean hasZus = null;
 
   public EinstellungImpl() throws RemoteException
   {
@@ -797,6 +808,17 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   public void setDelaytime(int delaytime) throws RemoteException
   {
     setAttribute("delaytime", delaytime);
+  }
+
+  public boolean hasZusatzfelder() throws RemoteException
+  {
+    if (hasZus == null)
+    {
+      DBIterator it = Einstellungen.getDBService().createList(
+          Felddefinition.class);
+      hasZus = new Boolean(it.size() > 0);
+    }
+    return hasZus;
   }
 
   @Override
