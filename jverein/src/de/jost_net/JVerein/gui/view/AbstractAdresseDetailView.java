@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/04/07 19:22:20 $
+ * $Revision: 1.4 $
+ * $Date: 2011/04/17 06:38:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.3  2011/04/07 19:22:20  jost
+ * Revision 1.4  2011/04/17 06:38:27  jost
+ * überflüssiges Import-Statement
+ *
+ * Revision 1.3  2011-04-07 19:22:20  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.2  2011-03-18 19:36:08  jost
@@ -215,6 +218,7 @@ import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.parts.Button;
+import de.willuhn.jameica.gui.parts.PanelButton;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
 import de.willuhn.jameica.gui.util.ColumnLayout;
@@ -442,6 +446,7 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       }
     });
 
+     
     ButtonArea buttons = new ButtonArea(getParent(), 7);
     if (isMitgliedDetail())
     {
