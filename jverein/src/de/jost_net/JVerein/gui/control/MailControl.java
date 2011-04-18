@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2011/04/06 16:28:50 $
+ * $Revision: 1.16 $
+ * $Date: 2011/04/18 08:24:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.15  2011/04/06 16:28:50  jost
+ * Revision 1.16  2011/04/18 08:24:56  jost
+ * Verlängerung der Texte auf 10.000 Zeichen
+ *
+ * Revision 1.15  2011-04-06 16:28:50  jost
  * Neu: Starttls
  *
  * Revision 1.14  2011-04-03 10:02:03  jost
@@ -244,7 +247,7 @@ public class MailControl extends AbstractControl
     {
       return txt;
     }
-    txt = new TextAreaInput(getMail().getTxt(), 1000);
+    txt = new TextAreaInput(getMail().getTxt(), 10000);
     txt.setName("Text");
     return txt;
   }
