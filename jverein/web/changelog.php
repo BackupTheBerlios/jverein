@@ -71,6 +71,9 @@
     		  <li>Bugfix Zusatzbeträge nächste Fälligkeit.</li>
     		  <li>Bugfix Sollbuchung bearbeiten. Irrtümlich wurde generell der Default-Zahlungsweg vorgegeben.</li>
     		  <li>Selektion der Mitglieder (Dialog und Auswertung) nach Zusatzfeldern.</li>
+					<hr>
+					<li>Die Änderungen ab hier wurden nach Upload der Entwicklerversion 279 vorgenommen.</li>
+					<li>Die Texte von Mails und Mailvorlagen können jetzt 10.000 Zeichen lang sein.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -594,7 +597,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.133  2011/04/17 06:40:51  jost
+    Revision 1.134  2011/04/18 08:25:02  jost
+    *** empty log message ***
+
+    Revision 1.133  2011-04-17 06:40:51  jost
     Neu: Mitglieder-Selektion nach Zusatzfeldern
 
     Revision 1.132  2011-04-04 11:16:14  jost
