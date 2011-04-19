@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.16 $
- * $Date: 2011/04/18 08:24:56 $
+ * $Revision: 1.17 $
+ * $Date: 2011/04/19 11:14:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.16  2011/04/18 08:24:56  jost
+ * Revision 1.17  2011/04/19 11:14:14  jost
+ * Kein Abbruch bei fehlerafter Mailadresse
+ *
+ * Revision 1.16  2011-04-18 08:24:56  jost
  * Verlängerung der Texte auf 10.000 Zeichen
  *
  * Revision 1.15  2011-04-06 16:28:50  jost
@@ -152,7 +155,7 @@ public class MailControl extends AbstractControl
     {
       DBIterator it = Einstellungen.getDBService().createList(
           MailEmpfaenger.class);
-      it.addFilter("mail = ?", new Object[] { getMail().getID() });
+      it.addFilter("mail = ?", new Object[] { getMail().getID()});
       TreeSet<MailEmpfaenger> empf = new TreeSet<MailEmpfaenger>();
       while (it.hasNext())
       {
@@ -261,7 +264,7 @@ public class MailControl extends AbstractControl
     if (!getMail().isNewObject() && getMail().getAnhang() == null)
     {
       DBIterator it = Einstellungen.getDBService().createList(MailAnhang.class);
-      it.addFilter("mail = ?", new Object[] { getMail().getID() });
+      it.addFilter("mail = ?", new Object[] { getMail().getID()});
       TreeSet<MailAnhang> anh = new TreeSet<MailAnhang>();
       while (it.hasNext())
       {
@@ -331,17 +334,18 @@ public class MailControl extends AbstractControl
     BackgroundTask t = new BackgroundTask()
     {
 
-      public void run(ProgressMonitor monitor) throws ApplicationException
+      public void run(ProgressMonitor monitor)
       {
         try
         {
-          MailSender sender = new MailSender(Einstellungen.getEinstellung()
-              .getSmtpServer(), Einstellungen.getEinstellung().getSmtpPort(),
-              Einstellungen.getEinstellung().getSmtpAuthUser(), Einstellungen
-                  .getEinstellung().getSmtpAuthPwd(), Einstellungen
-                  .getEinstellung().getSmtpFromAddress(), Einstellungen
-                  .getEinstellung().getSmtpSsl(), Einstellungen
-                  .getEinstellung().getSmtpStarttls());
+          MailSender sender = new MailSender(
+              Einstellungen.getEinstellung().getSmtpServer(),
+              Einstellungen.getEinstellung().getSmtpPort(),
+              Einstellungen.getEinstellung().getSmtpAuthUser(),
+              Einstellungen.getEinstellung().getSmtpAuthPwd(),
+              Einstellungen.getEinstellung().getSmtpFromAddress(),
+              Einstellungen.getEinstellung().getSmtpSsl(),
+              Einstellungen.getEinstellung().getSmtpStarttls());
 
           Velocity.init();
           Logger.debug("preparing velocity context");
@@ -359,8 +363,8 @@ public class MailControl extends AbstractControl
             HashMap<String, String> zusatzf = new HashMap<String, String>();
             DBIterator itzus = Einstellungen.getDBService().createList(
                 Zusatzfelder.class);
-            itzus.addFilter("mitglied = ? ", new Object[] { empf.getMitglied()
-                .getID() });
+            itzus.addFilter("mitglied = ? ",
+                new Object[] { empf.getMitglied().getID()});
             while (itzus.hasNext())
             {
               Zusatzfelder z = (Zusatzfelder) itzus.next();
@@ -420,18 +424,12 @@ public class MailControl extends AbstractControl
         catch (ApplicationException ae)
         {
           Logger.error("", ae);
-          monitor.setStatusText(ae.getMessage());
-          monitor.setStatus(ProgressMonitor.STATUS_ERROR);
-          GUI.getStatusBar().setErrorText(ae.getMessage());
-          throw ae;
+          monitor.log(ae.getMessage());
         }
         catch (Exception re)
         {
           Logger.error("", re);
-          monitor.setStatusText(re.getMessage());
-          monitor.setStatus(ProgressMonitor.STATUS_ERROR);
-          GUI.getStatusBar().setErrorText(re.getMessage());
-          throw new ApplicationException(re);
+          monitor.log(re.getMessage());
         }
       }
 
@@ -468,7 +466,7 @@ public class MailControl extends AbstractControl
       }
       DBIterator it = Einstellungen.getDBService().createList(
           MailEmpfaenger.class);
-      it.addFilter("mail = ?", new Object[] { m.getID() });
+      it.addFilter("mail = ?", new Object[] { m.getID()});
       while (it.hasNext())
       {
         MailEmpfaenger me = (MailEmpfaenger) it.next();
@@ -483,7 +481,7 @@ public class MailControl extends AbstractControl
         ma.store();
       }
       it = Einstellungen.getDBService().createList(MailAnhang.class);
-      it.addFilter("mail = ?", new Object[] { m.getID() });
+      it.addFilter("mail = ?", new Object[] { m.getID()});
       while (it.hasNext())
       {
         MailAnhang ma = (MailAnhang) it.next();
