@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/04/19 11:14:14 $
+ * $Revision: 1.18 $
+ * $Date: 2011/04/19 19:16:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.17  2011/04/19 11:14:14  jost
+ * Revision 1.18  2011/04/19 19:16:08  jost
+ * Bugfix
+ *
+ * Revision 1.17  2011-04-19 11:14:14  jost
  * Kein Abbruch bei fehlerafter Mailadresse
  *
  * Revision 1.16  2011-04-18 08:24:56  jost
@@ -155,7 +158,7 @@ public class MailControl extends AbstractControl
     {
       DBIterator it = Einstellungen.getDBService().createList(
           MailEmpfaenger.class);
-      it.addFilter("mail = ?", new Object[] { getMail().getID()});
+      it.addFilter("mail = ?", new Object[] { getMail().getID() });
       TreeSet<MailEmpfaenger> empf = new TreeSet<MailEmpfaenger>();
       while (it.hasNext())
       {
@@ -264,7 +267,7 @@ public class MailControl extends AbstractControl
     if (!getMail().isNewObject() && getMail().getAnhang() == null)
     {
       DBIterator it = Einstellungen.getDBService().createList(MailAnhang.class);
-      it.addFilter("mail = ?", new Object[] { getMail().getID()});
+      it.addFilter("mail = ?", new Object[] { getMail().getID() });
       TreeSet<MailAnhang> anh = new TreeSet<MailAnhang>();
       while (it.hasNext())
       {
@@ -338,14 +341,13 @@ public class MailControl extends AbstractControl
       {
         try
         {
-          MailSender sender = new MailSender(
-              Einstellungen.getEinstellung().getSmtpServer(),
-              Einstellungen.getEinstellung().getSmtpPort(),
-              Einstellungen.getEinstellung().getSmtpAuthUser(),
-              Einstellungen.getEinstellung().getSmtpAuthPwd(),
-              Einstellungen.getEinstellung().getSmtpFromAddress(),
-              Einstellungen.getEinstellung().getSmtpSsl(),
-              Einstellungen.getEinstellung().getSmtpStarttls());
+          MailSender sender = new MailSender(Einstellungen.getEinstellung()
+              .getSmtpServer(), Einstellungen.getEinstellung().getSmtpPort(),
+              Einstellungen.getEinstellung().getSmtpAuthUser(), Einstellungen
+                  .getEinstellung().getSmtpAuthPwd(), Einstellungen
+                  .getEinstellung().getSmtpFromAddress(), Einstellungen
+                  .getEinstellung().getSmtpSsl(), Einstellungen
+                  .getEinstellung().getSmtpStarttls());
 
           Velocity.init();
           Logger.debug("preparing velocity context");
@@ -363,8 +365,8 @@ public class MailControl extends AbstractControl
             HashMap<String, String> zusatzf = new HashMap<String, String>();
             DBIterator itzus = Einstellungen.getDBService().createList(
                 Zusatzfelder.class);
-            itzus.addFilter("mitglied = ? ",
-                new Object[] { empf.getMitglied().getID()});
+            itzus.addFilter("mitglied = ? ", new Object[] { empf.getMitglied()
+                .getID() });
             while (itzus.hasNext())
             {
               Zusatzfelder z = (Zusatzfelder) itzus.next();
@@ -372,7 +374,14 @@ public class MailControl extends AbstractControl
               switch (fd.getDatentyp())
               {
                 case Datentyp.DATUM:
-                  zusatzf.put(fd.getName(), sdf.format(z.getFeldDatum()));
+                  if (z.getFeldDatum() != null)
+                  {
+                    zusatzf.put(fd.getName(), sdf.format(z.getFeldDatum()));
+                  }
+                  else
+                  {
+                    zusatzf.put(fd.getName(), "");
+                  }
                   break;
                 case Datentyp.JANEIN:
                   zusatzf.put(fd.getName(), z.getFeldJaNein() ? "X" : " ");
@@ -381,8 +390,16 @@ public class MailControl extends AbstractControl
                   zusatzf.put(fd.getName(), z.getFeldGanzzahl() + "");
                   break;
                 case Datentyp.WAEHRUNG:
-                  zusatzf.put(fd.getName(),
-                      Einstellungen.DECIMALFORMAT.format(z.getFeldWaehrung()));
+                  if (z.getFeldWaehrung() != null)
+                  {
+                    zusatzf
+                        .put(fd.getName(), Einstellungen.DECIMALFORMAT.format(z
+                            .getFeldWaehrung()));
+                  }
+                  else
+                  {
+                    zusatzf.put(fd.getName(), "");
+                  }
                   break;
                 case Datentyp.ZEICHENFOLGE:
                   zusatzf.put(fd.getName(), z.getFeld());
@@ -466,7 +483,7 @@ public class MailControl extends AbstractControl
       }
       DBIterator it = Einstellungen.getDBService().createList(
           MailEmpfaenger.class);
-      it.addFilter("mail = ?", new Object[] { m.getID()});
+      it.addFilter("mail = ?", new Object[] { m.getID() });
       while (it.hasNext())
       {
         MailEmpfaenger me = (MailEmpfaenger) it.next();
@@ -481,7 +498,7 @@ public class MailControl extends AbstractControl
         ma.store();
       }
       it = Einstellungen.getDBService().createList(MailAnhang.class);
-      it.addFilter("mail = ?", new Object[] { m.getID()});
+      it.addFilter("mail = ?", new Object[] { m.getID() });
       while (it.hasNext())
       {
         MailAnhang ma = (MailAnhang) it.next();

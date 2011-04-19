@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.25 $
- * $Date: 2011/04/17 06:40:06 $
+ * $Revision: 1.26 $
+ * $Date: 2011/04/19 19:16:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.25  2011/04/17 06:40:06  jost
+ * Revision 1.26  2011/04/19 19:16:26  jost
+ * Bugfix
+ *
+ * Revision 1.25  2011-04-17 06:40:06  jost
  * Neu: Mitglieder-Selektion nach Zusatzfeldern
  *
  * Revision 1.24  2011-02-12 09:41:51  jost
@@ -157,7 +160,7 @@ public class MitgliedQuery
             {
               sql += "join zusatzfelder " + synonym + " on " + synonym
                   + ".mitglied = mitglied.id  and " + synonym + ".FELD " + cond
-                  + " ? and " + synonym + ".felddefintion = ? ";
+                  + " ? and " + synonym + ".felddefinition = ? ";
               synonym++;
               bedingungen.add(value);
               bedingungen.add(definition);
