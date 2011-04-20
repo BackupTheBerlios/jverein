@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/ZusatzfelderAuswahlDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/04/17 06:37:36 $
+ * $Revision: 1.2 $
+ * $Date: 2011/04/20 19:42:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzfelderAuswahlDialog.java,v $
- * Revision 1.1  2011/04/17 06:37:36  jost
+ * Revision 1.2  2011/04/20 19:42:33  jost
+ * Stringfelder mit LIKE abfragen
+ *
+ * Revision 1.1  2011-04-17 06:37:36  jost
  * Neu: Mitglieder-Selektion nach Zusatzfeldern
  *
  **********************************************************************/
@@ -89,7 +92,7 @@ public class ZusatzfelderAuswahlDialog extends AbstractDialog
           counter++;
           settings
               .setAttribute("zusatzfeld." + counter + ".name", fd.getName());
-          settings.setAttribute("zusatzfeld." + counter + ".cond", "=");
+          settings.setAttribute("zusatzfeld." + counter + ".cond", "LIKE");
           settings.setAttribute("zusatzfeld." + counter + ".datentyp",
               fd.getDatentyp());
           settings.setAttribute("zusatzfeld." + counter + ".definition",

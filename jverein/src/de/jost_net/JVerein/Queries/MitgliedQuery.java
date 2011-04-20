@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.26 $
- * $Date: 2011/04/19 19:16:26 $
+ * $Revision: 1.27 $
+ * $Date: 2011/04/20 19:42:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.26  2011/04/19 19:16:26  jost
+ * Revision 1.27  2011/04/20 19:42:46  jost
+ * Stringfelder mit LIKE abfragen
+ *
+ * Revision 1.26  2011-04-19 19:16:26  jost
  * Bugfix
  *
  * Revision 1.25  2011-04-17 06:40:06  jost
@@ -154,13 +157,15 @@ public class MitgliedQuery
           case Datentyp.ZEICHENFOLGE:
           {
             String value = settings.getString("zusatzfeld." + i + ".value",
-                null);
+                null).replace('*', '%');
             String cond = settings.getString("zusatzfeld." + i + ".cond", null);
             if (value != null && value.length() > 0)
             {
+
               sql += "join zusatzfelder " + synonym + " on " + synonym
-                  + ".mitglied = mitglied.id  and " + synonym + ".FELD " + cond
-                  + " ? and " + synonym + ".felddefinition = ? ";
+                  + ".mitglied = mitglied.id  and lower(" + synonym + ".FELD) "
+                  + cond + " lower( ? ) and " + synonym
+                  + ".felddefinition = ? ";
               synonym++;
               bedingungen.add(value);
               bedingungen.add(definition);
