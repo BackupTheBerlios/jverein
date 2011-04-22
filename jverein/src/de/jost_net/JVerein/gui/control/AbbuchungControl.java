@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.27 $
- * $Date: 2011/02/23 18:00:48 $
+ * $Revision: 1.28 $
+ * $Date: 2011/04/22 06:27:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
- * Revision 1.27  2011/02/23 18:00:48  jost
+ * Revision 1.28  2011/04/22 06:27:23  jost
+ * Alte Abrechnung deaktiviert
+ *
+ * Revision 1.27  2011-02-23 18:00:48  jost
  * Zum Test: Parallele Nutzung der alten und der neuen Abrechnung.
  *
  * Revision 1.26  2011-02-12 09:27:50  jost
@@ -107,7 +110,6 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.input.AbbuchungsmodusInput;
-import de.jost_net.JVerein.io.Abbuchung;
 import de.jost_net.JVerein.io.AbbuchungParam;
 import de.jost_net.JVerein.io.Abrechnung;
 import de.jost_net.JVerein.keys.Abrechnungsausgabe;
@@ -132,7 +134,6 @@ import de.willuhn.util.ProgressMonitor;
 
 public class AbbuchungControl extends AbstractControl
 {
-  private CheckboxInput neueAbbuchung;
 
   private AbbuchungsmodusInput modus;
 
@@ -251,16 +252,6 @@ public class AbbuchungControl extends AbstractControl
 
     zahlungsgrund = new TextInput(zgrund, 27);
     return zahlungsgrund;
-  }
-
-  public CheckboxInput getNeueAbbuchung()
-  {
-    if (neueAbbuchung != null)
-    {
-      return neueAbbuchung;
-    }
-    neueAbbuchung = new CheckboxInput(false);
-    return neueAbbuchung;
   }
 
   public CheckboxInput getZusatzbetrag()
@@ -448,7 +439,6 @@ public class AbbuchungControl extends AbstractControl
     {
       throw new ApplicationException(e);
     }
-    final boolean nA = (Boolean) neueAbbuchung.getValue();
     BackgroundTask t = new BackgroundTask()
     {
 
@@ -456,14 +446,8 @@ public class AbbuchungControl extends AbstractControl
       {
         try
         {
-          if (nA)
-          {
-            new Abrechnung(abupar, monitor);
-          }
-          else
-          {
-            new Abbuchung(abupar, monitor);
-          }
+          new Abrechnung(abupar, monitor);
+          // new Abbuchung(abupar, monitor);
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
           GUI.getStatusBar().setSuccessText(
