@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.37 $
- * $Date: 2011/04/23 08:48:08 $
+ * $Revision: 1.38 $
+ * $Date: 2011/04/23 19:43:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.37  2011/04/23 08:48:08  jost
+ * Revision 1.38  2011/04/23 19:43:32  jost
+ * Alternative Sortierung des Buchungsjournals nach ID/Buchungsnummer
+ *
+ * Revision 1.37  2011-04-23 08:48:08  jost
  * Sortierung bleibt nach Bearbeitung der Buchungsart erhalten.
  *
  * Revision 1.36  2011-02-26 15:53:28  jost
@@ -135,6 +138,7 @@ import org.eclipse.swt.widgets.Listener;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.BuchungAction;
+import de.jost_net.JVerein.gui.dialogs.BuchungsjournalSortDialog;
 import de.jost_net.JVerein.gui.formatter.BuchungsartFormatter;
 import de.jost_net.JVerein.gui.formatter.MitgliedskontoFormatter;
 import de.jost_net.JVerein.gui.input.KontoauswahlInput;
@@ -915,8 +919,18 @@ public class BuchungsControl extends AbstractControl
       {
         list.addFilter("konto = ?", new Object[] { k.getID() });
       }
-      list.setOrder("ORDER BY datum, auszugsnummer, blattnummer, id");
 
+      BuchungsjournalSortDialog djs = new BuchungsjournalSortDialog(
+          BuchungsjournalSortDialog.POSITION_CENTER);
+      String sort = (String) djs.open();
+      if (sort.equals(BuchungsjournalSortDialog.DATUM))
+      {
+        list.setOrder("ORDER BY datum, auszugsnummer, blattnummer, id");
+      }
+      else
+      {
+        list.setOrder("ORDER BY id");
+      }
       FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
       fd.setText("Ausgabedatei wählen.");
 
@@ -941,9 +955,9 @@ public class BuchungsControl extends AbstractControl
 
       auswertungBuchungsjournalPDF(list, file, k, dVon, dBis);
     }
-    catch (RemoteException e)
+    catch (Exception e)
     {
-      e.printStackTrace();
+      Logger.error("Fehler", e);
     }
   }
 
