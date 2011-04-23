@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedMenu.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/02/03 22:02:08 $
+ * $Revision: 1.9 $
+ * $Date: 2011/04/23 06:56:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedMenu.java,v $
- * Revision 1.8  2011/02/03 22:02:08  jost
+ * Revision 1.9  2011/04/23 06:56:19  jost
+ * Neu: Freie Formulare
+ *
+ * Revision 1.8  2011-02-03 22:02:08  jost
  * Bugfix Kontextmenu
  *
  * Revision 1.7  2010-09-01 05:57:20  jost
@@ -36,11 +39,18 @@
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 
+import java.rmi.RemoteException;
+
+import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.gui.action.FreiesFormularAction;
 import de.jost_net.JVerein.gui.action.MitgliedDeleteAction;
 import de.jost_net.JVerein.gui.action.MitgliedMailSendenAction;
 import de.jost_net.JVerein.gui.action.PersonalbogenAction;
 import de.jost_net.JVerein.gui.action.SpendenbescheinigungAction;
+import de.jost_net.JVerein.keys.Formularart;
+import de.jost_net.JVerein.rmi.Formular;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.CheckedSingleContextMenuItem;
@@ -54,8 +64,10 @@ public class MitgliedMenu extends ContextMenu
 
   /**
    * Erzeugt ein Kontext-Menu für die Liste der Mitglieder.
+   * 
+   * @throws RemoteException
    */
-  public MitgliedMenu(Action detailaction)
+  public MitgliedMenu(Action detailaction) throws RemoteException
   {
     addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
         "bearbeiten"), detailaction, "edit.png"));
@@ -69,5 +81,13 @@ public class MitgliedMenu extends ContextMenu
         "rechnung.png"));
     addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
         "Personalbogen"), new PersonalbogenAction(), "rechnung.png"));
+    DBIterator it = Einstellungen.getDBService().createList(Formular.class);
+    it.addFilter("art = ?", new Object[] { Formularart.FREIESFORMULAR });
+    while (it.hasNext())
+    {
+      Formular f = (Formular) it.next();
+      addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+          f.getBezeichnung()), new FreiesFormularAction(f.getID()), "rechnung.png"));
+    }
   }
 }

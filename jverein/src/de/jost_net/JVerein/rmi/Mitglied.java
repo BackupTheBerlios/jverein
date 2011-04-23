@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/01/30 10:30:12 $
+ * $Revision: 1.18 $
+ * $Date: 2011/04/23 06:57:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
- * Revision 1.17  2011/01/30 10:30:12  jost
+ * Revision 1.18  2011/04/23 06:57:18  jost
+ * Neu: Freie Formulare
+ *
+ * Revision 1.17  2011-01-30 10:30:12  jost
  * Datum der letzten Änderung wird gespeichert
  *
  * Revision 1.16  2011-01-27 22:24:16  jost
@@ -233,5 +236,7 @@ public interface Mitglied extends DBObject
   public Mitgliedfoto getFoto() throws RemoteException;
 
   public void setFoto(Mitgliedfoto foto) throws RemoteException;
+  
+  public String getEmpfaenger() throws RemoteException;
 
 }

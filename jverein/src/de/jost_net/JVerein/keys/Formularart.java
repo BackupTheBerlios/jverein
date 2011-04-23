@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Formularart.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:41:26 $
+ * $Revision: 1.6 $
+ * $Date: 2011/04/23 06:56:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Formularart.java,v $
- * Revision 1.5  2011/02/12 09:41:26  jost
+ * Revision 1.6  2011/04/23 06:56:56  jost
+ * Neu: Freie Formulare
+ *
+ * Revision 1.5  2011-02-12 09:41:26  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.4  2010-08-16 20:17:58  jost
@@ -41,6 +44,7 @@ public class Formularart
   public static final int RECHNUNG = 2;
 
   public static final int MAHNUNG = 3;
+  public static final int FREIESFORMULAR = 4;
 
   private int formularart;
 
@@ -69,6 +73,8 @@ public class Formularart
         return JVereinPlugin.getI18n().tr("Rechnung");
       case MAHNUNG:
         return JVereinPlugin.getI18n().tr("Mahnung");
+      case FREIESFORMULAR:
+        return JVereinPlugin.getI18n().tr("Freies Formular");
       default:
         return null;
     }
@@ -80,6 +86,7 @@ public class Formularart
     ret.add(new Formularart(SPENDENBESCHEINIGUNG));
     ret.add(new Formularart(RECHNUNG));
     ret.add(new Formularart(MAHNUNG));
+    ret.add(new Formularart(FREIESFORMULAR));
     return ret;
   }
 

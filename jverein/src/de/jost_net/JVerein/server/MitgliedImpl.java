@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.43 $
- * $Date: 2011/04/02 16:48:23 $
+ * $Revision: 1.44 $
+ * $Date: 2011/04/23 06:57:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.43  2011/04/02 16:48:23  jost
+ * Revision 1.44  2011/04/23 06:57:53  jost
+ * Neu: Freie Formulare
+ *
+ * Revision 1.43  2011-04-02 16:48:23  jost
  * Korrekt jetzt auch mit Null-Werten
  *
  * Revision 1.42  2011-04-02 15:20:26  jost
@@ -834,6 +837,21 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
         + (getStaat() != null ? ", " + getStaat() : "");
   }
 
+  public String getEmpfaenger() throws RemoteException
+  {
+    String empfaenger = getAnrede()
+        + "\n"
+        + getVornameName()
+        + "\n"
+        + (getAdressierungszusatz().length() > 0 ? getAdressierungszusatz()
+            + "\n" : "") + getStrasse() + "\n" + getPlz() + " " + getOrt();
+    if (getStaat() != null && getStaat().length() > 0)
+    {
+      empfaenger += "\n" + getStaat();
+    }
+    return empfaenger;
+  }
+
   @Override
   public Object getAttribute(String fieldName) throws RemoteException
   {
@@ -841,7 +859,15 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     {
       return getNameVorname();
     }
-    if (fieldName.startsWith("zusatzfelder."))
+    else if (fieldName.equals("vornamename"))
+    {
+      return getVornameName();
+    }
+    else if (fieldName.equals("empfaenger"))
+    {
+      return getEmpfaenger();
+    }
+    else if (fieldName.startsWith("zusatzfelder."))
     {
       DBIterator it = Einstellungen.getDBService().createList(
           Felddefinition.class);
