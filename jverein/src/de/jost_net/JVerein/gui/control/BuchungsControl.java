@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.36 $
- * $Date: 2011/02/26 15:53:28 $
+ * $Revision: 1.37 $
+ * $Date: 2011/04/23 08:48:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.36  2011/02/26 15:53:28  jost
+ * Revision 1.37  2011/04/23 08:48:08  jost
+ * Sortierung bleibt nach Bearbeitung der Buchungsart erhalten.
+ *
+ * Revision 1.36  2011-02-26 15:53:28  jost
  * Bugfix Mitgliedskontoauswahl bei neuer Buchung, mehrfacher Mitgliedskontoauswahl
  *
  * Revision 1.35  2011-02-12 09:29:22  jost
@@ -802,7 +805,6 @@ public class BuchungsControl extends AbstractControl
       buchungsList.setContextMenu(new BuchungMenu(this));
       buchungsList.setRememberColWidths(true);
       buchungsList.setRememberOrder(true);
-      buchungsList.setRememberState(true);
       buchungsList.setSummary(true);
     }
     else
