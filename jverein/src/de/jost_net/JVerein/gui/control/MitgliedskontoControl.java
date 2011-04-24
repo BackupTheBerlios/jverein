@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.24 $
- * $Date: 2011/04/04 11:14:48 $
+ * $Revision: 1.25 $
+ * $Date: 2011/04/24 09:31:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.24  2011/04/04 11:14:48  jost
+ * Revision 1.25  2011/04/24 09:31:01  jost
+ * Automatisierte Befüllung von Istbuchungen bei der Auswahl des Mitgliedskontos.
+ *
+ * Revision 1.24  2011-04-04 11:14:48  jost
  * Bugfix Zahlungsweg
  *
  * Revision 1.23  2011-02-26 15:53:51  jost
@@ -274,10 +277,10 @@ public class MitgliedskontoControl extends AbstractControl
     {
       return zahlungsweg;
     }
-    zahlungsweg = new SelectInput(Zahlungsweg.getArray(),
-        getMitgliedskonto().getZahlungsweg() == null ? new Zahlungsweg(
-            Einstellungen.getEinstellung().getZahlungsweg()) : new Zahlungsweg(
-            getMitgliedskonto().getZahlungsweg()));
+    zahlungsweg = new SelectInput(Zahlungsweg.getArray(), getMitgliedskonto()
+        .getZahlungsweg() == null ? new Zahlungsweg(Einstellungen
+        .getEinstellung().getZahlungsweg()) : new Zahlungsweg(
+        getMitgliedskonto().getZahlungsweg()));
     zahlungsweg.setName("Zahlungsweg");
     return zahlungsweg;
   }
@@ -366,7 +369,7 @@ public class MitgliedskontoControl extends AbstractControl
       return differenz;
     }
     differenz = new SelectInput(new Object[] { "egal", "Fehlbetrag",
-        "Überzahlung"}, settings.getString("differenz", "egal"));
+        "Überzahlung" }, settings.getString("differenz", "egal"));
     differenz.setName("Differenz");
     differenz.addListener(new FilterListener());
     return differenz;
@@ -379,7 +382,7 @@ public class MitgliedskontoControl extends AbstractControl
     // return differenz;
     // }
     differenz = new SelectInput(new Object[] { "egal", "Fehlbetrag",
-        "Überzahlung"}, defaultvalue);
+        "Überzahlung" }, defaultvalue);
     differenz.setName("Differenz");
     differenz.addListener(new FilterListener());
     return differenz;
@@ -534,13 +537,17 @@ public class MitgliedskontoControl extends AbstractControl
           where.append("or ");
         }
         first = false;
-        where.append("upper(name) like upper(?) or upper(vorname) like upper(?) ");
+        where
+            .append("upper(name) like upper(?) or upper(vorname) like upper(?) ");
         String o = tok.nextToken();
         object.add(o);
         object.add(o);
       }
       where.append(")");
-      mitglieder.addFilter(where.toString(), object.toArray());
+      if (where.length() > 2)
+      {
+        mitglieder.addFilter(where.toString(), object.toArray());
+      }
     }
     mitglieder.setOrder("order by name, vorname");
     if (mitgliedskontoList2 == null)
@@ -682,13 +689,14 @@ public class MitgliedskontoControl extends AbstractControl
             ArrayList<Mitgliedskonto> ergebnis = new ArrayList<Mitgliedskonto>();
             while (rs.next())
             {
-              Mitgliedskonto mk = (Mitgliedskonto) Einstellungen.getDBService().createObject(
-                  Mitgliedskonto.class, rs.getString(1));
+              Mitgliedskonto mk = (Mitgliedskonto) Einstellungen.getDBService()
+                  .createObject(Mitgliedskonto.class, rs.getString(1));
               mk.setBetrag(rs.getDouble("sollsumme"));
               mk.setIstBetrag(rs.getDouble("istsumme"));
               ergebnis.add(mk);
             }
-            return PseudoIterator.fromArray(ergebnis.toArray(new GenericObject[ergebnis.size()]));
+            return PseudoIterator.fromArray(ergebnis
+                .toArray(new GenericObject[ergebnis.size()]));
           }
         });
 
@@ -726,14 +734,15 @@ public class MitgliedskontoControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    String path = settings.getString("lastdir", System.getProperty("user.home"));
+    String path = settings
+        .getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("rechnung", "",
-        Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
-    fd.setFilterExtensions(new String[] { "*.PDF"});
+    fd.setFileName(new Dateiname("rechnung", "", Einstellungen.getEinstellung()
+        .getDateinamenmuster(), "PDF").get());
+    fd.setFilterExtensions(new String[] { "*.PDF" });
 
     String s = fd.open();
     if (s == null || s.length() == 0)
@@ -769,7 +778,7 @@ public class MitgliedskontoControl extends AbstractControl
               new JVDateFormatTTMMJJJJ().format(d));
         }
 
-        it.addFilter("datum >= ?", new Object[] { d});
+        it.addFilter("datum >= ?", new Object[] { d });
       }
       else
       {
@@ -783,7 +792,7 @@ public class MitgliedskontoControl extends AbstractControl
           settings.setAttribute(datumverwendung + "datumbis",
               new JVDateFormatTTMMJJJJ().format(d));
         }
-        it.addFilter("datum <= ?", new Object[] { d});
+        it.addFilter("datum <= ?", new Object[] { d });
       }
       else
       {
@@ -838,14 +847,15 @@ public class MitgliedskontoControl extends AbstractControl
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
-    String path = settings.getString("lastdir", System.getProperty("user.home"));
+    String path = settings
+        .getString("lastdir", System.getProperty("user.home"));
     if (path != null && path.length() > 0)
     {
       fd.setFilterPath(path);
     }
-    fd.setFileName(new Dateiname("mahnung", "",
-        Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
-    fd.setFilterExtensions(new String[] { "*.PDF"});
+    fd.setFileName(new Dateiname("mahnung", "", Einstellungen.getEinstellung()
+        .getDateinamenmuster(), "PDF").get());
+    fd.setFilterExtensions(new String[] { "*.PDF" });
 
     String s = fd.open();
     if (s == null || s.length() == 0)
@@ -991,8 +1001,8 @@ public class MitgliedskontoControl extends AbstractControl
     map.put(FormularfeldControl.HANDY, m.getHandy());
     map.put(FormularfeldControl.EMAIL, m.getEmail());
     map.put(FormularfeldControl.EINTRITT, m.getEintritt());
-    map.put(FormularfeldControl.BEITRAGSGRUPPE,
-        m.getBeitragsgruppe().getBezeichnung());
+    map.put(FormularfeldControl.BEITRAGSGRUPPE, m.getBeitragsgruppe()
+        .getBezeichnung());
     map.put(FormularfeldControl.AUSTRITT, m.getAustritt());
     map.put(FormularfeldControl.KUENDIGUNG, m.getKuendigung());
     String zahlungsweg = "";
@@ -1012,7 +1022,8 @@ public class MitgliedskontoControl extends AbstractControl
       }
       case Zahlungsweg.ÜBERWEISUNG:
       {
-        zahlungsweg = Einstellungen.getEinstellung().getRechnungTextUeberweisung();
+        zahlungsweg = Einstellungen.getEinstellung()
+            .getRechnungTextUeberweisung();
         break;
       }
     }
@@ -1051,20 +1062,20 @@ public class MitgliedskontoControl extends AbstractControl
         {
           try
           {
-            int c = mk1.getMitglied().getName().compareTo(
-                mk2.getMitglied().getName());
+            int c = mk1.getMitglied().getName()
+                .compareTo(mk2.getMitglied().getName());
             if (c != 0)
             {
               return c;
             }
-            c = mk1.getMitglied().getVorname().compareTo(
-                mk2.getMitglied().getVorname());
+            c = mk1.getMitglied().getVorname()
+                .compareTo(mk2.getMitglied().getVorname());
             if (c != 0)
             {
               return c;
             }
-            return mk1.getMitglied().getID().compareTo(
-                mk2.getMitglied().getID());
+            return mk1.getMitglied().getID()
+                .compareTo(mk2.getMitglied().getID());
           }
           catch (RemoteException e)
           {
@@ -1079,7 +1090,8 @@ public class MitgliedskontoControl extends AbstractControl
         for (Mitgliedskonto mk : mkn)
         {
           if (r.size() == 0
-              || r.get(0).getMitglied().getID().equals(mk.getMitglied().getID()))
+              || r.get(0).getMitglied().getID()
+                  .equals(mk.getMitglied().getID()))
           {
             r.add(mk);
           }
@@ -1163,7 +1175,7 @@ public class MitgliedskontoControl extends AbstractControl
      */
     public Class<?>[] getExpectedMessageTypes()
     {
-      return new Class[] { MitgliedskontoMessage.class};
+      return new Class[] { MitgliedskontoMessage.class };
     }
 
     /**
