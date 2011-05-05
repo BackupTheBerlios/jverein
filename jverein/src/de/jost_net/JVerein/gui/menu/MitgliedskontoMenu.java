@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedskontoMenu.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:34:29 $
+ * $Revision: 1.5 $
+ * $Date: 2011/05/05 19:53:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoMenu.java,v $
- * Revision 1.4  2011/02/12 09:34:29  jost
+ * Revision 1.5  2011/05/05 19:53:28  jost
+ * Neu: Istbuchungen können vom Mitgliedskonto gelöst werden.
+ *
+ * Revision 1.4  2011-02-12 09:34:29  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.3  2010-10-15 09:58:29  jost
@@ -31,6 +34,7 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.MitgliedskontoDetailAction;
 import de.jost_net.JVerein.gui.action.MitgliedskontoDetailSollLoeschenAction;
 import de.jost_net.JVerein.gui.action.MitgliedskontoDetailSollNeuAction;
+import de.jost_net.JVerein.gui.action.MitgliedskontoIstLoesenAction;
 import de.jost_net.JVerein.gui.control.MitgliedskontoNode;
 import de.jost_net.JVerein.rmi.Buchung;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -62,6 +66,8 @@ public class MitgliedskontoMenu extends ContextMenu
     addItem(new SollOhneIstItem(i18n.tr("Sollbuchung löschen"),
         new MitgliedskontoDetailSollLoeschenAction(),
         "accessories-calculator.png"));
+    addItem(new SollMitIstItem(i18n.tr("Istbuchung vom Mitgliedskonto lösen"),
+        new MitgliedskontoIstLoesenAction(), "accessories-calculator.png"));
   }
 
   private static class MitgliedItem extends CheckedContextMenuItem
@@ -176,4 +182,38 @@ public class MitgliedskontoMenu extends ContextMenu
       return super.isEnabledFor(o);
     }
   }
+
+  private static class SollMitIstItem extends CheckedContextMenuItem
+  {
+
+    /**
+     * @param text
+     * @param action
+     * @param optionale
+     *          Angabe eines Icons.
+     */
+    private SollMitIstItem(String text, Action action, String icon)
+    {
+      super(text, action, icon);
+    }
+
+    @Override
+    public boolean isEnabledFor(Object o)
+    {
+      if (o instanceof MitgliedskontoNode)
+      {
+        MitgliedskontoNode mkn = (MitgliedskontoNode) o;
+        if (mkn.getType() == MitgliedskontoNode.IST)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      return super.isEnabledFor(o);
+    }
+  }
+
 }
