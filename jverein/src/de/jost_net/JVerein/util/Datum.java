@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Datum.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/02/12 09:44:06 $
+ * $Revision: 1.8 $
+ * $Date: 2011/05/05 19:56:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Datum.java,v $
- * Revision 1.7  2011/02/12 09:44:06  jost
+ * Revision 1.8  2011/05/05 19:56:43  jost
+ * neue Datumsformatierung.
+ *
+ * Revision 1.7  2011-02-12 09:44:06  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.6  2010-10-15 09:58:29  jost
@@ -126,6 +129,16 @@ public class Datum
     cal.set(Calendar.SECOND, 0);
     cal.set(Calendar.MILLISECOND, 0);
     return cal.getTime();
+  }
+
+  /**
+   * Gibt einen Leerstring aus, falls der Text null ist.
+   * 
+   * @return der Text oder Leerstring - niemals null.
+   */
+  public final static String formatDate(Date d)
+  {
+    return d == null ? "" : new JVDateFormatTTMMJJJJ().format(d);
   }
 
 }
