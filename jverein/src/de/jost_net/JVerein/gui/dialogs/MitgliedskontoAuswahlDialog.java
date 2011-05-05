@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MitgliedskontoAuswahlDialog.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/02/26 15:54:19 $
+ * $Revision: 1.8 $
+ * $Date: 2011/05/05 19:50:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoAuswahlDialog.java,v $
- * Revision 1.7  2011/02/26 15:54:19  jost
+ * Revision 1.8  2011/05/05 19:50:47  jost
+ * Bugfix Scrollbar
+ *
+ * Revision 1.7  2011-02-26 15:54:19  jost
  * Bugfix Mitgliedskontoauswahl bei neuer Buchung, mehrfacher Mitgliedskontoauswahl
  *
  * Revision 1.6  2011-01-08 10:45:18  jost
@@ -35,7 +38,9 @@
 
 package de.jost_net.JVerein.gui.dialogs;
 
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 
@@ -48,11 +53,11 @@ import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.dialogs.AbstractDialog;
+import de.willuhn.jameica.gui.parts.ButtonArea;
 import de.willuhn.jameica.gui.parts.TablePart;
-import de.willuhn.jameica.gui.util.ButtonArea;
-import de.willuhn.jameica.gui.util.LabelGroup;
+import de.willuhn.jameica.gui.util.Container;
+import de.willuhn.jameica.gui.util.SimpleContainer;
 import de.willuhn.jameica.gui.util.TabGroup;
-import de.willuhn.jameica.system.OperationCanceledException;
 
 /**
  * Ein Dialog, ueber den man ein Mitgliedskonto auswaehlen kann.
@@ -80,10 +85,9 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
     settings = new de.willuhn.jameica.system.Settings(this.getClass());
     settings.setStoreWhenRead(true);
 
-    super.setSize(600, 400);
+    this.setSize(600, 400);
     this.setTitle(JVereinPlugin.getI18n().tr("Mitgliedskonto-Auswahl"));
     this.buchung = buchung;
-    // choosen = this.buchung.getMitgliedskonto();
     control = new MitgliedskontoControl(null);
   }
 
@@ -91,20 +95,21 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
   protected void paint(Composite parent) throws Exception
   {
     TabFolder folder = new TabFolder(parent, SWT.NONE);
-    TabGroup tabNurIst = new TabGroup(folder, "nur Ist");
-    LabelGroup group = new LabelGroup(tabNurIst.getComposite(), JVereinPlugin
-        .getI18n().tr("Auswahl des Mitgliedskontos"));
+    folder.setLayoutData(new GridData(GridData.FILL_BOTH));
 
+    TabGroup tabNurIst = new TabGroup(folder, "nur Ist", false, 1);
+    Container grNurIst = new SimpleContainer(tabNurIst.getComposite());
+    grNurIst.addHeadline(JVereinPlugin.getI18n().tr(
+        "Auswahl des Mitgliedskontos"));
     if (text == null || text.length() == 0)
     {
       text = JVereinPlugin.getI18n().tr(
           "Bitte wählen Sie das gewünschte Mitgliedskonto aus.");
     }
-    group.addText(text, true);
+    grNurIst.addText(text, true);
     control.getSuchName().setValue(buchung.getName());
-    group.addInput(control.getSuchName());
-    group.addInput(control.getDifferenz("Fehlbetrag"));
-
+    grNurIst.addLabelPair("Name", control.getSuchName());
+    grNurIst.addLabelPair("Differenz", control.getDifferenz("Fehlbetrag"));
     Action action = new Action()
     {
 
@@ -119,20 +124,21 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
       }
     };
     mitgliedskontolist = control.getMitgliedskontoList(action, null);
-    tabNurIst.addPart(mitgliedskontolist);
-    TabGroup tabSollIst = new TabGroup(folder, "Soll + Ist");
-    LabelGroup group2 = new LabelGroup(tabSollIst.getComposite(), JVereinPlugin
-        .getI18n().tr("Auswahl des Mitgliedskontos"));
+    mitgliedskontolist.paint(tabNurIst.getComposite());
+
+    TabGroup tabSollIst = new TabGroup(folder, "Soll u. Ist", true, 1);
+    Container grSollIst = new SimpleContainer(tabSollIst.getComposite());
+    grSollIst.addHeadline(JVereinPlugin.getI18n().tr(
+        "Auswahl des Mitgliedskontos"));
 
     if (text == null || text.length() == 0)
     {
       text = JVereinPlugin.getI18n().tr(
           "Bitte wählen Sie das gewünschte Mitgliedskonto aus.");
     }
-    group2.addText(text, true);
+    grSollIst.addText(text, true);
     control.getSuchName2(true).setValue(buchung.getName().getValue());
-    group2.addInput(control.getSuchName2(false));
-
+    grSollIst.addLabelPair("Name", control.getSuchName2(false));
     Action action2 = new Action()
     {
 
@@ -147,9 +153,9 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
       }
     };
     mitgliedlist = control.getMitgliedskontoList2(action2, null);
-    tabSollIst.addPart(mitgliedlist);
+    mitgliedlist.paint(tabSollIst.getComposite());
 
-    ButtonArea b = new ButtonArea(parent, 4);
+    ButtonArea b = new ButtonArea();
     b.addButton(i18n.tr(JVereinPlugin.getI18n().tr("übernehmen")), new Action()
     {
 
@@ -184,6 +190,7 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
         throw new OperationCanceledException();
       }
     }, null, false, "process-stop.png");
+    b.paint(parent);
   }
 
   /**
@@ -208,5 +215,4 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
   {
     this.text = text;
   }
-
 }
