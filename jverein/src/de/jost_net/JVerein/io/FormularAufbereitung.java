@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/FormularAufbereitung.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/04/23 06:56:32 $
+ * $Revision: 1.10 $
+ * $Date: 2011/05/06 14:49:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAufbereitung.java,v $
- * Revision 1.9  2011/04/23 06:56:32  jost
+ * Revision 1.10  2011/05/06 14:49:53  jost
+ * Neue Variablenmimik
+ *
+ * Revision 1.9  2011-04-23 06:56:32  jost
  * Neu: Freie Formulare
  *
  * Revision 1.8  2011-02-12 09:39:02  jost
@@ -44,7 +47,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Map;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -104,7 +107,7 @@ public class FormularAufbereitung
     }
   }
 
-  public void writeForm(Formular formular, HashMap<String, Object> map)
+  public void writeForm(Formular formular, Map<String, Object> map)
       throws RemoteException
   {
     try

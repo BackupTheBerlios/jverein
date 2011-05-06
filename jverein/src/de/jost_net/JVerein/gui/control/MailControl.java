@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.18 $
- * $Date: 2011/04/19 19:16:08 $
+ * $Revision: 1.19 $
+ * $Date: 2011/05/06 14:49:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.18  2011/04/19 19:16:08  jost
+ * Revision 1.19  2011/05/06 14:49:22  jost
+ * Neue Variablenmimik
+ *
+ * Revision 1.18  2011-04-19 19:16:08  jost
  * Bugfix
  *
  * Revision 1.17  2011-04-19 11:14:14  jost
@@ -69,29 +72,25 @@ package de.jost_net.JVerein.gui.control;
 import java.io.StringWriter;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.TreeSet;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 
 import de.jost_net.JVerein.Einstellungen;
+import de.jost_net.JVerein.Variable.AllgemeineMap;
+import de.jost_net.JVerein.Variable.VarTools;
 import de.jost_net.JVerein.gui.action.MailDetailAction;
 import de.jost_net.JVerein.gui.menu.MailAnhangMenu;
 import de.jost_net.JVerein.gui.menu.MailAuswahlMenu;
 import de.jost_net.JVerein.gui.menu.MailMenu;
 import de.jost_net.JVerein.io.MailSender;
-import de.jost_net.JVerein.keys.Datentyp;
-import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mail;
 import de.jost_net.JVerein.rmi.MailAnhang;
 import de.jost_net.JVerein.rmi.MailEmpfaenger;
 import de.jost_net.JVerein.rmi.Mitglied;
-import de.jost_net.JVerein.rmi.Zusatzfelder;
 import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.rmi.DBIterator;
@@ -361,60 +360,8 @@ public class MailControl extends AbstractControl
             context.put("decimalformat", Einstellungen.DECIMALFORMAT);
             context.put("email", empf.getMailAdresse());
             context.put("empf", empf.getMitglied());
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            HashMap<String, String> zusatzf = new HashMap<String, String>();
-            DBIterator itzus = Einstellungen.getDBService().createList(
-                Zusatzfelder.class);
-            itzus.addFilter("mitglied = ? ", new Object[] { empf.getMitglied()
-                .getID() });
-            while (itzus.hasNext())
-            {
-              Zusatzfelder z = (Zusatzfelder) itzus.next();
-              Felddefinition fd = z.getFelddefinition();
-              switch (fd.getDatentyp())
-              {
-                case Datentyp.DATUM:
-                  if (z.getFeldDatum() != null)
-                  {
-                    zusatzf.put(fd.getName(), sdf.format(z.getFeldDatum()));
-                  }
-                  else
-                  {
-                    zusatzf.put(fd.getName(), "");
-                  }
-                  break;
-                case Datentyp.JANEIN:
-                  zusatzf.put(fd.getName(), z.getFeldJaNein() ? "X" : " ");
-                  break;
-                case Datentyp.GANZZAHL:
-                  zusatzf.put(fd.getName(), z.getFeldGanzzahl() + "");
-                  break;
-                case Datentyp.WAEHRUNG:
-                  if (z.getFeldWaehrung() != null)
-                  {
-                    zusatzf
-                        .put(fd.getName(), Einstellungen.DECIMALFORMAT.format(z
-                            .getFeldWaehrung()));
-                  }
-                  else
-                  {
-                    zusatzf.put(fd.getName(), "");
-                  }
-                  break;
-                case Datentyp.ZEICHENFOLGE:
-                  zusatzf.put(fd.getName(), z.getFeld());
-                  break;
-              }
-              context.put("zusatzfeld", zusatzf);
-            }
-            context.put("tagesdatum", sdf.format(new Date()));
-            sdf.applyPattern("MM.yyyy");
-            context.put("aktuellermonat", sdf.format(new Date()));
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.MONTH, 1);
-            context.put("folgemonat", sdf.format(calendar.getTime()));
-            calendar.add(Calendar.MONTH, -2);
-            context.put("vormonat", sdf.format(calendar.getTime()));
+            VarTools.add(context, empf.getMitglied().getMap(null));
+            VarTools.add(context, new AllgemeineMap().getMap(null));
             StringWriter wbetr = new StringWriter();
             Velocity.evaluate(context, wbetr, "LOG", betr);
             StringWriter wtext = new StringWriter();

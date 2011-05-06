@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FreiesFormularAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/04/23 06:55:33 $
+ * $Revision: 1.2 $
+ * $Date: 2011/05/06 14:44:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,19 +9,24 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FreiesFormularAction.java,v $
- * Revision 1.1  2011/04/23 06:55:33  jost
+ * Revision 1.2  2011/05/06 14:44:33  jost
+ * Neue Variablenmimik
+ *
+ * Revision 1.1  2011-04-23 06:55:33  jost
  * Neu: Freie Formulare
  *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
 import java.io.File;
+import java.util.Map;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.Variable.AllgemeineMap;
 import de.jost_net.JVerein.io.FormularAufbereitung;
 import de.jost_net.JVerein.io.Variable;
 import de.jost_net.JVerein.rmi.Formular;
@@ -55,12 +60,17 @@ public class FreiesFormularAction implements Action
 
   public void handleAction(Object context) throws ApplicationException
   {
-    Mitglied m = null;
-    if (context != null && (context instanceof Mitglied))
+    Mitglied[] m = null;
+    if (context != null
+        && (context instanceof Mitglied || context instanceof Mitglied[]))
     {
       if (context instanceof Mitglied)
       {
-        m = (Mitglied) context;
+        m = new Mitglied[] { (Mitglied) context };
+      }
+      else if (context instanceof Mitglied[])
+      {
+        m = (Mitglied[]) context;
       }
       try
       {
@@ -79,7 +89,7 @@ public class FreiesFormularAction implements Action
     }
   }
 
-  private void generiereFreiesFormular(Mitglied m) throws Exception
+  private void generiereFreiesFormular(Mitglied[] m) throws Exception
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");
@@ -105,14 +115,18 @@ public class FreiesFormularAction implements Action
     final File file = new File(s);
     settings.setAttribute("lastdir", file.getParent());
 
-    Variable v = new Variable();
-    v.set(m);
-    Formular fo = (Formular) Einstellungen.getDBService().createObject(
-        Formular.class, id);
     FormularAufbereitung fa = new FormularAufbereitung(file);
-    fa.writeForm(fo, v);
+    for (Mitglied mi : m)
+    {
+      Variable v = new Variable();
+      v.set(mi);
+      Formular fo = (Formular) Einstellungen.getDBService().createObject(
+          Formular.class, id);
+      Map<String, Object> map = mi.getMap(null);
+      map = new AllgemeineMap().getMap(map);
+      fa.writeForm(fo, map);
+    }
     fa.showFormular();
 
   }
-
 }
