@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/FormularAufbereitung.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/05/06 14:49:53 $
+ * $Revision: 1.11 $
+ * $Date: 2011/05/06 15:01:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularAufbereitung.java,v $
- * Revision 1.10  2011/05/06 14:49:53  jost
+ * Revision 1.11  2011/05/06 15:01:54  jost
+ * Neue Variablenmimik
+ *
+ * Revision 1.10  2011-05-06 14:49:53  jost
  * Neue Variablenmimik
  *
  * Revision 1.9  2011-04-23 06:56:32  jost
@@ -125,37 +128,6 @@ public class FormularAufbereitung
       {
         Formularfeld f = (Formularfeld) it.next();
         goFormularfeld(contentByte, f, map.get(f.getName()));
-      }
-    }
-    catch (IOException e)
-    {
-      throw new RemoteException("Fehler", e);
-    }
-    catch (DocumentException e)
-    {
-      throw new RemoteException("Fehler", e);
-    }
-  }
-
-  public void writeForm(Formular formular, Variable variable)
-      throws RemoteException
-  {
-    try
-    {
-      doc.newPage();
-      PdfReader reader = new PdfReader(formular.getInhalt());
-      PdfImportedPage page = writer.getImportedPage(reader, 1);
-      PdfContentByte contentByte = writer.getDirectContent();
-      contentByte.addTemplate(page, 0, 0);
-
-      DBIterator it = Einstellungen.getDBService().createList(
-          Formularfeld.class);
-      it.addFilter("formular = ?", new Object[] { formular.getID() });
-      while (it.hasNext())
-      {
-        Formularfeld f = (Formularfeld) it.next();
-        String s = variable.evaluate(f.getName(), true);
-        goFormularfeld(contentByte, f, s);
       }
     }
     catch (IOException e)

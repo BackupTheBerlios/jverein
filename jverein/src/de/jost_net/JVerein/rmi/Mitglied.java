@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.18 $
- * $Date: 2011/04/23 06:57:18 $
+ * $Revision: 1.19 $
+ * $Date: 2011/05/06 15:02:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
- * Revision 1.18  2011/04/23 06:57:18  jost
+ * Revision 1.19  2011/05/06 15:02:28  jost
+ * Neue Variablenmimik
+ *
+ * Revision 1.18  2011-04-23 06:57:18  jost
  * Neu: Freie Formulare
  *
  * Revision 1.17  2011-01-30 10:30:12  jost
@@ -68,6 +71,7 @@ package de.jost_net.JVerein.rmi;
 
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.Map;
 
 import de.willuhn.datasource.rmi.DBObject;
 import de.willuhn.util.ApplicationException;
@@ -236,7 +240,10 @@ public interface Mitglied extends DBObject
   public Mitgliedfoto getFoto() throws RemoteException;
 
   public void setFoto(Mitgliedfoto foto) throws RemoteException;
-  
+
   public String getEmpfaenger() throws RemoteException;
+
+  public Map<String, Object> getMap(Map<String, Object> map)
+      throws RemoteException;
 
 }

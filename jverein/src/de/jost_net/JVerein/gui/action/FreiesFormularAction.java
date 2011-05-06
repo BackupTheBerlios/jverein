@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FreiesFormularAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/05/06 14:44:33 $
+ * $Revision: 1.3 $
+ * $Date: 2011/05/06 15:01:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FreiesFormularAction.java,v $
- * Revision 1.2  2011/05/06 14:44:33  jost
+ * Revision 1.3  2011/05/06 15:01:35  jost
+ * Neue Variablenmimik
+ *
+ * Revision 1.2  2011-05-06 14:44:33  jost
  * Neue Variablenmimik
  *
  * Revision 1.1  2011-04-23 06:55:33  jost
@@ -28,7 +31,6 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.Variable.AllgemeineMap;
 import de.jost_net.JVerein.io.FormularAufbereitung;
-import de.jost_net.JVerein.io.Variable;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.util.Dateiname;
@@ -118,8 +120,6 @@ public class FreiesFormularAction implements Action
     FormularAufbereitung fa = new FormularAufbereitung(file);
     for (Mitglied mi : m)
     {
-      Variable v = new Variable();
-      v.set(mi);
       Formular fo = (Formular) Einstellungen.getDBService().createObject(
           Formular.class, id);
       Map<String, Object> map = mi.getMap(null);
