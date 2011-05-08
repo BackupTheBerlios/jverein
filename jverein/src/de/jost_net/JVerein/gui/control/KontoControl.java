@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KontoControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:30:56 $
+ * $Revision: 1.6 $
+ * $Date: 2011/05/08 08:01:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KontoControl.java,v $
- * Revision 1.5  2011/02/12 09:30:56  jost
+ * Revision 1.6  2011/05/08 08:01:04  jost
+ * Änderung der Zuordnung des Hibiscus-Kontos ermöglicht.
+ *
+ * Revision 1.5  2011-02-12 09:30:56  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.4  2010-10-15 09:58:27  jost
@@ -32,6 +35,7 @@ import java.util.Date;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.gui.action.KontoAction;
+import de.jost_net.JVerein.gui.input.KontoInput;
 import de.jost_net.JVerein.gui.menu.KontoMenu;
 import de.jost_net.JVerein.rmi.Konto;
 import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
@@ -44,9 +48,11 @@ import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.formatter.DateFormatter;
 import de.willuhn.jameica.gui.formatter.Formatter;
 import de.willuhn.jameica.gui.input.DateInput;
+import de.willuhn.jameica.gui.input.SelectInput;
 import de.willuhn.jameica.gui.input.TextInput;
 import de.willuhn.jameica.gui.parts.Column;
 import de.willuhn.jameica.gui.parts.TablePart;
+import de.willuhn.jameica.hbci.Settings;
 import de.willuhn.logging.Logger;
 import de.willuhn.util.ApplicationException;
 
@@ -65,7 +71,7 @@ public class KontoControl extends AbstractControl
 
   private DateInput aufloesung;
 
-  private TextInput hibiscusid;
+  private SelectInput hibiscusid;
 
   private Konto konto;
 
@@ -112,7 +118,8 @@ public class KontoControl extends AbstractControl
     {
       return eroeffnung;
     }
-    eroeffnung = new DateInput(getKonto().getEroeffnung(), new JVDateFormatTTMMJJJJ());
+    eroeffnung = new DateInput(getKonto().getEroeffnung(),
+        new JVDateFormatTTMMJJJJ());
     return eroeffnung;
   }
 
@@ -122,27 +129,34 @@ public class KontoControl extends AbstractControl
     {
       return aufloesung;
     }
-    aufloesung = new DateInput(getKonto().getAufloesung(), new JVDateFormatTTMMJJJJ());
+    aufloesung = new DateInput(getKonto().getAufloesung(),
+        new JVDateFormatTTMMJJJJ());
     return aufloesung;
   }
 
-  public TextInput getHibiscusId() throws RemoteException
+  public SelectInput getHibiscusId() throws RemoteException
   {
     if (hibiscusid != null)
     {
       return hibiscusid;
     }
+    de.willuhn.jameica.hbci.rmi.Konto preselected = null;
     String hibid = "-1";
     try
     {
       hibid = getKonto().getHibiscusId().toString();
+      if (!hibid.equals("-1"))
+      {
+        preselected = (de.willuhn.jameica.hbci.rmi.Konto) Settings
+            .getDBService().createObject(
+                de.willuhn.jameica.hbci.rmi.Konto.class, hibid);
+      }
     }
     catch (NullPointerException e)
     {
       // nichts zu tun.
     }
-    hibiscusid = new TextInput(hibid, 10);
-    hibiscusid.setEnabled(false);
+    this.hibiscusid = new KontoInput(preselected);
     return hibiscusid;
   }
 
@@ -158,7 +172,16 @@ public class KontoControl extends AbstractControl
       k.setBezeichnung((String) getBezeichnung().getValue());
       k.setEroeffnung((Date) getEroeffnung().getValue());
       k.setAufloesung((Date) getAufloesung().getValue());
-      k.setHibiscusId(new Integer((String) getHibiscusId().getValue()));
+      if (getHibiscusId().getValue() == null)
+      {
+        k.setHibiscusId(-1);
+      }
+      else
+      {
+        de.willuhn.jameica.hbci.rmi.Konto hkto = (de.willuhn.jameica.hbci.rmi.Konto) getHibiscusId()
+            .getValue();
+        k.setHibiscusId(Integer.parseInt(hkto.getID()));
+      }
       k.store();
       GUI.getStatusBar().setSuccessText("Konto gespeichert");
     }
