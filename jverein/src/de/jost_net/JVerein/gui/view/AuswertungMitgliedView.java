@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.22 $
- * $Date: 2011/05/11 15:51:00 $
+ * $Revision: 1.23 $
+ * $Date: 2011/05/12 17:57:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.22  2011/05/11 15:51:00  jost
+ * Revision 1.23  2011/05/12 17:57:20  jost
+ * Default-Values
+ *
+ * Revision 1.22  2011-05-11 15:51:00  jost
  * Speicherung Auswertungskriterien und Listenüberschrift
  *
  * Revision 1.21  2011-04-17 06:38:50  jost
@@ -157,6 +160,7 @@ public class AuswertungMitgliedView extends AbstractView
         new DokumentationAction(), DokumentationUtil.AUSWERTUNGMITGLIEDER,
         false, "help-browser.png");
     buttons.addButton(control.getAuswertungDialogButton());
+    buttons.addButton(control.getDefaultValuesButton());
     buttons.addButton(control.getStartAuswertungButton());
     buttons.paint(getParent());
   }

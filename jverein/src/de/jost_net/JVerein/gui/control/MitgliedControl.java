@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.111 $
- * $Date: 2011/05/12 17:28:25 $
+ * $Revision: 1.112 $
+ * $Date: 2011/05/12 17:57:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.111  2011/05/12 17:28:25  jost
+ * Revision 1.112  2011/05/12 17:57:03  jost
+ * Default-Values
+ *
+ * Revision 1.111  2011-05-12 17:28:25  jost
  * Bugfix Einstellungen Auswertungen.
  *
  * Revision 1.110  2011-05-11 15:50:24  jost
@@ -2110,7 +2113,7 @@ public class MitgliedControl extends AbstractControl
 
       public void handleEvent(Event event)
       {
-        d.setDefaults(settings.getString("mitglied.eigenschaften", ""));
+        d.setDefaults(settings.getString("mitglied.eigenschaften", "xxx"));
       }
     });
     return eigenschaftenabfrage;
@@ -2230,6 +2233,38 @@ public class MitgliedControl extends AbstractControl
     ohneMail = new CheckboxInput(false);
     ohneMail.setName(JVereinPlugin.getI18n().tr("Ohne Mailadresse"));
     return ohneMail;
+  }
+
+  public Button getDefaultValuesButton()
+  {
+    Button b = new Button("Default", new Action()
+    {
+
+      public void handleAction(Object context) throws ApplicationException
+      {
+        try
+        {
+          getEigenschaftenAuswahl().setValue(null);
+          settings.setAttribute("mitglied.eigenschaften", "");
+          getGeburtsdatumvon().setValue(null);
+          getGeburtsdatumbis().setValue(null);
+          getSterbedatumvon().setValue(null);
+          getSterbedatumbis().setValue(null);
+          getGeschlecht().setValue(null);
+          getEintrittvon().setValue(null);
+          getEintrittbis().setValue(null);
+          getAustrittvon().setValue(null);
+          getAustrittbis().setValue(null);
+          getBeitragsgruppeAusw().setValue(null);
+        }
+        catch (RemoteException e)
+        {
+          throw new ApplicationException(e);
+        }
+
+      }
+    }, null, false, "bricks.png");
+    return b;
   }
 
   public Button getStartAuswertungButton()
