@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.112 $
- * $Date: 2011/05/12 17:57:03 $
+ * $Revision: 1.113 $
+ * $Date: 2011/05/15 10:06:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.112  2011/05/12 17:57:03  jost
+ * Revision 1.113  2011/05/15 10:06:45  jost
+ * Projekt "Speicherung Auswertungseinstellungen" eingestampft.
+ *
+ * Revision 1.112  2011-05-12 17:57:03  jost
  * Default-Values
  *
  * Revision 1.111  2011-05-12 17:28:25  jost
@@ -379,7 +382,6 @@ import de.jost_net.JVerein.gui.action.LehrgangAction;
 import de.jost_net.JVerein.gui.action.WiedervorlageAction;
 import de.jost_net.JVerein.gui.action.ZusatzbetraegeAction;
 import de.jost_net.JVerein.gui.dialogs.EigenschaftenAuswahlDialog;
-import de.jost_net.JVerein.gui.dialogs.MitgliedAuswertungEinstellungenDialog;
 import de.jost_net.JVerein.gui.dialogs.ZusatzfelderAuswahlDialog;
 import de.jost_net.JVerein.gui.formatter.JaNeinFormatter;
 import de.jost_net.JVerein.gui.input.GeschlechtInput;
@@ -399,7 +401,6 @@ import de.jost_net.JVerein.keys.Zahlungsrhytmus;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Adresstyp;
 import de.jost_net.JVerein.rmi.Arbeitseinsatz;
-import de.jost_net.JVerein.rmi.Auswertung;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
 import de.jost_net.JVerein.rmi.Eigenschaft;
 import de.jost_net.JVerein.rmi.EigenschaftGruppe;
@@ -2187,43 +2188,6 @@ public class MitgliedControl extends AbstractControl
     return status;
   }
 
-  public TextInput getAuswertungName() throws RemoteException
-  {
-    if (auswertungname != null)
-    {
-      return auswertungname;
-    }
-    Auswertung auswertung = (Auswertung) Einstellungen.getDBService()
-        .createObject(Auswertung.class,
-            settings.getString("auswertung.id", null));
-    auswertungname = new TextInput(auswertung.getBezeichnung(), 30);
-    auswertungname.setEnabled(false);
-    return auswertungname;
-  }
-
-  public Button getAuswertungDialogButton()
-  {
-    final MitgliedControl mc = this;
-    final Settings setting = settings;
-    Button b = new Button("Einstellungen", new Action()
-    {
-      public void handleAction(Object context) throws ApplicationException
-      {
-        try
-        {
-          MitgliedAuswertungEinstellungenDialog d = new MitgliedAuswertungEinstellungenDialog(
-              mc, setting);
-          d.open();
-        }
-        catch (Exception e)
-        {
-          throw new ApplicationException(e);
-        }
-      }
-    }, null, false, "preferences-system.png");
-    return b;
-  }
-
   public CheckboxInput getOhneMail()
   {
     if (ohneMail != null)
@@ -2233,38 +2197,6 @@ public class MitgliedControl extends AbstractControl
     ohneMail = new CheckboxInput(false);
     ohneMail.setName(JVereinPlugin.getI18n().tr("Ohne Mailadresse"));
     return ohneMail;
-  }
-
-  public Button getDefaultValuesButton()
-  {
-    Button b = new Button("Default", new Action()
-    {
-
-      public void handleAction(Object context) throws ApplicationException
-      {
-        try
-        {
-          getEigenschaftenAuswahl().setValue(null);
-          settings.setAttribute("mitglied.eigenschaften", "");
-          getGeburtsdatumvon().setValue(null);
-          getGeburtsdatumbis().setValue(null);
-          getSterbedatumvon().setValue(null);
-          getSterbedatumbis().setValue(null);
-          getGeschlecht().setValue(null);
-          getEintrittvon().setValue(null);
-          getEintrittbis().setValue(null);
-          getAustrittvon().setValue(null);
-          getAustrittbis().setValue(null);
-          getBeitragsgruppeAusw().setValue(null);
-        }
-        catch (RemoteException e)
-        {
-          throw new ApplicationException(e);
-        }
-
-      }
-    }, null, false, "bricks.png");
-    return b;
   }
 
   public Button getStartAuswertungButton()
@@ -3370,20 +3302,6 @@ public class MitgliedControl extends AbstractControl
         e.printStackTrace();
       }
     }
-  }
-
-  public TablePart getAuswertungEinstellungenList() throws RemoteException
-  {
-    if (auswertungeinstellungenlist != null)
-    {
-      return auswertungeinstellungenlist;
-    }
-    DBIterator it = Einstellungen.getDBService().createList(Auswertung.class);
-    it.setOrder("order by bezeichnung");
-    auswertungeinstellungenlist = new TablePart(it, null);
-    auswertungeinstellungenlist.addColumn("Bezeichnung", "bezeichnung");
-    auswertungeinstellungenlist.setMulti(false);
-    return auswertungeinstellungenlist;
   }
 
   public void setAuswertungEinstellungenListSetNull()

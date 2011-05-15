@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/GeschlechtInput.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.4 $
+ * $Date: 2011/05/15 10:07:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: GeschlechtInput.java,v $
- * Revision 1.3  2010/10/15 09:58:29  jost
+ * Revision 1.4  2011/05/15 10:07:14  jost
+ * Projekt "Speicherung Auswertungseinstellungen" eingestampft.
+ *
+ * Revision 1.3  2010-10-15 09:58:29  jost
  * Code aufgeräumt
  *
  * Revision 1.2  2009-06-29 19:43:16  jost
@@ -72,6 +75,15 @@ public class GeschlechtInput extends SelectInput
     return o.geschlecht;
   }
 
+  @Override
+  public void setValue(Object obj)
+  {
+    if (obj instanceof String)
+    {
+      super.setValue(new GeschlechtObject((String) obj));
+    }
+  }
+
   /**
    * Hilfs-Objekt zur Anzeige der Labels.
    */
@@ -107,12 +119,20 @@ public class GeschlechtInput extends SelectInput
 
     public Object getAttribute(String arg0)
     {
-      return label;
+      if (arg0.equals("label"))
+      {
+        return label;
+      }
+      else if (arg0.equals("geschlecht"))
+      {
+        return geschlecht;
+      }
+      return null;
     }
 
     public String[] getAttributeNames()
     {
-      return new String[] { "name"};
+      return new String[] { "label", "geschlecht" };
     }
 
     public String getID()
@@ -122,7 +142,7 @@ public class GeschlechtInput extends SelectInput
 
     public String getPrimaryAttribute()
     {
-      return "name";
+      return "label";
     }
 
     public boolean equals(GenericObject arg0) throws RemoteException

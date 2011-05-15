@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.23 $
- * $Date: 2011/05/12 17:57:20 $
+ * $Revision: 1.24 $
+ * $Date: 2011/05/15 10:07:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.23  2011/05/12 17:57:20  jost
+ * Revision 1.24  2011/05/15 10:07:30  jost
+ * Projekt "Speicherung Auswertungseinstellungen" eingestampft.
+ *
+ * Revision 1.23  2011-05-12 17:57:20  jost
  * Default-Values
  *
  * Revision 1.22  2011-05-11 15:51:00  jost
@@ -152,15 +155,10 @@ public class AuswertungMitgliedView extends AbstractView
     right.addInput(control.getSortierung());
     right.addInput(control.getAuswertungUeberschrift());
 
-    LabelGroup gr = new LabelGroup(getParent(), "Einstellungen");
-    gr.addLabelPair("Name", control.getAuswertungName());
-
     ButtonArea buttons = new ButtonArea();
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.AUSWERTUNGMITGLIEDER,
         false, "help-browser.png");
-    buttons.addButton(control.getAuswertungDialogButton());
-    buttons.addButton(control.getDefaultValuesButton());
     buttons.addButton(control.getStartAuswertungButton());
     buttons.paint(getParent());
   }
