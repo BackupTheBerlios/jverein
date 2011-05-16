@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.19 $
- * $Date: 2011/05/06 14:49:22 $
+ * $Revision: 1.20 $
+ * $Date: 2011/05/16 17:47:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.19  2011/05/06 14:49:22  jost
+ * Revision 1.20  2011/05/16 17:47:34  jost
+ * Encoding geändert.
+ *
+ * Revision 1.19  2011-05-06 14:49:22  jost
  * Neue Variablenmimik
  *
  * Revision 1.18  2011-04-19 19:16:08  jost
@@ -70,6 +73,7 @@
 package de.jost_net.JVerein.gui.control;
 
 import java.io.StringWriter;
+import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -332,7 +336,6 @@ public class MailControl extends AbstractControl
   {
     final String betr = (String) getBetreff().getValue();
     final String txt = (String) getTxt().getValue();
-
     BackgroundTask t = new BackgroundTask()
     {
 
