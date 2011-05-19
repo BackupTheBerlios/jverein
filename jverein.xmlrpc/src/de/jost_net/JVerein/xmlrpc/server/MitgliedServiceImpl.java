@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.xmlrpc/src/de/jost_net/JVerein/xmlrpc/server/MitgliedServiceImpl.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/03/07 21:12:32 $
+ * $Revision: 1.2 $
+ * $Date: 2011/05/19 17:35:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedServiceImpl.java,v $
- * Revision 1.1  2011/03/07 21:12:32  jost
+ * Revision 1.2  2011/05/19 17:35:01  jost
+ * *** empty log message ***
+ *
+ * Revision 1.1  2011-03-07 21:12:32  jost
  * *** empty log message ***
  *
  **********************************************************************/
@@ -204,7 +207,6 @@ public class MitgliedServiceImpl extends AbstractServiceImpl implements
         throw new ApplicationException(
             i18n.tr("Keine Mitgliedsdaten angegeben"));
       }
-      System.out.println("-->" + mitglied.get(ID));
       String id = update ? StringUtil.notNull(mitglied.get(ID)) : null;
       if (update && (id == null || id.length() == 0))
       {
@@ -242,7 +244,7 @@ public class MitgliedServiceImpl extends AbstractServiceImpl implements
       m.setName(StringUtil.notNull(mitglied.get(NAME)));
       m.setOrt(StringUtil.notNull(mitglied.get(ORT)));
       m.setPersonenart(StringUtil.notNull(mitglied.get(PERSONENART)));
-      m.setPersonenart(StringUtil.notNull(mitglied.get(PLZ)));
+      m.setPlz(StringUtil.notNull(mitglied.get(PLZ)));
       m.setStaat(StringUtil.notNull(mitglied.get(STAAT)));
       m.setSterbetag(DateUtil.parseToString(mitglied.get(STERBETAG),
           "Sterbetag"));
@@ -260,7 +262,7 @@ public class MitgliedServiceImpl extends AbstractServiceImpl implements
       // {
       // m.setZahlerID(IntUtil.parse(mitglied.get(ZAHLERID), "zahlerid"));
       // }
-      m.store();
+       m.store();
       Logger.info((update ? "updated" : "created") + " mitglied [ID: "
           + m.getID() + "]");
       return supportNull ? null : m.getID();
