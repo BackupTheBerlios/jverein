@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.47 $
- * $Date: 2011/04/07 19:30:11 $
+ * $Revision: 1.48 $
+ * $Date: 2011/05/20 13:00:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.47  2011/04/07 19:30:11  jost
+ * Revision 1.48  2011/05/20 13:00:15  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.47  2011-04-07 19:30:11  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.46  2011-04-06 16:29:04  jost
@@ -253,6 +256,8 @@ public class EinstellungenView extends AbstractView
         control.getArbeitseinsatz());
     right.addLabelPair(JVereinPlugin.getI18n().tr("Dokumentenspeicherung *"),
         control.getDokumentenspeicherung());
+    right.addLabelPair(JVereinPlugin.getI18n().tr("individuelle Beiträge *"),
+        control.getIndividuelleBeitraege());
     right.addLabelPair(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
         control.getExterneMitgliedsnummer());
     right

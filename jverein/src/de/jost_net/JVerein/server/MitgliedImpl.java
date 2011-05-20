@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.45 $
- * $Date: 2011/05/06 15:03:02 $
+ * $Revision: 1.46 $
+ * $Date: 2011/05/20 13:01:41 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.45  2011/05/06 15:03:02  jost
+ * Revision 1.46  2011/05/20 13:01:41  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.45  2011-05-06 15:03:02  jost
  * Neue Variablenmimik
  *
  * Revision 1.44  2011-04-23 06:57:53  jost
@@ -680,6 +683,21 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
   public void setBeitragsgruppe(Integer beitragsgruppe) throws RemoteException
   {
     setAttribute("beitragsgruppe", beitragsgruppe);
+  }
+
+  public double getIndividuellerBeitrag() throws RemoteException
+  {
+    Double d = (Double) getAttribute("individuellerbeitrag");
+    if (d == null)
+    {
+      return 0;
+    }
+    return d.doubleValue();
+  }
+
+  public void setIndividuellerBeitrag(double d) throws RemoteException
+  {
+    setAttribute("individuellerbeitrag", new Double(d));
   }
 
   public Mitgliedfoto getFoto() throws RemoteException

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.31 $
- * $Date: 2011/04/17 06:40:37 $
+ * $Revision: 1.32 $
+ * $Date: 2011/05/20 13:01:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.31  2011/04/17 06:40:37  jost
+ * Revision 1.32  2011/05/20 13:01:14  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.31  2011-04-17 06:40:37  jost
  * Neu: Mitglieder-Selektion nach Zusatzfeldern
  *
  * Revision 1.30  2011-04-06 16:29:54  jost
@@ -539,6 +542,18 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   {
     setAttribute("dokumentenspeicherung",
         Boolean.valueOf(dokumentenspeicherung));
+  }
+
+  public boolean getIndividuelleBeitraege() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("individuellebeitraege"));
+  }
+
+  public void setIndividuelleBeitraege(Boolean individuellebeitraege)
+      throws RemoteException
+  {
+    setAttribute("individuellebeitraege",
+        Boolean.valueOf(individuellebeitraege));
   }
 
   public String getRechnungTextAbbuchung() throws RemoteException

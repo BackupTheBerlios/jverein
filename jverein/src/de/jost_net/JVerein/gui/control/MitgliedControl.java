@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.114 $
- * $Date: 2011/05/15 10:22:55 $
+ * $Revision: 1.115 $
+ * $Date: 2011/05/20 12:59:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.114  2011/05/15 10:22:55  jost
+ * Revision 1.115  2011/05/20 12:59:48  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.114  2011-05-15 10:22:55  jost
  * Bugfix Batch/Dialog-Suche
  *
  * Revision 1.113  2011-05-15 10:06:45  jost
@@ -509,6 +512,8 @@ public class MitgliedControl extends AbstractControl
   private DateInput eintritt = null;
 
   private SelectInput beitragsgruppe;
+
+  private DecimalInput individuellerbeitrag;
 
   private Familienverband famverb;
 
@@ -1249,6 +1254,18 @@ public class MitgliedControl extends AbstractControl
       }
     });
     return beitragsgruppe;
+  }
+
+  public DecimalInput getIndividuellerBeitrag() throws RemoteException
+  {
+    if (individuellerbeitrag != null)
+    {
+      return individuellerbeitrag;
+    }
+    individuellerbeitrag = new DecimalInput(getMitglied()
+        .getIndividuellerBeitrag(), Einstellungen.DECIMALFORMAT);
+    individuellerbeitrag.setName("individueller Beitrag");
+    return individuellerbeitrag;
   }
 
   public TextInput getAuswertungUeberschrift() throws RemoteException
@@ -2604,6 +2621,10 @@ public class MitgliedControl extends AbstractControl
         {
           throw new ApplicationException("Beitragsgruppe fehlt");
         }
+      }
+      if (Einstellungen.getEinstellung().getIndividuelleBeitraege())
+      {
+        m.setIndividuellerBeitrag((Double) getIndividuellerBeitrag().getValue());
       }
       Zahlungsweg zw = (Zahlungsweg) getZahlungsweg().getValue();
       m.setZahlungsweg(zw.getKey());

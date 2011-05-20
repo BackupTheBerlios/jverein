@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Abrechnung.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/04/03 07:44:56 $
+ * $Revision: 1.7 $
+ * $Date: 2011/05/20 13:00:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnung.java,v $
- * Revision 1.6  2011/04/03 07:44:56  jost
+ * Revision 1.7  2011/05/20 13:00:28  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.6  2011-04-03 07:44:56  jost
  * Bugfix DTAUS mit äöüß
  *
  * Revision 1.5  2011-03-31 18:02:41  jost
@@ -420,6 +423,11 @@ public class Abrechnung
         if (Einstellungen.getEinstellung().getBeitragsmodel() != Beitragsmodel.MONATLICH12631)
         {
           betr = beitragsgruppe.get(m.getBeitragsgruppeId() + "").getBetrag();
+          if (Einstellungen.getEinstellung().getIndividuelleBeitraege()
+              && m.getIndividuellerBeitrag() > 0)
+          {
+            betr = m.getIndividuellerBeitrag();
+          }
         }
         else
         {
@@ -433,6 +441,11 @@ public class Abrechnung
             BigDecimal bmonate = new BigDecimal(m.getZahlungsrhytmus());
             bbetr = bbetr.multiply(bmonate);
             betr = bbetr.doubleValue();
+            if (Einstellungen.getEinstellung().getIndividuelleBeitraege()
+                && m.getIndividuellerBeitrag() > 0)
+            {
+              betr = m.getIndividuellerBeitrag();
+            }
           }
           catch (NullPointerException e)
           {

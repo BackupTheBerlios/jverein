@@ -1,7 +1,7 @@
 /**********************************************************************
- * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/PersonalbogenAction.java,v $
- * $Revision: 1.13 $
- * $Date: 2011/04/23 06:55:56 $
+ei * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/PersonalbogenAction.java,v $
+ * $Revision: 1.14 $
+ * $Date: 2011/05/20 12:59:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: PersonalbogenAction.java,v $
- * Revision 1.13  2011/04/23 06:55:56  jost
+ * Revision 1.14  2011/05/20 12:59:19  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.13  2011-04-23 06:55:56  jost
  * Arbeitseinsätze auf dem Personalbogen ausgeben
  *
  * Revision 1.12  2011-02-12 09:27:06  jost
@@ -353,6 +356,18 @@ public class PersonalbogenAction implements Action
               + " - "
               + Einstellungen.DECIMALFORMAT.format(m.getBeitragsgruppe()
                   .getBetrag()) + " EUR", Element.ALIGN_LEFT);
+      if (Einstellungen.getEinstellung().getIndividuelleBeitraege())
+      {
+        rpt.addColumn("individueller Beitrag", Element.ALIGN_LEFT);
+        if (m.getIndividuellerBeitrag() > 0)
+        {
+          rpt.addColumn(m.getIndividuellerBeitrag());
+        }
+        else
+        {
+          rpt.addColumn("", Element.ALIGN_LEFT);
+        }
+      }
       rpt.addColumn("Austritts-/Kündigungsdatum", Element.ALIGN_LEFT);
       String akdatum = "";
       if (m.getAustritt() != null)

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/04/17 06:38:27 $
+ * $Revision: 1.5 $
+ * $Date: 2011/05/20 13:00:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.4  2011/04/17 06:38:27  jost
+ * Revision 1.5  2011/05/20 13:00:01  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.4  2011-04-17 06:38:27  jost
  * überflüssiges Import-Statement
  *
  * Revision 1.3  2011-04-07 19:22:20  jost
@@ -303,6 +306,10 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       }
       tab3.addInput(control.getEintritt());
       tab3.addInput(control.getBeitragsgruppe());
+      if (Einstellungen.getEinstellung().getIndividuelleBeitraege())
+      {
+        tab3.addInput(control.getIndividuellerBeitrag());
+      }
       tab3.addInput(control.getAustritt());
       tab3.addInput(control.getKuendigung());
       if (control.getMitglied().getPersonenart().equals("n"))
@@ -446,7 +453,6 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       }
     });
 
-     
     ButtonArea buttons = new ButtonArea(getParent(), 7);
     if (isMitgliedDetail())
     {

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitglied.java,v $
- * $Revision: 1.19 $
- * $Date: 2011/05/06 15:02:28 $
+ * $Revision: 1.20 $
+ * $Date: 2011/05/20 13:01:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Mitglied.java,v $
- * Revision 1.19  2011/05/06 15:02:28  jost
+ * Revision 1.20  2011/05/20 13:01:02  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.19  2011-05-06 15:02:28  jost
  * Neue Variablenmimik
  *
  * Revision 1.18  2011-04-23 06:57:18  jost
@@ -190,6 +193,11 @@ public interface Mitglied extends DBObject
   public int getBeitragsgruppeId() throws RemoteException;
 
   public void setBeitragsgruppe(Integer beitragsgruppe) throws RemoteException;
+
+  public double getIndividuellerBeitrag() throws RemoteException;
+
+  public void setIndividuellerBeitrag(double individuellerbeitrag)
+      throws RemoteException;
 
   public Integer getZahlerID() throws RemoteException;
 

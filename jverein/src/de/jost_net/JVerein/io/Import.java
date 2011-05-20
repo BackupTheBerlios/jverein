@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.43 $
- * $Date: 2011/02/12 09:39:13 $
+ * $Revision: 1.44 $
+ * $Date: 2011/05/20 13:00:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.43  2011/02/12 09:39:13  jost
+ * Revision 1.44  2011/05/20 13:00:40  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.43  2011-02-12 09:39:13  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.42  2011-01-27 22:23:27  jost
@@ -420,6 +423,17 @@ public class Import
         Integer bg = new Integer(beitragsgruppen2.get(results
             .getString("Beitragsart_1")));
         m.setBeitragsgruppe(bg);
+        try
+        {
+          if (results.getDouble("individuellerbeitrag") > 0)
+          {
+            m.setIndividuellerBeitrag(results.getDouble("individuellerbeitrag"));
+          }
+        }
+        catch (SQLException e)
+        {
+          //
+        }
         // beitragsart.setValue(results.getString("Beitragsart_1"));
         String austritt = results.getString("Austritt");
         if (austritt != null && austritt.equals("00.00.0000"))

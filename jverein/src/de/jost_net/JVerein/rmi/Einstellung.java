@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.27 $
- * $Date: 2011/04/17 06:40:19 $
+ * $Revision: 1.28 $
+ * $Date: 2011/05/20 13:00:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.27  2011/04/17 06:40:19  jost
+ * Revision 1.28  2011/05/20 13:00:51  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.27  2011-04-17 06:40:19  jost
  * Neu: Mitglieder-Selektion nach Zusatzfeldern
  *
  * Revision 1.26  2011-04-06 16:29:39  jost
@@ -221,6 +224,11 @@ public interface Einstellung extends DBObject
       throws RemoteException;
 
   public boolean getDokumentenspeicherung() throws RemoteException;
+
+  public void setIndividuelleBeitraege(Boolean individuellebeitraege)
+      throws RemoteException;
+
+  public boolean getIndividuelleBeitraege() throws RemoteException;
 
   public void setRechnungTextAbbuchung(String rechnungtextabbuchung)
       throws RemoteException;

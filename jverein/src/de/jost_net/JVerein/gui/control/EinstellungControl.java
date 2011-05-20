@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.43 $
- * $Date: 2011/04/06 16:28:33 $
+ * $Revision: 1.44 $
+ * $Date: 2011/05/20 12:59:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.43  2011/04/06 16:28:33  jost
+ * Revision 1.44  2011/05/20 12:59:33  jost
+ * Neu: Individueller Beitrag
+ *
+ * Revision 1.43  2011-04-06 16:28:33  jost
  * Neu: Starttls
  *
  * Revision 1.42  2011-03-17 19:45:25  jost
@@ -226,6 +229,8 @@ public class EinstellungControl extends AbstractControl
   private CheckboxInput arbeitseinsatz;
 
   private CheckboxInput dokumentenspeicherung;
+
+  private CheckboxInput individuellebeitraege;
 
   private TextInput rechnungtextabbuchung;
 
@@ -589,6 +594,17 @@ public class EinstellungControl extends AbstractControl
     return dokumentenspeicherung;
   }
 
+  public CheckboxInput getIndividuelleBeitraege() throws RemoteException
+  {
+    if (individuellebeitraege != null)
+    {
+      return individuellebeitraege;
+    }
+    individuellebeitraege = new CheckboxInput(Einstellungen.getEinstellung()
+        .getIndividuelleBeitraege());
+    return individuellebeitraege;
+  }
+
   public TextInput getRechnungTextAbbuchung() throws RemoteException
   {
     if (rechnungtextabbuchung != null)
@@ -862,6 +878,7 @@ public class EinstellungControl extends AbstractControl
       e.setAuslandsadressen((Boolean) auslandsadressen.getValue());
       e.setArbeitseinsatz((Boolean) arbeitseinsatz.getValue());
       e.setDokumentenspeicherung((Boolean) dokumentenspeicherung.getValue());
+      e.setIndividuelleBeitraege((Boolean) individuellebeitraege.getValue());
       e.setRechnungTextAbbuchung((String) rechnungtextabbuchung.getValue());
       e.setRechnungTextAbbuchung((String) rechnungtextabbuchung.getValue());
       e.setRechnungTextUeberweisung((String) rechnungtextueberweisung
