@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.28 $
- * $Date: 2011/05/15 10:23:12 $
+ * $Revision: 1.29 $
+ * $Date: 2011/05/21 08:10:53 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.28  2011/05/15 10:23:12  jost
+ * Revision 1.29  2011/05/21 08:10:53  jost
+ * Bugfix Sortierung nach Namen, Vornamen
+ *
+ * Revision 1.28  2011-05-15 10:23:12  jost
  * Bugfix Batch/Dialog-Suche
  *
  * Revision 1.27  2011-04-20 19:42:46  jost
@@ -144,7 +147,7 @@ public class MitgliedQuery
     final DBService service = Einstellungen.getDBService();
     ArrayList<Object> bedingungen = new ArrayList<Object>();
 
-    sql = "select distinct mitglied.* ";
+    sql = "select distinct mitglied.*, ucase(name), ucase(vorname) ";
     String sort = (String) control.getSortierung().getValue();
     if (sort.equals(JVereinPlugin.getI18n().tr("Geburtstagsliste")))
     {
@@ -380,7 +383,7 @@ public class MitgliedQuery
     }
     if (sort.equals("Name, Vorname"))
     {
-      sql += " ORDER BY name, vorname";
+      sql += " ORDER BY ucase(name), ucase(vorname)";
     }
     else if (sort.equals(JVereinPlugin.getI18n().tr("Eintrittsdatum")))
     {
