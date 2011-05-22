@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Zusatzbetrag.java,v $
- * $Revision: 1.1 $
- * $Date: 2008/12/22 21:20:48 $
+ * $Revision: 1.2 $
+ * $Date: 2011/05/22 08:35:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,6 +9,9 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Zusatzbetrag.java,v $
+ * Revision 1.2  2011/05/22 08:35:39  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
  * Revision 1.1  2008/12/22 21:20:48  jost
  * Zusatzabbuchung->Zusatzbetrag
  *
@@ -42,6 +45,10 @@ public interface Zusatzbetrag extends DBObject
   public String getBuchungstext() throws RemoteException;
 
   public void setBuchungstext(String buchungstext) throws RemoteException;
+
+  public String getBuchungstext2() throws RemoteException;
+
+  public void setBuchungstext2(String buchungstext2) throws RemoteException;
 
   public double getBetrag() throws RemoteException;
 

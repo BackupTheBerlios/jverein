@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/DefaultZusatzbetraegeImport.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:38:50 $
+ * $Revision: 1.5 $
+ * $Date: 2011/05/22 08:35:23 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DefaultZusatzbetraegeImport.java,v $
- * Revision 1.4  2011/02/12 09:38:50  jost
+ * Revision 1.5  2011/05/22 08:35:23  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.4  2011-02-12 09:38:50  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.3  2010-10-31 17:53:08  jost
@@ -31,6 +34,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.Properties;
@@ -123,18 +127,18 @@ public class DefaultZusatzbetraegeImport implements IZusatzbetraegeImport
             Mitglied.class);
         if (b_mitgliedsnummer)
         {
-          list.addFilter("id = ? ", new Object[] { results
-              .getString("Mitglieds_Nr") });
+          list.addFilter("id = ? ",
+              new Object[] { results.getString("Mitglieds_Nr") });
         }
         if (b_nachname)
         {
-          list.addFilter("name = ? ", new Object[] { results
-              .getString("Nachname") });
+          list.addFilter("name = ? ",
+              new Object[] { results.getString("Nachname") });
         }
         if (b_vorname)
         {
-          list.addFilter("vorname = ? ", new Object[] { results
-              .getString("Vorname") });
+          list.addFilter("vorname = ? ",
+              new Object[] { results.getString("Vorname") });
         }
         if (list.size() == 0)
         {
@@ -159,6 +163,14 @@ public class DefaultZusatzbetraegeImport implements IZusatzbetraegeImport
           zus.setMitglied(new Integer(m.getID()));
           zus.setBetrag(results.getDouble("Betrag"));
           zus.setBuchungstext(results.getString("Buchungstext"));
+          try
+          {
+            zus.setBuchungstext2(results.getString("Buchungstext2"));
+          }
+          catch (SQLException e)
+          {
+            Logger.error("Fehler", e);
+          }
           Date d = de.jost_net.JVerein.util.Datum.toDate(results
               .getString("Fälligkeit"));
           zus.setFaelligkeit(d);
@@ -184,7 +196,7 @@ public class DefaultZusatzbetraegeImport implements IZusatzbetraegeImport
     }
     finally
     {
-      
+
     }
   }
 

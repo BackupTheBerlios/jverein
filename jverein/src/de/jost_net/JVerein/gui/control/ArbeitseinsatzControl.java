@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ArbeitseinsatzControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/02/12 09:28:58 $
+ * $Revision: 1.9 $
+ * $Date: 2011/05/22 08:33:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzControl.java,v $
- * Revision 1.8  2011/02/12 09:28:58  jost
+ * Revision 1.9  2011/05/22 08:33:22  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.8  2011-02-12 09:28:58  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.7  2011-01-15 09:46:49  jost
@@ -291,7 +294,7 @@ public class ArbeitseinsatzControl extends AbstractControl
     return b;
   }
 
-  public Button getZusatzbetraegeAusgabeButton()
+  public Button getArbeitseinsatzAusgabeButton()
   {
     Button b = new Button("Zusatzbeträge generieren", new Action()
     {
@@ -300,7 +303,7 @@ public class ArbeitseinsatzControl extends AbstractControl
       {
         try
         {
-          starteZusatzbetragGenerierung();
+          starteArbeitseinsatzGenerierung();
         }
         catch (RemoteException e)
         {
@@ -537,7 +540,7 @@ public class ArbeitseinsatzControl extends AbstractControl
 
   }
 
-  private void starteZusatzbetragGenerierung() throws RemoteException,
+  private void starteArbeitseinsatzGenerierung() throws RemoteException,
       ApplicationException
   {
     final GenericIterator it = getIterator();

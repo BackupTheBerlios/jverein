@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Abrechnung.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/05/20 13:00:28 $
+ * $Revision: 1.9 $
+ * $Date: 2011/05/22 08:39:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,13 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnung.java,v $
- * Revision 1.7  2011/05/20 13:00:28  jost
+ * Revision 1.9  2011/05/22 08:39:27  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.8  2011-05-22 08:35:08  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.7  2011-05-20 13:00:28  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.6  2011-04-03 07:44:56  jost
@@ -540,6 +546,11 @@ public class Abrechnung
             lastschrift.setKonto(Long.parseLong(m.getKonto()));
             lastschrift.addZahlungspflichtigen(getZahlungspflichtigen(m));
             lastschrift.addVerwendungszweck(z.getBuchungstext());
+            if (z.getBuchungstext2() != null
+                && z.getBuchungstext2().length() > 0)
+            {
+              lastschrift.addVerwendungszweck(z.getBuchungstext2());
+            }
             lastschrift.addVerwendungszweck(getVerwendungszweck2(m));
             lastschriften.add(lastschrift);
           }
@@ -572,7 +583,8 @@ public class Abrechnung
         }
         if (Einstellungen.getEinstellung().getMitgliedskonto())
         {
-          writeMitgliedskonto(m, new Date(), z.getBuchungstext(), "",
+          writeMitgliedskonto(m, new Date(), z.getBuchungstext(),
+              z.getBuchungstext2() != null ? z.getBuchungstext2() : "",
               z.getBetrag(), abrl, m.getZahlungsweg() == Zahlungsweg.ABBUCHUNG,
               konto, null);
         }

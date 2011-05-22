@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/ZusatzbetragImpl.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/02/12 09:43:37 $
+ * $Revision: 1.8 $
+ * $Date: 2011/05/22 08:36:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragImpl.java,v $
- * Revision 1.7  2011/02/12 09:43:37  jost
+ * Revision 1.8  2011/05/22 08:36:12  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.7  2011-02-12 09:43:37  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.6  2010-11-25 19:34:04  jost
@@ -197,6 +200,16 @@ public class ZusatzbetragImpl extends AbstractDBObject implements Zusatzbetrag
   public void setBuchungstext(String buchungstext) throws RemoteException
   {
     setAttribute("buchungstext", buchungstext);
+  }
+
+  public String getBuchungstext2() throws RemoteException
+  {
+    return (String) getAttribute("buchungstext2");
+  }
+
+  public void setBuchungstext2(String buchungstext2) throws RemoteException
+  {
+    setAttribute("buchungstext2", buchungstext2);
   }
 
   public double getBetrag() throws RemoteException

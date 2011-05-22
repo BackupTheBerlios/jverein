@@ -1,7 +1,7 @@
 /**********************************************************************
 ei * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/PersonalbogenAction.java,v $
- * $Revision: 1.14 $
- * $Date: 2011/05/20 12:59:19 $
+ * $Revision: 1.15 $
+ * $Date: 2011/05/22 08:33:02 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@ ei * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jve
  * heiner@jverein.de
  * www.jverein.de
  * $Log: PersonalbogenAction.java,v $
- * Revision 1.14  2011/05/20 12:59:19  jost
+ * Revision 1.15  2011/05/22 08:33:02  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.14  2011-05-20 12:59:19  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.13  2011-04-23 06:55:56  jost
@@ -429,7 +432,11 @@ public class PersonalbogenAction implements Action
         rpt.addColumn(z.getAusfuehrung(), Element.ALIGN_LEFT);
         rpt.addColumn(z.getIntervallText(), Element.ALIGN_LEFT);
         rpt.addColumn(z.getEndedatum(), Element.ALIGN_LEFT);
-        rpt.addColumn(z.getBuchungstext(), Element.ALIGN_LEFT);
+        rpt.addColumn(
+            z.getBuchungstext()
+                + (z.getBuchungstext2() != null
+                    && z.getBuchungstext2().length() > 0 ? "\n"
+                    + z.getBuchungstext2() : ""), Element.ALIGN_LEFT);
         rpt.addColumn(z.getBetrag());
       }
     }

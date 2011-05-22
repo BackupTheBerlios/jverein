@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetragView.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/04/07 19:35:47 $
+ * $Revision: 1.12 $
+ * $Date: 2011/05/22 08:34:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragView.java,v $
- * Revision 1.11  2011/04/07 19:35:47  jost
+ * Revision 1.12  2011/05/22 08:34:46  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.11  2011-04-07 19:35:47  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.10  2011-01-15 09:46:48  jost
@@ -89,8 +92,10 @@ public class ZusatzbetragView extends AbstractView
         control.getIntervall());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Endedatum"),
         control.getEndedatum());
-    group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungstext"),
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungstext 1"),
         control.getBuchungstext());
+    group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungstext 2"),
+        control.getBuchungstext2());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"),
         control.getBetrag());
 

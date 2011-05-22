@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2011/04/03 14:34:01 $
+ * $Revision: 1.15 $
+ * $Date: 2011/05/22 08:33:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
- * Revision 1.14  2011/04/03 14:34:01  jost
+ * Revision 1.15  2011/05/22 08:33:54  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.14  2011-04-03 14:34:01  jost
  * Bugfix Ausführungsdatum
  *
  * Revision 1.13  2011-03-31 09:55:35  jost
@@ -149,6 +152,8 @@ public class ZusatzbetragControl extends AbstractControl
 
   private TextInput buchungstext;
 
+  private TextInput buchungstext2;
+
   private DecimalInput betrag;
 
   private Zusatzbetrag zuab;
@@ -219,6 +224,17 @@ public class ZusatzbetragControl extends AbstractControl
     buchungstext.setMandatory(true);
     buchungstext.setValidChars(HBCIProperties.HBCI_DTAUS_VALIDCHARS);
     return buchungstext;
+  }
+
+  public TextInput getBuchungstext2() throws RemoteException
+  {
+    if (buchungstext2 != null)
+    {
+      return buchungstext2;
+    }
+    buchungstext2 = new TextInput(getZusatzbetrag().getBuchungstext2(), 27);
+    buchungstext2.setValidChars(HBCIProperties.HBCI_DTAUS_VALIDCHARS);
+    return buchungstext2;
   }
 
   public DecimalInput getBetrag() throws RemoteException
@@ -396,6 +412,7 @@ public class ZusatzbetragControl extends AbstractControl
       z.setIntervall(iz.getKey());
       z.setEndedatum((Date) getEndedatum().getValue());
       z.setBuchungstext((String) getBuchungstext().getValue());
+      z.setBuchungstext2((String) getBuchungstext2().getValue());
       Double d = (Double) getBetrag().getValue();
       z.setBetrag(d.doubleValue());
       z.store();
@@ -452,7 +469,8 @@ public class ZusatzbetragControl extends AbstractControl
       zusatzbetraegeList.addColumn("Intervall", "intervalltext");
       zusatzbetraegeList.addColumn("Endedatum", "endedatum", new DateFormatter(
           new JVDateFormatTTMMJJJJ()));
-      zusatzbetraegeList.addColumn("Buchungstext", "buchungstext");
+      zusatzbetraegeList.addColumn("Buchungstext 1", "buchungstext");
+      zusatzbetraegeList.addColumn("Buchungstext 2", "buchungstext2");
       zusatzbetraegeList.addColumn("Betrag", "betrag", new CurrencyFormatter(
           "", Einstellungen.DECIMALFORMAT));
       zusatzbetraegeList.addColumn("aktiv", "aktiv", new JaNeinFormatter());
@@ -614,7 +632,11 @@ public class ZusatzbetragControl extends AbstractControl
             reporter.addColumn(z.getAusfuehrung(), Element.ALIGN_LEFT);
             reporter.addColumn(z.getIntervallText(), Element.ALIGN_LEFT);
             reporter.addColumn(z.getEndedatum(), Element.ALIGN_LEFT);
-            reporter.addColumn(z.getBuchungstext(), Element.ALIGN_LEFT);
+            reporter.addColumn(
+                z.getBuchungstext()
+                    + (z.getBuchungstext2() != null
+                        && z.getBuchungstext2().length() > 0 ? "\n"
+                        + z.getBuchungstext() : ""), Element.ALIGN_LEFT);
             reporter.addColumn(z.getBetrag());
             reporter.setNextRecord();
           }
