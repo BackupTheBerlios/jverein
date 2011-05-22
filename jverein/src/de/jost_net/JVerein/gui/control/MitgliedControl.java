@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.115 $
- * $Date: 2011/05/20 12:59:48 $
+ * $Revision: 1.116 $
+ * $Date: 2011/05/22 07:40:03 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.115  2011/05/20 12:59:48  jost
+ * Revision 1.116  2011/05/22 07:40:03  jost
+ * CSV-Export überarbeitet. Neue Spaltennamen. Zusätzliche Spalten.
+ *
+ * Revision 1.115  2011-05-20 12:59:48  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.114  2011-05-15 10:22:55  jost
@@ -399,6 +402,7 @@ import de.jost_net.JVerein.gui.menu.ZusatzbetraegeMenu;
 import de.jost_net.JVerein.gui.parts.Familienverband;
 import de.jost_net.JVerein.io.Jubilaeenliste;
 import de.jost_net.JVerein.io.MitgliedAuswertungCSV;
+import de.jost_net.JVerein.io.MitgliedAuswertungCSValt;
 import de.jost_net.JVerein.io.MitgliedAuswertungPDF;
 import de.jost_net.JVerein.io.MitgliederStatistik;
 import de.jost_net.JVerein.keys.ArtBeitragsart;
@@ -596,14 +600,9 @@ public class MitgliedControl extends AbstractControl
   // Liste der Lehrgänge
   private TablePart lehrgaengeList;
 
-  // Liste der Einstellungen
-  private TablePart auswertungeinstellungenlist;
-
   private TablePart familienangehoerige;
 
   private ImageInput foto;
-
-  private TextInput auswertungname;
 
   private Settings settings = null;
 
@@ -3131,7 +3130,14 @@ public class MitgliedControl extends AbstractControl
       {
         try
         {
-          new MitgliedAuswertungCSV(list, file, monitor);
+          if (settings.getBoolean("auswertung.csv.kompatibilitaet", false))
+          {
+            new MitgliedAuswertungCSValt(list, file, monitor);
+          }
+          else
+          {
+            new MitgliedAuswertungCSV(list, file, monitor);
+          }
           monitor.setPercentComplete(100);
           monitor.setStatus(ProgressMonitor.STATUS_DONE);
           GUI.getStatusBar().setSuccessText("Auswertung gestartet");
@@ -3326,10 +3332,5 @@ public class MitgliedControl extends AbstractControl
         e.printStackTrace();
       }
     }
-  }
-
-  public void setAuswertungEinstellungenListSetNull()
-  {
-    auswertungeinstellungenlist = null;
   }
 }
