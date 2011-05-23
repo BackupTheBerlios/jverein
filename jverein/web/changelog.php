@@ -99,6 +99,7 @@
           <hr>
           <li>Die Änderungen ab hier wurden nach Upload der Entwicklerversion 295 vorgenommen.</li>
           <li>Buchungstext2 für Zusatzbeträge.</li>
+          <li>Jahressaldo: Bugfix abweichendes Geschäftsjahr.</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -622,7 +623,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.150  2011/05/22 08:47:20  jost
+    Revision 1.151  2011/05/23 16:43:14  jost
+    Bugfix abweichendes Geschäftsjahr
+
+    Revision 1.150  2011-05-22 08:47:20  jost
     *** empty log message ***
 
     Revision 1.149  2011-05-22 07:44:53  jost

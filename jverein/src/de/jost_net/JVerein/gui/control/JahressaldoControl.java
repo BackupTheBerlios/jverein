@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/JahressaldoControl.java,v $
- * $Revision: 1.12 $
- * $Date: 2011/01/15 09:46:49 $
+ * $Revision: 1.13 $
+ * $Date: 2011/05/23 16:41:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JahressaldoControl.java,v $
- * Revision 1.12  2011/01/15 09:46:49  jost
+ * Revision 1.13  2011/05/23 16:41:35  jost
+ * Bugfix abweichendes Geschäftsjahr
+ *
+ * Revision 1.12  2011-01-15 09:46:49  jost
  * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
  *
  * Revision 1.11  2010-10-15 09:58:26  jost
@@ -97,7 +100,8 @@ public class JahressaldoControl extends AbstractControl
     settings.setStoreWhenRead(true);
   }
 
-  public SelectInput getSuchJahr() throws RemoteException, ApplicationException
+  public SelectInput getSuchJahr() throws RemoteException,
+      ApplicationException, ParseException
   {
     if (suchjahr != null)
     {
@@ -110,7 +114,7 @@ public class JahressaldoControl extends AbstractControl
     if (list.hasNext())
     {
       b = (Buchung) list.next();
-      von.setTime(b.getDatum());
+      von.setTime(new Geschaeftsjahr(b.getDatum()).getBeginnGeschaeftsjahr());
     }
     else
     {
@@ -162,8 +166,8 @@ public class JahressaldoControl extends AbstractControl
       }
       else
       {
-        saldoList.setGeschaeftsjahr(new Geschaeftsjahr(
-            (Integer) getSuchJahr().getValue()));
+        saldoList.setGeschaeftsjahr(new Geschaeftsjahr((Integer) getSuchJahr()
+            .getValue()));
         ArrayList<SaldoZeile> zeile = saldoList.getInfo();
         saldoList.removeAll();
         for (SaldoZeile sz : zeile)
@@ -200,8 +204,8 @@ public class JahressaldoControl extends AbstractControl
       {
         fd.setFilterPath(path);
       }
-      fd.setFileName(new Dateiname("jahressaldo",
-          Einstellungen.getEinstellung().getDateinamenmuster(), "PDF").get());
+      fd.setFileName(new Dateiname("jahressaldo", Einstellungen
+          .getEinstellung().getDateinamenmuster(), "PDF").get());
 
       final String s = fd.open();
 
