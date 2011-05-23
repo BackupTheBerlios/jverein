@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.25 $
- * $Date: 2011/04/24 09:31:01 $
+ * $Revision: 1.26 $
+ * $Date: 2011/05/23 17:15:14 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.25  2011/04/24 09:31:01  jost
+ * Revision 1.26  2011/05/23 17:15:14  jost
+ * Neu: Bei Überweisungen können Abbucher ausgeschlossen werden.
+ *
+ * Revision 1.25  2011-04-24 09:31:01  jost
  * Automatisierte Befüllung von Istbuchungen bei der Auswahl des Mitgliedskontos.
  *
  * Revision 1.24  2011-04-04 11:14:48  jost
@@ -138,6 +141,7 @@ import de.willuhn.jameica.gui.Part;
 import de.willuhn.jameica.gui.formatter.CurrencyFormatter;
 import de.willuhn.jameica.gui.formatter.DateFormatter;
 import de.willuhn.jameica.gui.formatter.TreeFormatter;
+import de.willuhn.jameica.gui.input.CheckboxInput;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.DecimalInput;
 import de.willuhn.jameica.gui.input.Input;
@@ -192,6 +196,8 @@ public class MitgliedskontoControl extends AbstractControl
   private DateInput vondatum = null;
 
   private DateInput bisdatum = null;
+
+  private CheckboxInput ohneabbucher = null;
 
   private TextInput suchname = null;
 
@@ -360,6 +366,16 @@ public class MitgliedskontoControl extends AbstractControl
     this.bisdatum.setText("Bitte Endedatum wählen");
     bisdatum.addListener(new FilterListener());
     return bisdatum;
+  }
+
+  public CheckboxInput getOhneAbbucher()
+  {
+    if (ohneabbucher != null)
+    {
+      return ohneabbucher;
+    }
+    ohneabbucher = new CheckboxInput(false);
+    return ohneabbucher;
   }
 
   public SelectInput getDifferenz()
@@ -798,6 +814,10 @@ public class MitgliedskontoControl extends AbstractControl
       {
         settings.setAttribute(datumverwendung + "datumbis", "");
       }
+      if ((Boolean) getOhneAbbucher().getValue())
+      {
+        it.addFilter("zahlungsweg <> ?", new Object[] { Zahlungsweg.ABBUCHUNG });
+      }
 
       Mitgliedskonto[] mk = new Mitgliedskonto[it.size()];
       int i = 0;
@@ -1001,8 +1021,15 @@ public class MitgliedskontoControl extends AbstractControl
     map.put(FormularfeldControl.HANDY, m.getHandy());
     map.put(FormularfeldControl.EMAIL, m.getEmail());
     map.put(FormularfeldControl.EINTRITT, m.getEintritt());
-    map.put(FormularfeldControl.BEITRAGSGRUPPE, m.getBeitragsgruppe()
-        .getBezeichnung());
+    try
+    {
+      map.put(FormularfeldControl.BEITRAGSGRUPPE, m.getBeitragsgruppe()
+          .getBezeichnung());
+    }
+    catch (NullPointerException e)
+    {
+      map.put(FormularfeldControl.BEITRAGSGRUPPE, "");
+    }
     map.put(FormularfeldControl.AUSTRITT, m.getAustritt());
     map.put(FormularfeldControl.KUENDIGUNG, m.getKuendigung());
     String zahlungsweg = "";

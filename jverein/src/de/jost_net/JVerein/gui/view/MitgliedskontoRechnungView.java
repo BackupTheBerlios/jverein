@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoRechnungView.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/04/07 19:35:47 $
+ * $Revision: 1.9 $
+ * $Date: 2011/05/23 17:15:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoRechnungView.java,v $
- * Revision 1.8  2011/04/07 19:35:47  jost
+ * Revision 1.9  2011/05/23 17:15:39  jost
+ * Neu: Bei Überweisungen können Abbucher ausgeschlossen werden.
+ *
+ * Revision 1.8  2011-04-07 19:35:47  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.7  2011-01-15 09:46:48  jost
@@ -63,6 +66,8 @@ public class MitgliedskontoRechnungView extends AbstractView
           control.getVondatum(MitgliedskontoControl.DATUM_RECHNUNG));
       group.addLabelPair(JVereinPlugin.getI18n().tr("bis Datum"),
           control.getBisdatum(MitgliedskontoControl.DATUM_RECHNUNG));
+      group.addLabelPair(JVereinPlugin.getI18n().tr("ohne Abbucher"),
+          control.getOhneAbbucher());
     }
 
     group.addLabelPair(JVereinPlugin.getI18n().tr("Formular"),
