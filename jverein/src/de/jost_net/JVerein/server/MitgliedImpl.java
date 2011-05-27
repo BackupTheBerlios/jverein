@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.47 $
- * $Date: 2011/05/22 07:41:06 $
+ * $Revision: 1.48 $
+ * $Date: 2011/05/27 18:48:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.47  2011/05/22 07:41:06  jost
+ * Revision 1.48  2011/05/27 18:48:29  jost
+ * Vereinheitlichung Variable
+ *
+ * Revision 1.47  2011-05-22 07:41:06  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.46  2011-05-20 13:01:41  jost
@@ -163,6 +166,7 @@ import java.util.Map;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.Variable.MitgliedVar;
+import de.jost_net.JVerein.keys.ArtBeitragsart;
 import de.jost_net.JVerein.keys.Datentyp;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Adresstyp;
@@ -366,6 +370,13 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
                   .tr("Dieses Mitglied zahlt noch für andere Mitglieder. Zunächst Beitragsart der Angehörigen ändern!"));
         }
       }
+    }
+    if (getBeitragsgruppe() != null
+        && getBeitragsgruppe().getBeitragsArt() == ArtBeitragsart.FAMILIE_ANGEHOERIGER
+        && getZahlerID() == null)
+    {
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Bitte Zahler auswählen!"));
     }
   }
 
@@ -943,19 +954,24 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
         StringTool.toNotNullString(this.getAnrede()));
     map.put(MitgliedVar.AUSTRITT.getName(),
         Datum.formatDate(this.getAustritt()));
-    map.put(MitgliedVar.BEITRAGSGRUPPE_ARBEITSEINSATZ_BETRAG.getName(),
-        Einstellungen.DECIMALFORMAT.format(this.getBeitragsgruppe()
-            .getArbeitseinsatzBetrag()));
-    map.put(MitgliedVar.BEITRAGSGRUPPE_ARBEITSEINSATZ_STUNDEN.getName(),
-        Einstellungen.DECIMALFORMAT.format(this.getBeitragsgruppe()
-            .getArbeitseinsatzStunden()));
-    map.put(MitgliedVar.BEITRAGSGRUPPE_BETRAG.getName(),
-        Einstellungen.DECIMALFORMAT
-            .format(this.getBeitragsgruppe().getBetrag()));
+    map.put(
+        MitgliedVar.BEITRAGSGRUPPE_ARBEITSEINSATZ_BETRAG.getName(),
+        this.getBeitragsgruppe() != null ? Einstellungen.DECIMALFORMAT
+            .format(this.getBeitragsgruppe().getArbeitseinsatzBetrag()) : "");
+    map.put(
+        MitgliedVar.BEITRAGSGRUPPE_ARBEITSEINSATZ_STUNDEN.getName(),
+        this.getBeitragsgruppe() != null ? Einstellungen.DECIMALFORMAT
+            .format(this.getBeitragsgruppe().getArbeitseinsatzStunden()) : "");
+    map.put(
+        MitgliedVar.BEITRAGSGRUPPE_BETRAG.getName(),
+        this.getBeitragsgruppe() != null ? Einstellungen.DECIMALFORMAT
+            .format(this.getBeitragsgruppe().getBetrag()) : "");
     map.put(MitgliedVar.BEITRAGSGRUPPE_BEZEICHNUNG.getName(), this
-        .getBeitragsgruppe().getBezeichnung());
-    map.put(MitgliedVar.BEITRAGSGRUPPE_ID.getName(), this.getBeitragsgruppe()
-        .getID());
+        .getBeitragsgruppe() != null ? this.getBeitragsgruppe()
+        .getBezeichnung() : "");
+    map.put(MitgliedVar.BEITRAGSGRUPPE_ID.getName(),
+        this.getBeitragsgruppe() != null ? this.getBeitragsgruppe().getID()
+            : "");
     map.put(MitgliedVar.BLZ.getName(), this.getBlz());
     map.put(MitgliedVar.EINGABEDATUM.getName(),
         Datum.formatDate(this.getEingabedatum()));
@@ -1000,6 +1016,30 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     map.put(MitgliedVar.ZAHLUNGSRHYTMUS.getName(), this.getZahlungsrhytmus()
         + "");
     map.put(MitgliedVar.ZAHLUNGSWEG.getName(), this.getZahlungsweg() + "");
+
+    String zahlungsweg = "";
+    switch (this.getZahlungsweg())
+    {
+      case Zahlungsweg.ABBUCHUNG:
+      {
+        zahlungsweg = Einstellungen.getEinstellung().getRechnungTextAbbuchung();
+        zahlungsweg = zahlungsweg.replaceAll("\\$\\{Konto\\}", this.getKonto());
+        zahlungsweg = zahlungsweg.replaceAll("\\$\\{BLZ\\}", this.getBlz());
+        break;
+      }
+      case Zahlungsweg.BARZAHLUNG:
+      {
+        zahlungsweg = Einstellungen.getEinstellung().getRechnungTextBar();
+        break;
+      }
+      case Zahlungsweg.ÜBERWEISUNG:
+      {
+        zahlungsweg = Einstellungen.getEinstellung()
+            .getRechnungTextUeberweisung();
+        break;
+      }
+    }
+    map.put(MitgliedVar.ZAHLUNGSWEGTEXT.getName(), zahlungsweg);
 
     HashMap<String, String> format = new HashMap<String, String>();
     DBIterator itfd = Einstellungen.getDBService().createList(

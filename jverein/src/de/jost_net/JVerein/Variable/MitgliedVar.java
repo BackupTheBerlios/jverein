@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Variable/MitgliedVar.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/05/22 07:41:22 $
+ * $Revision: 1.3 $
+ * $Date: 2011/05/27 18:49:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * www.jverein.de
  * All rights reserved
  * $Log: MitgliedVar.java,v $
- * Revision 1.2  2011/05/22 07:41:22  jost
+ * Revision 1.3  2011/05/27 18:49:30  jost
+ * Vereinheitlichung Variable
+ *
+ * Revision 1.2  2011-05-22 07:41:22  jost
  * CSV-Export überarbeitet. Neue Spaltennamen. Zusätzliche Spalten.
  *
  * Revision 1.1  2011-05-06 15:04:04  jost
@@ -62,6 +65,7 @@ public enum MitgliedVar
   VORNAMENAME("mitglied_vornamename"), //
   ZAHLUNGSRHYTMUS("mitglied_zahlungsrhytmus"), //
   ZAHLUNGSWEG("mitglied_zahlungsweg"), //
+  ZAHLUNGSWEGTEXT("mitglied_zahlungsweg_text"), //
   ZAHLERID("mitglied_zahlerid");
 
   private String name;

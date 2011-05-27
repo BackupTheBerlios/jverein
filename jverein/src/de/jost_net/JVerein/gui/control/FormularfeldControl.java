@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularfeldControl.java,v $
- * $Revision: 1.14 $
- * $Date: 2011/05/06 14:48:38 $
+ * $Revision: 1.15 $
+ * $Date: 2011/05/27 18:45:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FormularfeldControl.java,v $
- * Revision 1.14  2011/05/06 14:48:38  jost
+ * Revision 1.15  2011/05/27 18:45:52  jost
+ * Vereinheitlichung Variable
+ *
+ * Revision 1.14  2011-05-06 14:48:38  jost
  * Neue Variablenmimik
  *
  * Revision 1.13  2011-04-23 06:56:07  jost
@@ -62,6 +65,8 @@ import com.lowagie.text.pdf.BaseFont;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.Variable.AllgemeineVar;
 import de.jost_net.JVerein.Variable.MitgliedVar;
+import de.jost_net.JVerein.Variable.MitgliedskontoVar;
+import de.jost_net.JVerein.Variable.SpendenbescheinigungVar;
 import de.jost_net.JVerein.gui.action.FormularfeldAction;
 import de.jost_net.JVerein.gui.menu.FormularfeldMenu;
 import de.jost_net.JVerein.keys.Formularart;
@@ -198,13 +203,14 @@ public class FormularfeldControl extends AbstractControl
     ArrayList<String> namen = new ArrayList<String>();
     if (formular.getArt() == Formularart.SPENDENBESCHEINIGUNG)
     {
-      namen.add(TAGESDATUM);
-      namen.add(EMPFAENGER);
-      namen.add("Bescheinigungsdatum");
-      namen.add("Betrag");
-      namen.add("Betrag in Worten");
-      namen.add("Spendedatum");
-      namen.add("ErsatzAufwendungen");
+      for (AllgemeineVar av : AllgemeineVar.values())
+      {
+        namen.add(av.getName());
+      }
+      for (SpendenbescheinigungVar spv : SpendenbescheinigungVar.values())
+      {
+        namen.add(spv.getName());
+      }
     }
     if (formular.getArt() == Formularart.FREIESFORMULAR)
     {
@@ -220,39 +226,19 @@ public class FormularfeldControl extends AbstractControl
     if (formular.getArt() == Formularart.RECHNUNG
         || formular.getArt() == Formularart.MAHNUNG)
     {
-      namen.add(TAGESDATUM);
-      namen.add(EMPFAENGER);
-      namen.add(ZAHLUNGSGRUND);
-      namen.add(ZAHLUNGSGRUND1);
-      namen.add(ZAHLUNGSGRUND2);
-      namen.add(BUCHUNGSDATUM);
-      namen.add(BETRAG);
-      namen.add(ZAHLUNGSWEG);
-      namen.add(ID);
-      namen.add(EXTERNEMITGLIEDSNUMMER);
-      namen.add(ANREDE);
-      namen.add(TITEL);
-      namen.add(NAME);
-      namen.add(VORNAME);
-      namen.add(ADRESSIERUNGSZUSATZ);
-      namen.add(STRASSE);
-      namen.add(PLZ);
-      namen.add(ORT);
-      namen.add("STAAT");
-      namen.add(ZAHLUNGSRHYTMUS);
-      namen.add(BLZ);
-      namen.add(KONTO);
-      namen.add(KONTOINHABER);
-      namen.add(GEBURTSDATUM);
-      namen.add(GESCHLECHT);
-      namen.add(TELEFONPRIVAT);
-      namen.add(TELEFONDIENSTLICH);
-      namen.add(HANDY);
-      namen.add(EMAIL);
-      namen.add(EINTRITT);
-      namen.add(BEITRAGSGRUPPE);
-      namen.add(AUSTRITT);
-      namen.add(KUENDIGUNG);
+      for (AllgemeineVar av : AllgemeineVar.values())
+      {
+        namen.add(av.getName());
+      }
+      for (MitgliedVar mv : MitgliedVar.values())
+      {
+        namen.add(mv.getName());
+      }
+      for (MitgliedskontoVar mkv : MitgliedskontoVar.values())
+      {
+        namen.add(mkv.getName());
+      }
+
     }
     name = new SelectInput(namen, getFormularfeld().getName());
     return name;
