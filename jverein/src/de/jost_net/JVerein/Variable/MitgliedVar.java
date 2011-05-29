@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Variable/MitgliedVar.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/05/27 18:49:30 $
+ * $Revision: 1.4 $
+ * $Date: 2011/05/29 12:43:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * www.jverein.de
  * All rights reserved
  * $Log: MitgliedVar.java,v $
- * Revision 1.3  2011/05/27 18:49:30  jost
+ * Revision 1.4  2011/05/29 12:43:51  jost
+ * Neue Variable "mitglied_anrede_foermlich"
+ *
+ * Revision 1.3  2011-05-27 18:49:30  jost
  * Vereinheitlichung Variable
  *
  * Revision 1.2  2011-05-22 07:41:22  jost
@@ -26,6 +29,7 @@ public enum MitgliedVar
   ADRESSIERUNGSZUSATZ("mitglied_adressierungszusatz"), //
   ADRESSTYP("mitglied_adresstyp"), //
   ANREDE("mitglied_anrede"), //
+  ANREDE_FOERMLICH("mitglied_andrede_foermlich"), //
   AUSTRITT("mitglied_austritt"), //
   BEITRAGSGRUPPE_ARBEITSEINSATZ_BETRAG("mitglied_arbeitseinsatz_betrag"), //
   BEITRAGSGRUPPE_ARBEITSEINSATZ_STUNDEN("mitglied_arbeitseinsatz_stunden"), //

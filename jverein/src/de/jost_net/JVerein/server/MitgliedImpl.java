@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.48 $
- * $Date: 2011/05/27 18:48:29 $
+ * $Revision: 1.49 $
+ * $Date: 2011/05/29 12:43:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.48  2011/05/27 18:48:29  jost
+ * Revision 1.49  2011/05/29 12:43:35  jost
+ * Neue Variable "mitglied_anrede_foermlich"
+ *
+ * Revision 1.48  2011-05-27 18:48:29  jost
  * Vereinheitlichung Variable
  *
  * Revision 1.47  2011-05-22 07:41:06  jost
@@ -952,6 +955,22 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
         StringTool.toNotNullString(this.getAdresstyp().getID()));
     map.put(MitgliedVar.ANREDE.getName(),
         StringTool.toNotNullString(this.getAnrede()));
+    String anredefoermlich = "Sehr geehrte";
+    if (getGeschlecht().equals("m"))
+    {
+      anredefoermlich += "r Herr " + getTitel()
+          + (getTitel().length() > 0 ? " " : "") + getName() + ",";
+    }
+    else if (getGeschlecht().equals("w"))
+    {
+      anredefoermlich += " Frau " + (getTitel().length() > 0 ? " " : "")
+          + getName() + ",";
+    }
+    else
+    {
+      anredefoermlich += " Damen und Herren,";
+    }
+    map.put(MitgliedVar.ANREDE_FOERMLICH.getName(), anredefoermlich);
     map.put(MitgliedVar.AUSTRITT.getName(),
         Datum.formatDate(this.getAustritt()));
     map.put(
@@ -990,7 +1009,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     map.put(MitgliedVar.INDIVIDUELLERBEITRAG.getName(),
         Einstellungen.DECIMALFORMAT.format(this.getIndividuellerBeitrag()));
     map.put(MitgliedVar.KONTO.getName(), this.getKonto());
-    map.put(MitgliedVar.KONTOINHABER.getName(), this.getKonto());
+    map.put(MitgliedVar.KONTOINHABER.getName(), this.getKontoinhaber());
     map.put(MitgliedVar.KUENDIGUNG.getName(),
         Datum.formatDate(this.getKuendigung()));
     map.put(MitgliedVar.LETZTEAENDERUNG.getName(),
