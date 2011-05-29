@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailControl.java,v $
- * $Revision: 1.20 $
- * $Date: 2011/05/16 17:47:34 $
+ * $Revision: 1.21 $
+ * $Date: 2011/05/29 12:41:18 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailControl.java,v $
- * Revision 1.20  2011/05/16 17:47:34  jost
+ * Revision 1.21  2011/05/29 12:41:18  jost
+ * Genererierung Variable zentralisiert.
+ *
+ * Revision 1.20  2011-05-16 17:47:34  jost
  * Encoding geändert.
  *
  * Revision 1.19  2011-05-06 14:49:22  jost
@@ -73,11 +76,11 @@
 package de.jost_net.JVerein.gui.control;
 
 import java.io.StringWriter;
-import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 import java.util.TreeSet;
 
 import org.apache.velocity.VelocityContext;
@@ -363,8 +366,8 @@ public class MailControl extends AbstractControl
             context.put("decimalformat", Einstellungen.DECIMALFORMAT);
             context.put("email", empf.getMailAdresse());
             context.put("empf", empf.getMitglied());
-            VarTools.add(context, empf.getMitglied().getMap(null));
-            VarTools.add(context, new AllgemeineMap().getMap(null));
+            Map<String, Object> map = getVariables(empf.getMitglied());
+            VarTools.add(context, map);
             StringWriter wbetr = new StringWriter();
             Velocity.evaluate(context, wbetr, "LOG", betr);
             StringWriter wtext = new StringWriter();
@@ -411,6 +414,14 @@ public class MailControl extends AbstractControl
       }
     };
     Application.getController().start(t);
+  }
+
+  public Map<String, Object> getVariables(Mitglied m)
+      throws RemoteException
+  {
+    Map<String, Object> map = m.getMap(null);
+    map = new AllgemeineMap().getMap(map);
+    return map;
   }
 
   public void handleStore(boolean mitversand)
