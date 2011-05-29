@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MailDetailView.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/04/07 19:34:53 $
+ * $Revision: 1.10 $
+ * $Date: 2011/05/29 12:42:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailDetailView.java,v $
- * Revision 1.9  2011/04/07 19:34:53  jost
+ * Revision 1.10  2011/05/29 12:42:48  jost
+ * Neu. Anzeige der Variablen.
+ *
+ * Revision 1.9  2011-04-07 19:34:53  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.8  2011-02-12 09:36:46  jost
@@ -189,6 +192,13 @@ public class MailDetailView extends AbstractView
     text.setLayoutData(new GridData(align));
   }
 
-  // TODO getHelp()
+
+  @Override
+  public String getHelp()
+  {
+    return "<form><p><span color=\"header\" font=\"header\">Mails</span></p>"
+    +"<p><b>TIPP! </b>Mit einem Rechtsklick auf eine Mail-Adresse können alle Variable angezeigt werden.</p>"
+        + "</form>";
+  }
 
 }
