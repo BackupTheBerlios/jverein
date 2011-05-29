@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.49 $
- * $Date: 2011/05/29 12:43:35 $
+ * $Revision: 1.50 $
+ * $Date: 2011/05/29 12:51:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.49  2011/05/29 12:43:35  jost
+ * Revision 1.50  2011/05/29 12:51:13  jost
+ * Neue Variable "mitglied_anrede_du"
+ *
+ * Revision 1.49  2011-05-29 12:43:35  jost
  * Neue Variable "mitglied_anrede_foermlich"
  *
  * Revision 1.48  2011-05-27 18:48:29  jost
@@ -971,6 +974,13 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       anredefoermlich += " Damen und Herren,";
     }
     map.put(MitgliedVar.ANREDE_FOERMLICH.getName(), anredefoermlich);
+    String anrededu = "Hallo";
+    if (getGeschlecht().length() > 0)
+    {
+      anrededu += " " + getVorname()+",";
+    }
+    map.put(MitgliedVar.ANREDE_DU.getName(), anrededu);
+
     map.put(MitgliedVar.AUSTRITT.getName(),
         Datum.formatDate(this.getAustritt()));
     map.put(
