@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/ShowVariablesDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/05/29 12:41:36 $
+ * $Revision: 1.2 $
+ * $Date: 2011/05/30 20:01:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ShowVariablesDialog.java,v $
- * Revision 1.1  2011/05/29 12:41:36  jost
+ * Revision 1.2  2011/05/30 20:01:15  jost
+ * Variable in die Zwischenablage kopieren
+ *
+ * Revision 1.1  2011-05-29 12:41:36  jost
  * Neu. Anzeige der Variablen.
  *
  **********************************************************************/
@@ -17,8 +20,6 @@ package de.jost_net.JVerein.gui.dialogs;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -26,6 +27,7 @@ import java.util.Map.Entry;
 import org.eclipse.swt.widgets.Composite;
 
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.gui.menu.ShowVariablesMenu;
 import de.willuhn.datasource.GenericObject;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.dialogs.AbstractDialog;
@@ -73,6 +75,7 @@ public class ShowVariablesDialog extends AbstractDialog
     tab.addColumn("Name", "name");
     tab.addColumn("Wert", "wert");
     tab.setRememberOrder(true);
+    tab.setContextMenu(new ShowVariablesMenu(parent));
     tab.paint(parent);
     ButtonArea buttons = new ButtonArea(parent, 2);
     buttons.addButton(JVereinPlugin.getI18n().tr("OK"), new Action()
@@ -95,7 +98,7 @@ public class ShowVariablesDialog extends AbstractDialog
     return null;
   }
 
-  private class Var implements GenericObject
+  public class Var implements GenericObject
   {
     private String name;
 

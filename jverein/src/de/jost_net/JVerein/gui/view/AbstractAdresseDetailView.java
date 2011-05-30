@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/05/20 13:00:01 $
+ * $Revision: 1.6 $
+ * $Date: 2011/05/30 20:01:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.5  2011/05/20 13:00:01  jost
+ * Revision 1.6  2011/05/30 20:01:44  jost
+ * Variable in die Zwischenablage kopieren
+ *
+ * Revision 1.5  2011-05-20 13:00:01  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.4  2011-04-17 06:38:27  jost
@@ -221,7 +224,6 @@ import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.Input;
 import de.willuhn.jameica.gui.parts.Button;
-import de.willuhn.jameica.gui.parts.PanelButton;
 import de.willuhn.jameica.gui.util.ButtonArea;
 import de.willuhn.jameica.gui.util.Color;
 import de.willuhn.jameica.gui.util.ColumnLayout;
