@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/ZusatzfelderAuswahlDialog.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/04/20 19:42:33 $
+ * $Revision: 1.3 $
+ * $Date: 2011/06/06 19:17:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzfelderAuswahlDialog.java,v $
- * Revision 1.2  2011/04/20 19:42:33  jost
+ * Revision 1.3  2011/06/06 19:17:13  jost
+ * Kommentar entfernt
+ *
+ * Revision 1.2  2011-04-20 19:42:33  jost
  * Stringfelder mit LIKE abfragen
  *
  * Revision 1.1  2011-04-17 06:37:36  jost
@@ -52,14 +55,6 @@ public class ZusatzfelderAuswahlDialog extends AbstractDialog
 
   private Settings settings;
 
-  /**
-   * Eigenschaften oder Eigenschaftengruppen auswählen
-   * 
-   * @param modus
-   *          MODUS_EIGENSCHAFTEN oder MODUS_EIGENSCHAFTEN_UND_GRUPPEN
-   * @param defaults
-   *          Liste der Eigenschaften-IDs durch Komma separiert.
-   */
   public ZusatzfelderAuswahlDialog(Settings settings)
   {
     super(EigenschaftenAuswahlDialog.POSITION_CENTER);
