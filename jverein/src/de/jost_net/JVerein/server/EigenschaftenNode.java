@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenNode.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.5 $
+ * $Date: 2011/06/06 19:17:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNode.java,v $
- * Revision 1.4  2010/10/15 09:58:28  jost
+ * Revision 1.5  2011/06/06 19:17:42  jost
+ * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
+ *
+ * Revision 1.4  2010-10-15 09:58:28  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2009-12-12 16:27:04  jost
@@ -70,16 +73,17 @@ public class EigenschaftenNode implements GenericObjectNode
 
   public EigenschaftenNode(Mitglied mitglied) throws RemoteException
   {
-    this(mitglied, "");
+    this(mitglied, "", false);
   }
 
-  public EigenschaftenNode(String vorbelegung) throws RemoteException
-  {
-    this(null, vorbelegung);
-  }
-
-  private EigenschaftenNode(Mitglied mitglied, String vorbelegung)
+  public EigenschaftenNode(String vorbelegung, boolean ohnePflicht)
       throws RemoteException
+  {
+    this(null, vorbelegung, ohnePflicht);
+  }
+
+  private EigenschaftenNode(Mitglied mitglied, String vorbelegung,
+      boolean ohnePflicht) throws RemoteException
   {
     this.mitglied = mitglied;
     StringTokenizer stt = new StringTokenizer(vorbelegung, ",");
@@ -91,6 +95,10 @@ public class EigenschaftenNode implements GenericObjectNode
     nodetype = ROOT;
     DBIterator it = Einstellungen.getDBService().createList(
         EigenschaftGruppe.class);
+    if (ohnePflicht)
+    {
+      it.addFilter("(PFLICHT <> 'TRUE' OR PFLICHT IS NULL) AND (MAX1 <> 'TRUE' OR MAX1 IS NULL)");
+    }
     it.setOrder("order by bezeichnung");
     while (it.hasNext())
     {
@@ -110,7 +118,7 @@ public class EigenschaftenNode implements GenericObjectNode
     nodetype = EIGENSCHAFTGRUPPE;
     DBIterator it = Einstellungen.getDBService().createList(Eigenschaft.class);
     it.addFilter("eigenschaftgruppe = ?",
-        new Object[] { eigenschaftgruppe.getID()});
+        new Object[] { eigenschaftgruppe.getID() });
     it.setOrder("order by bezeichnung");
     while (it.hasNext())
     {
@@ -121,7 +129,7 @@ public class EigenschaftenNode implements GenericObjectNode
         DBIterator it2 = Einstellungen.getDBService().createList(
             Eigenschaften.class);
         it2.addFilter("mitglied = ? AND eigenschaft = ?", new Object[] {
-            mitglied.getID(), eigenschaft.getID()});
+            mitglied.getID(), eigenschaft.getID() });
         if (it2.hasNext())
         {
           eigenschaften = (Eigenschaften) it2.next();
@@ -153,7 +161,8 @@ public class EigenschaftenNode implements GenericObjectNode
     {
       return null;
     }
-    return PseudoIterator.fromArray(childrens.toArray(new GenericObject[childrens.size()]));
+    return PseudoIterator.fromArray(childrens
+        .toArray(new GenericObject[childrens.size()]));
   }
 
   public boolean removeChild(GenericObjectNode child)

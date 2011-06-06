@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MailEmpfaengerAuswahlDialog.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.5 $
+ * $Date: 2011/06/06 19:16:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailEmpfaengerAuswahlDialog.java,v $
- * Revision 1.4  2010/10/15 09:58:26  jost
+ * Revision 1.5  2011/06/06 19:16:52  jost
+ * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
+ *
+ * Revision 1.4  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2010-03-27 20:10:26  jost
@@ -77,7 +80,8 @@ public class MailEmpfaengerAuswahlDialog extends AbstractDialog
       {
         try
         {
-          EigenschaftenAuswahlDialog ead = new EigenschaftenAuswahlDialog(null);
+          EigenschaftenAuswahlDialog ead = new EigenschaftenAuswahlDialog(null,
+              false);
           ArrayList<Object> auswahl = (ArrayList<Object>) ead.open();
           for (Object o : auswahl)
           {
@@ -101,7 +105,7 @@ public class MailEmpfaengerAuswahlDialog extends AbstractDialog
     });
     b.addButton(JVereinPlugin.getI18n().tr("alle"), new Action()
     {
-      public void handleAction(Object context) 
+      public void handleAction(Object context)
       {
         try
         {
@@ -135,7 +139,7 @@ public class MailEmpfaengerAuswahlDialog extends AbstractDialog
     });
     b.addButton(JVereinPlugin.getI18n().tr("übernehmen"), new Action()
     {
-      public void handleAction(Object context) 
+      public void handleAction(Object context)
       {
         try
         {
