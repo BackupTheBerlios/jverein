@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Abrechnung.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/05/22 08:35:08 $
+ * $Revision: 1.10 $
+ * $Date: 2011/06/06 18:24:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,13 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnung.java,v $
- * Revision 1.8  2011/05/22 08:35:08  jost
+ * Revision 1.10  2011/06/06 18:24:34  jost
+ * Bugfix Textschlüssel bei Hibiscus-Buchungen.
+ *
+ * Revision 1.9  2011-05-22 08:39:27  jost
+ * Neu: Buchungstext2 für Zusatzbeträge
+ *
+ * Revision 1.8  2011-05-22 08:35:08  jost
  * Neu: Buchungstext2 für Zusatzbeträge
  *
  * Revision 1.7  2011-05-20 13:00:28  jost
@@ -229,6 +235,7 @@ import de.jost_net.OBanToo.Dtaus.DtausException;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.internal.action.Program;
+import de.willuhn.jameica.hbci.TextSchluessel;
 import de.willuhn.jameica.hbci.rmi.Lastschrift;
 import de.willuhn.jameica.hbci.rmi.SammelLastschrift;
 import de.willuhn.jameica.hbci.rmi.SammelTransferBuchung;
@@ -543,7 +550,8 @@ public class Abrechnung
             lastschrift.setKonto(Long.parseLong(m.getKonto()));
             lastschrift.addZahlungspflichtigen(getZahlungspflichtigen(m));
             lastschrift.addVerwendungszweck(z.getBuchungstext());
-            if (z.getBuchungstext2()!=null&&z.getBuchungstext2().length()>0)
+            if (z.getBuchungstext2() != null
+                && z.getBuchungstext2().length() > 0)
             {
               lastschrift.addVerwendungszweck(z.getBuchungstext2());
             }
@@ -579,7 +587,8 @@ public class Abrechnung
         }
         if (Einstellungen.getEinstellung().getMitgliedskonto())
         {
-          writeMitgliedskonto(m, new Date(), z.getBuchungstext(), "",
+          writeMitgliedskonto(m, new Date(), z.getBuchungstext(),
+              z.getBuchungstext2() != null ? z.getBuchungstext2() : "",
               z.getBetrag(), abrl, m.getZahlungsweg() == Zahlungsweg.ABBUCHUNG,
               konto, null);
         }
@@ -681,6 +690,7 @@ public class Abrechnung
           o.setGegenkontoName(c.getNameEmpfaenger());
           o.setGegenkontoBLZ(c.getBlzEndbeguenstigt() + "");
           o.setGegenkontoNummer(c.getKontonummer() + "");
+          o.setTextSchluessel(TextSchluessel.TS_EINZUG);
           o.store();
         }
         if (param.abbuchungsausgabe == Abrechnungsausgabe.HIBISCUS_SAMMELBUCHUNG)
@@ -702,6 +712,7 @@ public class Abrechnung
           o.setGegenkontoName(c.getNameEmpfaenger());
           o.setGegenkontoBLZ(c.getBlzEndbeguenstigt() + "");
           o.setGegenkontoNummer(c.getKontonummer() + "");
+          o.setTextSchluessel(TextSchluessel.TS_EINZUG);
           o.store();
         }
         c = parser.next();
