@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/BuchungSearchProvider.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/02/12 09:42:02 $
+ * $Revision: 1.4 $
+ * $Date: 2011/06/11 09:57:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungSearchProvider.java,v $
- * Revision 1.3  2011/02/12 09:42:02  jost
+ * Revision 1.4  2011/06/11 09:57:25  jost
+ * Korrekte Darstellung der Buchung in der globalen Suche.
+ *
+ * Revision 1.3  2011-02-12 09:42:02  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.2  2010-10-15 09:58:30  jost
@@ -94,7 +97,7 @@ public class BuchungSearchProvider implements SearchProvider
       {
         return b.getName() + ", " + b.getZweck() + ", " + b.getZweck2() + ", "
             + b.getKommentar() + ", " + JVereinPlugin.getI18n().tr("Konto")
-            + ": " + b.getKonto();
+            + ": " + b.getKonto().getNummer();
       }
       catch (RemoteException re)
       {
