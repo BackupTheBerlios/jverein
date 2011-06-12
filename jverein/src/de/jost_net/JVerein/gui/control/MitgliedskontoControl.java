@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.27 $
- * $Date: 2011/05/27 18:46:39 $
+ * $Revision: 1.28 $
+ * $Date: 2011/06/12 07:08:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.27  2011/05/27 18:46:39  jost
+ * Revision 1.28  2011/06/12 07:08:07  jost
+ * Spezialsuche bei Namen mit Namensvorsätzen (von, di, de ...)
+ *
+ * Revision 1.27  2011-05-27 18:46:39  jost
  * Vereinheitlichung Variable
  *
  * Revision 1.26  2011-05-23 17:15:14  jost
@@ -209,6 +212,8 @@ public class MitgliedskontoControl extends AbstractControl
 
   private SelectInput differenz = null;
 
+  private CheckboxInput spezialsuche = null;
+
   // private CheckboxInput offenePosten = null;
 
   private MitgliedskontoMessageConsumer mc = null;
@@ -382,6 +387,32 @@ public class MitgliedskontoControl extends AbstractControl
     return ohneabbucher;
   }
 
+  public CheckboxInput getSpezialSuche()
+  {
+    if (spezialsuche != null)
+    {
+      return spezialsuche;
+    }
+    spezialsuche = new CheckboxInput(false);
+    spezialsuche.setName("Spezial-Suche");
+    spezialsuche.addListener(new Listener()
+    {
+      public void handleEvent(Event event)
+      {
+        try
+        {
+          refreshMitgliedkonto2();
+        }
+        catch (RemoteException e)
+        {
+          Logger.error("Fehler", e);
+        }
+      }
+    });
+
+    return spezialsuche;
+  }
+
   public SelectInput getDifferenz()
   {
     if (differenz != null)
@@ -539,6 +570,42 @@ public class MitgliedskontoControl extends AbstractControl
       throws RemoteException
   {
     this.action = action;
+    GenericIterator mitglieder = getMitgliedIterator();
+    if (mitgliedskontoList2 == null)
+    {
+      mitgliedskontoList2 = new TablePart(mitglieder, action);
+      mitgliedskontoList2.addColumn("Name", "name");
+      mitgliedskontoList2.addColumn("Vorname", "vorname");
+      mitgliedskontoList2.setContextMenu(menu);
+      mitgliedskontoList2.setRememberColWidths(true);
+      mitgliedskontoList2.setRememberOrder(true);
+      mitgliedskontoList2.setMulti(true);
+      mitgliedskontoList2.setSummary(true);
+    }
+    else
+    {
+      mitgliedskontoList2.removeAll();
+      while (mitglieder.hasNext())
+      {
+        mitgliedskontoList2.addItem(mitglieder.next());
+      }
+    }
+    return mitgliedskontoList2;
+  }
+
+  private void refreshMitgliedkonto2() throws RemoteException
+  {
+    GenericIterator mitglieder = getMitgliedIterator();
+    mitgliedskontoList2.removeAll();
+    while (mitglieder.hasNext())
+    {
+      mitgliedskontoList2.addItem(mitglieder.next());
+    }
+  }
+
+  private GenericIterator getMitgliedIterator() throws RemoteException
+  {
+
     DBIterator mitglieder = Einstellungen.getDBService().createList(
         Mitglied.class);
     MitgliedUtils.setMitgliedOderSpender(mitglieder);
@@ -560,6 +627,10 @@ public class MitgliedskontoControl extends AbstractControl
         where
             .append("upper(name) like upper(?) or upper(vorname) like upper(?) ");
         String o = tok.nextToken();
+        if ((Boolean) getSpezialSuche().getValue())
+        {
+          o = "%" + o + "%";
+        }
         object.add(o);
         object.add(o);
       }
@@ -570,26 +641,7 @@ public class MitgliedskontoControl extends AbstractControl
       }
     }
     mitglieder.setOrder("order by name, vorname");
-    if (mitgliedskontoList2 == null)
-    {
-      mitgliedskontoList2 = new TablePart(mitglieder, action);
-      mitgliedskontoList2.addColumn("Name", "name");
-      mitgliedskontoList2.addColumn("Vorname", "vorname");
-      mitgliedskontoList2.setContextMenu(menu);
-      mitgliedskontoList2.setRememberColWidths(true);
-      mitgliedskontoList2.setRememberOrder(true);
-      mitgliedskontoList2.setMulti(true);
-      mitgliedskontoList2.setSummary(true);
-    }
-    else
-    {
-      mitgliedskontoList2.removeAll();
-      while (mitglieder.hasNext())
-      {
-        mitgliedskontoList2.addItem(mitglieder.next());
-      }
-    }
-    return mitgliedskontoList2;
+    return mitglieder;
   }
 
   private GenericIterator getMitgliedskontoIterator() throws RemoteException

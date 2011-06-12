@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MitgliedskontoAuswahlDialog.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/05/05 19:50:47 $
+ * $Revision: 1.9 $
+ * $Date: 2011/06/12 07:08:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoAuswahlDialog.java,v $
- * Revision 1.8  2011/05/05 19:50:47  jost
+ * Revision 1.9  2011/06/12 07:08:24  jost
+ * Spezialsuche bei Namen mit Namensvorsätzen (von, di, de ...)
+ *
+ * Revision 1.8  2011-05-05 19:50:47  jost
  * Bugfix Scrollbar
  *
  * Revision 1.7  2011-02-26 15:54:19  jost
@@ -126,6 +129,7 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
     mitgliedskontolist = control.getMitgliedskontoList(action, null);
     mitgliedskontolist.paint(tabNurIst.getComposite());
 
+    //
     TabGroup tabSollIst = new TabGroup(folder, "Soll u. Ist", true, 1);
     Container grSollIst = new SimpleContainer(tabSollIst.getComposite());
     grSollIst.addHeadline(JVereinPlugin.getI18n().tr(
@@ -139,9 +143,10 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
     grSollIst.addText(text, true);
     control.getSuchName2(true).setValue(buchung.getName().getValue());
     grSollIst.addLabelPair("Name", control.getSuchName2(false));
-    Action action2 = new Action()
-    {
+    grSollIst.addInput(control.getSpezialSuche());
 
+    final Action action2 = new Action()
+    {
       public void handleAction(Object context)
       {
         if (context == null || !(context instanceof Mitglied))
