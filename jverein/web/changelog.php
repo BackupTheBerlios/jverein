@@ -113,6 +113,7 @@
           <hr>
           <li>Die Änderungen ab hier wurden nach Upload der Entwicklerversion 299 vorgenommen.</li>
           <li>Korrekte Darstellung von Buchungen in der globalen Suche.</li>
+          <li>Buchung zum Mitgliedskonto zuordnen: Spezialsuche bei Namen mit Namensvorsätzen (von, di, de ...)</li>
     		</ul>
 	   	<li>Version 1.4.0 vom 10.11.2010</li>
     		<ul>
@@ -636,7 +637,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.158  2011/06/12 07:08:37  jost
+    Revision 1.159  2011/06/12 07:09:47  jost
+    *** empty log message ***
+
+    Revision 1.158  2011-06-12 07:08:37  jost
     *** empty log message ***
 
     Revision 1.157  2011-06-06 19:22:37  jost
