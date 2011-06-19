@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/ZusatzbetragView.java,v $
- * $Revision: 1.12 $
- * $Date: 2011/05/22 08:34:46 $
+ * $Revision: 1.13 $
+ * $Date: 2011/06/19 06:52:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragView.java,v $
- * Revision 1.12  2011/05/22 08:34:46  jost
+ * Revision 1.13  2011/06/19 06:52:28  jost
+ * Button zum Mitglied eingebaut.http://www.jverein.de/forum/viewtopic.php?t=583&p=2246#p2246
+ *
+ * Revision 1.12  2011-05-22 08:34:46  jost
  * Neu: Buchungstext2 für Zusatzbeträge
  *
  * Revision 1.11  2011-04-07 19:35:47  jost
@@ -65,12 +68,13 @@ package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
+import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.action.ZusatzbetraegeDeleteAction;
 import de.jost_net.JVerein.gui.control.ZusatzbetragControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.util.ButtonArea;
+import de.willuhn.jameica.gui.parts.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 
 public class ZusatzbetragView extends AbstractView
@@ -99,10 +103,12 @@ public class ZusatzbetragView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Betrag"),
         control.getBetrag());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 3);
+    ButtonArea buttons = new ButtonArea();
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.ZUSATZBETRAEGE, false,
         "help-browser.png");
+    buttons.addButton("Mitglied", new MitgliedDetailAction(), control
+        .getZusatzbetrag().getMitglied(), false, "system-users.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("löschen"),
         new ZusatzbetraegeDeleteAction(), control.getZusatzbetrag(), false,
         "user-trash.png");
@@ -114,6 +120,7 @@ public class ZusatzbetragView extends AbstractView
         control.handleStore();
       }
     }, null, true, "document-save.png");
+    buttons.paint(getParent());
   }
 
   // TODO getHelp()

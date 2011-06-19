@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/WiedervorlageView.java,v $
- *  * $Revision: 1.12 $
- * $Date: 2011/04/07 19:35:47 $
+ *  * $Revision: 1.13 $
+ * $Date: 2011/06/19 06:55:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: WiedervorlageView.java,v $
- * Revision 1.12  2011/04/07 19:35:47  jost
+ * Revision 1.13  2011/06/19 06:55:58  jost
+ * Button zum Mitglied eingebaut.http://www.jverein.de/forum/viewtopic.php?t=583&p=2246#p2246
+ *
+ * Revision 1.12  2011-04-07 19:35:47  jost
  * Neue Zurückbutton-Mimik aus Jameica
  *
  * Revision 1.11  2011-01-15 09:46:47  jost
@@ -50,11 +53,12 @@ package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
+import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.gui.control.WiedervorlageControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.GUI;
-import de.willuhn.jameica.gui.util.ButtonArea;
+import de.willuhn.jameica.gui.parts.ButtonArea;
 import de.willuhn.jameica.gui.util.LabelGroup;
 
 public class WiedervorlageView extends AbstractView
@@ -75,10 +79,12 @@ public class WiedervorlageView extends AbstractView
     group.addLabelPair(JVereinPlugin.getI18n().tr("Erledigung"),
         control.getErledigung());
 
-    ButtonArea buttons = new ButtonArea(getParent(), 2);
+    ButtonArea buttons = new ButtonArea();
     buttons.addButton(JVereinPlugin.getI18n().tr("Hilfe"),
         new DokumentationAction(), DokumentationUtil.WIEDERVORLAGE, false,
         "help-browser.png");
+    buttons.addButton("Mitglied", new MitgliedDetailAction(), control
+        .getWiedervorlage().getMitglied(), false, "system-users.png");
     buttons.addButton(JVereinPlugin.getI18n().tr("speichern"), new Action()
     {
 
@@ -87,6 +93,7 @@ public class WiedervorlageView extends AbstractView
         control.handleStore();
       }
     }, null, true, "document-save.png");
+    buttons.paint(getParent());
   }
 
   // TODO getHelp()
