@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/03/20 08:45:13 $
+ * $Revision: 1.18 $
+ * $Date: 2011/06/19 06:29:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BackupCreateAction.java,v $
- * Revision 1.17  2011/03/20 08:45:13  jost
+ * Revision 1.18  2011/06/19 06:29:26  jost
+ * Bugfix Reihenfolge
+ *
+ * Revision 1.17  2011-03-20 08:45:13  jost
  * Bugfix Diagnose-Backup
  *
  * Revision 1.16  2011-02-12 09:24:44  jost
@@ -74,10 +77,6 @@ import org.eclipse.swt.widgets.FileDialog;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
-import de.jost_net.JVerein.rmi.Mail;
-import de.jost_net.JVerein.rmi.MailEmpfaenger;
-import de.jost_net.JVerein.rmi.MailVorlage;
-import de.jost_net.JVerein.rmi.Mitgliedfoto;
 import de.jost_net.JVerein.server.AbrechnungslaufImpl;
 import de.jost_net.JVerein.server.AdresstypImpl;
 import de.jost_net.JVerein.server.AnfangsbestandImpl;
@@ -100,8 +99,12 @@ import de.jost_net.JVerein.server.KursteilnehmerImpl;
 import de.jost_net.JVerein.server.LehrgangImpl;
 import de.jost_net.JVerein.server.LehrgangsartImpl;
 import de.jost_net.JVerein.server.MailAnhangImpl;
+import de.jost_net.JVerein.server.MailEmpfaengerImpl;
+import de.jost_net.JVerein.server.MailImpl;
+import de.jost_net.JVerein.server.MailVorlageImpl;
 import de.jost_net.JVerein.server.MitgliedDokumentImpl;
 import de.jost_net.JVerein.server.MitgliedImpl;
+import de.jost_net.JVerein.server.MitgliedfotoImpl;
 import de.jost_net.JVerein.server.MitgliedskontoImpl;
 import de.jost_net.JVerein.server.SpendenbescheinigungImpl;
 import de.jost_net.JVerein.server.WiedervorlageImpl;
@@ -127,21 +130,43 @@ import de.willuhn.util.ProgressMonitor;
  */
 public class BackupCreateAction implements Action
 {
-
   // Die Versionstabelle wird nicht mit kopiert
-  Class<?>[] tab = { AdresstypImpl.class, EinstellungImpl.class,
-      AbrechnungslaufImpl.class, BeitragsgruppeImpl.class,
-      BuchungsklasseImpl.class, BuchungsartImpl.class, KontoImpl.class,
-      MitgliedImpl.class, MitgliedskontoImpl.class, ArbeitseinsatzImpl.class,
-      MitgliedDokumentImpl.class, Mitgliedfoto.class, FormularImpl.class,
-      FormularfeldImpl.class, SpendenbescheinigungImpl.class,
-      BuchungImpl.class, BuchungDokumentImpl.class, FelddefinitionImpl.class,
-      EigenschaftGruppeImpl.class, EigenschaftImpl.class,
-      EigenschaftenImpl.class, AnfangsbestandImpl.class,
-      JahresabschlussImpl.class, KursteilnehmerImpl.class,
-      WiedervorlageImpl.class, ZusatzbetragImpl.class, ZusatzfelderImpl.class,
-      LehrgangsartImpl.class, LehrgangImpl.class, Mail.class,
-      MailEmpfaenger.class, MailVorlage.class, MailAnhangImpl.class };
+
+  Class<?>[] tab = { //
+  AbrechnungslaufImpl.class,//
+      AdresstypImpl.class,//
+      KontoImpl.class,//
+      AnfangsbestandImpl.class,//
+      BuchungsklasseImpl.class,//
+      EigenschaftGruppeImpl.class,//
+      EinstellungImpl.class,//
+      FelddefinitionImpl.class,//
+      FormularImpl.class, //
+      FormularfeldImpl.class,//
+      JahresabschlussImpl.class,//
+      KursteilnehmerImpl.class,//
+      LehrgangsartImpl.class, //
+      MailImpl.class,//
+      MailAnhangImpl.class,//
+      MailVorlageImpl.class,//
+      BuchungsartImpl.class,//
+      EigenschaftImpl.class,//
+      BeitragsgruppeImpl.class,//
+      MitgliedImpl.class,//
+      ArbeitseinsatzImpl.class,//
+      MitgliedDokumentImpl.class,//
+      MitgliedfotoImpl.class,//
+      MitgliedskontoImpl.class, //
+      SpendenbescheinigungImpl.class,//
+      WiedervorlageImpl.class,//
+      ZusatzbetragImpl.class,//
+      ZusatzfelderImpl.class, //
+      BuchungImpl.class,//
+      BuchungDokumentImpl.class, //
+      EigenschaftenImpl.class,//
+      LehrgangImpl.class,//
+      MailEmpfaengerImpl.class,//
+  };
 
   /**
    * @see de.willuhn.jameica.gui.Action#handleAction(java.lang.Object)
