@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/05/30 20:01:44 $
+ * $Revision: 1.7 $
+ * $Date: 2011/06/19 06:30:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.6  2011/05/30 20:01:44  jost
+ * Revision 1.7  2011/06/19 06:30:06  jost
+ * McKOI ausgemustert.
+ *
+ * Revision 1.6  2011-05-30 20:01:44  jost
  * Variable in die Zwischenablage kopieren
  *
  * Revision 1.5  2011-05-20 13:00:01  jost
@@ -214,10 +217,7 @@ import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.gui.control.MitgliedskontoControl;
 import de.jost_net.JVerein.keys.Beitragsmodel;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
-import de.jost_net.JVerein.rmi.JVereinDBService;
 import de.jost_net.JVerein.rmi.MitgliedDokument;
-import de.jost_net.JVerein.server.DBSupportH2Impl;
-import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
 import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.Action;
@@ -373,10 +373,7 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       ButtonArea buttonswvl = new ButtonArea(tab6.getComposite(), 1);
       buttonswvl.addButton(control.getWiedervorlageNeu());
     }
-    if (isMitgliedDetail()
-        && !JVereinDBService.SETTINGS.getString("database.driver",
-            DBSupportH2Impl.class.getName()).equals(
-            DBSupportMcKoiImpl.class.getName()))
+    if (isMitgliedDetail())
     {
       TabGroup tab7 = new TabGroup(folder, JVereinPlugin.getI18n().tr(
           "Eigenschaften"));

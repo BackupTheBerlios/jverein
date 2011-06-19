@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.31 $
- * $Date: 2011/04/17 06:39:26 $
+ * $Revision: 1.32 $
+ * $Date: 2011/06/19 06:30:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliederSucheView.java,v $
- * Revision 1.31  2011/04/17 06:39:26  jost
+ * Revision 1.32  2011/06/19 06:30:46  jost
+ * McKOI ausgemustert.
+ *
+ * Revision 1.31  2011-04-17 06:39:26  jost
  * Sterbedatum durch Eintrittsdatum ersetzt.
  *
  * Revision 1.30  2011-01-29 19:31:24  jost
@@ -28,9 +31,6 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.action.MitgliedDetailAction;
 import de.jost_net.JVerein.rmi.Adresstyp;
-import de.jost_net.JVerein.rmi.JVereinDBService;
-import de.jost_net.JVerein.server.DBSupportH2Impl;
-import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
 import de.willuhn.jameica.gui.Action;
 import de.willuhn.jameica.gui.input.DateInput;
 import de.willuhn.jameica.gui.input.DialogInput;
@@ -75,15 +75,10 @@ public class MitgliederSucheView extends AbstractAdresseSucheView
       left.addLabelPair(JVereinPlugin.getI18n().tr("Externe Mitgliedsnummer"),
           control.getSuchExterneMitgliedsnummer());
     }
-    if (!JVereinDBService.SETTINGS.getString("database.driver",
-        DBSupportH2Impl.class.getName()).equals(
-        DBSupportMcKoiImpl.class.getName()))
-    {
-      DialogInput mitgleigenschaften = control.getEigenschaftenAuswahl();
-      mitgleigenschaften.addListener(new FilterListener());
-      left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"),
-          mitgleigenschaften);
-    }
+    DialogInput mitgleigenschaften = control.getEigenschaftenAuswahl();
+    mitgleigenschaften.addListener(new FilterListener());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Eigenschaften"),
+        mitgleigenschaften);
 
     SelectInput mitglbeitragsgruppe = control.getBeitragsgruppeAusw();
     mitglbeitragsgruppe.addListener(new FilterListener());

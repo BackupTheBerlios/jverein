@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.24 $
- * $Date: 2011/05/15 10:07:30 $
+ * $Revision: 1.25 $
+ * $Date: 2011/06/19 06:30:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.24  2011/05/15 10:07:30  jost
+ * Revision 1.25  2011/06/19 06:30:31  jost
+ * McKOI ausgemustert.
+ *
+ * Revision 1.24  2011-05-15 10:07:30  jost
  * Projekt "Speicherung Auswertungseinstellungen" eingestampft.
  *
  * Revision 1.23  2011-05-12 17:57:20  jost
@@ -88,9 +91,6 @@ import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
-import de.jost_net.JVerein.rmi.JVereinDBService;
-import de.jost_net.JVerein.server.DBSupportH2Impl;
-import de.jost_net.JVerein.server.DBSupportMcKoiImpl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.input.Input;
@@ -120,12 +120,8 @@ public class AuswertungMitgliedView extends AbstractView
     Input mitglstat = control.getMitgliedStatus();
     left.addInput(mitglstat);
 
-    if (!JVereinDBService.SETTINGS.getString("database.driver",
-        DBSupportH2Impl.class.getName()).equals(
-        DBSupportMcKoiImpl.class.getName()))
-    {
-      left.addInput(control.getEigenschaftenAuswahl());
-    }
+    left.addInput(control.getEigenschaftenAuswahl());
+
     if (Einstellungen.getEinstellung().hasZusatzfelder())
     {
       left.addInput(control.getZusatzfelderAuswahl());
