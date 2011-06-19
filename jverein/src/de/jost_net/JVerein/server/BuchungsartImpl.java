@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungsartImpl.java,v $
- * $Revision: 1.14 $
- * $Date: 2011/03/07 21:09:11 $
+ * $Revision: 1.15 $
+ * $Date: 2011/06/19 06:34:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartImpl.java,v $
- * Revision 1.14  2011/03/07 21:09:11  jost
+ * Revision 1.15  2011/06/19 06:34:05  jost
+ * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
+ *
+ * Revision 1.14  2011-03-07 21:09:11  jost
  * Neu:  Automatische Spendenbescheinigungen: Referenz zur Spendenbescheinigung aufgenommen.
  *
  * Revision 1.13  2011-02-15 20:55:45  jost
@@ -183,7 +186,7 @@ public class BuchungsartImpl extends AbstractDBObject implements Buchungsart
     setAttribute("buchungsklasse", buchungsklasse);
   }
 
-  public boolean getSpende() throws RemoteException
+  public Boolean getSpende() throws RemoteException
   {
     return Util.getBoolean(getAttribute("spende"));
   }

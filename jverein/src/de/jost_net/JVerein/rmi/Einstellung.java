@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.28 $
- * $Date: 2011/05/20 13:00:51 $
+ * $Revision: 1.29 $
+ * $Date: 2011/06/19 06:33:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.28  2011/05/20 13:00:51  jost
+ * Revision 1.29  2011/06/19 06:33:16  jost
+ * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
+ *
+ * Revision 1.28  2011-05-20 13:00:51  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.27  2011-04-17 06:40:19  jost
@@ -135,7 +138,7 @@ public interface Einstellung extends DBObject
 
   public void setBescheiddatum(Date bescheiddatum) throws RemoteException;
 
-  public boolean getVorlaeufig() throws RemoteException;
+  public Boolean getVorlaeufig() throws RemoteException;
 
   public void setVorlaeufig(Boolean vorlaeufig) throws RemoteException;
 
@@ -148,7 +151,7 @@ public interface Einstellung extends DBObject
   public void setBeguenstigterzweck(String beguenstigterzweck)
       throws RemoteException;
 
-  public boolean getMitgliedsbetraege() throws RemoteException;
+  public Boolean getMitgliedsbetraege() throws RemoteException;
 
   public void setMitgliedsbeitraege(Boolean mitgliedsbeitraege)
       throws RemoteException;
@@ -161,74 +164,74 @@ public interface Einstellung extends DBObject
 
   public void setKonto(String konto) throws RemoteException;
 
-  public boolean getGeburtsdatumPflicht() throws RemoteException;
+  public Boolean getGeburtsdatumPflicht() throws RemoteException;
 
   public void setGeburtsdatumPflicht(Boolean geburtsdatumpflicht)
       throws RemoteException;
 
-  public boolean getEintrittsdatumPflicht() throws RemoteException;
+  public Boolean getEintrittsdatumPflicht() throws RemoteException;
 
   public void setEintrittsdatumPflicht(Boolean eintrittsdatumpflicht)
       throws RemoteException;
 
-  public boolean getKommunikationsdaten() throws RemoteException;
+  public Boolean getKommunikationsdaten() throws RemoteException;
 
   public void setKommunikationsdaten(Boolean kommunikationsdaten)
       throws RemoteException;
 
-  public boolean getZusatzbetrag() throws RemoteException;
+  public Boolean getZusatzbetrag() throws RemoteException;
 
   public void setZusatzbetrag(Boolean zusatzbetrag) throws RemoteException;
 
-  public boolean getVermerke() throws RemoteException;
+  public Boolean getVermerke() throws RemoteException;
 
   public void setVermerke(Boolean vermerke) throws RemoteException;
 
-  public boolean getWiedervorlage() throws RemoteException;
+  public Boolean getWiedervorlage() throws RemoteException;
 
   public void setWiedervorlage(Boolean wiedervorlage) throws RemoteException;
 
-  public boolean getKursteilnehmer() throws RemoteException;
+  public Boolean getKursteilnehmer() throws RemoteException;
 
   public void setKursteilnehmer(Boolean kursteilnehmer) throws RemoteException;
 
-  public boolean getLehrgaenge() throws RemoteException;
+  public Boolean getLehrgaenge() throws RemoteException;
 
   public void setJuristischePersonen(Boolean juristischePersonen)
       throws RemoteException;
 
-  public boolean getJuristischePersonen() throws RemoteException;
+  public Boolean getJuristischePersonen() throws RemoteException;
 
   public void setMitgliedskonto(Boolean mitgliedskonto) throws RemoteException;
 
-  public boolean getMitgliedskonto() throws RemoteException;
+  public Boolean getMitgliedskonto() throws RemoteException;
 
   public void setMitgliedfoto(Boolean mitgliedfoto) throws RemoteException;
 
-  public boolean getMitgliedfoto() throws RemoteException;
+  public Boolean getMitgliedfoto() throws RemoteException;
 
   public void setZusatzadressen(Boolean zusatzadressen) throws RemoteException;
 
-  public boolean getZusatzadressen() throws RemoteException;
+  public Boolean getZusatzadressen() throws RemoteException;
 
   public void setAuslandsadressen(Boolean auslandsadressen)
       throws RemoteException;
 
-  public boolean getAuslandsadressen() throws RemoteException;
+  public Boolean getAuslandsadressen() throws RemoteException;
 
   public void setArbeitseinsatz(Boolean arbeitseinsatz) throws RemoteException;
 
-  public boolean getArbeitseinsatz() throws RemoteException;
+  public Boolean getArbeitseinsatz() throws RemoteException;
 
   public void setDokumentenspeicherung(Boolean dokumentenspeicherung)
       throws RemoteException;
 
-  public boolean getDokumentenspeicherung() throws RemoteException;
+  public Boolean getDokumentenspeicherung() throws RemoteException;
 
   public void setIndividuelleBeitraege(Boolean individuellebeitraege)
       throws RemoteException;
 
-  public boolean getIndividuelleBeitraege() throws RemoteException;
+  public Boolean getIndividuelleBeitraege() throws RemoteException;
 
   public void setRechnungTextAbbuchung(String rechnungtextabbuchung)
       throws RemoteException;
@@ -246,7 +249,7 @@ public interface Einstellung extends DBObject
 
   public void setLehrgaenge(Boolean lehrgaenge) throws RemoteException;
 
-  public boolean getExterneMitgliedsnummer() throws RemoteException;
+  public Boolean getExterneMitgliedsnummer() throws RemoteException;
 
   public void setExterneMitgliedsnummer(Boolean externemitgliedsnummer)
       throws RemoteException;

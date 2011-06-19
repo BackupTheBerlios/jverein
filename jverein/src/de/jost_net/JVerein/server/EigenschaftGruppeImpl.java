@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftGruppeImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/27 19:29:35 $
+ * $Revision: 1.6 $
+ * $Date: 2011/06/19 06:34:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftGruppeImpl.java,v $
- * Revision 1.5  2010/11/27 19:29:35  jost
+ * Revision 1.6  2011/06/19 06:34:40  jost
+ * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
+ *
+ * Revision 1.5  2010-11-27 19:29:35  jost
  * Optional: max. eine Eigenschaft auswählbar
  *
  * Revision 1.4  2010-11-13 09:29:39  jost
@@ -105,7 +108,7 @@ public class EigenschaftGruppeImpl extends AbstractDBObject implements
     setAttribute("bezeichnung", bezeichnung);
   }
 
-  public boolean getPflicht() throws RemoteException
+  public Boolean getPflicht() throws RemoteException
   {
     return Util.getBoolean(getAttribute("pflicht"));
   }
@@ -115,7 +118,7 @@ public class EigenschaftGruppeImpl extends AbstractDBObject implements
     setAttribute("pflicht", pflicht);
   }
 
-  public boolean getMax1() throws RemoteException
+  public Boolean getMax1() throws RemoteException
   {
     return Util.getBoolean(getAttribute("max1"));
   }

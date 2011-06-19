@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/SpendenbescheinigungImpl.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/03/13 13:50:49 $
+ * $Revision: 1.10 $
+ * $Date: 2011/06/19 06:36:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungImpl.java,v $
- * Revision 1.9  2011/03/13 13:50:49  jost
+ * Revision 1.10  2011/06/19 06:36:11  jost
+ * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
+ *
+ * Revision 1.9  2011-03-13 13:50:49  jost
  * Neu: Sachspenden.
  *
  * Revision 1.8  2011-03-07 21:09:50  jost
@@ -265,7 +268,7 @@ public class SpendenbescheinigungImpl extends AbstractDBObject implements
     setAttribute("formular", formular);
   }
 
-  public boolean getErsatzAufwendungen() throws RemoteException
+  public Boolean getErsatzAufwendungen() throws RemoteException
   {
     return Util.getBoolean(getAttribute("ersatzaufwendungen"));
   }
@@ -335,7 +338,7 @@ public class SpendenbescheinigungImpl extends AbstractDBObject implements
     }
   }
 
-  public boolean getUnterlagenWertermittlung() throws RemoteException
+  public Boolean getUnterlagenWertermittlung() throws RemoteException
   {
     return Util.getBoolean(getAttribute("unterlagenwertermittlung"));
   }

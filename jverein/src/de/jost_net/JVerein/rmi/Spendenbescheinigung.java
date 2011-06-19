@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Spendenbescheinigung.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/03/13 13:49:41 $
+ * $Revision: 1.5 $
+ * $Date: 2011/06/19 06:33:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spendenbescheinigung.java,v $
- * Revision 1.4  2011/03/13 13:49:41  jost
+ * Revision 1.5  2011/06/19 06:33:29  jost
+ * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
+ *
+ * Revision 1.4  2011-03-13 13:49:41  jost
  * Neu: Sachspenden.
  *
  * Revision 1.3  2011-03-07 21:08:24  jost
@@ -79,7 +82,7 @@ public interface Spendenbescheinigung extends DBObject
 
   public void setFormular(Formular formular) throws RemoteException;
 
-  public boolean getErsatzAufwendungen() throws RemoteException;
+  public Boolean getErsatzAufwendungen() throws RemoteException;
 
   public void setErsatzAufwendungen(Boolean ersatzaufwendungen)
       throws RemoteException;
@@ -101,7 +104,7 @@ public interface Spendenbescheinigung extends DBObject
 
   public void setHerkunftSpende(int herkunftspende) throws RemoteException;
 
-  public boolean getUnterlagenWertermittlung() throws RemoteException;
+  public Boolean getUnterlagenWertermittlung() throws RemoteException;
 
   public void setUnterlagenWertermittlung(Boolean unterlagenwertermittlung)
       throws RemoteException;

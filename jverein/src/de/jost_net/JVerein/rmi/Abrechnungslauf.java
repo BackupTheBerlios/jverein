@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Abrechnungslauf.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/07/25 18:45:35 $
+ * $Revision: 1.3 $
+ * $Date: 2011/06/19 06:32:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnungslauf.java,v $
- * Revision 1.2  2010/07/25 18:45:35  jost
+ * Revision 1.3  2011/06/19 06:32:37  jost
+ * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
+ *
+ * Revision 1.2  2010-07-25 18:45:35  jost
  * Neu: Mitgliedskonto
  *
  * Revision 1.1  2010/05/18 20:24:00  jost
@@ -50,15 +53,15 @@ public interface Abrechnungslauf extends DBObject
 
   public void setZahlungsgrund(String zahlungsgrund) throws RemoteException;
 
-  public boolean getZusatzbetraege() throws RemoteException;
+  public Boolean getZusatzbetraege() throws RemoteException;
 
   public void setZusatzbetraege(Boolean zusatzbetraege) throws RemoteException;
 
-  public boolean getKursteilnehmer() throws RemoteException;
+  public Boolean getKursteilnehmer() throws RemoteException;
 
   public void setKursteilnehmer(Boolean kursteilnehmer) throws RemoteException;
 
-  public boolean getDtausdruck() throws RemoteException;
+  public Boolean getDtausdruck() throws RemoteException;
 
   public void setDtausdruck(Boolean dtausdruck) throws RemoteException;
 

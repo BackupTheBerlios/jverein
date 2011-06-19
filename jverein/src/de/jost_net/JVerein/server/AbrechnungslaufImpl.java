@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AbrechnungslaufImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:42:14 $
+ * $Revision: 1.6 $
+ * $Date: 2011/06/19 06:33:48 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbrechnungslaufImpl.java,v $
- * Revision 1.5  2011/02/12 09:42:14  jost
+ * Revision 1.6  2011/06/19 06:33:48  jost
+ * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
+ *
+ * Revision 1.5  2011-02-12 09:42:14  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.4  2010-11-13 09:28:32  jost
@@ -156,7 +159,7 @@ public class AbrechnungslaufImpl extends AbstractDBObject implements
     setAttribute("zahlungsgrund", zahlungsgrund);
   }
 
-  public boolean getZusatzbetraege() throws RemoteException
+  public Boolean getZusatzbetraege() throws RemoteException
   {
     return Util.getBoolean(getAttribute("zusatzbetraege"));
   }
@@ -166,7 +169,7 @@ public class AbrechnungslaufImpl extends AbstractDBObject implements
     setAttribute("zusatzbetraege", zusatzbetraege);
   }
 
-  public boolean getKursteilnehmer() throws RemoteException
+  public Boolean getKursteilnehmer() throws RemoteException
   {
     return Util.getBoolean(getAttribute("kursteilnehmer"));
   }
@@ -176,7 +179,7 @@ public class AbrechnungslaufImpl extends AbstractDBObject implements
     setAttribute("kursteilnehmer", kursteilnehmer);
   }
 
-  public boolean getDtausdruck() throws RemoteException
+  public Boolean getDtausdruck() throws RemoteException
   {
     return Util.getBoolean(getAttribute("dtausdruck"));
   }
