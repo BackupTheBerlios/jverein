@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/DokumentControl.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/02/12 09:29:59 $
+ * $Revision: 1.4 $
+ * $Date: 2011/06/20 15:11:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentControl.java,v $
- * Revision 1.3  2011/02/12 09:29:59  jost
+ * Revision 1.4  2011/06/20 15:11:08  jost
+ * Überflüssiges throws entfernt.
+ *
+ * Revision 1.3  2011-02-12 09:29:59  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.2  2010-12-14 21:41:41  jost
@@ -148,7 +151,7 @@ public class DokumentControl extends AbstractControl
     neuButton = new Button("neu", new Action()
     {
 
-      public void handleAction(Object context) throws ApplicationException
+      public void handleAction(Object context)
       {
         GUI.startView(new DokumentView(verzeichnis), doc);
       }

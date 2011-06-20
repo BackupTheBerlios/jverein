@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ArbeitseinsatzControl.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/05/22 08:33:22 $
+ * $Revision: 1.10 $
+ * $Date: 2011/06/20 15:10:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzControl.java,v $
- * Revision 1.9  2011/05/22 08:33:22  jost
+ * Revision 1.10  2011/06/20 15:10:49  jost
+ * Überflüssiges throws entfernt.
+ *
+ * Revision 1.9  2011-05-22 08:33:22  jost
  * Neu: Buchungstext2 für Zusatzbeträge
  *
  * Revision 1.8  2011-02-12 09:28:58  jost
@@ -430,8 +433,7 @@ public class ArbeitseinsatzControl extends AbstractControl
 
   }
 
-  private void starteCSVAuswertung() throws RemoteException,
-      ApplicationException
+  private void starteCSVAuswertung() throws RemoteException
   {
     FileDialog fd = new FileDialog(GUI.getShell(), SWT.SAVE);
     fd.setText("Ausgabedatei wählen.");

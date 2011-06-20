@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.38 $
- * $Date: 2011/04/23 19:43:32 $
+ * $Revision: 1.39 $
+ * $Date: 2011/06/20 15:10:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.38  2011/04/23 19:43:32  jost
+ * Revision 1.39  2011/06/20 15:10:59  jost
+ * Überflüssiges throws entfernt.
+ *
+ * Revision 1.38  2011-04-23 19:43:32  jost
  * Alternative Sortierung des Buchungsjournals nach ID/Buchungsnummer
  *
  * Revision 1.37  2011-04-23 08:48:08  jost
@@ -391,7 +394,7 @@ public class BuchungsControl extends AbstractControl
     return datum;
   }
 
-  public TextInput getSuchtext() throws RemoteException
+  public TextInput getSuchtext()
   {
     if (suchtext != null)
     {

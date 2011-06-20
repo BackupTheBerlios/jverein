@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.118 $
- * $Date: 2011/06/06 19:16:22 $
+ * $Revision: 1.119 $
+ * $Date: 2011/06/20 15:11:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.118  2011/06/06 19:16:22  jost
+ * Revision 1.119  2011/06/20 15:11:22  jost
+ * Überflüssiges throws entfernt.
+ *
+ * Revision 1.118  2011-06-06 19:16:22  jost
  * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
  *
  * Revision 1.117  2011-05-22 08:33:36  jost
@@ -1273,7 +1276,7 @@ public class MitgliedControl extends AbstractControl
     return individuellerbeitrag;
   }
 
-  public TextInput getAuswertungUeberschrift() throws RemoteException
+  public TextInput getAuswertungUeberschrift()
   {
     if (auswertungUeberschrift != null)
     {
@@ -2147,7 +2150,7 @@ public class MitgliedControl extends AbstractControl
     return eigenschaftenabfrage;
   }
 
-  public DialogInput getZusatzfelderAuswahl() throws RemoteException
+  public DialogInput getZusatzfelderAuswahl()
   {
     if (zusatzfelderabfrage != null)
     {
