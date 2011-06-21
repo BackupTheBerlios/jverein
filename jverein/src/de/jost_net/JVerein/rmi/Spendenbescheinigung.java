@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Spendenbescheinigung.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/06/19 06:33:29 $
+ * $Revision: 1.6 $
+ * $Date: 2011/06/21 18:47:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Spendenbescheinigung.java,v $
- * Revision 1.5  2011/06/19 06:33:29  jost
+ * Revision 1.6  2011/06/21 18:47:12  jost
+ * Korrekte Anzeige mit Testdaten
+ *
+ * Revision 1.5  2011-06-19 06:33:29  jost
  * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
  *
  * Revision 1.4  2011-03-13 13:49:41  jost
@@ -29,6 +32,7 @@ package de.jost_net.JVerein.rmi;
 
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.Map;
 
 import de.willuhn.datasource.rmi.DBObject;
 
@@ -107,6 +111,9 @@ public interface Spendenbescheinigung extends DBObject
   public Boolean getUnterlagenWertermittlung() throws RemoteException;
 
   public void setUnterlagenWertermittlung(Boolean unterlagenwertermittlung)
+      throws RemoteException;
+
+  public Map<String, Object> getMap(Map<String, Object> inma)
       throws RemoteException;
 
 }
