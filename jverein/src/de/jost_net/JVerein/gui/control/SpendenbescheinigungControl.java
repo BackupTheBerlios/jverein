@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.22 $
- * $Date: 2011/06/21 18:46:57 $
+ * $Revision: 1.23 $
+ * $Date: 2011/06/22 20:53:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
- * Revision 1.22  2011/06/21 18:46:57  jost
+ * Revision 1.23  2011/06/22 20:53:11  jost
+ * *** empty log message ***
+ *
+ * Revision 1.22  2011-06-21 18:46:57  jost
  * Korrekte Anzeige mit Testdaten
  *
  * Revision 1.21  2011-05-27 18:47:02  jost
@@ -675,7 +678,7 @@ public class SpendenbescheinigungControl extends AbstractControl
     {
       String txt = "Wir sind wegen Förderung "
           + Einstellungen.getEinstellung().getBeguenstigterzweck()
-          + "durch vorläufige Bescheinigung des Finanzamtes"
+          + " durch vorläufige Bescheinigung des Finanzamtes "
           + Einstellungen.getEinstellung().getFinanzamt()
           + ", StNr. "
           + Einstellungen.getEinstellung().getSteuernummer()

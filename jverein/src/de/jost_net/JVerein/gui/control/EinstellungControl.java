@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.44 $
- * $Date: 2011/05/20 12:59:33 $
+ * $Revision: 1.45 $
+ * $Date: 2011/06/22 20:53:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.44  2011/05/20 12:59:33  jost
+ * Revision 1.45  2011/06/22 20:53:00  jost
+ * *** empty log message ***
+ *
+ * Revision 1.44  2011-05-20 12:59:33  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.43  2011-04-06 16:28:33  jost
@@ -174,6 +177,7 @@ import de.willuhn.util.ApplicationException;
 
 public class EinstellungControl extends AbstractControl
 {
+
   private Input name;
 
   private Input strasse;
@@ -344,8 +348,8 @@ public class EinstellungControl extends AbstractControl
     {
       return steuernummer;
     }
-    steuernummer = new TextInput(Einstellungen.getEinstellung()
-        .getSteuernummer(), 30);
+    steuernummer = new TextInput(
+        Einstellungen.getEinstellung().getSteuernummer(), 30);
     return steuernummer;
   }
 
@@ -355,8 +359,8 @@ public class EinstellungControl extends AbstractControl
     {
       return bescheiddatum;
     }
-    bescheiddatum = new DateInput(Einstellungen.getEinstellung()
-        .getBescheiddatum());
+    bescheiddatum = new DateInput(
+        Einstellungen.getEinstellung().getBescheiddatum());
     return bescheiddatum;
   }
 
@@ -366,8 +370,8 @@ public class EinstellungControl extends AbstractControl
     {
       return vorlaeufig;
     }
-    vorlaeufig = new CheckboxInput(Einstellungen.getEinstellung()
-        .getVorlaeufig());
+    vorlaeufig = new CheckboxInput(
+        Einstellungen.getEinstellung().getVorlaeufig());
     return vorlaeufig;
   }
 
@@ -377,8 +381,8 @@ public class EinstellungControl extends AbstractControl
     {
       return vorlaeufigab;
     }
-    vorlaeufigab = new DateInput(Einstellungen.getEinstellung()
-        .getBescheiddatum());
+    vorlaeufigab = new DateInput(
+        Einstellungen.getEinstellung().getVorlaeufigab());
     return vorlaeufigab;
   }
 
@@ -388,8 +392,8 @@ public class EinstellungControl extends AbstractControl
     {
       return beguenstigterzweck;
     }
-    beguenstigterzweck = new TextInput(Einstellungen.getEinstellung()
-        .getBeguenstigterzweck(), 30);
+    beguenstigterzweck = new TextInput(
+        Einstellungen.getEinstellung().getBeguenstigterzweck(), 30);
     return beguenstigterzweck;
   }
 
@@ -399,8 +403,8 @@ public class EinstellungControl extends AbstractControl
     {
       return mitgliedsbetraege;
     }
-    mitgliedsbetraege = new CheckboxInput(Einstellungen.getEinstellung()
-        .getMitgliedsbetraege());
+    mitgliedsbetraege = new CheckboxInput(
+        Einstellungen.getEinstellung().getMitgliedsbetraege());
     return mitgliedsbetraege;
   }
 
@@ -436,8 +440,8 @@ public class EinstellungControl extends AbstractControl
     {
       return geburtsdatumpflicht;
     }
-    geburtsdatumpflicht = new CheckboxInput(Einstellungen.getEinstellung()
-        .getGeburtsdatumPflicht());
+    geburtsdatumpflicht = new CheckboxInput(
+        Einstellungen.getEinstellung().getGeburtsdatumPflicht());
     return geburtsdatumpflicht;
   }
 
@@ -447,8 +451,8 @@ public class EinstellungControl extends AbstractControl
     {
       return eintrittsdatumpflicht;
     }
-    eintrittsdatumpflicht = new CheckboxInput(Einstellungen.getEinstellung()
-        .getEintrittsdatumPflicht());
+    eintrittsdatumpflicht = new CheckboxInput(
+        Einstellungen.getEinstellung().getEintrittsdatumPflicht());
     return eintrittsdatumpflicht;
   }
 
@@ -458,8 +462,8 @@ public class EinstellungControl extends AbstractControl
     {
       return kommunikationsdaten;
     }
-    kommunikationsdaten = new CheckboxInput(Einstellungen.getEinstellung()
-        .getKommunikationsdaten());
+    kommunikationsdaten = new CheckboxInput(
+        Einstellungen.getEinstellung().getKommunikationsdaten());
     return kommunikationsdaten;
   }
 
@@ -469,8 +473,8 @@ public class EinstellungControl extends AbstractControl
     {
       return zusatzbetrag;
     }
-    zusatzbetrag = new CheckboxInput(Einstellungen.getEinstellung()
-        .getZusatzbetrag());
+    zusatzbetrag = new CheckboxInput(
+        Einstellungen.getEinstellung().getZusatzbetrag());
     return zusatzbetrag;
   }
 
@@ -490,8 +494,8 @@ public class EinstellungControl extends AbstractControl
     {
       return wiedervorlage;
     }
-    wiedervorlage = new CheckboxInput(Einstellungen.getEinstellung()
-        .getWiedervorlage());
+    wiedervorlage = new CheckboxInput(
+        Einstellungen.getEinstellung().getWiedervorlage());
     return wiedervorlage;
   }
 
@@ -501,8 +505,8 @@ public class EinstellungControl extends AbstractControl
     {
       return kursteilnehmer;
     }
-    kursteilnehmer = new CheckboxInput(Einstellungen.getEinstellung()
-        .getKursteilnehmer());
+    kursteilnehmer = new CheckboxInput(
+        Einstellungen.getEinstellung().getKursteilnehmer());
     return kursteilnehmer;
   }
 
@@ -512,8 +516,8 @@ public class EinstellungControl extends AbstractControl
     {
       return lehrgaenge;
     }
-    lehrgaenge = new CheckboxInput(Einstellungen.getEinstellung()
-        .getLehrgaenge());
+    lehrgaenge = new CheckboxInput(
+        Einstellungen.getEinstellung().getLehrgaenge());
     return lehrgaenge;
   }
 
@@ -523,8 +527,8 @@ public class EinstellungControl extends AbstractControl
     {
       return juristischepersonen;
     }
-    juristischepersonen = new CheckboxInput(Einstellungen.getEinstellung()
-        .getJuristischePersonen());
+    juristischepersonen = new CheckboxInput(
+        Einstellungen.getEinstellung().getJuristischePersonen());
     return juristischepersonen;
   }
 
@@ -534,8 +538,8 @@ public class EinstellungControl extends AbstractControl
     {
       return mitgliedskonto;
     }
-    mitgliedskonto = new CheckboxInput(Einstellungen.getEinstellung()
-        .getMitgliedskonto());
+    mitgliedskonto = new CheckboxInput(
+        Einstellungen.getEinstellung().getMitgliedskonto());
     return mitgliedskonto;
   }
 
@@ -545,8 +549,8 @@ public class EinstellungControl extends AbstractControl
     {
       return mitgliedfoto;
     }
-    mitgliedfoto = new CheckboxInput(Einstellungen.getEinstellung()
-        .getMitgliedfoto());
+    mitgliedfoto = new CheckboxInput(
+        Einstellungen.getEinstellung().getMitgliedfoto());
     return mitgliedfoto;
   }
 
@@ -556,8 +560,8 @@ public class EinstellungControl extends AbstractControl
     {
       return zusatzadressen;
     }
-    zusatzadressen = new CheckboxInput(Einstellungen.getEinstellung()
-        .getZusatzadressen());
+    zusatzadressen = new CheckboxInput(
+        Einstellungen.getEinstellung().getZusatzadressen());
     return zusatzadressen;
   }
 
@@ -567,8 +571,8 @@ public class EinstellungControl extends AbstractControl
     {
       return auslandsadressen;
     }
-    auslandsadressen = new CheckboxInput(Einstellungen.getEinstellung()
-        .getAuslandsadressen());
+    auslandsadressen = new CheckboxInput(
+        Einstellungen.getEinstellung().getAuslandsadressen());
     return auslandsadressen;
   }
 
@@ -578,8 +582,8 @@ public class EinstellungControl extends AbstractControl
     {
       return arbeitseinsatz;
     }
-    arbeitseinsatz = new CheckboxInput(Einstellungen.getEinstellung()
-        .getArbeitseinsatz());
+    arbeitseinsatz = new CheckboxInput(
+        Einstellungen.getEinstellung().getArbeitseinsatz());
     return arbeitseinsatz;
   }
 
@@ -589,8 +593,8 @@ public class EinstellungControl extends AbstractControl
     {
       return dokumentenspeicherung;
     }
-    dokumentenspeicherung = new CheckboxInput(Einstellungen.getEinstellung()
-        .getDokumentenspeicherung());
+    dokumentenspeicherung = new CheckboxInput(
+        Einstellungen.getEinstellung().getDokumentenspeicherung());
     return dokumentenspeicherung;
   }
 
@@ -600,8 +604,8 @@ public class EinstellungControl extends AbstractControl
     {
       return individuellebeitraege;
     }
-    individuellebeitraege = new CheckboxInput(Einstellungen.getEinstellung()
-        .getIndividuelleBeitraege());
+    individuellebeitraege = new CheckboxInput(
+        Einstellungen.getEinstellung().getIndividuelleBeitraege());
     return individuellebeitraege;
   }
 
@@ -611,8 +615,8 @@ public class EinstellungControl extends AbstractControl
     {
       return rechnungtextabbuchung;
     }
-    rechnungtextabbuchung = new TextInput(Einstellungen.getEinstellung()
-        .getRechnungTextAbbuchung(), 100);
+    rechnungtextabbuchung = new TextInput(
+        Einstellungen.getEinstellung().getRechnungTextAbbuchung(), 100);
     return rechnungtextabbuchung;
   }
 
@@ -622,8 +626,8 @@ public class EinstellungControl extends AbstractControl
     {
       return rechnungtextueberweisung;
     }
-    rechnungtextueberweisung = new TextInput(Einstellungen.getEinstellung()
-        .getRechnungTextUeberweisung(), 100);
+    rechnungtextueberweisung = new TextInput(
+        Einstellungen.getEinstellung().getRechnungTextUeberweisung(), 100);
     return rechnungtextueberweisung;
   }
 
@@ -633,8 +637,8 @@ public class EinstellungControl extends AbstractControl
     {
       return rechnungtextbar;
     }
-    rechnungtextbar = new TextInput(Einstellungen.getEinstellung()
-        .getRechnungTextBar(), 100);
+    rechnungtextbar = new TextInput(
+        Einstellungen.getEinstellung().getRechnungTextBar(), 100);
     return rechnungtextbar;
   }
 
@@ -644,8 +648,8 @@ public class EinstellungControl extends AbstractControl
     {
       return externemitgliedsnummer;
     }
-    externemitgliedsnummer = new CheckboxInput(Einstellungen.getEinstellung()
-        .getExterneMitgliedsnummer());
+    externemitgliedsnummer = new CheckboxInput(
+        Einstellungen.getEinstellung().getExterneMitgliedsnummer());
     return externemitgliedsnummer;
   }
 
@@ -666,8 +670,8 @@ public class EinstellungControl extends AbstractControl
     {
       return dateinamenmuster;
     }
-    dateinamenmuster = new TextInput(Einstellungen.getEinstellung()
-        .getDateinamenmuster(), 30);
+    dateinamenmuster = new TextInput(
+        Einstellungen.getEinstellung().getDateinamenmuster(), 30);
     return dateinamenmuster;
   }
 
@@ -677,8 +681,8 @@ public class EinstellungControl extends AbstractControl
     {
       return beginngeschaeftsjahr;
     }
-    beginngeschaeftsjahr = new TextInput(Einstellungen.getEinstellung()
-        .getBeginnGeschaeftsjahr(), 6);
+    beginngeschaeftsjahr = new TextInput(
+        Einstellungen.getEinstellung().getBeginnGeschaeftsjahr(), 6);
     return beginngeschaeftsjahr;
   }
 
@@ -699,8 +703,8 @@ public class EinstellungControl extends AbstractControl
     {
       return smtp_port;
     }
-    smtp_port = new IntegerInput(new Integer(Einstellungen.getEinstellung()
-        .getSmtpPort()));
+    smtp_port = new IntegerInput(new Integer(
+        Einstellungen.getEinstellung().getSmtpPort()));
     return smtp_port;
   }
 
@@ -710,8 +714,8 @@ public class EinstellungControl extends AbstractControl
     {
       return smtp_auth_user;
     }
-    smtp_auth_user = new TextInput(Einstellungen.getEinstellung()
-        .getSmtpAuthUser(), 50);
+    smtp_auth_user = new TextInput(
+        Einstellungen.getEinstellung().getSmtpAuthUser(), 50);
     return smtp_auth_user;
   }
 
@@ -721,8 +725,8 @@ public class EinstellungControl extends AbstractControl
     {
       return smtp_auth_pwd;
     }
-    smtp_auth_pwd = new PasswordInput(Einstellungen.getEinstellung()
-        .getSmtpAuthPwd());
+    smtp_auth_pwd = new PasswordInput(
+        Einstellungen.getEinstellung().getSmtpAuthPwd());
     return smtp_auth_pwd;
   }
 
@@ -732,8 +736,8 @@ public class EinstellungControl extends AbstractControl
     {
       return smtp_from_address;
     }
-    smtp_from_address = new TextInput(Einstellungen.getEinstellung()
-        .getSmtpFromAddress(), 50);
+    smtp_from_address = new TextInput(
+        Einstellungen.getEinstellung().getSmtpFromAddress(), 50);
     return smtp_from_address;
   }
 
@@ -753,8 +757,8 @@ public class EinstellungControl extends AbstractControl
     {
       return smtp_starttls;
     }
-    smtp_starttls = new CheckboxInput(Einstellungen.getEinstellung()
-        .getSmtpStarttls());
+    smtp_starttls = new CheckboxInput(
+        Einstellungen.getEinstellung().getSmtpStarttls());
     return smtp_starttls;
   }
 
@@ -789,8 +793,8 @@ public class EinstellungControl extends AbstractControl
     {
       return altersgruppen;
     }
-    altersgruppen = new TextInput(Einstellungen.getEinstellung()
-        .getAltersgruppen(), 50);
+    altersgruppen = new TextInput(
+        Einstellungen.getEinstellung().getAltersgruppen(), 50);
     return altersgruppen;
   }
 
@@ -810,8 +814,8 @@ public class EinstellungControl extends AbstractControl
     {
       return altersjubilaeen;
     }
-    altersjubilaeen = new TextInput(Einstellungen.getEinstellung()
-        .getAltersjubilaeen(), 50);
+    altersjubilaeen = new TextInput(
+        Einstellungen.getEinstellung().getAltersjubilaeen(), 50);
     return altersjubilaeen;
   }
 
@@ -821,8 +825,8 @@ public class EinstellungControl extends AbstractControl
     {
       return delaytime;
     }
-    delaytime = new IntegerInput(Integer.valueOf(Einstellungen.getEinstellung()
-        .getDelaytime()));
+    delaytime = new IntegerInput(
+        Integer.valueOf(Einstellungen.getEinstellung().getDelaytime()));
     return delaytime;
   }
 
@@ -859,6 +863,7 @@ public class EinstellungControl extends AbstractControl
       e.setSteuernummer((String) getSteuernummer().getValue());
       e.setBescheiddatum((Date) getBescheiddatum().getValue());
       e.setVorlaeufig((Boolean) getVorlaeufig().getValue());
+      e.setVorlaeufigab((Date) getVorlaeufigab().getValue());
       e.setBeguenstigterzweck((String) getBeguenstigterzweck().getValue());
       e.setMitgliedsbeitraege((Boolean) getMitgliedsbetraege().getValue());
       e.setBlz((String) getBlz().getValue());
@@ -881,8 +886,7 @@ public class EinstellungControl extends AbstractControl
       e.setIndividuelleBeitraege((Boolean) individuellebeitraege.getValue());
       e.setRechnungTextAbbuchung((String) rechnungtextabbuchung.getValue());
       e.setRechnungTextAbbuchung((String) rechnungtextabbuchung.getValue());
-      e.setRechnungTextUeberweisung((String) rechnungtextueberweisung
-          .getValue());
+      e.setRechnungTextUeberweisung((String) rechnungtextueberweisung.getValue());
       e.setRechnungTextBar((String) rechnungtextbar.getValue());
       e.setExterneMitgliedsnummer((Boolean) externemitgliedsnummer.getValue());
       Beitragsmodel bm = (Beitragsmodel) beitragsmodel.getValue();
@@ -927,6 +931,7 @@ public class EinstellungControl extends AbstractControl
    */
   private class BLZListener implements Listener
   {
+
     public void handleEvent(Event event)
     {
       try
