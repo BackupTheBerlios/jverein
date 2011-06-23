@@ -1,6 +1,6 @@
 <? include ("frame.inc"); ?>
     <h1>Speicherung von Dokumenten</h1>
-	<p>ab Version 1.5 verfügbar</p>
+	<p>ab Version 2.0 verfügbar</p>
 	
 	<h2>Voraussetzungen</h2>
 	<p>Die Dokumentenarchivierung wird über den ArchiveService von Jameica realisiert. 
@@ -44,7 +44,10 @@
     
     <!-- 
     $Log: dokumente.php,v $
-    Revision 1.3  2011/01/08 15:59:28  jost
+    Revision 1.4  2011/06/23 05:53:41  jost
+    *** empty log message ***
+
+    Revision 1.3  2011-01-08 15:59:28  jost
     *** empty log message ***
 
     Revision 1.2  2010-12-17 19:07:31  jost

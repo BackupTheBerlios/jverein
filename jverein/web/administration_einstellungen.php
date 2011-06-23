@@ -1,7 +1,7 @@
 <? include ("frame.inc"); ?>
     <h1>Administration: Einstellungen</h1>
     <h3>Allgemein</h3>
-	  <p>Ab Version 1.5 werden die bisherigen Stammdaten in den allgemeinen Einstellungen gespeichert.</p>
+	  <p>Ab Version 2.0 werden die bisherigen Stammdaten in den allgemeinen Einstellungen gespeichert.</p>
     <img src='images/Einstellungenallgemein.png' class='screenshot'>
     <p>Der Name des Vereins und die Bankverbindung für die Abbuchung sind Pflichtangaben.</p>
 	  <p>Eine häufige Anfrage ist: Warum kann ich nicht den kompletten Vereinsnamen speichern? 
@@ -80,7 +80,10 @@
 	
 	<!-- 
     $Log: administration_einstellungen.php,v $
-    Revision 1.12  2011/01/09 14:32:23  jost
+    Revision 1.13  2011/06/23 05:53:26  jost
+    *** empty log message ***
+
+    Revision 1.12  2011-01-09 14:32:23  jost
     Stammdaten in die Einstellungen verschoben.
 
     Revision 1.11  2010-11-07 07:12:42  jost
