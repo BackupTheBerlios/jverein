@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.119 $
- * $Date: 2011/06/20 15:11:22 $
+ * $Revision: 1.120 $
+ * $Date: 2011/06/28 07:26:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.119  2011/06/20 15:11:22  jost
+ * Revision 1.120  2011/06/28 07:26:06  jost
+ * Bugfix SearchInput Name
+ *
+ * Revision 1.119  2011-06-20 15:11:22  jost
  * Überflüssiges throws entfernt.
  *
  * Revision 1.118  2011-06-06 19:16:22  jost
@@ -746,7 +749,7 @@ public class MitgliedControl extends AbstractControl
               return namen;
             }
           };
-          String sql = "select name from mitglied where name like ? and adresstyp = 1"
+          String sql = "select name from mitglied where name like ? "
               + "group by name order by name";
           return (List<?>) Einstellungen.getDBService().execute(sql,
               new Object[] { text }, rs);
