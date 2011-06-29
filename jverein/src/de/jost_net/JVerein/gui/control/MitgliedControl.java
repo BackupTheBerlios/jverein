@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.120 $
- * $Date: 2011/06/28 07:26:06 $
+ * $Revision: 1.121 $
+ * $Date: 2011/06/29 17:41:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.120  2011/06/28 07:26:06  jost
+ * Revision 1.121  2011/06/29 17:41:54  jost
+ * Korrekte Boolean-Abfrage
+ *
+ * Revision 1.120  2011-06-28 07:26:06  jost
  * Bugfix SearchInput Name
  *
  * Revision 1.119  2011-06-20 15:11:22  jost
@@ -2538,7 +2541,7 @@ public class MitgliedControl extends AbstractControl
         HashMap<String, Boolean> pflichtgruppen = new HashMap<String, Boolean>();
         DBIterator it = Einstellungen.getDBService().createList(
             EigenschaftGruppe.class);
-        it.addFilter("pflicht = ?", new Object[] { "TRUE" });
+        it.addFilter("pflicht = ?", new Object[] { Boolean.TRUE });
         while (it.hasNext())
         {
           EigenschaftGruppe eg = (EigenschaftGruppe) it.next();
@@ -2570,7 +2573,7 @@ public class MitgliedControl extends AbstractControl
         // Max eine Eigenschaft pro Gruppe
         HashMap<String, Boolean> max1gruppen = new HashMap<String, Boolean>();
         it = Einstellungen.getDBService().createList(EigenschaftGruppe.class);
-        it.addFilter("max1 = ?", new Object[] { "TRUE" });
+        it.addFilter("max1 = ?", new Object[] { Boolean.TRUE });
         while (it.hasNext())
         {
           EigenschaftGruppe eg = (EigenschaftGruppe) it.next();

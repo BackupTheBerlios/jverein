@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenNode.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/06/06 19:17:42 $
+ * $Revision: 1.6 $
+ * $Date: 2011/06/29 17:42:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenNode.java,v $
- * Revision 1.5  2011/06/06 19:17:42  jost
+ * Revision 1.6  2011/06/29 17:42:31  jost
+ * Korrekte Boolean-Abfrage
+ *
+ * Revision 1.5  2011-06-06 19:17:42  jost
  * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
  *
  * Revision 1.4  2010-10-15 09:58:28  jost
@@ -97,7 +100,7 @@ public class EigenschaftenNode implements GenericObjectNode
         EigenschaftGruppe.class);
     if (ohnePflicht)
     {
-      it.addFilter("(PFLICHT <> 'TRUE' OR PFLICHT IS NULL) AND (MAX1 <> 'TRUE' OR MAX1 IS NULL)");
+      it.addFilter("(PFLICHT <> true OR PFLICHT IS NULL) AND (MAX1 <> true OR MAX1 IS NULL)");
     }
     it.setOrder("order by bezeichnung");
     while (it.hasNext())

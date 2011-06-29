@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.29 $
- * $Date: 2011/05/21 08:10:53 $
+ * $Revision: 1.30 $
+ * $Date: 2011/06/29 17:42:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.29  2011/05/21 08:10:53  jost
+ * Revision 1.30  2011/06/29 17:42:15  jost
+ * Korrekte Boolean-Abfrage
+ *
+ * Revision 1.29  2011-05-21 08:10:53  jost
  * Bugfix Sortierung nach Namen, Vornamen
  *
  * Revision 1.28  2011-05-15 10:23:12  jost
@@ -230,7 +233,7 @@ public class MitgliedQuery
             {
               sql += "join zusatzfelder " + synonym + " on " + synonym
                   + ".mitglied = mitglied.id  and " + synonym
-                  + ".FELDJANEIN = 'TRUE' and " + synonym
+                  + ".FELDJANEIN = true and " + synonym
                   + ".felddefinition = ? ";
               bedingungen.add(definition);
               synonym++;
