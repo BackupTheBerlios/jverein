@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/XLastschriften.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/02/23 18:02:42 $
+ * $Revision: 1.3 $
+ * $Date: 2011/06/30 20:08:07 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: XLastschriften.java,v $
- * Revision 1.2  2011/02/23 18:02:42  jost
+ * Revision 1.3  2011/06/30 20:08:07  jost
+ * Rundungsfehler durch Einsatz von BigDecimal vermieden.
+ *
+ * Revision 1.2  2011-02-23 18:02:42  jost
  * Neu: Kompakte Abbuchung
  *
  * Revision 1.1  2011-02-12 09:40:32  jost
@@ -18,6 +21,7 @@
  **********************************************************************/
 package de.jost_net.JVerein.io;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -79,9 +83,9 @@ public class XLastschriften
     {
       ArrayList<XLastschrift> lastliste = comp.get(key);
       int anzvzw = 0;
-      for (XLastschrift last:lastliste)
+      for (XLastschrift last : lastliste)
       {
-        anzvzw+=last.getAnzahlVerwendungszwecke();
+        anzvzw += last.getAnzahlVerwendungszwecke();
       }
       if (lastliste.size() == 1)
       {
@@ -115,12 +119,12 @@ public class XLastschriften
     return lastschriften.size();
   }
 
-  public double getSummeLastschriften()
+  public BigDecimal getSummeLastschriften()
   {
-    double sum = 0;
+    BigDecimal sum = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
     for (XLastschrift l : lastschriften)
     {
-      sum += l.getBetrag();
+      sum = sum.add(l.getBetrag());
     }
     return sum;
   }
