@@ -1,7 +1,7 @@
 /**********************************************************************
 ei * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/PersonalbogenAction.java,v $
- * $Revision: 1.15 $
- * $Date: 2011/05/22 08:33:02 $
+ * $Revision: 1.16 $
+ * $Date: 2011/06/30 20:05:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@ ei * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jve
  * heiner@jverein.de
  * www.jverein.de
  * $Log: PersonalbogenAction.java,v $
- * Revision 1.15  2011/05/22 08:33:02  jost
+ * Revision 1.16  2011/06/30 20:05:17  jost
+ * Sortierung der Zusatzbeträge nach absteigendem Fälligkeitsdatum
+ *
+ * Revision 1.15  2011-05-22 08:33:02  jost
  * Neu: Buchungstext2 für Zusatzbeträge
  *
  * Revision 1.14  2011-05-20 12:59:19  jost
@@ -410,6 +413,7 @@ public class PersonalbogenAction implements Action
   {
     DBIterator it = Einstellungen.getDBService().createList(Zusatzbetrag.class);
     it.addFilter("mitglied = ?", new Object[] { m.getID() });
+    it.setOrder("ORDER BY faelligkeit DESC");
     if (it.size() > 0)
     {
       rpt.add(new Paragraph("Zusatzbetrag"));
