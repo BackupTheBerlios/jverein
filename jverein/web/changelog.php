@@ -5,8 +5,9 @@
         <ul>
           <li>Bugfix Autovervollständigung Name beim Mitglied.</li>
           <li>Bugfix Erstinstallation mit H2-Datenbank</li>
-          <li>Bugfix Summierung bei der kompakten Abbuchung.<li>
+          <li>Bugfix Summierung bei der kompakten Abbuchung.</li>
           <li>Personalbogen: Sortierung der Zusatzbeträge nach Fälligkeitsdatum.</li>
+        </ul>
       </li>
     	<li><a name="v200">Version 2.0.0 vom 23.6.2011</a></li>
     		<ul>
@@ -609,7 +610,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.163  2011/06/30 20:08:37  jost
+    Revision 1.164  2011/06/30 20:21:15  jost
+    *** empty log message ***
+
+    Revision 1.163  2011-06-30 20:08:37  jost
     *** empty log message ***
 
     Revision 1.162  2011-06-23 06:11:41  jost
