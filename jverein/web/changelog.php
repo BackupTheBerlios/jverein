@@ -1,6 +1,11 @@
 <? include ("frame.inc"); ?>
     <h1>Changelog</h1>
     <ul>
+      <li><a name="v210">Version 2.1.0 noch nicht freigegeben</a></li>
+        <ul>
+          <li>Bugfix bei der Mitgliedersuche, sofern mit Zusatzfeldern experimentiert wurde.</li>
+        </ul>
+      </li>
       <li><a name="v201">Version 2.0.1 vom 29.6.2011</a></li>
         <ul>
           <li>Bugfix Autovervollständigung Name beim Mitglied.</li>
@@ -610,7 +615,10 @@
 </ul>
     <!-- 
     $Log: changelog.php,v $
-    Revision 1.164  2011/06/30 20:21:15  jost
+    Revision 1.165  2011/07/12 18:04:38  jost
+    *** empty log message ***
+
+    Revision 1.164  2011-06-30 20:21:15  jost
     *** empty log message ***
 
     Revision 1.163  2011-06-30 20:08:37  jost
