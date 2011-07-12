@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Queries/MitgliedQuery.java,v $
- * $Revision: 1.30 $
- * $Date: 2011/06/29 17:42:15 $
+ * $Revision: 1.31 $
+ * $Date: 2011/07/12 18:02:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedQuery.java,v $
- * Revision 1.30  2011/06/29 17:42:15  jost
+ * Revision 1.31  2011/07/12 18:02:05  jost
+ * Bugfix, sofern mit Zusatzfeldern experimentiert wurde.
+ *
+ * Revision 1.30  2011-06-29 17:42:15  jost
  * Korrekte Boolean-Abfrage
  *
  * Revision 1.29  2011-05-21 08:10:53  jost
@@ -115,8 +118,10 @@ import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.keys.Datentyp;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
+import de.jost_net.JVerein.rmi.Felddefinition;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
+import de.willuhn.datasource.rmi.DBIterator;
 import de.willuhn.datasource.rmi.DBService;
 import de.willuhn.datasource.rmi.ResultSetExtractor;
 import de.willuhn.logging.Logger;
@@ -159,6 +164,12 @@ public class MitgliedQuery
     sql += "from mitglied ";
     Settings settings = control.getSettings();
     char synonym = 'a';
+    DBIterator fdit = Einstellungen.getDBService().createList(
+        Felddefinition.class);
+    if (settings.getInt("zusatzfelder.selected", 0) > fdit.size())
+    {
+      settings.setAttribute("zusatzfelder.selected", 0);
+    }
     if (settings.getInt("zusatzfelder.selected", 0) > 0)
     {
       for (int i = 1; i <= settings.getInt("zusatzfelder.counter", 0); i++)
