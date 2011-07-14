@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/MitgliedSpaltenauswahl.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/02/12 09:44:06 $
+ * $Revision: 1.10 $
+ * $Date: 2011/07/14 20:51:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSpaltenauswahl.java,v $
- * Revision 1.9  2011/02/12 09:44:06  jost
+ * Revision 1.10  2011/07/14 20:51:43  jost
+ * Korrekte Sortierung nach ID
+ *
+ * Revision 1.9  2011-02-12 09:44:06  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.8  2011-01-30 10:30:48  jost
@@ -59,7 +62,7 @@ public class MitgliedSpaltenauswahl extends Spaltenauswahl
   public MitgliedSpaltenauswahl()
   {
     super("mitglied");
-    add("ID", "id", false, true);
+    add("ID", "idint", false, true);
     add(JVereinPlugin.getI18n().tr("externe Mitgliedsnummer"),
         "externemitgliedsnummer", false, false);
     add(JVereinPlugin.getI18n().tr("Anrede"), "anrede", false, true);
