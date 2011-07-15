@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.28 $
- * $Date: 2011/04/22 06:27:23 $
+ * $Revision: 1.29 $
+ * $Date: 2011/07/15 20:43:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
- * Revision 1.28  2011/04/22 06:27:23  jost
+ * Revision 1.29  2011/07/15 20:43:55  jost
+ * Zusätzliches Logging.
+ *
+ * Revision 1.28  2011-04-22 06:27:23  jost
  * Alte Abrechnung deaktiviert
  *
  * Revision 1.27  2011-02-23 18:00:48  jost
@@ -468,6 +471,7 @@ public class AbbuchungControl extends AbstractControl
           Logger.error(
               "error while reading objects from "
                   + abupar.dtausfile.getAbsolutePath(), e);
+          Logger.error("Fehler:" + e);
           ApplicationException ae = new ApplicationException(
               "Fehler beim erstellen der Abbuchungsdatei: "
                   + abupar.dtausfile.getAbsolutePath(), e);
