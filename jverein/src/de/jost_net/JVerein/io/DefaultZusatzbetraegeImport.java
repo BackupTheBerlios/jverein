@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/DefaultZusatzbetraegeImport.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/05/22 08:35:23 $
+ * $Revision: 1.6 $
+ * $Date: 2011/07/17 17:05:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DefaultZusatzbetraegeImport.java,v $
- * Revision 1.5  2011/05/22 08:35:23  jost
+ * Revision 1.6  2011/07/17 17:05:04  jost
+ * Anführungszeichen sind jetzt auch zugelassen.
+ *
+ * Revision 1.5  2011-05-22 08:35:23  jost
  * Neu: Buchungstext2 für Zusatzbeträge
  *
  * Revision 1.4  2011-02-12 09:38:50  jost
@@ -61,22 +64,22 @@ public class DefaultZusatzbetraegeImport implements IZusatzbetraegeImport
       BufferedReader rea = new BufferedReader(new InputStreamReader(
           new FileInputStream(path + "/" + file), "ISO-8859-1"));
       String line = "";
-      boolean abbruch = false;
-      while ((line = rea.readLine()) != null)
-      {
-        int pos = line.indexOf("\"");
-        if (pos >= 0)
-        {
-          monitor.log("Zeile enthält Anführungszeichen: " + line);
-          abbruch = true;
-        }
-      }
-      rea.close();
-      if (abbruch)
-      {
-        monitor.log("Abbruch");
-        return;
-      }
+      // boolean abbruch = false;
+      // while ((line = rea.readLine()) != null)
+      // {
+      // int pos = line.indexOf("\"");
+      // if (pos >= 0)
+      // {
+      // monitor.log("Zeile enthält Anführungszeichen: " + line);
+      // abbruch = true;
+      // }
+      // }
+      // rea.close();
+      // if (abbruch)
+      // {
+      // monitor.log("Abbruch");
+      // return;
+      // }
       int anz = 0;
 
       Properties props = new java.util.Properties();
