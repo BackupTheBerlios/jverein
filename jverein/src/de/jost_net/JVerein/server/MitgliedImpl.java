@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.51 $
- * $Date: 2011/07/14 20:51:22 $
+ * $Revision: 1.52 $
+ * $Date: 2011/07/20 16:38:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.51  2011/07/14 20:51:22  jost
+ * Revision 1.52  2011/07/20 16:38:43  jost
+ * Bugfix NPE CSV-Ausgabe
+ *
+ * Revision 1.51  2011-07-14 20:51:22  jost
  * Korrekte Sortierung nach ID
  *
  * Revision 1.50  2011-05-29 12:51:13  jost
@@ -962,15 +965,22 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     map.put(MitgliedVar.ANREDE.getName(),
         StringTool.toNotNullString(this.getAnrede()));
     String anredefoermlich = "Sehr geehrte";
-    if (getGeschlecht().equals("m"))
+    if (getGeschlecht() != null)
     {
-      anredefoermlich += "r Herr " + getTitel()
-          + (getTitel().length() > 0 ? " " : "") + getName() + ",";
-    }
-    else if (getGeschlecht().equals("w"))
-    {
-      anredefoermlich += " Frau " + (getTitel().length() > 0 ? " " : "")
-          + getName() + ",";
+      if (getGeschlecht().equals("m"))
+      {
+        anredefoermlich += "r Herr " + getTitel()
+            + (getTitel().length() > 0 ? " " : "") + getName() + ",";
+      }
+      else if (getGeschlecht().equals("w"))
+      {
+        anredefoermlich += " Frau " + (getTitel().length() > 0 ? " " : "")
+            + getName() + ",";
+      }
+      else
+      {
+        anredefoermlich += " Damen und Herren,";
+      }
     }
     else
     {
@@ -978,10 +988,6 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
     }
     map.put(MitgliedVar.ANREDE_FOERMLICH.getName(), anredefoermlich);
     String anrededu = "Hallo";
-    if (getGeschlecht().length() > 0)
-    {
-      anrededu += " " + getVorname() + ",";
-    }
     map.put(MitgliedVar.ANREDE_DU.getName(), anrededu);
 
     map.put(MitgliedVar.AUSTRITT.getName(),
