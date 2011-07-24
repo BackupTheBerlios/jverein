@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedDetailAction.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/01/27 22:16:56 $
+ * $Revision: 1.8 $
+ * $Date: 2011/07/24 18:02:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedDetailAction.java,v $
- * Revision 1.7  2011/01/27 22:16:56  jost
+ * Revision 1.8  2011/07/24 18:02:34  jost
+ * Neu: Auflistung Familienbeiträge
+ *
+ * Revision 1.7  2011-01-27 22:16:56  jost
  * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
  *
  * Revision 1.6  2010-11-22 20:57:53  jost
@@ -35,6 +38,7 @@ package de.jost_net.JVerein.gui.action;
 
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
+import de.jost_net.JVerein.gui.control.FamilienbeitragNode;
 import de.jost_net.JVerein.gui.dialogs.PersonenartDialog;
 import de.jost_net.JVerein.gui.view.MitgliedDetailView;
 import de.jost_net.JVerein.io.ArbeitseinsatzZeile;
@@ -51,7 +55,12 @@ public class MitgliedDetailAction implements Action
     Mitglied m = null;
     try
     {
-      if (context != null && context instanceof ArbeitseinsatzZeile)
+      if (context != null && context instanceof FamilienbeitragNode)
+      {
+        FamilienbeitragNode fbn = (FamilienbeitragNode) context;
+        m = (Mitglied) fbn.getMitglied();
+      }
+      else if (context != null && context instanceof ArbeitseinsatzZeile)
       {
         ArbeitseinsatzZeile aez = (ArbeitseinsatzZeile) context;
         m = (Mitglied) aez.getAttribute("mitglied");
