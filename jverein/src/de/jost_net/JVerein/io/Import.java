@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Import.java,v $
- * $Revision: 1.45 $
- * $Date: 2011/07/17 06:05:47 $
+ * $Revision: 1.46 $
+ * $Date: 2011/07/25 08:05:27 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Import.java,v $
- * Revision 1.45  2011/07/17 06:05:47  jost
+ * Revision 1.46  2011/07/25 08:05:27  jost
+ * individuellerbeitrag ist kein Pflichtfeld
+ *
+ * Revision 1.45  2011-07-17 06:05:47  jost
  * Import benutzerfreundlicher gemacht. Patch von Julian.
  *
  * Revision 1.44  2011-05-20 13:00:40  jost
@@ -787,7 +790,7 @@ public class Import
         "Geburtsdatum", "Sterbetag", "Geschlecht", "Bankleitzahl",
         "Kontonummer", "Zahlungsart", "Zahler", "Telefon_privat",
         "Telefon_dienstlich", "Email", "Eintritt", "Beitragsart_1",
-        "Beitrag_1", "individuellerbeitrag", "Austritt", "Kuendigung" };
+        "Beitrag_1", "Austritt", "Kuendigung" };
     boolean ret = true;
     for (String c : mussExistieren)
     {
