@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Geschaeftsjahr.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/02/12 09:44:07 $
+ * $Revision: 1.7 $
+ * $Date: 2011/07/26 12:27:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Geschaeftsjahr.java,v $
- * Revision 1.6  2011/02/12 09:44:07  jost
+ * Revision 1.7  2011/07/26 12:27:28  jost
+ * Bugfix Ende Geschäftsjahr
+ *
+ * Revision 1.6  2011-02-12 09:44:07  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.5  2010-10-15 09:58:29  jost
@@ -74,6 +77,7 @@ public class Geschaeftsjahr
       beginnGeschaeftsjahr = Datum.toDate(Einstellungen.getEinstellung()
           .getBeginnGeschaeftsjahr() + cal.get(Calendar.YEAR));
     }
+    cal.setTime(beginnGeschaeftsjahr);
     cal.add(Calendar.YEAR, 1);
     cal.add(Calendar.DAY_OF_MONTH, -1);
     endeGeschaeftsjahr = cal.getTime();
