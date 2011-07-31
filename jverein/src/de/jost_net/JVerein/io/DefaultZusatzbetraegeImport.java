@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/DefaultZusatzbetraegeImport.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/07/17 17:05:04 $
+ * $Revision: 1.7 $
+ * $Date: 2011/07/31 07:04:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DefaultZusatzbetraegeImport.java,v $
- * Revision 1.6  2011/07/17 17:05:04  jost
+ * Revision 1.7  2011/07/31 07:04:28  jost
+ * Überflüssigen Code entfernt.
+ *
+ * Revision 1.6  2011-07-17 17:05:04  jost
  * Anführungszeichen sind jetzt auch zugelassen.
  *
  * Revision 1.5  2011-05-22 08:35:23  jost
@@ -30,9 +33,6 @@
  **********************************************************************/
 package de.jost_net.JVerein.io;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -61,9 +61,9 @@ public class DefaultZusatzbetraegeImport implements IZusatzbetraegeImport
     ResultSet results;
     try
     {
-      BufferedReader rea = new BufferedReader(new InputStreamReader(
-          new FileInputStream(path + "/" + file), "ISO-8859-1"));
-      String line = "";
+      // BufferedReader rea = new BufferedReader(new InputStreamReader(
+      // new FileInputStream(path + "/" + file), "ISO-8859-1"));
+      // String line = "";
       // boolean abbruch = false;
       // while ((line = rea.readLine()) != null)
       // {
