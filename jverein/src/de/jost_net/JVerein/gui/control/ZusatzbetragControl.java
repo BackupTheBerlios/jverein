@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/ZusatzbetragControl.java,v $
- * $Revision: 1.15 $
- * $Date: 2011/05/22 08:33:54 $
+ * $Revision: 1.16 $
+ * $Date: 2011/07/31 18:59:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ZusatzbetragControl.java,v $
- * Revision 1.15  2011/05/22 08:33:54  jost
+ * Revision 1.16  2011/07/31 18:59:26  jost
+ * Bugfix Default-Value Fälligkeit
+ *
+ * Revision 1.15  2011-05-22 08:33:54  jost
  * Neu: Buchungstext2 für Zusatzbeträge
  *
  * Revision 1.14  2011-04-03 14:34:01  jost
@@ -271,6 +274,10 @@ public class ZusatzbetragControl extends AbstractControl
           return;
         }
         startdatum.setValue(date);
+        if (faelligkeit.getValue() == null)
+        {
+          faelligkeit.setValue(startdatum.getValue());
+        }
       }
     });
     if (withFocus)
