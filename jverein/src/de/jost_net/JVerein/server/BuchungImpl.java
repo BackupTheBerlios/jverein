@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungImpl.java,v $
- * $Revision: 1.19 $
- * $Date: 2011/03/07 21:08:46 $
+ * $Revision: 1.20 $
+ * $Date: 2011/07/31 07:05:08 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungImpl.java,v $
- * Revision 1.19  2011/03/07 21:08:46  jost
+ * Revision 1.20  2011/07/31 07:05:08  jost
+ * Bugfix Kontonummer
+ *
+ * Revision 1.19  2011-03-07 21:08:46  jost
  * Neu:  Automatische Spendenbescheinigungen: Referenz zur Spendenbescheinigung aufgenommen.
  *
  * Revision 1.18  2011-02-15 20:55:45  jost
@@ -188,7 +191,7 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
   {
     Integer i = (Integer) super.getAttribute("konto");
     if (i == null)
-      return null; // Keine Buchungsart zugeordnet
+      return null; // Kein Konto zugeordnet
 
     Cache cache = Cache.get(Konto.class, true);
     return (Konto) cache.get(i);
@@ -196,7 +199,7 @@ public class BuchungImpl extends AbstractDBObject implements Buchung
 
   public void setKonto(Konto konto) throws RemoteException
   {
-    setAttribute("konto", konto);
+    setAttribute("konto", new Integer(konto.getID()));
   }
 
   public Integer getAuszugsnummer() throws RemoteException
