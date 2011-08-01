@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinAdressbuch.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/04/03 11:01:09 $
+ * $Revision: 1.2 $
+ * $Date: 2011/08/01 18:39:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: JVereinAdressbuch.java,v $
- * Revision 1.1  2011/04/03 11:01:09  jost
+ * Revision 1.2  2011/08/01 18:39:35  jost
+ * Typisierung
+ *
+ * Revision 1.1  2011-04-03 11:01:09  jost
  * Neu: JVerein-Mitglieder mit Bankverbindung werden in das Hibiscus-Adressbuch übernommen.
  *
  **********************************************************************/
@@ -33,13 +36,14 @@ public class JVereinAdressbuch implements Addressbook
     return "JVerein-Adressbuch";
   }
 
-  public List findAddresses(String text) throws RemoteException
+  public List<MitgliedAddress> findAddresses(String text)
+      throws RemoteException
   {
     DBIterator it = Einstellungen.getDBService().createList(Mitglied.class);
     String su = "%" + text + "%";
     it.addFilter("(name like ? or vorname like ?)", new Object[] { su, su });
     it.addFilter("konto is not null and length(konto)>0 and blz is not null and length(blz) > 0");
-    ArrayList list = new ArrayList();
+    ArrayList<MitgliedAddress> list = new ArrayList<MitgliedAddress>();
     while (it.hasNext())
     {
       Mitglied m = (Mitglied) it.next();
