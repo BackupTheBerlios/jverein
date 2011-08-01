@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FamilienbeitragView.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/07/24 18:04:27 $
+ * $Revision: 1.2 $
+ * $Date: 2011/08/01 18:27:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FamilienbeitragView.java,v $
- * Revision 1.1  2011/07/24 18:04:27  jost
+ * Revision 1.2  2011/08/01 18:27:57  jost
+ * Funktionalität aus FamilienbeitragControl in MitgliedControl verschoben.
+ *
+ * Revision 1.1  2011-07-24 18:04:27  jost
  * Neu: Auflistung Familienbeiträge
  *
  **********************************************************************/
@@ -17,7 +20,7 @@ package de.jost_net.JVerein.gui.view;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.DokumentationAction;
-import de.jost_net.JVerein.gui.control.FamilienbeitragControl;
+import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.willuhn.jameica.gui.AbstractView;
 import de.willuhn.jameica.gui.GUI;
 import de.willuhn.jameica.gui.util.ButtonArea;
@@ -30,7 +33,7 @@ public class FamilienbeitragView extends AbstractView
   {
     GUI.getView().setTitle(JVereinPlugin.getI18n().tr("Familienbeitrag"));
 
-    final FamilienbeitragControl control = new FamilienbeitragControl(this);
+    final MitgliedControl control = new MitgliedControl(this);
 
     control.getFamilienbeitraegeTree().paint(this.getParent());
 
