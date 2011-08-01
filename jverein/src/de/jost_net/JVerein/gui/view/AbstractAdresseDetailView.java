@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/06/19 06:30:06 $
+ * $Revision: 1.8 $
+ * $Date: 2011/08/01 18:27:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.7  2011/06/19 06:30:06  jost
+ * Revision 1.8  2011/08/01 18:27:42  jost
+ * *** empty log message ***
+ *
+ * Revision 1.7  2011-06-19 06:30:06  jost
  * McKOI ausgemustert.
  *
  * Revision 1.6  2011-05-30 20:01:44  jost
@@ -307,7 +310,7 @@ public abstract class AbstractAdresseDetailView extends AbstractView
         tab3.addInput(control.getExterneMitgliedsnummer());
       }
       tab3.addInput(control.getEintritt());
-      tab3.addInput(control.getBeitragsgruppe());
+      tab3.addInput(control.getBeitragsgruppe(true));
       if (Einstellungen.getEinstellung().getIndividuelleBeitraege())
       {
         tab3.addInput(control.getIndividuellerBeitrag());
