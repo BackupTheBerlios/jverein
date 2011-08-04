@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AbbuchungControl.java,v $
- * $Revision: 1.29 $
- * $Date: 2011/07/15 20:43:55 $
+ * $Revision: 1.30 $
+ * $Date: 2011/08/04 09:17:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungControl.java,v $
- * Revision 1.29  2011/07/15 20:43:55  jost
+ * Revision 1.30  2011/08/04 09:17:47  jost
+ * Bugfix Stichtag
+ *
+ * Revision 1.29  2011-07-15 20:43:55  jost
  * Zusätzliches Logging.
  *
  * Revision 1.28  2011-04-22 06:27:23  jost
@@ -361,17 +364,16 @@ public class AbbuchungControl extends AbstractControl
           "Interner Fehler - kann Abrechnungsmodus nicht auslesen");
     }
     Date vondatum = null;
+    if (stichtag.getValue() == null)
+    {
+      throw new ApplicationException("Stichtag fehlt");
+    }
     if (modus != Abrechnungsmodi.KEINBEITRAG)
     {
       vondatum = (Date) getVondatum().getValue();
       if (modus == Abrechnungsmodi.EINGETRETENEMITGLIEDER && vondatum == null)
       {
         throw new ApplicationException("von-Datum fehlt");
-      }
-
-      if (stichtag.getValue() == null)
-      {
-        throw new ApplicationException("Stichtag fehlt");
       }
     }
     Integer ausgabe;
