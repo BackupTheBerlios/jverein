@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedImpl.java,v $
- * $Revision: 1.52 $
- * $Date: 2011/07/20 16:38:43 $
+ * $Revision: 1.53 $
+ * $Date: 2011/08/04 08:54:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedImpl.java,v $
- * Revision 1.52  2011/07/20 16:38:43  jost
+ * Revision 1.53  2011/08/04 08:54:28  jost
+ * Vermeidung NPE bei der Aufbereitung von Variablen
+ *
+ * Revision 1.52  2011-07-20 16:38:43  jost
  * Bugfix NPE CSV-Ausgabe
  *
  * Revision 1.51  2011-07-14 20:51:22  jost
@@ -959,7 +962,7 @@ public class MitgliedImpl extends AbstractDBObject implements Mitglied
       this.setZahlungsweg(1);
     }
     map.put(MitgliedVar.ADRESSIERUNGSZUSATZ.getName(),
-        this.getAdressierungszusatz());
+        StringTool.toNotNullString(this.getAdressierungszusatz()));
     map.put(MitgliedVar.ADRESSTYP.getName(),
         StringTool.toNotNullString(this.getAdresstyp().getID()));
     map.put(MitgliedVar.ANREDE.getName(),
