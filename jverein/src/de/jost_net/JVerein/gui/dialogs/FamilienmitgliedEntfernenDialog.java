@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/FamilienmitgliedEntfernenDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/08/01 18:27:16 $
+ * $Revision: 1.2 $
+ * $Date: 2011/08/05 14:51:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: FamilienmitgliedEntfernenDialog.java,v $
- * Revision 1.1  2011/08/01 18:27:16  jost
+ * Revision 1.2  2011/08/05 14:51:44  jost
+ * Überflüssigen Import entfernt.
+ *
+ * Revision 1.1  2011-08-01 18:27:16  jost
  * Neu: Familienmitglied aus Familienverband entfernen.
  *
  **********************************************************************/
@@ -22,7 +25,6 @@ import org.eclipse.swt.widgets.Composite;
 
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.Messaging.FamilienbeitragMessage;
-import de.jost_net.JVerein.Messaging.MitgliedskontoMessage;
 import de.jost_net.JVerein.gui.control.FamilienbeitragNode;
 import de.jost_net.JVerein.gui.control.MitgliedControl;
 import de.jost_net.JVerein.rmi.Beitragsgruppe;
