@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/KursteilnehmerSearchProvider.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:42:02 $
+ * $Revision: 1.6 $
+ * $Date: 2011/08/05 14:53:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: KursteilnehmerSearchProvider.java,v $
- * Revision 1.5  2011/02/12 09:42:02  jost
+ * Revision 1.6  2011/08/05 14:53:11  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.5  2011-02-12 09:42:02  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.4  2010-10-15 09:58:30  jost
@@ -63,8 +66,8 @@ public class KursteilnehmerSearchProvider implements SearchProvider
     DBIterator list = Einstellungen.getDBService().createList(
         Kursteilnehmer.class);
     list.addFilter("LOWER(name) LIKE ? OR " + "LOWER(vzweck1) LIKE ? OR "
-        + "vzweck2 LIKE ? OR " + "blz LIKE ? OR " + "konto LIKE ?",
-        new String[] { text, text, text, text, text });
+        + "vzweck2 LIKE ? OR " + "blz LIKE ? OR " + "konto LIKE ?", text, text,
+        text, text, text);
 
     ArrayList<MyResult> results = new ArrayList<MyResult>();
     while (list.hasNext())

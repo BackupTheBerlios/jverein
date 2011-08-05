@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/MitgliedSearchProvider.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/02/12 09:42:02 $
+ * $Revision: 1.7 $
+ * $Date: 2011/08/05 14:53:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedSearchProvider.java,v $
- * Revision 1.6  2011/02/12 09:42:02  jost
+ * Revision 1.7  2011/08/05 14:53:50  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.6  2011-02-12 09:42:02  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.5  2010-10-15 09:58:30  jost
@@ -68,8 +71,8 @@ public class MitgliedSearchProvider implements SearchProvider
     String text = "%" + search.toLowerCase() + "%";
     DBIterator list = Einstellungen.getDBService().createList(Mitglied.class);
     list.addFilter("LOWER(name) LIKE ? OR " + "LOWER(vorname) LIKE ? OR "
-        + "ort LIKE ? OR " + "blz LIKE ? OR " + "konto LIKE ?", new String[] {
-        text, text, text, text, text });
+        + "ort LIKE ? OR " + "blz LIKE ? OR " + "konto LIKE ?", text, text,
+        text, text, text);
 
     ArrayList results = new ArrayList();
     while (list.hasNext())

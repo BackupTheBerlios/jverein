@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/MailVorlageSearchProvider.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/02/12 09:42:02 $
+ * $Revision: 1.4 $
+ * $Date: 2011/08/05 14:53:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MailVorlageSearchProvider.java,v $
- * Revision 1.3  2011/02/12 09:42:02  jost
+ * Revision 1.4  2011/08/05 14:53:38  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.3  2011-02-12 09:42:02  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.2  2010-10-15 09:58:30  jost
@@ -56,8 +59,7 @@ public class MailVorlageSearchProvider implements SearchProvider
     String text = "%" + search.toLowerCase() + "%";
     DBIterator list = Einstellungen.getDBService()
         .createList(MailVorlage.class);
-    list.addFilter("LOWER(betreff) LIKE ? OR LOWER(txt) LIKE ?", new String[] {
-        text, text });
+    list.addFilter("LOWER(betreff) LIKE ? OR LOWER(txt) LIKE ?", text, text);
 
     ArrayList<MyResult> results = new ArrayList<MyResult>();
     while (list.hasNext())

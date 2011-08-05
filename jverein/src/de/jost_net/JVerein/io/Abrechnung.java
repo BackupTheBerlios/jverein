@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Abrechnung.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/06/30 20:07:36 $
+ * $Revision: 1.12 $
+ * $Date: 2011/08/05 14:52:31 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnung.java,v $
- * Revision 1.11  2011/06/30 20:07:36  jost
+ * Revision 1.12  2011/08/05 14:52:31  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.11  2011-06-30 20:07:36  jost
  * Rundungsfehler durch Einsatz von BigDecimal vermieden.
  *
  * Revision 1.10  2011-06-06 18:24:34  jost
@@ -839,8 +842,7 @@ public class Abrechnung
       return null;
     }
     DBIterator it = Einstellungen.getDBService().createList(Konto.class);
-    it.addFilter("nummer = ?", new String[] { Einstellungen.getEinstellung()
-        .getKonto() });
+    it.addFilter("nummer = ?", Einstellungen.getEinstellung().getKonto());
     if (it.size() != 1)
     {
       throw new ApplicationException("Konto "

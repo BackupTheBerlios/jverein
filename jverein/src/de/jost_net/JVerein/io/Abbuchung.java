@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Attic/Abbuchung.java,v $
- * $Revision: 1.54 $
- * $Date: 2011/04/03 07:44:46 $
+ * $Revision: 1.55 $
+ * $Date: 2011/08/05 14:52:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abbuchung.java,v $
- * Revision 1.54  2011/04/03 07:44:46  jost
+ * Revision 1.55  2011/08/05 14:52:09  jost
+ * Warnings entfernt.
+ *
+ * Revision 1.54  2011-04-03 07:44:46  jost
  * Bugfix DTAUS mit äöüß
  *
  * Revision 1.53  2011-03-23 22:02:48  jost
@@ -658,7 +661,7 @@ public class Abbuchung
         .getExterneMitgliedsnummer() ? m.getExterneMitgliedsnummer() : m
         .getID())
         + "/" + name;
-      mitgliedname =dtaus27(mitgliedname);
+    mitgliedname = dtaus27(mitgliedname);
     if (m.getKontoinhaber().length() > 0)
     {
       name = m.getKontoinhaber();
@@ -750,8 +753,7 @@ public class Abbuchung
       return null;
     }
     DBIterator it = Einstellungen.getDBService().createList(Konto.class);
-    it.addFilter("nummer = ?", new String[] { Einstellungen.getEinstellung()
-        .getKonto() });
+    it.addFilter("nummer = ?", Einstellungen.getEinstellung().getKonto());
     if (it.size() != 1)
     {
       throw new ApplicationException("Konto "
