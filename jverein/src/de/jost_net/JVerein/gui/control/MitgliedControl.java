@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedControl.java,v $
- * $Revision: 1.122 $
- * $Date: 2011/08/01 18:27:00 $
+ * $Revision: 1.123 $
+ * $Date: 2011/08/05 14:51:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedControl.java,v $
- * Revision 1.122  2011/08/01 18:27:00  jost
+ * Revision 1.123  2011/08/05 14:51:22  jost
+ * Nicht benötigten Code entfernt.
+ *
+ * Revision 1.122  2011-08-01 18:27:00  jost
  * Funktionalität aus FamilienbeitragControl in MitgliedControl verschoben.
  *
  * Revision 1.121  2011-06-29 17:41:54  jost
@@ -3428,9 +3431,6 @@ public class MitgliedControl extends AbstractControl
                   FamilienbeitragMessageConsumer.this);
               return;
             }
-
-            FamilienbeitragMessage msg = (FamilienbeitragMessage) message;
-            Mitglied mitglied = (Mitglied) msg.getObject();
             familienbeitragtree.setRootObject(new FamilienbeitragNode());
           }
           catch (Exception e)
