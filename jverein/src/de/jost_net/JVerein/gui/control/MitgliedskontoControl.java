@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.28 $
- * $Date: 2011/06/12 07:08:07 $
+ * $Revision: 1.29 $
+ * $Date: 2011/08/11 15:23:17 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.28  2011/06/12 07:08:07  jost
+ * Revision 1.29  2011/08/11 15:23:17  jost
+ * Neu: Kontoauszug
+ *
+ * Revision 1.28  2011-06-12 07:08:07  jost
  * Spezialsuche bei Namen mit Namensvorsätzen (von, di, de ...)
  *
  * Revision 1.27  2011-05-27 18:46:39  jost
@@ -126,6 +129,7 @@ import de.jost_net.JVerein.gui.formatter.ZahlungswegFormatter;
 import de.jost_net.JVerein.gui.input.FormularInput;
 import de.jost_net.JVerein.gui.menu.MitgliedskontoMenu;
 import de.jost_net.JVerein.io.FormularAufbereitung;
+import de.jost_net.JVerein.io.Kontoauszug;
 import de.jost_net.JVerein.keys.Formularart;
 import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Formular;
@@ -793,6 +797,28 @@ public class MitgliedskontoControl extends AbstractControl
           GUI.getStatusBar().setErrorText(e.getMessage());
         }
         catch (IOException e)
+        {
+          Logger.error("", e);
+          GUI.getStatusBar().setErrorText(e.getMessage());
+        }
+      }
+    }, null, true, "go.png");
+    return button;
+  }
+
+  public Button getStartKontoauszugButton(final Object currentObject)
+  {
+    Button button = new Button("starten", new Action()
+    {
+
+      public void handleAction(Object context)
+      {
+
+        try
+        {
+          new Kontoauszug(currentObject);
+        }
+        catch (Exception e)
         {
           Logger.error("", e);
           GUI.getStatusBar().setErrorText(e.getMessage());

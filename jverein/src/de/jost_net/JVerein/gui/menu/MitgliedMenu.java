@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedMenu.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/07/14 19:37:38 $
+ * $Revision: 1.12 $
+ * $Date: 2011/08/11 15:23:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedMenu.java,v $
- * Revision 1.11  2011/07/14 19:37:38  jost
+ * Revision 1.12  2011/08/11 15:23:28  jost
+ * Neu: Kontoauszug
+ *
+ * Revision 1.11  2011-07-14 19:37:38  jost
  * Neu: Mitglied kopieren
  *
  * Revision 1.10  2011-06-06 19:17:27  jost
@@ -50,6 +53,7 @@ import java.rmi.RemoteException;
 import de.jost_net.JVerein.Einstellungen;
 import de.jost_net.JVerein.JVereinPlugin;
 import de.jost_net.JVerein.gui.action.FreiesFormularAction;
+import de.jost_net.JVerein.gui.action.KontoauszugAction;
 import de.jost_net.JVerein.gui.action.MitgliedDeleteAction;
 import de.jost_net.JVerein.gui.action.MitgliedEigenschaftZuordnungAction;
 import de.jost_net.JVerein.gui.action.MitgliedKopierenAction;
@@ -89,13 +93,15 @@ public class MitgliedMenu extends ContextMenu
     addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
         "Eigenschaften"), new MitgliedEigenschaftZuordnungAction(),
         "settings.gif"));
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n()
+        .tr("Kontoauszug"), new KontoauszugAction(), "rechnung.png"));
     addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
         "Spendenbescheinigung"), new SpendenbescheinigungAction(),
         "rechnung.png"));
     addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
         "Personalbogen"), new PersonalbogenAction(), "rechnung.png"));
     DBIterator it = Einstellungen.getDBService().createList(Formular.class);
-    it.addFilter("art = ?", new Object[] { Formularart.FREIESFORMULAR});
+    it.addFilter("art = ?", new Object[] { Formularart.FREIESFORMULAR });
     while (it.hasNext())
     {
       Formular f = (Formular) it.next();
