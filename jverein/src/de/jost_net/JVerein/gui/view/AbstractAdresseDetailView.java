@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/08/12 12:26:05 $
+ * $Revision: 1.10 $
+ * $Date: 2011/08/12 16:11:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.9  2011/08/12 12:26:05  jost
+ * Revision 1.10  2011/08/12 16:11:45  jost
+ * Anzeige der Mitgliedsnummer
+ *
+ * Revision 1.9  2011-08-12 12:26:05  jost
  * Neu: Kontoauszug-Button
  *
  * Revision 1.8  2011-08-01 18:27:42  jost
@@ -312,6 +315,10 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       if (Einstellungen.getEinstellung().getExterneMitgliedsnummer())
       {
         tab3.addInput(control.getExterneMitgliedsnummer());
+      }
+      else
+      {
+        tab3.addInput(control.getMitgliedsnummer());
       }
       tab3.addInput(control.getEintritt());
       tab3.addInput(control.getBeitragsgruppe(true));
