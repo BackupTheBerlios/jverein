@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Einstellung.java,v $
- * $Revision: 1.29 $
- * $Date: 2011/06/19 06:33:16 $
+ * $Revision: 1.30 $
+ * $Date: 2011/08/15 14:58:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Einstellung.java,v $
- * Revision 1.29  2011/06/19 06:33:16  jost
+ * Revision 1.30  2011/08/15 14:58:42  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.29  2011-06-19 06:33:16  jost
  * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
  *
  * Revision 1.28  2011-05-20 13:00:51  jost
@@ -173,6 +176,10 @@ public interface Einstellung extends DBObject
 
   public void setEintrittsdatumPflicht(Boolean eintrittsdatumpflicht)
       throws RemoteException;
+
+  public Boolean getSterbedatum() throws RemoteException;
+
+  public void setSterbedatum(Boolean sterbedatum) throws RemoteException;
 
   public Boolean getKommunikationsdaten() throws RemoteException;
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EinstellungImpl.java,v $
- * $Revision: 1.33 $
- * $Date: 2011/06/19 06:34:56 $
+ * $Revision: 1.34 $
+ * $Date: 2011/08/15 14:58:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungImpl.java,v $
- * Revision 1.33  2011/06/19 06:34:56  jost
+ * Revision 1.34  2011/08/15 14:58:58  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.33  2011-06-19 06:34:56  jost
  * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
  *
  * Revision 1.32  2011-05-20 13:01:14  jost
@@ -410,6 +413,16 @@ public class EinstellungImpl extends AbstractDBObject implements Einstellung
   {
     setAttribute("eintrittsdatumpflicht",
         Boolean.valueOf(eintrittsdatumpflicht));
+  }
+
+  public Boolean getSterbedatum() throws RemoteException
+  {
+    return Util.getBoolean(getAttribute("sterbedatum"));
+  }
+
+  public void setSterbedatum(Boolean sterbedatum) throws RemoteException
+  {
+    setAttribute("sterbedatum", Boolean.valueOf(sterbedatum));
   }
 
   public Boolean getKommunikationsdaten() throws RemoteException

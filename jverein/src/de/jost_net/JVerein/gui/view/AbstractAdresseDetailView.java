@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseDetailView.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/08/12 16:11:45 $
+ * $Revision: 1.11 $
+ * $Date: 2011/08/15 14:57:42 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbstractAdresseDetailView.java,v $
- * Revision 1.10  2011/08/12 16:11:45  jost
+ * Revision 1.11  2011/08/15 14:57:42  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.10  2011-08-12 16:11:45  jost
  * Anzeige der Mitgliedsnummer
  *
  * Revision 1.9  2011-08-12 12:26:05  jost
@@ -328,7 +331,8 @@ public abstract class AbstractAdresseDetailView extends AbstractView
       }
       tab3.addInput(control.getAustritt());
       tab3.addInput(control.getKuendigung());
-      if (control.getMitglied().getPersonenart().equals("n"))
+      if (Einstellungen.getEinstellung().getSterbedatum()
+          && control.getMitglied().getPersonenart().equals("n"))
       {
         tab3.addInput(control.getSterbetag());
       }

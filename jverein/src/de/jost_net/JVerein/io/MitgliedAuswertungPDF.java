@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/MitgliedAuswertungPDF.java,v $
- * $Revision: 1.16 $
- * $Date: 2011/02/12 09:39:52 $
+ * $Revision: 1.17 $
+ * $Date: 2011/08/15 14:58:24 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedAuswertungPDF.java,v $
- * Revision 1.16  2011/02/12 09:39:52  jost
+ * Revision 1.17  2011/08/15 14:58:24  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.16  2011-02-12 09:39:52  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.15  2010-10-30 11:31:23  jost
@@ -105,9 +108,9 @@ public class MitgliedAuswertungPDF
           130, Color.LIGHT_GRAY);
       report.addHeaderColumn("Geburts- datum", Element.ALIGN_CENTER, 30,
           Color.LIGHT_GRAY);
-      report.addHeaderColumn(
-          "Eintritt / \nAustritt / \nKündigung /\nSterbedatum",
-          Element.ALIGN_CENTER, 30, Color.LIGHT_GRAY);
+      report.addHeaderColumn("Eintritt / \nAustritt / \nKündigung"
+          + (Einstellungen.getEinstellung().getSterbedatum() ? "/\nSterbedatum"
+              : ""), Element.ALIGN_CENTER, 30, Color.LIGHT_GRAY);
       report.addHeaderColumn("Beitragsgruppe /\nEigenschaften",
           Element.ALIGN_CENTER, 60, Color.LIGHT_GRAY);
       report.createHeader(100, Element.ALIGN_CENTER);

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungMitgliedView.java,v $
- * $Revision: 1.25 $
- * $Date: 2011/06/19 06:30:31 $
+ * $Revision: 1.26 $
+ * $Date: 2011/08/15 14:57:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AuswertungMitgliedView.java,v $
- * Revision 1.25  2011/06/19 06:30:31  jost
+ * Revision 1.26  2011/08/15 14:57:56  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.25  2011-06-19 06:30:31  jost
  * McKOI ausgemustert.
  *
  * Revision 1.24  2011-05-15 10:07:30  jost
@@ -129,8 +132,11 @@ public class AuswertungMitgliedView extends AbstractView
     left.addInput(control.getGeburtsdatumvon());
     left.addInput(control.getGeburtsdatumbis());
 
-    left.addInput(control.getSterbedatumvon());
-    left.addInput(control.getSterbedatumbis());
+    if (Einstellungen.getEinstellung().getSterbedatum())
+    {
+      left.addInput(control.getSterbedatumvon());
+      left.addInput(control.getSterbedatumbis());
+    }
 
     SelectInput inpGeschlecht = control.getGeschlecht();
     inpGeschlecht.setMandatory(false);

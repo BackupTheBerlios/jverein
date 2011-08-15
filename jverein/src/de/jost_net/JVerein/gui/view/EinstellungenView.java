@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EinstellungenView.java,v $
- * $Revision: 1.48 $
- * $Date: 2011/05/20 13:00:15 $
+ * $Revision: 1.49 $
+ * $Date: 2011/08/15 14:58:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungenView.java,v $
- * Revision 1.48  2011/05/20 13:00:15  jost
+ * Revision 1.49  2011/08/15 14:58:12  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.48  2011-05-20 13:00:15  jost
  * Neu: Individueller Beitrag
  *
  * Revision 1.47  2011-04-07 19:30:11  jost
@@ -229,6 +232,8 @@ public class EinstellungenView extends AbstractView
         control.getGeburtsdatumPflicht());
     left.addLabelPair(JVereinPlugin.getI18n().tr("Eintrittsdatum Pflichtfeld"),
         control.getEintrittsdatumPflicht());
+    left.addLabelPair(JVereinPlugin.getI18n().tr("Sterbedatum"),
+        control.getSterbedatum());
     left.addLabelPair(JVereinPlugin.getI18n()
         .tr("Kommunikationsdaten anzeigen"), control.getKommunikationsdaten());
     left.addLabelPair(JVereinPlugin.getI18n().tr("Zusatzbeträge anzeigen")

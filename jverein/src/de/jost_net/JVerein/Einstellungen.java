@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Einstellungen.java,v $
- * $Revision: 1.27 $
- * $Date: 2011/02/12 09:23:28 $
+ * $Revision: 1.28 $
+ * $Date: 2011/08/15 14:57:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * www.jverein.de
  * All rights reserved
  * $Log: Einstellungen.java,v $
- * Revision 1.27  2011/02/12 09:23:28  jost
+ * Revision 1.28  2011/08/15 14:57:04  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.27  2011-02-12 09:23:28  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.26  2011-02-03 22:46:12  jost
@@ -173,6 +176,8 @@ public class Einstellungen
             "geburtsdatum.pflicht", true));
         einstellung.setEintrittsdatumPflicht(settings.getBoolean(
             "eintrittsdatum.pflicht", true));
+        einstellung.setSterbedatum(settings.getBoolean(
+            "sterbedatum", false));
         einstellung.setKommunikationsdaten(settings.getBoolean(
             "kommunikationsdaten.einblenden", true));
         einstellung.setZusatzbetrag(settings.getBoolean(
