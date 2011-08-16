@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein.xmlrpc/src/de/jost_net/JVerein/xmlrpc/server/EinstellungServiceImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/03/17 19:50:55 $
+ * $Revision: 1.4 $
+ * $Date: 2011/08/16 20:09:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungServiceImpl.java,v $
- * Revision 1.3  2011/03/17 19:50:55  jost
+ * Revision 1.4  2011/08/16 20:09:57  jost
+ * Sterbedatum jetzt optional
+ *
+ * Revision 1.3  2011-03-17 19:50:55  jost
  * Aktuelle Geburtstage und Wiedervorlage ausgemustert. Ersatz durch die neue Terminübersicht.
  *
  * Revision 1.2  2011-03-07 21:12:25  jost
@@ -86,6 +89,8 @@ public class EinstellungServiceImpl extends AbstractServiceImpl implements
 
   public static final String SMTPSSL = "einstellung.ssl";
 
+  public static final String STERBEDATUM = "sterbedatum";
+
   public static final String VERMERKE = "einstellung.vermerke";
 
   public static final String WIEDERVORLAGE = "einstellung.wiedervorlage";
@@ -131,6 +136,7 @@ public class EinstellungServiceImpl extends AbstractServiceImpl implements
     retval.put(SMTPPORT, einst.getSmtpPort());
     retval.put(SMTPSERVER, einst.getSmtpServer());
     retval.put(SMTPSSL, einst.getSmtpSsl());
+    retval.put(STERBEDATUM, einst.getSterbedatum());
     retval.put(VERMERKE, einst.getVermerke());
     retval.put(WIEDERVORLAGE, einst.getWiedervorlage());
     retval.put(ZAHLUNGSRHYTMUS, einst.getZahlungsrhytmus());
