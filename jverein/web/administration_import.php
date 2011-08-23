@@ -146,7 +146,7 @@
 	<tr>
 		<td>Zahlungsrhytmus</td>
 		<td>1 monatlich, 3 viertelj‰hrlich, 6 halbj‰hrlich, 12 j‰hrlich, wenn keine Angabe erfolgt, wird j‰hrlich angenommen.</td>
-		<td>1</td>
+		<td>2</td>
 		<td>nein</td>
 		<td>ja</td>
 	</tr>
@@ -270,7 +270,10 @@ Mitglieds_Nr;Anrede;Titel;Nachname;Vorname;Straﬂe;Plz;Ort;Geburtsdatum;Geschlech
 	
 	<!-- 
     $Log: administration_import.php,v $
-    Revision 1.16  2011/07/25 08:05:41  jost
+    Revision 1.17  2011/08/23 20:55:11  jost
+    *** empty log message ***
+
+    Revision 1.16  2011-07-25 08:05:41  jost
     individuellerbeitrag ist kein Pflichtfeld
 
     Revision 1.15  2011-06-23 05:53:41  jost
