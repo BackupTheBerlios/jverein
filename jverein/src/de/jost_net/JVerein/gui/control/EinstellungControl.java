@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EinstellungControl.java,v $
- * $Revision: 1.46 $
- * $Date: 2011/08/15 14:57:23 $
+ * $Revision: 1.47 $
+ * $Date: 2011/08/24 16:48:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EinstellungControl.java,v $
- * Revision 1.46  2011/08/15 14:57:23  jost
+ * Revision 1.47  2011/08/24 16:48:47  jost
+ * redakt. Änderung
+ *
+ * Revision 1.46  2011-08-15 14:57:23  jost
  * Sterbedatum jetzt optional
  *
  * Revision 1.45  2011-06-22 20:53:00  jost
@@ -786,7 +789,7 @@ public class EinstellungControl extends AbstractControl
     }
     zahlungsweg = new SelectInput(Zahlungsweg.getArray(), new Zahlungsweg(
         Einstellungen.getEinstellung().getZahlungsweg()));
-    zahlungsweg.setName("Zahlungsweg");
+    zahlungsweg.setName("Standard-Zahlungsweg f. neue Mitglieder");
     return zahlungsweg;
   }
 
@@ -799,7 +802,7 @@ public class EinstellungControl extends AbstractControl
     zahlungsrhytmus = new SelectInput(
         Zahlungsrhytmus.getArray(),
         new Zahlungsrhytmus(Einstellungen.getEinstellung().getZahlungsrhytmus()));
-    zahlungsrhytmus.setName("Zahlungsrhytmus");
+    zahlungsrhytmus.setName("Standard-Zahlungsrhytmus f. neue Mitglieder");
     return zahlungsrhytmus;
   }
 
