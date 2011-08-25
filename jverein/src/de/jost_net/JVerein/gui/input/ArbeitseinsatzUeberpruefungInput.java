@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/ArbeitseinsatzUeberpruefungInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/22 20:58:53 $
+ * $Revision: 1.2 $
+ * $Date: 2011/08/25 07:41:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: ArbeitseinsatzUeberpruefungInput.java,v $
- * Revision 1.1  2010/11/22 20:58:53  jost
+ * Revision 1.2  2011/08/25 07:41:50  jost
+ * Zusätzliche Filtereinstellung
+ *
+ * Revision 1.1  2010-11-22 20:58:53  jost
  * Initial Commit
  *
  **********************************************************************/
@@ -34,6 +37,8 @@ public class ArbeitseinsatzUeberpruefungInput extends SelectInput
 
   public static final int MEHRLEISTUNG = 3;
 
+  public static final int ALLE = 4;
+
   public ArbeitseinsatzUeberpruefungInput(int schluessel)
       throws RemoteException
   {
@@ -50,6 +55,7 @@ public class ArbeitseinsatzUeberpruefungInput extends SelectInput
     l.add(new ArbeitseinsatzUeberpruefungObject(MINDERLEISTUNG));
     l.add(new ArbeitseinsatzUeberpruefungObject(PASSENDELEISTUNG));
     l.add(new ArbeitseinsatzUeberpruefungObject(MEHRLEISTUNG));
+    l.add(new ArbeitseinsatzUeberpruefungObject(ALLE));
     return PseudoIterator.fromArray(l
         .toArray(new ArbeitseinsatzUeberpruefungObject[l.size()]));
   }
@@ -80,7 +86,11 @@ public class ArbeitseinsatzUeberpruefungInput extends SelectInput
     {
       this.schluessel = schluessel;
 
-      if (schluessel == MINDERLEISTUNG)
+      if (schluessel == ALLE)
+      {
+        this.label = JVereinPlugin.getI18n().tr("alle");
+      }
+      else if (schluessel == MINDERLEISTUNG)
       {
         this.label = JVereinPlugin.getI18n().tr("Minderleistung");
       }
