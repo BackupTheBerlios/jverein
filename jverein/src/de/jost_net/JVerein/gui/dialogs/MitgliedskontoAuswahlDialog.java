@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MitgliedskontoAuswahlDialog.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/08/24 16:03:50 $
+ * $Revision: 1.11 $
+ * $Date: 2011/08/27 06:42:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,7 +10,11 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoAuswahlDialog.java,v $
- * Revision 1.10  2011/08/24 16:03:50  jost
+ * Revision 1.11  2011/08/27 06:42:29  jost
+ * Bugfix OperationCanceledException
+ * siehe http://www.jverein.de/forum/viewtopic.php?f=5&t=679
+ *
+ * Revision 1.10  2011-08-24 16:03:50  jost
  * Bugfix "Übernahme"-Button für Soll+Ist
  *
  * Revision 1.9  2011-06-12 07:08:24  jost
@@ -207,7 +211,7 @@ public class MitgliedskontoAuswahlDialog extends AbstractDialog
 
       public void handleAction(Object context)
       {
-        throw new OperationCanceledException();
+        close();
       }
     }, null, false, "process-stop.png");
     b.paint(parent);
