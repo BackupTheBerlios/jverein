@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.29 $
- * $Date: 2011/08/11 15:23:17 $
+ * $Revision: 1.30 $
+ * $Date: 2011/08/27 06:41:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,11 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.29  2011/08/11 15:23:17  jost
+ * Revision 1.30  2011/08/27 06:41:56  jost
+ * Bugfix Control is disposed
+ * siehe http://www.jverein.de/forum/viewtopic.php?f=5&t=679
+ *
+ * Revision 1.29  2011-08-11 15:23:17  jost
  * Neu: Kontoauszug
  *
  * Revision 1.28  2011-06-12 07:08:07  jost
@@ -393,7 +397,7 @@ public class MitgliedskontoControl extends AbstractControl
 
   public CheckboxInput getSpezialSuche()
   {
-    if (spezialsuche != null)
+    if (spezialsuche != null && !spezialsuche.getControl().isDisposed())
     {
       return spezialsuche;
     }
