@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MitgliedskontoAuswahlDialog.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/08/27 06:42:29 $
+ * $Revision: 1.12 $
+ * $Date: 2011/08/27 11:02:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
@@ -10,7 +10,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoAuswahlDialog.java,v $
- * Revision 1.11  2011/08/27 06:42:29  jost
+ * Revision 1.12  2011/08/27 11:02:59  jost
+ * Überflüssigen Import entfernt.
+ *
+ * Revision 1.11  2011-08-27 06:42:29  jost
  * Bugfix OperationCanceledException
  * siehe http://www.jverein.de/forum/viewtopic.php?f=5&t=679
  *
@@ -48,7 +51,6 @@
 
 package de.jost_net.JVerein.gui.dialogs;
 
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
