@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/AbbuchungsmodusInput.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/02/12 09:33:56 $
+ * $Revision: 1.12 $
+ * $Date: 2011/08/27 11:03:22 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungsmodusInput.java,v $
- * Revision 1.11  2011/02/12 09:33:56  jost
+ * Revision 1.12  2011/08/27 11:03:22  jost
+ * Vereinfachung Beitragsmodel
+ *
+ * Revision 1.11  2011-02-12 09:33:56  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.10  2010-10-15 09:58:29  jost
@@ -77,24 +80,9 @@ public class AbbuchungsmodusInput extends SelectInput
   {
     ArrayList<AbbuchungsmodusObject> l = new ArrayList<AbbuchungsmodusObject>();
     l.add(new AbbuchungsmodusObject(Abrechnungsmodi.KEINBEITRAG));
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.JAEHRLICH)
+    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.GLEICHERTERMINFUERALLE)
     {
-      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.JAEHRLICH));
-      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.EINGETRETENEMITGLIEDER));
-    }
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.HALBJAEHRLICH)
-    {
-      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.HALBJAEHRLICH));
-      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.EINGETRETENEMITGLIEDER));
-    }
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.VIERTELJAEHRLICH)
-    {
-      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.VIERTELJAEHRLICH));
-      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.EINGETRETENEMITGLIEDER));
-    }
-    if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH)
-    {
-      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.MONATLICH));
+      l.add(new AbbuchungsmodusObject(Abrechnungsmodi.ALLE));
       l.add(new AbbuchungsmodusObject(Abrechnungsmodi.EINGETRETENEMITGLIEDER));
     }
     if (Einstellungen.getEinstellung().getBeitragsmodel() == Beitragsmodel.MONATLICH12631)
@@ -122,7 +110,7 @@ public class AbbuchungsmodusInput extends SelectInput
     AbbuchungsmodusObject o = (AbbuchungsmodusObject) super.getValue();
     if (o == null)
     {
-      return Integer.valueOf(Abrechnungsmodi.JAEHRLICH);
+      return Integer.valueOf(Abrechnungsmodi.ALLE);
     }
     return Integer.valueOf(o.abbuchungsmodus);
   }

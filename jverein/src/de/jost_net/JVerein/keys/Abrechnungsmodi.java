@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Abrechnungsmodi.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/02/12 09:41:11 $
+ * $Revision: 1.4 $
+ * $Date: 2011/08/27 11:04:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Abrechnungsmodi.java,v $
- * Revision 1.3  2011/02/12 09:41:11  jost
+ * Revision 1.4  2011/08/27 11:04:04  jost
+ * Vereinfachung Beitragsmodel
+ *
+ * Revision 1.3  2011-02-12 09:41:11  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.2  2010/05/18 20:23:26  jost
@@ -30,13 +33,7 @@ public class Abrechnungsmodi
 {
   public static final int KEINBEITRAG = 0;
 
-  public static final int JAEHRLICH = 1;
-
-  public static final int HALBJAEHRLICH = 2;
-
-  public static final int VIERTELJAEHRLICH = 3;
-
-  public static final int MONATLICH = 4;
+  public static final int ALLE = 1;
 
   public static final int JA = 5;
 
@@ -79,13 +76,8 @@ public class Abrechnungsmodi
     {
       case KEINBEITRAG:
         return JVereinPlugin.getI18n().tr("keine Beitragsabrechnung");
-      case JAEHRLICH:
-        return JVereinPlugin.getI18n().tr("Jahresbeiträge");
-      case HALBJAEHRLICH:
-        return JVereinPlugin.getI18n().tr("Halbjahresbeiträge");
-      case VIERTELJAEHRLICH:
-        return JVereinPlugin.getI18n().tr("Vierteljahresbeiträge");
-      case MONATLICH:
+      case ALLE:
+        return JVereinPlugin.getI18n().tr("Alle");
       case MO:
         return JVereinPlugin.getI18n().tr("Monatsbeiträge");
       case VI:

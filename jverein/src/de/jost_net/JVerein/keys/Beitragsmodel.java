@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Beitragsmodel.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:41:26 $
+ * $Revision: 1.5 $
+ * $Date: 2011/08/27 11:04:20 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: Beitragsmodel.java,v $
- * Revision 1.4  2011/02/12 09:41:26  jost
+ * Revision 1.5  2011/08/27 11:04:20  jost
+ * Vereinfachung Beitragsmodel
+ *
+ * Revision 1.4  2011-02-12 09:41:26  jost
  * Statische Codeanalyse mit Findbugs
  *
  * Revision 1.3  2009/06/11 21:04:03  jost
@@ -33,13 +36,7 @@ import de.jost_net.JVerein.JVereinPlugin;
  */
 public class Beitragsmodel
 {
-  public static final int JAEHRLICH = 1;
-
-  public static final int HALBJAEHRLICH = 2;
-
-  public static final int VIERTELJAEHRLICH = 3;
-
-  public static final int MONATLICH = 4;
+  public static final int GLEICHERTERMINFUERALLE = 1;
 
   public static final int MONATLICH12631 = 5;
 
@@ -64,14 +61,8 @@ public class Beitragsmodel
   {
     switch (key)
     {
-      case JAEHRLICH:
-        return JVereinPlugin.getI18n().tr("jährlich");
-      case HALBJAEHRLICH:
-        return JVereinPlugin.getI18n().tr("halbjährlich");
-      case VIERTELJAEHRLICH:
-        return JVereinPlugin.getI18n().tr("vierteljährlich");
-      case MONATLICH:
-        return JVereinPlugin.getI18n().tr("monatlich");
+      case GLEICHERTERMINFUERALLE:
+        return JVereinPlugin.getI18n().tr("Gleicher Termin für alle");
       case MONATLICH12631:
         return JVereinPlugin
             .getI18n()
@@ -84,10 +75,7 @@ public class Beitragsmodel
   public static ArrayList<Beitragsmodel> getArray()
   {
     ArrayList<Beitragsmodel> ret = new ArrayList<Beitragsmodel>();
-    ret.add(new Beitragsmodel(JAEHRLICH));
-    ret.add(new Beitragsmodel(HALBJAEHRLICH));
-    ret.add(new Beitragsmodel(VIERTELJAEHRLICH));
-    ret.add(new Beitragsmodel(MONATLICH));
+    ret.add(new Beitragsmodel(GLEICHERTERMINFUERALLE));
     ret.add(new Beitragsmodel(MONATLICH12631));
     return ret;
   }
