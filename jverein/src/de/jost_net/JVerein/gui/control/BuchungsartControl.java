@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsartControl.java,v $
- * $Revision: 1.19 $
- * $Date: 2011/03/07 21:03:51 $
+ * $Revision: 1.20 $
+ * $Date: 2011/09/03 08:08:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartControl.java,v $
- * Revision 1.19  2011/03/07 21:03:51  jost
+ * Revision 1.20  2011/09/03 08:08:36  jost
+ * Bugfix Sortierung
+ *
+ * Revision 1.19  2011-03-07 21:03:51  jost
  * Neu:  Automatische Spendenbescheinigungen: Eigenschaft Spende aufgenommen
  *
  * Revision 1.18  2011-02-03 22:32:24  jost
@@ -338,6 +341,7 @@ public class BuchungsartControl extends AbstractControl
     final File file = new File(s);
     final DBIterator it = Einstellungen.getDBService().createList(
         Buchungsart.class);
+    it.setOrder("ORDER BY nummer");
     settings.setAttribute("lastdir", file.getParent());
     BackgroundTask t = new BackgroundTask()
     {
