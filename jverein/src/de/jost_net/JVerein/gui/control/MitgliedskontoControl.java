@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.30 $
- * $Date: 2011/08/27 06:41:56 $
+ * $Revision: 1.31 $
+ * $Date: 2011/09/08 06:59:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.30  2011/08/27 06:41:56  jost
+ * Revision 1.31  2011/09/08 06:59:09  jost
+ * Neben Mitgliedern und Spendern können jetzt alle Adressen ausgewählt werden.
+ *
+ * Revision 1.30  2011-08-27 06:41:56  jost
  * Bugfix Control is disposed
  * siehe http://www.jverein.de/forum/viewtopic.php?f=5&t=679
  *
@@ -139,7 +142,6 @@ import de.jost_net.JVerein.keys.Zahlungsweg;
 import de.jost_net.JVerein.rmi.Formular;
 import de.jost_net.JVerein.rmi.Mitglied;
 import de.jost_net.JVerein.rmi.Mitgliedskonto;
-import de.jost_net.JVerein.server.MitgliedUtils;
 import de.jost_net.JVerein.util.Dateiname;
 import de.jost_net.JVerein.util.JVDateFormatTTMMJJJJ;
 import de.willuhn.datasource.GenericIterator;
@@ -616,7 +618,7 @@ public class MitgliedskontoControl extends AbstractControl
 
     DBIterator mitglieder = Einstellungen.getDBService().createList(
         Mitglied.class);
-    MitgliedUtils.setMitgliedOderSpender(mitglieder);
+    // MitgliedUtils.setMitgliedOderSpender(mitglieder);
     if (suchname2 != null && suchname2.getValue() != null)
     {
       StringBuffer where = new StringBuffer();
