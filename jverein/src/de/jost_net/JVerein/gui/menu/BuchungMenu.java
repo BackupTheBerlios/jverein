@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/BuchungMenu.java,v $
- * $Revision: 1.12 $
- * $Date: 2010/10/10 08:53:18 $
+ * $Revision: 1.13 $
+ * $Date: 2011/09/18 09:37:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungMenu.java,v $
- * Revision 1.12  2010/10/10 08:53:18  jost
+ * Revision 1.13  2011/09/18 09:37:10  jost
+ * Mehreren Buchungen ein Mitgliedskonto gleichzeitig zuordnen.
+ *
+ * Revision 1.12  2010-10-10 08:53:18  jost
  * Kontoauszugsinformationen en Bloc zuweisen
  *
  * Revision 1.11  2009/06/11 21:03:02  jost
@@ -50,14 +53,13 @@ import de.jost_net.JVerein.gui.action.BuchungAction;
 import de.jost_net.JVerein.gui.action.BuchungBuchungsartZuordnungAction;
 import de.jost_net.JVerein.gui.action.BuchungDeleteAction;
 import de.jost_net.JVerein.gui.action.BuchungKontoauszugZuordnungAction;
+import de.jost_net.JVerein.gui.action.BuchungMitgliedskontoZuordnungAction;
 import de.jost_net.JVerein.gui.action.BuchungNeuAction;
 import de.jost_net.JVerein.gui.control.BuchungsControl;
 import de.willuhn.jameica.gui.parts.CheckedContextMenuItem;
 import de.willuhn.jameica.gui.parts.CheckedSingleContextMenuItem;
 import de.willuhn.jameica.gui.parts.ContextMenu;
 import de.willuhn.jameica.gui.parts.ContextMenuItem;
-import de.willuhn.jameica.gui.util.SWTUtil;
-import de.willuhn.logging.Logger;
 
 /**
  * Kontext-Menu zu den Buchungen.
@@ -77,24 +79,14 @@ public class BuchungMenu extends ContextMenu
   {
     addItem(new ContextMenuItem(JVereinPlugin.getI18n().tr("neu"),
         new BuchungNeuAction(), "document-new.png"));
-    // Work-Around: Jameica unterstütze in Version 1.7 den Konstruktor mit Icon
-    // nicht.
-    CheckedSingleContextMenuItem mnBearbeiten = new CheckedSingleContextMenuItem(
-        JVereinPlugin.getI18n().tr("bearbeiten"), new BuchungAction());
-    String icon = "edit.png";
-    try
-    {
-      mnBearbeiten.setImage(SWTUtil.getImage(icon));
-    }
-    catch (Exception e)
-    {
-      Logger.warn("icon " + icon + " not found");
-    }
-    addItem(mnBearbeiten);
-
+    addItem(new CheckedSingleContextMenuItem(JVereinPlugin.getI18n().tr(
+        "bearbeiten"), new BuchungAction(), "edit.png"));
     addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
         "Buchungsart zuordnen"),
         new BuchungBuchungsartZuordnungAction(control), "zuordnung.png"));
+    addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
+        "Mitgliedskonto zuordnen"), new BuchungMitgliedskontoZuordnungAction(
+        control), "human_folder_public.png"));
     addItem(new CheckedContextMenuItem(JVereinPlugin.getI18n().tr(
         "Kontoauszug zuordnen"),
         new BuchungKontoauszugZuordnungAction(control), "zuordnung.png"));
