@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MitgliedskontoControl.java,v $
- * $Revision: 1.31 $
- * $Date: 2011/09/08 06:59:09 $
+ * $Revision: 1.32 $
+ * $Date: 2011/09/18 09:36:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MitgliedskontoControl.java,v $
- * Revision 1.31  2011/09/08 06:59:09  jost
+ * Revision 1.32  2011/09/18 09:36:26  jost
+ * Bugfix Anzeige Namen
+ *
+ * Revision 1.31  2011-09-08 06:59:09  jost
  * Neben Mitgliedern und Spendern können jetzt alle Adressen ausgewählt werden.
  *
  * Revision 1.30  2011-08-27 06:41:56  jost
@@ -451,6 +454,10 @@ public class MitgliedskontoControl extends AbstractControl
 
   public TextInput getSuchName()
   {
+    if (suchname != null)
+    {
+      return suchname;
+    }
     suchname = new TextInput("", 30);
     suchname.setName("Name");
     suchname.addListener(new FilterListener());
