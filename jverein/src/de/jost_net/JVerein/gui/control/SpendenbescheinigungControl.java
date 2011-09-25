@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungControl.java,v $
- * $Revision: 1.24 $
- * $Date: 2011/06/30 20:06:55 $
+ * $Revision: 1.25 $
+ * $Date: 2011/09/25 13:07:46 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: SpendenbescheinigungControl.java,v $
- * Revision 1.24  2011/06/30 20:06:55  jost
+ * Revision 1.25  2011/09/25 13:07:46  jost
+ * Check ob auch ein Forumlar ausgewählt wurde - Patch von Christian Lutz
+ *
+ * Revision 1.24  2011-06-30 20:06:55  jost
  * Überflüssige Imports entfernt.
  *
  * Revision 1.23  2011-06-22 20:53:11  jost
@@ -769,8 +772,16 @@ public class SpendenbescheinigungControl extends AbstractControl
     }
     final File file = new File(s);
     settings.setAttribute("lastdir", file.getParent());
+    
+    /* Check ob auch ein Forumular ausgewaehlt ist */
+    Formular spendeformular = getSpendenbescheinigung().getFormular();
+    if( spendeformular == null ) {
+    	GUI.getStatusBar().setErrorText("Bitte Formular auswaehlen");
+    	return;
+    }
+    
     Formular fo = (Formular) Einstellungen.getDBService().createObject(
-        Formular.class, getSpendenbescheinigung().getFormular().getID());
+        Formular.class, spendeformular.getID() );
     Map<String, Object> map = getSpendenbescheinigung().getMap(null);
     map = new AllgemeineMap().getMap(map);
     FormularAufbereitung fa = new FormularAufbereitung(file);
