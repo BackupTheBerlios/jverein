@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsControl.java,v $
- * $Revision: 1.40 $
- * $Date: 2011/09/18 09:36:08 $
+ * $Revision: 1.41 $
+ * $Date: 2011/09/26 21:25:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsControl.java,v $
- * Revision 1.40  2011/09/18 09:36:08  jost
+ * Revision 1.41  2011/09/26 21:25:56  jost
+ * Bugfix Sortierung
+ *
+ * Revision 1.40  2011-09-18 09:36:08  jost
  * Mehreren Buchungen ein Mitgliedskonto gleichzeitig zuordnen.
  *
  * Revision 1.39  2011-06-20 15:10:59  jost
@@ -824,6 +827,7 @@ public class BuchungsControl extends AbstractControl
       {
         buchungsList.addItem(buchungen.next());
       }
+      buchungsList.sort();
     }
     return buchungsList;
   }
