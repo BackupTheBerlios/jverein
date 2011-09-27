@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/DokumentationUtil.java,v $
- * $Revision: 1.27 $
- * $Date: 2011/01/29 19:31:10 $
+ * $Revision: 1.28 $
+ * $Date: 2011/09/27 16:58:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: DokumentationUtil.java,v $
- * Revision 1.27  2011/01/29 19:31:10  jost
+ * Revision 1.28  2011/09/27 16:58:44  jost
+ * Neu: BLZ-Update
+ *
+ * Revision 1.27  2011-01-29 19:31:10  jost
  * Doku Adressen
  *
  * Revision 1.26  2011-01-27 22:22:31  jost
@@ -122,6 +125,8 @@ public class DokumentationUtil
 
   public static final String BEITRAGSGRUPPEN = PRE
       + "administration_beitragsgruppen.php";
+
+  public static final String BLZUPDATE = PRE + "administration_blzupdate.php";
 
   public static final String BUCHUNGSARTEN = PRE
       + "administration_buchungsarten.php";

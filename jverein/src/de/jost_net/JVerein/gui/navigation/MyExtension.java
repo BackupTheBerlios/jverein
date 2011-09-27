@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyExtension.java,v $
- * $Revision: 1.40 $
- * $Date: 2011/07/24 18:04:04 $
+ * $Revision: 1.41 $
+ * $Date: 2011/09/27 16:58:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: MyExtension.java,v $
- * Revision 1.40  2011/07/24 18:04:04  jost
+ * Revision 1.41  2011/09/27 16:58:19  jost
+ * Neu: BLZ-Update
+ *
+ * Revision 1.40  2011-07-24 18:04:04  jost
  * Neu: Auflistung Familienbeiträge
  * Neu: Spenden für JVerein
  *
@@ -142,6 +145,7 @@ import de.jost_net.JVerein.gui.action.AnfangsbestandListAction;
 import de.jost_net.JVerein.gui.action.ArbeitseinsatzUeberpruefungAction;
 import de.jost_net.JVerein.gui.action.AuswertungKursteilnehmerAction;
 import de.jost_net.JVerein.gui.action.AuswertungMitgliedAction;
+import de.jost_net.JVerein.gui.action.BLZUpdateAction;
 import de.jost_net.JVerein.gui.action.BackupCreateAction;
 import de.jost_net.JVerein.gui.action.BackupRestoreAction;
 import de.jost_net.JVerein.gui.action.BeitragsgruppeSucheAction;
@@ -353,6 +357,8 @@ public class MyExtension implements Extension
             .getI18n().tr("Adresstypen"), new AdresstypListAction(),
             "layout_co.gif"));
       }
+      einstellungen.addChild(new MyItem(einstellungen, JVereinPlugin.getI18n()
+          .tr("BLZ-Update"), new BLZUpdateAction(), "adler.png"));
       NavigationItem einstellungenerweitert = null;
       einstellungenerweitert = new MyItem(einstellungenerweitert, JVereinPlugin
           .getI18n().tr("Erweitert"), null);
