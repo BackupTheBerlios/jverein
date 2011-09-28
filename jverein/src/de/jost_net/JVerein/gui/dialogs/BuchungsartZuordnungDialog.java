@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/BuchungsartZuordnungDialog.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.5 $
+ * $Date: 2011/09/28 05:27:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,7 +9,10 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: BuchungsartZuordnungDialog.java,v $
- * Revision 1.4  2010/10/15 09:58:26  jost
+ * Revision 1.5  2011/09/28 05:27:11  jost
+ * Bugfix dynamische Größe
+ *
+ * Revision 1.4  2010-10-15 09:58:26  jost
  * Code aufgeräumt
  *
  * Revision 1.3  2009-06-20 12:33:13  jost
@@ -26,6 +29,7 @@ package de.jost_net.JVerein.gui.dialogs;
 
 import java.rmi.RemoteException;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -76,9 +80,8 @@ public class BuchungsartZuordnungDialog extends AbstractDialog
     LabelGroup group = new LabelGroup(parent, "");
     group.addLabelPair(JVereinPlugin.getI18n().tr("Buchungsart"),
         getBuchungsartAuswahl());
-    group.addLabelPair(
-        JVereinPlugin.getI18n().tr("Buchungsarten überschreiben"),
-        getUeberschreiben());
+    group.addLabelPair(JVereinPlugin.getI18n()
+        .tr("Buchungsarten überschreiben"), getUeberschreiben());
     group.addLabelPair("", getStatus());
 
     ButtonArea buttons = new ButtonArea(parent, 2);
@@ -109,6 +112,7 @@ public class BuchungsartZuordnungDialog extends AbstractDialog
         throw new OperationCanceledException();
       }
     });
+    getShell().setMinimumSize(getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
   }
 
