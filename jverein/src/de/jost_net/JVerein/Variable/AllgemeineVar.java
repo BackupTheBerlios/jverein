@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Variable/AllgemeineVar.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/05/07 05:47:57 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:52:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * heiner@jverein.de
  * www.jverein.de
  * All rights reserved
- * $Log: AllgemeineVar.java,v $
- * Revision 1.2  2011/05/07 05:47:57  jost
- * Neue Variable folgejahr
- *
- * Revision 1.1  2011-05-06 15:03:54  jost
- * Neue Variablenmimik
- *
  **********************************************************************/
 package de.jost_net.JVerein.Variable;
 

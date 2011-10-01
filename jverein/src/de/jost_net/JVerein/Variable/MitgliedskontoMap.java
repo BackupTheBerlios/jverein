@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Variable/MitgliedskontoMap.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/08/07 08:17:48 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:52:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * heiner@jverein.de
  * www.jverein.de
  * All rights reserved
- * $Log: MitgliedskontoMap.java,v $
- * Revision 1.2  2011/08/07 08:17:48  jost
- * Bugfix neue Datenfelder
- *
- * Revision 1.1  2011-05-27 18:48:45  jost
- * Vereinheitlichung Variable
- *
  **********************************************************************/
 package de.jost_net.JVerein.Variable;
 

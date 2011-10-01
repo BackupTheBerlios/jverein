@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Variable/MitgliedskontoVar.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/05/27 18:49:14 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:52:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * heiner@jverein.de
  * www.jverein.de
  * All rights reserved
- * $Log: MitgliedskontoVar.java,v $
- * Revision 1.1  2011/05/27 18:49:14  jost
- * Vereinheitlichung Variable
- *
  **********************************************************************/
 package de.jost_net.JVerein.Variable;
 

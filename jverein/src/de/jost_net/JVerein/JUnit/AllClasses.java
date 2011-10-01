@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JUnit/AllClasses.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/02/12 09:40:48 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:48:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AllClasses.java,v $
- * Revision 1.1  2011/02/12 09:40:48  jost
- * Vorbereitung kompakte Abbuchung
- *
  **********************************************************************/
 package de.jost_net.JVerein.JUnit;
 
