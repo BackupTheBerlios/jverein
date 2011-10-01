@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungMitgliedskontoZuordnungAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/09/27 16:17:18 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:25:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungMitgliedskontoZuordnungAction.java,v $
- * Revision 1.2  2011/09/27 16:17:18  jost
- * Bugfix "mehrere Buchungen gleichzeitig übernehmen" - Patch von Danzelot
- *
- * Revision 1.1  2011-09-18 09:35:49  jost
- * Mehreren Buchungen ein Mitgliedskonto gleichzeitig zuordnen.
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.action;
@@ -48,8 +41,8 @@ public class BuchungMitgliedskontoZuordnungAction implements Action
 
   public void handleAction(Object context) throws ApplicationException
   {
-    if (context == null
-        || !(context instanceof Buchung) && !(context instanceof Buchung[]))
+    if (context == null || !(context instanceof Buchung)
+        && !(context instanceof Buchung[]))
     {
       throw new ApplicationException(JVereinPlugin.getI18n().tr(
           "Keine Buchung(en) ausgewählt"));
@@ -76,38 +69,42 @@ public class BuchungMitgliedskontoZuordnungAction implements Action
         Object open = mkaz.open();
         Mitgliedskonto mk = null;
 
-        if ( open instanceof Mitgliedskonto ) {
-            mk = (Mitgliedskonto) open;
+        if (open instanceof Mitgliedskonto)
+        {
+          mk = (Mitgliedskonto) open;
         }
-        else if ( open instanceof Mitglied ) {
-                    Mitglied m = (Mitglied) open;
-                    mk = (Mitgliedskonto) Einstellungen.getDBService()
-                                                       .createObject( Mitgliedskonto.class, null );
+        else if (open instanceof Mitglied)
+        {
+          Mitglied m = (Mitglied) open;
+          mk = (Mitgliedskonto) Einstellungen.getDBService().createObject(
+              Mitgliedskonto.class, null);
 
-                    Double betrag = 0d;
-                    for ( Buchung buchung : b ) {
-                        betrag += buchung.getBetrag();
-                    }
+          Double betrag = 0d;
+          for (Buchung buchung : b)
+          {
+            betrag += buchung.getBetrag();
+          }
 
-                    mk.setBetrag(betrag);
-                    mk.setDatum(b[0].getDatum());
-                    mk.setMitglied(m);
-                    mk.setZahlungsweg(Zahlungsweg.ÜBERWEISUNG);
-                    mk.setZweck1(b[0].getZweck());
-                    mk.setZweck2(b[0].getZweck2());
-                    mk.store();
+          mk.setBetrag(betrag);
+          mk.setDatum(b[0].getDatum());
+          mk.setMitglied(m);
+          mk.setZahlungsweg(Zahlungsweg.ÜBERWEISUNG);
+          mk.setZweck1(b[0].getZweck());
+          mk.setZweck2(b[0].getZweck2());
+          mk.store();
         }
 
-        if ( mk == null ) {
-                    GUI.getStatusBar()
-                       .setErrorText( JVereinPlugin.getI18n()
-                                                   .tr( "Fehler bei der Ermittlung des Mitgliedskontos" ) );
+        if (mk == null)
+        {
+          GUI.getStatusBar().setErrorText(
+              JVereinPlugin.getI18n().tr(
+                  "Fehler bei der Ermittlung des Mitgliedskontos"));
         }
 
         for (Buchung buchung : b)
         {
-            buchung.setMitgliedskonto(mk);
-            buchung.store();
+          buchung.setMitgliedskonto(mk);
+          buchung.store();
         }
         System.out.println(mk.getBetrag() + mk.getZweck1());
 

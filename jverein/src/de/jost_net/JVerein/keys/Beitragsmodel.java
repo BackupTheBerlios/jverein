@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Beitragsmodel.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/08/27 11:04:20 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:48:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Beitragsmodel.java,v $
- * Revision 1.5  2011/08/27 11:04:20  jost
- * Vereinfachung Beitragsmodel
- *
- * Revision 1.4  2011-02-12 09:41:26  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.3  2009/06/11 21:04:03  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2008/12/13 16:23:55  jost
- * equals()-Methode implementiert.
- *
- * Revision 1.1  2008/11/29 13:12:56  jost
- * Refactoring: Code-Optimierung
- *
  **********************************************************************/
 package de.jost_net.JVerein.keys;
 

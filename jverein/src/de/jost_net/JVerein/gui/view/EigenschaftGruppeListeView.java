@@ -1,38 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeListeView.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/04/07 19:30:12 $
+ * $Revision: 1.9 $
+ * $Date: 2011/10/01 21:45:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftGruppeListeView.java,v $
- * Revision 1.8  2011/04/07 19:30:12  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.7  2011-01-15 09:46:48  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.6  2010-11-03 21:32:44  jost
- * Redakt.
- *
- * Revision 1.5  2010-10-15 09:58:25  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2010-10-07 19:49:23  jost
- * Hilfe in die View verlagert.
- *
- * Revision 1.3  2010-08-23 13:39:32  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.2  2009/11/23 20:40:35  jost
- * Neuer Menüpunkt: neu
- *
- * Revision 1.1  2009/11/17 21:00:18  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/DokumentShowAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/12/12 08:08:49 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:29:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: DokumentShowAction.java,v $
- * Revision 1.1  2010/12/12 08:08:49  jost
- * Neu: Speicherung von Dokumenten
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -50,13 +46,13 @@ public class DokumentShowAction implements Action
         return;
       }
       QueryMessage qm = new QueryMessage(ad.getUUID(), null);
-      Application.getMessagingFactory().getMessagingQueue(
-          "jameica.messaging.getmeta").sendSyncMessage(qm);
+      Application.getMessagingFactory()
+          .getMessagingQueue("jameica.messaging.getmeta").sendSyncMessage(qm);
       Map map = (Map) qm.getData();
 
       qm = new QueryMessage(ad.getUUID(), null);
-      Application.getMessagingFactory().getMessagingQueue(
-          "jameica.messaging.get").sendSyncMessage(qm);
+      Application.getMessagingFactory()
+          .getMessagingQueue("jameica.messaging.get").sendSyncMessage(qm);
       byte[] data = (byte[]) qm.getData();
       final File file = new File(System.getProperty("java.io.tmpdir") + "/"
           + map.get("filename"));

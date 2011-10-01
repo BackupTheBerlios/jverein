@@ -1,44 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/EigenschaftenAuswahlDialog.java,v $
- * $Revision: 1.10 $
- * $Date: 2011/06/06 19:16:37 $
+ * $Revision: 1.11 $
+ * $Date: 2011/10/01 21:43:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftenAuswahlDialog.java,v $
- * Revision 1.10  2011/06/06 19:16:37  jost
- * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
- *
- * Revision 1.9  2010-10-15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.8  2010-04-08 17:56:56  jost
- * Bugfix
- *
- * Revision 1.7  2010/03/27 20:10:05  jost
- * EigenschaftenAuswahl überarbeitet.
- *
- * Revision 1.6  2010/02/01 20:58:46  jost
- * Vermeidung Warnings.
- *
- * Revision 1.5  2009/12/06 21:40:39  jost
- * Überflüssigen Code entfernt.
- *
- * Revision 1.4  2009/11/19 19:44:02  jost
- * Bugfix Eigenschaften
- *
- * Revision 1.3  2009/11/17 20:57:34  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
- * Revision 1.2  2009/06/11 21:02:41  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/01/25 16:02:57  jost
- * Neu: Eigenschaften des Mitgliedes
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.dialogs;
 

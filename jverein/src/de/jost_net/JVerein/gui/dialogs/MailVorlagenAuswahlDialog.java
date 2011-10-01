@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MailVorlagenAuswahlDialog.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:43:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailVorlagenAuswahlDialog.java,v $
- * Revision 1.2  2010/10/15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2010-02-01 20:59:26  jost
- * Neu: Einfache Mailfunktion
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.dialogs;

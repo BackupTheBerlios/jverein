@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/PersonenartDialog.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:43:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: PersonenartDialog.java,v $
- * Revision 1.3  2010/10/15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2009-06-11 21:02:41  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2009/04/25 05:29:03  jost
- * Neu: Juristische Personen  können als Mitglied gespeichert werden.
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.dialogs;
@@ -97,7 +87,7 @@ public class PersonenartDialog extends AbstractDialog
       return this.personenart;
     }
     this.personenart = new SelectInput(new Object[] { NATUERLICHE_PERSON,
-        JURISTISCHE_PERSON}, NATUERLICHE_PERSON);
+        JURISTISCHE_PERSON }, NATUERLICHE_PERSON);
     this.personenart.setName(JVereinPlugin.getI18n().tr("Personenart"));
     this.personenart.addListener(new Listener()
     {

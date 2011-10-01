@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BLZUpdateAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/09/27 16:57:36 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:23:30 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BLZUpdateAction.java,v $
- * Revision 1.1  2011/09/27 16:57:36  jost
- * Neu: BLZ-Update
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

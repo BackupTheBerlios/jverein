@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedskontoDetailSollNeuAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/07/25 18:29:15 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:39:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedskontoDetailSollNeuAction.java,v $
- * Revision 1.1  2010/07/25 18:29:15  jost
- * Neu: Mitgliedskonto
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

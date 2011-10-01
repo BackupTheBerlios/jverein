@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/KontoDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:36:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KontoDeleteAction.java,v $
- * Revision 1.2  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/05/22 06:46:49  jost
- * BuchfÃ¼hrung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -37,7 +30,8 @@ public class KontoDeleteAction implements Action
   {
     if (context == null || !(context instanceof Konto))
     {
-      throw new ApplicationException(JVereinPlugin.getI18n().tr("Kein Konto ausgewählt"));
+      throw new ApplicationException(JVereinPlugin.getI18n().tr(
+          "Kein Konto ausgewählt"));
     }
     try
     {
@@ -48,7 +42,8 @@ public class KontoDeleteAction implements Action
       }
       YesNoDialog d = new YesNoDialog(YesNoDialog.POSITION_CENTER);
       d.setTitle(JVereinPlugin.getI18n().tr("Konto löschen"));
-      d.setText(JVereinPlugin.getI18n().tr("Wollen Sie dieses Konto wirklich löschen?"));
+      d.setText(JVereinPlugin.getI18n().tr(
+          "Wollen Sie dieses Konto wirklich löschen?"));
       try
       {
         Boolean choice = (Boolean) d.open();
@@ -57,16 +52,19 @@ public class KontoDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr("Fehler beim Löschen des Kontos"), e);
+        Logger.error(
+            JVereinPlugin.getI18n().tr("Fehler beim Löschen des Kontos"), e);
         return;
       }
 
       k.delete();
-      GUI.getStatusBar().setSuccessText(JVereinPlugin.getI18n().tr("Konto gelöscht."));
+      GUI.getStatusBar().setSuccessText(
+          JVereinPlugin.getI18n().tr("Konto gelöscht."));
     }
     catch (RemoteException e)
     {
-      String fehler = JVereinPlugin.getI18n().tr("Fehler beim Löschen des Kontos.");
+      String fehler = JVereinPlugin.getI18n().tr(
+          "Fehler beim Löschen des Kontos.");
       GUI.getStatusBar().setErrorText(fehler);
       Logger.error(fehler, e);
     }

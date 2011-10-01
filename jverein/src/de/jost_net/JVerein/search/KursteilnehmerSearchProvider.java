@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/KursteilnehmerSearchProvider.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/08/05 14:53:11 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:49:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KursteilnehmerSearchProvider.java,v $
- * Revision 1.6  2011/08/05 14:53:11  jost
- * Warnings entfernt.
- *
- * Revision 1.5  2011-02-12 09:42:02  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.4  2010-10-15 09:58:30  jost
- * Code aufger‰umt
- *
- * Revision 1.3  2009-06-11 21:04:24  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2008/10/01 14:17:57  jost
- * Warnungen entfernt
- *
- * Revision 1.1  2008/09/04 18:57:37  jost
- * SearchProvider f√ºr die neue Jameica-Suchmaschine
- *
  **********************************************************************/
 package de.jost_net.JVerein.search;
 

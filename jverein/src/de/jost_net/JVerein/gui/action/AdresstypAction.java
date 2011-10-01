@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AdresstypAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/01/28 17:03:07 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:18:45 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AdresstypAction.java,v $
- * Revision 1.2  2011/01/28 17:03:07  jost
- * Keine Änderung von reservierten Adresstypen
- *
- * Revision 1.1  2011-01-27 22:16:19  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

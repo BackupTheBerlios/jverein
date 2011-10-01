@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/EigenschaftGruppeControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/11/27 19:28:13 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftGruppeControl.java,v $
- * Revision 1.4  2010/11/27 19:28:13  jost
- * Optional: max. eine Eigenschaft auswählbar
- *
- * Revision 1.3  2010-09-09 18:49:34  jost
- * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
- *
- * Revision 1.2  2009/11/23 20:39:44  jost
- * Bugfix Lösch-Button
- *
- * Revision 1.1  2009/11/17 20:56:33  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 

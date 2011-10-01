@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/XLastschrift.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/06/30 20:07:51 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:47:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: XLastschrift.java,v $
- * Revision 1.3  2011/06/30 20:07:51  jost
- * Rundungsfehler durch Einsatz von BigDecimal vermieden.
- *
- * Revision 1.2  2011-02-23 18:02:27  jost
- * Neu: Kompakte Abbuchung
- *
- * Revision 1.1  2011-02-12 09:40:32  jost
- * Vorbereitung kompakte Abbuchung
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 

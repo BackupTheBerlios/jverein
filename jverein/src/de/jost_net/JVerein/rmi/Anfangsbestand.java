@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Anfangsbestand.java,v $
- * $Revision: 1.2 $
- * $Date: 2008/06/28 17:00:48 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:49:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Anfangsbestand.java,v $
- * Revision 1.2  2008/06/28 17:00:48  jost
- * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
- *
- * Revision 1.1  2008/05/22 06:54:59  jost
- * Buchführung
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

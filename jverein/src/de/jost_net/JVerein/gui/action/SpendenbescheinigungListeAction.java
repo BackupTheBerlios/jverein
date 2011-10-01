@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/SpendenbescheinigungListeAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/10/15 09:58:01 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:39:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenbescheinigungListeAction.java,v $
- * Revision 1.2  2010/10/15 09:58:01  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2008-07-18 20:08:50  jost
- * Neu: Spendenbescheinigung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

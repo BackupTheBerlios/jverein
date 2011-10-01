@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/HelpConsumer.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/11/13 09:31:56 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:51:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: HelpConsumer.java,v $
- * Revision 1.2  2010/11/13 09:31:56  jost
- * Warnings entfernt.
- *
- * Revision 1.1  2010-10-04 12:18:31  jost
- * Tool zur Ermittlung der Views ohne Hilfetext
- *
- * Revision 1.1  2009-03-26 21:05:56  jost
- * Email-Adress-Checker
- *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 
@@ -47,6 +37,6 @@ public class HelpConsumer implements MessageConsumer
 
   public Class<?>[] getExpectedMessageTypes()
   {
-    return new Class[] { QueryMessage.class};
+    return new Class[] { QueryMessage.class };
   }
 }

@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AnfangsbestandNeuAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/10 06:35:28 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:20:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AnfangsbestandNeuAction.java,v $
- * Revision 1.3  2010/10/10 06:35:28  jost
- * Bugfix "leere Kontoauswahl".
- *
- * Revision 1.2  2009/06/11 21:01:40  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/05/22 06:45:35  jost
- * Buchführung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

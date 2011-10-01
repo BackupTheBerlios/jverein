@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/KontoMenu.java,v $
- * $Revision: 1.3 $
- * $Date: 2009/06/11 21:03:02 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:44:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KontoMenu.java,v $
- * Revision 1.3  2009/06/11 21:03:02  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2008/12/22 21:14:19  jost
- * Icons ins Menü aufgenommen.
- *
- * Revision 1.1  2008/05/22 06:51:08  jost
- * Buchführung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 

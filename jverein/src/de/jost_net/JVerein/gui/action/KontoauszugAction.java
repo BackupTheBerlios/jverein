@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/KontoauszugAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/08/11 15:22:56 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:36:06 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KontoauszugAction.java,v $
- * Revision 1.1  2011/08/11 15:22:56  jost
- * Neu: Kontoauszug
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

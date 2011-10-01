@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/VersionImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/11/13 09:31:24 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: VersionImpl.java,v $
- * Revision 1.4  2010/11/13 09:31:24  jost
- * Warnings entfernt.
- *
- * Revision 1.3  2010-10-15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2008-11-29 13:17:19  jost
- * Refactoring: Warnungen beseitigt.
- *
- * Revision 1.1  2007/12/01 17:47:50  jost
- * Neue DB-Update-Mimik
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

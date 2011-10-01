@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/Abrechnungsmodi.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/08/27 11:04:04 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:48:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Abrechnungsmodi.java,v $
- * Revision 1.4  2011/08/27 11:04:04  jost
- * Vereinfachung Beitragsmodel
- *
- * Revision 1.3  2011-02-12 09:41:11  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.2  2010/05/18 20:23:26  jost
- * Überflüssige Imports entfernt.
- *
- * Revision 1.1  2010/04/25 13:56:11  jost
- * Vorarbeiten Mitgliedskonto
- *
  **********************************************************************/
 package de.jost_net.JVerein.keys;
 

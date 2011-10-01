@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Attic/TerminePart.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/01/27 22:20:31 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:44:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: TerminePart.java,v $
- * Revision 1.4  2011/01/27 22:20:31  jost
- * Anpassung an neue Appointmentprovider
- *
- * Revision 1.3  2010-11-27 17:57:27  jost
- * Überflüssigen Import entfernt.
- *
- * Revision 1.2  2010-11-26 08:11:06  jost
- * Änderung von Olaf übernommen.
- *
- * Revision 1.1  2010-11-25 15:11:45  jost
- * Initial Commit
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.parts;

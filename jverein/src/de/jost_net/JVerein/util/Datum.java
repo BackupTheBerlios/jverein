@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Datum.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/05/05 19:56:43 $
+ * $Revision: 1.9 $
+ * $Date: 2011/10/01 21:51:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Datum.java,v $
- * Revision 1.8  2011/05/05 19:56:43  jost
- * neue Datumsformatierung.
- *
- * Revision 1.7  2011-02-12 09:44:06  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.6  2010-10-15 09:58:29  jost
- * Code aufgeräumt
- *
- * Revision 1.5  2010-09-13 18:43:13  jost
- * Neue Methode
- *
- * Revision 1.4  2008/01/01 12:36:50  jost
- * Javadoc korrigiert
- *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 

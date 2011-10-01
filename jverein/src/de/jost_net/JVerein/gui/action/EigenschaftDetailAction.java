@@ -1,21 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/EigenschaftDetailAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/11/23 20:38:49 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:30:05 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftDetailAction.java,v $
- * Revision 1.2  2009/11/23 20:38:49  jost
- * Bugfix Lösch-Button
- *
- * Revision 1.1  2009/11/17 20:54:28  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

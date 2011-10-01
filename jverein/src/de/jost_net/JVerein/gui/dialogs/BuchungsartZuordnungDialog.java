@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/BuchungsartZuordnungDialog.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/09/28 05:27:11 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:43:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsartZuordnungDialog.java,v $
- * Revision 1.5  2011/09/28 05:27:11  jost
- * Bugfix dynamische Größe
- *
- * Revision 1.4  2010-10-15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2009-06-20 12:33:13  jost
- * Vereinheitlichung der Bezeichner
- *
- * Revision 1.2  2009/06/11 21:02:41  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2009/01/04 16:27:27  jost
- * Neu: Für mehrere Buchungen gleichzeitig die Buchungsart festlegen.
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.dialogs;
 

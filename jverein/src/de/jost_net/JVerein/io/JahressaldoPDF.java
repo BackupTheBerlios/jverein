@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/JahressaldoPDF.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:47:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: JahressaldoPDF.java,v $
- * Revision 1.4  2010/10/15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2009-03-01 18:00:52  jost
- * Zusätzliche Zeile "Überschuss/Verlust"
- *
- * Revision 1.2  2008/07/10 07:59:21  jost
- * Optimierung der internen Reporter-Klasse
- *
- * Revision 1.1  2008/05/25 19:37:08  jost
- * Neu: Jahressaldo
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 

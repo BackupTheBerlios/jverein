@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/JahresabschlussImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/11/13 09:30:16 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: JahresabschlussImpl.java,v $
- * Revision 1.6  2010/11/13 09:30:16  jost
- * Warnings entfernt.
- *
- * Revision 1.5  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2009-06-11 21:04:23  jost
- * Vorbereitung I18N
- *
- * Revision 1.3  2009/02/07 20:32:39  jost
- * Bugfix: Anfangsbestand kann auch innerhalb des Geschäftsjahres liegen.
- *
- * Revision 1.2  2008/11/29 13:16:04  jost
- * Refactoring: Warnungen beseitigt.
- *
- * Revision 1.1  2008/06/28 17:07:25  jost
- * Neu: Jahresabschluss
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 
@@ -75,12 +56,13 @@ public class JahresabschlussImpl extends AbstractDBObject implements
     {
       DBIterator it = Einstellungen.getDBService().createList(
           Jahresabschluss.class);
-      it.addFilter("von > ?", new Object[] { getVon()});
+      it.addFilter("von > ?", new Object[] { getVon() });
       if (it.hasNext())
       {
         throw new ApplicationException(
-            JVereinPlugin.getI18n().tr(
-                "Jahresabschluss kann nicht gelöscht werden. Es existieren neuere Abschlüsse!"));
+            JVereinPlugin
+                .getI18n()
+                .tr("Jahresabschluss kann nicht gelöscht werden. Es existieren neuere Abschlüsse!"));
       }
     }
     catch (RemoteException e)
@@ -100,8 +82,9 @@ public class JahresabschlussImpl extends AbstractDBObject implements
       if (hasBuchungenOhneBuchungsart())
       {
         throw new ApplicationException(
-            JVereinPlugin.getI18n().tr(
-                "Achtung! Es existieren noch Buchungen ohne Buchungsart. Kein Abschluss möglich!"));
+            JVereinPlugin
+                .getI18n()
+                .tr("Achtung! Es existieren noch Buchungen ohne Buchungsart. Kein Abschluss möglich!"));
       }
       if (getName() == null || getName().length() == 0)
       {
@@ -117,14 +100,14 @@ public class JahresabschlussImpl extends AbstractDBObject implements
         Konto k1 = (Konto) it.next();
         DBIterator anfangsbestaende = Einstellungen.getDBService().createList(
             Anfangsbestand.class);
-        anfangsbestaende.addFilter("konto = ?", new Object[] { k1.getID()});
+        anfangsbestaende.addFilter("konto = ?", new Object[] { k1.getID() });
         anfangsbestaende.addFilter("datum >= ?",
-            new Object[] { gj.getBeginnGeschaeftsjahr()});
+            new Object[] { gj.getBeginnGeschaeftsjahr() });
         if (!anfangsbestaende.hasNext())
         {
           throw new ApplicationException(JVereinPlugin.getI18n().tr(
               "Für Konto {0} {1} fehlt der Anfangsbestand.",
-              new String[] { k1.getNummer(), k1.getBezeichnung()}));
+              new String[] { k1.getNummer(), k1.getBezeichnung() }));
         }
       }
     }
@@ -151,8 +134,8 @@ public class JahresabschlussImpl extends AbstractDBObject implements
   private boolean hasBuchungenOhneBuchungsart() throws RemoteException
   {
     DBIterator it = Einstellungen.getDBService().createList(Buchung.class);
-    it.addFilter("datum >= ?", new Object[] { getVon()});
-    it.addFilter("datum <= ?", new Object[] { getBis()});
+    it.addFilter("datum >= ?", new Object[] { getVon() });
+    it.addFilter("datum <= ?", new Object[] { getBis() });
     it.addFilter("buchungsart is null");
     return it.hasNext();
   }

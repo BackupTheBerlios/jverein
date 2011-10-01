@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/formatter/EigenschaftGruppeFormatter.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/11/17 20:57:56 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:43:52 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftGruppeFormatter.java,v $
- * Revision 1.1  2009/11/17 20:57:56  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.formatter;
 

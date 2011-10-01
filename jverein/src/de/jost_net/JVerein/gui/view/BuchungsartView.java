@@ -1,62 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/BuchungsartView.java,v $
- * $Revision: 1.17 $
- * $Date: 2011/04/07 19:30:12 $
+ * $Revision: 1.18 $
+ * $Date: 2011/10/01 21:45:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsartView.java,v $
- * Revision 1.17  2011/04/07 19:30:12  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.16  2011-03-07 21:04:45  jost
- * Neu:  Automatische Spendenbescheinigungen: Eigenschaft Spende aufgenommen
- *
- * Revision 1.15  2011-01-15 09:46:48  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.14  2010-10-15 09:58:25  jost
- * Code aufgeräumt
- *
- * Revision 1.13  2010-10-07 19:49:24  jost
- * Hilfe in die View verlagert.
- *
- * Revision 1.12  2010-08-23 13:39:32  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.11  2009/09/10 18:46:30  jost
- * Hilfe aufgenommen
- *
- * Revision 1.10  2009/09/10 18:18:09  jost
- * neu: Buchungsklassen
- *
- * Revision 1.9  2009/07/24 20:20:48  jost
- * Focus auf erstes Feld setzen.
- *
- * Revision 1.8  2009/06/11 21:03:39  jost
- * Vorbereitung I18N
- *
- * Revision 1.7  2009/01/20 20:09:24  jost
- * neue Icons
- *
- * Revision 1.6  2009/01/20 19:15:19  jost
- * neu: Back-Button mit Icon
- *
- * Revision 1.5  2008/05/22 06:52:37  jost
- * BuchfÃ¼hrung
- *
- * Revision 1.4  2008/03/16 07:36:29  jost
- * Reaktivierung BuchfÃ¼hrung
- *
- * Revision 1.2  2007/02/23 20:27:28  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.1  2006/09/20 15:39:10  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

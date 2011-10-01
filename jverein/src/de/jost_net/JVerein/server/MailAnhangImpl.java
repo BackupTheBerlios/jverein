@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MailAnhangImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/11/13 09:30:50 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailAnhangImpl.java,v $
- * Revision 1.3  2010/11/13 09:30:50  jost
- * Warnings entfernt.
- *
- * Revision 1.2  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2010-02-15 17:24:31  jost
- * Mail-Anhang implementiert
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

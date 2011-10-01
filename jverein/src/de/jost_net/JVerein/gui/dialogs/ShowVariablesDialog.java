@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/ShowVariablesDialog.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/05/30 20:01:15 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:43:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ShowVariablesDialog.java,v $
- * Revision 1.2  2011/05/30 20:01:15  jost
- * Variable in die Zwischenablage kopieren
- *
- * Revision 1.1  2011-05-29 12:41:36  jost
- * Neu. Anzeige der Variablen.
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.dialogs;
 

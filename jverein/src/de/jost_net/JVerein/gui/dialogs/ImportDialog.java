@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/ImportDialog.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:33:39 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:43:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ImportDialog.java,v $
- * Revision 1.4  2011/02/12 09:33:39  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.3  2010-10-15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2010-02-01 20:59:00  jost
- * Vermeidung Warnings.
- *
- * Revision 1.1  2009/10/20 17:58:08  jost
- * Neu: Import von Zusatzbeträgen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.dialogs;
 

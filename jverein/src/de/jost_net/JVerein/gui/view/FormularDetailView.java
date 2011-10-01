@@ -1,38 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FormularDetailView.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/04/07 19:30:12 $
+ * $Revision: 1.12 $
+ * $Date: 2011/10/01 21:45:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: FormularDetailView.java,v $
- * Revision 1.11  2011/04/07 19:30:12  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.10  2011-01-15 09:46:48  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.9  2010-10-15 09:58:23  jost
- * Code aufgeräumt
- *
- * Revision 1.8  2010-10-07 19:49:24  jost
- * Hilfe in die View verlagert.
- *
- * Revision 1.7  2010-08-23 13:39:32  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.6  2009/07/24 20:21:34  jost
- * Focus auf erstes Feld setzen.
- *
- * Revision 1.5  2009/06/11 21:03:39  jost
- * Vorbereitung I18N
- *
- * Revision 1.4  2009/03/26 21:03:06  jost
- * Javadoc angepasst.
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

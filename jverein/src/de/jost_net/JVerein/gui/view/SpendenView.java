@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/SpendenView.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/07/24 18:04:45 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:46:34 $
  * $Author: jost $
  * Kopiert aus Hibiscus DonateView
  *
@@ -9,10 +9,6 @@
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenView.java,v $
- * Revision 1.1  2011/07/24 18:04:45  jost
- * Neu: Spenden für JVerein
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.view;

@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/BuchungsklasseImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:42:33 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:50:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsklasseImpl.java,v $
- * Revision 1.4  2011/02/12 09:42:33  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.3  2010-11-13 09:29:39  jost
- * Warnings entfernt.
- *
- * Revision 1.2  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2009-09-10 18:19:58  jost
- * neu: Buchungsklassen
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

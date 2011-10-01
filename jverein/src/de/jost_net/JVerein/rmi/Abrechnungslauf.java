@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Abrechnungslauf.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/06/19 06:32:37 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:49:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Abrechnungslauf.java,v $
- * Revision 1.3  2011/06/19 06:32:37  jost
- * Umstellung Datenbanktyp für booleans von char(5) auf boolean (h2) bzw. tinyint (MySQL)
- *
- * Revision 1.2  2010-07-25 18:45:35  jost
- * Neu: Mitgliedskonto
- *
- * Revision 1.1  2010/05/18 20:24:00  jost
- * Anpassung Klassenname
- *
- * Revision 1.1  2010/04/25 13:56:26  jost
- * Vorarbeiten Mitgliedskonto
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

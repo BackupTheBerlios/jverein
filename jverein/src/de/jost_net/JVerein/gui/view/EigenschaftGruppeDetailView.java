@@ -1,41 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/EigenschaftGruppeDetailView.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/04/07 19:30:12 $
+ * $Revision: 1.10 $
+ * $Date: 2011/10/01 21:45:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftGruppeDetailView.java,v $
- * Revision 1.9  2011/04/07 19:30:12  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.8  2011-01-15 09:46:49  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.7  2010-11-27 19:28:55  jost
- * Optional: max. eine Eigenschaft auswählbar
- *
- * Revision 1.6  2010-11-03 21:32:25  jost
- * Redakt.
- *
- * Revision 1.5  2010-10-15 09:58:25  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2010-10-07 19:49:24  jost
- * Hilfe in die View verlagert.
- *
- * Revision 1.3  2010-09-09 18:50:40  jost
- * Eigenschaftengruppen können jetzt auch das Merkmal "Pflicht" haben. Dann muß mindestens eine Eigenschaft ausgewählt werden.
- *
- * Revision 1.2  2010-08-23 13:39:32  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.1  2009/11/17 21:00:04  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

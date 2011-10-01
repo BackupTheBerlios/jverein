@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/AbstractDBSupportImpl.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/11/13 09:28:46 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -9,19 +9,6 @@
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AbstractDBSupportImpl.java,v $
- * Revision 1.4  2010/11/13 09:28:46  jost
- * Warnings entfernt.
- *
- * Revision 1.3  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2008-07-16 13:02:39  jost
- * *** empty log message ***
- *
- * Revision 1.1  2007/10/18 18:20:23  jost
- * Vorbereitung H2-DB
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.server;

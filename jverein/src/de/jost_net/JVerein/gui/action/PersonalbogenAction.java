@@ -1,64 +1,13 @@
 /**********************************************************************
-ei * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/PersonalbogenAction.java,v $
- * $Revision: 1.16 $
- * $Date: 2011/06/30 20:05:17 $
+ * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/PersonalbogenAction.java,v $
+ * $Revision: 1.17 $
+ * $Date: 2011/10/01 21:39:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: PersonalbogenAction.java,v $
- * Revision 1.16  2011/06/30 20:05:17  jost
- * Sortierung der Zusatzbeträge nach absteigendem Fälligkeitsdatum
- *
- * Revision 1.15  2011-05-22 08:33:02  jost
- * Neu: Buchungstext2 für Zusatzbeträge
- *
- * Revision 1.14  2011-05-20 12:59:19  jost
- * Neu: Individueller Beitrag
- *
- * Revision 1.13  2011-04-23 06:55:56  jost
- * Arbeitseinsätze auf dem Personalbogen ausgeben
- *
- * Revision 1.12  2011-02-12 09:27:06  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.11  2011-01-30 10:42:19  jost
- * Bugfix f. Adressen
- *
- * Revision 1.10  2010-11-27 17:56:10  jost
- * Warnung entfernt.
- *
- * Revision 1.9  2010-11-27 00:59:20  jost
- * Bugfix Eigenschaften
- *
- * Revision 1.8  2010-10-30 11:28:54  jost
- * Neu: Sterbetag
- *
- * Revision 1.7  2010-10-15 09:58:01  jost
- * Code aufgeräumt
- *
- * Revision 1.6  2010-09-16 18:12:02  jost
- * Tippfehler beseitigt
- * Zeilenumbrüche in den Kommunikationsdaten.
- *
- * Revision 1.5  2010-09-15 20:44:10  jost
- * Vermeidung NPE
- * Kommunikationsdaten "aufgehübscht"
- *
- * Revision 1.4  2010-09-14 15:40:44  jost
- * Fehler loggen
- *
- * Revision 1.3  2010-09-07 16:58:55  jost
- * Div. Änderungen
- *
- * Revision 1.2  2010-09-01 13:49:12  jost
- * Header und NPE-Vermeidung
- *
- * Revision 1.1  2010-09-01 05:56:15  jost
- * neu: Personalbogen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

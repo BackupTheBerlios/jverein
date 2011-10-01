@@ -1,31 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MailImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/13 09:30:50 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailImpl.java,v $
- * Revision 1.5  2010/11/13 09:30:50  jost
- * Warnings entfernt.
- *
- * Revision 1.4  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2010-09-13 15:26:32  jost
- * Länge des Textes auf 10.000 Zeichen verlängert.
- * http://www.jverein.de/forum/viewtopic.php?f=5&t=194
- *
- * Revision 1.2  2010/02/15 17:24:43  jost
- * Mail-Anhang implementiert
- *
- * Revision 1.1  2010/02/01 21:03:15  jost
- * Neu: Einfache Mailfunktion
- *
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

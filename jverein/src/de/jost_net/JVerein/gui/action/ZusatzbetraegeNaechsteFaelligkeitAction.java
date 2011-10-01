@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ZusatzbetraegeNaechsteFaelligkeitAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:01 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:39:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ZusatzbetraegeNaechsteFaelligkeitAction.java,v $
- * Revision 1.3  2010/10/15 09:58:01  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2009-06-11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/12/22 21:07:33  jost
- * Zusatzabbuchung->Zusatzbetrag
- *
- * Revision 1.1  2007/03/30 13:19:57  jost
- * Neu
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -79,8 +66,7 @@ public class ZusatzbetraegeNaechsteFaelligkeitAction implements Action
             .error(
                 JVereinPlugin
                     .getI18n()
-                    .tr(
-                        "Fehler beim Setzen des nächsten Fälligkeitsdatums des Zusatzbetrages"),
+                    .tr("Fehler beim Setzen des nächsten Fälligkeitsdatums des Zusatzbetrages"),
                 e);
         return;
       }

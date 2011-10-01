@@ -1,36 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/KontoauswahlInput.java,v $
- * $Revision: 1.9 $
- * $Date: 2010/12/31 16:44:26 $
+ * $Revision: 1.10 $
+ * $Date: 2011/10/01 21:44:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KontoauswahlInput.java,v $
- * Revision 1.9  2010/12/31 16:44:26  jost
- * Bug 17827 gefixed
- *
- * Revision 1.8  2010-10-11 20:32:40  jost
- * Vermeidung NPE
- *
- * Revision 1.7  2010-10-10 06:51:10  jost
- * Korrekte Null-Wert-Behandlung
- *
- * Revision 1.6  2010-10-10 06:37:26  jost
- * Bugfix "leere Kontoauswahl".
- *
- * Revision 1.5  2010-09-16 18:12:30  jost
- * Vermeidung ObjectNotFoundException abgefangen.
- *
- * Revision 1.4  2010-09-12 08:02:49  jost
- * Letztes Konto wird wieder vorgegeben.
- * Siehe auch http://www.jverein.de/forum/viewtopic.php?f=1&t=198
- *
- * Revision 1.3  2010-07-25 18:34:58  jost
- * Doc
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.input;
 

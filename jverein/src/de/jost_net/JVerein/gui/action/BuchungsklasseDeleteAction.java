@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungsklasseDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/03/13 18:28:48 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:26:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsklasseDeleteAction.java,v $
- * Revision 1.2  2011/03/13 18:28:48  jost
- * redakt. Kommentare
- *
- * Revision 1.1  2009/09/10 18:16:18  jost
- * neu: Buchungsklassen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -59,8 +52,9 @@ public class BuchungsklasseDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr(
-            "Fehler beim Löschen der Buchungsklasse"), e);
+        Logger.error(
+            JVereinPlugin.getI18n()
+                .tr("Fehler beim Löschen der Buchungsklasse"), e);
         return;
       }
 

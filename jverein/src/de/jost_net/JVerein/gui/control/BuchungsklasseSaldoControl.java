@@ -1,39 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/BuchungsklasseSaldoControl.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/02/12 09:29:33 $
+ * $Revision: 1.9 $
+ * $Date: 2011/10/01 21:42:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsklasseSaldoControl.java,v $
- * Revision 1.8  2011/02/12 09:29:33  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.7  2011-01-15 09:46:49  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.6  2010-10-15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.5  2010-08-23 13:32:24  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.4  2010/02/23 21:15:37  jost
- * Individueller Zeitraum
- *
- * Revision 1.3  2009/09/15 19:21:35  jost
- * TODO-Tag entfernt.
- *
- * Revision 1.2  2009/09/12 19:02:46  jost
- * neu: Buchungsjournal
- *
- * Revision 1.1  2009/09/10 18:17:23  jost
- * neu: Buchungsklassen
- *
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 
@@ -94,8 +68,8 @@ public class BuchungsklasseSaldoControl extends AbstractControl
     Date d = new Date();
     try
     {
-      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("von",
-          "01.01" + cal.get(Calendar.YEAR)));
+      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("von", "01.01"
+          + cal.get(Calendar.YEAR)));
     }
     catch (ParseException e)
     {
@@ -115,8 +89,8 @@ public class BuchungsklasseSaldoControl extends AbstractControl
     Date d = new Date();
     try
     {
-      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("bis",
-          "31.12." + cal.get(Calendar.YEAR)));
+      d = new JVDateFormatTTMMJJJJ().parse(settings.getString("bis", "31.12."
+          + cal.get(Calendar.YEAR)));
     }
     catch (ParseException e)
     {

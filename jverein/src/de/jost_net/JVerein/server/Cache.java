@@ -1,17 +1,12 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/Cache.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/12/30 18:58:01 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:50:34 $
  * $Author: jost $
  *
  * Author Collin Finck
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Cache.java,v $
- * Revision 1.1  2010/12/30 18:58:01  jost
- * Colins Patch zur MySQL-Performance-Steigerung
- *
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

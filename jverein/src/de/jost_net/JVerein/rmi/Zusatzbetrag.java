@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Zusatzbetrag.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/05/22 08:35:39 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:49:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Zusatzbetrag.java,v $
- * Revision 1.2  2011/05/22 08:35:39  jost
- * Neu: Buchungstext2 für Zusatzbeträge
- *
- * Revision 1.1  2008/12/22 21:20:48  jost
- * Zusatzabbuchung->Zusatzbetrag
- *
- * Revision 1.3  2007/03/30 13:26:01  jost
- * Wiederkehrende Zusatzabbuchungen.
- *
- * Revision 1.2  2007/02/23 20:28:24  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.1  2006/09/20 15:39:35  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

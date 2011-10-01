@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungAuswertungPDFSummen.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:38:12 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:46:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungAuswertungPDFSummen.java,v $
- * Revision 1.5  2011/02/12 09:38:12  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.4  2010-10-15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2009-09-19 16:43:00  jost
- * Summen Einnahmen, Ausgaben und Umbuchungen.
- *
- * Revision 1.2  2008/12/06 16:46:41  jost
- * Debug-Meldung entfernt.
- *
- * Revision 1.1  2008/07/10 07:58:31  jost
- * PDF-Export der Buchungen jetzt mit Einzelbuchungen und als Summen
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 
@@ -71,8 +55,8 @@ public class BuchungAuswertungPDFSummen
     try
     {
       FileOutputStream fos = new FileOutputStream(file);
-      String subtitle = "vom " + new JVDateFormatTTMMJJJJ().format(dVon) + " bis "
-          + new JVDateFormatTTMMJJJJ().format(dBis);
+      String subtitle = "vom " + new JVDateFormatTTMMJJJJ().format(dVon)
+          + " bis " + new JVDateFormatTTMMJJJJ().format(dBis);
       if (konto != null)
       {
         subtitle += " für Konto " + konto.getNummer() + " - "

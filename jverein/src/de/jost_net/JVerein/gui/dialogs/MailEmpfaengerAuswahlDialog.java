@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/MailEmpfaengerAuswahlDialog.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/06/06 19:16:52 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:43:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailEmpfaengerAuswahlDialog.java,v $
- * Revision 1.5  2011/06/06 19:16:52  jost
- * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
- *
- * Revision 1.4  2010-10-15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2010-03-27 20:10:26  jost
- * Auswahl überarbeitet.
- *
- * Revision 1.2  2010/03/05 21:55:33  jost
- * Künftiges Feature auskommentiert.
- *
- * Revision 1.1  2010/02/01 20:59:26  jost
- * Neu: Einfache Mailfunktion
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.dialogs;

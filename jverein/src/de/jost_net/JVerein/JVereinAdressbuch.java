@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/JVereinAdressbuch.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/08/01 18:39:35 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:15:13 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: JVereinAdressbuch.java,v $
- * Revision 1.2  2011/08/01 18:39:35  jost
- * Typisierung
- *
- * Revision 1.1  2011-04-03 11:01:09  jost
- * Neu: JVerein-Mitglieder mit Bankverbindung werden in das Hibiscus-Adressbuch übernommen.
- *
  **********************************************************************/
 package de.jost_net.JVerein;
 

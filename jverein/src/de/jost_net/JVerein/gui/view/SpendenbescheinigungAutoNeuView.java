@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/SpendenbescheinigungAutoNeuView.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/06/20 15:12:20 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:46:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenbescheinigungAutoNeuView.java,v $
- * Revision 1.4  2011/06/20 15:12:20  jost
- * Bei der automatischen Erstellung von Spendenbescheinigungen wird das Formular mit vorgegeben.
- *
- * Revision 1.3  2011-04-07 19:35:47  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.2  2011-03-09 22:16:41  jost
- * Einschränkung auf ein Jahr.
- *
- * Revision 1.1  2011-03-07 21:05:05  jost
- * Neu:  Automatische Spendenbescheinigungen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/LehrgangControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/04/07 19:36:18 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: LehrgangControl.java,v $
- * Revision 1.6  2011/04/07 19:36:18  jost
- * überflüssiges Import-Statement
- *
- * Revision 1.5  2011-04-03 07:36:13  jost
- * Neu: Filter für die Lehrgangsübersicht
- *
- * Revision 1.4  2011-03-25 12:34:44  jost
- * Vermeidung NPE
- *
- * Revision 1.3  2011-02-12 09:31:26  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.2  2009/06/22 18:13:30  jost
- * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
- *
- * Revision 1.1  2009/04/13 11:39:33  jost
- * Neu: Lehrgänge
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 

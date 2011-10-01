@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/DBSupportH2Impl.java,v $
- * $Revision: 1.14 $
- * $Date: 2010/10/15 09:58:28 $
+ * $Revision: 1.15 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -9,46 +9,6 @@
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: DBSupportH2Impl.java,v $
- * Revision 1.14  2010/10/15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.13  2010-02-01 21:02:48  jost
- * Vermeidung Warnings.
- *
- * Revision 1.12  2009/11/17 21:02:38  jost
- * DB-Aktualisierung optimiert.
- *
- * Revision 1.11  2009/06/02 17:12:55  jost
- * Ausgabe der Datenbankversion.
- *
- * Revision 1.10  2009/04/15 21:04:43  jost
- * Überflüssiges Import-Statement entfernt.
- *
- * Revision 1.9  2009/04/14 18:39:04  jost
- * Deprecated Method ersetzt
- *
- * Revision 1.8  2009/04/13 11:40:44  jost
- * Änderung zurückgenommen.
- *
- * Revision 1.6  2008/12/30 21:58:56  jost
- * ÃœberflÃ¼ssiges Import-Statement entfernt.
- *
- * Revision 1.5  2008/12/22 21:21:21  jost
- * Bugfix MySQL-Support
- *
- * Revision 1.4  2008/01/01 12:36:30  jost
- * Javadoc korrigiert
- *
- * Revision 1.3  2007/12/01 17:47:22  jost
- * Neue DB-Update-Mimik
- *
- * Revision 1.2  2007/12/01 10:07:33  jost
- * H2-Support
- *
- * Revision 1.1  2007/10/18 18:20:23  jost
- * Vorbereitung H2-DB
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.server;
@@ -91,8 +51,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
 
     try
     {
-      Method m = Application.getClassLoader().load("org.h2.engine.Constants").getMethod(
-          "getVersion", (Class<?>[]) null);
+      Method m = Application.getClassLoader().load("org.h2.engine.Constants")
+          .getMethod("getVersion", (Class<?>[]) null);
       Logger.info("h2 version: " + m.invoke(null, (Object[]) null));
     }
     catch (Throwable t)
@@ -166,8 +126,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
   public String getJdbcUrl()
   {
     String url = "jdbc:h2:"
-        + Application.getPluginLoader().getPlugin(JVereinPlugin.class).getResources().getWorkPath()
-        + "/h2db/jverein";
+        + Application.getPluginLoader().getPlugin(JVereinPlugin.class)
+            .getResources().getWorkPath() + "/h2db/jverein";
 
     // if (JVereinDBService.SETTINGS.getBoolean("database.driver.h2.encryption",
     // true))
@@ -196,8 +156,8 @@ public class DBSupportH2Impl extends AbstractDBSupportImpl
         // + File.separator + "sql.h2", Application.getCallback()
         // .getStartupMonitor());
 
-        new JVereinUpdateProvider(conn,
-            Application.getCallback().getStartupMonitor());
+        new JVereinUpdateProvider(conn, Application.getCallback()
+            .getStartupMonitor());
       }
       catch (Exception e2)
       {

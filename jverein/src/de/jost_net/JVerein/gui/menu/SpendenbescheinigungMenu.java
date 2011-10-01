@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/SpendenbescheinigungMenu.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/01/01 21:40:17 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:44:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenbescheinigungMenu.java,v $
- * Revision 1.4  2010/01/01 21:40:17  jost
- * Existierende Spendenbescheinigung kann als Vorlage für eine neue Spendenbescheinigung verwendet werden.
- *
- * Revision 1.3  2009/06/11 21:03:02  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2008/12/22 21:15:24  jost
- * Icons ins MenÃ¼ aufgenommen.
- *
- * Revision 1.1  2008/07/19 19:24:58  jost
- * Neu: Spendenbescheinigung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 

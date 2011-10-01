@@ -1,38 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/BuchungsklasseSaldoList.java,v $
- * $Revision: 1.8 $
- * $Date: 2011/02/12 09:34:59 $
+ * $Revision: 1.9 $
+ * $Date: 2011/10/01 21:44:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsklasseSaldoList.java,v $
- * Revision 1.8  2011/02/12 09:34:59  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.7  2010-10-15 09:58:25  jost
- * Code aufgeräumt
- *
- * Revision 1.6  2010-02-23 21:15:49  jost
- * Individueller Zeitraum
- *
- * Revision 1.5  2009/09/19 16:28:16  jost
- * Weiterentwicklung
- *
- * Revision 1.4  2009/09/16 21:36:05  jost
- * Bugfix Saldobildung
- *
- * Revision 1.3  2009/09/15 19:22:10  jost
- * Korrekte Bildung der Summen.
- *
- * Revision 1.2  2009/09/12 19:03:00  jost
- * neu: Buchungsjournal
- *
- * Revision 1.1  2009/09/10 18:17:58  jost
- * neu: Buchungsklassen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.parts;
 

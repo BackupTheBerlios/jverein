@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungsartDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:26:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsartDeleteAction.java,v $
- * Revision 1.2  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/05/22 06:46:00  jost
- * BuchfÃ¼hrung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -59,8 +52,9 @@ public class BuchungsartDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr(
-            "Fehler beim Löschen der Buchungsart"), e);
+        Logger.error(
+            JVereinPlugin.getI18n().tr("Fehler beim Löschen der Buchungsart"),
+            e);
         return;
       }
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/AbbuchungsmodusInput.java,v $
- * $Revision: 1.12 $
- * $Date: 2011/08/27 11:03:22 $
+ * $Revision: 1.13 $
+ * $Date: 2011/10/01 21:44:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,42 +9,8 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: AbbuchungsmodusInput.java,v $
- * Revision 1.12  2011/08/27 11:03:22  jost
- * Vereinfachung Beitragsmodel
- *
- * Revision 1.11  2011-02-12 09:33:56  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.10  2010-10-15 09:58:29  jost
- * Code aufger�umt
- *
- * Revision 1.9  2010-04-25 13:54:45  jost
- * Vorarbeiten Mitgliedskonto
- *
- * Revision 1.8  2009/06/11 21:02:51  jost
- * Vorbereitung I18N
- *
- * Revision 1.7  2008/12/19 06:54:02  jost
- * Eingetretene Mitglieder auch bei monatlicher, .... Abrechnung
- *
- * Revision 1.6  2008/11/29 13:10:11  jost
- * Refactoring: Code-Optimierung
- *
- * Revision 1.5  2008/11/16 16:57:13  jost
- * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
- *
- * Revision 1.4  2008/08/10 12:35:19  jost
- * Abbuchung -> Abrechnung
- * Vorbereitung der Rechnungserstellung
- *
- * Revision 1.3  2008/01/31 19:36:46  jost
- * Jährliche, Halbjährliche und Vierteljährliche Abbuchungen können jetzt separat ausgeführt werden.
- *
- * Revision 1.2  2007/12/30 10:09:48  jost
- * Neuer Rhytmus: Jahr, Vierteljahr und Monat
- *
- * Revision 1.1  2007/12/02 13:40:04  jost
- * Neu: Beitragsmodelle
+ * Revision 1.13  2011/10/01 21:44:04  jost
+ * Log-Eintr�ge entfernt. Zeigt Eclipse-History-View viel besser an. Macht den Quelltext schlanker.
  *
  **********************************************************************/
 

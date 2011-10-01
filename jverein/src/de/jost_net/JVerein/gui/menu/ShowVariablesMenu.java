@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/ShowVariablesMenu.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/05/30 20:01:26 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:44:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ShowVariablesMenu.java,v $
- * Revision 1.1  2011/05/30 20:01:26  jost
- * Variable in die Zwischenablage kopieren
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 

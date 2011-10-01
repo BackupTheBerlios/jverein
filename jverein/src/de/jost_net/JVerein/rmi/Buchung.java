@@ -1,44 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Buchung.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/03/07 21:07:28 $
+ * $Revision: 1.12 $
+ * $Date: 2011/10/01 21:49:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Buchung.java,v $
- * Revision 1.11  2011/03/07 21:07:28  jost
- * Neu:  Automatische Spendenbescheinigungen: Referenz zur Spendenbescheinigung aufgenommen.
- *
- * Revision 1.10  2010-12-27 13:58:24  jost
- * Splitid
- *
- * Revision 1.9  2010-07-25 18:45:51  jost
- * Neu: Mitgliedskonto
- *
- * Revision 1.8  2008/12/03 22:00:50  jost
- * Erweiterung um Auszugs- und Blattnummer
- *
- * Revision 1.7  2008/06/28 17:01:03  jost
- * Bearbeiten nur, wenn kein Jahresabschluss vorliegt.
- *
- * Revision 1.6  2008/05/24 16:40:20  jost
- * Wegfall der Spalte Saldo
- *
- * Revision 1.5  2008/05/22 06:55:11  jost
- * Buchführung
- *
- * Revision 1.4  2008/03/16 07:37:55  jost
- * Reaktivierung Buchführung
- *
- * Revision 1.2  2007/02/23 20:28:24  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.1  2006/09/20 15:39:35  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

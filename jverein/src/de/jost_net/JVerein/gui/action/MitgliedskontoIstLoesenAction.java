@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedskontoIstLoesenAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/07/22 12:27:45 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:39:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedskontoIstLoesenAction.java,v $
- * Revision 1.2  2011/07/22 12:27:45  jost
- * Sofortige Aktualisierung der Anzeige nach Ist-Löschung im Mitgliedskonto. Patch von Julian.
- *
- * Revision 1.1  2011-05-05 19:50:20  jost
- * Neu: Istbuchungen können vom Mitgliedskonto gelöst werden.
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -67,7 +60,7 @@ public class MitgliedskontoIstLoesenAction implements Action
         GUI.getStatusBar().setSuccessText(
             "Istbuchung vom Mitgliedskonto gelöst.");
         Application.getMessagingFactory().sendMessage(
-                new MitgliedskontoMessage(mkn.getMitglied()));
+            new MitgliedskontoMessage(mkn.getMitglied()));
       }
       catch (RemoteException e)
       {

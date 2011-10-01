@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/BuchungsjournalSortDialog.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/04/23 19:43:45 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:43:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe 
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsjournalSortDialog.java,v $
- * Revision 1.1  2011/04/23 19:43:45  jost
- * Alternative Sortierung des Buchungsjournals nach ID/Buchungsnummer
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.dialogs;

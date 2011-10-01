@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/DokumentControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/06/20 15:11:08 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:42:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: DokumentControl.java,v $
- * Revision 1.4  2011/06/20 15:11:08  jost
- * Überflüssiges throws entfernt.
- *
- * Revision 1.3  2011-02-12 09:29:59  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.2  2010-12-14 21:41:41  jost
- * Neu: Speicherung von Dokumenten
- *
- * Revision 1.1  2010-12-12 08:11:17  jost
- * Neu: Speicherung von Dokumenten
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 
@@ -244,7 +231,8 @@ public class DokumentControl extends AbstractControl
     docs.setOrder("ORDER BY datum desc");
 
     docsList = new TablePart(docs, null /* new KontoAction() */);
-    docsList.addColumn("Datum", "datum", new DateFormatter(new JVDateFormatTTMMJJJJ()));
+    docsList.addColumn("Datum", "datum", new DateFormatter(
+        new JVDateFormatTTMMJJJJ()));
     docsList.addColumn("Bemerkung", "bemerkung");
     docsList.setRememberColWidths(true);
     docsList.setContextMenu(new DokumentMenu());

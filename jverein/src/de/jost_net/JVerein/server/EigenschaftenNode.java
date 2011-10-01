@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenNode.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/06/29 17:42:31 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftenNode.java,v $
- * Revision 1.6  2011/06/29 17:42:31  jost
- * Korrekte Boolean-Abfrage
- *
- * Revision 1.5  2011-06-06 19:17:42  jost
- * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
- *
- * Revision 1.4  2010-10-15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2009-12-12 16:27:04  jost
- * todo's entfernt.
- *
- * Revision 1.2  2009/11/22 16:20:36  jost
- * Sortierung der Nodes
- *
- * Revision 1.1  2009/11/17 21:03:28  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

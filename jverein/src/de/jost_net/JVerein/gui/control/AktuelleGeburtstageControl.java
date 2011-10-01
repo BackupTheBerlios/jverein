@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AktuelleGeburtstageControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:28:32 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:42:57 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AktuelleGeburtstageControl.java,v $
- * Revision 1.5  2011/02/12 09:28:32  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.4  2011-01-27 22:18:19  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
- * Revision 1.3  2010-10-15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2010-05-16 10:42:55  jost
- * Einheitlicher Umgang mit ausgetretenen Mitgliedern
- *
- * Revision 1.1  2009/07/14 07:28:43  jost
- * Neu: Box aktuelle Geburtstage
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.control;

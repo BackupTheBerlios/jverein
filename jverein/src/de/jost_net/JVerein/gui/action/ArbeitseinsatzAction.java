@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ArbeitseinsatzAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/02/12 14:51:48 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:20:26 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ArbeitseinsatzAction.java,v $
- * Revision 1.2  2011/02/12 14:51:48  jost
- * Warnung wenn bei einem neuen Mitglied ein neuer Satz aufgenommen werden soll.
- *
- * Revision 1.1  2010-11-17 04:48:29  jost
- * Erster Code zum Thema Arbeitseinsatz
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

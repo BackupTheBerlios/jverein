@@ -1,42 +1,15 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/navigation/MyItem.java,v $
- * $Revision: 1.7 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.8 $
+ * $Date: 2011/10/01 21:44:40 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MyItem.java,v $
- * Revision 1.7  2010/10/15 09:58:29  jost
- * Code aufger‰umt
- *
- * Revision 1.6  2008-12-28 07:55:27  jost
- * Icons an Jameica angepasst
- *
- * Revision 1.5  2008/12/22 21:16:52  jost
- * Icons ins Men√º aufgenommen.
- *
- * Revision 1.4  2008/11/29 13:11:27  jost
- * Refactoring: Warnungen beseitigt.
- *
- * Revision 1.3  2008/05/22 06:51:47  jost
- * Buchf√ºhrung
- *
- * Revision 1.2  2007/08/23 19:25:23  jost
- * Header korrigiert.
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.navigation;
-
-/*******************************************************************************
- * $Revision: 1.7 $ $Date: 2010/10/15 09:58:29 $ $Author: jost $ $Locker:  $
- * $State: Exp $
- * 
- * Copyright (c) by willuhn software & services All rights reserved
- * 
- ******************************************************************************/
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -171,7 +144,8 @@ public class MyItem implements NavigationItem
     }
     else
     {
-      return PseudoIterator.fromArray(children.toArray(new MyItem[children.size()]));
+      return PseudoIterator.fromArray(children.toArray(new MyItem[children
+          .size()]));
     }
   }
 
@@ -191,7 +165,8 @@ public class MyItem implements NavigationItem
   {
     List list = PseudoIterator.asList(this.parent.getPath());
     list.add(this);
-    return PseudoIterator.fromArray((NavigationItem[]) list.toArray(new NavigationItem[list.size()]));
+    return PseudoIterator.fromArray((NavigationItem[]) list
+        .toArray(new NavigationItem[list.size()]));
   }
 
   /**
@@ -233,7 +208,7 @@ public class MyItem implements NavigationItem
    */
   public String[] getAttributeNames()
   {
-    return new String[] { "name"};
+    return new String[] { "name" };
   }
 
   /**
@@ -264,10 +239,10 @@ public class MyItem implements NavigationItem
 
 /*******************************************************************************
  * $Log: MyItem.java,v $
- * Revision 1.7  2010/10/15 09:58:29  jost
- * Code aufger‰umt
- * Revision 1.6 2008-12-28 07:55:27 jost Icons an Jameica
- * angepasst
+ * Revision 1.8  2011/10/01 21:44:40  jost
+ * Log-Eintr‰ge entfernt. Zeigt Eclipse-History-View viel besser an. Macht den Quelltext schlanker.
+ * Revision 1.7 2010-10-15 09:58:29 jost Code aufger‰umt
+ * Revision 1.6 2008-12-28 07:55:27 jost Icons an Jameica angepasst
  * 
  * Revision 1.5 2008/12/22 21:16:52 jost Icons ins Men√º aufgenommen. Revision
  * 1.4 2008/11/29 13:11:27 jost Refactoring: Warnungen beseitigt.

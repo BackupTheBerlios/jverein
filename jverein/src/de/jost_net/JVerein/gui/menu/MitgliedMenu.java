@@ -1,50 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MitgliedMenu.java,v $
- * $Revision: 1.12 $
- * $Date: 2011/08/11 15:23:28 $
+ * $Revision: 1.13 $
+ * $Date: 2011/10/01 21:44:29 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedMenu.java,v $
- * Revision 1.12  2011/08/11 15:23:28  jost
- * Neu: Kontoauszug
- *
- * Revision 1.11  2011-07-14 19:37:38  jost
- * Neu: Mitglied kopieren
- *
- * Revision 1.10  2011-06-06 19:17:27  jost
- * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
- *
- * Revision 1.9  2011-04-23 06:56:19  jost
- * Neu: Freie Formulare
- *
- * Revision 1.8  2011-02-03 22:02:08  jost
- * Bugfix Kontextmenu
- *
- * Revision 1.7  2010-09-01 05:57:20  jost
- * neu: Personalbogen
- *
- * Revision 1.6  2010/02/01 20:59:57  jost
- * Neu: Einfache Mailfunktion
- *
- * Revision 1.5  2009/06/11 21:03:02  jost
- * Vorbereitung I18N
- *
- * Revision 1.4  2008/12/22 21:14:57  jost
- * Icons ins Menü aufgenommen.
- *
- * Revision 1.3  2008/07/18 20:11:31  jost
- * Neu: Spendenbescheinigung
- *
- * Revision 1.2  2007/08/31 05:36:00  jost
- * Jetzt auch bearbeiten über das Context-Menü
- *
- * Revision 1.1  2007/08/30 19:48:53  jost
- * Neues Kontext-Menü
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 

@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FormularDeleteAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/03/13 18:29:59 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:32:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: FormularDeleteAction.java,v $
- * Revision 1.3  2011/03/13 18:29:59  jost
- * redakt. Kommentare
- *
- * Revision 1.2  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/07/18 20:06:34  jost
- * Neu: Formulare
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -71,8 +61,10 @@ public class FormularDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr(
-            "Fehler beim Löschen des Formulares"), e);
+        Logger
+            .error(
+                JVereinPlugin.getI18n()
+                    .tr("Fehler beim Löschen des Formulares"), e);
         return;
       }
       f.delete();

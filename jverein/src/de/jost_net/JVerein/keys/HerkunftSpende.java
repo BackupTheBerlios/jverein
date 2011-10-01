@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/keys/HerkunftSpende.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/03/13 13:48:35 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:48:33 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: HerkunftSpende.java,v $
- * Revision 1.1  2011/03/13 13:48:35  jost
- * Neu: Sachspenden.
- *
  **********************************************************************/
 package de.jost_net.JVerein.keys;
 

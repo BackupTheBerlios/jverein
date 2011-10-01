@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Mitgliedskonto.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/07/25 18:46:21 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:49:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Mitgliedskonto.java,v $
- * Revision 1.3  2010/07/25 18:46:21  jost
- * Neu: Mitgliedskonto
- *
- * Revision 1.2  2010/05/18 20:24:32  jost
- * Anpassung Klassenname
- *
- * Revision 1.1  2010/04/28 06:17:50  jost
- * Neu: Mitgliedskonto
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

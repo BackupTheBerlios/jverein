@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsjournalPDF.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:38:26 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:46:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsjournalPDF.java,v $
- * Revision 1.4  2011/02/12 09:38:26  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.3  2010-10-15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2009-09-15 19:22:36  jost
- * Summenbildung.
- *
- * Revision 1.1  2009/09/12 19:04:44  jost
- * neu: Buchungsjournal
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 
@@ -58,8 +45,8 @@ public class BuchungsjournalPDF
     try
     {
       FileOutputStream fos = new FileOutputStream(file);
-      String subtitle = "vom " + new JVDateFormatTTMMJJJJ().format(dVon) + " bis "
-          + new JVDateFormatTTMMJJJJ().format(dBis);
+      String subtitle = "vom " + new JVDateFormatTTMMJJJJ().format(dVon)
+          + " bis " + new JVDateFormatTTMMJJJJ().format(dBis);
       if (konto != null)
       {
         subtitle += " für Konto " + konto.getNummer() + " - "

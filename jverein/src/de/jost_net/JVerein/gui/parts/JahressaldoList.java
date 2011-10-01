@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/JahressaldoList.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:25 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:44:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: JahressaldoList.java,v $
- * Revision 1.5  2010/10/15 09:58:25  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2009-06-11 21:03:24  jost
- * Vorbereitung I18N
- *
- * Revision 1.3  2009/03/01 18:00:20  jost
- * Zusätzliche Zeile "Überschuss/Verlust"
- *
- * Revision 1.2  2008/11/16 16:57:37  jost
- * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
- *
- * Revision 1.1  2008/06/28 16:59:00  jost
- * Neu: Jahresabschluss
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.parts;
 
@@ -84,7 +68,8 @@ public class JahressaldoList extends TablePart implements Part
 
       if (saldoList == null)
       {
-        GenericIterator gi = PseudoIterator.fromArray(zeile.toArray(new GenericObject[zeile.size()]));
+        GenericIterator gi = PseudoIterator.fromArray(zeile
+            .toArray(new GenericObject[zeile.size()]));
 
         saldoList = new TablePart(gi, null);
         saldoList.addColumn(JVereinPlugin.getI18n().tr("Kontonummer"),

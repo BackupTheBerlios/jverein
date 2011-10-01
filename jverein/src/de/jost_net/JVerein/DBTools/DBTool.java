@@ -2,18 +2,14 @@ package de.jost_net.JVerein.DBTools;
 
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/DBTools/DBTool.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/06/19 06:29:09 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:16:15 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: DBTool.java,v $
- * Revision 1.1  2011/06/19 06:29:09  jost
- * Neues Tool
- *
  **********************************************************************/
 
 import java.sql.Connection;

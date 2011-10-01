@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungsklasseAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/09/10 18:16:05 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:26:43 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsklasseAction.java,v $
- * Revision 1.1  2009/09/10 18:16:05  jost
- * neu: Buchungsklassen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftenImpl.java,v $
- * $Revision: 1.6 $
- * $Date: 2010/11/13 09:29:39 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -9,23 +9,8 @@
  * heiner@jverein.de
  * www.jverein.de
  * $Log: EigenschaftenImpl.java,v $
- * Revision 1.6  2010/11/13 09:29:39  jost
- * Warnings entfernt.
- *
- * Revision 1.5  2010-10-15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2009-11-17 21:03:14  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
- * Revision 1.3  2009/06/11 21:04:23  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2008/11/29 13:15:27  jost
- * Refactoring: Warnungen beseitigt.
- *
- * Revision 1.1  2008/01/25 16:07:06  jost
- * Neu: Eigenschaften des Mitgliedes
+ * Revision 1.7  2011/10/01 21:50:35  jost
+ * Log-Einträge entfernt. Zeigt Eclipse-History-View viel besser an. Macht den Quelltext schlanker.
  *
  **********************************************************************/
 package de.jost_net.JVerein.server;
@@ -57,13 +42,13 @@ public class EigenschaftenImpl extends AbstractDBObject implements
   }
 
   @Override
-  public String getPrimaryAttribute() 
+  public String getPrimaryAttribute()
   {
     return "id";
   }
 
   @Override
-  protected void deleteCheck() 
+  protected void deleteCheck()
   {
     //
   }
@@ -95,7 +80,7 @@ public class EigenschaftenImpl extends AbstractDBObject implements
   }
 
   @Override
-  protected Class<?> getForeignObject(String arg0) 
+  protected Class<?> getForeignObject(String arg0)
   {
     if ("mitglied".equals(arg0))
     {

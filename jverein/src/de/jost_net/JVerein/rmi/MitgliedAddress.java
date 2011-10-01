@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/MitgliedAddress.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/04/03 11:02:36 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:49:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedAddress.java,v $
- * Revision 1.1  2011/04/03 11:02:36  jost
- * Neu: JVerein-Mitglieder mit Bankverbindung werden in das Hibiscus-Adressbuch übernommen.
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

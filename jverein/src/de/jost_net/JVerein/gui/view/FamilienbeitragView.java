@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/FamilienbeitragView.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/08/01 18:32:45 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:45:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: FamilienbeitragView.java,v $
- * Revision 1.3  2011/08/01 18:32:45  jost
- * Hilfe erweitert.
- *
- * Revision 1.2  2011-08-01 18:27:57  jost
- * Funktionalität aus FamilienbeitragControl in MitgliedControl verschoben.
- *
- * Revision 1.1  2011-07-24 18:04:27  jost
- * Neu: Auflistung Familienbeiträge
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 
@@ -50,7 +40,7 @@ public class FamilienbeitragView extends AbstractView
   public String getHelp()
   {
     return "<form><p><span color=\"header\" font=\"header\">Familienbeiträge</span></p>"
-    +"<p>Doppelklick öffnet das Mitglied. Rechtsklick bietet die Möglichkeit, das Mitglied aus dem Famlilienverband zu entfernen.</p>"
+        + "<p>Doppelklick öffnet das Mitglied. Rechtsklick bietet die Möglichkeit, das Mitglied aus dem Famlilienverband zu entfernen.</p>"
         + "</form>";
   }
 }

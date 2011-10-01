@@ -1,35 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklassesaldoPDF.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/02/12 09:38:38 $
+ * $Revision: 1.8 $
+ * $Date: 2011/10/01 21:46:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsklassesaldoPDF.java,v $
- * Revision 1.7  2011/02/12 09:38:38  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.6  2010-10-15 09:58:29  jost
- * Code aufgeräumt
- *
- * Revision 1.5  2010-05-02 06:09:32  jost
- * Redakt. Änderung
- *
- * Revision 1.4  2010/02/23 21:16:13  jost
- * Individueller Zeitraum
- *
- * Revision 1.3  2009/09/19 16:28:38  jost
- * Weiterentwicklung
- *
- * Revision 1.2  2009/09/15 19:24:12  jost
- * Saldo-Bildung
- *
- * Revision 1.1  2009/09/12 19:05:02  jost
- * neu: Buchungsklassen
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 

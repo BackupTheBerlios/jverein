@@ -1,41 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliedskontoRechnungView.java,v $
- * $Revision: 1.9 $
- * $Date: 2011/05/23 17:15:39 $
+ * $Revision: 1.10 $
+ * $Date: 2011/10/01 21:46:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedskontoRechnungView.java,v $
- * Revision 1.9  2011/05/23 17:15:39  jost
- * Neu: Bei Überweisungen können Abbucher ausgeschlossen werden.
- *
- * Revision 1.8  2011-04-07 19:35:47  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.7  2011-01-15 09:46:48  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.6  2010-10-15 09:58:24  jost
- * Code aufgeräumt
- *
- * Revision 1.5  2010-10-07 19:49:23  jost
- * Hilfe in die View verlagert.
- *
- * Revision 1.4  2010-08-23 13:39:31  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.3  2010-08-16 20:17:47  jost
- * Neu: Mahnung
- *
- * Revision 1.2  2010-08-15 19:01:42  jost
- * Rechnungen auch für einen vorgegebenen Zeitraum ausgeben.
- *
- * Revision 1.1  2010-08-04 10:41:27  jost
- * Prerelease Rechnung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

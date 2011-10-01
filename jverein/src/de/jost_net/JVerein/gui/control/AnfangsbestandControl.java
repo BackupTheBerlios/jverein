@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AnfangsbestandControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/02/12 09:28:44 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AnfangsbestandControl.java,v $
- * Revision 1.6  2011/02/12 09:28:44  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.5  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2009-07-27 15:21:44  jost
- * Focus auf erstes Feld setzen.
- *
- * Revision 1.3  2008/12/06 16:45:40  jost
- * Debug-Meldung entfernt.
- *
- * Revision 1.2  2008/07/12 11:55:16  jost
- * Bugfix beim Speichern des Anfangsbestandes.
- *
- * Revision 1.1  2008/05/22 06:47:13  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 

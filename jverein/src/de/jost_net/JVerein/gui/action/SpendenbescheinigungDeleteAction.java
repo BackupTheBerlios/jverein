@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/SpendenbescheinigungDeleteAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/03/09 22:22:45 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:39:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenbescheinigungDeleteAction.java,v $
- * Revision 1.4  2011/03/09 22:22:45  jost
- * Referenz auf die Spendenbescheinigung der Buchung löschen.
- *
- * Revision 1.3  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2008/10/01 14:17:02  jost
- * Warnungen entfernt
- *
- * Revision 1.1  2008/07/19 19:23:39  jost
- * Neu: Spendenbescheinigung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

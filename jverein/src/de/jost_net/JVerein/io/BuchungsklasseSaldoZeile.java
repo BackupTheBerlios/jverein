@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/BuchungsklasseSaldoZeile.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:46:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsklasseSaldoZeile.java,v $
- * Revision 1.5  2010/10/15 09:58:29  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2009-09-19 16:28:56  jost
- * Weiterentwicklung
- *
- * Revision 1.3  2009/09/15 19:24:25  jost
- * Saldo-Bildung
- *
- * Revision 1.2  2009/09/12 19:05:14  jost
- * neu: Buchungsklassen
- *
- * Revision 1.1  2009/09/10 18:19:09  jost
- * neu: Buchungsklassen
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 
@@ -172,7 +156,7 @@ public class BuchungsklasseSaldoZeile implements GenericObject
   {
     return new String[] { "buchungsklassenbezeichnung",
         "buchungsartbezeichnung", "anfangsbestand", "einnahmen", "ausgaben",
-        "umbuchungen", "anzahlbuchungen"};
+        "umbuchungen", "anzahlbuchungen" };
   }
 
   public String getID() throws RemoteException

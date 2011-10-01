@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/Attic/TermineView.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/04/07 19:35:48 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:46:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: TermineView.java,v $
- * Revision 1.3  2011/04/07 19:35:48  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.2  2011-01-31 17:13:34  jost
- * Hilfe aufgenommen.
- *
- * Revision 1.1  2010-11-25 15:11:52  jost
- * Initial Commit
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

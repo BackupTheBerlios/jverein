@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/dialogs/KontoauszugZuordnungDialog.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:43:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KontoauszugZuordnungDialog.java,v $
- * Revision 1.2  2010/10/15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2010-10-10 08:53:02  jost
- * Kontoauszugsinformationen en Bloc zuweisen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.dialogs;
 
@@ -67,8 +60,9 @@ public class KontoauszugZuordnungDialog extends AbstractDialog
     LabelGroup group = new LabelGroup(parent, "");
     group.addLabelPair(JVereinPlugin.getI18n().tr("Auszug"), getAuszug());
     group.addLabelPair(JVereinPlugin.getI18n().tr("Blatt"), getBlatt());
-    group.addLabelPair(JVereinPlugin.getI18n().tr(
-        "Kontoauszugsinformationen überschreiben"), getUeberschreiben());
+    group.addLabelPair(
+        JVereinPlugin.getI18n().tr("Kontoauszugsinformationen überschreiben"),
+        getUeberschreiben());
     group.addLabelPair("", getStatus());
 
     ButtonArea buttons = new ButtonArea(parent, 2);

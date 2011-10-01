@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/JVDateFormatJJJJMMTT.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/02/12 09:44:07 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:51:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: JVDateFormatJJJJMMTT.java,v $
- * Revision 1.1  2011/02/12 09:44:07  jost
- * Statische Codeanalyse mit Findbugs
- *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 

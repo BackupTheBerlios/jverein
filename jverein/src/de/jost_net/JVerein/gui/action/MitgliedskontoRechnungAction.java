@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedskontoRechnungAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2010/10/15 09:58:02 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:39:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedskontoRechnungAction.java,v $
- * Revision 1.4  2010/10/15 09:58:02  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2010-08-15 19:00:23  jost
- * Rechnungen auch für einen vorgegebenen Zeitraum ausgeben.
- *
- * Revision 1.2  2010-08-08 19:32:03  jost
- * Code bereinigt.
- *
- * Revision 1.1  2010-08-04 10:39:50  jost
- * Prerelease Rechnung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

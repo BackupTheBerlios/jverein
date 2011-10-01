@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/KursteilnehmerDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:39:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KursteilnehmerDeleteAction.java,v $
- * Revision 1.2  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2007/02/25 19:11:24  jost
- * Neu: Kursteilnehmer
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -60,8 +53,9 @@ public class KursteilnehmerDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr(
-            "Fehler beim Löschen des Kursteilnehmers"), e);
+        Logger.error(
+            JVereinPlugin.getI18n().tr(
+                "Fehler beim Löschen des Kursteilnehmers"), e);
         return;
       }
       kt.delete();

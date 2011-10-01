@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/WiedervorlageImpl.java,v $
- *  * $Revision: 1.6 $
- * $Date: 2011/02/12 09:43:37 $
+ *  * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:50:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: WiedervorlageImpl.java,v $
- * Revision 1.6  2011/02/12 09:43:37  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.5  2010-11-13 09:31:24  jost
- * Warnings entfernt.
- *
- * Revision 1.4  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2009-06-11 21:04:23  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2008/11/29 13:17:28  jost
- * Refactoring: Warnungen beseitigt.
- *
- * Revision 1.1  2007/05/07 19:27:06  jost
- * Neu: Wiedervorlage
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

@@ -1,35 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Geschaeftsjahr.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/07/26 12:27:28 $
+ * $Revision: 1.8 $
+ * $Date: 2011/10/01 21:51:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Geschaeftsjahr.java,v $
- * Revision 1.7  2011/07/26 12:27:28  jost
- * Bugfix Ende Geschäftsjahr
- *
- * Revision 1.6  2011-02-12 09:44:07  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.5  2010-10-15 09:58:29  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2008-11-16 16:59:30  jost
- * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
- *
- * Revision 1.3  2008/06/28 17:08:12  jost
- * refactoring
- *
- * Revision 1.2  2008/05/26 18:59:31  jost
- * neue Methode
- *
- * Revision 1.1  2008/05/25 19:37:40  jost
- * Neu
- *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 

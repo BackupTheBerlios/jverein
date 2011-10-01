@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/FormularControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/10/15 09:58:26 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: FormularControl.java,v $
- * Revision 1.5  2010/10/15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.4  2009-07-24 20:18:03  jost
- * Focus auf erstes Feld setzen.
- *
- * Revision 1.3  2008/11/30 18:56:54  jost
- * Refactoring: Code-Optimierung
- *
- * Revision 1.2  2008/11/29 13:07:24  jost
- * Refactoring: Code-Optimierung
- *
- * Revision 1.1  2008/07/18 20:09:10  jost
- * Neu: Formulare
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 
@@ -104,8 +88,8 @@ public class FormularControl extends AbstractControl
     {
       return art;
     }
-    art = new SelectInput(Formularart.getArray(), new Formularart(
-        getFormular().getArt()));
+    art = new SelectInput(Formularart.getArray(), new Formularart(getFormular()
+        .getArt()));
     return art;
   }
 
@@ -115,7 +99,7 @@ public class FormularControl extends AbstractControl
     {
       return datei;
     }
-    datei = new FileInput("", false, new String[] { "*.pdf", "*.PDF"});
+    datei = new FileInput("", false, new String[] { "*.pdf", "*.PDF" });
     return datei;
   }
 

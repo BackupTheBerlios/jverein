@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/MailAuswahlMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/05/29 12:41:50 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:44:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailAuswahlMenu.java,v $
- * Revision 1.2  2011/05/29 12:41:50  jost
- * Neu. Anzeige der Variablen.
- *
- * Revision 1.1  2010/02/01 20:59:39  jost
- * Neu: Einfache Mailfunktion
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 

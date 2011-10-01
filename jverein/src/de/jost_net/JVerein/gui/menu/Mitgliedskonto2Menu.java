@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/Mitgliedskonto2Menu.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/08/17 18:36:28 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:44:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Mitgliedskonto2Menu.java,v $
- * Revision 1.2  2010/08/17 18:36:28  jost
- * Kontextmenü für die Mahnung
- *
- * Revision 1.1  2010-08-04 10:40:21  jost
- * Prerelease Rechnung
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.menu;

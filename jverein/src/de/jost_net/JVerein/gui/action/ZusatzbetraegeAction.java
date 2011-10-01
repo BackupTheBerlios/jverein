@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ZusatzbetraegeAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/02/12 14:52:19 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:40:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ZusatzbetraegeAction.java,v $
- * Revision 1.3  2011/02/12 14:52:19  jost
- * Warnung wenn bei einem neuen Mitglied ein neuer Satz aufgenommen werden soll.
- *
- * Revision 1.2  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/12/22 21:06:50  jost
- * Zusatzabbuchung->Zusatzbetrag
- *
- * Revision 1.3  2007/02/23 20:26:00  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.2  2006/12/20 20:25:44  jost
- * Patch von Ullrich Schäfer, der die Primitive vs. Object Problematik adressiert.
- *
- * Revision 1.1  2006/09/20 15:38:12  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

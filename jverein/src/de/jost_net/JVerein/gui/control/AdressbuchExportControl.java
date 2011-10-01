@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/AdressbuchExportControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/01/27 22:17:50 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AdressbuchExportControl.java,v $
- * Revision 1.6  2011/01/27 22:17:50  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
- * Revision 1.5  2011-01-15 09:46:49  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.4  2010-10-15 09:58:26  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2010-08-23 13:30:06  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.2  2010/05/16 10:42:38  jost
- * Einheitlicher Umgang mit ausgetretenen Mitgliedern
- *
- * Revision 1.1  2009/03/26 20:58:32  jost
- * Neu: Adressbuchexport
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.control;

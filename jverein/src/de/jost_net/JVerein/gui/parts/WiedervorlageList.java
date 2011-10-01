@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/WiedervorlageList.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:35:26 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:44:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: WiedervorlageList.java,v $
- * Revision 1.5  2011/02/12 09:35:26  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.4  2010-10-15 09:58:25  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2009-06-11 21:03:24  jost
- * Vorbereitung I18N
- *
- * Revision 1.2  2007/12/22 08:26:07  jost
- * Debug-Meldung entfernt.
- *
- * Revision 1.1  2007/12/20 20:33:09  jost
- * Neu: Wiedervorlage-Ãœbersicht in der Jameica-Startseite
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.parts;
 

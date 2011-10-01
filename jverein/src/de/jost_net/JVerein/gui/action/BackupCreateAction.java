@@ -1,68 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BackupCreateAction.java,v $
- * $Revision: 1.18 $
- * $Date: 2011/06/19 06:29:26 $
+ * $Revision: 1.19 $
+ * $Date: 2011/10/01 21:22:01 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BackupCreateAction.java,v $
- * Revision 1.18  2011/06/19 06:29:26  jost
- * Bugfix Reihenfolge
- *
- * Revision 1.17  2011-03-20 08:45:13  jost
- * Bugfix Diagnose-Backup
- *
- * Revision 1.16  2011-02-12 09:24:44  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.15  2011-02-06 10:33:42  jost
- * überflüssigen import entfernt.
- *
- * Revision 1.14  2011-02-06 10:23:32  jost
- * weitere Tabellen aufgenommen.
- *
- * Revision 1.13  2011-01-09 14:28:37  jost
- * Stammdaten in die Einstellungen verschoben.
- *
- * Revision 1.12  2010-12-12 17:18:56  jost
- * Neue Tabellen aufgenommen.
- *
- * Revision 1.11  2010-11-13 09:20:22  jost
- * Mit V 1.5 deprecatete Spalten und Tabellen entfernt.
- *
- * Revision 1.10  2010-10-15 09:58:01  jost
- * Code aufgeräumt
- *
- * Revision 1.9  2010-09-12 11:52:10  jost
- * Bugfixes
- *
- * Revision 1.8  2010/05/24 14:57:58  jost
- * Weitere Tabellen aufgenommen.
- *
- * Revision 1.7  2010/02/01 20:56:43  jost
- * Mail-Tabellen aufgenommen
- *
- * Revision 1.6  2009/11/17 20:50:09  jost
- * Codeoptimierung
- *
- * Revision 1.5  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.4  2009/04/13 11:37:36  jost
- * Neu: Lehrgänge
- *
- * Revision 1.3  2008/12/22 21:05:14  jost
- * Zusatzabbuchung->Zusatzbetrag
- *
- * Revision 1.2  2008/11/29 13:04:57  jost
- * Refactoring: Warnungen beseitigt.
- *
- * Revision 1.1  2008/09/29 14:42:28  jost
- * Neu: Backup und Restore im XML-Format
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.action;

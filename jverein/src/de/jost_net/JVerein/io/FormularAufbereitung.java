@@ -1,47 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/FormularAufbereitung.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/05/06 15:01:54 $
+ * $Revision: 1.12 $
+ * $Date: 2011/10/01 21:47:12 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: FormularAufbereitung.java,v $
- * Revision 1.11  2011/05/06 15:01:54  jost
- * Neue Variablenmimik
- *
- * Revision 1.10  2011-05-06 14:49:53  jost
- * Neue Variablenmimik
- *
- * Revision 1.9  2011-04-23 06:56:32  jost
- * Neu: Freie Formulare
- *
- * Revision 1.8  2011-02-12 09:39:02  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.7  2010-12-02 21:05:48  jost
- * Bugfix Integer
- *
- * Revision 1.6  2010-10-15 09:58:29  jost
- * Code aufgeräumt
- *
- * Revision 1.5  2010-08-08 19:33:13  jost
- * Zusammenfassung der Rechnungen
- *
- * Revision 1.4  2009/09/21 18:19:29  jost
- * NullPointerException abgefangen.
- *
- * Revision 1.3  2009/04/10 17:46:17  jost
- * Zusätzliche Datenfelder für die Rechnungserstellung
- *
- * Revision 1.2  2008/09/16 18:52:54  jost
- * Refactoring Formularaufbereitung
- *
- * Revision 1.1  2008/07/18 20:15:55  jost
- * Neu: Formulare
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 

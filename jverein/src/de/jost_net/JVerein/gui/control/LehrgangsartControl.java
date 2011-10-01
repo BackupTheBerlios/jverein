@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/LehrgangsartControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/02/12 09:31:37 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: LehrgangsartControl.java,v $
- * Revision 1.4  2011/02/12 09:31:37  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.3  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2009-07-24 20:18:46  jost
- * Focus auf erstes Feld setzen.
- *
- * Revision 1.1  2009/04/13 11:39:27  jost
- * Neu: Lehrgänge
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 

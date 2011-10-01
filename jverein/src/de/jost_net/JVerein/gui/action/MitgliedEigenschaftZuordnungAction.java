@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedEigenschaftZuordnungAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/06/06 19:15:54 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:40:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedEigenschaftZuordnungAction.java,v $
- * Revision 1.1  2011/06/06 19:15:54  jost
- * Neu: Funktion zur gleichzeitigen Zuordnung einer Eigenschaft an viele Mitglieder
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

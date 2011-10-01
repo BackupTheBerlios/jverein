@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/MailVorlageControl.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/04/18 08:24:56 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailVorlageControl.java,v $
- * Revision 1.2  2011/04/18 08:24:56  jost
- * Verlängerung der Texte auf 10.000 Zeichen
- *
- * Revision 1.1  2010-02-01 20:57:58  jost
- * Neu: Einfache Mailfunktion
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 

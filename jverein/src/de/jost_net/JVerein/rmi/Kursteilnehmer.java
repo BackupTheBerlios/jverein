@@ -1,21 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Kursteilnehmer.java,v $
- * $Revision: 1.2 $
- * $Date: 2007/03/21 12:10:57 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:49:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Kursteilnehmer.java,v $
- * Revision 1.2  2007/03/21 12:10:57  jost
- * Neu: Abbuchungsdatum beim Kursteilnehmer kann zurückgesetzt werden.
- *
- * Revision 1.1  2007/02/25 19:14:37  jost
- * Neu: Kursteilnehmer
- *
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Checker.java,v $
- * $Revision: 1.1 $
- * $Date: 2009/03/26 21:05:56 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:51:11 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Checker.java,v $
- * Revision 1.1  2009/03/26 21:05:56  jost
- * Email-Adress-Checker
- *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 

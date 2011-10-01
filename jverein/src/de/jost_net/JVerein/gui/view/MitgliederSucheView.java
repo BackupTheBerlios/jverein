@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/MitgliederSucheView.java,v $
- * $Revision: 1.32 $
- * $Date: 2011/06/19 06:30:46 $
+ * $Revision: 1.33 $
+ * $Date: 2011/10/01 21:46:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliederSucheView.java,v $
- * Revision 1.32  2011/06/19 06:30:46  jost
- * McKOI ausgemustert.
- *
- * Revision 1.31  2011-04-17 06:39:26  jost
- * Sterbedatum durch Eintrittsdatum ersetzt.
- *
- * Revision 1.30  2011-01-29 19:31:24  jost
- * Feinschliff
- *
- * Revision 1.29  2011-01-27 22:22:59  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

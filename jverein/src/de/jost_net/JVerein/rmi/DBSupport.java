@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/DBSupport.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/10/18 18:19:34 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:49:39 $
  * $Author: jost $
  *
  * Kopie aus Hibiscus
@@ -9,10 +9,6 @@
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: DBSupport.java,v $
- * Revision 1.1  2007/10/18 18:19:34  jost
- * Vorbereitung H2-DB
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.rmi;

@@ -1,72 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Reporter.java,v $
- * $Revision: 1.19 $
- * $Date: 2011/03/13 13:47:57 $
+ * $Revision: 1.20 $
+ * $Date: 2011/10/01 21:47:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Reporter.java,v $
- * Revision 1.19  2011/03/13 13:47:57  jost
- * Erweiterungen f. Standardformular Spendenbescheinigung.
- *
- * Revision 1.18  2011-03-07 21:06:17  jost
- * Neue Methode f. booleans
- *
- * Revision 1.17  2011-02-12 09:40:16  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.16  2010-10-15 09:58:29  jost
- * Code aufger�umt
- *
- * Revision 1.15  2010-09-07 16:59:57  jost
- * Bugfix Images
- *
- * Revision 1.14  2010-09-01 13:49:24  jost
- * neue Methode
- *
- * Revision 1.13  2010-09-01 05:58:01  jost
- * neu: Personalbogen
- *
- * Revision 1.12  2009/09/19 16:29:09  jost
- * Weiterentwicklung
- *
- * Revision 1.11  2009/03/04 20:52:18  jost
- * Footer korrigiert.
- *
- * Revision 1.10  2009/03/02 20:06:36  jost
- * Korrekte Anzeige von null-Werten
- *
- * Revision 1.9  2009/01/25 16:09:55  jost
- * I18N entfernt.
- * Silbentrennung aufgenommen.
- *
- * Revision 1.8  2008/12/29 08:41:16  jost
- * Korrekte Verarbeitung bei fehlendem Geburts- und/oder Eintrittsdatum
- *
- * Revision 1.7  2008/07/10 09:22:18  jost
- * Neuer Konstruktor mit Angabe von Rändern.
- *
- * Revision 1.6  2008/07/10 08:00:06  jost
- * Optimierung der internen Reporter-Klasse
- *
- * Revision 1.5  2008/05/06 19:40:45  jost
- * Warnings beseitigt
- *
- * Revision 1.4  2007/12/21 11:28:46  jost
- * Breite von Tabellen einstellbar gemacht.
- *
- * Revision 1.3  2007/12/16 20:26:29  jost
- * neue Methode
- *
- * Revision 1.2  2007/12/01 10:06:38  jost
- * Änderung wg. neuem Classloader in Jameica
- *
- * Revision 1.1  2007/05/26 16:26:41  jost
- * Neu
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.io;
@@ -133,14 +74,15 @@ public class Reporter
   {
     this(out, monitor, title, subtitle, maxRecords, 80, 30, 20, 20);
   }
-  public Reporter(OutputStream out,float linkerRand, float rechterRand,
+
+  public Reporter(OutputStream out, float linkerRand, float rechterRand,
       float obererRand, float untererRand) throws DocumentException
   {
     this.out = out;
     rpt = new Document();
     rpt.setMargins(linkerRand, rechterRand, obererRand, untererRand);
     hyph = new HyphenationAuto("de", "DE", 2, 2);
-   PdfWriter.getInstance(rpt, out);
+    PdfWriter.getInstance(rpt, out);
     AbstractPlugin plugin = Application.getPluginLoader().getPlugin(
         JVereinPlugin.class);
     rpt.addAuthor(plugin.getManifest().getName() + " - Version "

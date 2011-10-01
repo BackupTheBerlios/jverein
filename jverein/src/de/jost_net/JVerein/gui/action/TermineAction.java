@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/Attic/TermineAction.java,v $
- * $Revision: 1.1 $
- * $Date: 2010/11/25 15:11:30 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:40:00 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: TermineAction.java,v $
- * Revision 1.1  2010/11/25 15:11:30  jost
- * Initial Commit
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -36,9 +32,10 @@ public class TermineAction implements Action
 
 /**********************************************************************
  * $Log: TermineAction.java,v $
- * Revision 1.1  2010/11/25 15:11:30  jost
- * Initial Commit
- * Revision 1.1 2010-11-19 18:37:19 willuhn
+ * Revision 1.2  2011/10/01 21:40:00  jost
+ * Log-Einträge entfernt. Zeigt Eclipse-History-View viel besser an. Macht den Quelltext schlanker.
+ * Revision 1.1 2010-11-25 15:11:30 jost Initial
+ * Commit Revision 1.1 2010-11-19 18:37:19 willuhn
  * 
  * @N Erste Version der Termin-View mit Appointment-Providern
  * 

@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Beitragsgruppe.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/03/26 15:48:15 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:49:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Beitragsgruppe.java,v $
- * Revision 1.6  2011/03/26 15:48:15  jost
- * Buchungsart bei der Abbuchung direkt in den Istsatz schreiben.
- *
- * Revision 1.5  2010-11-17 04:51:54  jost
- * Erster Code zum Thema Arbeitseinsatz
- *
- * Revision 1.4  2008/01/25 16:06:28  jost
- * Neu: Eigenschaften des Mitgliedes
- *
- * Revision 1.3  2007/03/25 17:04:01  jost
- * Beitragsart aufgenommen.
- *
- * Revision 1.2  2007/02/23 20:28:24  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.1  2006/09/20 15:39:35  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

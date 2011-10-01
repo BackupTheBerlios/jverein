@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/menu/EigenschaftGruppeMenu.java,v $
- * $Revision: 1.2 $
- * $Date: 2009/11/23 20:40:07 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:44:28 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftGruppeMenu.java,v $
- * Revision 1.2  2009/11/23 20:40:07  jost
- * Neuer Menüpunkt: neu
- *
- * Revision 1.1  2009/11/17 20:58:20  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.menu;
 

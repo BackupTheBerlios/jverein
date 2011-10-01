@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/HibiscusKontenImportAction.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/03/13 18:30:23 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:34:25 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: HibiscusKontenImportAction.java,v $
- * Revision 1.4  2011/03/13 18:30:23  jost
- * redakt. Kommentare
- *
- * Revision 1.3  2009/07/24 20:16:30  jost
- * Überflüssige Imports entfernt.
- *
- * Revision 1.2  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/05/22 06:46:13  jost
- * BuchfÃ¼hrung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/search/MailVorlageSearchProvider.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/08/05 14:53:38 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:49:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailVorlageSearchProvider.java,v $
- * Revision 1.4  2011/08/05 14:53:38  jost
- * Warnings entfernt.
- *
- * Revision 1.3  2011-02-12 09:42:02  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.2  2010-10-15 09:58:30  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2010-02-25 18:58:27  jost
- * neu: Suche nach MailVorlagen
- *
  **********************************************************************/
 package de.jost_net.JVerein.search;
 

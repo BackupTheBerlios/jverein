@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/ArbeitseinsatzUeberpruefungInput.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/08/25 07:41:50 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:44:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ArbeitseinsatzUeberpruefungInput.java,v $
- * Revision 1.2  2011/08/25 07:41:50  jost
- * Zusätzliche Filtereinstellung
- *
- * Revision 1.1  2010-11-22 20:58:53  jost
- * Initial Commit
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.input;

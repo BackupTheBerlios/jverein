@@ -1,17 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/Familienverband.java,v $
- * $Revision: 1.1 $
- * $Date: 2007/03/27 19:21:31 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:44:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Familienverband.java,v $
- * Revision 1.1  2007/03/27 19:21:31  jost
- * Familienangehörige anzeigen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.parts;
 

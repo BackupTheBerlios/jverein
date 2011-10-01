@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/SpendenbescheinigungDuplizierenAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/01/01 22:40:20 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:39:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenbescheinigungDuplizierenAction.java,v $
- * Revision 1.2  2010/01/01 22:40:20  jost
- * Überflüssigen Code entfernt.
- *
- * Revision 1.1  2010/01/01 21:40:04  jost
- * Existierende Spendenbescheinigung kann als Vorlage für eine neue Spendenbescheinigung verwendet werden.
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

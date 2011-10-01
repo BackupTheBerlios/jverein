@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/JubilaeenParser.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/15 09:58:29 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:47:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: JubilaeenParser.java,v $
- * Revision 1.3  2010/10/15 09:58:29  jost
- * Code aufger‰umt
- *
- * Revision 1.2  2010-01-01 20:28:24  jost
- * Typo
- *
- * Revision 1.1  2007/12/22 08:27:02  jost
- * Neu: Jubil√§enliste
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 

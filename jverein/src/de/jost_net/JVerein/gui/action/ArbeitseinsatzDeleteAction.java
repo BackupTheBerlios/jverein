@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/ArbeitseinsatzDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/11/22 20:57:04 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:20:47 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ArbeitseinsatzDeleteAction.java,v $
- * Revision 1.2  2010/11/22 20:57:04  jost
- * Überflüssigen Code entfernt.
- *
- * Revision 1.1  2010-11-17 04:48:49  jost
- * Erster Code zum Thema Arbeitseinsatz
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -61,8 +54,9 @@ public class ArbeitseinsatzDeleteAction implements Action
       }
       catch (Exception e)
       {
-        Logger.error(JVereinPlugin.getI18n().tr(
-            "Fehler beim Löschen des Arbeitseinsatzes"), e);
+        Logger.error(
+            JVereinPlugin.getI18n().tr(
+                "Fehler beim Löschen des Arbeitseinsatzes"), e);
         return;
       }
 

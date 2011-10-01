@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Konto.java,v $
- * $Revision: 1.3 $
- * $Date: 2008/06/28 17:06:31 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:49:39 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Konto.java,v $
- * Revision 1.3  2008/06/28 17:06:31  jost
- * Neu: Jahresabschluss
- *
- * Revision 1.2  2008/05/26 18:59:04  jost
- * Neu: Eröffnungsdatum
- *
- * Revision 1.1  2008/05/22 06:55:38  jost
- * Buchführung
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

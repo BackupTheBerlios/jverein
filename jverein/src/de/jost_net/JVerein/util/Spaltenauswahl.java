@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/Spaltenauswahl.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/01/27 22:26:15 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:51:44 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Spaltenauswahl.java,v $
- * Revision 1.4  2011/01/27 22:26:15  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
- * Revision 1.3  2010-10-15 09:58:29  jost
- * Code aufgeräumt
- *
- * Revision 1.2  2009-06-11 21:04:24  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2008/11/29 13:18:27  jost
- * Neu: Konfiguration der Spalten einer Tabelle
- *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 

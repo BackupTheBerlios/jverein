@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/WiedervorlageControl.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:33:14 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: WiedervorlageControl.java,v $
- * Revision 1.5  2011/02/12 09:33:14  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.4  2009/07/27 15:25:34  jost
- * Focus auf erstes Feld setzen.
- *
- * Revision 1.3  2009/06/22 18:14:45  jost
- * Einheitliche Ausgabe von Fehlermeldungen in der Statusbar
- *
- * Revision 1.2  2007/12/20 20:32:53  jost
- * Neu: Wiedervorlage-Übersicht in der Jameica-Startseite
- *
- * Revision 1.1  2007/05/07 19:25:22  jost
- * Neu: Wiedervorlage
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 

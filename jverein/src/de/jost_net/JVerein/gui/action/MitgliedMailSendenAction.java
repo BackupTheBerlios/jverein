@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MitgliedMailSendenAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/02/12 09:26:50 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:39:59 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedMailSendenAction.java,v $
- * Revision 1.2  2011/02/12 09:26:50  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.1  2010/02/01 20:57:35  jost
- * Neu: Einfache Mailfunktion
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
@@ -95,8 +88,9 @@ public class MitgliedMailSendenAction implements Action
           }
           catch (Exception e)
           {
-            Logger.error(JVereinPlugin.getI18n().tr(
-                "Fehler bei der Auswahl der Mail-Empfänger"), e);
+            Logger.error(
+                JVereinPlugin.getI18n().tr(
+                    "Fehler bei der Auswahl der Mail-Empfänger"), e);
             return;
           }
 

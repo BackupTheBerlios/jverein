@@ -1,19 +1,12 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/util/IbanBicCalc.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/02/15 17:25:07 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:51:11 $
  * $Author: jost $
  *
  * Copyright (c) by Ralf Neumaier
  * All rights reserved
  * www.jverein.de
- * $Log: IbanBicCalc.java,v $
- * Revision 1.2  2010/02/15 17:25:07  jost
- * Vermeidung NPE
- *
- * Revision 1.1  2009/10/20 18:01:47  jost
- * Neu: Anzeige IBAN
- *
  **********************************************************************/
 package de.jost_net.JVerein.util;
 

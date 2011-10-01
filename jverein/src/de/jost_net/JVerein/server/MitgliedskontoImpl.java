@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/MitgliedskontoImpl.java,v $
- * $Revision: 1.5 $
- * $Date: 2010/11/13 09:31:24 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MitgliedskontoImpl.java,v $
- * Revision 1.5  2010/11/13 09:31:24  jost
- * Warnings entfernt.
- *
- * Revision 1.4  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2010-07-25 18:47:32  jost
- * Neu: Mitgliedskonto
- *
- * Revision 1.2  2010/05/18 20:25:56  jost
- * Anpassung Klassenname
- *
- * Revision 1.1  2010/04/28 06:18:30  jost
- * Neu: Mitgliedskonto
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 
@@ -58,7 +42,7 @@ public class MitgliedskontoImpl extends AbstractDBObject implements
   @Override
   public String getPrimaryAttribute()
   {
-    return "id";
+    return "mitglied";
   }
 
   @Override

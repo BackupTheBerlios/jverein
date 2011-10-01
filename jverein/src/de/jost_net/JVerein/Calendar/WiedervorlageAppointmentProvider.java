@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/WiedervorlageAppointmentProvider.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/02/12 09:24:04 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:15:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: WiedervorlageAppointmentProvider.java,v $
- * Revision 1.5  2011/02/12 09:24:04  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.4  2011-01-31 17:13:17  jost
- * *** empty log message ***
- *
- * Revision 1.3  2011-01-20 18:26:31  jost
- * AppointmentCode Hibiscus -> Jameica
- *
- * Revision 1.2  2010-11-27 10:56:05  jost
- * Link zum Mitglied
- *
- * Revision 1.1  2010-11-25 15:11:23  jost
- * Initial Commit
- *
  **********************************************************************/
 package de.jost_net.JVerein.Calendar;
 

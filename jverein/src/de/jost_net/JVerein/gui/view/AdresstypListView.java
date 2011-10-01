@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AdresstypListView.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/04/07 19:28:47 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:45:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AdresstypListView.java,v $
- * Revision 1.2  2011/04/07 19:28:47  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.1  2011-01-27 22:21:53  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

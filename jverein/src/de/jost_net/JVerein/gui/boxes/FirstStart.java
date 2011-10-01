@@ -1,35 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/boxes/FirstStart.java,v $
- * $Revision: 1.7 $
- * $Date: 2011/01/09 14:29:04 $
+ * $Revision: 1.8 $
+ * $Date: 2011/10/01 21:40:16 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: FirstStart.java,v $
- * Revision 1.7  2011/01/09 14:29:04  jost
- * Stammdaten in die Einstellungen verschoben.
- *
- * Revision 1.6  2010-10-15 09:58:30  jost
- * Code aufgeräumt
- *
- * Revision 1.5  2009-06-11 21:02:17  jost
- * Vorbereitung I18N
- *
- * Revision 1.4  2009/05/31 12:26:26  jost
- * Erläuternder Text wurde eingefügt.
- *
- * Revision 1.3  2007/12/29 19:09:22  jost
- * Explizite HÃ¶he der Box vorgegeben.
- *
- * Revision 1.2  2007/12/28 15:54:36  jost
- * Button-Leiste vervollstÃ¤ndigt.
- *
- * Revision 1.1  2007/12/28 13:09:38  jost
- * Neue FirstStart-Box
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.boxes;
 

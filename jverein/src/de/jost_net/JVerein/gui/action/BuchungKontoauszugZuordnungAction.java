@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungKontoauszugZuordnungAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/10/17 19:51:02 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:24:37 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungKontoauszugZuordnungAction.java,v $
- * Revision 1.3  2010/10/17 19:51:02  jost
- * Vermeidung NPE
- *
- * Revision 1.2  2010-10-15 09:58:01  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2010-10-10 08:52:50  jost
- * Kontoauszugsinformationen en Bloc zuweisen
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.action;

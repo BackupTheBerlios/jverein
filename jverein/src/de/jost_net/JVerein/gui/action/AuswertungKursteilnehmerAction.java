@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AuswertungKursteilnehmerAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/03/13 18:27:33 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:21:19 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AuswertungKursteilnehmerAction.java,v $
- * Revision 1.3  2011/03/13 18:27:33  jost
- * redakt. Kommentare
- *
- * Revision 1.2  2009/06/11 21:01:50  jost
- * Vorbereitung I18N
- *
- * Revision 1.1  2007/05/26 16:25:42  jost
- * Neu: Auswertung Kursteilnehmer
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

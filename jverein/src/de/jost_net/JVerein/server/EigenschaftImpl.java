@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/EigenschaftImpl.java,v $
- * $Revision: 1.3 $
- * $Date: 2010/11/13 09:29:39 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:50:34 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: EigenschaftImpl.java,v $
- * Revision 1.3  2010/11/13 09:29:39  jost
- * Warnings entfernt.
- *
- * Revision 1.2  2010-10-15 09:58:28  jost
- * Code aufgeräumt
- *
- * Revision 1.1  2009-11-17 21:03:50  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 
@@ -46,7 +36,7 @@ public class EigenschaftImpl extends AbstractDBObject implements Eigenschaft
   }
 
   @Override
-  public String getPrimaryAttribute() 
+  public String getPrimaryAttribute()
   {
     return "id";
   }
@@ -88,7 +78,7 @@ public class EigenschaftImpl extends AbstractDBObject implements Eigenschaft
   }
 
   @Override
-  protected Class<?> getForeignObject(String field) 
+  protected Class<?> getForeignObject(String field)
   {
     if ("eigenschaftgruppe".equals(field))
     {

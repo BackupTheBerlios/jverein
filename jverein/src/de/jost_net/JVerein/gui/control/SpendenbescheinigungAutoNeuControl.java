@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/SpendenbescheinigungAutoNeuControl.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/06/20 15:11:57 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenbescheinigungAutoNeuControl.java,v $
- * Revision 1.4  2011/06/20 15:11:57  jost
- * Bei der automatischen Erstellung von Spendenbescheinigungen wird das Formular mit vorgegeben.
- *
- * Revision 1.3  2011-03-14 18:31:01  jost
- * Bugfix Spendenart
- *
- * Revision 1.2  2011-03-09 22:16:26  jost
- * Einschränkung auf ein Jahr.
- *
- * Revision 1.1  2011-03-07 21:04:09  jost
- * Neu:  Automatische Spendenbescheinigungen
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 
@@ -77,7 +64,7 @@ public class SpendenbescheinigungAutoNeuControl extends AbstractControl
     }
     Calendar cal = Calendar.getInstance();
     jahr = new SelectInput(new Object[] { cal.get(Calendar.YEAR),
-        cal.get(Calendar.YEAR) - 1}, cal.get(Calendar.YEAR));
+        cal.get(Calendar.YEAR) - 1 }, cal.get(Calendar.YEAR));
     jahr.addListener(new Listener()
     {
 
@@ -105,7 +92,7 @@ public class SpendenbescheinigungAutoNeuControl extends AbstractControl
       return formular;
     }
     DBIterator it = Einstellungen.getDBService().createList(Formular.class);
-    it.addFilter("art = ?", new Object[] { Formularart.SPENDENBESCHEINIGUNG});
+    it.addFilter("art = ?", new Object[] { Formularart.SPENDENBESCHEINIGUNG });
     formular = new SelectInput(it, null);
     return formular;
   }
@@ -129,13 +116,15 @@ public class SpendenbescheinigungAutoNeuControl extends AbstractControl
         {
 
           List items = spbTree.getItems();
-          SpendenbescheinigungNode spn = (SpendenbescheinigungNode) items.get(0);
+          SpendenbescheinigungNode spn = (SpendenbescheinigungNode) items
+              .get(0);
           GenericIterator it1 = spn.getChildren();
           while (it1.hasNext())
           {
-            SpendenbescheinigungNode sp1 = (SpendenbescheinigungNode) it1.next();
-            Spendenbescheinigung spbescheinigung = (Spendenbescheinigung) Einstellungen.getDBService().createObject(
-                Spendenbescheinigung.class, null);
+            SpendenbescheinigungNode sp1 = (SpendenbescheinigungNode) it1
+                .next();
+            Spendenbescheinigung spbescheinigung = (Spendenbescheinigung) Einstellungen
+                .getDBService().createObject(Spendenbescheinigung.class, null);
             spbescheinigung.setSpendenart(Spendenart.GELDSPENDE);
             spbescheinigung.setMitglied(sp1.getMitglied());
             spbescheinigung.setZeile1(sp1.getMitglied().getAnrede());
@@ -153,7 +142,8 @@ public class SpendenbescheinigungAutoNeuControl extends AbstractControl
             GenericIterator it2 = sp1.getChildren();
             while (it2.hasNext())
             {
-              SpendenbescheinigungNode sp2 = (SpendenbescheinigungNode) it2.next();
+              SpendenbescheinigungNode sp2 = (SpendenbescheinigungNode) it2
+                  .next();
               spendedatum = sp2.getBuchung().getDatum();
               summe += sp2.getBuchung().getBetrag();
               sp2.getBuchung().setSpendenbescheinigungId(
@@ -165,7 +155,8 @@ public class SpendenbescheinigungAutoNeuControl extends AbstractControl
             spbescheinigung.setFormular((Formular) getFormular().getValue());
             spbescheinigung.store();
           }
-          GUI.getStatusBar().setSuccessText("Spendenbescheinigung(en) erstellt");
+          GUI.getStatusBar()
+              .setSuccessText("Spendenbescheinigung(en) erstellt");
           spbTree.removeAll();
         }
         catch (RemoteException e)
@@ -181,8 +172,8 @@ public class SpendenbescheinigungAutoNeuControl extends AbstractControl
 
   public Part getSpendenbescheinigungTree() throws RemoteException
   {
-    spbTree = new TreePart(new SpendenbescheinigungNode(
-        (Integer) getJahr().getValue()), null);
+    spbTree = new TreePart(new SpendenbescheinigungNode((Integer) getJahr()
+        .getValue()), null);
     return spbTree;
   }
 

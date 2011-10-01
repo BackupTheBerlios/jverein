@@ -1,47 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/KontoImpl.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/02/15 20:55:45 $
+ * $Revision: 1.12 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KontoImpl.java,v $
- * Revision 1.11  2011/02/15 20:55:45  jost
- * Colins Patch zur Performancesteigerung
- *
- * Revision 1.10  2010-12-30 18:55:52  jost
- * Colins Patch zur MySQL-Performance-Steigerung
- *
- * Revision 1.9  2010-11-13 09:30:50  jost
- * Warnings entfernt.
- *
- * Revision 1.8  2010-10-15 09:58:28  jost
- * Code aufger‰umt
- *
- * Revision 1.7  2010-09-28 18:31:15  jost
- * Check auf Doppelte Konten
- *
- * Revision 1.6  2010-09-19 16:15:16  jost
- * L‰nge der Kontobezeichnung auf 255  Zeichen verl‰ngert.
- *
- * Revision 1.5  2009/06/11 21:04:23  jost
- * Vorbereitung I18N
- *
- * Revision 1.4  2008/11/29 13:16:26  jost
- * Refactoring: Warnungen beseitigt.
- *
- * Revision 1.3  2008/06/28 17:07:46  jost
- * Neu: Jahresabschluss
- *
- * Revision 1.2  2008/05/26 18:59:17  jost
- * Neu: Er√∂ffnungsdatum
- *
- * Revision 1.1  2008/05/22 06:56:28  jost
- * Buchf√ºhrung
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 
@@ -208,13 +174,13 @@ public class KontoImpl extends AbstractDBObject implements Konto
     konten.setOrder("order by bezeichnung");
     return konten;
   }
-  
+
   public void delete() throws RemoteException, ApplicationException
   {
     super.delete();
     Cache.get(Konto.class, false).remove(this); // Aus Cache loeschen
   }
- 
+
   public void store() throws RemoteException, ApplicationException
   {
     super.store();

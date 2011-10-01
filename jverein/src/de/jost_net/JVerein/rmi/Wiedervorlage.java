@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/rmi/Wiedervorlage.java,v $
- *  * $Revision: 1.2 $
- * $Date: 2010/02/25 18:57:27 $
+ *  * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:49:38 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: Wiedervorlage.java,v $
- * Revision 1.2  2010/02/25 18:57:27  jost
- * Redakt.
- *
- * Revision 1.1  2007/05/07 19:26:51  jost
- * Neu: Wiedervorlage
- *
  **********************************************************************/
 package de.jost_net.JVerein.rmi;
 

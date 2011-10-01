@@ -1,28 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/parts/ArbeitseinsatzUeberpruefungList.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/08/25 07:42:42 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:44:54 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ArbeitseinsatzUeberpruefungList.java,v $
- * Revision 1.4  2011/08/25 07:42:42  jost
- * Bugfix Filtereinstellungen
- * Bugfix Formatierung Tabelle
- * neue Filteroption
- *
- * Revision 1.3  2011-01-04 14:19:59  jost
- * Einschränkung auf die Beitragsgruppen mit Arbeitseinsätzen.
- *
- * Revision 1.2  2010-11-24 21:56:31  jost
- * nur angemeldete Mitglieder
- *
- * Revision 1.1  2010-11-22 21:00:04  jost
- * Initial Commit
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.parts;
 
@@ -165,7 +150,7 @@ public class ArbeitseinsatzUeberpruefungList extends TablePart implements Part
         return ergebnis;
       }
     };
-     return (ArrayList<ArbeitseinsatzZeile>) Einstellungen.getDBService()
+    return (ArrayList<ArbeitseinsatzZeile>) Einstellungen.getDBService()
         .execute(sql, new Object[] { jahr, jahr, jahr }, rs);
   }
 

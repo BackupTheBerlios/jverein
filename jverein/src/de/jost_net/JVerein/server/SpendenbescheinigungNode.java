@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/server/SpendenbescheinigungNode.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/06/29 17:43:51 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:50:35 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: SpendenbescheinigungNode.java,v $
- * Revision 1.3  2011/06/29 17:43:51  jost
- * Korrekte Boolean-Abfrage
- *
- * Revision 1.2  2011-03-09 22:16:59  jost
- * Einschränkung auf ein Jahr.
- *
- * Revision 1.1  2011-03-07 21:10:06  jost
- * Neu:  Automatische Spendenbescheinigungen
- *
  **********************************************************************/
 package de.jost_net.JVerein.server;
 

@@ -1,47 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AuswertungKursteilnehmerView.java,v $
- * $Revision: 1.11 $
- * $Date: 2011/04/07 19:28:47 $
+ * $Revision: 1.12 $
+ * $Date: 2011/10/01 21:45:50 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AuswertungKursteilnehmerView.java,v $
- * Revision 1.11  2011/04/07 19:28:47  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.10  2011-01-15 09:46:49  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.9  2010-10-15 09:58:25  jost
- * Code aufgeräumt
- *
- * Revision 1.8  2010-10-07 19:49:24  jost
- * Hilfe in die View verlagert.
- *
- * Revision 1.7  2010-08-23 13:39:32  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.6  2009/06/11 21:03:39  jost
- * Vorbereitung I18N
- *
- * Revision 1.5  2009/01/20 20:09:24  jost
- * neue Icons
- *
- * Revision 1.4  2009/01/20 19:14:25  jost
- * neu: Back-Button mit Icon
- *
- * Revision 1.3  2008/05/24 14:04:08  jost
- * Redatkionelle Ã„nderung
- *
- * Revision 1.2  2008/01/01 19:47:45  jost
- * Erweiterung um Hilfe-Funktion
- *
- * Revision 1.1  2007/05/26 16:26:30  jost
- * Neu: Auswertung Kursteilnehmer
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/ArbeitseinsatzZeile.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/02/12 09:37:43 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:46:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: ArbeitseinsatzZeile.java,v $
- * Revision 1.2  2011/02/12 09:37:43  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.1  2010-11-22 21:00:51  jost
- * Initial Commit
- *
  **********************************************************************/
 package de.jost_net.JVerein.io;
 

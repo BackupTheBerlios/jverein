@@ -1,29 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AbrechnungslaufDeleteAction.java,v $
- * $Revision: 1.5 $
- * $Date: 2011/03/13 18:26:45 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:17:04 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AbrechnungslaufDeleteAction.java,v $
- * Revision 1.5  2011/03/13 18:26:45  jost
- * redakt. Kommentare
- *
- * Revision 1.4  2011-02-12 09:24:30  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.3  2010-09-06 13:24:40  jost
- * Überflüssigen Code entfernt.
- *
- * Revision 1.2  2010-08-21 08:43:41  jost
- * Bugfix: Keine Löschung, wenn Buchung bereits abgeschlossen.
- *
- * Revision 1.1  2010-07-25 18:28:03  jost
- * Neu: Mitgliedskonto
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

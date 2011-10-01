@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/MailDetailAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2010/02/15 17:21:55 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:39:58 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: MailDetailAction.java,v $
- * Revision 1.2  2010/02/15 17:21:55  jost
- * Mail-Anhang implementiert
- *
- * Revision 1.1  2010/02/01 20:57:26  jost
- * Neu: Einfache Mailfunktion
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

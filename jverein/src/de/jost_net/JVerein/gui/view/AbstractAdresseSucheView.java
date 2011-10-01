@@ -1,119 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/view/AbstractAdresseSucheView.java,v $
- * $Revision: 1.4 $
- * $Date: 2011/04/07 19:34:54 $
+ * $Revision: 1.5 $
+ * $Date: 2011/10/01 21:45:51 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AbstractAdresseSucheView.java,v $
- * Revision 1.4  2011/04/07 19:34:54  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.3  2011-04-07 19:25:41  jost
- * Neue Zurückbutton-Mimik aus Jameica
- *
- * Revision 1.2  2011-02-12 09:36:15  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.1  2011-01-29 19:30:09  jost
- * Feinschliff
- *
- * Revision 1.2  2011-01-28 09:18:30  jost
- * Korrekte Detailaction
- *
- * Revision 1.1  2011-01-27 22:21:37  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
- * Revision 1.28  2011-01-15 09:46:47  jost
- * Tastatursteuerung wegen Problemen mit Jameica/Hibiscus wieder entfernt.
- *
- * Revision 1.27  2010-10-30 11:30:53  jost
- * Neu: Sterbetag
- *
- * Revision 1.26  2010-10-15 09:58:24  jost
- * Code aufgeräumt
- *
- * Revision 1.25  2010-10-07 19:49:22  jost
- * Hilfe in die View verlagert.
- *
- * Revision 1.24  2010-08-23 13:39:31  jost
- * Optimierung Tastatursteuerung
- *
- * Revision 1.23  2009/11/19 19:44:42  jost
- * Bugfix Eigenschaften
- *
- * Revision 1.22  2009/11/17 21:01:13  jost
- * Neu: Eigenschaft und EigenschaftGruppe
- *
- * Revision 1.21  2009/06/11 21:03:39  jost
- * Vorbereitung I18N
- *
- * Revision 1.20  2009/01/20 20:09:24  jost
- * neue Icons
- *
- * Revision 1.19  2009/01/20 19:15:19  jost
- * neu: Back-Button mit Icon
- *
- * Revision 1.18  2008/11/16 16:58:08  jost
- * Speicherung der Einstellung von Property-Datei in die Datenbank verschoben.
- *
- * Revision 1.17  2008/11/11 20:48:06  jost
- * 2spaltiges Layout und Selektion nach Geschlecht
- *
- * Revision 1.16  2008/05/24 14:04:08  jost
- * Redatkionelle Ã„nderung
- *
- * Revision 1.15  2008/05/22 06:54:31  jost
- * Redaktionelle Ã„nderung
- *
- * Revision 1.14  2008/03/08 19:30:16  jost
- * Neu: Externe Mitgliedsnummer
- *
- * Revision 1.13  2008/01/26 16:22:34  jost
- * ÃœberflÃ¼ssigen Knopf entfernt.
- * Speicherung der Default-Werte
- *
- * Revision 1.12  2008/01/25 16:04:24  jost
- * Neu: Eigenschaften des Mitgliedes
- *
- * Revision 1.11  2008/01/01 19:52:45  jost
- * Erweiterung um Hilfe-Funktion
- *
- * Revision 1.10  2007/12/01 19:08:54  jost
- * Wegfall Standardtab fÃ¼r die Suche
- *
- * Revision 1.9  2007/09/16 17:52:37  jost
- * Selektion nach Mitgliedsstatus
- *
- * Revision 1.8  2007/08/23 19:26:09  jost
- * Bugfix
- *
- * Revision 1.7  2007/08/23 18:45:25  jost
- * Standard-Tab fÃ¼r die Mitglieder-Suche
- * und Bug #011764
- *
- * Revision 1.6  2007/07/20 20:15:52  jost
- * Bessere Fehlermeldung
- *
- * Revision 1.5  2007/04/03 16:03:24  jost
- * Meldung, wenn keine Beitragsgruppe erfaßt ist.
- *
- * Revision 1.4  2007/03/25 17:02:43  jost
- * 1. Zeitoptimierung bei der Suche
- * 2. Tab mit allen Mitgliedern
- *
- * Revision 1.3  2007/02/23 20:27:42  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.2  2006/10/21 09:19:30  jost
- * Korrekter Ablauf bei leerer Datenbank
- *
- * Revision 1.1  2006/09/20 15:39:10  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.view;
 

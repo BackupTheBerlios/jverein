@@ -1,26 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungsartAction.java,v $
- * $Revision: 1.5 $
- * $Date: 2009/06/11 21:02:05 $
+ * $Revision: 1.6 $
+ * $Date: 2011/10/01 21:25:49 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: BuchungsartAction.java,v $
- * Revision 1.5  2009/06/11 21:02:05  jost
- * Vorbereitung I18N
- *
- * Revision 1.4  2008/03/16 07:34:53  jost
- * Reaktivierung Buchführung
- *
- * Revision 1.2  2007/02/23 20:25:42  jost
- * Mail- und Webadresse im Header korrigiert.
- *
- * Revision 1.1  2006/09/20 15:38:12  jost
- * *** empty log message ***
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

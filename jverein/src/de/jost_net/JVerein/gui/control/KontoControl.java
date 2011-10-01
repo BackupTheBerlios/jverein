@@ -1,32 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/control/KontoControl.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/05/08 08:01:04 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/01 21:42:56 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: KontoControl.java,v $
- * Revision 1.6  2011/05/08 08:01:04  jost
- * Änderung der Zuordnung des Hibiscus-Kontos ermöglicht.
- *
- * Revision 1.5  2011-02-12 09:30:56  jost
- * Statische Codeanalyse mit Findbugs
- *
- * Revision 1.4  2010-10-15 09:58:27  jost
- * Code aufgeräumt
- *
- * Revision 1.3  2010-09-19 16:14:31  jost
- * Länge der Kontobezeichnung auf 255  Zeichen verlängert.
- *
- * Revision 1.2  2008/05/26 18:58:39  jost
- * Neu: ErÃ¶ffnungsdatum
- *
- * Revision 1.1  2008/05/22 06:48:32  jost
- * BuchfÃ¼hrung
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.control;
 

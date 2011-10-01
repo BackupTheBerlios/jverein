@@ -1,18 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/input/KontoInput.java,v $
- * $Revision: 1.1 $
- * $Date: 2011/05/08 08:01:25 $
+ * $Revision: 1.2 $
+ * $Date: 2011/10/01 21:44:04 $
  * $Author: jost $
  * $Locker:  $
  * $State: Exp $
  *
  * Copyright (c) by willuhn software & services
  * All rights reserved
- * $Log: KontoInput.java,v $
- * Revision 1.1  2011/05/08 08:01:25  jost
- * Änderung der Zuordnung des Hibiscus-Kontos ermöglicht.
- *
- *
  **********************************************************************/
 
 package de.jost_net.JVerein.gui.input;

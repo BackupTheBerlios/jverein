@@ -1,20 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/AdresseDeleteAction.java,v $
- * $Revision: 1.2 $
- * $Date: 2011/03/13 18:26:56 $
+ * $Revision: 1.3 $
+ * $Date: 2011/10/01 21:17:55 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: AdresseDeleteAction.java,v $
- * Revision 1.2  2011/03/13 18:26:56  jost
- * redakt. Kommentare
- *
- * Revision 1.1  2011-01-27 22:15:33  jost
- * Neu: Speicherung von weiteren Adressen in der Mitgliedertabelle
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 

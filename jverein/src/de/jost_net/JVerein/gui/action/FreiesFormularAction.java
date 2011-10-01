@@ -1,23 +1,13 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/FreiesFormularAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/05/06 15:01:35 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/01 21:34:10 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
  * All rights reserved
  * heiner@jverein.de
  * www.jverein.de
- * $Log: FreiesFormularAction.java,v $
- * Revision 1.3  2011/05/06 15:01:35  jost
- * Neue Variablenmimik
- *
- * Revision 1.2  2011-05-06 14:44:33  jost
- * Neue Variablenmimik
- *
- * Revision 1.1  2011-04-23 06:55:33  jost
- * Neu: Freie Formulare
- *
  **********************************************************************/
 package de.jost_net.JVerein.gui.action;
 
