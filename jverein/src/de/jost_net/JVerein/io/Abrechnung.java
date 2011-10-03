@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/io/Abrechnung.java,v $
- * $Revision: 1.14 $
- * $Date: 2011/10/01 21:46:58 $
+ * $Revision: 1.15 $
+ * $Date: 2011/10/03 11:55:32 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -681,12 +681,16 @@ public class Abrechnung
     return mitgliedname;
   }
 
-  private String dtaus27(String in)
+  public static String dtaus27(String in)
   {
     String out = in;
     if (in.length() > 27)
     {
       out = in.substring(0, 27);
+    }
+    while (out.length() < 27)
+    {
+      out += " ";
     }
     int lae = out.length();
     for (int i = 0; i < out.length(); i++)
