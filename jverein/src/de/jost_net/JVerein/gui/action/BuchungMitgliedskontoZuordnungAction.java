@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/gui/action/BuchungMitgliedskontoZuordnungAction.java,v $
- * $Revision: 1.3 $
- * $Date: 2011/10/01 21:25:16 $
+ * $Revision: 1.4 $
+ * $Date: 2011/10/03 11:55:09 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -106,8 +106,6 @@ public class BuchungMitgliedskontoZuordnungAction implements Action
           buchung.setMitgliedskonto(mk);
           buchung.store();
         }
-        System.out.println(mk.getBetrag() + mk.getZweck1());
-
         control.getBuchungsList();
         GUI.getStatusBar().setSuccessText(
             JVereinPlugin.getI18n().tr("Mitgliedskonto zugeordnet"));
