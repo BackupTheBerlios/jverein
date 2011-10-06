@@ -1,7 +1,7 @@
 /**********************************************************************
  * $Source: /home/xubuntu/berlios_backup/github/tmp-cvs/jverein/Repository/jverein/src/de/jost_net/JVerein/Calendar/WiedervorlageAppointmentProvider.java,v $
- * $Revision: 1.6 $
- * $Date: 2011/10/01 21:15:54 $
+ * $Revision: 1.7 $
+ * $Date: 2011/10/06 18:10:36 $
  * $Author: jost $
  *
  * Copyright (c) by Heiner Jostkleigrewe
@@ -129,7 +129,8 @@ public class WiedervorlageAppointmentProvider implements AppointmentProvider
     {
       try
       {
-        return i18n.tr("Wiedervorlage:" + w.getVermerk());
+        return i18n.tr("Wiedervorlage:" + w.getMitglied().getNameVorname()
+            + ": " + w.getVermerk());
       }
       catch (RemoteException re)
       {
